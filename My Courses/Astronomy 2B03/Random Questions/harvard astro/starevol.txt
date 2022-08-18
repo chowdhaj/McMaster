@@ -1,0 +1,274 @@
+ENERGY GENERATION IN STARS & STELLAR EVOLUTION
+----------------------------------------------
+ 
+
+Energy generation in stars:
+--------------------------
+
+Why does fusion of hydrogen release energy?
+   a) Fusion breaks the electromagnetic bonds between hydrogen atoms,
+      releasing energetic photons.
+  $b) The mass of a helium nucleus is smaller than the mass of four 
+      protons.
+   c) The mass of a helium nucleus is larger than the mass of four 
+      protons.
+   d) The velocity of four protons is larger than the velocity of a
+      helium nucleus.
+   e) None of the above are true.
+
+Why would two protons combine to form an atom of deuterium (heavy
+hydrogen) in the core of a star like the Sun?
+   a) The electromagnetic force strongly attracts the protons.
+   b) The gravitational force strongly attracts the protons.
+  $c) The velocity of protons in the core of the Sun is very large.
+   d) Protons never combine to form deuterium in the core of the Sun.
+   e) Both a and c.
+
+Fusion in the core of a stable massive star cannot proceed beyond
+iron because:
+   a) it would require temperatures that even stars cannot generate.
+   b) the fusion of iron nuclei is impossible under any circumstances.
+  $c) iron nuclei are the most tightly bound of all nuclei so iron fusion 
+      does not release energy.
+   d) the Chandrasekhar limit has been reached.
+
+After the Sun's core hydrogen is depleted by nuclear fusion the
+core will consist primarily of
+   a) carbon
+   b) deuterium
+  $c) helium
+   d) oxygen
+
+The solar corona has temperatures roughly the same level as
+temperatures in the Sun's core, where nuclear fusion takes place.
+Why doesn't fusion occur in the corona?
+  $a) The density in the corona is too low.
+   b) The corona has too many free electrons.
+   c) Atoms in the corona are mostly ionized.
+   d) The corona has more heavy atoms than the core.
+   e) Two of the above.
+
+Fusion in the core of a main sequence star changes the chemical
+composition in the core. What happens to the chemical composition
+outside the core?
+   a) We have no way of finding out.
+  $b) The chemical composition outside the core changes very little.
+   c) The same changes occur outside the core as within the core.
+   d) Hydrogen becomes more abundant outside the core. 
+
+Which of the following would lengthen the amount of time a star
+is able to fuse hydrogen at its center?
+   a) The temperature in the core of the star is increased.
+  $b) The gas in the core of the star is enriched in hydrogen.
+   c) The mass of the star is increased.
+   d) none of the above
+
+About 25\% of the mass of a newborn star is initially in
+helium. Why doesn't helium also fuse on the main sequence?
+       I. Helium nuclei travel more slowly on average than
+          hydrogen nuclei at any temperature
+       II. Helium nuclei repel each other with more force than
+          do hydrogen nuclei.
+       III. Helium fusion requires three helium nuclei to hit
+          each other almost simultaneously.
+   a) I
+   b) II
+   c) III
+   d) I, II
+   e) II, III
+  $f) I, II, III
+
+If the rate of hydrogen fusion within the Sun were to increase,
+the core of the Sun would
+   a) contract and decrease in temperature.
+   b) expand and increase in temperature.
+  $c) expand and decrease in temperature.
+   d) stay the same size but increase in temperature.
+
+If the temperature in the core of the Sun increased, which of the
+following would occur?
+   a) The rate of nuclear reactions in the core would increase.
+   b) The radiation pressure in the core would increase.
+   c) The core of the star would expand.
+   d) The temperature in the core would decrease.
+  $e) All of the above.
+
+If the core of the Sun were somehow kept extremely cold for a
+long time, the Sun would
+   a) freeze into ice
+   b) expand to about the radius of Earth's orbit
+  $c) collapse to about the size of the Earth
+   d) collapse to about the size of a large city
+
+A celestial body growing by accretion of material must surpass a
+certain mass before hydrogen fusion begins in the core, making it
+a star.  If the strength of the charge on the proton were to be
+increased, then that minimum mass
+  $a) must increase 
+   b) must decrease 
+   c) would not change
+
+
+Stellar evolution:
+-----------------
+
+If two stars are on the main sequence, and one is more luminous
+than the other, we can be sure that the
+   a) more luminous star will have the longer lifetime
+   b) fainter star is the more massive
+  $c) more luminous star is the more massive
+   d) more luminous star will have the redder color
+
+When a star becomes a red giant it becomes much brighter because
+it is
+   a) moving closer to us
+   b) losing its outer envelope
+   c) fusing iron in its core
+  $d) increasing in size
+
+As a one solar mass star evolves into a red giant, its
+   a) surface temperature and luminosity increase.
+   b) surface temperature and luminosity decrease.
+   c) luminosity decreases while the surface temperature increases.
+  $d) luminosity increases while the surface temperature decreases.
+
+After hydrogen fusion stops in the core of a star, the core
+   a) cools and the star as a whole expands.
+   b) cools and the star as a whole contracts.
+  $c) heats and the star as a whole expands.
+   d) heats and the star as a whole contracts.
+
+A star is burning hydrogen to helium in its core and has ten
+times the mass of the Sun. Which of the following are true?
+   a) The surface temperature of the star is smaller than that of the Sun.
+   b) The star is redder, more luminous, and larger than the Sun.
+  $c) The star is bluer, larger, and more luminous than the Sun.
+   d) both a and b.
+   e) both a and c.
+
+A star evolves off the main sequence when
+   a) nuclear reactions begin in the core of the star.
+  $b) hydrogen is exhausted in the core of the star.
+   c) hydrogen is exhausted everywhere in the star.
+   d) helium is exhausted in the core of the star.
+
+Giant stars are rare because
+   a) they do not form as often as main sequence stars.
+   b) giant stars are unstable.
+  $c) the giant stage is very short compared to the main sequence stage.
+   d) elements heavier than helium are relatively rare.
+
+Which of the following stars is probably oldest?
+   a) A one solar mass main sequence star.
+  $b) A one solar mass white dwarf.
+   c) A ten solar mass main sequence star.
+   d) A ten solar mass red giant.
+
+After the first 20 billion years of the Universe, the Sun will
+have evolved through red giant, main sequence, and white dwarf
+stages.  Assuming a current radius of 1, what radii will the Sun
+have during these phases, in correct order?
+  $a) 1, 400, 0.01
+   b) 0.01, 1, 400
+   c) 1, 1, 1
+   d) 1, 0.01, 400
+
+After a star has evolved into a red giant, hydrogen burning
+   a) ceases completely.
+   b) happens only in the center of the star.
+  $c) happens only in shells outside the core of the star.
+   d) happens only during novae.
+
+Which of these stars will end its main sequence lifetime most rapidly?
+  $a) A very massive star, since more massive stars consume their hydrogen 
+      more rapidly.
+   b) A low-mass star, since less massive stars have less hydrogen to burn.
+   c) A star like the Sun, since the combination of fuel-use
+      rate and available fuel amount peaks at about spectral class G. 
+   d) none of the above; all stars have main sequence lifetimes of about 
+      10 billion years.
+
+The event that marks the end of a star's evolutionary life before
+becoming a white dwarf is 
+   a) a nova.
+  $b) a planetary nebula.
+   c) the exhaustion of hydrogen in the core.
+   d) a helium flash.
+
+The force of gravity acts to
+   a) make a star larger.
+  $b) make a star smaller.
+   c) make a star cooler.
+   d) none of these.
+
+When during a star's evolution its core gets smaller, the rest of
+the star typically
+   a) also gets smaller
+   b) stays the same size
+  $c) gets larger
+   d) explodes in a supernova
+
+Suppose in a given region of the sky, you see a red star and a
+blue star.  The two are not parts of binary systems, and both
+stars look pretty typical for their colors.  Which of the
+following is true?
+   a) The red star is older than the blue star.
+   b) The red star is younger than the blue star.
+  $c) The stellar ages cannot be determined from the information given.
+
+The helium burning phase for a star of a given mass is much
+shorter than the hydrogen burning phase primarily because
+   a) the helium mass fraction in the core is less than the hydrogen mass
+      fraction was when the star was young.
+  $b) helium releases less energy per reaction than hydrogen.
+   c) the star becomes a white dwarf before it can use most of its helium.
+   d) the temperature never rises high enough for complete helium burning.
+
+A star remains at constant size and temperature for a long period
+of time.  Which of the following is most likely to be true?  The
+star generates
+   a) more energy than it radiates into space.
+  $b) about as much energy as it radiates.
+   c) less energy than it radiates into space.
+
+You are an immortal alien being, hiding in the photo archive room
+of a library on Earth.  You can best learn about the life cycles
+of people by bringing home the drawer filled with photographs of
+   a) individuals
+  $b) crowds on the street
+   c) people lined up at the voting both
+   d) doctors
+
+
+Black Holes:
+-----------
+
+A black hole is best defined as
+   a) a star which sucks all matter into itself.
+   b) a window to another Universe.
+  $c) any object which is smaller than its event horizon.
+   d) the final result of all stellar evolution.
+
+Which of the following can escape from inside the event horizon of a
+black hole? 
+   a) Particles of matter
+   b) Particles of antimatter
+   c) Visible light
+   d) X-rays
+  $e) None of the other answers is correct
+                      
+Isolated black holes slowly evaporate because they slowly leak
+mass via
+   a) faster-than-light particles that can escape
+  $b) virtual particles that form near the event horizon
+   d) nuclear fusion near the event horizon
+   c) holes in the event horizon
+
+The best current theories about an isolated black hole suggests that
+radiation  
+   a) is impossible because it a hole
+   b) is impossible because the escape velocity exceeds the speed of light
+   c) is lower from smaller black holes
+  $d) is higher from smaller black holes 
+
+                                                              

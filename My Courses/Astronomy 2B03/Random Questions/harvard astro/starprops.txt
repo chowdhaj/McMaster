@@ -1,0 +1,95 @@
+BASIC STELLAR PROPERTIES
+------------------------- 
+
+Stars are
+   a) solid.
+   b) liquid.
+  $c) gaseous.
+   d) mostly carbon, oxygen, nitrogen, and iron. 
+   e) both c and d.
+
+If the Sun were the size of a tennis ball (6.35 cm in diameter) then
+the red giant star Betelgeuse would have a diameter of
+   a) 2.3cm, about the size of a ping pong ball
+   b) 23cm, about the size of a basketball
+  $c) 23m, larger than the equivalent size of Mars' orbit
+   d) 23km 
+
+Most of the brightest stars in the sky are
+   a) relatively hot main-sequence stars that are relatively
+      close to the Sun.
+   b) relatively cool giant stars that are relatively close to
+      the Sun.
+   c) relatively cool main-sequence stars that are relatively far
+      from the Sun.  
+   d) relatively cool main-sequence stars that are relatively
+      close to the Sun. 
+  $e) giant stars and relatively hot main sequence stars.
+
+Two stars have the same chemical composition, spectral type, and
+luminosity class, but one is 10 light years from the Earth and
+the other is 1000 light years from the Earth. How much fainter
+does the farther star appear to be?
+   a) 10 times fainter.
+   b) 100 times fainter. 
+  $c) 10,000 times fainter.
+   d) 100,000,000 times fainter.
+   e) The stars are identical so they are the same brightness.
+
+Two stars have the same surface temperature, but the radius of
+one is 100 times that of the other. How much more luminous is the
+larger star?
+   a) 10 times more luminous.
+   b) 100 times more luminous.
+  $c) 10,000 times more luminous.
+   d) 100,000,000 times more luminous.
+   e) The stars have the same more luminosity.
+
+Which property of a star would not change if we could observe it
+from twice as far away?
+   a) Angular size
+  $b) Color
+   c) Flux
+   d) Parallax
+   e) Proper Motion
+                             
+Suppose that two stars are at equal distance and have the same
+radius, but one has a temperature that is about twice as great as
+the other.  The flux from the hotter star is
+  $a) about 16 times greater
+   b) about 16 times less
+   c) about 20 per cent greater
+   d) about 20 per cent less
+   e) Not enough information given to answer the question
+                                                              
+Star A has a radius R and temperature T.  At the same distance
+from Earth, star B has a radius 4R and temperature T/2.  Which
+star appears to be brighter?
+   a) A
+   b) B
+  $c) Both stars appear to be the same brightness
+   d) Cannot tell from information given
+
+Two stars have the same temperature, but the radius of one is
+twice that of the other.  How much brighter is the larger star?
+   a) the same because luminosity depends only on temperature
+   b) 2
+  $c) 4
+   d) 8
+   e) 16
+
+Consider two stars in constellation Pasta:
+        Alpha Tortellini - bright in UV, dim in IR
+        Beta Ziti - dim in UV, bright in IR
+There is little or no dust along the line of sight to Pasta.
+Which star is hotter?
+  $a) Alpha Tortellini
+   b) Beta Ziti
+   c) Both same temperature
+
+A main sequence star is stable because of self-regulation:
+   a) the nuclear reaction rate does not depend on temperature.
+   b) a slight contraction decreases the nuclear reaction rate.
+  $c) a slight contraction leads to higher gas pressure.
+   d) a slight contraction leads to lower internal pressure.
+

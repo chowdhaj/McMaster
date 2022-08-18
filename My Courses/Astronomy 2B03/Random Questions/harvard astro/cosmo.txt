@@ -1,0 +1,249 @@
+COSMOLOGY & HUBBLE EXPANSION, DARK MATTER, LENSING 
+--------------------------------------------------
+
+Cosmology
+---------
+Which of the following observations about the nature of the
+universe can be made without using any special equipment?
+    a) The universe is expanding.
+    b) Most of the matter in the universe does not emit light.
+   $c) Luminous matter in the universe occurs in clumps rather than being
+       evenly distributed.
+    d) There is background radiation from the Big Bang.
+
+The cosmological principle enables astronomers to generalize
+from what they observe in the nearby universe to the properties of 
+the universe as a whole.  The principle means that no matter where you 
+are in space, you should see that 
+    a) galaxies are all moving away from a center.
+    b) the universe does not change with time.
+   $c) on average, space looks the same in all directions.
+    d) every region of space is unique.
+
+Your job is to compile a representative catalog of galaxies.  Assuming
+our region of the Universe is typical, the best criterion to use to
+decide whether to include galaxies in the catalog is to include all
+galaxies on the sky with 
+    a) magnitudes brighter than some chosen limit.
+    b) apparent diameters larger than some chosen limit.
+   $c) recession velocities less than a certain (large) amount.   
+    d) recession velocities less than a certain (small) amount.   
+
+Suppose the Universe were not expanding, but was in some kind of steady
+state.  How should galaxy recession velocities correlate with
+distance?  They should
+    a) be directly proportional to distance.
+    b) reverse the trend we see today and correlate inversely with distance.
+    c) show a scatter plot with most recession velocities positive.
+   $d) show a scatter plot with equal numbers of positive and negative
+       recession velocities.
+
+The night sky is relatively dark because
+      a) the Earth's atmosphere obscures most of the light.
+      b) the universe is mostly empty.
+     $c) the Big Bang happened about 15 billion years ago.
+      d) the universe is very large and old.
+
+We only observe events that happened in the past because
+    a) It takes time to reduce the data.
+   $b) the speed of light is finite.
+    c) the universe is very old.
+    d) none of the above; we often observe events that happen at the
+same time as the observation.
+
+The blueshift exhibited by some nearby external galaxies lends support to the 
+    a) Big Bang model, because those galaxies are expanding towards us.
+   $b) Local Group concept, because nearby galaxies interact gravitationally.
+    c) evolution theory, because galaxies change color as they evolve.
+    d) oscillating universe theory, because some galaxies are moving
+together already.
+                                      
+Suppose you've accepted that the universe is expanding, and will
+always expand.  You must then accept that 
+   a) there is either no center to the universe, or we are at the center.
+   b) the universe is a one-shot deal.
+   c) either the average distance between galaxies always grows,
+      or the distance between stars in the galaxies grows.
+  $d) either the density of the universe always decreases or new matter must be
+continuously created. 
+
+The Steady State theory of cosmology holds that the universe is expanding,
+but new matter is created so that the appearance of the universe does
+not change.  This theory would imply that
+   a) there are other galaxies in the universe that are several  
+      times as old as our own Milky Way.
+   b) there was no Big Bang, and therefore there is no 3K cosmic background
+      radiation today.
+   c) the space density of quasars should look the same at
+      all redshifts.
+  $d) all of the above.
+
+The observed redshifts of galaxies mean that
+   a)  our Galaxy is at the center of an expanding universe
+   b)  gravity can never overcome the expansion left over from the Big Bang
+  $c)  photons' wavelengths get stretched as they travel towards us
+   d)  galaxies are growing smaller
+
+If the speed of expansion of the Universe is increasing, then 
+redshift-based estimates of the look-back time to distant galaxies
+based on a steady expansion rate have been 
+    a) too small
+   $b) too large
+    c) just fine
+
+If the universe is expanding, won't the solar system eventually expand apart?
+    a)  The solar system may actually be shrinking now, which makes
+the Universe LOOK like it's expanding.  
+   $b)  No, its gravity holds it together.
+    c)  No, because there is no planetary redshift. 
+    d)  Eventually, but only after a very long time.
+
+Suppose that every object in the universe was created simultaneously, 15
+billion years ago.  Which of the following statements is true of 
+an object that is 16 billion light years away?
+    a) It shows that the universe has to be infinite.
+    b) Its light first reached the Earth one billion years ago.
+    c) We will never be able to see it.
+   $d) We will not see it until one billion years from now.
+
+Olber's paradox asks why the night sky is dark, when every line of
+sight must eventually fall on a star. Which of the following reasons
+would best explain the darkness at night?  It is because the universe is
+   a) infinite and mostly empty.
+   b) clumpy, so not every sightline intercepts a star. 
+   c) expanding, so distant stars are red-shifted.
+  $d) young, so there are only stars to a finite distance. 
+   
+The look-back time to an object is the number of years between when
+the object emitted the light we see and the present.  What piece of
+information surely does NOT affect the look-back time for a distant object?   
+    a) its distance.
+    b) the speed of light.
+    c) the rate of expansion of the universe.
+    d) the acceleration or deceleration of the universe.
+   $e) none of the above.
+
+Suppose the Hubble constant were measured and found to be twice as
+large as it is now believed to be. The implied maximum age of the
+universe in a Big Bang model would be 
+  $a) halved
+   b) the same
+   c) doubled
+   d) squared
+
+The Hubble age of the universe, 1/H, represents how long ago the 
+Big Bang happened, based on its current rate of expansion. Considering 
+only the gravitational interaction of matter, the Hubble age must be
+   $a) a maximum possible age
+    b) a minimum possible age
+    c) same as the actual age
+    d) independent of the Hubble constant
+
+If the Hubble constant, H, is larger at great distances, then the
+   a) universe must be older than we suspect.
+   b) matter in the universe is not important to its motion.
+  $c) expansion is slowing.
+   d) all of the above
+   e) none of these
+ 
+If the Big Bang cosmology is correct, then
+   a) the most distant galaxies we observe are seen now as they will
+      be in the future
+  $b) nearby galaxies are seen at a more advanced stage of evolution
+      than distant galaxies
+   c) matter is being continually created
+   d) the universal expansion must proceed at the same rate now as it 
+      did when the microwave background was produced 
+
+There must be some large distance (the Hubble length D=c/H) which is
+too far away for light to have reached us during the age of the
+Universe. The expansion velocity relative to us at that distance must be 
+    a) zero
+    b) infinite
+    c) less than the speed of light
+   $d) the speed of light or greater
+
+The volume of a closed universe that stops expanding and eventually
+recontracts is  
+    a) finite.  Spacetime is infinite, but matter (stars and galaxies
+       inhabit a bounded region.  
+   $b) finite. Spacetime itself is bounded and has finite volume.
+    c) infinite. Spacetime goes on forever and has infinite volume.
+    d) infinite. Spacetime is bounded, but there is an infinite amount
+       of matter within it. 
+
+If the Big Bang theory is correct, and there is not enough mass to
+close the universe, then  
+    a) more Big Bangs will occur.
+    b) there is no "dark matter".
+   $c) the universe will eventually be entirely cold.
+    d) the expansion will slow to a halt.
+
+Lyman-alpha absorbers are dense clouds of neutral and ionized hydrogen 
+believed to be the building blocks of normal galaxies. Their metallicities 
+tend to be
+    a)  larger the farther they are located away from us.
+    b)  all about the same.
+   $c)  smaller the farther they are located away from us.
+    d)  zero, since they have only hydrogen.
+
+Recent observations suggest that galaxies are found in large
+sheets and filament-like structures, but that there are also enormous
+holes and voids where no galaxies are found. This shows that the
+universe probably
+  $a)  has the largest, most massive structures where filaments join
+   b)  formed stars, then galaxies, then clusters of galaxies
+   c)  formed clusters of galaxies, then galaxies, then stars
+   d)  inflated rapidly, producing spongelike structure
+
+The cosmic background radiation provides strong evidence that
+   a)  star formation has been taking place for billions of years
+  $b)  the universe evolved from a hot, dense state
+   c)  colliding galaxies release enormous amounts of synchrotron radiation
+   d)  at 3deg Kelvin, the early universe was extremely cool
+
+The cosmic background radiation is visible in every direction because
+   a)  we are at the center of the universe
+   b)  it is just now passing by us at the speed of light
+  $c)  it pervades all space 
+   d)  it has reflected in every direction over the age of the universe.
+
+
+Dark Matter & Lensing
+-----------------------
+What would be the best evidence for "missing mass" in the Milky Way?
+   a)  density of stars in the spiral arms
+  $b)  orbital speeds of gas clouds beyond the orbit of the Sun
+   c)  orbital eccentricities of objects in the disk
+   d)  chemical composition of globular cluster stars
+
+The gravitational effect on light coming from a massive object is that
+the light will
+    a) be shifted to higher frequencies
+   $b) have its spectrum shifted to the red
+    c) show no effects from the gravitational field
+    d) travel more slowly through space
+
+Which change in appearance of a normal star will occur when a massive
+dark object (a "MACHO") passes directly between you and the star.  
+   a) There is no change since dark matter cannot affect light.
+   b) The star light disappears momentarily behind the event horizon.
+   c) The star dims because the MACHO blocks the light.
+  $d) The star brightens temporarily because of gravitational microlensing.
+
+Which of the following measurements can NOT be used to measure the amount
+of dark matter in a cluster of galaxies?  
+    a) The dispersion in the speeds of galaxies orbiting the cluster center.  
+   $b) The average speed of galaxies orbiting the cluster center.  
+    c) The deflection of light rays from a background object
+passing by the outskirts of the cluster. 
+    d) The properties of x-rays emitted by gas that has been heated by
+falling into the cluster.  
+
+A solar-mass black hole lies halfway between us and a solar-type
+star, but not lined up exactly.  What do you predict we see when you
+observe the star?                                             
+    a) Bright light from the black hole would outshine the star
+    b) Nothing; the star light would all go down the black hole
+    c) 1 image of the star, somewhat fainter than the original
+   $d) 2 images of the star, one on each side of the black hole

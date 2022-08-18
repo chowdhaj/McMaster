@@ -1,0 +1,72 @@
+SCALES OF SIZE, DISTANCE, MASS, POWER 
+-------------------------------------
+
+Arrange the following items according to size, from the       
+smallest to the largest.                                      
+   $a) atom, planet, Sun, galaxy, cluster of galaxies.
+    b) proton, galaxy, open cluster, cluster of galaxies.
+    c) proton, star, galaxy, solar system.
+    d) Sun, solar system, cluster of galaxies, globular star cluster.
+
+The establishment of a reliable cosmic distance scale is a "bootstrap
+process" because 
+    a) distance steps are all calibrated independently
+   $b) each distance step calibrates the next step
+    c) scientists build from past work
+    d) the Hubble Constant calibrates all the steps
+
+The largest identifiable structures in the universe are 
+    a) clusters with hundreds of galaxies.
+   $b) filaments with galaxy clusters along them 
+    c) galaxies like our own. 
+    d) giant stars.
+                         
+The cosmological principle enables astronomers to generalize
+from what they observe to the properties of the universe as a whole.  
+The principle states that any and all observers, everywhere in space, 
+should see, on average, the same picture of the universe as us on
+scales comparable to 
+    a) the solar system.
+    b) the galaxy.
+   $c) superclusters of galaxies.
+    d) atoms and subatomic particles.
+
+The distance between the Sun and its nearest star is smaller
+than the distance from the Milky Way Galaxy to the next 
+nearest large galaxy Andromeda by a factor of about
+    a) a hundred
+    b) a thousand
+   $c) a million
+    d) a billion
+
+Comparing the Moon's orbit around the Earth to the Sun's
+orbit around the Galactic center is like comparing the width
+of a human hair (about one micron or millionth of a meter) to
+   a) a human.
+  $b) the distance between Boston and Washington, D.C.
+   c) the Moon's orbit around the Sun.
+   d) the size of the Galaxy.
+
+If the Sun were the size of a tennis ball (6.35 centimeters)
+then the Earth and Jupiter would orbit at  distances of about
+   a) 7 and 35 centimeters, respectively
+  $b) 7 and 35 meters, respectively
+   c) 7 and 15 meters, respectively
+   d) 0.7 and 3.5 kilometers, respectively
+
+How many planet Earths could fit inside the Sun, which has a radius 
+100 times larger than the Earth's?
+    a) A few hundred
+    b) A few thousand.
+   $c) About a million.
+    d) A billion.
+
+About what angular resolution is required to resolve the image of two
+stars separated by 2 AU in a binary system, if the binary is only
+1 parsec (about 200,000 AU) from Earth?  
+    a) 10 degrees
+    b) 10 arcmin
+   $c) 10 arcsec
+    d) 10 milliarcsec
+
+

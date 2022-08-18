@@ -1,0 +1,215 @@
+1. If an electron is completely detached from an atom
+a) the atom is ionized.
+b) the atom is in its ground state.
+c) the atom must be in a molecule.
+d) the atom is an isotope.
+e) none of the above.
+
+2. We can determine the distance to a galaxy that contains Cepheid variable stars by using 
+a) the period-colour relation
+b) the mass-luminosity relation
+c) the mass-radius relation
+d) the velocity-distance relation
+e) the period-luminosity relation
+
+3. An atom of nitrogen with 7 electrons, 7 protons and 7 neutrons has an atomic number and atomic weight of
+a) 7 and 7, respectively 
+b) 14 and 7, respectively 
+c) 7 and 21, respectively 
+d) 14 and 21, respectively 
+e) 7 and 14, respectively
+
+4. The Doppler effect
+a) explains the rainbow of visible light
+b) causes a prism to form a spectrum
+c) causes the speed of light to be finite
+d) is the change in wavelength from a source moving towards or away from us 
+e) was used by de Broglie to study quantum mechanics
+
+5. You are moving to west at 0.75c and your friend is moving to the east at 0.75c. If you direct a light beam at your friend, and your friend directs a light beam at you, then
+a) neither beam will reach the ship to which it is directed
+b) you will see your friend’s light arrive at a speed of 1.5c, and your friend will see your
+light arrive at a speed of 1.5c
+c) you will see your friend’s light arrive at a speed of c, and your friend will see your light arrive at a speed of c
+d) one of you will see light arrive at a speed of c, and the other will see light arrive at 1.5c
+e) none of the above
+
+6. What did Planck use to solve the blackbody problem? 
+a) that light is made up of waves
+b) that electrons have a wavelength
+c) that when you shine light on a metal it produces a current 
+d) that light interferes with itself
+e) that light comes in packets of energy
+
+7. The spectral lines of a star are observed to be shifted toward larger wavelengths. This shows
+a) that the star is relatively cool.
+b) that the star is very hot.
+c) that the star is moving away from us.
+d) that the star is approaching us.
+e) that it is impossible to tell anything with information given.
+
+8. Parallax to a star would be easier to measure if:
+a) The distance between the observer and the star were larger.
+b) The Earth moved more slowly in its orbit (took longer than a year to orbit the Sun) 
+c) We lived on Mars
+d) all of above
+e) none of the above
+
+9. In order to be classified as a dwarf planet in our Solar System, a body must orbit the Sun and
+a) be round.
+b) not be a moon.
+c) clear its orbit of other objects.
+d) all of the above.
+e) only answers a and b.
+
+10. A statement was made in class that, “The vacuum is not empty.” This referred to the fact: 
+a) That the bag has not been emptied lately
+b) That quarks and electrons are continually being created and destroyed
+c) That the vacuum has many atoms in it
+d) That electrons and positrons are continually created and destroyed
+e) None of the above
+
+11. Assume you are observing a rotating spiral galaxy. If you could suddenly turn off gravity
+what would happen?
+a) The galaxy would collapse down to a point
+b) The galaxy would fly apart
+c) The galaxy would rotate more quickly
+d) Nothing would happen-- the galaxy would keep rotating at the same rate 
+e) The galaxy would start rotating in the opposite direction
+
+12. Which of the following characteristics do NOT apply to giant elliptical galaxies?
+a) Rapidly rotating
+b) Not forming many stars
+c) Lacking spiral arms
+d) Found in the centres of galaxy clusters 
+e) All of the above
+
+13. The Heisenberg Uncertainty Principle tells us that
+a) knowing the exact energy also tells us exactly the time.
+b) determining the energy more accurately leads to a more accurate determination of time.
+c) determining the energy more accurately leads to a less accurate determination of
+time.
+d) the accuracy of knowing the energy is independent of the accuracy of knowing the time.
+e) none of the above
+
+14. The distance between the Sun and the nearest star is smaller than the distance between the
+Milky Way and the our nearest neighbour (Andromeda) by a factor of
+a) A few tens
+b) A hundred
+c) A thousand
+d) A million
+e) A billion
+
+15. Atoms make spectral lines because
+a) electrons have only certain allowed orbits.
+b) photons have only certain allowed orbits. 
+c) speed of light in a vacuum is a constant. 
+d) light consists of waves.
+e) none of the above
+
+16. An astronomer finds an object at a distance of 1,000 lightyears from Earth. Based on the distance, which of the following is this object most likely to be?
+a) An object in the Kuiper Belt
+b) an artificial satellite orbiting the Earth
+c) the blackhole at the centre of the Milky Way
+d) a galaxy
+e) a star in our galaxy
+
+17. We can study how galaxies evolve because
+a) galaxies are transparent to visible light
+b) the further away we look, the further back in time we see 
+c) we can watch how they interact in real time
+d) early astronomers kept good records that we can use today 
+e) all of the above
+
+18. As you move to higher altitude above the Earth, what happens to you?
+a) your weight decreases and your mass stays the same.
+b) your weight and mass decrease
+c) your weight increases and your mass stays the same 
+d) your weight and mass stay the same
+e) impossible to know
+
+19. If you draw a spacetime diagram, the worldline of something moving at the speed of light in your reference frame is
+a) horizontal.
+b) slanted.
+c) vertical.
+d) curved.
+e) a circle.
+
+20. Which of the following is false?
+a) The order of events can be different for observers in different reference frames.
+b) From your point of view, time runs slower in the reference frame of anyone moving relative to
+you.
+c) If one observer measures two events to be simultaneous, all observers must agree on their simultaneity.
+d) Time dilation is an observationally verified fact.
+e) Time runs slower in a high-speed rocket ship.
+
+21. You are observing a star about 500 trillion km (50 lightyears) away. How old is the most recent information you can get about this star?
+a) 50 years
+b) 300,000 seconds
+c) This can't be determined without having more information. 
+d) 500 trillion seconds
+e) 500 years
+
+22. Which was the final prediction of General Relativity experimentally observed? 
+a) Gravitational Lensing
+b) Gravitational Redshift
+c) Gravitational Length Contraction 
+d) Gravitational Waves
+e) Gravitational Time Dilation
+
+23. In the raisin bread analogy for the Universe, what do the raisins represent? 
+a) stars
+b) intergalactic space
+c) black holes
+d) galaxies
+e) something else
+
+24. In what way is general relativity more general (deals with more situations) than special relativity?
+a) It includes accelerated motion but not gravitation.
+b) It includes accelerated motion and gravitation.
+c) It includes only constant, unaccelerated motion.
+d) It includes only motion at the speed of light.
+e) None of the above
+
+25. Suppose we look at two distant galaxies: Galaxy 1 is twice as far away as Galaxy 2. In that case,
+a) Galaxy 1 must be twice as big as Galaxy 2
+b) we are seeing Galaxy 1 as it looked at an earlier time in the history of the universe than Galaxy 2
+c) we are seeing Galaxy 1 as it looked at a later time in the history of the universe than Galaxy 2
+d) Galaxy 2 must be twice as old as Galaxy 1. 
+e) none of the above
+
+26. Which is the weakest of the fundamental forces in the Universe? 
+a) weak force
+b) electromagnetic force 
+c) strong force
+d) gravitational force 
+e) none of the above
+
+27. The Milky Way star, Sirius, is 9 light-years from the Sun while the Milky Way star, Canopus,
+is 100 light-years from the Sun. Hubble’s Law implies that:
+a) Sirius is moving at the same speed as Canopus
+b) Sirius is moving more slowly than Canopus
+c) Sirius and Canopus are BOTH moving away from the Sun 
+d) both b & c
+e) none of the above
+
+28. During one lecture, a thought experiment was discussed that involved a skateboarder. The main point of the discussion was to show
+a) that light follows a curved path.
+b) that the speed of light is constant.
+c) that different observers could obtain different measures of time.
+d) that different observers see light redshifted by different amounts.
+e) none of the above.
+
+29. Famous observations were made in 1919 to test the prediction of Einstein’s general theory of relativity. The main reason that it was done during a total eclipse of the sun was
+a) so that the star light would follow a curved path
+b) so that star light that passed close to the sun would be visible
+c) so that the light could pass close to the moon
+d) so that the gravitational force from the sun and moon would be combined 
+e) none of the above
+
+30. Which of the following are the correct standard units of mass, distance and time?
+a) kg, light yrs, yrs
+b) g, m, s
+c) kg, m, s
+d) g, light yrs, yrs
+e) none of the above

@@ -1,0 +1,263 @@
+THE NIGHT SKY
+Seasons, Eclipses, and Time 
+-----------------
+
+The reason stars twinkle is because of motion
+  a)      on their surface
+  b)      of the Earth
+  c)      of the solar system
+ $d)      of gas in Earth's atmosphere
+  e)      relative to the observer.
+
+Which of the following stellar properties can you estimate simply by
+looking up on a clear night? 
+  a) Distance.  
+  b) Brightness.
+  c) Surface temperature. 
+  d) Both a and b. 
+ $e) Both b and c. 
+
+If the Moon rises at 9pm tonight, tomorrow night it will rise at about
+  a) 10:00pm
+  b)  9:00pm
+  c) 10:30pm
+ $d)  9:50pm
+  e) none of these
+
+According to the heliocentric model, the reason the planets
+  always appear to be near the ecliptic is that  
+  a)  the ecliptic is only 23.5 degrees from the celestial equator
+ $b)  the planets revolve around the Sun in nearly the same  plane
+  c)  compared to the stars, the planets are near the Sun.
+  d)  the planets come much nearer to us than does the Sun.
+  
+If the Earth were in an orbit farther from the Sun than it is now,
+  a)  the day would be longer
+  b)  the day would be shorter
+ $c)  the year would be longer
+  d)  the year would be shorter
+  e)  Two of the above are correct
+
+The sidereal day (a full rotation of the Earth measured relative to
+distant stars) is 4 minutes SHORTER than a Solar Day. If the Earth's spin
+were in the opposite direction then a sidereal day would
+    a)  not change.
+    b)  change, but remain shorter than a solar day.
+   $c)  be longer than a solar day.
+    d)  be the same as a solar day.
+
+Earth rotates around its axis in a counter-clockwise direction, when
+viewed looking down on the North Pole.  A newly discovered planet
+revolves in the same sense but spins backwards relative to 
+Earth.  If it revolves in 365 1/4 days and spins in 23 hours
+56 minutes (just like Earth but backwards spin) which of the following
+is true?  Its day is ______.  
+ $a) less than 23 hours 56 minutes
+  b) between 23 hours 56 minutes and 24 hours 
+  c) 24 hours long (just like Earth)
+  d) more 24 hours
+
+In the northern hemisphere, the stars rise in the East, set in the West and
+revolve counter-clockwise around the North celestial pole.  In the southern
+hemisphere the stars rise in the
+   a) East, set in the West and revolve anti-clockwise around the South celestial pole.
+  $b) East, set in the West and revolve clockwise around the South celestial pole.
+   c) West, set in the East and revolve clockwise around the South celestial pole
+   d) West, set in the East and revolve anti-clockwise around the South celestial pole.
+
+
+The Celestial Sphere
+---------------------
+
+In order to see the greatest number of stars possible throughout the
+period of one year, a person should be located at latitude
+    a) 90 degrees
+    b) 45 degrees
+   $c) 0 degrees
+    d) anywhere, since latitude makes no difference. 
+
+The "equatorial system" of coordinates                        
+   a) uses the celestial equator as a fundamental reference circle  
+   b) uses the vernal equinox as a fundamental reference point  
+   c) is "attached" to the celestial sphere                     
+   d) uses two angles to define a direction in the sky          
+  $e) All of the other answers are correct                      
+
+The physical basis for the equatorial system of coordinates is 
+   a) gravity                                                   
+  $b) the rotation of the Earth                                 
+   c) the revolution of the Earth about the Sun                 
+   d) revolution of the Sun about the center of the galaxy      
+                                                              
+The celestial equator is                                        
+  a) the path of the Sun compared to the stars.             
+  b) the path of the Moon compared to the stars.            
+ $c) always directly overhead at the Earth's equator.       
+  d) the average path of planets on a star chart.           
+  e) always along the horizon for people on Earth's equator.     
+
+The ecliptic can be described as the 
+  a) projection of the Earth's equator onto the celestial sphere.
+  b) path of a solar eclipse across the Earth
+ $c) Earth's orbital plane projected onto the celestial sphere.
+  d) apparent path of the Moon on the celestial sphere
+ $e) apparent path of the Sun on the celestial sphere
+     (NOTE: More than one answer possible)
+
+Precession is the
+  a) accuracy with which numbers are given in astronomy
+ $b) slow motion of the Earth's rotation axis on the celestial sphere
+  c) apparent backward motion of planets on the celestial sphere
+  e) daily eastward motion of the Sun around the celestial sphere
+
+If the star Aldebaran rises tonight at 2:00 a.m., when do you expect
+it to rise next month? 
+  a)      11:00 pm
+ $b)      midnight
+  c)      1:00 am
+  d)      2:00 am
+  e)      3:00 am
+
+Ecuador is Spanish for equator.  It's September 21 and you're in the
+capitol, Quito.  At noon, how many degrees above the horizon is the Sun? 
+  a)  0
+  b)  30
+  c)  45
+  d)  60
+ $e)  90
+
+An object transits (crosses your meridian).  For that night, the
+object has achieved its highest 
+  a) declination.
+ $b) altitude.
+  c) azimuth.
+  d) airmass.
+
+The zenith distance of Polaris, the "North Star"
+  a) is always 90 degrees
+  b) is always 23.5 degrees
+  c) is always 0 degrees
+ $d) varies with your latitude
+
+You're stranded on a desert island.  You locate the pole star
+Polaris. It is 17 degrees above the northern horizon. What is your
+latitude?
+     a) 73 degrees south 
+    $b) 17 degrees north 
+     c) 73 degrees north 
+     d) 17 degrees south 
+
+
+Seasons
+---------
+
+In the northern hemisphere, the full moons transit highest in the sky
+during 
+  a) summer
+  b) autumn
+ $c) winter
+  d) spring
+
+The ecliptic makes its smallest angle with the southern horizon during
+ $a) summer.
+  b) autumn.
+  c) winter.
+  d) spring.
+
+On the first day of winter in New York, the Sun sets
+  a)  north of west
+  b)  directly west
+ $c)  south of west
+  d)  Any of the above, depending upon your location on Earth
+  
+What causes winter to be cooler than summer?
+  a)  The Earth is closer to the Sun in summer than in winter
+  b)  The daylight period is longer in summer
+  c)  The Sun gets higher in the sky in summer
+ $d)  both B and C
+  e)  all of the above
+                           
+What is the declination of the Sun on the first day of spring?
+ $a) 0 degrees
+  b) 45 degrees
+  c) 75 degrees
+  d) The Sun has no declination because it isn't a fixed star
+
+Northerners have cold days in January because 
+  a) the Earth is farthest from the Sun in January.
+  b) the orbital velocity of the Earth is largest in January.
+ $c) the Sun is lower in the sky in January.
+  d) El Nino is always strong in January.
+
+Suppose you are visiting Australia in August. Which of the following 
+is true?  It is
+ $a) winter and the Sun rises in the northeast.
+  b) summer and the Sun rises in the northeast.
+  c) winter and the Sun rises in the southeast.
+  d) summer and the Sun rises in the southeast.
+
+Imagine a planet whose rotation axis is perpendicular to its 
+orbital plane.  How would you describe its seasons?
+  a)  shorter than those on Earth
+  b)  longer than those on Earth
+ $c)  constant
+  d)  the same as those on Earth
+
+
+Time
+---------
+
+A hypothetical planet whose orbit has a semi-major axis twice that of
+Earth's orbit will have a sidereal period of about
+  a) 1.0 Earth year.
+  b) 0.3 Earth year.
+ $c) 2.8 Earth years.
+  d) 8.0 Earth years.
+
+From the day of the summer solstice to the day of the autumnal
+equinox, the azimuth of Sunrise
+ $a) shifts toward the east.
+  b) shifts toward the west.
+  c) shifts toward the south.
+  d) shifts toward the north.
+  e) remains constant.
+
+From the day of the vernal equinox to the day of the summer solstice,
+the azimuth of sunset
+  a) shifts toward the east.
+  b) shifts toward the west.
+  c) shifts toward the south.
+ $d) shifts toward the north.
+  e) remains constant.
+
+A sundial yields
+  a) universal time.
+  b) local sidereal time.
+  c) local mean solar time.
+ $d) local apparent solar time.
+  e) eastern standard time.
+
+The difference between mean solar time and apparent solar time
+  a) varies to plus or minus one hour throughout the year.
+  b) is called daylight savings time.
+ $c) is called the equation of time.
+  d) remains constant throughout the year.
+
+
+Eclipses
+---------
+
+The phase of the Moon at a lunar eclipse
+ $a) is always full
+  b) is always new
+  c) is always waning crescent
+  d) is always waxing gibbous
+  e) may be anything depending on the geometry
+
+The phase of the Moon at a solar eclipse
+  a) is always full
+ $b) is always new
+  c) is always waning crescent
+  d) is always waxing gibbous
+  e) may be anything depending on the geometry
+

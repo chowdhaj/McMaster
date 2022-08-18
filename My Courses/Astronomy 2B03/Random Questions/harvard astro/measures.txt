@@ -1,0 +1,287 @@
+MEASURES & METHODS, MAGNITUDES & DISTANCES
+------------------------------------------
+
+The expression "order of magnitude" corresponds to
+  $a) one factor of ten
+   b) one factor of two
+   c) a factor of 2.5
+   d) two factors of ten
+
+You are deciding which computer to buy, based on how long it
+takes to start running your favorite computer game.  Which
+computer starts your game program the most quickly?
+   a) Game starts in 1 centisecond
+   b) Game starts in 1 kilosecond
+  $c) Game starts in 1 microsecond
+   d) Game starts in 1 millisecond
+   e) Game starts in 1 second
+
+Multiplying together two numbers N*10^x and M*10^y in scientific
+notation yields the following, again in scientific notation
+   a) (N*x) * 10^(M*y)
+   b) (N+M) * 10^(x+y)
+   c) (N*M) * 10^(x*y)
+  $d) (N*M) * 10^(x+y)
+
+What do you get when you multiply 10 to the third power by 10
+to the third power?
+   a) 0
+   b) 1 over 10 to the third
+   c) 10 to the ninth
+  $d) 10 to the sixth
+   e) 2 times 10 to the third
+
+At the start of the 21st century, the number of human beings
+alive on Earth was approximately
+   a) 6 to the 9th power
+   b) 6 to the 9th power of ten
+   c) 6 times ten to the 9th power
+   d) 6,000 million
+  $e) both c and d
+
+The density of an object is its                               
+   a) length divided by its width
+   b) mass divided by its length and width
+  $c) mass divided by its volume
+   d) mass multiplied by its volume
+   e) volume divided by its mass
+
+A gram of lead has a greater ______ than a gram of feathers.
+   a) mass
+  $b) density
+   c) weight
+   d) volume
+
+Say you need to multiply together measurements of differing precision,
+some with more significant figures than others. For example, the
+product of 7.00 * 6.1 is properly written as
+   a) 42.70
+  $b) 42.7
+   c) 43
+   d) 43.0
+
+Say you want to add measurements of differing precision, some with
+larger uncertainties than others, such as the sum 4.371 (+/- 0.001) cm
++ 302.5cm (+/- 0.1).  This sum is correctly written as
+   a) 306.001 cm
+   b) 306.872 cm 
+  $c) 306.9 cm 
+   d) 307 cm 
+
+You are parked on an asteroid watching spaceship traffic.  You
+measure the velocity of a spaceship moving away from you to be
++50 km/sec.  A different spaceship approaches you at the same
+speed.  In the same coordinate system, what velocity do you
+measure?
+   a) +50 km/sec
+  $b) -50 km/sec
+   c) the velocities cancel to 0km/sec
+   d) +100 km/sec
+
+The Angstrom unit is most suitable for describing a measurement of
+   a) the distance between the Earth and the Sun
+   b) any tiny angle
+  $c) the wavelength of visible light   
+   d) the speed of light
+
+A bolt of lightning lasting one second imparts 100 million joules
+of energy to the square tip of an antenna that is 1 centimeter on
+a side.  Down the street, an identical lightning bolt hits a
+square car roof that is 1 meter on a side.  The flux (energy)
+passing through the antenna, compared to that passing through the
+car roof, is
+   a) identical (lower)
+   b) identical (higher)
+   c) lower (identical) 
+  $d) higher (identical)
+   e) higher (lower)
+
+Distance:
+--------
+
+Sound travels at a speed of 300 meters per second. In analogy to
+the light-year, what does 1 sound-minute equal?
+   a) The time sound takes to travel 300 meters.
+   b) The time delay of a sound heard 300 meters away.
+  $c) The distance traveled by sound in 1 minute.
+   d) The speed of sound 1 minute later.
+
+The star Betelgeuse is about 500 light years away from us in the
+constellation Orion. If this star underwent a supernova explosion
+right now, approximately how long would it be until we found out
+about it?
+   a) almost immediately
+   b) 8 minutes
+   c) 10 years
+  $d) 500 years
+   e) 500 light years
+
+If the speed of light were half what it is now, then a light year
+would
+   a) take half as long to traverse at light speed
+  $b) take the same amount of time to traverse at light speed
+   c) last twice as many months
+   d) last half as many months
+
+How far from the Earth is the nearest star? 
+  $a) 1 astronomical unit.
+   b) 1 light year.
+   c) 1 parsec.
+   d) 10 light years.
+   e) 10 parsecs.
+
+The trigonometric sine of a small angle between 2 points on a
+sphere is approximately equal to the linear separation between
+those points divided by
+   a) the distance to the points
+   b) the radius of the sphere
+   c) the circumference of the sphere
+   d) pi
+  $e) a and b above
+
+The distances of nearer stars may be measured by observing their
+apparent motion as
+  $a) the Earth orbits around the Sun       
+   b) the Earth rotates on its axis
+   c) the Sun orbits around the center of the Galaxy
+   d) the planets cross their path
+
+The most important reason for measuring the parallax of a star is
+to help us find the stars'
+   a) direction of motion
+   b) proper motion                                             
+  $c) intrinsic brightness (absolute magnitude)
+   d) radial velocity                                           
+
+If the parallax of a star is measured to be 0.1 seconds of arc,
+its distance is
+   a) 10 astronomical units                                     
+  $b) 10 parsecs                                                
+   c) 1 parsec                                                  
+   d) 0.1 parsec                                                
+   e) 0.1 astronomical units                                    
+                                      
+Two identical stars, one 5 light years from Earth, and a second
+50 light years from Earth are discovered.  How much fainter does
+the farther star appear to be?
+   a) square root of 10
+   b) 10
+  $c) 100
+   d) 1,000
+   e) the farther star does not appear fainter, since it is identical
+
+Suppose that you have observed an asteroid over a month. You observe
+that it is now 25 times fainter than it was on the first day. Estimate
+how much farther away is it from you now than it was on the first day:
+   a) twice as far
+  $b) five times farther
+   c) 12.5 times farther
+   d) 25 times farther
+   e) 625 times farther
+
+Star A is twice as far away as Star B, but they have the same
+luminosity.  This means Star B has ____ times the flux of Star A.
+   a) 1
+   b) 1/2
+   c) 1/4
+   d) 2
+  $e) 4
+
+You photograph a region of the night sky in March, in September,
+and again the following March.  The two March photos look the
+same, but the September photo shows three stars in different
+locations.  The star whose position shifts the most must be
+   a) farthest away.                                            
+  $b) closest.                                                  
+   c) receding from Earth most rapidly.                         
+   d) just passing through the Galaxy.
+
+What would you need to observe to find out the distance to a star
+that was too far away for trigonometric parallax?
+   a) apparent brightness and intrinsic brightness (luminosity).
+   b) apparent brightness and temperature.
+   d) intrinsic brightness and temperature.
+  $e) apparent brightness, spectral type, and luminosity.
+
+From Earth, planet A subtends an angle of 5 arcseconds, and
+planet B subtends an angle of 10 arcseconds.  If the radius of
+planet A equals the radius of planet B,
+   a) planet A is twice as big as planet B                      
+  $b) planet A is twice as far as planet B                      
+   c) planet A is half as far as planet B                       
+   d) planet A and planet B are the same distance               
+   e) planet A is five times as far as planet B                 
+
+For two stars of the same apparent brightness, the star closer to
+the Sun will generally have
+   a) a higher flux
+   b) a hotter temperature
+  $c) a lower luminosity
+   e) identical physical properties
+                                      
+If two intrinsically identical stars are at different distances
+from the Earth, the more distant star will have a
+   a) bluer color.
+   b) higher luminosity.
+  $c) lower apparent flux.
+   d) lower luminosity.
+
+Magnitude:
+---------
+
+Using the magnitude system of astronomy, how would the brightness
+of an 8th magnitude star compare to a 7th magnitude star?
+   a) 10 times brighter than the 7th magnitude sta
+   b) 10 times dimmer than the 7th magnitude sta
+   c) 2.5 times brighter than the 7th magnitude sta
+  $d) 2.5 times dimmer than the 7th magnitude star. 
+
+Four stars are all members of the same star cluster.  They have
+the following absolute magnitudes, 10, 7, -1, -10.  Which star
+appears brightest at the Earth?
+   a) the first
+  $b) the fourth
+   c) the second
+   d) the third
+
+The reason astronomers use the concept of the absolute magnitude
+is to allow stars to be compared directly removing the effects of
+differing
+  $a) distance 
+   b) mass 
+   c) temperature 
+   d) radius
+
+The formula m-M = 5 logd -5 would not be true were it not for
+   a)  the fact that distance in parsecs is the reciprocal of the
+       parallax in arcsec.
+   b)  Newton's Law of Gravitation.
+  $c)  the inverse square law or radiation.
+   d)  the definition of Vega as zero on the magnitude scale.
+
+
+Astronomical methods: 
+--------------------
+
+Images (or photographs) can be used to measure what properties of
+a star?
+   a) Location on the sky.
+   b) Distance. 
+   c) Brightness. 
+   d) Proper motion.
+  $e) All of the above.
+
+Astronomers determine the `color' of a star by calculating the
+  $a) ratio of the fluxes as measured with two different filters
+   b) difference between the fluxes as measured with two different filters
+   c) ratio of the temperature to the radius
+   d) ratio of the absolute and the apparent brightnesses
+   e) difference between the absolute and the apparent brightnesses
+
+The color of a star is a number representing the
+   a) ratio of absolute luminosities at 2 wavelengths
+   b) ratio of apparent luminosities (flux) at 2 wavelengths
+   c) ratio of the star's area to its distance squared
+  $d) Two choices are correct
+   e) None of the choices is correct
+

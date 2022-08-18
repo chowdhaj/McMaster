@@ -1,0 +1,105 @@
+STELLAR POPULATIONS & KINEMATICS IN THE GALAXY 
+
+General/Kinematics:
+------------------
+
+Constellations in astronomy are
+   a) physical grouping of genuinely associated stars.
+  $b) arbitrary but useful subdivisions of the sky.
+   c) a conjuncture of planets.
+   d) the most accurate way to predict the future.
+
+Which of the following statements are true?
+   a) Stars aren't moving with respect to each other, although if they
+      are nearby then they can appear to move due to parallax. 
+   b) Stars like the Sun emit only yellow light, while cooler stars
+      emit only red light. 
+   c) Most of the twenty closest stars to the Sun are among the twenty
+      brightest stars in the sky.
+   d) All of the above are true.
+  $e) None of the above are true.
+
+Suppose you measure the parallax of each star in the
+constellation Taurus (or any other constellation you might
+choose).  Which of the following is the most likely?
+   a) The stars all have the same parallax since we see them together
+      in the same constellation
+   b) The stars all have nearly the same parallax since they are
+      moving together through space 
+   c) None of them has a measurable parallax since they are
+      mostly within our own solar system 
+  $d) They may have significantly different parallaxes
+   e) We cannot measure their parallaxes since they are all moving
+      toward our Sun. 
+
+Clusters:
+--------
+
+If you find a cluster of very old stars, you would expect the
+cluster to appear
+   a) very spread out
+  $b) very concentrated toward its center
+   c) shaped like a disk
+   d) bipolar in shape, like a barbell
+
+As a star cluster evolves over time,
+   a) the composition of the stars in the cluster changes from
+      metal-poor to metal-rich
+  $b) more and more main-sequence stars become red giants
+   c) the cluster changes its location in the galaxy, getting closer to
+      the spiral arms
+   d) the shape of the cluster changes to a disk shape
+
+In a color-magnitude diagram of a star cluster, the blue end of
+the main sequence is useful for defining the age of the cluster
+because
+   a) blue stars are not affected by extinction and reddening by dust.
+  $b) stars just slightly brighter and redder are just now evolving
+      off the main sequence to become giants. 
+   c) older, metal-poor stars are blue.
+   b) the hottest stars are the oldest stars in a cluster.
+
+The difference in apparent magnitude of the main sequences of
+stars from two clusters in a color-magnitude diagram tells us
+   a) how much each cluster has evolved
+   b) if one cluster is "open" and the other is globular
+   c) the relative ages of the clusters
+  $d) the relative distances of the clusters
+                                                
+Star clusters are useful to stellar astronomers because the
+clusters contain stars that
+   a) are all about the same age.
+   b) span a wide range of ages
+   c) are all at the same stage of stellar evolution.
+  $d) are all about the same age and distance.
+
+Because stars in clusters all have similar age and distance, the main
+underlying physical cause of their different appearances is their
+   a) color
+   b) radius
+  $c) mass
+   d) chemical composition
+   e) temperature
+
+When making a color-magnitude diagram of a star cluster, we can
+use apparent brightness instead of intrinsic luminosity because
+  $a) all stars in the cluster are at about the same distance
+   b) all stars in the cluster have about the same age
+   c) most stars in the cluster are on the main sequence
+   d) reddening by interstellar dust does not affect clusters
+   e) the cluster stars have similar chemical compositions
+
+Young stars contain metals while old stars do not because
+   a) young stars are hotter than old stars
+   b) young stars are more massive than old stars
+   c) old stars have used up all their metals in producing energy
+  $d) the gas out of which young stars were formed already contained
+      metals produced by older stars
+
+
+
+
+
+
+
+

@@ -1,0 +1,147 @@
+BINARY STAR SYSTEMS
+-------------------
+
+Two stars are in a binary star system. Star A is 5 solar masses.
+Star B is 2 solar masses. They are separated by a distance of 200
+AU.  The period of Star A around the center of mass is _____ the
+period for Star B around the center of mass.
+   a) larger than
+   b) smaller than
+  $c) the same as
+
+Which of the following would be a correct statement for stars in
+a representative sample of 100 star systems?
+  $a) Stars in binary systems are more common than single stars.
+   b) Half of the stars would be in resolved visual binaries.
+   c) Half of the stars would be eclipsing binaries.
+   d) Most would be single stars.
+
+In general, the orbits of binary stars are
+   a) circular
+   b) of high eccentricity
+  $c) oriented more or less randomly in space
+   d) tilted perpendicular to the line of sight.
+
+Astrophysical uses of binaries:
+------------------------------
+
+The most important feature of binary stars is that they enable us
+to determine stellar
+   a) temperatures
+   b) pressures
+   c) compositions
+  $d) masses
+
+An astrometric binary is known to have an unseen companion whose
+mass is about equal to the Sun's. The companion is most likely a:
+   a) black hole
+   b) pulsar
+   c) supergiant
+  $d) white dwarf
+                              
+If we know the distance to an eclipsing binary system, we can
+determine the following property of the stars:
+   a) Temperature.
+   b) Radius. 
+   c) Mass.
+   d) Luminosity.
+  $e) All of the above. 
+
+In a certain spectroscopic binary, one star's spectral lines vary
+in wavelength twice as much as the other.  The star whose lines
+move more is
+  $a) half the mass of the other
+   b) twice the mass of the other
+   c) twice as far from Earth as the other
+   d) twice as luminous as the other
+
+Classification:
+--------------
+
+If we observe the orbit of a binary star system face-on, it is
+most likely to be detected as a binary
+   a) spectroscopically (periodic velocity variation)
+  $b) visually (separation in the plane of the sky)
+   c) astrometrically (cyclic motion in the plane of the sky)
+   d) by eclipses (periodic photometric variability)
+
+If we observe more distant binary star systems, how are we most
+likely to discover their binarity?
+  $a) spectroscopically (periodic velocity variation)
+   b) visually (spatially resolved)
+   c) astrometrically (cyclic motion in the plane of the sky)
+   d) by eclipses (periodic photometric variability)
+
+Compared to other types of binaries, a binary star system discovered
+as a visual binary is likely to have relatively
+   a) high orbital velocities
+  $b) large separation, long period
+   c) large separation, short period
+   d) small separation, long period
+   e) small separation, short period
+
+For a long-period spatially resolved (visual) binary, the
+observations that suggest it to be a binary system are the
+   a) velocity curves of the components
+   b) differing brightnesses (eclipses)
+   c) Doppler velocities of the components
+  $d) small separation and common proper motion
+
+When compared to visual, spectroscopic, or eclipsing binaries,
+optical doubles are not true binaries because
+   a) they are only binaries in the optical
+  $b) they are are not gravitationally bound
+   c) their radial velocities do not vary
+   d) they have no proper motions 
+
+If we see the orbital plane of two tightly bound stars nearly
+edge on, which way are we most likely to discover the binary
+system?
+  $a) spectroscopic and eclipsing
+   b) spectroscopic and long-period
+   c) visual and astrometric
+   d) visual and eclipsing
+
+Which of the following is most likely?
+   a) A spectroscopic binary has a period of over a decade.
+   b) A spectroscopic binary is also a visual binary.
+   c) A system which produces a nova is also a visual binary.
+  $d) An eclipsing binary is also a spectroscopic binary.
+   e) An eclipsing binary is also a visual binary.
+                                                              
+Light curves:
+------------
+
+Flat-bottomed minima in the light curve of an eclipsing binary
+imply
+   a) a large temperature difference between the components
+   b) eccentric orbits
+   c) partial eclipses
+   d) tidal distortion
+  $e) total and annular eclipses
+
+If a spectroscopic binary is also eclipsing, the maximum Doppler
+shift in the spectral lines occurs
+   a) each time an eclipse takes place.  
+   b) every other time an eclipse takes place.  
+  $c) halfway between eclipses.
+   d) between eclipses, but the timing depends on inclination.
+
+In an eclipsing binary, the deeper (less bright) eclipse occurs
+when the ______ star is being eclipsed.
+  $a) hotter
+   b) larger
+   c) more luminous
+   d) more massive
+   e) smaller
+
+For an eclipsing binary, from just the light curve one can find
+the
+   a) masses of both stars.
+   b) luminosities of both stars.
+   c) relative masses and diameters of the stars.
+   d) relative masses of the stars.
+  $e) relative sizes of the stars.
+
+
+

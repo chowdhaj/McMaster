@@ -1,0 +1,111 @@
+OUR GALAXY
+-------------
+
+The position of the Sun in the Milky Way Galaxy is best described as
+ $a)  in the disk, slightly more than halfway out from the center
+  b)  very close to the center
+  c)  in an open cluster in the disk
+  d)  in a globular cluster in the halo
+
+Trigonometric parallax, the apparent motion of stars due to the
+Earth's annual motion around the Sun, can be used to study the
+structure of our galaxy  
+   a) within the solar system                                   
+   b) up to about 1 parsec (3.26 light years) from the Sun
+  $c) within about 100 parsecs of the Sun
+   d) within about 100 parsecs of the galactic center
+
+The disk of stars that forms the major component of the Milky Way
+Galaxy has its shape due to 
+     a) gas pressure from outside the galaxy
+    $b) rotation combined with self-gravity
+     c) collapse due to self-gravity
+     d) rotation alone
+     e) the cosmological expansion of the Universe
+
+The thickness of our galaxy's disk is determined by the
+   a) circular speed of stars around the galaxy             
+   b) random motion of stars in the plane of the disk       
+  $c) random motion of stars perpendicular to the disk      
+   d) the amount of matter in nucleus of the galaxy
+
+When we observe stars near the center of the Milky Way Galaxy, we
+detect light that was emitted from those stars about
+   a) 200 million years ago.                              
+  $b) 25,000 years ago. 
+   c) 8 years ago.                                        
+   d) 8 minutes ago.                                      
+   e) when the galaxy was formed
+
+An observer far outside our galaxy would best describe our galaxy and
+the Sun's position in it as a 
+   a) disk of stars centered on our solar system                
+   b) disk of stars with a bulge containing our solar system                
+  $c) disk of stars with our solar system near the edge          
+   d) sphere of stars centered on our solar system              
+   e) sphere of stars with our solar system near the edge         
+ 
+The mass of our galaxy is best found by 
+  a) counting the number of stars in the sky
+  b) counting the star clusters in the sky          
+  c) counting the hot, massive main sequence stars                     
+  d) radio measurements of the amount of interstellar hydrogen
+ $e) measuring the rotation of the Galaxy    
+
+You could best map out the overall spiral structure of our Galaxy by finding
+  $a) young open clusters and neutral atomic hydrogen gas
+   b) evolved stars like planetary nebulae, RR Lyrae stars
+   c) smooth, round globular clusters
+   d) high velocity stars
+
+Choose the best evidence that the disk of the Milky Way Galaxy
+does NOT rotate like a solid wheel.
+  $a) Disk stars have doppler shifts
+   b) The brightest disk stars form spiral arm shapes
+   c) Disk stars rotate twice as quickly that are twice as far from
+the Galactic center
+   d) The rotation of disk stars around the Sun decreases with
+distance according to Kepler's laws
+
+Compared to stars like the Sun in the disk of the Milky Way, stars
+that populate the extended spheroidal halo of the galaxy were born
+    a) earlier, so have had time to accumulate more heavy elements.
+    b) later, so have used up their heavy elements.
+   $c) earlier, from more nearly primordial material, so have fewer
+heavy elements.
+    d) later, so have accumulated more heavy elements from previous
+generations of stars.
+
+You observe two stars at the same distance.  One is in the disk of the
+Milky Way, the other in a direction perpendicularly out of the disk.  
+Chances are that the disk star will be
+    a) less luminous, have a smaller doppler shift and be reddened by dust 
+    b) more luminous, have a smaller doppler shift and be reddened by dust 
+   $c) more luminous, have a larger doppler shift and be reddened by dust 
+    d) more luminous, have a smaller doppler shift and be less
+reddened by dust  
+
+A cold thin cloud of interstellar gas embedded in a hotter, thinner
+surrounding medium would yield 21-cm radio spectral emission lines of
+hydrogen showing 
+    a) a single broadened emission line.
+    b) broad emission with a narrow spike-like absorption core.
+    c) broad absorption with a narrow spike-like emission core.
+   $d) a narrow spike-like emission core and low broad shoulders of emission.
+
+The primary reason that massive O-type stars are not found in the
+galactic halo is because they are 
+    a) too massive to be kicked into the halo from the disk.
+    b) so massive that they settle into the thinner disk.
+   $c) too short-lived to have persisted from halo formation until today.
+    d) closer to us in the disk than in the extended halo.
+
+The formation of the Milky Way can be divided into 2 phases:
+a spherical gas cloud collapsed to form the stars in the Milky
+Way's spheroid, then rapidly rotating gas collapsed into a disk-shaped
+configuration of stars.  Since disk stars have higher metallicity,
+which is most likely?  Gas ejected from the
+   $a) spheroid stars enriched the material now in the disk stars.
+    b) spheroid stars decreased their metallicity.
+    c) spheroid decreased its angular momentum.
+    d) disk stars puffed out the spheroid stars into a rounder shape. 

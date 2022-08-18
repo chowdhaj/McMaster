@@ -1,0 +1,86 @@
+NORMAL GALAXIES
+---------------
+
+Most of the hydrogen molecules (two hydrogen atoms bound together) in
+the universe are found in       
+    a) cool stars.
+   $b) cold dense interstellar clouds.
+    c) H II regions of ionized hydrogen.
+    e) space between the galaxies.
+                                         
+If one region of the sky shows nearby stars but no distant    
+stars or galaxies, our view is probably blocked by
+    a) nothing, but directed toward a particularly empty region of space.
+    b) an emission nebula of ionized gas.
+   $c) an interstellar gas and dust cloud.
+    d) a concentration of dark matter.
+
+The dominant mass component in the Milky Way Galaxy interior to the orbit
+of the Sun is
+   a) gas and dust contained in giant molecular clouds
+   b) cosmic ray particles
+   c) stars
+  $d) dark matter
+
+Compared to the present day Milky Way Galaxy, the Milky Way of 3
+billion years ago would have had
+  $a) more gas in the disk
+   b) more stars in the halo
+   c) more metal-rich stars
+   d) no Solar System
+
+The most effective technique to find distances to other galaxies
+is to look at objects in the galaxies for which we know the          
+   $a) luminosity
+    b) color
+    c) mass
+    d) orbital velocity about the center of the galaxy
+    e) spectral type
+
+You are asked to determine an accurate distance to the Andromeda Galaxy.
+Choose the best technique below.
+    a) Doppler shift of spectral lines
+   $b) period-luminosity law for Cepheid variable giants in Andromeda
+    c) the Hubble law of recession of galaxies
+    d) trigonometric parallax using Earth's orbit
+
+Suppose that the period-luminosity law for giant Cepheid variable
+stars in the Milky Way leaves an uncertainty of 30% in distance
+estimates made from the measured variability periods of Cepheid
+stars.  Much more distant Cepheids measured in other galaxies will 
+yield distance uncertainties that 
+   a) increase with distance.
+   b) are at most 30%.
+  $c) are at least 30%.
+   d) depend on the galaxy.
+
+The Tully-Fisher Method of measuring distances to spiral galaxies is
+based on a relation between the speed of the galaxy's rotation 
+and its absolute luminosity.  The existence of the relation suggests
+that 
+    a) distant galaxies are more luminous, with greater velocities.
+    b) rotations of galaxies generate star formation and therefore light.
+    c) luminosity generates rotation.
+   $d) luminous galaxies have more stars, and therefore more mass.
+   
+Which of the following is impossible to use in estimating distances to
+other galaxies; why?  
+    a) globular clusters; too large and fuzzy
+   $b) white dwarfs; too dim
+    c) pulsating variable stars; too variable
+    d) supernovae; don't last long enough
+
+Which of the following is least easily explainable as a result of 
+interaction between galaxies? 
+   a) Some galaxies have long "tails" of stars.
+   b) Rich, regular clusters are dominated by central giant ellipticals.
+  $c) Both spiral and elliptical galaxies are seen at very high redshift.
+   d) Some galaxies seems to be undergoing bursts of star formation.
+
+The nuclei of most spiral galaxies appear redder than their spiral
+arms because of
+ $a)  young blue stars in the arms, and old red ones in the nuclei 
+  b)  emission nebulae and dust in the nuclei
+  c)  receding nuclei and advancing spiral arms (Doppler shifts)
+  d)  nuclear reactions
+

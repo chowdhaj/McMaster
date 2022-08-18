@@ -1,0 +1,83 @@
+ASTEROID, METEORS, AND COMETS 
+----------------------------
+
+Asteroids are unlikely to be fragmented planets because (you may
+choose more than one) 
+   $a)      the total mass of asteroids is small
+   $b)      no known mechanism exists to disrupt a planet
+    c)      asteroid orbits are in the ecliptic
+    d)      asteroids are typically only a few kilometers across
+    e)      asteroids can have different colors
+
+Comets could be (and were) proven to be beyond the Moon by observing
+    a)      a collision of one with the Moon
+    b)      the relative size of the comet tail and the Moon
+    c)      a parallax larger than the Moon's
+   $d)      a parallax smaller than the Moon's
+
+Holga and Hilda are 2 asteroids. They have the same size and shape
+and are at the same distance from Sun.  Holga is icy with an albedo of
+0.9. Hilda is rocky with and albedo of 0.1.  Which is brighter in
+visible light? 
+   $a) Holga
+    b) Hilda
+    c) Both same
+Which is brighter in infrared light?
+    a) Holga
+   $b) Hilda
+    c) Both same
+
+Long-period comets have orbits
+    a)      the same as the orbits of short-period comets
+    b)      that are circular
+    c)      always in the ecliptic
+   $d)      randomly oriented with respect to the ecliptic
+    e)      of low eccentricity
+
+The location of the Oort cloud of comets is
+    a)      near Pluto's orbit
+    b)      between the orbits of Mars and Jupiter
+   $c)      between 1/6 to 1/2 the distance to the nearest star
+    d)      close to the nearest star
+    e)      we have no idea since it has never been detected
+
+On a given day, one is likely to see the most meteors "shooting stars")
+   $a) after midnight
+    b) before midnight
+    c) during the afternoon
+    d) it doesn't depend on the time of day
+
+The tail of a comet is generally directed
+  $a)  away from the Sun because of the solar wind and radiation pressure
+   b)  opposite the direction of motion as the comet passes through
+interplanetary matter
+   c)  toward the Sun because of the Sun's gravitational force
+   d)  along the comet's magnetic field lines
+
+Which of the following could cause a meteor shower?
+   a) A meteoroid hits a cloud in the atmosphere, and creates a
+thunderstorm.
+  $b) Earth crosses the debris-filled orbit of a comet.
+   c) Asteroids in the same orbit as the Earth.
+   d) A small constellation of dying stars disintegrates.
+
+An experiment is done in the Earth's upper atmosphere in which two kinds
+of micrometeorites are collected:  cometary and asteroidal particles.
+Which of the following statements is true about these particles?
+[Optional hint:  If you drop a ball from a height of 5 feet, will
+it strike the ground with a faster or slower velocity than a ball
+dropped from a height of 20 feet?]
+    a)  All particles have about the same velocity.
+    b)  Asteroidal particles typically move faster.
+   $c)  Cometary particles typically move faster.
+    d)  These particles are all moving slower than Earth's escape velocity.
+    e)  Two of the above.
+
+Which of of Jupiter's major satellites probably suffers from the
+highest velocity impacts? 
+   $a)  Io. (Mass 9x10^22 kg, Distance 421,600 km)
+    b)  Europa. (Mass 4.80x10^22 kg, Distance 670,900 km)
+    c)  Ganymede. (Mass 1.48x10^23 kg, Distance 1,070,000 km)
+    d)  Callisto. (Mass 1.08x10^23 kg, Distance 1,883,000 km)
+    e)  All suffer the same impact velocities.
+

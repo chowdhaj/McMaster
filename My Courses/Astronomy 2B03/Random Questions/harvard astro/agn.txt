@@ -1,0 +1,115 @@
+ACTIVE GALAXIES and QUASARS
+--------------------------
+
+The most likely reason that clusters of galaxies have more elliptical
+than spiral galaxies is that in the high density cluster environment
+  $a) spirals merge to form ellipticals.
+   b) intracluster gas strips galaxies of the gas needed for star
+formation.
+   c) near-misses between galaxies makes them rounder.
+   d) galaxies are older and their brighter disk stars have burned out.
+
+At high redshift, a larger fraction of galaxies are "active" (show
+signs of powerful luminous nuclei) than at low redshift. Therefore, we
+can safely say that
+   a) all galaxies go through an active phase,
+and more galaxies in the past were active than now.
+  $b) some galaxies go through an active phase
+and more galaxies in the past were active than now.
+   c) all galaxies are either active or normal.
+   d) galaxies may become active more than once in their lifetimes.
+
+At high redshift, a larger fraction of galaxies are "active" (show
+signs of powerful luminous nuclei) than at low redshift.  If galaxies
+only become active when they collide or interact with nearby galaxies,
+then it might be true that 
+   a) there were more interactions in the past, and activity fades away.
+   b) the number of distinct galaxies in the Universe decreases with time.
+   c) galaxies were closer together in the past.
+  $d) all of the above.
+
+The large doppler velocity widths of broad emission lines in active
+galaxies (Seyferts and quasars) could NOT be created by hot
+emitting clouds that are 
+   a) swirling at high velocities around a black hole. 
+   b) falling into the neighborhood of a black hole.
+   c) being ejected into a broad cone or disk-shaped wind.
+  $d) being ejected along a narrow-angled jet.
+
+
+Narrow absorption lines in the spectra of distant quasars
+could be caused by clouds of gas on the
+   a) near side of the quasar with large random velocities but small
+bulk velocities. 
+  $b) near side of the quasar with small random velocities but large bulk
+velocities. 
+   c) far side of the quasar with large random velocities but small 
+bulk velocities. 
+   d) far side of the quasar with small random velocities but large
+bulk velocities. 
+
+Seyferts and quasars are both types of active galaxies,
+harboring powerful luminous nuclei.  Quasar nuclei appear to be more
+luminous, and therefore their black holes
+   a) are accreting matter at a higher rate.
+   b) are more massive.
+   c) are less obscured along our sightline.
+  $d) any of the above.
+
+The word "quasar" comes from "quasi-stellar".  What makes quasars
+quasi-stellar is that they can have a 
+   a) proper motion seen between images taken at 2 epochs.
+   b) Doppler velocity shift evident in their spectra.
+  $c) point-like appearance in an image.
+   d) binary companion.
+
+The wide variety of spectra observed from different active nuclei of
+galaxies appear may result from
+    a) how many neutron stars they contain.
+    b) the amount of dust in our Galaxy blocking the view.
+   $c) the angle at which we view each nucleus.
+    e) whether or not the galaxy has a close companion.
+
+One method you could use to search for a high-mass black hole at the
+center of a galaxy is to look for 
+    a) a black dot at the galaxy's nucleus.
+    b) a very high luminosity star.
+   $c) a very large range of Doppler shifts around the nucleus.
+    d) distortion in the shapes of stars near the nucleus.
+
+Rapid variability in the luminous nuclei of quasars is evidence that 
+the emission region must be
+  $a) small.
+   b) large.
+   c) moving rapidly.
+   d) exploding.
+
+The powerful nuclei of quasars and Seyfert galaxies cannot be
+dominated by starlight because nuclear fusion in a group of stars
+could not account for the quasar's observed
+   a) rapid variability.
+   b) luminosity.
+   c) compact size.
+  $d) all of the above
+
+The distance to the point-like quasars is found from                         
+    a) comparing their apparent and absolute magnitude.
+    b) the apparent magnitudes of their supernovae.
+    c) their parallax measured with radio telescopes.
+   $d) their redshift and the Hubble law.
+
+If the large redshifts of quasars were NOT caused by the cosmological
+expansion, then bright quasars could possibly be explained as
+    a) distant objects that are very luminous.
+   $b) nearby luminous objects exploding outward from the Milky Way.
+    c) bright nearby objects severely reddened by intervening dust.
+    d) distant objects severely reddened by intervening dust.
+
+Quasars are more likely powered by accretion onto a supermassive
+black hole than by stars because accretion is 
+   a) the only natural way to produce radio and x-ray emission.
+  $b) a much more efficient means than fusion of extracting energy 
+from matter.
+   c) possible in the early universe before stars even formed.
+   d) responsible for destroying and engulfing stars.
+

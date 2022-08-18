@@ -1,0 +1,98 @@
+HISTORY
+--------
+
+The old geocentric view of the universe held that the Earth 
+was surrounded by a celestial sphere that held the stars and
+   a) never moved. 
+  $b) rotated from east to west each day.                       
+   c) rotated from west to east each day.                       
+   d) took one year to rotate around the Earth.                 
+
+Explanations of planetary motion were more difficult in ancient
+times than the motions of the Sun and moon because the
+  $a) planets reverse their motion sometimes (retrograde motion).
+   b) Sun and moon always go in retrograde motion.          
+   c) planets are much fainter than the Sun and moon.           
+   d) planets move much faster than the Sun and moon. 
+
+Which two fundamental misconceptions made Ptolemy's geocentric model
+very complicated and prevented it from adequately describing the
+movements of bodies in the solar system.
+	I)   The Sun is at the center of the Universe.
+	II)  All heavenly bodies move in combinations of perfect circles.
+	III) The Earth is at the center of the Universe.
+	IV)  The stars never move.
+   a) I and IV
+   b) II only
+   c) III only
+  $d) II and III
+
+Epicycles are needed in the geocentric model to explain why
+  $a) planets seem to vary in brightness and speed over the year
+   b) some planets are brighter than others 
+   c) the Sun rises and sets
+   d) all planets cannot necessarily be seen on any given night
+
+Why are the phases of Venus at odds with the geocentric epicycle picture?
+   a) Venus would not be expected to significantly change size.
+   b) Venus would not appear "new" as the Moon does.
+  $c) Venus would not appear "full" as the Moon does.
+
+Galileo's discovery of the Moons of Jupiter was shocking because it
+showed those who believed the Earth to be at the center of the
+Universe that 
+    a) a planet could have more than one moon.
+    b) Earth was unusual to have only one moon.
+    c) gravity could hold a moon in orbit.
+    d) Jupiter does not move.
+   $e) moons could move around a moving planet.
+
+Galileo's observations of sunspots discredited Aristotle's 
+teachings because it showed                              
+   $a) change in the heavens without uniform circular motion
+    b) planets move on epicycles
+    c) the Earth's orbit is elliptical
+    d) planets orbit around the Sun
+    e) the Sun isn't perfectly spherical
+
+The revolution epitomized by Copernicus that still dominates
+scientific thought could be described as having moved our view of
+mankind's place in the Universe from 
+     a) the edge towards the Big Bang
+     b) the center to the edge
+    $c) a special place to an average place
+     d) an average place to a special place
+
+Newton explained Kepler's laws by
+   a) putting Kepler's complicated formulas into words that could be
+      easily understood 
+   b) giving them a sound religious footing  
+  $c) showing mathematically that the planets moved according to a few
+      universal principles of motion and gravity 
+   d) the "music of the spheres"
+
+In the scientific method, observations (data) are most useful for
+    $a) testing predictions made by theories.
+     b) making predictions.
+     c) proving theories.
+     d) generating catalogs.
+
+The best test of a scientific hypothesis is how
+    a) well it explains all known observations
+    b) well it agrees with known theories
+    c) simply it explains all known observations
+   $d) well it predicts new observations
+    e) easily it is transcribed into mathematical notation
+   
+Faraday performed crucial experiments, and Maxwell contributed
+a complete mathematical theory for
+  $a) the wave description of electromagnetic phenomena
+   b) the wave/particle duality
+   c) wave phenomena in nature
+   d) the transformation of electromagnetic charge into radiation 
+
+
+
+
+
+

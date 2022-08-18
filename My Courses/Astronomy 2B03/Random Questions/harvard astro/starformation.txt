@@ -1,0 +1,92 @@
+STAR FORMATION
+--------------
+
+The material that makes up the Sun was once part of
+   a) the Big Bang.
+   b) another star.
+   c) a molecular cloud.
+   d) a protostar.
+  $e) all of the above.
+
+If the material in the primordial solar system retained
+its angular momentum as it collapsed to form the Sun,
+the Sun's rotation rate should be
+       $a) fast (less than a week)
+        b) moderate (a week to a month)
+        c) slow (more than a month)
+        d) zero (non-rotating)
+
+If an interstellar cloud contracts to become a star, it is due to which
+force? 
+        a) electromagnetic 
+        b) nuclear 
+       $c) gravitational
+        d) centrifugal
+
+Stars are formed from cold interstellar gas clouds made up of
+    a) atomic gas of mostly hydrogen, oxygen, carbon and nitrogen.
+   $b) molecular hydrogen gas and dust grains.
+    c) some hydrogen gas, comets and asteroids.
+    d) stars are formed from very HOT gas.
+
+Evidence for an association between interstellar dust and star
+formation comes from 
+    $a) dark clouds that attenuate the light from background stars.
+     b) emission at radio wavelengths of 21cm.
+    $c) stars that appear redder than expected from their spectral type.
+     d) bright nebulae with redshifted emission lines.
+
+As a star first begins to condense from dust and gas clouds,
+it emits primarily in which wavelength regime?
+        a) x-ray
+        b) ultraviolet
+        c) visual
+       $d) infrared
+        e) radio
+
+The inital collapse of the solar nebula may have been initiated by a
+nearby supernova explosion because 
+       a) there is no other known mechanism
+       $b) pre-stellar clouds are normally stable
+       $c) certain odd isotopes are found in the solar system
+        d) only 90 percent of atoms in the solar system are hydrogen
+           (more than one answer may apply)
+
+The factors that tend to resist collapse in a gas cloud are
+         I.  the magnetic field of the cloud
+        II.  the presence of supernovae near the gas cloud
+       III.  the existence of molecules in the gas
+        IV.  heat in the gas
+         V.  the rotation of the cloud
+   a) I, III, V
+  $b) I, IV, V
+   c) II, III, IV
+   d) II, IV, V
+   e) III, IV, V
+
+We know that low mass proto-stars have strong stellar winds because
+    a) they are collapsing in a stable fashion.
+    b) they have thick circumstellar disks.
+   $c) the Sun was once a proto-star and has a wind now.
+   $d) proto-stars have gas jets that drive massive outflows.
+       (more than one answer may apply)   
+
+The nebulae around T Tauri stars are shaped into disks because of the
+same process that causes dough to become flat when it is
+       $a) spun in the air like pizza dough
+        b) rolled with a pin like pizza dough
+        c) squashed between plates like dough for a burrito
+        d) baked on a flat sheet like a cookie
+
+What important event occurred while the Sun was in its T Tauri
+phase (a phase young stars go though in which they have a strong
+stellar wind similar to the solar wind)? 
+        a) comets were pushed out of the solar system
+       $b) gas and dust remaining in the solar system were blown away
+        c) the planets formed
+        d) the Sun shrank to its present size
+
+
+
+
+

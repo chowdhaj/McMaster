@@ -1,0 +1,394 @@
+EARTH 
+--------
+
+he Earth bulges at the equator compared to the poles
+(6378 versus 6335 km).  What's a possible explanation?
+   a)      The Earth is squashing under its own weight.
+   b)      Tidal stretching from the Moon's pull.
+  $c)      The rapid rotation of the Earth.
+   d)      Tectonic plate motion stops at the equator.
+
+The Earth bulges at the equator compared to the poles.
+If a seal weighs 100 lbs at the equator, what do you estimate it will
+it weigh at the pole? 
+   a)       37 lbs
+   b)       99 lbs
+   c)      100 lbs
+  $d)      101 lbs
+   e)      137 lbs
+
+The main reason Earth's atmosphere stays warm is heat from
+   a)      volcanos
+  $b)      solar radiation
+   c)      the greenhouse effect
+   d)      continental drift
+   e)      the hot core of the Earth
+
+The greenhouse effect is caused mostly by
+   a)      pesticides
+   b)      depletion of the ozone layer
+  $c)      carbon dioxide in the atmosphere
+   d)      strong magnetic field
+   e)      the aurora borealis
+
+The Earth's core is hot due to
+   a)      solar heating
+   b)      large scale meteoroid bombardment
+   c)      radioactivity
+   d)      heat left over from the Earth's formation.
+  $e)      both d. and e.
+
+The Earth's magnetic dynamo is caused by a combination of
+convection in its molten core and
+   a)      the Earth's orbit around the Sun
+  $b)      the Earth's rotation
+   c)      lunar tidal action
+   d)      the aurora borealis
+
+Particles from the Sun interact with the Earth's magnetic fields to produce
+  $a)      the aurora borealis
+   b)      dangerous ultraviolet radiation
+   c)      hydrogen and helium
+   d)      protons and electrons
+
+Over the last 10 to 100 million years, the largest scale changes on the
+surface of the Earth were caused by 
+   a)      glaciation
+   b)      erosion by wind and water
+   c)      man-made pollutants
+  $d)      continental drift
+   e)      comets and asteroids
+
+Which of the following statements help explain why summer days tend to
+be hotter than winter days? 
+	I.   The day is longer.
+	II.  The Earth's surface receives more light per unit area.
+	III. The light is coming directly from the Sun.
+	IV.  There is no snow to cool the Earth.
+   a) I
+   b) III
+  $c) I, II
+   d) I, IV
+   e) II, III
+
+What would the days and seasons be like if the Earth still rotated at
+the same speed, but the Earth's axis were tilted nearly 80 degrees on
+its side instead of 23 degrees?  
+   a) Both days and seasons would be half a year long.
+   b) The days would be the same length, but the seasons would be half
+      a year long.
+   c) There can be no seasons in this situation, but days would always be
+      24 hours long.
+  $d) The days and seasons would the same lengths as ours, but the
+      seasons would have more extreme temperature changes. 
+
+The Earth is thought to have formed from
+  $a)      accretion of small rock-like bodies
+   b)      the collapse of a single gas cloud
+   c)      gas ejected from the Sun in a massive solar flare
+   d)      a disk of gas orbiting the Sun
+
+The fact that the Earth has undergone differentiation suggests
+that the Earth's interior 
+      a)  has always been solid
+      b)  must not have a core
+      c)  causes the continents to move
+     $d)  was once liquid
+
+Earthquakes are an important tool for scientists because their
+vibrations
+   a)  influence the Earth's orbit about the Sun
+  $b)  allow the study of the Earth's internal structure
+   c)  inform us of the mass of the Earth
+   d)  are used to predict the future of plate tectonics
+
+Heating of the Earth's surface by the Sun is an example of    
+transfer of energy by                                         
+    a) conduction
+    b) convection
+   $c) radiation
+    d) pollution
+
+The reason that the Earth's surface has so few meteor craters
+compared to other nearby bodies in the solar system is that
+    a) the Moon blocked almost all of the meteors that otherwise
+would have hit the Earth.
+    b) the atmosphere causes all objects entering from space to
+burn up before they hit the ground.
+    $c)  the Earth's surface has been modified by various forces
+which cover or remove traces of the craters.
+    d)  all meteorite impacts break the crust and release lava
+from the mantle to fill in the hole.
+
+Which of the following is evidence that the Earth's interior
+is not rigid? 
+          I. Plate tectonics
+         II. The liquid oceans
+        III. The greenhouse effect
+         IV. The magnetic field
+   a) I, II
+  $b) I, IV
+   c) II, III
+   d) II, IV
+   e) III, IV
+
+Over the course of time, what happens to the plates that cover Earth's
+surface?
+   a) Water erosion wears away at the edges of the plates at the same
+rate at which new rock is added.
+   b) Plates just get added onto at the midocean rises,
+and the surface gets more crumpled as plates continue to run into each
+other.
+  $c) Parts of plates sink into the interior and melt, while other
+parts are created anew. 
+   d) Where new rock isn't being added to them, the plates just move
+relative to each other along faultlines.
+
+The Earth's surface absorbs energy from sunlight and then radiates
+about as much energy back into space.  The best proof you can offer
+for this fact is that the average surface temperature on Earth is 
+   a) warming slowly.
+  $b) not warming rapidly.
+   c) half light and half dark.
+   d) warmer at the core than on the surface.
+   
+
+EARTH & MOON
+--------------
+
+A full moon
+ $a) can never rise at midnight.
+  b) can never transit at midnight.
+  c) always rises due east.
+  d) always sets due west.
+
+Suppose tonight is new moon.  You are on the side of the Moon facing the
+Earth.  What phase Earth do you see? 
+      a)  You can't see the Earth because it is eclipsed by the Sun.
+      b)  New Earth
+      c)  First Quarter Earth
+     $d)  Full Earth
+      e)  Third Quarter Earth
+
+As seen from the Moon, how often does the Sun rise?
+    a)  Never.
+    b)  About every 24 hours.
+    c)  About once per week.
+   $d)  About once per month.
+    e)  About once per year.
+
+As seen from the Moon, how often does the Earth set?
+   $a)  Never.
+    b)  About every 24 hours.
+    c)  About once per week.
+    d)  About once per month.
+    e)  About once per year.
+
+Assume that the Sun rises at 6:00 AM. At what time does the Third
+Quarter Moon rise? 
+    a) 9:00 AM
+    b) 12:00 Noon
+    c) 9:00 PM
+   $d) 12:00 Midnight
+
+When the Moon is in its last quarter, when does it rise and set?
+   a) sunrise, sunset
+   b) sunset, sunrise
+  $c) midnight, noon
+   d) noon, midnight
+
+Why don't lunar eclipses happen at every full moon?
+  $a) The Moon's orbit doesn't always take it through the Earth's shadow.
+   b) The Moon's orbit sometimes takes it far enough away that the
+Earth's shadow has disappeared.
+   c) The Moon's orbit is not circular.
+   d) The Moon cannot be full AND pass through the Earth's shadow.
+
+An observer on Earth sees a total lunar eclipse. If someone else is
+standing on the side of the Moon facing the Earth at the same time,
+they would the
+   a) Earth's night side, not eclipsing the Sun.
+   b) Earth's day side, not eclipsing the Sun.
+   c) Earth partially eclipsing the Sun.
+  $d) Earth completely eclipsing the Sun.
+
+During an annular solar eclipse, the Moon's orbital velocity is:
+   $a)  Slower than during a total solar eclipse.
+    b)  The same as during a total solar eclipse.
+    c)  Faster than during a total solar eclipse.
+    d)  The same as the Earth's orbital velocity around the Sun.
+
+An observer on Earth sees a total solar eclipse. If someone else is
+standing on the side of the Moon facing the Earth at the same time,
+what would they see?  The Earth's 
+   a) night side.
+   b) day side, which becomes completely dark.
+  $c) day side gets a dark spot that moves across it.
+   d) day side, which doesn't change in brightness.
+
+Under which circumstance might there be a lunar eclipse every month?
+   a)      If the Moon were smaller compared to the Earth
+  $b)      If the Moon's orbit was in the ecliptic
+   c)      If the Earth's orbit were in the ecliptic
+   d)      If the Earth's axis was not inclined to the ecliptic
+
+In order for a solar eclipse to occur, the Moon must be:
+   a)      high in the sky
+   b)      near first or last quarter
+  $c)      near new moon
+   d)      near full moon
+   e)      over another country
+
+What change in the Moon might enable us to see its entire surface from
+Earth? 
+   a)      If the Moon was always full.
+   b)      If its axis of rotation were tipped slightly.
+  $c)      If it rotated at a different speed.
+   d)      If its orbit were in the ecliptic.
+
+In which case(s) can the Earth, Sun, and Moon be in a straight line?
+  a)  Full Moon only
+  b)  First quarter and Third (or last) quarter
+  c)  New Moon only
+ $d)  Both full and new Moon
+  e)  This can happen at any phase of the Moon
+  
+If  we see a first quarter moon today, what will people on the
+other side of the Earth see later  today?  
+  a)  new Moon
+ $b)  first-quarter Moon
+  c)  full Moon.
+  d)  third-quarter Moon
+  e)  Any of the above, depending upon the time of night.
+  
+Earth doesn't experience an eclipse of the Sun every month because
+  a)  sometimes the Moon is too far away.
+  b)  the Moon always keeps its same side toward the Earth.
+ $c)  the Moon's orbit is not in the same plane as the Earth's orbit.
+  d)  you have to be in the right place to see a solar eclipse. 
+
+A friend exclaims that a few months ago she saw the full moon
+overhead at noon. Is this possible? 
+  a)  Yes, because a full moon is caused when the Moon is fully lit by
+  the Sun, which can only happen at noon. 
+  b)  Yes, but only if she was approximately 45 degrees from
+  zero latitude.  
+ $c)  No, the full moon is never overhead at noon. 
+  
+
+
+MOON
+------
+
+There is very little atmosphere on the Moon because
+   a)      dry rocks on the Moon absorbed its own atmosphere
+   b)      it was blown away by meteor bombardment
+  $c)      its low mass and high temperature allowed most gases to escape
+   d)      the gravitational tidal forces from the Earth stripped
+           it away
+
+The Moon
+   a)      always points the same face toward the Sun
+   b)      does not rotate
+   c)      rotates at the same rate as the Earth - once per day
+  $d)      rotates on its axis with the same period as its
+           revolution about the Earth
+
+Which theory of lunar origin below lost support when
+the Apollo landings showed there to be similar
+abundances of isotopes of oxygen on both the Earth and moon?
+   a)      fission theory
+  $b)      capture theory
+   c)      formation together from the same gas cloud
+   d)      the dairy theory
+
+Place the statements concerning lunar formation below
+in chronological order from the time of formation:
+      1    coalesced from orbiting debris
+      2    cooling of interior
+      3    mare formed
+      4    surface melting by heavy bombardment
+  $a)      1, 4, 3, 2
+   b)      3, 2, 4, 1
+   c)      1, 2, 3, 4
+   d)      4, 3, 2, 1
+   e)      2, 3, 4, 1
+
+The lunar mare were formed primarily by
+   a)      melting and solidification followed by impacts
+   b)      volcanism
+  $c)      impact with later volcanism
+   d)      volcanism with later impact
+
+Why are some large crater walls sharp and steep, while others
+are more rounded? 
+   a)      different volcanos make different craters
+  $b)      age differences
+   c)      size differences among the impact bodies
+   d)      composition differences among the impact bodies
+   e)      seismic activity on the Moon
+
+During a single night, the Moon
+   a)  moves from west to east across the sky
+  $b)  moves from east to west across the sky
+   c)  appears fixed in the sky above a given location on Earth
+   d)  appears fixed in the sky relative to the constellations
+   
+If the Moon was third quarter last Saturday, what phase will it be
+this Saturday? 
+  a)  waning crescent 
+  b)  waxing gibbous
+  c)  At or very near first quarter
+ $d)  At or very near new
+  e)  Any of the above, depending upon other factors. 
+  
+If you observe the Moon rising in the east as the Sun is setting
+in the west, then you know that the phase of the Moon must be 
+  a)  new
+  b)  first quarter
+ $c)  full
+  d)  third (or last) quarter
+  e)  Any of the above, depending on other factors
+  
+It is full moon and it is the night of winter solstice.  Where is the Moon?
+     $a)  North of the celestial equator
+      b)  On the celestial equator
+      c)  South of the celestial equator
+      d)  Not enough information is given to answer this question
+
+Why can we never see an absolutely new moon?
+    a) It is always on the other side of the Earth
+   $b) It is always too close to the Sun
+    c) It is never up during the day
+    d) It is always on the horizon
+    e) It is always covered up by the Sun
+
+When two continental plates collide, the likely result is that
+  $a)  folded mountains are created
+   b)  a hot spot is produced
+   c)  very young rocks emerge from below the crust
+   d)  a crater is formed
+
+Your latest discovery, Planet Eris, never had volcanos. The processes
+of erosion on Eris have unequal but constant rates in different  
+surface regions.  A reasonable way to estimate which region
+has the least erosion is simply by choosing the region with
+    a) the fewest craters
+    b) the largest craters
+   $c) the most craters
+    d) maria
+
+The fact that there are fewer craters on the lunar maria than on
+the lunar highlands indicates that the
+   a)  highlands are younger than the maria
+   b)  craters formed as a result of volcanic eruptions
+  $c)  maria formed more recently
+   d)  maria are of volcanic origin
+
+The Moon at night appears brighter in the winter because
+   a) the nights are longer
+  $b) the declination of the full moon is higher in winter
+   c) the cold air makes the Moon appear stronger
+   d) The interaction between the tides and the cold air intensifies
+moonlight
+

@@ -1,0 +1,324 @@
+THE PLANETS
+-------------
+
+You visit a hot little planet that rotates on its axis in 2 hours,
+while it revolves closely around its sun every 25 hours.  You
+construct for the inhabitants an excellent calendar with a leap year
+that occurs in one time every 
+    a) year.
+   $b) 2 years.
+    c) 12 years.
+    d) 25 years.
+
+Order the following by increasing radius. 
+       I. Sun
+      II. Jupiter's orbit around Sun
+     III. Earth's orbit around Sun
+      IV. Sun's orbit around the Galaxy
+   a) III, II, I, IV
+   b) I, II, III, IV
+  $c) I, III, II, IV
+   d) I, II, IV, III
+
+Mnemonic: My Very Educated Mother Just Showed Us Nine Planets.
+Which planet(s) can never be seen on the meridian at midnight?
+ $a)  Mercury
+ $b)  Venus
+  c)  Mars
+  d)  Jupiter
+  e)  Saturn
+  (Note: Mark all possible correct answers)
+
+The surface of Venus is mostly low density rock, while the average
+density of Venus is similar to that of Earth. The interior of Venus is
+therefore 
+  a) rapidly rotating
+  b) composed of low density material
+ $c) denser than the average density of Earth
+  d) invisible 
+  e) homogeneous
+
+How much more solar energy does Venus receive than the Earth,
+due to the fact that Venus is 0.72 times as far from the Sun?
+  a) 0.72 times as much
+  b) 1/0.72 = 1.4 times as much
+  c) 0.72 (squared) = 0.52 times as much
+ $d) (1/0.72) (squared) = 1.92 times as much
+  e) 0.28 times as much.
+
+From Earth, Mercury is difficult to see mostly because it
+  a) has low albedo
+  b) is very dense
+  c) is very small
+ $d) always appears near the Sun
+
+Mercury's atmosphere is likely to be weak or non-existent because of its
+  a) small mass
+  b) slow rotation
+  c) high surface temperature
+  d) high density
+ $e) (a) and (c)
+
+Volcanos on Mars have become much larger than on Earth mostly because
+Mars lacks 
+  a) a thick atmosphere
+  b) flowing water
+ $c) plate tectonics
+  d) a large moon
+
+Satellites of Mars probably formed
+  a) out of a merger of telecommunications giants
+  b) out of the same material from which Mars formed
+ $c) in the asteroid belt, and were later captured
+  d) in the Oort Cloud
+  e) as a result of cometary bombardment
+
+Synchrotron radiation is produced
+ $a) by electrons moving rapidly in a magnetic field
+  b) by electrons traveling with a velocity determined by the temperature of the gas in which they are found
+  c) by a "blackbody"
+  d) by microwave ovens
+
+The atmosphere of Jupiter has few heavy elements due to
+  a) evaporation 
+  b) the lack of heavy elements in the outer solar system
+  c) the vacuum-like power of the Great Red Spot
+ $d) gravitational settling toward the planet's center
+
+Jupiter's chemical composition is closest to that of
+  a) Earth
+ $b) the Sun
+  c) Mars
+  d) the Moon
+  e) Venus
+
+The shape of Jupiter's magnetic field is flattened because of
+the solar wind and the 
+  a) low temperatues in the outer solar system
+  a) planet's strong gravity
+ $c) planet's rotation
+  d) many moons
+
+Io's volcanic activity is driven mostly by heat from 
+  a) radioactivity
+ $b) the Jupiter-Io tidal force
+  c) Jupiter's magnetic fields
+  d) the solar wind
+
+Synchrotron radiation from Saturn implies that the planet has
+  a) powerful electrical storms
+  b) an unseen companion
+ $c) a magnetic field
+  d) excess thermal radiation
+
+The sizes of particles comprising Saturn's rings are studied by analyzing
+  a) shadows cast by the rings.
+ $b) how light is scattered by the ring particles.
+  c) excess radiation emitted by the rings.
+  d) excess radiation emitted by the planet that is blocked by the rings.
+
+Uranus is peculiar because its 
+  a) radius is so large
+  b) orbit is highly eccentric
+  c) orbit is strongly inclined to the ecliptic plane
+ $d) axis of rotation is in the ecliptic plane
+
+Seasons on Uranus are 
+  a) as long as Uranus' year
+  b) non-existent
+ $d) one fourth of Uranus' year, or about 20 Earth years long
+  e) four times Uranus' year, or about 320 Earth years long
+
+Uranus is surrounded by a cloud of
+  a) asteroids
+ $b) hydrogen
+  c) helium
+  d) water molecules
+
+Which of the following is correct?
+  a) the rotation axes of planets are perpendicular to
+     their orbital plane (the ecliptic)
+ $b) no planet's orbital inclination is more than 20 degrees from the
+     ecliptic  
+  c) planets orbits are circular 
+  d) planets always rotate and revolve in the same direction 
+
+
+Which of following are correct?
+  $a) The Earth is closest to the Sun in January.
+   b) The Earth is farthest from the Sun in January.
+   c) The Earth is always at the same distance from the Sun.
+   d) It's cold in winter because the Earth is farther from the Sun.
+
+Which of the following are correct?
+  a) Mars is essentially in the same orbit as the Earth.
+  b) There are canals filled with liquid water on Mars.
+  c) If there is water, that means there is oxygen and therefore that we
+  can breathe on Mars.
+  d) All of the above.
+ $e) None of the above.
+
+ The terrestrial (inner) planets are characterized by
+(more than one answer may apply)
+  a) low density
+  b) rapid rotation
+  c) large size
+ $d) rocky composition
+
+Which of the following characterizes Jovian planets?
+(more than one answer may apply)
+  a) high density
+  b) slow rotation
+  c) small size
+ $d) mostly hydrogen and helium
+
+The Jovian planets have retained most of their atmospheres because
+  a)  they are further from the Sun's gravitational pull than the
+  terrestrial planets. 
+  b)  they are very warm and massive
+ $c)  they are very cold and massive
+  d)  the planet's rings "fence in" the planetary atmosphere
+
+What is responsible for heating the terrestrial planets from inside?
+  a)  temperature
+  b)  solar radiation
+ $c)  radioactivity
+  d)  fusion
+  
+A planet can never be seen at opposition whose orbit relative to the
+Earth's has a 
+     $a)  smaller radius
+ b)  larger radius
+ c)  longer year
+ d)  greater ellipticity
+
+The synodic period of a planet is the time during which a body in the
+solar system makes one orbit of the Sun relative to the Earth, i.e.,
+returns to the same elongation. For a superior planet to the Earth, as
+the synodic period increases, its sidereal period must
+ a) increase
+     $b) decrease
+ c) stay the same
+
+Consider the planets closer to the Sun than Jupiter. Of these planets,
+the two with the largest elongations have the ______ distances from
+the Sun. 
+     $a) largest
+ b) smallest
+ c) the same
+ d) Not enough information.
+
+ If Venus is observed to have a crescent phase while its elongation angle 
+(away from the Sun) is 20 degrees, it must be ________ to/from the Earth 
+than the Sun is. 
+     $a) closer 
+     b) farther 
+     c) equally distant 
+     d) can't tell from the information given. 
+  
+Venus is unusual because of its retrograde rotation. This means
+that Venus
+    a)  rotates much more slowly than the other planets
+    b)  does not always rotate with its axis at the same angle to the
+   plane of the ecliptic
+   $c)  rotates in an opposite direction compared to most other planets
+   in the solar system
+    d)  changes its direction of rotation
+
+The retrograde loops of Saturn are smaller than those of Jupiter because
+   a) Saturn moves more slowly in its orbit
+  $b) Saturn is farther away, and loop size is largely determined by
+ the planet's parallax
+   c) the motions of Saturn are more gradual since it has a lower
+ temperature 
+   d) the older parts of the solar system move in smaller circular motions 
+
+Why do Mercury and the Moon have almost no atmosphere?
+  $a) The gravity at their surfaces is low, so most gas molecules
+ travel fast enough to escape the planet.
+   b) The temperature at their surfaces is high, so most gas molecules
+ travel fast enough to escape the planet.
+   c) The only gas molecules that they had originally were low in
+ mass, so that they were immediately able to escape.
+   d) They are both highly reflective.
+
+What might Mars have had it had a mass closer to those of Earth and Venus?  
+   a) an active interior.
+   b) a larger atmosphere than Earth.
+   c) abundant water, but larger ice caps.
+   d) a magnetic field.
+  $e) all of the above
+
+Which of the following assumptions of the original solar nebula
+hypothesis is probably wrong, in light of the evidence provided by
+extrasolar planets so far? 
+   a) Planets as massive as the Jovian planets must be composed  primarily of hydrogen and helium.
+   b) Jovian planets are likely to form relatively far from the star.
+  $c) Planetary orbits do not shrink after the planet forms.
+   d) Centrifugal forces (due to increasing orbital speeds) prevent the gas in the solar nebula from being pulled into the star.
+
+For a superior planet in our solar system, the correct sequence of
+events as seen from Earth is
+  a) opposition, eastern quadrature, western quadrature, conjunction.
+  b) opposition, western quadrature, conjunction, eastern quadrature.
+ $c) opposition, eastern quadrature, conjunction, western quadrature
+  d) conjunction, eastern quadrature, western quadrature, opposition.
+
+For an inferior planet in our solar system, the correct sequence of
+events as seen from Earth is
+ $a) superior conjunction, greatest eastern elongation, inferior conjunction, greatest western elongation.
+  b) inferior conjunction, greatest eastern elongation, inferior conjunction, greatest western elongation.
+  c) superior conjunction, greatest western elongation, inferior conjunction, greatest eastern elongation.
+  d) inferior conjunction, greatest eastern elongation, opposition, greatest western elongation.
+
+As seen from Earth, a superior planet can never be observed at
+  a) superior conjunction.
+  b) quadrature.
+ $c) inferior conjunction.
+  d) opposition.
+  e) none of these.
+
+When at greatest western elongation, Venus may be observed
+ $a) west of the Sun in the morning sky.
+  b) west of the Sun in the evening sky.
+  c) east of the Sun in the morning sky.
+  d) east of the Sun in the evening sky.
+
+When at greatest eastern elongation, Venus may be observed
+  a) west of the Sun in the morning sky.
+  b) west of the Sun in the evening sky.
+  c) east of the Sun in the morning sky.
+ $d) east of the Sun in the evening sky.
+
+The greatest elongation of Mercury is
+  a) about 45 degrees.
+  b) about 90 degrees.
+ $c) about 28 degrees.
+  d) about 23.5 degrees.
+
+When Jupiter is at quadrature, the angle between Jupiter and the Sun as
+seen from Earth is
+  a) 0 degrees.
+ $b) 90 degrees.
+  c) 180 degrees.
+  d) 45 degrees.
+
+When Saturn is at conjunction, the angle between Saturn and the Earth
+as seen from the Sun is
+  a) 0 degrees.
+  b) 90 degrees.
+ $c) 180 degrees.
+  d) 45 degrees.
+
+When Mercury is at greatest elongation, the angle between Earth and the
+Sun as seen from Mercury is
+  a) 0 degrees.
+ $b) 90 degrees.
+  c) 180 degrees.
+  d) 45 degrees.
+
+Mars is 
+  a) observed at opposition every year.
+  b) observed at opposition twice a year.
+ $c) observed at opposition every two years.
+  d) never observed at opposition.

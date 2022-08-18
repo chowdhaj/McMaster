@@ -1,0 +1,139 @@
+TELESCOPES AND INSTRUMENTS
+--------------------------
+
+You observe a star through a 10-inch telescope on Earth.  Your
+identical twin observes the same star from 3 times farther away.  How
+big a telescope does your twin need to make the star appear as bright
+as it does to you? 
+    a) 5 inches
+    b) 10 inches
+   $c) 30 inches
+    d) 90 inches
+  
+A telecope's sensitivity (light gathering power) is determined
+primarily by its 
+    a) objective diameter
+   $b) objective area
+    c) magnification
+    d) objective focal length
+    e) spatial resolution
+
+The diameter of the objective of telescope 1 is D. The diameter of 
+the objective of telescope 2 is 2D. The light gathering power of 
+telescope 2 is ___ times the light gathering power of telescope 1.
+   a) 1
+   b) 2
+   c) 3
+  $d) 4
+
+A telescope's spatial resolution is determined primarily by its
+   $a)  objective diameter
+    b)  objective area
+    c)  magnification
+    d)  objective focal length
+    e)  spatial resolution
+
+One disadvantage of a refracting telescope compared
+with a reflector of the same diameter is that
+    a)  refractors bend the light more
+   $b)  refractors focus light of different wavelengths at different locations 
+    c)  the refractor has a lower magnification
+    d)  refractors have poor spatial resolution
+
+Which of the following are problems with large refracting telescopes? 
+    a) Weight.
+    b) Chromatic aberration.
+    c) Sagging of the objective.
+    d) Both a and c.
+   $e) All of the above.
+
+The Keck telescope on Mauna Kea has a diameter of 10m compared
+to 5m for the Palomar telescope.  The light gathering power
+of the Keck is larger by a factor of
+    a)  2
+   $b)  4
+    c)  15
+    d)  50
+
+One of the Gemini telescopes has 4 times the light gathering power of
+the 4m telescope on Kitt Peak. How much farther into space can a
+Gemini telescope detect a faint object?
+    a)  distance does not depend on light gathering power
+   $b)  2
+    c)  4
+    d)  8
+    e)  16
+
+The reason astronomers use telescopes in space is because
+the Earth's atmosphere
+    a) absorbs or scatters some of the light at all wavelengths.
+    b) absorbs all of the light at some wavelengths.
+    c) distorts images of astronomical objects.
+   $d) All of the above.
+
+The main reason astronomers use large telescopes is that large telescopes
+    a) have a bigger field of view.
+    b) have a larger magnification.
+   $c) gather more light.
+    d) None of the above.
+
+Which of the following has never been seen since the invention of the 
+telescope, and probably does not require a telescope to be detected?
+    a) an individual star in another galaxy
+    b) a change in the dark spot on Neptune
+    c) a comet striking a planet
+    $d) a supernova exploding in our galaxy
+
+Light is refracted when passing through a lens because
+   a)  light is absorbed by the surface of the lens and then
+re-radiated in a different direction.
+  $b) light moves at different speeds in the glass than it
+does in air.
+   c)  the wavelength changes when the light strikes the glass
+which causes a bending of the wave.
+   d)  internal reflections caused by atoms in the lens deflect the
+light rays.
+
+You are looking at a wall clock through a simple telescope    
+objective lens.  Which number will be at the bottom of the image
+formed in the focal plane of the lens?  
+   $a) 12
+    b) 3
+    c) 6
+    d) 9
+                     
+Telescopes have motors (clock drives) to track the stars across the
+sky because the
+    a) stars have proper motions
+    b) Earth moves in its orbit
+   $c) Earth spins on its axis
+    d) Sun moves in its orbit
+
+Temperature differences between the primary mirror of a       
+telescope and the surrounding air cause 
+    a) color distortions due to heat
+    b) image blurring due to temperature-related focus changes
+    c) image blurring due to buckling of the mirror surface
+   $d) image blurring due to air turbulence
+
+Which of the following combinations of focal lengths
+for the objective/eyepiece would have the LOWEST magnifying power?
+    a) long/long 
+    b) long/short 
+   $c) short/long 
+    d) short/short 
+
+The larger of 2 radio telescopes will collect
+    a) less energy, and have greater resolving power.
+    b) less energy, and have less resolving power.
+   $c) more energy, and have greater resolving power.
+    d) more energy, and have less resolving power.
+    e) the same energy, and have the same resolving power.
+
+Which of the following cannot be determined using radar?
+   a) size
+  $b) mass
+   c) roughness
+   d) distance
+   e) velocity
+

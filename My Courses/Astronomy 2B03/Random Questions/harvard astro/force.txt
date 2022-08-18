@@ -1,0 +1,335 @@
+GENERAL MOTION/FORCES 
+-----------------------
+
+
+Orbital Motion:
+--------------
+
+Kepler's 3d law (that the period squared is proportional to the
+semi-major axis cubed) does NOT apply to the motion of:
+   a) a satellite around the Earth
+   b) a comet around the Sun
+   c) one star about another in a binary star system
+   d) one galaxy about another
+  $e) all of the above apply
+
+A description for the relationship between the period of revolution P
+and the distance from the center R of a point on a record on a
+turntable would be 
+   a) P^2 is proportional to R^3
+   b) P^2 is proportional to R
+   c) P is proportional to R
+  $d) P does not depend on R
+
+A spacecraft in one stable orbit moves to another stable orbit
+that has twice the semi-major axis as the first. The period of
+the second orbit is ____ times that of the first orbit.
+   a) 0.5
+   b) 2
+   c) cube root of 64
+  $d) square root of 8
+
+Since angular momentum is conserved, the rotational speed of a
+collapsing gas cloud
+   a) depends on its mass
+  $b) increases
+   c) decreases
+   d) is independent of its initial rotation
+
+Since angular momentum is conserved, the orbital speed of a
+planet at perihelion as compared to aphelion
+  $a) is larger
+   b) is smaller
+   c) is the same
+   d) approaches infinity
+
+A planet at perihelion has a value of X for its angular momentum.
+when the planet is at aphelion, its angular momentum will be
+   a) less than X.
+   b) greater than X.
+  $c) equal to X.
+   d) cannot tell without further information.
+
+If the Sun were suddenly replaced by a solar-mass black hole, the
+Earth would
+   a) move off the current orbit in a straight line
+  $b) remain in the same orbit 
+   c) move into a smaller orbit
+   d) be pulled into the black hole 
+
+An artifical satellite passes near Jupiter and gains some orbital
+energy in a `slingshot effect'.  What is the effect on Jupiter?
+   a) cooling
+   b) none
+  $c) the effects are minimal because of the small satellite mass
+   d) faster rotation
+   e) Jupiter will revolve about the Sun faster
+
+A bowling ball and a paper bag are pushed out of the airlock of a
+tourist spaceship.  The spaceship is coasting with its engines
+off, halfway along on a weeklong cruise to the Moon.  After ten
+minutes,
+  $a) both objects are still moving together alongside the spaceship.
+   b) the bowling ball is still moving alongside the spaceship, but
+      the paper bag has been left far behind. 
+   c) both objects are far behind the spaceship.
+   d) the bowling ball is falling back towards Earth, while the paper
+      bag is still coasting alongside the spaceship.
+
+For some reason, you wake up alone in space, twirling a ball
+on a string, far from any planet, satellite, or massive object.
+The string breaks.  Assuming you would care under such circumstances, 
+what path does the ball take?
+   a) It moves directly away from you in a straight line from the
+      point where the string broke. 
+  $b) It moves away from you sideways in a straight line from the
+      point where the string broke.
+   c) It continues to move in the circle because space is frictionless.
+   d) It moves in a paraboloid arc, like a baseball on Earth.
+
+
+Forces and acceleration:
+-------------------------
+
+Which situation(s) does NOT describe an acceleration:
+  $a) a car traveling with constant speed on a straight road
+   b) a car traveling with constant speed around a bend
+   c) a planet traveling in its orbit around the Sun   
+   d) a car decreasing speed on a straight road
+   e) an electron traveling around a nucleus.
+
+A piece of toast held at rest above the kitchen floor has
+  $a) potential energy only
+   b) kinetic energy only
+   c) both potential and kinetic energy
+   d) neither, only thermal energy
+
+Two identical spacecraft are to be accelerated by rockets.  The first
+rocket fires with a force four times as great as the second.  The
+acceleration of the first rocket is _______ as large as the acceleration of
+the second.
+   a)  1/4                         
+  $b)  4 times
+   c)  1/2                           
+   d)  2 times
+   e)  None of the above
+
+Two Toyotas collide and come to a dead stop.  How much more
+kinetic energy is lost in this collision than in one between two
+identical cars each moving at half the velocity?
+   a) two times larger
+   b) two times smaller
+  $c) four times larger
+   d) four times smaller
+   e) unchanged, since the potential energy, not the kinetic
+      energy, depends on velocity
+
+Electromagnetism is
+  $a) sometimes a repulsive force and sometimes an attractive force.
+   b) always a repulsive force.
+   c) always an attractive force.
+   d) none of the above.
+
+The electromagnetic force does not dominate the everyday world
+because
+   a) it is too weak.
+   b) it acts only over short distances.
+  $c) positive charges cancel the effects of negative charges.
+   d) it only affects magnetic materials.
+
+Of the four fundamental forces of nature, the one that is inherently
+the weakest (with the smallest coupling constant) is the  
+   a) strong nuclear force.
+   b) weak nuclear force.
+   c) electromagnetic force.
+  $d) gravitational force.
+
+Which of the four fundamental forces of nature has the largest
+effect on objects at astronomical distances from each other?
+   a) The strong nuclear force.
+   b) The weak nuclear force.
+   c) The electromagnetic force.
+  $d) The gravitational force.
+
+The force that holds molecules together is the
+   a) strong nuclear force.
+  $b) electromagnetic force.
+   c) centrifugal force.
+   d) gravitational force.
+
+For the strong nuclear force to hold together two protons, they
+must be
+   a) moving slowly
+   b) moving rapidly
+  $c) close together
+   d) of opposite charge
+
+If the distance between two protons is increased by a factor of
+10, the (gravitational/electromagnetic) force between them is
+decreased by a factor of 
+   a)    10/   100
+   b)   100/ 10000
+   c) 10000/ 10000
+  $d)   100/   100
+
+You are an astronaut taking a spacewalk to fix your spacecraft
+with a hammer.  Your lifeline breaks and the jets on your back
+pack are out of fuel.  To return safely to your spacecraft
+(without the help of someone else), you should
+   a) throw the hammer at the space ship to get someone's attention.
+  $b) throw the hammer away from the space ship.
+   c) use a swimming motion with your arms.
+   d) kiss your ship good bye.
+
+If the strong nuclear force were weaker than the electromagnetic
+force at the scale of an atomic nucleus then fusion reactions
+would
+  $a) not be possible
+   b) happen all the time
+   c) not change, since this is already true
+   d) be caused by the electromagnetic force instead
+
+
+Gravity:
+---------
+
+Gravity is
+   a) sometimes a repulsive force and sometimes an attractive force.
+   b) always a repulsive force.
+  $c) always an attractive force.
+   d) none of the above.
+
+The force of gravity is responsible for
+   a) holding the planets near the Sun.
+   b) the tides
+   c) holding the Moon near the Earth
+   d) Two of the above
+  $e) A, B, and C
+  
+A person is standing on the roof of a one-story building.  The
+ground floor of the building has to support
+   a) no weight.
+   b) less weight than the roof.
+   c) the same amount of weight as the roof.
+  $d) more weight than the roof.
+
+The reason that visitors to the south pole do not fall off the
+planet is that
+   a) atmospheric pressure is larger at the south pole.
+   b) gravity points down and so do the visitors.
+  $c) gravity does not come from off the planet, it
+      comes from the center of the Earth.
+   d) centrifugal force caused by the planet's rotation
+      keeps them there.
+
+When you are on the top floor of a building, your weight is _______ when
+you are on the ground floor.
+   a) much greater than 
+   b) very slightly greater than 
+   c) equal to 
+  $d) very slightly less than 
+   e) much less than
+  
+The Apollo astronauts repeated the experiment that Galileo
+performed at the Leaning Tower of Pisa by dropping a feather and
+a hammer on the Moon.  The feather and hammer reached the ground
+at the same time because:
+   a) gravity on the Moon is less than on Earth
+   b) the force of gravity is larger on the feather than on the hammer
+  $c) the acceleration of each object is the same
+   d) the astronauts showed Galileo's experiment to be false.
+
+The escape velocity from the Moon is less than that from the
+Earth because of the Moon's
+   a) lower density
+  $b) smaller mass 
+   c) smaller radius 
+   d) higher temperature
+   e) distance from the Earth
+
+If the size of the Earth were to double (with the mass
+unchanged), the gravitational attraction of the Sun
+   a) would double
+   b) would decrease by two times
+   c) would increase by four times
+   d) would decrease by four times
+  $e) not change
+
+If the radius of the Earth were to double, with no change in its
+mass, a person's weight would
+   a) be unchanged.
+   b) increase by factor of 4 
+  $c) decrease by a factor of 4 
+   d) double
+   e) be cut in half
+
+Antimatter is identical to matter except that its electrical
+charge is opposite. Suppose that the Moon suddenly changed to
+antimatter.  How might the Moon's orbit change?
+   a) Instead of being attracted to the Earth, the Moon would be repelled
+      and move away.
+   b) Since matter and antimatter attract, the Moon would move
+      closer to the Earth. 
+  $c) Since the Moon is neutral, the orbit would not change.
+   d) The Moon and perhaps the Earth would annihilate in a gigantic
+      explosion.
+
+Use your knowledge of the escape velocity equation to answer the
+following.  Planet X is twice as massive as the Earth and four
+times as large as the Earth.  Which of the following is true?
+The escape velocity of X is
+   a) greater than Earth's escape velocity.
+   b) the same as Earth.
+  $c) less than Earth's escape velocity.
+
+If woman A approaches man B at a distance C, the gravitational
+force between them
+   a) exceeds their weight
+  $b) quadruples as C halves
+   c) is proportional to the sum A+B
+   d) is proportional to the distance C squared
+
+Suppose that you are in a spaceship traveling past two different
+planets.  You pass within 1 AU of a blue planet which has twice
+the mass of the Earth, and within 1 AU of a red planet which has
+the same mass as the Earth. From which planet will you feel the
+greater gravitational pull?
+  $a) the blue planet		
+   b) the red planet		
+   c) the gravitational pull from each planet will be equal.
+  
+If one could magically turn off gravity the Earth would
+   a) leave the solar system along a line connecting the Earth and Sun
+   b) spiral out of control and leave the solar system in a chaotic path
+  $c) travel in a nearly straight line along its present velocity
+      perpendicular to a line connecting Earth and Sun 
+   d) move outwards to collide with the Moon
+
+Compared to your mass here on Earth, your mass out in the space
+between the stars would be __________.
+   a) zero                        
+   b) negligibly small
+   c) much much greater       
+  $d) the same
+   e) the question cannot be answered from the information given
+
+The Moon's tidal forces cause the Earth's rotation to slow and
+the Moon to
+  $a) decrease its orbital speed and increase its distance
+   b) decrease its orbital speed and decrease its distance 
+   c) slow its rotation
+   d) do nothing (no effect)
+
+At different times during its trip, a space probe passes two
+moons (X and Y) that are identical in size. Though the probe
+passes both at the same distance, ground control finds that the
+probe's trajectory is deflected more by moon X than moon Y.
+Planet X must
+  $a) be denser than planet Y.
+   b) be rotating more quickly than planet Y.
+   c) be less massive than planet Y.
+   d) has less of a magnetic field than planet Y.
+
+
+
+
