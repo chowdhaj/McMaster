@@ -1,5 +1,5 @@
 # McMaster
-Collection of Courses I Have Taken At McMaster
+Collection of Courses I May Have Taken At McMaster
 
 ## Synopsis
 
