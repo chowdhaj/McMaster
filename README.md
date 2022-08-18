@@ -26,7 +26,11 @@ The following list contains quick links to all the CompSci courses in this repos
 * [CompSci 4HC3 - Human Computer Interfaces](https://github.com/chowdhaj/McMaster/tree/main/My%20Courses/CompSci%204HC3)
 
 ## Disclaimer
-
-## Placeholder
+"None of the authors, contributors, administrators, vandals, or anyone else connected with this repository, in any way whatsoever, can be responsible for your use of the information contained in or linked from these web pages. Use at your own discretion."
 
 ## License
+Anyone and everyone is/are allowed to use these documents as they see fit.
+
+*"Education is the most powerful weapon which you can use to change the world."*
+
+Enjoy!
