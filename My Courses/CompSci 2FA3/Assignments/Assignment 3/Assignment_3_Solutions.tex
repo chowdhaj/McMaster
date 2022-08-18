@@ -1,0 +1,233 @@
+\documentclass[11pt,fleqn]{article}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{color}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\pnote}[1]{{\langle \text{#1} \rangle}}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\subfun}{\sqsubseteq}
+\newcommand{\set}[1]{{\{ #1 \}}}
+\newcommand{\Neg}{\neg} 
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+\newcommand{\Or}{\vee}
+\newcommand{\ImpliesAlt}{\Rightarrow}
+\newcommand{\Forall}{\forall}
+\newcommand{\ForallApp}{\forall\,}
+\newcommand{\mdot}{\mathrel.}
+
+\begin{document}
+
+\begin{center}
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Assignment 3 with Solutions}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: February 15, 2020}
+
+\end{center}
+
+\medskip
+
+Assignment 3 consists of four problems.  You must write your solutions
+to the problems using LaTeX.
+
+Please submit Assignment~3 as two files,
+\texttt{Assignment\_3\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_3\_\emph{YourMacID}.pdf}, to the Assignment~3
+folder on Avenue under Assessments/Assignments.
+\texttt{\emph{YourMacID}} must be your personal MacID (written without
+capitalization).  The \texttt{Assignment\_3\_\emph{YourMacID}.tex}
+file is a copy of the LaTeX source file for this assignment
+(\texttt{Assignment\_3.tex} found on Avenue under
+Contents/Assignments) with your solution entered after each problem.
+The \texttt{Assignment\_3\_\emph{YourMacID}.pdf} is the PDF output
+produced by executing
+
+\begin{itemize}
+
+  \item[] \texttt{pdflatex Assignment\_3\_\emph{YourMacID}}
+
+\end{itemize}
+
+This assignment is due \textbf{Sunday, February 9, 2020 before
+  midnight.}  You are allow to submit the assignment multiple times,
+but only the last submission will be marked.  \textbf{Late submissions
+  and files that are not named exactly as specified above will not be
+  accepted!}  It is suggested that you submit your preliminary
+\texttt{Assignment\_3\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_3\_\emph{YourMacID}.pdf} files well before the
+deadline so that your mark is not zero if, e.g., your computer fails
+at 11:50 PM on February 9.
+
+\textbf{Although you are allowed to receive help from the
+  instructional staff and other students, your submission must be your
+  own work.  Copying will be treated as academic dishonesty! If any of
+  the ideas used in your submission were obtained from other students
+  or sources outside of the lectures and tutorials, you must
+  acknowledge where or from whom these ideas were obtained.}
+
+\newpage
+
+\subsection*{Background}
+
+Let $\Sigma = (\sB,\sC,\sF,\sP,\tau)$ be a finite signature of MSFOL,
+$F_{\Sigma}$ be the set of $\Sigma$-formulas, and $A \in F_{\Sigma}$.
+Recall that the members of $F_{\Sigma}$ are certain strings of
+symbols.  A \emph{subformula} of $A$ is a $B \in F_{\Sigma}$ such that
+$B$ is a substring of $A$.  For example, let $A$ be the formula $((0 =
+2) \And (3 \mid 4))$, i.e., $A$ is the string ``$((0 = 2) \And (3 \mid
+4))$''.  Then ``$(0 = 2)$'', ``$(3 \mid 4)$'', and ``$((0 = 2) \And (3
+\mid 4))$'' are the subformulas of $A$, and ``$(0 = {}$'' and
+``$\And$'' are two substrings of $A$ that are not subformulas of $A$.
+
+A function $f : A \rightarrow B$ is \emph{total} if it is defined on
+\emph{all} members of $A$.  A function $f : A \rightarrow B$ is a
+\emph{partial} if it is be undefined on \emph{some} members of $A$.
+For example, the square root function $\sqrt{\cdot} : \mathbb{R}
+\rightarrow \mathbb{R}$ is a partial function since $\sqrt{r}$ is
+undefined for all $r \in \mathbb{R}$ with $r < 0$. If $f,g : A
+\rightarrow B$ are partial or total functions, then $f$ is a
+\emph{subfunction} of $g$, written $f \subfun g$, if the domain $D_f$
+of $f$ is a subset of the domain of $g$ and, for all $x \in D_f$,
+$f(x) = g(x)$.  In other words, $f$ is a subfunction of $g$ if $g(a)$
+is defined and $f(a) = g(a)$ whenever $f(a)$ is defined.
+
+\subsection*{Problems}
+
+\be
+
+  \item\textbf{[10 points]} Let $\mname{subformulas} : F_{\Sigma}
+    \rightarrow \sP(F_{\Sigma})$ be the function that maps a formula
+    $A \in F_{\Sigma}$ to the set of subformulas of $A$.  Define
+    $\mname{subformulas}$ by structural recursion using pattern
+    matching.
+
+  \textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+
+\textbf{Solution}:
+
+We define $\mname{subformulas}$ by structural recursion using pattern
+matching as follows:
+
+\be
+
+  \item $\mname{subformulas}((s = t)) = \set{(s = t)}$.
+
+  \item $\mname{subformulas}(p(t_1,\ldots,t_n)) = \set{p(t_1,\ldots,t_n)}$.
+
+  \item $\mname{subformulas}(\Neg A) = \set{\Neg A} \cup \mname{subformulas}(A)$.
+
+  \item $\mname{subformulas}((A \ImpliesAlt B)) = {}$ \[\set{(A \ImpliesAlt
+    B)} \cup \mname{subformulas}(A) \cup \mname{subformulas}(B).\]
+
+  \item $\mname{subformulas}((\ForallApp x : \alpha \mdot A)) =
+    \set{(\ForallApp x : \alpha \mdot A)} \cup \mname{subformulas}(A)$.
+
+\ee
+
+  \item\textbf{[10 points]} Suppose $F$ is the set of partial and
+    total functions $f : \mathbb{N} \rightarrow \mathbb{N}$.
+
+  \be
+
+    \item Show that $(F,\subfun)$ is a weak partial order but not a
+      weak total order.
+
+    \item Describe the set of minimal elements of $(F,\subfun)$.
+
+
+    \item Describe the set of maximal elements of $(F,\subfun)$.
+
+
+    \item Does $(F,\subfun)$ have a minimum element?  If so, what is
+      it?
+
+
+    \item Does $(F,\subfun)$ have a maximum element?  If so, what is
+      it?
+
+  \ee
+
+  \textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+
+
+\textbf{Solution}:
+
+\be
+
+  \item
+
+\begin{proof} We must show that $(F,\subfun)$ is reflexive, antisymmetric, 
+and transitive.
+
+\emph{Reflexivity.}  Obviously, $f \subfun f$ for any $f \in F$, so
+$\subfun$ is reflexive.
+
+\emph{Antisymmetry.} Let $f,g \in F$ such that $f \subfun g$ and $g
+\subfun f$.  Then (1)~$D_f \subseteq D_g$ and $D_g \subseteq D_f$ and
+so $D_f = D_g$ and (2) for all $x \in D_f$, $f(x) = g(x)$.  Therefore,
+$f = g$ and so $\subfun$ is antisymmetric.
+
+\emph{Transitivity.} Let $f,g,h \in F$ such that $f \subfun g$ and $g
+\subfun h$.  Then (1)~$D_f \subseteq D_g$ and $D_g \subseteq D_h$ and
+so $D_f \subseteq D_h$ and (2) for all $x \in D_f$, $f(x) = g(x)$ and
+for all $x \in D_g$, $g(x) = h(x)$ and so for all $x \in D_f$, $f(x) =
+h(x)$.  Therefore, $f \subfun h$ and so $\subfun$ is transitive.
+
+Therefore, $(F,\subfun)$ is a weak partial order.
+\end{proof}
+
+  \item Let $e$ be the empty function.  Then $D_e = \emptyset$.
+    Obviously, $e \subfun f$ for all $f \in F$.  Therefore, the set of
+    minimal elements is $\set{e}$.
+
+  \item Let $t$ be a total function in $F$.  Then $D_t = \mathbb{N}$.
+    Obviously, there is no $f \in F$ except $t$ itself such that $t
+    \subfun f$.  Therefore, the set of maximal elements is the
+    infinite set of total functions in $F$.
+
+  \item Since the empty function is the only minimal element, it is
+    the minimum element in $F$.
+
+  \item Since there is more than one total function in $F$, there is
+    no maximum element in $F$.
+
+  \ee
+
+\ee
+
+\end{document}
+
+

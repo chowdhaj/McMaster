@@ -1,0 +1,253 @@
+\documentclass[11pt,fleqn]{article}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{color}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\pnote}[1]{{\langle \text{#1} \rangle}}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\subfun}{\sqsubseteq}
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+
+\begin{document}
+
+\begin{center}
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Assignment 3}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: February 6, 2020}
+
+\end{center}
+
+\medskip
+
+Assignment 3 consists of four problems.  You must write your solutions
+to the problems using LaTeX.
+
+Please submit Assignment~3 as two files,
+\texttt{Assignment\_3\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_3\_\emph{YourMacID}.pdf}, to the Assignment~3
+folder on Avenue under Assessments/Assignments.
+\texttt{\emph{YourMacID}} must be your personal MacID (written without
+capitalization).  The \texttt{Assignment\_3\_\emph{YourMacID}.tex}
+file is a copy of the LaTeX source file for this assignment
+(\texttt{Assignment\_3.tex} found on Avenue under
+Contents/Assignments) with your solution entered after each problem.
+The \texttt{Assignment\_3\_\emph{YourMacID}.pdf} is the PDF output
+produced by executing
+
+\begin{itemize}
+
+  \item[] \texttt{pdflatex Assignment\_3\_\emph{YourMacID}}
+
+\end{itemize}
+
+This assignment is due \textbf{Sunday, February 9, 2020 before
+  midnight.}  You are allow to submit the assignment multiple times,
+but only the last submission will be marked.  \textbf{Late submissions
+  and files that are not named exactly as specified above will not be
+  accepted!}  It is suggested that you submit your preliminary
+\texttt{Assignment\_3\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_3\_\emph{YourMacID}.pdf} files well before the
+deadline so that your mark is not zero if, e.g., your computer fails
+at 11:50 PM on February 9.
+
+\textbf{Although you are allowed to receive help from the
+  instructional staff and other students, your submission must be your
+  own work.  Copying will be treated as academic dishonesty! If any of
+  the ideas used in your submission were obtained from other students
+  or sources outside of the lectures and tutorials, you must
+  acknowledge where or from whom these ideas were obtained.}
+
+\newpage
+
+\subsection*{Background}
+
+Let $\Sigma = (\sB,\sC,\sF,\sP,\tau)$ be a finite signature of MSFOL,
+$F_{\Sigma}$ be the set of $\Sigma$-formulas, and $A \in F_{\Sigma}$.
+Recall that the members of $F_{\Sigma}$ are certain strings of
+symbols.  A \emph{subformula} of $A$ is a $B \in F_{\Sigma}$ such that
+$B$ is a substring of $A$.  For example, let $A$ be the formula $((0 =
+2) \And (3 \mid 4))$, i.e., $A$ is the string ``$((0 = 2) \And (3 \mid
+4))$''.  Then ``$(0 = 2)$'', ``$(3 \mid 4)$'', and ``$((0 = 2) \And (3
+\mid 4))$'' are the subformulas of $A$, and ``$(0 = {}$'' and
+``$\And$'' are two substrings of $A$ that are not subformulas of $A$.
+
+A function $f : A \rightarrow B$ is \emph{total} if it is defined on
+\emph{all} members of $A$.  A function $f : A \rightarrow B$ is a
+\emph{partial} if it is be undefined on \emph{some} members of $A$.
+For example, the square root function $\sqrt{\cdot} : \mathbb{R}
+\rightarrow \mathbb{R}$ is a partial function since $\sqrt{r}$ is
+undefined for all $r \in \mathbb{R}$ with $r < 0$. If $f,g : A
+\rightarrow B$ are partial or total functions, then $f$ is a
+\emph{subfunction} of $g$, written $f \subfun g$, if the domain $D_f$
+of $f$ is a subset of the domain of $g$ and, for all $x \in D_f$,
+$f(x) = g(x)$.  In other words, $f$ is a subfunction of $g$ if $g(a)$
+is defined and $f(a) = g(a)$ whenever $f(a)$ is defined.
+
+\subsection*{Problems}
+
+\be
+
+  \item\textbf{[10 points]} Let $\mname{subformulas} : F_{\Sigma}
+    \rightarrow \sP(F_{\Sigma})$ be the function that maps a formula
+    $A \in F_{\Sigma}$ to the set of subformulas of $A$.  Define
+    $\mname{subformulas}$ by structural recursion using pattern
+    matching.
+
+  \textcolor{blue}{\textbf{Jatin Chowdhary | Chowdhaj | February 9th, 2020 }}
+
+  \textcolor{blue}{\textbf{Solution: }}
+
+  Let x\textsubscript{i} $\in$ \textit{T}\textsubscript{$\sum$}.
+
+  Let M, N be formulas that are in our signature. 
+  So: M, N $\in$ \textit{F}\textsubscript{$\sum$}.
+
+  \begin{itemize}
+
+  \item\indent{Let \textit{eq} represent Equality.}
+
+
+  \item\indent{Let \textit{predi} represent Predicate.}
+
+
+  \item\indent{Let \textit{nega} represent Negation.}
+
+
+  \item\indent{Let \textit{impli} represent Implication.}
+
+
+  \item\indent{Let \textit{quants} represent Quantifications. (i.e. $\forall$)}
+
+  \end{itemize}
+
+  \textit{Structural recursion will be defined for all inputs of the above type, and the base case, which is the empty set.}
+
+  \indent {
+  subformulas( \{ \} ) = \{ \}
+  }
+
+  \medskip
+
+  \indent {
+  subformulas( eq(x\textsubscript{e}, x\textsubscript{r}) ) = 
+  \{ eq(x\textsubscript{e}, x\textsubscript{r}) \} $\cup$ subforumlas(M)
+  }
+
+  \medskip
+
+  \indent {
+  subformulas( predi(x\textsubscript{e}, x\textsubscript{r}) ) = 
+  \{ predi(x\textsubscript{e}, x\textsubscript{r}) \} 
+  
+  $\cup$ subforumlas(M)
+  }
+
+  \medskip
+
+  \indent {
+    subforumlas( nega(M) ) = \{ nega(M) \} $\cup$ subforumlas(M)
+  }
+
+  \medskip
+
+  \indent {
+  subformulas( impli(M, N) ) = \{ impli(M, N) \} $\cup$ subformulas(M)
+
+  $\cup$ subformulas(N)
+  }
+
+  \medskip
+
+  \indent{
+    subformulas( quants(z, a, M) ) = \{ quants(z, a, M) \} 
+
+    $\cup$ subformulas(M)
+  }
+
+  \item\textbf{[10 points]} Suppose $F$ is the set of partial and
+    total functions $f : \mathbb{N} \rightarrow \mathbb{N}$.
+
+  \be
+
+    \item Show that $(F,\subfun)$ is a weak partial order but not a
+      weak total order.
+
+      \textcolor{red}{\textit{$(F,\subfun)$ is a weak partial order because it is reflexive, anti-symmetric, and transitive.}}
+
+      \textcolor{red}{\textit{$(F,\subfun)$ is not a weak total order because it 
+      is a weak partial order, and the relation is only one sided. If something is
+      a partial order, then it can't be a total order. But if it is a total order, 
+      than it is also a partial order. And $(F,\subfun)$ is not a total order
+      because there are elements in F that are not directly comparable. There is
+      more than one way to compare the elements in F, thus making F a partial order.
+      Every element in F is not related with one another.}}
+
+    \item Describe the set of minimal elements of $(F,\subfun)$.
+
+      \textcolor{red}{\textit{F does not have any minimal elements
+      because it is a weak partial order with an infinite number of
+      functions. The minimal elements are all $\subfun$. And because
+      of that, there is no minimal element. }}
+
+    \item Describe the set of maximal elements of $(F,\subfun)$.
+
+      \textcolor{red}{\textit{$(F,\subfun)$ does not have any maximal
+      elements in it, because there is no maximum or maximal element/number 
+      in $\mathbb{N}$. Therefore, $(F,\subfun)$ does have any any max element.}}
+
+
+    \item Does $(F,\subfun)$ have a minimum element?  If so, what is
+      it?
+
+      \textcolor{red}{\textit{No, there is no minimum element, because it 
+      is a weak partial order.}}
+
+
+    \item Does $(F,\subfun)$ have a maximum element?  If so, what is
+      it?
+
+      \textcolor{red}{\textit{No, there is no maximum element because there 
+      is no number in $\mathbb{N}$ that is greater than every number. In 
+      other words, $\mathbb{N}$ is Noetherian and has no maximum element. 
+      There is NO upperbound.}}
+
+  \ee
+
+  \textcolor{blue}{\textbf{Jatin Chowdhary | Chowdhaj | February 9th, 2020}}
+
+  \textcolor{blue}{\textbf{Solution is above in italics and red color.}}
+
+\ee
+
+\end{document}
+
+

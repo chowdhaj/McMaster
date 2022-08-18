@@ -1,0 +1,239 @@
+\documentclass[11pt,fleqn]{article}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning,arrows}
+\usepackage{diagbox}
+\usepackage{stackrel}
+\usepackage{caption}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sM}{\mbox{$\cal M$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\sV}{\mbox{$\cal V$}}
+\newcommand{\set}[1]{{\{ #1 \}}}
+\newcommand{\Neg}{\neg} 
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\Leftrightarrow}
+\newcommand{\Forall}{\forall}
+\newcommand{\ForallApp}{\forall\,}
+\newcommand{\Forsome}{\exists}
+\newcommand{\ForsomeApp}{\exists\,}
+\newcommand{\mdot}{\mathrel.}
+\newcommand{\der}[2]{\stackrel[#2]{#1}{\longrightarrow}}
+
+\begin{document}
+
+\begin{center}
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Assignment 11}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: April 1, 2020}
+
+\end{center}
+
+\medskip
+
+Assignment 11 consists of two problems.  You must write your solutions
+to the problems using LaTeX.
+
+Please submit Assignment~11 as two files,
+\texttt{Assignment\_11\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_11\_\emph{YourMacID}.pdf}, to the Assignment~11
+folder on Avenue under Assessments/Assignments.
+\texttt{\emph{YourMacID}} must be your personal MacID (written without
+capitalization).  The \texttt{Assignment\_11\_\emph{YourMacID}.tex}
+file is a copy of the LaTeX source file for this assignment
+(\texttt{Assignment\_11.tex} found on Avenue under
+Contents/Assignments) with your solution entered after each problem.
+The \texttt{Assignment\_11\_\emph{YourMacID}.pdf} is the PDF output
+produced by executing
+
+\begin{itemize}
+
+  \item[] \texttt{pdflatex Assignment\_11\_\emph{YourMacID}}
+
+\end{itemize}
+
+This assignment is due \textbf{Sunday, April 12, 2020 before
+  midnight.}  You are allow to submit the assignment multiple times,
+but only the last submission will be marked.  \textbf{Late submissions
+  and files that are not named exactly as specified above will not be
+  accepted!}  It is suggested that you submit your preliminary
+\texttt{Assignment\_11\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_11\_\emph{YourMacID}.pdf} files well before the
+deadline so that your mark is not zero if, e.g., your computer fails
+at 11:50 PM on April 12.
+
+\textbf{Although you are allowed to receive help from the
+  instructional staff and other students, your submission must be your
+  own work.  Copying will be treated as academic dishonesty! If any of
+  the ideas used in your submission were obtained from other students
+  or sources outside of the lectures and tutorials, you must
+  acknowledge where or from whom these ideas were obtained.}
+
+\newpage
+
+\subsection*{Problems}
+
+\be
+
+  \item \textbf{[10 points]} Let $\Sigma = \set{a,b}$ and \[L = \set{x
+    \in \Sigma^* \mid \#a(x) \text{ is even and } \#b(x) \text{ is
+      even}}.\] Construct a total Turing machine that accepts $L$.
+
+  \bigskip
+
+  \textcolor{blue}{\textbf{Jatin Chowdhary | Chowdhaj | April $12^{th}$}}
+
+  \textcolor{blue}{\textbf{Put the description of your Turing machine here.}}
+
+  \bigskip
+
+  \textcolor{gray}{First of all, since zero is an even number (\textit{By Parity of Zero}), the Turing Machine accepts the empty 
+  string as valid (does not reject it).}
+
+  \medskip
+
+  Let $M = (Q, \Sigma, \Gamma, \vdash, \textvisiblespace, \delta, s, t, r)$ be the Turing Machine, where:
+
+  \be
+    \item[] $Q = \{s, \, O_{o}, \, O_{e}, \, E_{o}, \, E_{e}, \, t, \, r\}$ 
+    \item[] $\Sigma = \{a, \, b\}$
+    \item[] $\Gamma = \Sigma \cup \{\vdash, \, \textvisiblespace \}$ \textcolor{gray}{= \{$a$, $b$, $\vdash$, $\textvisiblespace$\}}
+    %\item[] $\vdash = $
+    %\item[] $\textvisiblespace = $
+    \item[] \textcolor{gray}{s = Start State}
+    \item[] \textcolor{gray}{t = Accepted State}
+    \item[] \textcolor{gray}{r = Rejected State}
+    \item[] $\delta$ is defined by the following table:
+
+    \medskip
+      
+    %\begin{tabular}{ | c | c | c | c | c | }
+    \begin{tabular}{ c | c  c  c  c  }
+    %\hline
+     \,       & $\vdash$                & $a$              & $b$             & $\textvisiblespace$ \\ 
+    \hline
+     $s$      & (s, $\vdash$, R)        & ($O_{e}$, a, R)  & ($E_{o}$, b, R) & (t, $\textvisiblespace$, R) \\  
+    %\hline
+     $O_{o}$  & ($O_{o}$, $\vdash$, R)  & ($E_{o}$, a, R)  & ($O_{e}$, b, R) & (r, $\textvisiblespace$, R) \\
+    %\hline  
+     $O_{e}$  & ($O_{e}$, $\vdash$, R)  & ($E_{e}$, a, R)  & ($O_{o}$, b, R) & (r, $\textvisiblespace$, R) \\
+    %\hline 
+     $E_{o}$  & ($E_{o}$, $\vdash$, R)  & ($O_{o}$, a, R)  & ($E_{e}$, b, R) & (r, $\textvisiblespace$, R) \\
+    %\hline 
+     $E_{e}$  & ($E_{e}$, $\vdash$, R)  & ($O_{e}$, a, R)  & ($E_{o}$, b, R) & (t, $\textvisiblespace$, R) \\
+    %\hline d 
+     t        & (t, $\vdash$, R)        & (t, a, R)        & (t, b, R)       & (t, $\textvisiblespace$, R) \\
+    %\hline 
+     r        & (r, $\vdash$, R)        & (r, a, R)        & (r, b, R)       & (r, $\textvisiblespace$, R) \\
+    %\hline   
+    \end{tabular}
+
+    \medskip
+
+    \textcolor{gray}{Note: The 'O'/'o' means Odd and the 'E'/'e' means Even. The first letter corresponds to 'a' 
+    and the second letter corresponds to 'b'. So the state $E_{o}$ means that there are an even number of the letter 
+    'a' and odd number of the letter 'b'.}
+
+  \ee
+
+  %%%%%%%%
+  %%%%%%%%
+  %%%%%%%%
+  \newpage
+  %%%%%%%%
+  %%%%%%%%
+  %%%%%%%%
+
+  \item \textbf{[10 points]} Let $\Sigma = \set{a,b}$ and \[L = \set{xn
+    \in \Sigma^* \mid \#a(x) = \#b(x)}.\] Construct a total Turing
+    machine that accepts $L$.  
+
+    Hint: Model your Turing machine on the Turing machine described in
+    Example 2 of the 6 Turing Machines and Computability slides that
+    accepts the language $\set{a^nb^nc^n \mid n \ge 0}$.
+
+  \bigskip
+
+  \textcolor{blue}{\textbf{Jatin Chowdhary | Chowdhaj | April $12^{th}$}}
+
+  \textcolor{blue}{\textbf{Put the description of your Turing machine here.}}
+
+  \bigskip
+
+  $M = (Q, \Sigma, \Gamma, \vdash, \textvisiblespace, \Delta, s, t, r)$
+  where:
+
+  \be
+
+      \item[] $Q = \{s, q_{1}, q_{2}, q_{3}, q_{3}, q_{4}, q_{5}, q_{6}, q_{7}, t, r \}$
+      \item[] $\Sigma = \{a, b\}$
+      \item[] $\Gamma = \Sigma \cup \{\vdash, \dashv, \textvisiblespace \}$ 
+            \textcolor{gray}{$= \{a, b, \vdash, \dashv, \textvisiblespace \}$}
+      \item[] $\delta$ is defined by the following table:
+
+      \medskip
+
+      \begin{tabular}{ c | c  c  c  c  c  }
+      %\hline
+       \,       & $\vdash$               & $a$                              & $b$                               & $\dashv$                & $\textvisiblespace$ \\ 
+      \hline
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       $s$      & $(s, \vdash, R)$       & $(q_{1}, a, R)$                  & $(q_{1}, b, R)$                   & $(r, \dashv, R)$        & $(t, \textvisiblespace, R)$ \\  
+      %\hline
+       $q_{1}$  & $(r, \vdash, R)$       & $(q_{1}, a, R)$                  & $(q_{1}, b, R)$                   & $(r, \dashv, R)$        & $(q_{2}, \dashv, L)$ \\  
+      %\hline  
+       $q_{2}$  & $(q_{4}, \vdash, R)$   & $(q_{3},\textvisiblespace, L)$   & $(q_{8}, b, L)$                   & $(q_{2}, \dashv, L)$    & $(q_{2}, \textvisiblespace, L)$ \\  
+      %\hline 
+       $q_{3}$  & $(q_{4}, \vdash, R)$   & $(q_{3}, a, L)$                  & $(q_{2}, \textvisiblespace, L)$   & $(q_{3}, \dashv, L)$    & $(q_{3}, \textvisiblespace, L)$ \\  
+      %\hline 
+       $q_{4}$  & $(q_{4}, \vdash, R)$   & $(q_{5}, \textvisiblespace, R)$  & $(q_{4}, b, R)$                   & $(q_{6}, \dashv, L)$   & $(q_{4}, \textvisiblespace, R)$ \\  
+      %\hline 
+       $q_{5}$  & $(q_{5}, \vdash, R)$   & $(q_{4}, a, R)$                  & $(q_{4}, \textvisiblespace, R)$   & $(q_{6}, \dashv, L)$   & $(q_{5}, \textvisiblespace, R)$ \\  
+      %\hline
+       $q_{6}$  & $(t, \vdash, R)$       & $(q_{3}, \textvisiblespace, L)$  & $(q_{2}, \textvisiblespace, L)$   & $(q_{6}, \dashv, L)$   & $(q_{7}, \textvisiblespace, L)$ \\   
+      %\hline
+       $q_{7}$  & $(t, \vdash, R)$       & $(q_{3}, \textvisiblespace, L)$  & $(q_{2}, \textvisiblespace, L)$   & $(q_{6}, \dashv, L)$   & $(q_{7}, \textvisiblespace, L)$ \\  
+      %\hline 
+       t        & $(t, \vdash, R)$       & $(t, a, R)$                      & $(t, b, R)$                       & $(t, \dashv, R)$       & $(t, \textvisiblespace, R)$ \\  
+      %\hline  
+       r        & $(r, \vdash, R)$       & $(r, a, R)$                      & $(r, b, R)$                       & $(r, \dashv, R)$       & $(r, \textvisiblespace, R)$ \\  
+      %\hline   
+      \end{tabular}
+
+  \ee
+
+\ee
+
+\end{document}

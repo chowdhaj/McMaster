@@ -1,0 +1,285 @@
+\documentclass[11pt,fleqn]{article}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning,arrows}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sM}{\mbox{$\cal M$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\sV}{\mbox{$\cal V$}}
+\newcommand{\set}[1]{{\{ #1 \}}}
+\newcommand{\Neg}{\neg} 
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\Leftrightarrow}
+\newcommand{\Forall}{\forall}
+\newcommand{\ForallApp}{\forall\,}
+\newcommand{\Forsome}{\exists}
+\newcommand{\ForsomeApp}{\exists\,}
+\newcommand{\mdot}{\mathrel.}
+
+\begin{document}
+
+\begin{center}
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Assignment 5}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: February 14, 2020}
+
+\end{center}
+
+\medskip
+
+Assignment 5 consists of two problems.  You must write your solutions
+to the problems using LaTeX.
+
+Please submit Assignment~5 as two files,
+\texttt{Assignment\_5\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_5\_\emph{YourMacID}.pdf}, to the Assignment~5
+folder on Avenue under Assessments/Assignments.
+\texttt{\emph{YourMacID}} must be your personal MacID (written without
+capitalization).  The \texttt{Assignment\_5\_\emph{YourMacID}.tex}
+file is a copy of the LaTeX source file for this assignment
+(\texttt{Assignment\_5.tex} found on Avenue under
+Contents/Assignments) with your solution entered after each problem.
+The \texttt{Assignment\_5\_\emph{YourMacID}.pdf} is the PDF output
+produced by executing
+
+\begin{itemize}
+
+  \item[] \texttt{pdflatex Assignment\_5\_\emph{YourMacID}}
+
+\end{itemize}
+
+This assignment is due \textbf{Sunday, March 1, 2020 before
+  midnight.}  You are allow to submit the assignment multiple times,
+but only the last submission will be marked.  \textbf{Late submissions
+  and files that are not named exactly as specified above will not be
+  accepted!}  It is suggested that you submit your preliminary
+\texttt{Assignment\_5\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_5\_\emph{YourMacID}.pdf} files well before the
+deadline so that your mark is not zero if, e.g., your computer fails
+at 11:50 PM on March 1.
+
+\textbf{Although you are allowed to receive help from the
+  instructional staff and other students, your submission must be your
+  own work.  Copying will be treated as academic dishonesty! If any of
+  the ideas used in your submission were obtained from other students
+  or sources outside of the lectures and tutorials, you must
+  acknowledge where or from whom these ideas were obtained.}
+
+\newpage
+
+\subsection*{Presenting DFAs and NFAs Transition Diagrams}
+
+In this assignment you are asked to present DFAs as transition
+diagrams.  You are can do this in one of two ways.
+
+The first way is to present the diagram using the LaTeX graphics
+package TikZ.  The TikZ code can either be written by hand or
+automatically generated using the finsm system available at
+\texttt{http:finsm.io}.
+
+Here are some examples of how it can be used to create
+DFA and NFA transition diagrams that appear in the lectures slides:
+
+\begin{center}
+\begin{tikzpicture}[shorten >=1pt,node distance=2.5cm,on grid,auto] 
+   \node[state, initial, thick] (q_0)   {$q_0$}; 
+   \node[state, thick] (q_1) [right=of q_0] {$q_1$}; 
+   \node[state, thick] (q_2) [right=of q_1] {$q_2$}; 
+   \node[state, accepting, thick] (q_3) [right=of q_2] {$q_3$};
+    \path[->, thick, >=stealth] 
+    (q_0) edge [bend left, above] node {$a$} (q_1)
+          edge [loop, above] node {$b$} (q_2)
+    (q_1) edge [bend left, above] node {$a$} (q_2)
+          edge [bend left, above] node {$b$} (q_0)
+    (q_2) edge [bend left, above] node {$a$} (q_3) 
+          edge [bend left, below]  node {$b$} (q_0)
+    (q_3) edge [loop, above] node {$a,b$} (q_2); 
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[shorten >=1pt,node distance=4cm,on grid,auto] 
+   \node[state, initial, accepting, thick] (q_0)   {$q_0$}; 
+   \node[state, thick] (q_1) [right=of q_0] {$q_1$}; 
+   \node[state, thick] (q_2) [below=of q_0] {$q_2$}; 
+   \node[state, thick] (q_3) [right=of q_2] {$q_3$};
+    \path[->, thick, >=stealth] 
+    (q_0) edge [bend left, above] node {1} (q_1)
+          edge [bend left, right] node {0} (q_2)
+    (q_1) edge [bend left, below] node {1} (q_0)
+          edge [bend left, right] node {0} (q_3)
+    (q_2) edge [bend left, above] node {1} (q_3) 
+          edge [bend left, left]  node {0} (q_0)
+    (q_3) edge [bend left, below] node {1} (q_2) 
+          edge [bend left, left]  node {0} (q_1);
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[shorten >=1pt,node distance=1.7cm,on grid,auto] 
+   \node[state, initial, thick] (q_0)   {$q_0$}; 
+   \node[state, thick] (q_1) [right=of q_0] {$q_1$}; 
+   \node[state, thick] (q_2) [right=of q_1] {$q_2$}; 
+   \node[state, thick] (q_3) [right=of q_2] {$q_3$};
+   \node[state, thick] (q_4) [right=of q_3] {$q_4$};
+   \node[state, thick, accepting] (q_5) [right=of q_4] {$q_5$};
+    \path[->, thick, >=stealth] 
+    (q_0) edge [loop, above] node {0,1} (q_1)
+          edge [right, above] node {1} (q_1)
+    (q_1) edge [right, above] node {0,1} (q_2)
+    (q_2) edge [right, above] node {0,1} (q_3)
+    (q_3) edge [right, above] node {0,1} (q_4)
+    (q_4) edge [right, above] node {0,1} (q_5);
+\end{tikzpicture}
+\end{center}
+
+The second way is to take a picture of a hand-written transition
+diagram and then embed it into your assignment using the following
+LaTeX code:
+\begin{verbatim}
+\begin{center}
+\includegraphics[scale = 0.5]{diagram.jpg}
+\end{center}
+\end{verbatim}
+Please make sure your diagram is legible.
+
+\subsection*{Problems}
+
+\be
+
+  \item \textbf{[10 points]} Construct a deterministic finite
+    automaton $M$ for the alphabet $\Sigma = \set{a}$ such that $L(M)$
+    is the set of all strings in $\Sigma^*$ whose length is divisible by
+    either 2 or 5.  Present $M$ as a transition diagram.
+
+  \bigskip
+
+  \textcolor{blue}{\textbf{Jatin Chowdhary | Chowdhaj | March 1st, 2020}}
+
+  \textcolor{blue}{\textbf{Put your transition diagram here.}}
+
+  %% Machine generated by https://finsm.io
+  %% 2020-3-1-21:07:045
+  %% include in preamble:
+  \begin{center}
+  \begin{tikzpicture}[]
+      \node[line width = 0.55mm,accepting,state] at (-9.925,1.5) (7b7f3139) {$q_0$};
+      \node[thick,state] at (-7.475,1.5375) (955c3618) {$q_{1}$};
+      \node[thick,accepting,state] at (-4.875,1.5375) (59628b7d) {$q_{2}$};
+      \node[thick,state] at (-2.225,1.5125) (5b3a4552) {$q_{3}$};
+      \node[thick,accepting,state] at (0.725,1.4875) (afd3ffcb) {$q_{4}$};
+      \node[thick,accepting,state] at (0.725,-1.6875) (02849d36) {$q_{5}$};
+      \node[thick,accepting,state] at (-2.3,-1.6625) (a45243de) {$q_{6}$};
+      \node[thick,state] at (-4.875,-1.6375) (6b15c4e7) {$q_{7}$};
+      \node[thick,accepting,state] at (-7.4,-1.6375) (c587d29d) {$q_{8}$};
+      \node[thick,state] at (-9.95,-1.6375) (cea7e5d9) {$q_{9}$};
+      \path[->, thick, >=stealth]
+      (7b7f3139) edge [below,in = -179, out = 1] node {$a$} (955c3618)
+      (955c3618) edge [below,in = 180, out = 0] node {$a$} (59628b7d)
+      (59628b7d) edge [below,in = 179, out = -1] node {$a$} (5b3a4552)
+      (5b3a4552) edge [below,in = 180, out = 0] node {$a$} (afd3ffcb)
+      (afd3ffcb) edge [left,in = 90, out = -90] node {$a$} (02849d36)
+      (02849d36) edge [above,in = 0, out = 180] node {$a$} (a45243de)
+      (a45243de) edge [above,in = -1, out = 179] node {$a$} (6b15c4e7)
+      (6b15c4e7) edge [above,in = 0, out = 180] node {$a$} (c587d29d)
+      (c587d29d) edge [above,in = 0, out = 180] node {$a$} (cea7e5d9)
+      (cea7e5d9) edge [right,in = -90, out = 90] node {$a$} (7b7f3139)
+      ;
+  \end{tikzpicture}
+  \end{center}
+
+  \bigskip
+
+  \item \textbf{[10 points]} Construct a deterministic finite
+    automaton $M$ for the alphabet $\Sigma = \set{0,1}$ such that
+    $L(M)$ is the set of all strings $x$ in $\Sigma^*$ for which
+    $\#0(x)$ is divisible by 2 and $\#1(x)$ is divisible by 3.
+    Present $M$ as a transition diagram.
+
+  \bigskip
+
+  \textcolor{blue}{\textbf{Jatin Chowdhary | chowdhaj | March 1st, 2020}}
+
+  \textcolor{blue}{\textbf{Put your transition diagram here. (BELOW)}}
+
+%%    \begin{center}
+%%    \begin{tikzpicture}[]
+%%        \node[line width = 0.55mm,accepting,state] at (-9.85,3.3) (213ecd15) {$q_0$};
+%%        \node[thick,state] at (-5.7,3.3375) (30b7ee8d) {$q_{1}$};
+%%        \node[thick,accepting,state] at (-2.325,3.3625) (6ae18de3) {$q_{2}$};
+%%        \node[thick,accepting,state] at (-2.4,-0.1125) (78dde62f) {$q_{3}$};
+%%        \node[thick,accepting,state] at (-5.9,-0.1375) (dc2e9a97) {$q_{4}$};
+%%        \node[thick,state] at (-9.875,-0.1625) (438b983c) {$q_{5}$};
+%%        \path[->, thick, >=stealth]
+%%        (213ecd15) edge [below,in = -179, out = 1] node {$0,1$} (30b7ee8d)
+%%        (30b7ee8d) edge [below,in = -180, out = 0] node {$0,1$} (6ae18de3)
+%%        (6ae18de3) edge [left,in = 89, out = -91] node {$0,1$} (78dde62f)
+%%        (78dde62f) edge [above,in = 0, out = -180] node {$0,1$} (dc2e9a97)
+%%        (dc2e9a97) edge [above,in = 0, out = -180] node {$0,1$} (438b983c)
+%%        (438b983c) edge [right,in = -90, out = 90] node {$0,1$} (213ecd15)
+%%        ;
+%%    \end{tikzpicture}
+%%    \end{center}
+
+\begin{center}
+\begin{tikzpicture}[]
+    \node[line width = 0.55mm,accepting,state] at (-0.65,6.275) (b732e4b5) {$q_0$};
+    \node[thick,state] at (3.65,3.4) (8f9c8287) {$q_1$};
+    \node[thick,state] at (-4.8,3.725) (133dfb60) {$q_2$};
+    \node[thick,state] at (3.25,-0.7) (358261b2) {$q_3$};
+    \node[thick,state] at (-4.575,-1.1375) (976baf64) {$q_{4}$};
+    \node[thick,state] at (0.225,-3.0125) (582f0b0a) {$q_{5}$};
+    \path[->, thick, >=stealth]
+    (b732e4b5) edge [right,in = 112, out = -1] node {$0$} (8f9c8287)
+    (b732e4b5) edge [left,in = 62, out = -180] node {$1$} (133dfb60)
+    (8f9c8287) edge [left,in = -51, out = 163] node {$0$} (b732e4b5)
+    (8f9c8287) edge [right,in = 64, out = -74] node {$1$} (358261b2)
+    (133dfb60) edge [right,in = 129, out = -7] node {$0$} (358261b2)
+    (133dfb60) edge [left,in = 115, out = -109] node {$1$} (976baf64)
+    (358261b2) edge [left,in = -48, out = 171] node {$0$} (133dfb60)
+    (358261b2) edge [right,in = 18, out = -115] node {$1$} (582f0b0a)
+    (976baf64) edge [left,in = -137, out = 64] node {$1$} (b732e4b5)
+    (976baf64) edge [left,in = -177, out = -47] node {$0$} (582f0b0a)
+    (582f0b0a) edge [left,in = -119, out = 62] node {$1$} (8f9c8287)
+    (582f0b0a) edge [right,in = 1, out = 135] node {$0$} (976baf64)
+    ;
+\end{tikzpicture}
+\end{center}
+
+\ee
+
+\end{document}
+
+

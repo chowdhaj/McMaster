@@ -1,0 +1,131 @@
+\documentclass[11pt,fleqn]{article}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{color}
+
+\renewcommand{\labelenumii}{\theenumii.}
+
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\tarrow}{\rightarrow}
+\newcommand{\pnote}[1]{{\langle \text{#1} \rangle}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+
+\begin{document}
+
+\begin{center}
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Extra Credit Assignment 1}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: January 13, 2020}
+
+\end{center}
+
+\medskip
+
+Extra Credit Assignment 1 consists of one problem.  You must write
+your solution to the problem using LaTeX.
+
+\bsp
+Please submit Extra Credit Assignment~1 as two files,
+\texttt{EC\_Assignment\_1\_\emph{YourMacID}.tex} and
+\texttt{EC\_Assignment\_1\_\emph{YourMacID}.pdf}, to the Extra Credit
+Assignment~1 folder on Avenue under Assessments/Assignments.
+\texttt{\emph{YourMacID}} must be your personal MacID (written without
+capitalization).  The \texttt{EC\_Assignment\_1\_\emph{YourMacID}.tex}
+file is a copy of the LaTeX source file for this assignment
+(\texttt{EC\_Assignment\_1.tex} found on Avenue under
+Contents/Assignments) with your solution entered after the problem.
+The \texttt{EC\_Assignment\_1\_\emph{YourMacID}.pdf} is the PDF output
+produced by executing
+\esp
+
+\begin{itemize}
+
+  \item[] \texttt{pdflatex EC\_Assignment\_1\_\emph{YourMacID}}
+
+\end{itemize}
+
+This assignment is due \textbf{Sunday, February 2, 2020 before
+  midnight.}  You are allow to submit the assignment multiple times,
+but only the last submission will be marked.  \textbf{Late submissions
+  and files that are not named exactly as specified above will not be
+  accepted!}  It is suggested that you submit your preliminary
+\texttt{EC\_Assignment\_1\_\emph{YourMacID}.tex} and
+\texttt{EC\_Assignment\_1\_\emph{YourMacID}.pdf} files well before the
+deadline so that your mark is not zero if, e.g., your computer fails
+at 11:50 PM on February~2.
+
+\textbf{Although you are allowed to receive help from the
+  instructional staff and other students, your submission must be your
+  own work.  Copying will be treated as academic dishonesty! If any of
+  the ideas used in your submission were obtained from other students
+  or sources outside of the lectures and tutorials, you must
+  acknowledge where or from whom these ideas were obtained.}
+
+\newpage
+
+\subsection*{Background}
+
+Let \mname{Nat} be the inductive set defined by the following two
+constructors:
+
+\begin{enumerate}
+
+  \item $0 : \mname{Nat}$.
+
+  \item $S : \mname{Nat} \tarrow \mname{Nat}$.
+
+\end{enumerate}
+
+\noindent
+Let $+ : \mname{Nat} \times \mname{Nat} \tarrow \mname{Nat}$ be
+defined by pattern matching as:
+
+\begin{enumerate}
+
+  \item $x + 0 = x$.
+
+  \item $x + S(y) = S(x + y)$.
+
+\end{enumerate}
+
+\noindent
+Let $* : \mname{Nat} \times \mname{Nat} \tarrow \mname{Nat}$ be
+defined by pattern matching as:
+
+\begin{enumerate}
+
+  \item $x * 0 = 0$.
+
+  \item $x * S(y) = (x * y) + x$.
+
+\end{enumerate}
+
+\subsection*{Extra Credit Problem \textbf{[2 bonus points]}}
+
+Prove that the mathematical structure \[(\mname{Nat},0,S(0),+,*)\] is
+a commutative semiring.
+
+\bigskip
+
+\noindent
+\textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+
+\bigskip
+
+\noindent
+\textcolor{blue}{\textbf{Put your solution here.}}
+
+\end{document}
+
+

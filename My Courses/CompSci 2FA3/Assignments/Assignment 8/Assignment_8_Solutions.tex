@@ -1,0 +1,241 @@
+\documentclass[11pt,fleqn]{article}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning,arrows}
+\usepackage{diagbox}
+\usepackage{stackrel}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sM}{\mbox{$\cal M$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\sV}{\mbox{$\cal V$}}
+\newcommand{\set}[1]{{\{ #1 \}}}
+\newcommand{\Neg}{\neg} 
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\Leftrightarrow}
+\newcommand{\Forall}{\forall}
+\newcommand{\ForallApp}{\forall\,}
+\newcommand{\Forsome}{\exists}
+\newcommand{\ForsomeApp}{\exists\,}
+\newcommand{\mdot}{\mathrel.}
+\newcommand{\der}[2]{\stackrel[#2]{#1}{\longrightarrow}}
+\newcommand{\nt}[1]{\seq{\texttt{#1}}}
+\newcommand{\seq}[1]{{\langle #1 \rangle}}
+\newcommand{\sglsp}{\ }
+\newcommand{\dblsp}{\ \ }
+\newenvironment{proof}{\par\noindent{\bf Proof\sglsp}}{\hfill$\Box$}
+\newcommand{\pnote}[1]{{\langle \text{#1} \rangle}}
+
+\begin{document}
+
+\begin{center}
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Assignment 8 with Solutions}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: March 19, 2020}
+
+\end{center}
+
+\medskip
+
+Assignment 8 consists of two problems.  You must write your solutions
+to the problems using LaTeX.
+
+Please submit Assignment~8 as two files,
+\texttt{Assignment\_8\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_8\_\emph{YourMacID}.pdf}, to the Assignment~8
+folder on Avenue under Assessments/Assignments.
+\texttt{\emph{YourMacID}} must be your personal MacID (written without
+capitalization).  The \texttt{Assignment\_8\_\emph{YourMacID}.tex}
+file is a copy of the LaTeX source file for this assignment
+(\texttt{Assignment\_8.tex} found on Avenue under
+Contents/Assignments) with your solution entered after each problem.
+The \texttt{Assignment\_8\_\emph{YourMacID}.pdf} is the PDF output
+produced by executing
+
+\begin{itemize}
+
+  \item[] \texttt{pdflatex Assignment\_8\_\emph{YourMacID}}
+
+\end{itemize}
+
+This assignment is due \textbf{Sunday, March 22, 2020 before
+  midnight.}  You are allow to submit the assignment multiple times,
+but only the last submission will be marked.  \textbf{Late submissions
+  and files that are not named exactly as specified above will not be
+  accepted!}  It is suggested that you submit your preliminary
+\texttt{Assignment\_8\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_8\_\emph{YourMacID}.pdf} files well before the
+deadline so that your mark is not zero if, e.g., your computer fails
+at 11:50 PM on March 22.
+
+\textbf{Although you are allowed to receive help from the
+  instructional staff and other students, your submission must be your
+  own work.  Copying will be treated as academic dishonesty! If any of
+  the ideas used in your submission were obtained from other students
+  or sources outside of the lectures and tutorials, you must
+  acknowledge where or from whom these ideas were obtained.}
+
+\newpage
+
+\subsection*{Problems}
+
+\be
+
+  \item \textbf{[10 points]} Let $G = (N,\Sigma,P,S)$ be the CFG
+    where $N = \set{S}$, $\Sigma = \set{a,b}$, and $P$ contains the
+    following productions:
+
+  \begin{itemize}
+
+    \item[] $S \rightarrow aSb \mid \epsilon$.
+
+  \end{itemize}
+
+  For $x \in \Sigma^*$, let $Q(x)$ be the property that $S \der{*}{G}
+  x$ iff $x = a^nb^n$ for some $n \ge 0$.  Prove \[\ForallApp x \in
+  \Sigma^* \mdot Q(x)\] by weak induction on the length of the
+  derivation $S \der{*}{G} x$ for the ($\Rightarrow$) direction and by
+  strong induction on the length of $x$ for the ($\Leftarrow$)
+  direction.
+
+  \bigskip
+
+  \textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+
+\medskip
+
+\begin{proof} Let $x \in \Sigma^*$.  
+  Define $Q_{\Rightarrow}(x)$ to be $S \der{*}{G} x$ implies $x =
+  a^nb^n$ for some $n \ge 0$ and $Q_{\Leftarrow}(x)$ to be $x =
+  a^nb^n$ for some $n \ge 0$ implies $S \der{*}{G} x$.  We will prove
+  $\ForallApp x \in \Sigma^* \mdot Q(x)$ by proving $\ForallApp x \in
+  \Sigma^* \mdot Q_{\Rightarrow}(x)$ and $\ForallApp x \in \Sigma^*
+  \mdot Q_{\Leftarrow}(x)$.
+
+\bigskip
+
+We will prove $\ForallApp x \in \Sigma^* \mdot Q_{\Rightarrow}(x)$ by
+weak induction on the length of the derivation of $S \der{*}{G} x$.
+Let $Q'_{\Rightarrow}(m)$ mean $S \der{m}{G} x$ implies $x = a^nb^n$
+for some $n \ge 0$ for all $x \in \Sigma^*$.  $\ForallApp x \in
+\Sigma^* \mdot Q_{\Rightarrow}(x)$ follows immediately from
+$\ForallApp m \in \mathbb{N} \mdot Q'_{\Rightarrow}(m)$.  So we will
+prove $\ForallApp m \in \mathbb{N} \mdot Q'_{\Rightarrow}(m)$ by weak
+induction.
+
+\emph{Base case}: Let $S \der{1}{G} x$.  Then $x$ must be $\epsilon$
+and so $x = \epsilon = a^0b^0$.
+
+\emph{Induction step}: Let $S \der{m+1}{G} x$.  Then $x$ must be $ayb$
+for some $y \in \Sigma^*$, and so $S \der{1}{G} aSb \der{m}{G} ayb$.
+This implies $S \der{m}{G} y$, and so $y = a^nb^n$ for some $n \ge 0$
+by the induction hypothesis.  Therefore, $x = ayb = aa^nb^nb =
+a^{n+1}b^{n+1}$. 
+
+Therefore, $\ForallApp m \in \mathbb{N} \mdot Q'_{\Rightarrow}(m)$
+holds by weak induction.
+
+\bigskip
+
+We will prove $\ForallApp x \in \Sigma^* \mdot Q_{\Leftarrow}(x)$ by
+strong induction on $|x|$.  Let $Q'_{\Leftarrow}(m)$ mean $x = a^nb^n$
+for some $n \ge 0$ implies $S \der{*}{G} x$ for
+all $x \in \Sigma^*$ with $|x| = m$.  $\ForallApp x \in \Sigma^* \mdot
+Q_{\Leftarrow}(x)$ follows immediately from $\ForallApp m \in
+\mathbb{N} \mdot Q'_{\Leftarrow}(m)$.  So we will prove $\ForallApp m
+\in \mathbb{N} \mdot Q'_{\Leftarrow}(m)$ by strong induction.
+
+\emph{Base case}: $m = 0$. Assume $x = a^nb^n$ for some $n \ge 0$ with
+$|x| = m$.  Then $x = \epsilon$ and so obviously $S \der{*}{G} x$.
+
+\emph{Induction step}: $m > 0$. Assume $Q'_{\Leftarrow}(m')$ for all
+$m \in \mathbb{N}$ with $m' < m$.  Assume $x = a^nb^n$ for some $n \ge
+0$ with $|x| = m$.  So $x = ayb$ with $y = a^{n-1}b^{n-1}$ and $|y| <
+|x| = m$.  This implies $S \der{*}{G} y$ by the induction hypothesis.
+Therefore, $S \der{1}{G} aSb \der{*}{G} ayb = aa^{n-1}b^{n-1}b =
+a^mb^m = x$, and so $S \der{*}{G} x$.
+
+Therefore, $\ForallApp m \in \mathbb{N} \mdot Q'_{\Leftarrow}(m)$
+holds by strong induction.
+\end{proof}
+
+  \item \textbf{[10 points]} Let $\Sigma = (\sB,\sC,\sF,\sP,\tau)$ be
+    a signature of MSFOL where:
+
+  \begin{itemize}
+
+    \item[] $\sB = \set{\alpha,\beta}$.
+
+    \item[] $\sC = \set{a,b}$ with $\tau(a) = \alpha$ and $\tau(b) = \beta$.
+
+    \item[] $\sF = \set{f,g}$ with $\tau(f) = \alpha \times \beta
+      \rightarrow \alpha$ and $\tau(g) = \beta
+      \rightarrow \beta$.
+
+    \item[] $\sP = \set{p,q}$ with $\tau(p) = \alpha \rightarrow
+      \mathbb{B}$ and $\beta \times \beta \rightarrow \mathbb{B}$.
+
+  \end{itemize}
+
+  Write a context-free grammar in BNF form that generates the set of
+  $\Sigma$-formulas.  Assume $\sV = \set{u,v,w,x,y,z}$.
+
+  \bigskip
+
+  \textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+
+\medskip
+
+\textbf{BNF:}
+\begin{align*}
+\nt{form}       & \texttt{ ::= } \nt{eqn} \mid \nt{pred-app} \mid \nt{neg} \mid \nt{impl} \mid \nt{univ}\\
+\nt{eqn}        & \texttt{ ::= } (\nt{term-alpha} \texttt{ = } \nt{term-alpha}) \mid \\
+                & \hspace{6ex}   (\nt{term-beta} \texttt{ = } \nt{term-beta})\\
+\nt{pred-app}   & \texttt{ ::= } p(\nt{term-alpha}) \mid q(\nt{term-beta},\nt{term-beta})\\
+\nt{neg}        & \texttt{ ::= } \Neg\,\nt{form}\\
+\nt{impl}       & \texttt{ ::= } (\nt{form} \Implies \nt{form})\\
+\nt{univ}       & \texttt{ ::= } (\ForallApp \nt{var} \mdot \nt{form})\\
+\nt{term-alpha} & \texttt{ ::= } \nt{var-alpha} \mid a \mid f(\nt{term-alpha},\nt{term-beta})\\
+\nt{term-beta}  & \texttt{ ::= } \nt{var-beta} \mid b \mid g(\nt{term-beta}) \\
+\nt{var}        & \texttt{ ::= } \nt{var-alpha} \mid \nt{var-beta}\\
+\nt{var-alpha}  & \texttt{ ::= } \nt{var-sym} : \alpha\\
+\nt{var-beta}   & \texttt{ ::= } \nt{var-sym} : \beta\\
+\nt{var-sym}    & \texttt{ ::= } u \mid v \mid w \mid x \mid y \mid z
+\end{align*}
+
+\ee
+
+\end{document}
+
+

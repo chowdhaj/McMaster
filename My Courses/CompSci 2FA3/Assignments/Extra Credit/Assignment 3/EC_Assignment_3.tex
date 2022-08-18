@@ -1,0 +1,230 @@
+\documentclass[11pt,fleqn]{article}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sE}{\mbox{$\cal E$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sL}{\mbox{$\cal L$}}
+\newcommand{\sM}{\mbox{$\cal M$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\sV}{\mbox{$\cal V$}}
+\newcommand{\set}[1]{{\{ #1 \}}}
+\newcommand{\Neg}{\neg} 
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\Leftrightarrow}
+\newcommand{\Forall}{\forall}
+\newcommand{\ForallApp}{\forall\,}
+\newcommand{\Forsome}{\exists}
+\newcommand{\ForsomeApp}{\exists\,}
+\newcommand{\mdot}{\mathrel.}
+
+\begin{document}
+
+\begin{center}
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Extra Credit Assignment 3}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: February 14, 2020}
+
+\end{center}
+
+\medskip
+
+Extra Credit Assignment 3 consists of three problems concerning Kleene
+algebas.  You must write your solution to the problem using LaTeX.
+
+\bsp
+Please submit Extra Credit Assignment~3 as two files,
+\texttt{EC\_Assignment\_3\_\emph{YourMacID}.tex} and
+\texttt{EC\_Assignment\_3\_\emph{YourMacID}.pdf}, to the Extra Credit
+Assignment~3 folder on Avenue under Assessments/Assignments.
+\texttt{\emph{YourMacID}} must be your personal MacID (written without
+capitalization).  The \texttt{EC\_Assignment\_3\_\emph{YourMacID}.tex}
+file is a copy of the LaTeX source file for this assignment
+(\texttt{EC\_Assignment\_3.tex} found on Avenue under
+Contents/Assignments) with your solution entered after the problem.
+The \texttt{EC\_Assignment\_3\_\emph{YourMacID}.pdf} is the PDF output
+produced by executing
+\esp
+
+\begin{itemize}
+
+  \item[] \texttt{pdflatex EC\_Assignment\_3\_\emph{YourMacID}}
+
+\end{itemize}
+
+This assignment is due \textbf{Sunday, March 8, 2020 before
+  midnight.}  You are allow to submit the assignment multiple times,
+but only the last submission will be marked.  \textbf{Late submissions
+  and files that are not named exactly as specified above will not be
+  accepted!}  It is suggested that you submit your preliminary
+\texttt{EC\_Assignment\_3\_\emph{YourMacID}.tex} and
+\texttt{EC\_Assignment\_3\_\emph{YourMacID}.pdf} files well before the
+deadline so that your mark is not zero if, e.g., your computer fails
+at 11:50 PM on March 8.
+
+\textbf{Although you are allowed to receive help from the
+  instructional staff and other students, your submission must be your
+  own work.  Copying will be treated as academic dishonesty! If any of
+  the ideas used in your submission were obtained from other students
+  or sources outside of the lectures and tutorials, you must
+  acknowledge where or from whom these ideas were obtained.}
+
+\newpage
+
+\subsection*{Background}
+
+Let $\Sigma_{\rm ka} =
+(\set{K},\set{0,1},\set{+,\cdot,\phantom{}^*},\emptyset,\tau)$ where:
+
+\be
+
+    \item $\tau(0) = \tau(1) = K$.
+
+    \item $\tau(+) = \tau(\cdot) = K \times K \rightarrow K$.
+
+    \item $\tau(\phantom{}^*) = K \rightarrow K$.
+
+\ee
+%
+We will write $a \cdot b$ as simply $ab$.
+
+Let $T_{\sf ka}=(\Sigma_{\rm ka},\Gamma_{\rm ka})$ be and MSFOL theory
+of Kleene algebras where $\Gamma_{\sf ka}$ contain the following
+axioms:
+
+\be
+
+  \item $\ForallApp x,y,z : K \mdot x + (y + z) = (x + y) + z$.
+
+  \item $\ForallApp x,y : K \mdot x + y = y + x$.
+
+  \item $\ForallApp x : K \mdot x + 0 = x$.
+
+  \item $\ForallApp x : K \mdot x + x = x$.
+
+  \item $\ForallApp x,y,z : K \mdot x(yz) = (xy)z$.
+
+  \item $\ForallApp x : K \mdot x1 = x$.
+
+  \item $\ForallApp x : K \mdot 1x = x$.
+
+  \item $\ForallApp x : K \mdot x0 = 0$.
+
+  \item $\ForallApp x : K \mdot 0x = 0$.
+
+  \item $\ForallApp x,y,z : K \mdot x(y + z) = xy + xz$.
+
+  \item $\ForallApp x,y,z : K \mdot (x + y)z = xz + yz$.
+
+  \item $\ForallApp x : K \mdot 1 + xx^* = x^*$.
+
+  \item $\ForallApp x : K \mdot 1 + x^*x = x^*$.
+
+  \item $\ForallApp x,y,z : K \mdot y + xz \le z \Implies x^*y \le z$.
+
+  \item $\ForallApp x,y,z : K \mdot y + zx \le z \Implies yx^* \le z$.
+
+\ee
+
+\noindent
+Note: $x \le y$ stands for $x + y = y$.
+
+\subsection*{Extra Credit Problem \textbf{[2 bonus points]}}
+
+\be
+
+  \item Prove that the following $\Sigma_{\rm ka}$-structures are
+    models of $T_{\sf ka}$:
+
+  \be
+
+    \item $\sM_1 = (\sL, \emptyset, \set{\epsilon}, \cup,
+      \mname{concatenation}, \phantom{}^*)$ where $\sL =
+      \sP(\Sigma^*)$ is the set of all languages over some alphabet
+      $\Sigma$.  Note that technically $\sM_1 = (\set{D_K},I)$ where
+      $D_K = \sL$, $I(0) = \emptyset$, $I(1) = \set{\epsilon}$, $I(+)
+      = \cup$, $I(\cdot) = \mname{concatenation}$, and
+      $I(\phantom{}^*) = \phantom{}^*$.  Notice that $\Sigma_{\rm ka}$
+      and $\Sigma$ are very different: $\Sigma_{\rm ka}$ is a
+      signature and $\Sigma$ is an alphabet.
+
+    \item $\sM_2 = (\sL_{\rm reg}, \emptyset, \set{\epsilon}, \cup,
+      \mname{concatenation}, \phantom{}^*)$ where $\sL_{\rm reg}$ is
+      the set of regular languages over some alphabet $\Sigma$.
+
+    \item $\sM_3 = (\sE_{\rm reg}, \emptyset, \epsilon, +, \cdot,
+      \phantom{}^*)$ where $\sE_{\rm reg}$ is the set of regular
+      expressions over some alphabet $\Sigma$ in which equivalent
+      regular expressions are consider equal.
+
+    \item $\sM_4 = (\set{F,T},F,T,\Or,\And,f_T)$ where $F$ and $T$ are
+      the standard truth values and $f_T(F) = f_T(T) = T$.
+
+  \ee
+
+  \item Let $(K,0,1,+,\cdot,\phantom{}^*)$ be an arbitrary model of
+    $T_{\sf ka}$.  Prove the following:
+
+  \be
+
+    \item $(K,0,+)$ is an idempotent commutative monoid.
+
+    \item $(K,0,1,\cdot)$ is a monoid with an annihilator.
+
+    \item $(K,0,1,+,\cdot)$ is a semiring.
+
+    \item $(K,\le)$ is a weak partial order with least upper bounds
+      (what is called a \emph{join-semilattice}).
+
+  \ee
+
+  \item Assuming Axioms 1--13, prove that Axiom 14 and the
+    sentence \[\ForallApp x,y: K \mdot xy \le y \Implies x^*y \le
+    y\] are logically equivalent.
+
+\ee
+
+
+\bigskip
+
+\noindent
+\textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+
+\bigskip
+
+\noindent
+\textcolor{blue}{\textbf{Put your solution here.}}
+
+\end{document}
+
+

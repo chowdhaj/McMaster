@@ -1,0 +1,148 @@
+\documentclass[11pt,fleqn]{article}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning,arrows}
+\usepackage{diagbox}
+\usepackage{stackrel}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sM}{\mbox{$\cal M$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\sV}{\mbox{$\cal V$}}
+\newcommand{\set}[1]{{\{ #1 \}}}
+\newcommand{\Neg}{\neg} 
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\Leftrightarrow}
+\newcommand{\Forall}{\forall}
+\newcommand{\ForallApp}{\forall\,}
+\newcommand{\Forsome}{\exists}
+\newcommand{\ForsomeApp}{\exists\,}
+\newcommand{\mdot}{\mathrel.}
+\newcommand{\der}[2]{\stackrel[#2]{#1}{\longrightarrow}}
+
+\begin{document}
+
+\begin{center}
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Assignment 10}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: March 24, 2019}
+
+\end{center}
+
+\medskip
+
+Assignment 10 consists of two problems.  You must write your solutions
+to the problems using LaTeX.
+
+Please submit Assignment~10 as two files,
+\texttt{Assignment\_10\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_10\_\emph{YourMacID}.pdf}, to the Assignment~10
+folder on Avenue under Assessments/Assignments.
+\texttt{\emph{YourMacID}} must be your personal MacID (written without
+capitalization).  The \texttt{Assignment\_10\_\emph{YourMacID}.tex}
+file is a copy of the LaTeX source file for this assignment
+(\texttt{Assignment\_10.tex} found on Avenue under
+Contents/Assignments) with your solution entered after each problem.
+The \texttt{Assignment\_10\_\emph{YourMacID}.pdf} is the PDF output
+produced by executing
+
+\begin{itemize}
+
+  \item[] \texttt{pdflatex Assignment\_10\_\emph{YourMacID}}
+
+\end{itemize}
+
+This assignment is due \textbf{Sunday, April 5, 2020 before
+  midnight.}  You are allow to submit the assignment multiple times,
+but only the last submission will be marked.  \textbf{Late submissions
+  and files that are not named exactly as specified above will not be
+  accepted!}  It is suggested that you submit your preliminary
+\texttt{Assignment\_10\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_10\_\emph{YourMacID}.pdf} files well before the
+deadline so that your mark is not zero if, e.g., your computer fails
+at 11:50 PM on April 5.
+
+\textbf{Although you are allowed to receive help from the
+  instructional staff and other students, your submission must be your
+  own work.  Copying will be treated as academic dishonesty! If any of
+  the ideas used in your submission were obtained from other students
+  or sources outside of the lectures and tutorials, you must
+  acknowledge where or from whom these ideas were obtained.}
+
+\newpage
+
+\subsection*{Problems}
+
+\be
+
+  \item \textbf{[10 points]} Construct an NPDA that accepts the language
+
+  \begin{itemize}
+
+    \item[] $\set{a^mb^n \mid m,n \ge 1 \mbox{ with } m \not= n}$.
+
+  \end{itemize}
+
+  \bigskip
+
+  \textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+
+  \textcolor{blue}{\textbf{Put the description of your NPDA here.}}
+
+  \item \textbf{[10 points]} Let $G = (N,\Sigma,P,S)$ be the CFG
+    where $N = \set{S,A,B}$, $\Sigma = \set{a,b}$, and $P$ contains the
+    following productions:
+
+  \begin{itemize}
+
+    \item[] $S \rightarrow bA \mid aB$.
+
+    \item[] $A \rightarrow bAA \mid aS \mid a$.
+
+    \item[] $B \rightarrow aBB \mid bS  \mid b$.
+
+  \end{itemize}
+
+  Construct an NPDA that accepts $L(G)$.
+  \bigskip
+
+  \textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+
+  \textcolor{blue}{\textbf{Put the description of your NPDA here.}}
+
+\ee
+
+\end{document}
+
+

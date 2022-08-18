@@ -1,0 +1,289 @@
+\documentclass[11pt,fleqn]{article}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{color}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sM}{\mbox{$\cal M$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\sV}{\mbox{$\cal V$}}
+\newcommand{\set}[1]{{\{ #1 \}}}
+\newcommand{\Neg}{\neg} 
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\LeftRightarrow}
+\newcommand{\Forall}{\forall}
+\newcommand{\ForallApp}{\forall\,}
+\newcommand{\Forsome}{\exists}
+\newcommand{\ForsomeApp}{\exists\,}
+\newcommand{\mdot}{\mathrel.}
+
+\begin{document}
+
+\begin{center}
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Assignment 4 with Solutions}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: February 16, 2020}
+
+\end{center}
+
+\medskip
+
+Assignment 4 consists of two problems.  You must write your solutions
+to the problems using LaTeX.
+
+Please submit Assignment~4 as two files,
+\texttt{Assignment\_4\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_4\_\emph{YourMacID}.pdf}, to the Assignment~4
+folder on Avenue under Assessments/Assignments.
+\texttt{\emph{YourMacID}} must be your personal MacID (written without
+capitalization).  The \texttt{Assignment\_4\_\emph{YourMacID}.tex}
+file is a copy of the LaTeX source file for this assignment
+(\texttt{Assignment\_4.tex} found on Avenue under
+Contents/Assignments) with your solution entered after each problem.
+The \texttt{Assignment\_4\_\emph{YourMacID}.pdf} is the PDF output
+produced by executing
+
+\begin{itemize}
+
+  \item[] \texttt{pdflatex Assignment\_4\_\emph{YourMacID}}
+
+\end{itemize}
+
+This assignment is due \textbf{Sunday, February 16, 2019 before
+  midnight.}  You are allow to submit the assignment multiple times,
+but only the last submission will be marked.  \textbf{Late submissions
+  and files that are not named exactly as specified above will not be
+  accepted!}  It is suggested that you submit your preliminary
+\texttt{Assignment\_4\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_4\_\emph{YourMacID}.pdf} files well before the
+deadline so that your mark is not zero if, e.g., your computer fails
+at 11:50 PM on February 16.
+
+\textbf{Although you are allowed to receive help from the
+  instructional staff and other students, your submission must be your
+  own work.  Copying will be treated as academic dishonesty! If any of
+  the ideas used in your submission were obtained from other students
+  or sources outside of the lectures and tutorials, you must
+  acknowledge where or from whom these ideas were obtained.}
+
+%\newpage
+
+\subsection*{Background}
+
+\be  
+
+  \item Let $(S,<)$ be a strict partial order.  $(S,<)$ is
+    \emph{dense} if, for all $x,y \in S$ with $x < y$, there is some
+    $z \in S$ such that $x < z < y$.
+
+  \item A \emph{queue} is a finite sequence of elements for which
+    elements are added (``enqueued'') to the back of the sequence and
+    removed (``dequeued'') from the front of the sequence.  An
+    \emph{empty queue} is a queue with no members.  A \emph{singleton
+      queue} is a queue with a single element that is obtain by
+    enqueuing an element to an empty queue.
+
+\ee
+
+\subsection*{Problems}
+
+\be
+
+  \item \textbf{[10 points]} Construct in MSFOL a theory $T$ of strict
+    total orders that are dense and have minimum and maximum elements.
+    Give two models for $T$.
+
+
+  \textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+
+  \textbf{Solution:}
+
+  Let $\Sigma =
+  (\set{\alpha},\set{\mname{min},\mname{max}},\emptyset,\set{<},\tau)$
+  where $\tau(\mname{min}) = \tau(\mname{max}) = \alpha$ and
+  ${\tau(<)} = \alpha \times \alpha \rightarrow \mathbb{B}$ and $T =
+  (\Sigma,\Gamma)$ where $\Gamma$ contains the following
+  $\Sigma$-sentences:
+
+  \begin{enumerate}
+
+    \item $\ForallApp x : \alpha \mdot \Neg(x < x)$.
+
+    \item $\ForallApp x,y : \alpha \mdot x < y \Implies \Neg(y <
+      x)$.
+
+    \item $\ForallApp x,y,z : \alpha \mdot (x < y \And y < z)
+      \Implies x < z$.
+
+    \item $\ForallApp x,y : \alpha \mdot x < y \Or y < x \Or x =
+      y$.
+
+    \item $\ForallApp x,y : \alpha \mdot x < y \Implies
+      (\ForsomeApp z : \alpha \mdot x < z \And z < y)$.
+
+    \item $\ForallApp x : \alpha \mdot x \not= \mname{min}
+      \Implies \mname{min} < x$.
+
+    \item $\ForallApp x : \alpha \mdot x \not= \mname{max}
+      \Implies x < \mname{max}$.
+
+  \end{enumerate}
+
+  Let $\sM$ be a model for $T$.  The first four axioms say $\sM$ is a
+  strict total order; the fifth says $\sM$ is dense; and the last two
+  say $\sM$ has minimum and maximum elements.
+
+  Note: The constant symbols \mname{min} and \mname{max} are
+  convenient to have in the signature, but they are not strictly
+  needed.
+
+  \bsp Let $\sM_1 = (\set{D_\alpha},I)$ where $D_\alpha = \mathbb{Q}
+  \cup \set{-\infty,+\infty}$, $I(\mname{min}) = -\infty$,
+  $I(\mname{max}) = +\infty$, and $I(<)$ is the usual strict total
+  order on $\mathbb{Q} \cup \set{-\infty,+\infty}$.  It follows from
+  Exercise 4 of the Week 04 exercises that $\sM_1$ is a model for $T$.
+  \esp
+
+  Let $\sM_2 = (\set{D_\alpha},I)$ where $D_\alpha = \set{r \in
+    \mathbb{R} \mid 0 \le r \le 1}$, $I(\mname{min}) = 0$,
+  $I(\mname{max}) = 1$, and $I(<)$ is the usual strict total order on
+  $\mathbb{R}$.  Clearly, $\sM_2$ is a strict total order that is
+  dense and has minimum and maximum elements.  Hence $\sM_2$ is a
+  model for $T$.
+
+  \bigskip
+
+\newpage
+
+  \item \textbf{[10 points]} Let $\Sigma_{\sf queue} =
+    (\sB,\sC,\sF,\sP,\tau)$ where:
+
+  \be
+
+    \item $\sB = \set{\mname{Element},\mname{Queue}}$.
+
+    \item $\sC = \set{\mname{error}, \mname{empty}}$.
+
+    \item $\sF = \set{\mname{front}, \mname{back}, \mname{enqueue},
+      \mname{dequeue}}$.
+
+    \item $\sP = \emptyset$.
+
+
+    \item $\tau(\mname{error}) = \mname{Element}$.
+
+    \item $\tau(\mname{empty}) = \mname{Queue}$.
+
+    \item $\tau(\mname{front}) = \mname{Queue} \rightarrow \mname{Element}$.
+
+    \item $\tau(\mname{back}) = \mname{Queue} \rightarrow \mname{Element}$.
+
+    \item $\tau(\mname{enqueue}) = \mname{Element} \times
+      \mname{Queue} \rightarrow \mname{Queue}$.
+
+    \item $\tau(\mname{dequeue}) = \mname{Queue} \rightarrow
+      \mname{Queue}$.
+
+  \ee
+
+  Construct in MSFOL a theory $T=(\Sigma_{\sf queue},\Gamma_{\sf
+    queue})$ of queues. $\Gamma_{\sf queue}$ should contain axioms
+  that say:
+
+  \be
+
+    \item The front of an empty queue is the error element.
+
+    \item The front of a singleton queue is the single element in the queue.
+
+    \item Let $q$ be a queue obtain by enqueuing $e$ to a nonempty
+      queue $q'$.  The front of $q$ is the front of $q'$.
+
+    \item The back of an empty queue is the error element.
+
+    \item Let $q$ be a queue obtain by enqueuing $e$ to a queue $q'$.
+      The back of $q$ is $e$.
+
+    \item The dequeue of an empty queue is the empty queue.
+
+    \item The dequeue of a singleton queue is the empty queue.
+
+    \item Let $q$ be a queue obtain by enqueuing $e$ to a nonempty
+      queue $q'$.  The dequeue of $q$ is the enqueue of $e$ to the
+      dequeue of $q'$.
+
+  \ee    
+
+  \textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+
+\textbf{Solution}:
+
+$\Sigma_{\sf queue}$ is already defined, so we need only define
+$\Gamma_{\sf queue}$.  $\Gamma_{\sf queue}$ contains the following
+eight axioms corresponding the eight informal statements given above:  That is, it
+suffices that $\Gamma$ contains the following axioms:
+
+\be
+
+  \item $\mname{front}(\mname{empty}) = \mname{error}$.
+
+  \item $\ForallApp e: \mname{Element} \mdot
+    \mname{front}(\mname{enqueue}(e,\mname{empty})) = e$.
+
+  \item $\ForallApp e: \mname{Element}, q : \mname{Queue} \mdot$\\
+    \hspace*{2ex}$q \not= \mname{empty} \Implies
+    \mname{front}(\mname{enqueue}(e,q)) = \mname{front}(q)$.
+
+  \item $\mname{back}(\mname{empty}) = \mname{error}$.
+
+  \item $\ForallApp e: \mname{Element}, q : \mname{Queue} \mdot
+    \mname{back}(\mname{enqueue}(e,q)) = e$.
+
+  \item $\mname{dequeue}(\mname{empty}) = \mname{empty}$.
+
+  \item $\ForallApp e: \mname{Element} \mdot
+    \mname{dequeue}(\mname{enqueue}(e,\mname{empty})) =
+    \mname{empty}$.
+
+  \item $\ForallApp e: \mname{Element}, q : \mname{Queue} \mdot$\\
+    \hspace*{2ex}$q \not= \mname{empty} \Implies
+    \mname{dequeue}(\mname{enqueue}(e,q)) =
+    \mname{enqueue}(e,\mname{dequeue}(q))$.
+
+\ee
+
+\ee
+
+\end{document}
+
+

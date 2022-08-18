@@ -1,0 +1,319 @@
+\documentclass[11pt,fleqn]{article}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sM}{\mbox{$\cal M$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\sV}{\mbox{$\cal V$}}
+\newcommand{\set}[1]{{\{ #1 \}}}
+\newcommand{\Neg}{\neg} 
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\LeftRightarrow}
+\newcommand{\Forall}{\forall}
+\newcommand{\ForallApp}{\forall\,}
+\newcommand{\Forsome}{\exists}
+\newcommand{\ForsomeApp}{\exists\,}
+\newcommand{\mdot}{\mathrel.}
+
+\begin{document}
+
+\begin{center}
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Assignment 4}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: February 6, 2020}
+
+\end{center}
+
+\medskip
+
+Assignment 4 consists of two problems.  You must write your solutions
+to the problems using LaTeX.
+
+Please submit Assignment~4 as two files,
+\texttt{Assignment\_4\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_4\_\emph{YourMacID}.pdf}, to the Assignment~4
+folder on Avenue under Assessments/Assignments.
+\texttt{\emph{YourMacID}} must be your personal MacID (written without
+capitalization).  The \texttt{Assignment\_4\_\emph{YourMacID}.tex}
+file is a copy of the LaTeX source file for this assignment
+(\texttt{Assignment\_4.tex} found on Avenue under
+Contents/Assignments) with your solution entered after each problem.
+The \texttt{Assignment\_4\_\emph{YourMacID}.pdf} is the PDF output
+produced by executing
+
+\begin{itemize}
+
+  \item[] \texttt{pdflatex Assignment\_4\_\emph{YourMacID}}
+
+\end{itemize}
+
+This assignment is due \textbf{Sunday, February 16, 2019 before
+  midnight.}  You are allow to submit the assignment multiple times,
+but only the last submission will be marked.  \textbf{Late submissions
+  and files that are not named exactly as specified above will not be
+  accepted!}  It is suggested that you submit your preliminary
+\texttt{Assignment\_4\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_4\_\emph{YourMacID}.pdf} files well before the
+deadline so that your mark is not zero if, e.g., your computer fails
+at 11:50 PM on February 16.
+
+\textbf{Although you are allowed to receive help from the
+  instructional staff and other students, your submission must be your
+  own work.  Copying will be treated as academic dishonesty! If any of
+  the ideas used in your submission were obtained from other students
+  or sources outside of the lectures and tutorials, you must
+  acknowledge where or from whom these ideas were obtained.}
+
+%\newpage
+
+\subsection*{Background}
+
+\be  
+
+  \item Let $(S,<)$ be a strict partial order.  $(S,<)$ is
+    \emph{dense} if, for all $x,y \in S$ with $x < y$, there is some
+    $z \in S$ such that $x < z < y$.
+
+  \item A \emph{queue} is a finite sequence of elements for which
+    elements are added (``enqueued'') to the back of the sequence and
+    removed (``dequeued'') from the front of the sequence.  An
+    \emph{empty queue} is a queue with no members.  A \emph{singleton
+      queue} is a queue with a single element that is obtain by
+    enqueuing an element to an empty queue.
+
+\ee
+
+\subsection*{Problems}
+
+\be
+
+  \item \textbf{[10 points]} Construct in MSFOL a theory $T$ of strict
+    total orders that are dense and have minimum and maximum elements.
+    Give two models for $T$.
+
+
+  \textcolor{blue}{\textbf{Jatin Chowdhary | chowdhaj | Feb. 16th, 2020}}
+
+  \textcolor{blue}{\textbf{Put your solution here.}}
+
+  \textcolor{red}{BEGIN SOLUTION}
+
+    The Strict Total Order $(S,<)$ is dense. So for all \textit{$x,y \in S$} 
+    with \textit{$x < y$}, there is some \textit{$z \in S$} such that 
+    \textit{$x < z < y$}. 
+    
+    %This implies that there are at least 3 elements in it. 
+
+    \textit{Let $\mathbb U$ be the universe set that contains all objects including itself. 
+    This is the notation I will be using to denote the universe set.}
+
+    Let $\Sigma_{\sf T} = (\sB,\sC,\sF,\sP,\tau)$ where: 
+    \be
+
+      \item $\sB = \set{\mname{$\mathbb U$}}$
+
+      \item $\sC = \emptyset$
+
+      \item $\sF = \set{\mname{min}, \mname{max}}$
+
+      $\tau(\mname{min}) = \mname{$\mathbb U$}$.
+
+      $\tau(\mname{max}) = \mname{$\mathbb U$}$.
+
+      \item $\sP = \set{\mname{$<$}}$
+
+      $\tau(\mname{$<$}) = \mname{$\mathbb U \times \mathbb U \rightarrow \mathbb B$}$.
+
+      \medskip
+
+      \ee
+
+      %\textbf{Where $\tau$ maps the set $\sC \cup \sF \cup \sP$ to $\sB$ as follows:}
+
+      %\item $\tau(\mname{min}) = \mname{$\mathbb U$}$.
+
+      %\item $\tau(\mname{max}) = \mname{$\mathbb U$}$.
+
+      %\item $\tau(\mname{$<$}) = \mname{$\mathbb U \times \mathbb U \rightarrow \mathbb B$}$.
+
+      Let $\Sigma_{\sf T}$ be a strict total order and has the following properties:
+      
+      \textit{The property Dense has already been defined above. The other properties
+      are defined in Lecture 3: Predicate Logic, slide 9.}
+
+      \be
+
+        \item Irreflexivity
+
+        \item Transitivity
+
+        \item Asymmetric
+
+        \item Trichotomous
+
+        \item Dense
+
+      \ee
+
+      Two examples of $\Sigma_{\sf T}$ are:
+
+      \begin{itemize}
+
+        \item ($\mathbb N$ : [0, 1000], $<$) 
+
+        \item ($\mathbb Q$ : [69, 420], $<$) 
+
+      \end{itemize}
+
+  \textcolor{red}{END SOLUTION}
+
+  \bigskip
+
+  \newpage
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  \item \textbf{[10 points]} Let $\Sigma_{\sf queue} =
+    (\sB,\sC,\sF,\sP,\tau)$ where:
+
+  \be
+
+    \item $\sB = \set{\mname{Element},\mname{Queue}}$.
+
+    \item $\sC = \set{\mname{error}, \mname{empty}}$.
+
+    \item $\sF = \set{\mname{front}, \mname{back}, \mname{enqueue},
+      \mname{dequeue}}$.
+
+    \item $\sP = \emptyset$.
+
+
+    \item $\tau(\mname{error}) = \mname{Element}$.
+
+    \item $\tau(\mname{empty}) = \mname{Queue}$.
+
+    \item $\tau(\mname{front}) = \mname{Queue} \rightarrow \mname{Element}$.
+
+    \item $\tau(\mname{back}) = \mname{Queue} \rightarrow \mname{Element}$.
+
+    \item $\tau(\mname{enqueue}) = \mname{Element} \times
+      \mname{Queue} \rightarrow \mname{Queue}$.
+
+    \item $\tau(\mname{dequeue}) = \mname{Queue} \rightarrow
+      \mname{Queue}$.
+
+  \ee
+
+  Construct in MSFOL a theory $T=(\Sigma_{\sf queue},\Gamma_{\sf
+    queue})$ of queues. $\Gamma_{\sf queue}$ should contain axioms
+  that say:
+
+  \be
+
+    \item The front of an empty queue is the error element.
+
+    \item The front of a singleton queue is the single element in the queue.
+
+    \item Let $q$ be a queue obtain by enqueuing $e$ to a nonempty
+      queue $q'$.  The front of $q$ is the front of $q'$.
+
+    \item The back of an empty queue is the error element.
+
+    \item Let $q$ be a queue obtain by enqueuing $e$ to a queue $q'$.
+      The back of $q$ is $e$.
+
+    \item The dequeue of an empty queue is the empty queue.
+
+    \item The dequeue of a singleton queue is the empty queue.
+
+    \item Let $q$ be a queue obtain by enqueuing $e$ to a nonempty
+      queue $q'$.  The dequeue of $q$ is the enqueue of $e$ to the
+      dequeue of $q'$.
+
+  \ee    
+
+  \textcolor{blue}{\textbf{Jatin Chowdhary | chowdhaj | Feb. 16th, 2020}}
+
+  \textcolor{blue}{\textbf{Put your solution here.}}
+
+  \textcolor{red}{BEGIN SOLUTION}
+
+    $\Sigma_{\sf queue}$ is defined above. 
+
+    $\Gamma_{\sf queue}$ contains the following:
+
+    Let \textit{singleton\_queue} represent a singleton queue, 
+    that only contains one element. 
+    In other words, \textit{singleton\_queue} is: 
+
+    \textit{enqueue(Element, empty) = Queue}
+
+    \be
+
+      \item front(empty) = error
+
+      \item front(enqueue(Element, empty)) = Element
+
+      \textcolor{Gray}{\textit{I can also write: front(singleton\_queue) = Element}}
+
+      \item $\forall$ e : Element, q' : Queue . front(q') = front(enqueue(e, q'))
+
+      \textcolor{Gray}{\textit{Can be written as: front(q) = front(q')}}
+
+      \item back(empty) = error
+
+      \item $\forall$ e : Element, q' : Queue . back(enqueue(e, q')) = e
+
+      \textcolor{Gray}{\textit{Can be written as: back(q) = e}}
+
+      \item dequeue(empty) = empty
+
+      \item dequeue(enqueue(Element, empty)) = empty
+
+      \item $\forall$ e : Element, q' : Queue . dequeue(enqueue(e, q')) = enqueue(e, dequeue(q'))
+
+      \textcolor{Gray}{\textit{Can be written as: dequeue(q) = enqueue(e, dequeue(q'))}}
+
+    \ee
+
+  \textcolor{red}{END SOLUTION}
+
+\ee
+
+\end{document}

@@ -1,0 +1,394 @@
+\documentclass[11pt,fleqn]{article}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{color}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\pnote}[1]{{\langle \text{#1} \rangle}}
+
+\begin{document}
+
+\begin{center}
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Assignment 2 with Solutions}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: February 1, 2020}
+
+\end{center}
+
+\medskip
+
+Assignment 2 consists of two problems.  You must write your solutions
+to the problems using LaTeX.
+
+Please submit Assignment~2 as two files,
+\texttt{Assignment\_2\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_2\_\emph{YourMacID}.pdf}, to the Assignment~2
+folder on Avenue under Assessments/Assignments.
+\texttt{\emph{YourMacID}} must be your personal MacID (written without
+capitalization).  The \texttt{Assignment\_2\_\emph{YourMacID}.tex}
+file is a copy of the LaTeX source file for this assignment
+(\texttt{Assignment\_2.tex} found on Avenue under
+Contents/Assignments) with your solution entered after each problem.
+The \texttt{Assignment\_2\_\emph{YourMacID}.pdf} is the PDF output
+produced by executing
+
+\begin{itemize}
+
+  \item[] \texttt{pdflatex Assignment\_2\_\emph{YourMacID}}
+
+\end{itemize}
+
+This assignment is due \textbf{Sunday, February 2, 2020 before
+  midnight.}  You are allow to submit the assignment multiple times,
+but only the last submission will be marked.  \textbf{Late submissions
+  and files that are not named exactly as specified above will not be
+  accepted!}  It is suggested that you submit your preliminary
+\texttt{Assignment\_2\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_2\_\emph{YourMacID}.pdf} files well before the
+deadline so that your mark is not zero if, e.g., your computer fails
+at 11:50 PM on February 2.
+
+\textbf{Although you are allowed to receive help from the
+  instructional staff and other students, your submission must be your
+  own work.  Copying will be treated as academic dishonesty! If any of
+  the ideas used in your submission were obtained from other students
+  or sources outside of the lectures and tutorials, you must
+  acknowledge where or from whom these ideas were obtained.}
+
+\newpage
+
+\subsection*{Problems}
+
+\be
+
+  \item \textbf{[10 points]} Let $C$ be a set of \emph{coefficients}
+    closed under addition and multiplication such as the integers
+    $\mathbb{Z}$, the rational numbers $\mathbb{Q}$, or the real
+    numbers $\mathbb{R}$.  A \emph{polynomial over $C$} is a
+    mathematical expression that is constructed from an
+    \emph{indeterminant} $x$ and members of $C$ by applying addition
+    ($+$) and multiplication ($*$) operators.  For example, $x * ((2 *
+    x) + 3)$ is a polynomial over $\mathbb{Z}$.  Let $P$ be the set of
+    polynomials over some $C$.  The \emph{value of a polynomial $p \in
+      P$ at $c \in C$} is the result of replacing the indeterminant
+    $x$ with $c$.  For example, the value of $x * ((2 * x) + 3)$ at 5
+    is $5 * ((2 * 5) + 3) = 65$.
+
+Let \mname{Poly} be the inductive type defined by the following
+constructors:
+
+  \bi
+
+    \item[] $\mname{X} : \mname{Poly}$.
+
+    \item[] $\mname{Coeff} : \mathbb{Q} \rightarrow \mname{Poly}$.
+
+    \item[] $\mname{Sum} : \mname{Poly} \times \mname{Poly} \rightarrow \mname{Poly}$.
+
+    \item[] $\mname{Prod} : \mname{Poly} \times \mname{Poly} \rightarrow \mname{Poly}$.
+
+  \ei
+
+  The members of \mname{Poly} represent the polynomials over
+  $\mathbb{Q}$.  Define \[\mname{val} : \mname{Poly} \times \mathbb{Q}
+  \rightarrow \mathbb{Q}\] by structural recursion using pattern
+  matching so that, for all $p \in \mname{Poly}$ and $q \in
+  \mathbb{Q}$, $\mname{val}(p,q)$ is the value of $p$ at $q$.
+
+  \bigskip
+
+  \textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+
+\medskip
+
+\textbf{Solution:} \mname{val} is defined by structural recursion
+using pattern matching as:
+
+\bi
+
+  \item[] $\mname{val}(\mname{X},q) = q$.
+
+  \item[] $\mname{val}(\mname{Coeff}(q'),q) = q'$.
+
+  \item[] $\mname{val}(\mname{Sum}(p_1,p_2),q) = 
+            \mname{val}(p_1,q) + \mname{val}(p_2,q)$.
+
+  \item[] $\mname{val}(\mname{Prod}(p_1,p_2),q) = 
+            \mname{val}(p_1,q) * \mname{val}(p_2,q)$.
+
+\ei
+
+  \bigskip
+
+  \item \textbf{[10 points]} Let \mname{Bit} be the inductive set
+    defined by the following constructors:
+
+  \bi
+
+    \item[] $\mname{Zero} : \mname{Bit}$.
+
+    \item[] $\mname{One} : \mname{Bit}$.
+
+  \ei
+
+  The members of \mname{Bit} represent 0 and 1.
+
+  Let \mname{BinNum} be the inductive set defined by the following
+  constructors:
+
+  \bi
+
+    \item[] $\mname{Nil} : \mname{BinNum}$.
+
+    \item[] $\mname{Join} : \mname{BinNum} \times \mname{Bit} \rightarrow \mname{BinNum}$.
+
+  \ei
+
+  The members of \mname{BinNum} not equal to \mname{Nil} represent
+  binary numerals; \mname{Nil} represents an empty numeral.  For
+  example, \[\mname{Join}(\mname{Join}(\mname{Join}(\mname{Nil},
+  \mname{One}), \mname{Zero}), \mname{One}),\] represents the binary
+  number 101.
+
+  The function \[\mname{len} : \mname{BinNum} \rightarrow \mathbb{N}\]
+  maps a member of \mname{BinNum} to its length.  \mname{len} is
+  defined by the following equations using recursion and pattern
+  matching:
+
+  \bi
+
+    \item[] $\mname{len}(\mname{Nil}) = 0$.
+
+    \item[] $\mname{len}(\mname{Join}(u,b)) = \mname{len}(u) + 1$.
+
+  \ei
+
+  The function \[\mname{val} : \mname{BinNum} \rightarrow \mathbb{N}\]
+  maps a member of \mname{BinNum} to the value of the binary numeral
+  it represents.  For
+  example, \[\mname{val}(\mname{Join}(\mname{Join}(\mname{Join}(\mname{Nil},
+  \mname{One}), \mname{Zero}), \mname{One})) = (101)_2 = 5.\] \mname{val} is
+  defined by the following equations using recursion and pattern
+  matching:
+
+  \bi
+
+    \item[] $\mname{val}(\mname{Nil}) = 0$.
+
+    \item[] $\mname{val}(\mname{Join}(u,\mname{Zero})) = 2 * \mname{val}(u)$.
+
+    \item[] $\mname{val}(\mname{Join}(u,\mname{One})) = (2 * \mname{val}(u)) +  1$.
+
+  \ei
+
+  The function \[\mname{add} : \mname{BinNum} \times \mname{BinNum}
+  \rightarrow \mname{BinNum}\] is intended to implement addition on
+  members of \mname{BinNum}.  It is defined by the following equations
+  using recursion and pattern matching:
+
+  \bi
+
+    \item[] $\mname{add}(u,\mname{Nil}) = u$.
+
+    \item[] $\mname{add}(\mname{Nil},u) = u$.
+
+    \item[] $\mname{add}(\mname{Join}(u,\mname{Zero}), \mname{Join}(v,
+      \mname{Zero})) = \mname{Join}(\mname{add}(u,v),\mname{Zero}).$
+
+   \item[] $\mname{add}(\mname{Join}(u,\mname{One}), \mname{Join}(v,
+      \mname{Zero})) = \mname{Join}(\mname{add}(u,v),\mname{One}).$
+
+    \item[] $\mname{add}(\mname{Join}(u,\mname{Zero}), \mname{Join}(v,
+      \mname{One})) = \mname{Join}(\mname{add}(u,v),\mname{One})$.
+
+    \item[] $\mname{add}(\mname{Join}(u,\mname{One}), \mname{Join}(v,
+      \mname{One})) = {}$\\ 
+      \hspace*{2ex}$\mname{Join}(\mname{add}(\mname{add}(u,v),
+      \mname{Join}(\mname{Nil}, \mname{One})),\mname{Zero})$.
+
+  \ei
+
+  Notice that the algorithm behind the definition is essentially the
+  same algorithm that children learn to add numbers represented as
+  decimal numerals.  The last equation is a bit complicated because it
+  involves a carry of 1.
+
+  \textbf{Lemma 1}. For all $u,v \in \mname{BinNum}$,
+  \[\mname{len}(\mname{add}(u,v)) \le \mname{len}(u) +
+  \mname{len}(v).\]
+
+  \textbf{Theorem 1}. For all $u,v \in
+  \mname{BinNum}$, \[\mname{val}(\mname{add}(u,v)) = \mname{val}(u) +
+  \mname{val}(v).\]
+
+  Theorem 1 states that \mname{add} correctly implements addition on
+  the members of $\mname{BinNum}$.
+
+  Prove Theorem 1 assuming Lemma 1.  (You are not required to prove
+  Lemma 1.)  Hint: Use strong induction with $P(n) \equiv
+  \mname{val}(\mname{add}(u,v)) = \mname{val}(u) + \mname{val}(v)$ for
+  all $u,v \in \mname{BinNum}$ such that $n = \mname{len}(u) +
+  \mname{len}(v)$.
+
+  \bigskip
+
+  \textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+
+\medskip
+
+\textbf{Solution:} 
+
+We will first prove the following simple lemma:
+
+\textbf{Lemma 2}. Let $b,c \in \mname{Bit}$ and $u,v \in
+\mname{BinNum}$.
+
+\be
+
+  \item $\mname{len}(u) + \mname{len}(v) <
+    \mname{len}(\mname{Join}(u,b)) + \mname{len}(\mname{Join}(v,c))$.
+
+  \item $\mname{len}(\mname{add}(u,v)) +
+    \mname{len}(\mname{Join}(\mname{Nil}, \mname{One})) <
+    \mname{len}(\mname{Join}(u,b)) + \mname{len}(\mname{Join}(v,c))$.
+
+\ee
+
+\begin{proof}\phantom{x}
+
+\emph{Part a.}  This inequality obviously holds since
+$\mname{len}(\mname{Join}(u,b)) = \mname{len}(u) + 1$ by the
+definition of \mname{len}.
+
+\emph{Part b.}
+\begin{align*}
+  &\phantom{{}={}} \mname{len}(\mname{add}(u,v)) +
+  \mname{len}(\mname{Join}(\mname{Nil},\mname{One}))  & \pnote{LHS}\\
+  &\le \mname{len}(u) + \mname{len}(v) +
+  \mname{len}(\mname{Join}(\mname{Nil}, \mname{One})) & \pnote{Lemma 1}\\
+  &= \mname{len}(u) + \mname{len}(v) + 1           & \pnote{def.\ of \mname{len}}\\
+  &< (\mname{len}(u) + 1) + (\mname{len}(v) + 1)   & \pnote{arithmetic}\\
+  &= \mname{len}(\mname{Join}(u,b)) + \mname{len}(\mname{Join}(u,c))
+    & \pnote{def.\ of \mname{len}; RHS}
+\end{align*}
+
+\end{proof}
+
+We will  now prove \[\text{for  all $n \in \mathbb{N},  P(n)$,}\] which
+clearly implies Theorem~1.
+
+\begin{proof}
+Our proof will be by strong induction.  Let $n \in \mathbb{N}$. Assume
+$P(0), P(1), P(2),\ldots, P(n-1)$ hold.  We must show $P(n)$.  Let
+$u,v \in \mname{BinNum}$ with $\mname{len}(u) + \mname{len}(v) = n$.
+
+\emph{Case 1}: $v =\mname{Nil}$. 
+\begin{align*}
+  &\phantom{{}={}} \mname{val}(\mname{add}(u,\mname{Nil})) & \pnote{LHS}\\
+  &= \mname{val}(u)                            & \pnote{def.\ of \mname{add}}\\
+  &= \mname{val}(u) + 0                        & \pnote{arithmetic}\\
+  &= \mname{val}(u) + \mname{val}(\mname{Nil}) & \pnote{def.\ of \mname{val}}
+\end{align*}
+So $\mname{val}(\mname{add}(u,v)) = \mname{val}(u) + \mname{val}(v)$
+and thus $P(n)$ holds in this case.
+
+\medskip
+
+\emph{Case 2}: $u = \mname{Nil}$.  Similar to Case 1.
+
+\medskip
+
+\emph{Case 3}: $u = \mname{Join}(u',\mname{Zero})$ and $v =
+\mname{Join}(v', \mname{Zero}))$.
+\begin{align*}
+  &\phantom{{}={}} \mname{val}(\mname{add}(\mname{Join}(u',\mname{Zero}), 
+    \mname{Join}(v',\mname{Zero})))
+    & \pnote{LHS}\\
+  &= \mname{val}(\mname{Join}(\mname{add}(u,v),\mname{Zero}))
+    & \pnote{def.\ of \mname{add}}\\
+  &= 2 * \mname{val}(\mname{add}(u',v'))
+    & \pnote{def.\ of \mname{val}}\\
+  &= 2 * (\mname{val}(u') + \mname{val}(v'))
+    & \pnote{ind.\ hyp.; Lem.\ 2(a)}\\
+  &= (2 * \mname{val}(u')) + (2 * \mname{val}(v'))
+    & \pnote{arithmetic}\\
+  &= \mname{val}(\mname{Join}(u',\mname{Zero})) + 
+     \mname{val}(\mname{Join}(v',\mname{Zero}))
+    & \pnote{def.\ of \mname{val}; RHS}
+\end{align*}
+So $\mname{val}(\mname{add}(u,v)) = \mname{val}(u) + \mname{val}(v)$
+and thus $P(n)$ holds in this case.
+
+\medskip
+
+\emph{Case 4}: $u = \mname{Join}(u',\mname{One})$ and $v =
+\mname{Join}(v', \mname{Zero}))$.  Similar to Case 3.
+
+\medskip
+
+\emph{Case 5}: $u = \mname{Join}(u',\mname{Zero})$ and $v =
+\mname{Join}(v', \mname{One}))$. Similar to Case 3.
+
+\medskip
+
+\emph{Case 6}: $u = \mname{Join}(u',\mname{One})$ and $v =
+\mname{Join}(v', \mname{One}))$.
+\begin{align*}
+  &\phantom{{}={}} \mname{val}(\mname{add}(\mname{Join}(u',\mname{One}), 
+    \mname{Join}(v',\mname{One})))\\
+  & \hspace*{25ex} \pnote{LHS}\\
+  &= \mname{val}(\mname{Join}(\mname{add}(\mname{add}(u',v'),
+      \mname{Join}(\mname{Nil}, \mname{One})),\mname{Zero}))\\
+  & \hspace*{25ex} \pnote{definition of \mname{add}}\\
+  &= 2 * \mname{val}(\mname{add}(\mname{add}(u',v'), 
+      \mname{Join}(\mname{Nil}, \mname{One})))\\
+  & \hspace*{25ex} \pnote{definition of \mname{val}}\\
+  &= 2 * (\mname{val}(\mname{add}(u',v')) + 
+       \mname{val}(\mname{Join}(\mname{Nil}, \mname{One})))\\
+  & \hspace*{25ex} \pnote{induction hypothesis; Lemma 2(b)}\\
+  &= 2 * (\mname{val}(u') + \mname{val}(v') + 
+       \mname{val}(\mname{Join}(\mname{Nil}, \mname{One})))\\
+  & \hspace*{25ex} \pnote{induction hypothesis; Lemma 2(a)}\\
+  &= 2 * (\mname{val}(u') + \mname{val}(v') + 1)\\
+  & \hspace*{25ex} \pnote{definition of \mname{val}}\\
+  &= ((2 * \mname{val}(u') + 1) + ((2 * \mname{val}(v') + 1)\\
+  & \hspace*{25ex} \pnote{arithmetic}\\
+  &= \mname{val}(\mname{Join}(u',\mname{One})) + 
+     \mname{val}(\mname{Join}(v',\mname{One}))\\
+  & \hspace*{25ex} \pnote{definition of \mname{val}; RHS}
+\end{align*}
+So $\mname{val}(\mname{add}(u,v)) = \mname{val}(u) + \mname{val}(v)$
+and thus $P(n)$ holds in this case.
+
+\medskip
+
+These six case cover all possibilities.  Therefore, $P(n)$ holds.
+\end{proof}
+
+
+
+\ee
+\end{document}
+
+

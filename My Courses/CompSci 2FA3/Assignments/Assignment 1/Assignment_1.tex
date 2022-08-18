@@ -1,0 +1,229 @@
+\documentclass[11pt,fleqn]{article}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{color}
+
+\renewcommand{\labelenumii}{\theenumii.}
+
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\pnote}[1]{{\langle \text{#1} \rangle}}
+
+\begin{document}
+
+\begin{center}
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Assignment 1}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: January 17, 2020}
+
+\end{center}
+
+\medskip
+
+Assignment 1 consists of some background definitions, two sample
+problems, and two required problems.  You must write your solutions to
+the required problems using LaTeX.  Use the solutions of the sample
+problems as a guide.
+
+Please submit Assignment~1 as two files,
+\texttt{Assignment\_1\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_1\_\emph{YourMacID}.pdf}, to the Assignment~1
+folder on Avenue under Assessments/Assignments.
+\texttt{\emph{YourMacID}} must be your personal MacID (written without
+capitalization).  The \texttt{Assignment\_1\_\emph{YourMacID}.tex}
+file is a copy of the LaTeX source file for this assignment
+(\texttt{Assignment\_1.tex} found on Avenue under
+Contents/Assignments) with your solution entered after each required
+problem.  The \texttt{Assignment\_1\_\emph{YourMacID}.pdf} is the PDF
+output produced by executing
+
+\begin{itemize}
+
+  \item[] \texttt{pdflatex Assignment\_1\_\emph{YourMacID}}
+
+\end{itemize}
+
+This assignment is due \textbf{Sunday, January 26, 2020 before
+  midnight.}  You are allow to submit the assignment multiple times,
+but only the last submission will be marked.  \textbf{Late submissions
+  and files that are not named exactly as specified above will not be
+  accepted!}  It is suggested that you submit your preliminary
+\texttt{Assignment\_1\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_1\_\emph{YourMacID}.pdf} files well before the
+deadline so that your mark is not zero if, e.g., your computer fails
+at 11:50 PM on January 26.
+
+\textbf{Although you are allowed to receive help from the
+  instructional staff and other students, your submission must be your
+  own work.  Copying will be treated as academic dishonesty! If any of
+  the ideas used in your submission were obtained from other students
+  or sources outside of the lectures and tutorials, you must
+  acknowledge where or from whom these ideas were obtained.}
+
+\subsection*{Background}
+
+\begin{enumerate}
+
+  \item The notation $\sum^{n}_{i=m}f(i)$ is defined by: 
+    \[\sum^{n}_{i=m}f(i) =
+      \left\{\begin{array}{ll}
+               0                          & \textrm{if } m > n\\
+               f(n) + \sum^{n-1}_{i=m}f(i) & \textrm{if } m \le n
+             \end{array}
+      \right.\]
+
+  \item The notation $\prod^{n}_{i=m}f(i)$ is defined by: 
+    \[\prod^{n}_{i=m}f(i) =
+      \left\{\begin{array}{ll}
+               1                          & \textrm{if } m > n\\
+               f(n) * \prod^{n-1}_{i=m}f(i) & \textrm{if } m \le n
+             \end{array}
+      \right.\] 
+
+  \item The factorial function $\mname{fact} : \mathbb{N} \rightarrow
+    \mathbb{N}$ is defined by:
+    \[\mname{fact}(n) = 
+      \left\{\begin{array}{ll}
+               1 & \textrm{if } n = 0 \\
+               n * \mname{fact}(n-1) & \textrm{if } n > 0 
+             \end{array}
+      \right.\]
+
+  \item $\mname{base-2-exp} : \mathbb{N} \rightarrow
+    \mathbb{N}$ is defined by:
+    \[\mname{base-2-exp}(n) = 
+      \left\{\begin{array}{ll}
+               1 & \textrm{if } n = 0 \\
+               2 & \textrm{if } n = 1 \\
+               \mname{base-2-exp}(n-1) + (2 * \mname{base-2-exp}(n-2)) & \textrm{if } n \ge 2
+             \end{array}
+      \right.\]
+
+\iffalse
+  \item The Fibonacci sequence $\mname{fib} : \mathbb{N} \rightarrow
+    \mathbb{N}$ is defined by:
+    \[\mname{fib}(n) = 
+      \left\{\begin{array}{ll}
+               0 & \textrm{if } n = 0 \\
+               1 & \textrm{if } n = 1 \\
+               \mname{fib}(n-1) + \mname{fib}(n-2) & \textrm{if } n \ge 2
+             \end{array}
+      \right.\]
+\fi
+
+\end{enumerate}
+
+\subsection*{Sample Problems}
+
+\begin{enumerate}
+
+  \item Prove $\sum^{n-1}_{i=0}2^i = 2^n - 1$ for all $n \in
+    \mathbb{N}$.
+
+\begin{proof}
+Let $P(n) \equiv \sum^{n-1}_{i=0}2^i = 2^n - 1$.  We will prove $P(n)$
+for all $n \in \mathbb{N}$ by weak induction.
+
+\medskip
+
+\emph{Base case}: $n = 0$.  We must show $P(0)$.
+\begin{align*}
+  &\phantom{{}=} \sum_{i=0}^{0-1} 2^{i} & \pnote{LHS of $P(0)$}\\
+  &= \sum^{-1}_{i = 0} 2^i  & \pnote{arithmetic}\\
+  &= 0          & \pnote{definition of $\textstyle{\sum}_{i=m}^{n} f(i)$ when $m > n$}\\
+  &= 1 - 1      & \pnote{arithmetic}\\
+  &= 2^0 - 1    & \pnote{arithmetic; RHS of $P(0)$}
+\end{align*}
+So $P(0)$ holds.
+
+\medskip
+
+\emph{Induction step}: $n \ge 0$. Assume $P(n)$. We must show $P(n + 1)$.
+\begin{align*}
+  &\phantom{{}=} \sum_{i=0}^{(n + 1) - 1} 2^i   & \pnote{LHS of $P(n + 1)$}\\
+  &= \sum_{i=0}^{n} 2^{i}       & \pnote{arithmetic}\\
+  &= 2^n + \sum_{i=0}^{n-1} 2^i & \pnote{definition of $\textstyle{\sum}_{i=m}^{n} f(i)$}\\
+  &= 2^n + 2^n - 1             & \pnote{induction hypothesis: $P(n)$}\\
+  &= 2*2^n - 1                 & \pnote{arithmetic}\\
+  &= 2^{n+1} - 1               & \pnote{arithmetic; RHS of $P(n + 1)$}
+\end{align*}
+So $P(n + 1)$ holds.
+
+\medskip
+
+Therefore, $P(n)$ holds for all $n \in \mathbb{N}$ by weak induction.
+\end{proof}
+
+  \item Prove that, if $n \in \mathbb{N}$ with $n \ge 2$, then $n$ is
+    a product of prime numbers.
+
+\begin{proof}
+Let $P(n)$ hold iff $n$ is a product of prime numbers.  We will prove
+$P(n)$ for all $n \in \mathbb{N}$ with $n \ge 2$ by strong induction.
+
+\medskip
+
+\emph{Base case}: $n = 2$.  We must show $P(2)$.  Since 2 is a prime
+number, 2 is obviously a product of prime numbers.  So $P(2)$ holds.
+
+\medskip
+
+\emph{Induction step}: $n > 2$.  Assume $P(2), P(3), \ldots, P(n-1)$
+hold.  We must show $P(n)$.
+
+\emph{Case 1}: $n$ is a prime number.  Then $n$ is obviously a product
+of prime numbers.
+
+\emph{Case 2}: $n$ is not a prime number.  Then $n = x * y$ where $x,y
+\in \mathbb{N}$ with $2 \le x,y \le n - 1$.  Thus, by the induction
+hypothesis ($P(x)$ and $P(y)$), \[x = p_0 * \cdots *p_i\] and \[y =
+q_0 * \cdots *q_j\] where $p_0,\ldots,p_i,q_0,\ldots,q_j$ are prime
+numbers.  Then \[n = x * y = p_0 * \cdots * p_i * q_0 * \cdots * q_j\]
+and so $P(n)$ holds.
+
+\medskip
+
+Therefore, $P(n)$ holds for all $n \in \mathbb{N}$ with $n \ge 2$ by
+strong induction.
+\end{proof}
+
+\end{enumerate}
+
+\subsection*{Required Problems}
+
+\begin{enumerate}
+
+  \item \textbf{[10 points]} Prove \[\prod_{i = 1}^{n} \frac{i^2}{i +
+    1} = \frac{\mname{fact}(n)}{n + 1}.\] for all $n \in \mathbb{N}$.
+
+  \bigskip
+
+  \textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+
+  \textcolor{blue}{\textbf{Put your solution here.}}
+
+  \bigskip
+
+  \item \textbf{[10 points]} Prove \[\mname{base-2-exp}(n) = 2^n\] for
+    all $n \in \mathbb{N}$.
+
+  \bigskip
+
+  \textcolor{blue}{\textbf{Put your name, MacID, and date here.}}
+
+  \textcolor{blue}{\textbf{Put your solution here.}}
+
+\end{enumerate}
+
+\end{document}
+
+

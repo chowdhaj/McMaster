@@ -1,0 +1,303 @@
+\documentclass[11pt,fleqn]{article}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning,arrows}
+\usepackage{diagbox}
+\usepackage{hyperref}
+\usepackage{lipsum}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sM}{\mbox{$\cal M$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\sV}{\mbox{$\cal V$}}
+\newcommand{\set}[1]{{\{ #1 \}}}
+\newcommand{\Neg}{\neg} 
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\Leftrightarrow}
+\newcommand{\Forall}{\forall}
+\newcommand{\ForallApp}{\forall\,}
+\newcommand{\Forsome}{\exists}
+\newcommand{\ForsomeApp}{\exists\,}
+\newcommand{\mdot}{\mathrel.}
+
+\begin{document}
+
+\begin{center}
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Assignment 7}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: March 5, 2020}
+
+\end{center}
+
+\medskip
+
+Assignment 7 consists of two problems.  You must write your solutions
+to the problems using LaTeX.
+
+Please submit Assignment~7 as two files,
+\texttt{Assignment\_7\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_7\_\emph{YourMacID}.pdf}, to the Assignment~7
+folder on Avenue under Assessments/Assignments.
+\texttt{\emph{YourMacID}} must be your personal MacID (written without
+capitalization).  The \texttt{Assignment\_7\_\emph{YourMacID}.tex}
+file is a copy of the LaTeX source file for this assignment
+(\texttt{Assignment\_7.tex} found on Avenue under
+Contents/Assignments) with your solution entered after each problem.
+The \texttt{Assignment\_7\_\emph{YourMacID}.pdf} is the PDF output
+produced by executing
+
+\begin{itemize}
+
+  \item[] \texttt{pdflatex Assignment\_7\_\emph{YourMacID}}
+
+\end{itemize}
+
+This assignment is due \textbf{Sunday, March 15, 2020 before
+  midnight.}  You are allow to submit the assignment multiple times,
+but only the last submission will be marked.  \textbf{Late submissions
+  and files that are not named exactly as specified above will not be
+  accepted!}  It is suggested that you submit your preliminary
+\texttt{Assignment\_7\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_7\_\emph{YourMacID}.pdf} files well before the
+deadline so that your mark is not zero if, e.g., your computer fails
+at 11:50 PM on March 15.
+
+\textbf{Although you are allowed to receive help from the
+  instructional staff and other students, your submission must be your
+  own work.  Copying will be treated as academic dishonesty! If any of
+  the ideas used in your submission were obtained from other students
+  or sources outside of the lectures and tutorials, you must
+  acknowledge where or from whom these ideas were obtained.}
+
+\newpage
+
+\subsection*{Problems}
+
+\be
+
+  \item \textbf{[10 points]} Let $\Sigma$ be the set of lower and
+    uppercase letters in the Roman alphabet plus the hyphen symbol
+    ``-''.  Let a \emph{simple English word} be a nonempty string $x
+    \in \Sigma^*$ such that:
+
+    \be
+
+      \item An uppercase letter can only occur as the first symbol in
+        $x$.
+
+      \item A hyphen cannot occur as either the first or the last
+        symbol in $x$.
+
+      \item Two hyphens cannot occur in a row.
+
+    \ee
+
+    Write a regular expression that matches the set of simple English
+    words (as defined above).
+
+  \bigskip
+
+  \textcolor{blue}{\textbf{Jatin | Chowdhaj | March 15th, 2020}}
+
+  \textcolor{blue}{\textbf{Put your regular expression here.}}
+
+  \begin{center}
+  
+    \textcolor{red}{\textbf{$\ast$~$\ast$~$\ast$}} \\
+    \textcolor{red}{\textbf{Start Answer}} \\
+    \textcolor{red}{\textbf{$\ast$~$\ast$~$\ast$}}
+  
+  \end{center}
+
+  The set of characters is the \textit{\href{https://en.wikipedia.org/wiki/Latin_alphabet}{Roman Alphabet}}, uppercase and lowercase, and the hypen. I will be using the following sets: 
+
+  \begin{itemize}
+
+    \item{$a, b, c, d, ..., z$}
+    \\ \textcolor{gray}{Note: This the set of lowercase letters from \textit{\textbf{a}} to \textit{\textbf{z}}. It will be abbreviated as: \textit{\textbf{a + ... + z}}.}
+
+    \item{$A, B, C, D, ..., Z$}
+    \\ \textcolor{gray}{Note: This the set of uppercase letters from \textit{\textbf{A}} to \textit{\textbf{Z}}. It will be abbreviated as: \textit{\textbf{A + ... + Z}}.}
+
+    \item{$-$}
+    \\ \textcolor{gray}{Note: This is a hypen, which will be represented as: \textit{\textbf{``-"}}}.
+
+    \item{$\epsilon$}
+    \\ \textcolor{gray}{Note: This is epsilon and will be used to represent the empty string: \textit{\textbf{``"}}}
+
+  \end{itemize}
+
+  Our language, $\Sigma$ is defined as: $\Sigma = [a + ... + z + A + ... + Z + ``-" + \epsilon]$
+
+  \textcolor{gray}{Also, I will be assuming that a word is any number of characters that is $\geq 1$. This means that the letter \textbf{\textit{a}} is a word.}
+
+  \textcolor{gray}{Also, this goes without say, a single hyphen is not a word.}
+
+  \textit{The regular expression is}: \\ 
+  %$(A + ... + Z + \epsilon)\big((a + ... + z)(\epsilon + ``-")\big)^*$
+  $(A + ... + Z + \epsilon)\big((a + ... + z)(\epsilon + ``-")\big)^*(a + ... + z)^+$
+
+  %%% WRONG %%%
+  %$(A + ... + Z)\big((a + ... + z + A + ... + Z)(\epsilon + ``-")\big)^*(a + ... + z + A + ... + Z)^*$ 
+
+  %a. $(A + ... + Z)(a + ... + z + ``-")^*$
+  % Notes: Do I need to add an eps for the second part. I think not because the * can also be a zero, effectively nulling it and allowing words like 'A' to be accepted. I think so...
+
+  %b. $(a + ... + z + A + ... + Z)(a + ... + z + ``-")^*(a + ... + z + A + ... + Z)$
+
+  %c. $\big((a + ... + z + A + ... + Z)(\epsilon + ``-")\big)^*$
+
+  \begin{center}
+  
+    \textcolor{red}{\textbf{$\ast$~$\ast$~$\ast$}} \\
+    \textcolor{red}{\textbf{End Answer}} \\
+    \textcolor{red}{\textbf{$\ast$~$\ast$~$\ast$}}
+  
+  \end{center}
+
+  \newpage
+
+  \bigskip
+
+  \item \textbf{[10 points]} Construct an NFA (possibly with
+    $\epsilon$-transitions) that is equivalent to the regular
+    expression \[01((10)^* + 11)^*.\] Present the NFA as both a
+    transition table (with a column for $\epsilon$ transitions) and a
+    transition diagram.
+
+  \bigskip
+
+  \textcolor{blue}{\textbf{Jatin | Chowdhaj | March 15th, 2020}}
+
+  \textcolor{blue}{\textbf{Put your transition diagram here.}}
+
+  \textcolor{blue}{\textbf{Put your transition table here.}}
+
+  \begin{center}
+  
+    \textcolor{red}{\textbf{$\ast$~$\ast$~$\ast$}} \\
+    \textcolor{red}{\textbf{Start Answer}} \\
+    \textcolor{red}{\textbf{$\ast$~$\ast$~$\ast$}}
+  
+  \end{center}
+
+  %% Machine generated by https://finsm.io
+  %% 2020-3-15-15:26:11
+  %% include in preamble:
+  %% \usepackage{tikz}
+  %% \usetikzlibrary{automata,positioning,arrows}
+  \begin{center}
+  \begin{tikzpicture}[]
+      \node[line width = 0.55mm,state] at (-2.4,1) (a0097e6e) {$q_0$};
+      \node[thick,state] at (0.825,0.9875) (47392399) {$q_{1}$};
+      \node[thick,accepting,state] at (3.65,0.9875) (fd2f1488) {$q_{2}$};
+      \node[thick,state] at (7.075,1.0375) (3f3ec2d2) {$q_{3}$};
+      \node[thick,state] at (5.5,-2.2875) (34f29df7) {$q_{4}$};
+      \path[->, thick, >=stealth]
+      (a0097e6e) edge [below,in = 180, out = 0] node {$0$} (47392399)
+      (47392399) edge [below,in = 180, out = 0] node {$1$} (fd2f1488)
+      (fd2f1488) edge [above,in = 153, out = 29] node {$1$} (3f3ec2d2)
+      (3f3ec2d2) edge [below,in = -22, out = -158] node {$1$} (fd2f1488)
+      (3f3ec2d2) edge [left,in = 65, out = -115] node {$0$} (34f29df7)
+      (34f29df7) edge [right,in = -61, out = 119] node {$\epsilon$} (fd2f1488)
+      ;
+  \end{tikzpicture}
+  \end{center}
+
+  \begin{center}
+  \begin{tabular}{r|l|ll|lll}
+  \cline{2-5}
+  & {\diagbox{$Q$}{$\Sigma$}} & $0$ & $1$ & $\epsilon$\\
+  \cline{2-5}
+  start $\rightarrow$ & $q0$ & $\set{q1}$  & $\set{}$     & $\set{}$ \\
+                      & $q1$ & $\set{}$    & $\set{q2}$   & $\set{}$ \\
+  final $\rightarrow$ & $q2$ & $\set{}$    & $\set{q3}$   & $\set{}$ \\
+                      & $q3$ & $\set{q4}$  & $\set{q2}$   & $\set{}$ \\
+                      & $q4$ & $\set{}$    & $\set{}$     & $\set{q2}$ \\
+
+
+  \cline{2-5}
+  \end{tabular}
+  \end{center}
+
+  \newpage
+
+  \textit{Question \#2 says, ``possibly with $\epsilon$-transitions". I don't know if that means I need to include another NFA with no $\epsilon$-transitions. Nonetheless, here it is. They're both legit.}
+
+  %% Machine generated by https://finsm.io
+  %% 2020-3-15-15:49:10
+  %% include in preamble:
+  %% \usepackage{tikz}
+  %% \usetikzlibrary{automata,positioning,arrows}
+  \begin{center}
+  \begin{tikzpicture}[]
+      \node[line width = 0.55mm,state] at (-4.525,1.2) (30a59621) {$q_0$};
+      \node[thick,state] at (-0.875,1.1875) (f8d4549d) {$q_{1}$};
+      \node[thick,accepting,state] at (2.45,1.1875) (14dd3989) {$q_{2}$};
+      \node[thick,state] at (6.2,1.1375) (cde48ce0) {$q_{3}$};
+      \path[->, thick, >=stealth]
+      (30a59621) edge [below,in = 180, out = 0] node {$0$} (f8d4549d)
+      (f8d4549d) edge [below,in = 180, out = 0] node {$1$} (14dd3989)
+      (14dd3989) edge [above,in = 140, out = 38] node {$1$} (cde48ce0)
+      (cde48ce0) edge [below,in = -35, out = -145] node {$0,1$} (14dd3989)
+      ;
+  \end{tikzpicture}
+  \end{center}
+
+  \begin{center}
+  \begin{tabular}{r|l|ll|}
+  \cline{2-4}
+  & {\diagbox{$Q$}{$\Sigma$}} & $0$ & $1$\\
+  \cline{2-4}
+  start $\rightarrow$ & $q0$ & $\set{q1}$  & $\set{}$ \\
+                      & $q1$ & $\set{}$  & $\set{q2}$ \\
+  final $\rightarrow$ & $q2$ & $\set{}$  & $\set{q3}$ \\
+                      & $q3$ & $\set{q2}$  & $\set{q2}$ \\
+  \cline{2-4}
+  \end{tabular}
+  \end{center}
+
+  \begin{center}
+  
+    \textcolor{red}{\textbf{$\ast$~$\ast$~$\ast$}} \\
+    \textcolor{red}{\textbf{End Answer}} \\
+    \textcolor{red}{\textbf{$\ast$~$\ast$~$\ast$}}
+  
+  \end{center}
+
+\ee
+
+\end{document}
+
+

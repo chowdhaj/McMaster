@@ -1,0 +1,231 @@
+\documentclass[11pt,fleqn]{article}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning,arrows}
+\usepackage{diagbox}
+\usepackage{stackrel}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sM}{\mbox{$\cal M$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\sV}{\mbox{$\cal V$}}
+\newcommand{\set}[1]{{\{ #1 \}}}
+\newcommand{\Neg}{\neg} 
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\Leftrightarrow}
+\newcommand{\Forall}{\forall}
+\newcommand{\ForallApp}{\forall\,}
+\newcommand{\Forsome}{\exists}
+\newcommand{\ForsomeApp}{\exists\,}
+\newcommand{\mdot}{\mathrel.}
+\newcommand{\der}[2]{\stackrel[#2]{#1}{\longrightarrow}}
+
+\begin{document}
+
+\begin{center}
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Assignment 8}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: March 18, 2020}
+
+\end{center}
+
+\medskip
+
+Assignment 8 consists of two problems.  You must write your solutions
+to the problems using LaTeX.
+
+Please submit Assignment~8 as two files,
+\texttt{Assignment\_8\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_8\_\emph{YourMacID}.pdf}, to the Assignment~8
+folder on Avenue under Assessments/Assignments.
+\texttt{\emph{YourMacID}} must be your personal MacID (written without
+capitalization).  The \texttt{Assignment\_8\_\emph{YourMacID}.tex}
+file is a copy of the LaTeX source file for this assignment
+(\texttt{Assignment\_8.tex} found on Avenue under
+Contents/Assignments) with your solution entered after each problem.
+The \texttt{Assignment\_8\_\emph{YourMacID}.pdf} is the PDF output
+produced by executing
+
+\begin{itemize}
+
+  \item[] \texttt{pdflatex Assignment\_8\_\emph{YourMacID}}
+
+\end{itemize}
+
+This assignment is due \textbf{Sunday, March 22, 2020 before
+  midnight.}  You are allow to submit the assignment multiple times,
+but only the last submission will be marked.  \textbf{Late submissions
+  and files that are not named exactly as specified above will not be
+  accepted!}  It is suggested that you submit your preliminary
+\texttt{Assignment\_8\_\emph{YourMacID}.tex} and
+\texttt{Assignment\_8\_\emph{YourMacID}.pdf} files well before the
+deadline so that your mark is not zero if, e.g., your computer fails
+at 11:50 PM on March 22.
+
+\textbf{Although you are allowed to receive help from the
+  instructional staff and other students, your submission must be your
+  own work.  Copying will be treated as academic dishonesty! If any of
+  the ideas used in your submission were obtained from other students
+  or sources outside of the lectures and tutorials, you must
+  acknowledge where or from whom these ideas were obtained.}
+
+\newpage
+
+\subsection*{Problems}
+
+\be
+
+  \item \textbf{[10 points]} Let $G = (N,\Sigma,P,S)$ be the CFG
+    where $N = \set{S}$, $\Sigma = \set{a,b}$, and $P$ contains the
+    following productions:
+
+  \begin{itemize}
+
+    \item[] $S \rightarrow aSb \mid \epsilon$.
+
+  \end{itemize}
+
+  For $x \in \Sigma^*$, let $Q(x)$ be the property that $S \der{*}{G}
+  x$ iff $x = a^nb^n$ for some $n \ge 0$.  Prove \[\ForallApp x \in
+  \Sigma^* \mdot Q(x)\] by weak induction on the length of the
+  derivation $S \der{*}{G} x$ for the ($\Rightarrow$) direction and by
+  strong induction on the length of $x$ for the ($\Leftarrow$)
+  direction.
+
+  \bigskip
+
+  \textcolor{blue}{\textbf{Jatin Chowdhary | \textit{chowdhaj} | March 22nd}}
+
+  \textcolor{blue}{\textbf{Put your proof here.}}
+
+  \bigskip
+
+  First step is to prove the base case.
+
+  \textit{Base Case}:
+
+  \begin{itemize}
+
+    \item[] $S \der{1}{G} x$. So $x$ must be $\epsilon$, which makes $x = a^0b^0$ and the result is $\epsilon$, because $a \, \& \, b$ are being repeated 0 times; not repeated at all. Thus, $Q'_{\implies}$(1) holds.
+
+  \end{itemize}
+
+  \bigskip
+
+  Second step is to prove the weak induction step.
+
+  \textit{Weak Induction Step}:
+
+  \begin{itemize}
+
+    \item[] $S \der{n + 1}{G} x$ where $1 \leq n$. I will assume $Q'_{\implies}$(n). Then 
+    $S \der{1}{G} \alpha \der{n}{G} x$ where $\alpha = aSb$. Now, $x = ayb$. Since this implies that $S \der{n}{G} y$, the induction hypothesis implies that 
+    $y = a^{n-1}b^{n-1}$, which further implies that $x = a^{n}b^{n}$. In conclusion, 
+    the statement $Q'_{\implies}$(n + 1) holds.
+
+  \end{itemize}
+
+  $\therefore \forall n \in \mathbb{N}$, the property $Q'_{\implies}$(n) holds.
+
+  \bigskip
+
+  The third step is to prove the strong induction case on the length of $x$
+
+  \newpage
+
+  \item \textbf{[10 points]} Let $\Sigma = (\sB,\sC,\sF,\sP,\tau)$ be
+    a signature of MSFOL where:
+
+  \begin{itemize}
+
+    \item[] $\sB = \set{\alpha,\beta}$.
+
+    \item[] $\sC = \set{a,b}$ with $\tau(a) = \alpha$ and $\tau(b) = \beta$.
+
+    \item[] $\sF = \set{f,g}$ with $\tau(f) = \alpha \times \beta
+      \rightarrow \alpha$ and $\tau(g) = \beta
+      \rightarrow \beta$.
+
+    \item[] $\sP = \set{p,q}$ with $\tau(p) = \alpha \rightarrow
+      \mathbb{B}$ and $\tau(q) = \beta \times \beta \rightarrow
+      \mathbb{B}$.
+
+  \end{itemize}
+
+  Write a context-free grammar in BNF form that generates the set of
+  $\Sigma$-formulas.  Assume $\sV = \set{u,v,w,x,y,z}$.
+
+  \bigskip
+
+  \textcolor{blue}{\textbf{Jatin Chowdhary | \textit{chowdhaj} | March 22nd}}
+
+  \textcolor{blue}{\textbf{Put your BNF here.}}
+
+  $\langle\Sigma-Formula \rangle ::= \langle Negation\rangle \,|\, \langle Implication\rangle \, | \, \langle Equality \rangle$
+
+  $\langle Negation \rangle ::= \langle not \rangle \, \langle\Sigma-Formula\rangle$
+
+  $\langle not \rangle ::= \neg$
+
+  $\langle Implication \rangle ::= \langle\Sigma-Formula\rangle \, \langle Implies \rangle \, \langle\Sigma-Formula\rangle$  
+
+  $\langle Implies \rangle ::= \implies$  
+
+  $\langle Equality \rangle ::= \langle\Sigma-Formula\rangle \, \langle Equals \rangle \, \langle\Sigma-Formula\rangle$  
+
+  $\langle Equals \rangle ::= \,\, \textbf{=}$
+
+  $\langle Boole \rangle ::= true \, | \, false$
+
+  $\langle B-\Sigma-Term \rangle ::= \langle \alpha-term \rangle \, | \, \langle \beta-term \rangle$
+
+  $\langle F-\Sigma-Function \rangle ::= \langle f \rangle \, | \, \langle g \rangle$
+
+  $\langle f \rangle ::= \alpha \times \beta \, \langle Implies \rangle \, \alpha$
+
+  $\langle g \rangle ::= \beta \, \langle Implies \rangle \,  \beta$
+
+  $\langle F-\Sigma-Predicate \rangle ::= \langle p \rangle \, | \, \langle q \rangle$
+
+  $\langle p \rangle ::= \alpha \, \langle Implies \rangle \, \langle Boole \rangle$
+
+  $\langle q \rangle ::= \beta \times \beta \, \langle Implies \rangle \, \langle Boole \rangle$
+
+  $\langle Variable - V \rangle ::= u \, | v \, | w \, | x \, | y | \, z$ 
+
+\ee
+
+\end{document}
+
+
