@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0074)https://www.childsmath.ca/childsa/forms/1zcStuff/onlineform_2.php?assign=2 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Math 1B03 Term 2/1ZC3 Matlab Lab #1 Answer Sheet for User: chowdhaj</title>
+
+
+<script type="text/javascript" src="./Matlab 1_files/FORMfields.js"></script>
+
+<link rel="stylesheet" type="text/css" href="./Matlab 1_files/default_combined.css">
+
+
+<style type="text/css">
+
+td.ffTableSetFORMfieldsLabel1, td.ffTableSetFORMfieldsLabel2 {
+	max-width: 115px;
+}
+
+table.ffTableSetFORMfields{width:100%;}
+
+
+input.mobile {
+	visibility:hidden;
+	disabled:disabled;
+}
+
+
+div.ffForm {
+	width:900px;
+	text-align:left;
+	margin:auto;
+}
+
+
+td.mobile1 {
+	text-align:justify;
+}
+
+td.mobile2 {
+	vertical-align:top
+}
+
+span.mobile1 {
+	white-space:nowrap; 
+	display:inline-block; 
+	margin-top:10px;
+}
+
+
+
+@media only screen and (max-width: 930px) {
+
+	div.ffForm {
+		width:auto;
+	}
+
+}
+
+
+@media only screen and (max-width: 670px) {
+
+    td.mobile {
+        display:none;
+    }
+
+}
+
+
+@media only screen and (max-width: 570px) {
+
+	table.try1 {
+	margin-left:0px;
+	}
+
+	input.mobile {
+	display:none;
+	}
+
+
+	td.mobile1,td.mobile2 {
+	display:block;	
+	}
+
+	span.mobile1 {
+	display:block;
+	white-space:normal;
+	margin-left:-65px;
+	}
+
+
+	span.mobile {
+	display:none;
+	}
+
+
+}
+
+
+@media only screen and (max-width: 500px) {
+
+
+	td.mobile1 {
+	font-size:26px !important;
+	}
+
+
+	span.logo1 {
+	white-space:normal;
+	}
+
+}
+
+@media only screen and (max-width: 374px) {
+
+	td.logo3 {
+	display:none;
+	}
+
+}
+
+
+
+
+</style>
+
+
+<script type="text/javascript">
+
+	
+function show_unform(qnum,attnum) {
+
+	if (document.getElementById(qnum + "_fans_" + attnum).getAttribute('data-show') == 1) {
+	document.getElementById(qnum + "_unform_" + attnum).style.display='inline';
+	document.getElementById(qnum + "_fans_" + attnum).setAttribute('data-show','0');
+	} else {
+	document.getElementById(qnum + "_unform_" + attnum).style.display='none';
+	document.getElementById(qnum + "_fans_" + attnum).setAttribute('data-show','1');
+	}
+
+}
+
+function get_disabled(idtag) {
+
+	if (parent.document.getElementById(idtag)) {
+	parent.document.getElementById(idtag).style.display='none';
+	}
+}
+
+function get_enabled(idtag) {
+
+	if (parent.document.getElementById(idtag)) {
+	parent.document.getElementById(idtag).style.display='inline';
+	}
+
+}
+
+	
+function goto(url) {
+    document.location = url;
+}
+
+
+function dis(idtag) { 
+	if (parent.document.getElementById(idtag)) {
+	parent.document.getElementById(idtag).style.display='none';
+	}
+}
+
+
+function opp_dis(idtag,html) { 
+	if (parent.document.getElementById(idtag)) {
+	parent.document.getElementById(idtag).style.display='inline';
+
+		if (html) {
+		parent.document.getElementById(idtag).innerHTML=html;
+		}
+
+	}
+}
+
+
+function alldis(idtag) {
+	var k = 42;
+	var j=0;
+	for (j=0;j<=k;j++) {
+	dis(idtag + j);
+	}
+}
+
+
+function opp_alldis(idtag,html) {
+	var k = 42;
+	var j=0;
+	for (j=0;j<=k;j++) {
+	opp_dis(idtag + j,html);
+	}
+}
+
+
+function checkStatus() {
+
+var cli;
+
+	if (window.XMLHttpRequest) {
+	cli = new XMLHttpRequest();
+	} else {
+	cli = xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	cli.onreadystatechange = function() {
+		if (cli.readyState === 4) {
+			if (cli.status !== 200) {
+			alert('Warning! Your work was NOT saved.  The reason is that your connection to the server has been lost.  The most likely cause for this is that your internet connection is down.  So please check your internet connection and then try saving your work again.');
+			} 
+		}
+	};
+
+
+cli.open('GET', '../check.txt?_time=' + (new Date()).getTime());
+cli.send();
+}
+
+
+
+function setFocus() {
+
+
+}
+
+</script>
+
+</head>
+
+<body style="background-color:white;" onload="setFocus()" class="FORMfields">
+
+
+
+<div class="ffForm">
+
+	<table style="background:#f1f1f1;width:100%;text-align:left"><tbody><tr><td style="font-size:30px;font-family:helvetica;font-weight:bold;color:#990033;padding-right:20px;vertical-align:top;width:23%">childsmath<br><span style="font-size:16px;white-space:nowrap"><span class="logo1">Math 1B03 Term 2/1ZC3<br><div style="padding-top:10px">Matlab Lab #1<span class="mobile"> for user: chowdhaj</span></div></span></span></td><td class="mobile" style="width:23%"><img style="width:190px;height:104px;padding-right:20px" src="./Matlab 1_files/maclogopms.gif"></td><td class="logo3" style="width:170px"><table><tbody><tr><td style="color:#990033;font-weight:bold;font-family:helvetica;font-size:16px">&nbsp;&nbsp;Mathematics<br>&nbsp;and Statistics</td></tr><tr><td><img src="./Matlab 1_files/ms_formula.png"></td></tr></tbody></table></td></tr></tbody></table><hr>
+	<a name="ffStart"></a>
+
+			
+<div style="margin:0px 0px 10px 5px;" class="ffField">
+<a href="https://www.childsmath.ca/childsa/forms/1zcStuff/student_admin.php">« Back to Admin Page</a> <span id="warn" style="display:none;color:red;font-weight:bold"> (You should save you work before pressing this link.)</span>
+</div>
+
+	<table border="1" style="border-collapse:collapse; border-color:#D8D8D8; text-align:left; width:100%; margin-bottom:3px; margin-top:2px"><tbody><tr><td style="color:white; font: normal normal bold 12px verdana,sans-serif;  background-color:#687CCA;padding-top:12px;padding-bottom:8px;padding-left:12px;padding-right:12px"><span class="ml">Matlab Lab #1 for: JATIN CHOWDHARY (400033011)</span></td></tr><tr><td class="ffSectionTitleBottomMiddle" style="padding:6px">
+ 
+
+
+	<form id="my_form" name="form1" action="https://www.childsmath.ca/childsa/forms/1zcStuff/onlineform_2.php?assign=2#ffStart" method="post" enctype="multipart/form-data">
+
+
+						
+						<div style="padding-left:15px;margin-bottom:10px;">
+							<span class="help" style="padding-left:0px;font-size:13px;"><b>The due date for this assignment has now passed.</b><ul><li> <a style="color:green">Answers</a> for each question, and your <a style="color:red">mark</a> for each question,  appear beside the question.</li></ul></span>
+						</div>
+
+
+<div style="text-align:center; color:red; font-size:18px">
+<b>Total:</b> 16/16<div style="font-size:16px"><b>TA:</b> Anthony Tan (<a style="color:red; font-weight:bold;" href="mailto:tana4@mcmaster.ca">tana4@mcmaster.ca</a>)</div><br></div>
+
+
+							
+
+									<table class="ffTableSetFORMfields">
+					<tbody><tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><br><br><div style="width:100%;margin-left:3px;"><b class="spiffy"><b class="spiffy1"><b></b></b><b class="spiffy2"><b></b></b><b class="spiffy3"></b><b class="spiffy4"></b><b class="spiffy5"></b></b><div class="spiffyfg" style="color:white; font: normal normal bold 14px verdana,sans-serif; text-align:justify"><table style="margin-left:25px; margin-right:25px"><tbody><tr><td>Before attempting this lab you should work through <a target="_blank" style="color:yellow;font-size:18px" href="http://www.childsmath.ca/childsa/forms/1zcStuff/labs/Tutorial1.html">Tutorial 1</a>. Further information about the labs, including scheduled lab times and how to obtain Matlab can be found on the course web site. And here are some <a style="color:yellow;font-size:18px" target="_blank" href="https://ms.mcmaster.ca/~mcleac3/math1ZC3/MatLabBasics.html">videos</a> to help you get started with Matlab.<br><br>To avoid transcription errors, copy and paste your numerical answers from Matlab into the appropriate boxes below.  Do NOT try to manually enter numerical answers, and do NOT modify the format of the numerical answers from Matlab.  Just copy and paste them into the appropriate place on the answer sheet below.</td></tr></tbody></table></div><b class="spiffy"><b class="spiffy5"></b><b class="spiffy4"></b><b class="spiffy3"></b><b class="spiffy2"><b></b></b><b class="spiffy1"><b></b></b></b></div></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_1"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #1: </a></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span>Enter the following 3 matrices into Matlab, <br><br><table><tbody><tr><td><i>A</i>&nbsp;=&nbsp;</td><td><table cellpadding="0" cellspacing="0" class="matrixbrak"><tbody><tr><td class="lbrak"></td><td> <table cellpadding="0" cellspacing="0" class="matrix"><tbody><tr><td>-42</td><td>15</td><td>42</td><td>3</td></tr><tr><td>0</td><td>-28</td><td>-24</td><td>-6</td></tr><tr><td>3</td><td>20</td><td>-23</td><td>-17</td></tr><tr><td>47</td><td>10</td><td>49</td><td>33</td></tr><tr><td>-15</td><td>38</td><td>-2</td><td>-48</td></tr></tbody></table></td><td class="rbrak"></td></tr></tbody></table> </td><td>,&nbsp;&nbsp; <i>B</i>&nbsp;=&nbsp;</td><td>
+<table cellpadding="0" cellspacing="0" class="matrixbrak"><tbody><tr><td class="lbrak"></td><td> <table cellpadding="0" cellspacing="0" class="matrix"><tbody><tr><td>-22</td><td>27</td><td>37</td><td>28</td></tr><tr><td>30</td><td>-24</td><td>43</td><td>-39</td></tr></tbody></table></td><td class="rbrak"></td></tr></tbody></table> </td><td>,&nbsp;&nbsp; <i>C</i>&nbsp;=&nbsp;</td><td>
+<table cellpadding="0" cellspacing="0" class="matrixbrak"><tbody><tr><td class="lbrak"></td><td> <table cellpadding="0" cellspacing="0" class="matrix"><tbody><tr><td>39</td><td>8</td></tr><tr><td>14</td><td>36</td></tr><tr><td>-16</td><td>12</td></tr><tr><td>43</td><td>-44</td></tr><tr><td>-36</td><td>3</td></tr></tbody></table></td><td class="rbrak"></td></tr></tbody></table> 
+</td></tr></tbody></table><br><br>
+
+To check that you have correctly entered these matrices into Matlab, verify that<br><br>
+
+<table><tbody><tr><td><i>A<sup style="vertical-align: baseline;position: relative;bottom: 1ex">T</sup>CB</i>&nbsp;=&nbsp;</td><td><table cellpadding="0" cellspacing="0" class="matrixbrak"><tbody><tr><td class="lbrak"></td><td> <table cellpadding="0" cellspacing="0" class="matrix"><tbody><tr><td>-91640</td><td>81537</td><td>-71384</td><td>118607</td></tr><tr><td>-5790</td><td>-5379</td><td>-81287</td><td>8166</td></tr><tr><td>-173658</td><td>175107</td><td>14875</td><td>223446</td></tr><tr><td>-135704</td><td>141012</td><td>42068</td><td>174344</td></tr></tbody></table></td><td class="rbrak"></td></tr></tbody></table> </td><td>, &nbsp;and that tr&nbsp;(<i>A<sup style="vertical-align: baseline;position: relative;bottom: 1ex">T</sup>CB</i>) = 92200.</td></tr></tbody></table><br></span></td></tr></tbody></table><table><tbody><tr style="vertical-align:top"><td style="padding-right:3px"><span style="font-weight:bold; font-size:16px">(a)</span></td> <td style="padding-top:2px; font-size:16px;"><span>Let <i>D</i> = <i>CBA<sup style="vertical-align: baseline;position: relative;bottom: 1ex">T</sup></i>.  &nbsp;Find <i>d</i><sub>31</sub> (i.e., find the entry in row 3, column 1 of the matrix <i>D</i>)<br></span></td></tr></tbody></table><table><tbody><tr style="vertical-align:top"><td style="padding-right:3px"><span style="font-weight:bold; font-size:16px">(b)</span></td> <td style="padding-top:2px; font-size:16px;"><span>Let <i>E</i> = <i>AB<sup style="vertical-align: baseline;position: relative;bottom: 1ex">T</sup>C<sup style="vertical-align: baseline;position: relative;bottom: 1ex">T</sup></i>.  &nbsp;Find tr&nbsp;(<i>E</i>)</span></td></tr></tbody></table><table><tbody><tr style="vertical-align:top"><td style="padding-right:3px"><span style="font-weight:bold; font-size:16px">(c)</span></td> <td style="padding-top:2px; font-size:16px;"><span>Let <i>F</i> be the reduced row echelon form of <i>A<sup style="vertical-align: baseline;position: relative;bottom: 1ex">T</sup>CB</i>.  &nbsp;Find <i>f</i><sub>14</sub>.  (i.e., find the entry in row 1, column 4, of the reduced row echelon form of <i>A<sup style="vertical-align: baseline;position: relative;bottom: 1ex">T</sup>CB</i>).</span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1"><div class="cell"><label class="display">Problem #1(a):</label></div></td>
+						<td class="ffTableSetFORMfieldsField1"><div class="cell"><table class="FORMfields"><tbody><tr class="FORMfields"><td class="FORMfields"><div class="display">-46644</div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> -46644</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> 2/2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2"><div class="cell"><label class="display">Problem #1(b):</label></div></td>
+						<td class="ffTableSetFORMfieldsField2"><div class="cell"><table class="FORMfields"><tbody><tr class="FORMfields"><td class="FORMfields"><div class="display">92200</div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> 92200</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> 2/2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1"><div class="cell"><label class="display">Problem #1(c):</label></div></td>
+						<td class="ffTableSetFORMfieldsField1"><div class="cell"><table class="FORMfields"><tbody><tr class="FORMfields"><td class="FORMfields"><div class="display">-1.3511</div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> -1.3511</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> 2/2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #1</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try3">1(a) <span id="q1_part_c_answer_1" onclick="show_unform(&#39;q1_part_c&#39;,&#39;1&#39;)"><span style="cursor:pointer" id="q1_part_c_fans_1" data-show="1">-46644</span><span style="display:none;font-family:courier;font-size:13px;margin-left:28px" id="q1_part_c_unform_1"><br><span style="margin-left:28px">-46644</span></span></span><br>1(b) <span id="q1_part_d_answer_1" onclick="show_unform(&#39;q1_part_d&#39;,&#39;1&#39;)"><span style="cursor:pointer" id="q1_part_d_fans_1" data-show="1">92200</span><span style="display:none;font-family:courier;font-size:13px;margin-left:28px" id="q1_part_d_unform_1"><br><span style="margin-left:28px">92200</span></span></span><br>1(c) <span id="q1_part_e_answer_1" onclick="show_unform(&#39;q1_part_e&#39;,&#39;1&#39;)"><span style="cursor:pointer" id="q1_part_e_fans_1" data-show="1">-1.3511</span><span style="display:none;font-family:courier;font-size:13px;margin-left:28px" id="q1_part_e_unform_1"><br><span style="margin-left:28px">-1.3511</span></span></span><br></td><td class="try3">1(a) <span id="q1_part_c_answer_2" onclick="show_unform(&#39;q1_part_c&#39;,&#39;2&#39;)"></span><br>1(b) <span id="q1_part_d_answer_2" onclick="show_unform(&#39;q1_part_d&#39;,&#39;2&#39;)"></span><br>1(c) <span id="q1_part_e_answer_2" onclick="show_unform(&#39;q1_part_e&#39;,&#39;2&#39;)"></span><br></td><td class="try3">1(a) <span id="q1_part_c_answer_3" onclick="show_unform(&#39;q1_part_c&#39;,&#39;3&#39;)"></span><br>1(b) <span id="q1_part_d_answer_3" onclick="show_unform(&#39;q1_part_d&#39;,&#39;3&#39;)"></span><br>1(c) <span id="q1_part_e_answer_3" onclick="show_unform(&#39;q1_part_e&#39;,&#39;3&#39;)"></span><br></td></tr><tr><td class="try2">Your Mark:</td><td class="try3">1(a) <span id="q1_part_c_mark_1">2/2<span style="color:green;font-weight:bold"> ✔</span></span><br>1(b) <span id="q1_part_d_mark_1">2/2<span style="color:green;font-weight:bold"> ✔</span></span><br>1(c) <span id="q1_part_e_mark_1">2/2<span style="color:green;font-weight:bold"> ✔</span></span><br></td><td class="try3">1(a) <span id="q1_part_c_mark_2"></span><br>1(b) <span id="q1_part_d_mark_2"></span><br>1(c) <span id="q1_part_e_mark_2"></span><br></td><td class="try3">1(a) <span id="q1_part_c_mark_3"></span><br>1(b) <span id="q1_part_d_mark_3"></span><br>1(c) <span id="q1_part_e_mark_3"></span><br></td></tr></tbody></table><div id="partial_1" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_2"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #2: </a></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-right:3px"><span style="font-weight:bold; font-size:16px">(a)</span></td> <td style="padding-top:2px; font-size:16px;"><span>Find the value of the following product: 1 × 3 × 5 × ⋯ × 65
+<br><br><b>Hint:</b> Use the colon operator to produce the vector [1  3  5  …  65], and then find the product of the elements of that vector.<br><br></span></td></tr></tbody></table><table><tbody><tr style="vertical-align:top"><td style="padding-right:3px"><span style="font-weight:bold; font-size:16px">(b)</span></td> <td style="padding-top:2px; font-size:16px;"><span>Find the value of the following sum:
+
+5 + 8 + 11 + ⋯ + 239</span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2"><div class="cell"><label class="display">Problem #2(a):</label></div></td>
+						<td class="ffTableSetFORMfieldsField2"><div class="cell"><table class="FORMfields"><tbody><tr class="FORMfields"><td class="FORMfields"><div class="display">7.2979e+45</div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> 7.2979e+45</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> 2/2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1"><div class="cell"><label class="display">Problem #2(b):</label></div></td>
+						<td class="ffTableSetFORMfieldsField1"><div class="cell"><table class="FORMfields"><tbody><tr class="FORMfields"><td class="FORMfields"><div class="display">9638</div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> 9638</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> 2/2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #2</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try3">2(a) <span id="q1_part_f_answer_1" onclick="show_unform(&#39;q1_part_f&#39;,&#39;1&#39;)"><span style="cursor:pointer" id="q1_part_f_fans_1" data-show="1">7.2979e+45</span><span style="display:none;font-family:courier;font-size:13px;margin-left:28px" id="q1_part_f_unform_1"><br><span style="margin-left:28px">7.2979e+45</span></span></span><br>2(b) <span id="q2_part_a_answer_1" onclick="show_unform(&#39;q2_part_a&#39;,&#39;1&#39;)"><span style="cursor:pointer" id="q2_part_a_fans_1" data-show="1">9638</span><span style="display:none;font-family:courier;font-size:13px;margin-left:28px" id="q2_part_a_unform_1"><br><span style="margin-left:28px">9638</span></span></span><br></td><td class="try3">2(a) <span id="q1_part_f_answer_2" onclick="show_unform(&#39;q1_part_f&#39;,&#39;2&#39;)"></span><br>2(b) <span id="q2_part_a_answer_2" onclick="show_unform(&#39;q2_part_a&#39;,&#39;2&#39;)"></span><br></td><td class="try3">2(a) <span id="q1_part_f_answer_3" onclick="show_unform(&#39;q1_part_f&#39;,&#39;3&#39;)"></span><br>2(b) <span id="q2_part_a_answer_3" onclick="show_unform(&#39;q2_part_a&#39;,&#39;3&#39;)"></span><br></td></tr><tr><td class="try2">Your Mark:</td><td class="try3">2(a) <span id="q1_part_f_mark_1">2/2<span style="color:green;font-weight:bold"> ✔</span></span><br>2(b) <span id="q2_part_a_mark_1">2/2<span style="color:green;font-weight:bold"> ✔</span></span><br></td><td class="try3">2(a) <span id="q1_part_f_mark_2"></span><br>2(b) <span id="q2_part_a_mark_2"></span><br></td><td class="try3">2(a) <span id="q1_part_f_mark_3"></span><br>2(b) <span id="q2_part_a_mark_3"></span><br></td></tr></tbody></table><div id="partial_2" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_3"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #3: </a></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span>Consider the below matrix <i>A</i>, which you can copy and paste directly into Matlab.  The matrix contains 3 columns, which represent the final grades in a course with 3 sections of equal size.  The first column is C01, the second is C02, and the third is C03. <br><br>
+
+
+A = [91.88 67.14 73.47;26.66 12.19 35.47;84.48 22.29 55.99;75.25 100 100;40.81 45.31 85.96;78.34 93.59 49.61;44.79 39.59 40.74;67.35 49.74 100;100 97.05 77.09;62.22 6.28 100;57.96 14.75 69.35;79.62 43.83 47.54;66.01 58.74 21.29;72.29 62.06 100;88.94 52.01 35.69;82.22 74.5 16.19;86.83 21.8 75.01;80.54 95.87 42.69;100 50.84 45.18;78.98 36.15 94.96;98.55 55.07 57.31;14.45 8.23 100;79.03 73.57 60.64;45.63 34.27 89.65;46.46 96.44 64.78;88.62 20.76 100;100 100 28;12.34 64.74 68.48;97.13 23.82 40.75;18.99 66.09 80.55;61.43 48.58 93.92;63.64 36.26 18.44;82.07 28.79 84.3;70.2 49.57 88.84;64.42 37.3 67.9;32.92 61.69 66.4;71.02 70.11 95.8;67.8 55.05 32.05;52.72 96.66 89.41;76.49 72.24 80.51;19.03 14.39 63.61;100 44.52 35.22;100 16.47 100;23.07 40.68 63.68;65.75 35.19 80.21;97.34 100 63.17;51.15 61.65 100;85.93 72.27 46.07;97.18 22.45 57.32;30.56 49.46 18.42;91.35 56.68 37.52;49.79 64.81 18.7;51.21 72.07 43.23;64.3 100 34.65;96.95 62.74 100;38.66 55.4 100;90.29 27.63 63.34;73.95 69.81 77.15;52.08 51.06 34.68;28.84 15.35 77.52;88.88 86.64 100;11.14 76.22 37.29;65.56 14.23 36.32;83.25 59.57 97.46;70.15 100 54.92;100 100 86.31;78.59 100 33.8;11.4 49.61 52.22;35.53 54.3 32.79;98.94 45.97 25.01;100 17.98 41.35;100 16.39 100;94.26 55.75 35.24;95.13 94.72 89.08;74.19 62.14 75.87;67.13 59.32 54.8;100 33.59 100;57.39 80.49 100;34.84 71.96 45.05;26.77 65.02 79;15.07 96.11 17.97;32.85 83.96 32.37;77.81 42.86 72.46;30.31 61.19 100;74.38 51.94 32.33;35.16 9.27 26.24;25.33 10.34 100;21.68 62.4 49.09;92.51 91.32 34.47;49.37 48.72 65.92;77.08 32.75 95.69;63.16 75.68 52.06;90.15 41.68 67.82;100 46.26 92.11;85.92 46.82 100;83.03 30.6 20.03;22.84 46.8 100;75.29 77.42 99.37;33.9 84.41 84.76;92.8 29.82 100;76.25 61.23 77.15;29.42 36.1 98.25;16.33 12.04 37.12;44.03 72.93 100;100 84.27 55.16;100 33.78 81.11;100 91.5 22.36;91.26 78.86 51.67;57.98 31.19 23.62;45.5 64.91 98.5;29.73 86.59 48.09;20.13 90.31 54.42;77.54 55.64 97.41;83.28 13.87 70.39;61.25 100 70.57;17.02 94.56 100;94.93 100 72.27;76.72 27.86 79.01;100 66.89 100;46.41 31.59 56.12;77.37 12.81 100;46.53 68 87.5;62.56 81.22 57.94;61.02 21.62 34.78;100 40.5 58.39;61.36 63.47 47.94;18.17 68.64 100;100 46.83 71.22;48.31 11.12 64.71;79.7 33.69 94.48;24.34 38.02 68.15;100 69.42 80.88;100 24.59 100;23.44 9.13 44.53;21.65 34.42 76.87;37.77 46.24 49.25;96.44 70.08 42.29;67.41 39.69 23.66;11.31 73.04 76.47;32.84 46.99 92.92;32.77 74.07 58.47;42.58 8.91 40.36;94.55 76.6 34.15;72.27 56.99 92.13;49.56 33.9 20.22;43.19 52.18 25.15;23.09 6.32 25.26;12.32 37.26 35.13;57.25 54.93 100;17.53 53.44 100;16.54 96.65 22.74;14.61 100 97.12;62 76.73 100]<br><br></span></td></tr></tbody></table><table><tbody><tr style="vertical-align:top"><td style="padding-right:3px"><span style="font-weight:bold; font-size:16px">(a)</span></td> <td style="padding-top:2px; font-size:16px;"><span>Use the colon operator to extract the marks from C01, and then find the average of those marks (using the '<span style="font-family:courier">sum</span>' and '<span style="font-family:courier">length</span>' commands).</span></td></tr></tbody></table><table><tbody><tr style="vertical-align:top"><td style="padding-right:3px"><span style="font-weight:bold; font-size:16px">(b)</span></td> <td style="padding-top:2px; font-size:16px;"><span>Use vertical concatenation to create a single column vector consisting of all of the marks from all 3 sections.  Then find the overall class average.</span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2"><div class="cell"><label class="display">Problem #3(a):</label></div></td>
+						<td class="ffTableSetFORMfieldsField2"><div class="cell"><table class="FORMfields"><tbody><tr class="FORMfields"><td class="FORMfields"><div class="display">62.5135</div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> 62.5135</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> 2/2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1"><div class="cell"><label class="display">Problem #3(b):</label></div></td>
+						<td class="ffTableSetFORMfieldsField1"><div class="cell"><table class="FORMfields"><tbody><tr class="FORMfields"><td class="FORMfields"><div class="display">60.8706</div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> 60.8706</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> 2/2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #3</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try3">3(a) <span id="q2_part_c_answer_1" onclick="show_unform(&#39;q2_part_c&#39;,&#39;1&#39;)"><span style="cursor:pointer" id="q2_part_c_fans_1" data-show="1">62.5135</span><span style="display:none;font-family:courier;font-size:13px;margin-left:28px" id="q2_part_c_unform_1"><br><span style="margin-left:28px">62.5135</span></span></span><br>3(b) <span id="q2_part_d_answer_1" onclick="show_unform(&#39;q2_part_d&#39;,&#39;1&#39;)"><span style="cursor:pointer" id="q2_part_d_fans_1" data-show="1">60.8706</span><span style="display:none;font-family:courier;font-size:13px;margin-left:28px" id="q2_part_d_unform_1"><br><span style="margin-left:28px">60.8706</span></span></span><br></td><td class="try3">3(a) <span id="q2_part_c_answer_2" onclick="show_unform(&#39;q2_part_c&#39;,&#39;2&#39;)"></span><br>3(b) <span id="q2_part_d_answer_2" onclick="show_unform(&#39;q2_part_d&#39;,&#39;2&#39;)"></span><br></td><td class="try3">3(a) <span id="q2_part_c_answer_3" onclick="show_unform(&#39;q2_part_c&#39;,&#39;3&#39;)"></span><br>3(b) <span id="q2_part_d_answer_3" onclick="show_unform(&#39;q2_part_d&#39;,&#39;3&#39;)"></span><br></td></tr><tr><td class="try2">Your Mark:</td><td class="try3">3(a) <span id="q2_part_c_mark_1">2/2<span style="color:green;font-weight:bold"> ✔</span></span><br>3(b) <span id="q2_part_d_mark_1">2/2<span style="color:green;font-weight:bold"> ✔</span></span><br></td><td class="try3">3(a) <span id="q2_part_c_mark_2"></span><br>3(b) <span id="q2_part_d_mark_2"></span><br></td><td class="try3">3(a) <span id="q2_part_c_mark_3"></span><br>3(b) <span id="q2_part_d_mark_3"></span><br></td></tr></tbody></table><div id="partial_3" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_4"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #4: </a></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span>Suppose that <i>A</i> is a 10 × 10 matrix, and we want to extract a submatrix consisting of rows 5 to 9, and columns 4 to 8 of <i>A</i>.  What single Matlab command (using 10 characters or less) could accomplish this?  (Assume that the matrix <i>A</i> has already been defined in Matlab, and has been called <span class="code">A</span>.)<br><br>
+Note that for this question you should test your answer to see if it works.  For this purpose it would be useful to have a 10 × 10 matrix sitting around somewhere.  There are several ways to quickly generate matrices in Matlab.  For example, <span style="font-family:courier">rand(10)</span> will produce a 10 × 10 matrix whose entries are random numbers between 0 and 1. <span style="font-family:courier">magic(10)</span> will produce a 10 × 10 magic square matrix.</span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2"><div class="cell"><label class="display">Problem #4:</label></div></td>
+						<td class="ffTableSetFORMfieldsField2"><div class="cell"><table class="FORMfields"><tbody><tr class="FORMfields"><td class="FORMfields"><div class="display">A(5:9,4:8)</div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> A(5:9,4:8)</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> 2/2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #4</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try4"><span id="q2_part_e_answer_1">(5:9,4:8)</span></td><td class="try4"><span id="q2_part_e_answer_2">A(5:9,4:8)</span></td><td class="try4"><span id="q2_part_e_answer_3"></span></td></tr><tr><td class="try2">Your Mark:</td><td class="try4"><span id="q2_part_e_mark_1">1/2<span style="color:green;font-weight:bold"> ✔</span><span style="color:red">✘</span></span></td><td class="try4"><span id="q2_part_e_mark_2">2/2<span style="color:green;font-weight:bold"> ✔</span></span></td><td class="try4"><span id="q2_part_e_mark_3"></span></td></tr></tbody></table><div id="partial_4" style="margin-left:150px;color:blue;font-size:11px"><b>Note:</b> Your mark on each question will be the MAXIMUM of your marks on each try.<br>(So there is no harm in making another attempt at a partially correct answer.)</div><br><br></div></div></td>
+					</tr>
+				</tbody></table>			
+
+	</form>
+
+
+
+	</td></tr></tbody></table></div>
+
+
+
+
+<iframe name="save_iframe" width="0" height="0" frameborder="0" src="./Matlab 1_files/saved_resource.html">
+Alternate text if the iframe cannot be rendered
+</iframe> 
+
+
+
+
+
+
+
+</body></html>
