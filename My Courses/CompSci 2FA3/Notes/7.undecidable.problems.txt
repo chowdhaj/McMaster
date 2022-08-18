@@ -1,0 +1,63 @@
+presentation.7.undecidable.problems.txt
+
+- A universal turing machine can simulate any Turing machine
+
+- The universal Turing machine accepts an encoding scheme over {0,1}. 
+- The Turing machine that it accepts is represented by a String of {0,1} and its input is also represented with {0,1]}
+
+- Universal Turing machines make Turing machines very powerful
+
+
+
+Undecidable Problems
+
+	Diagonalization
+
+		- Georg Cantor should that there does not exist a bijection
+		f : N -> PS(N)
+		- The proof was done by diagonalization
+
+Halting Problem
+
+	- The halting problem is the problem of deciding whether a given Turing Machine will halt on a given input
+
+	- The halting problem is semidecidable according to proposition 3
+
+	- Any universal Turing machine semidecides the halting problem
+
+	- The halting problem is undecidable according to theorem 3
+		- Shown by Church and Turing
+		- Proof is done by diagonalization
+	
+	- Watch Neso Academy for more info.
+
+	- Leibniz's Dream of having a computer solve all problems is not possible due to the Halting problem as shown by Turing and Church.
+
+Reduction
+
+	- If A is reducible to B and B is r.e. then A is r.e.
+		- Both A and B can be accepted by a Turing machine
+	- If A is reducible to B and B is recursive, then A is recursive
+		- There is a total Turing machine for both A, and B
+
+Undecidable Problems
+
+	- There are many undecidable problems in CAS
+	- The main techniques for showing undecidable problems are:
+		1. Diagonalization
+		2. Reduction
+
+Language, Grammar, Automaton Table
+
+	- Important stuff:
+		- Regular languages
+		- Regular grammar
+		- DFA, NFA
+
+		- Context free grammar, context free language, NPDA
+
+		- r.e.
+		- recursive
+		- Turing machine
+
+											--> Death To Farmer

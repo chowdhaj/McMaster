@@ -1,0 +1,205 @@
+\documentclass[11pt,fleqn]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+
+\lstset{language=python,basicstyle=\ttfamily,breaklines=true,showspaces=false,showstringspaces=false,breakatwhitespace=true,texcl=true,escapeinside={\%*}{*)}}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\sV}{\mbox{$\cal V$}}
+\newcommand{\set}[1]{{\{ #1 \}}}
+\newcommand{\Neg}{\neg} 
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\LeftRightarrow}
+\newcommand{\Forall}{\forall}
+\newcommand{\ForallApp}{\forall\,}
+\newcommand{\Forsome}{\exists}
+\newcommand{\ForsomeApp}{\exists\,}
+\newcommand{\mdot}{\mathrel.}
+
+\begin{document}
+
+%\thispagestyle{empty}
+
+\bc
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Week 04 Exercises}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: January 25, 2020}
+
+\ec
+
+\medskip
+
+\subsection*{Background Definitions}
+
+Let $(S,<)$ be a strict partial order.  $(S,<)$ is \emph{dense} if,
+for all $x,y \in S$ with $x < y$, there is some $z \in S$ such that $x
+< z < y$. The strict total order $(\mathbb{Q}, <_{\rm rat})$ of the
+rationals and the strict total order $(\mathbb{R},<_{\rm real})$ of
+the real numbers are both dense.
+
+\subsection*{Exercises}
+
+\be
+
+  \item Prove that $(\sP(S), \subset)$ is a strict partial order where
+    $S$ is a nonempty set and $\sP(S)$ is the power set of $S$.
+
+  \item  Consider the weak partial order \[P =
+    (\set{\set{1}, \set{2}, \set{4}, \set{1,2}, \set{1,4}, \set{2,4},
+    \set{3,4}, \set{1,3,4}, \set{2,3,4}}, \subseteq).\]
+
+  \be
+
+    \item Find the maximal elements in $P$.
+
+    \item Find the minimal elements in $P$.
+
+    \item Find the maximum element in $P$ if it exists.
+   
+    \item Find the minimum element in $P$ if it exists.
+
+    \item Find all the upper bounds of $\set{\set{2},\set{4}}$ in $P$.
+
+    \item Find the least upper bound of $\set{\set{2},\set{4}}$ in $P$
+      if it exists.
+
+    \item Find all the lower bounds of $\set{\set{1,3,4},
+      \set{2,3,4}}$ in $P$.
+
+    \item Find the greater lower bound of $\set{\set{1,3,4},
+      \set{2,3,4}}$ in $P$ if it exists.
+
+  \ee 
+
+  \item Let $(U,I)$ where $I$ is the \emph{identity relation}, i.e.,
+    the binary relation such that $a \;I\; b$ iff $a = b$.  Show that
+    $(U,I)$ is a weak partial order and not a weak total order.
+
+  \item Let $(\mathbb{Q} \cup
+    \set{-\infty,+\infty}, <)$ be the strict total order such that $<$
+    is the same as $<_{\rm rat}$ on $\mathbb{Q}$ and $-\infty$ and
+    $+\infty$ are minimum and maximum elements, respectively, of
+    $(\mathbb{Q} \cup \set{-\infty,+\infty}, <)$.  Prove that
+    \[(\mathbb{Q} \cup \set{-\infty,+\infty}, <)\] is dense.  
+    (Do not assume that $(\mathbb{Q}, <_{\rm rat})$ is dense.)
+
+  \item Let $(S,<)$ be a strict total order such that there exist $a,b
+    \in S$ with $a < b$ (i.e., $S$ has at least two members).  Show
+    that, if $(S,<)$ is dense, then $(S,<)$ is not a
+    well-order.  
+
+  \item Consider the mathematical structure $(L,<_L)$ where $L$ is a
+    list of integers and $<_L$ is the binary relation on $L$ defined
+    by:
+    \[[a_0,a_1,\ldots,a_n] <_L [b_0,b_1,\ldots,b_n] \mbox{  iff  }
+      \left(\sum_{i=0}^{n} a_i\right) < \left(\sum_{i=0}^{n}
+      b_i\right).\] Prove that $(L,<_L)$ is a strict partial order
+      that is not a strict total order.
+
+  \item Construct a strict partial order $(U,<)$ such that $U$ is
+    infinite, $<$ is well founded, and $(U,<)$ is not a total order
+    (and thus $(L,<_L)$ is not a well-order).
+
+  \item Let \mname{Type} be the inductive set (representing
+    $\sB$-types) defined in the lectures.  Define $a(\alpha)$ be the
+    number of $\mathbb{B}$ and \mname{Base} constructors occurring in
+    $\alpha$ and $b(\alpha)$ be the number of \mname{Function} and
+    \mname{Product} constructors occurring in $\alpha$.  Prove by
+    structural induction that, for all $\alpha \in
+    \mname{Type}$, \[a(\alpha) \le b(\alpha) + 1.\]
+
+  \item Construct a signature of MSFOL that is suitable
+    for formalizing real number arithmetic.
+
+\ee
+\end{document}
+
+\iffalse
+
+  \item Let $\Sigma_{\rm ord} = (\sB,\sC,\sF,\sP,\tau)$ be the
+    signature defined in the lecture slides.  Construct $\Sigma_{\rm
+      ord}$-structures that define the following mathematical
+    structures: $(\mathbb{N},\le)$, $(\mathbb{Z},<)$, $(\mathbb{Q},>)$,
+    and $(\mathbb{R},\not=)$.
+
+  \item Let $\Sigma_{\rm stack}$ be the signature
+    defined in the lecture slides.  Construct a $\Sigma_{\rm
+      stack}$-structure such that $D_{\sf Element} = \mathbb{N}$,
+    $D_{\sf Stack}$ is the set of finite sequences of members of
+    $\mathbb{N}$, and the function symbols of $\Sigma_{\rm stack}$
+    manipulate the members of $D_{\sf Stack}$ as stacks.
+
+  \item Let $\Sigma = (\alpha, a:\alpha, f : \alpha \times \alpha
+    \rightarrow \alpha, p: \alpha \times \alpha \rightarrow
+    \mathbb{B})$.  Compute \mname{fvar} and \mname{bvar} for each of
+    the following $\Sigma$-formulas:
+
+  \be
+
+    \item $\ForsomeApp x : \alpha \mdot \ForsomeApp y : \alpha
+      \mdot p(z:\alpha)$.
+
+    \item $f(x:\alpha) = a \And {}$\\
+      $\ForallApp y : \alpha \mdot
+      ((p\,(y:\alpha) \Or p\,(x:\alpha)) \Implies \ForsomeApp x :
+      \alpha \mdot p(f(x:\alpha)))$.
+
+  \ee
+
+  \item Compute the following substitutions:
+
+  \be
+
+    \item $f(x:\alpha) = a \And {}$\\
+      $\ForallApp y : \alpha \mdot
+      ((p(y:\alpha) \Or p(x:\alpha)) \Implies \ForsomeApp x :
+      \alpha \mdot p(f(x:\alpha)))[x \mapsto f(a)]$.
+
+    \item $f(x:\alpha) = a \And {}$\\
+      $\ForallApp y : \alpha \mdot
+      ((p(y:\alpha) \Or p(x:\alpha)) \Implies \ForsomeApp x :
+      \alpha \mdot p(f(x:\alpha)))[y \mapsto f(a)]$.
+
+    \item $f(x:\alpha) = a \And {}$\\
+      $\ForallApp y : \alpha \mdot
+      ((p(y:\alpha) \Or p\,(x:\alpha)) \Implies \ForsomeApp x :
+      \alpha \mdot p(f(x:\alpha)))[z \mapsto f(a)]$.
+
+  \ee
+
+\fi
+
+

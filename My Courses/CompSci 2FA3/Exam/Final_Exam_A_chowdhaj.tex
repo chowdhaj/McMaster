@@ -1,0 +1,648 @@
+\documentclass[12pt,fleqn]{article}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{ifthen}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning,arrows}
+\usepackage{diagbox}
+\usepackage{stackrel}
+
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\der}[2]{\stackrel[#2]{#1}{\longrightarrow}}
+\newcommand{\ForsomeApp}{\exists\,}
+\newcommand{\mdot}{\mathrel.}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sD}{\mbox{$\cal D$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sM}{\mbox{$\cal M$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\sV}{\mbox{$\cal V$}}
+\newcommand{\set}[1]{{\{ #1 \}}}
+
+\AtEndDocument{~\label{END}}
+
+\renewcommand{\headrule}{}
+\pagestyle{fancyplain}
+\rhead[]{}
+\lhead[]{}
+\fancyfoot[R]{Page~\thepage~of~\pageref{END}}
+\fancyfoot[C]{\ifthenelse{\value{page}=\pageref{END}}{THE~END.}{}}
+
+\newcounter{qctr}     % main question counter
+\setcounter{qctr}{0}
+\newcommand{\question}[1] {  % print a counter and increment it as well
+\refstepcounter{qctr}%       % the next label command will ref. this counter
+\noindent%
+\textbf{%
+\rule{0cm}{1cm}%                add a little vertical space
+Question \arabic{qctr} [#1]}~~% display counter and a message
+}% end question
+
+\begin{document}
+
+\begin{center} 
+{\large \bf COMPSCI/SFWRENG 2FA3 Final Exam}\\[1ex]
+\end{center}
+
+\medskip
+
+\noindent
+DAY CLASS \hfill \textbf{Dr.~W.~M.~Farmer}\\
+VERSION: \hfill \textbf{A}\\
+DURATION OF EXAMINATION: \hfill \textbf{1.25 hours} \\
+MCMASTER UNIVERSITY FINAL EXAMINATION \hfill \textbf{April 22, 2020}
+
+\bigskip
+
+\noindent
+\textbf{Academic integrity statement}
+
+\medskip
+
+By submitting this work, I certify that the work represents solely my
+own independent efforts. I confirm that I am expected to exhibit
+honesty and use ethical behaviour in all aspects of the learning
+process.  I confirm that it is my responsibility to understand what
+constitutes academic dishonesty under the Academic Integrity Policy
+available at
+
+\begin{enumerate}
+
+  \item[] \bsp \href{https://secretariat.mcmaster.ca/app/uploads/Academic-Integrity-Policy-1-1.pdf}{\url{https://secretariat.mcmaster.ca/app/uploads/Academic-Integrity-Policy-1-1.pdf}} \esp
+
+\end{enumerate}
+
+\noindent
+\textbf{General instructions}
+
+\medskip
+
+Make a copy of the file \texttt{Final\_Exam\_A.tex} attached to the
+Final Exam A folder and name it
+\[\texttt{Final\_Exam\_A\_\emph{YourMacID}.tex}\] where \texttt{\emph{YourMacID}}
+is your MacID.
+
+
+The exam consists of 20 short-answer questions.  Answer each of the 20
+questions in your \texttt{Final\_Exam\_A\_\emph{YourMacID}.tex}.  Your
+answers should be one or at most two sentences long.  Each question is
+worth 1 mark.  An answer can receive 0, 0.5, or 1 mark.
+
+\bsp
+After you have finished your
+\texttt{Final\_Exam\_A\_\emph{YourMacID}.tex} file, use
+\texttt{pdflatex} to produce a
+\texttt{Final\_Exam\_A\_\emph{YourMacID}.pdf} file.  Submit both your
+\texttt{.tex} and \texttt{.pdf} files to the Final Exam A folder.
+\esp
+
+You have 75 minutes, starting at 12:30 PM on April 22, to complete the
+exam and submit your files.  If your files are submitted to the Final
+Exam A folder after 1:45 PM, April~22, 2020, a penalty will be imposed
+(see below).
+
+\bigskip
+
+\noindent
+\textbf{Special instructions}
+
+\begin{enumerate}
+
+  \item The use of notes, textbooks, and electronic devices is
+    permitted.
+
+  \item \textbf{You are \emph{not} allowed to communicate with
+    \emph{any} person about the exam questions.}  This means, in
+    particular, you are not allowed to obtain help from any person or
+    provide help to other students.  Violations of this requirement
+    will be processed as a breach of the McMaster University Academic
+    Integrity Policy.
+
+  \item Read each question carefully.
+
+  \item Try to allocate your time sensibly and divide it appropriately
+    between the questions.
+
+  \item Only the first two sentences of an answer will be read; any
+    additional sentences will be ignored.
+
+\end{enumerate}
+
+\noindent
+\textbf{Penalties}
+
+\begin{enumerate}
+
+  \item \textbf{If either your .tex file or .pdf file is missing or
+    unusable, you will receive a 20\% penalty (i.e., 6 points will be
+    subtracted from your final exam mark).}
+
+  \item \textbf{If your files are submitted late, you will receive a
+    2\% penalty times the number of minutes the files are late (i.e.,
+    6 points will be subtracted from your final exam mark if your
+    files are 10 minutes late).}
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark} \textbf{Q1}
+
+\bigskip
+
+What is the advantage of a traditional proof over a formal proof?
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{The MAIN advantage of traditional proofs over formal proofs is Communication.
+In addition, it is good for organization, discovery, and beauty.}
+
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark} \textbf{Q2}
+
+\bigskip
+
+What is the advantage of a formal proof over a traditional proof?
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{The MAIN advantage of a formal proof over a traditional proof is 
+certification because there is a very high assurance that the theorem is correct.
+Formal proofs are also good for organization and discovery.}
+
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark} \textbf{Q4}
+
+\bigskip
+
+How does one usually prove an existential statement $\ForsomeApp x \in S
+\mdot A$?
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{For an existential statement, you need to come up with an example for
+when 'x' holds in the property 'A'.}
+
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark} \textbf{Q9}
+
+\bigskip
+
+What does it mean that an inductive set $S$ has ``no confusion''?
+
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{If $S$ has "no confusion", then each constructor you make with its elements
+are unique. In other words, there are no duplicates constructors (or constructors
+that are the same). }
+
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark} \textbf{Q11}
+
+\bigskip
+
+The mathematical structure $(\mathbb{N},<)$, where $<$ is the usual
+order on $\mathbb{N}$, is a well-order.  What is the ordinal induction
+principle for $(\mathbb{N},<)$?
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{$\forall x \in \mathbb{N} . ((\forall y \in \mathbb{N} . y < x \rightarrow
+P(y)) \rightarrow P(x)) \rightarrow \forall x \in \mathbb{N} . P(x)$}
+
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark} 
+
+\bigskip
+
+Give an example of a well-order $(U,<)$ such that $U$ is infinite and
+the members of $U$ are not natural numbers.
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{The Integer (set of numbers) are a good example of this.}
+
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark}
+
+\bigskip
+
+Let $\Sigma = ($\sB$,\sC,\sF,\sP,\tau)$ be a signature of
+MSFOL where $\sB = \set{\alpha,\beta}$, $\sC = \set{a,b}$, $\sF =
+\set{f,g}$, $\sP = \set{p,q}$, and $\tau$ is defined by the following
+table: \bc
+\begin{tabular}{|c|c|}
+\hline
+$s$ & $\tau(s)$\\
+\hline\hline
+$a$ & $\alpha$\\
+$b$ & $\beta$\\
+$f$ & $(\alpha \rightarrow \beta)$\\
+$g$ & $(\beta \rightarrow \alpha)$\\
+$p$ & $(\alpha \rightarrow \mathbb{B})$\\
+$q$ & $((\alpha \times \beta) \rightarrow \mathbb{B})$\\
+\hline
+\end{tabular}
+\ec
+
+Give an example of a \textbf{closed $\Sigma$-formula that contains the
+  universal quantifier but no boolean operators}.  Assume $\sV =
+\set{x,y,z,x',y',z',x'',y'',z'',\ldots}$.
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{???}
+
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark}
+
+\bigskip
+
+Let $\Sigma = (\sB,\sC,\sF,\sP,\tau)$ be a signature of MSFOL; $\sM =
+(\sD,I)$ be a $\Sigma$-structure where $\sD = \set{D_\alpha \mid
+  \alpha \in \sB}$; and $\phi$ be a variable assignment into $\sM$.
+What can you say about the value of $V^{\cal M}_{\phi}(t)$ \textbf{if
+  $t$ is a $\Sigma$-term of type $\alpha \in \sB$}?
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{The value is satisfiable}
+
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark}
+
+\bigskip
+
+What kind of automaton does the following transition table define?
+(You don't need to determine the language that the automaton accepts.)
+
+\begin{center}
+\begin{tabular}{r|l|ll|}
+\cline{2-4}
+& {\diagbox{$Q$}{$\Sigma$}} & $0$ & $1$\\
+\cline{2-4}
+start $\rightarrow$ & $p$ & $\set{q,s}$ & $\set{q}$\\
+final $\rightarrow$ & $q$ & $\set{r}$   & $\set{q,r}$\\
+                    & $r$ & $\set{s}$   & $\set{p}$\\
+final $\rightarrow$ & $s$ & $\set{\,}$  & $\set{p}$\\
+\cline{2-4}
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{This is an NFA (but not with epsilon transitions. not.)}
+
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark}
+
+\bigskip
+
+What is Thompson's construction used for?
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{Thompson's constructor is used to convert a regular expression into an
+NFA, with or without epsilon transitions.}
+
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark}
+
+\bigskip
+
+Who first showed that there are undecidable decision problems?
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{Alonzo Church first showed this.}
+
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark}
+
+\bigskip
+
+Who invented regular expressions?
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{Stephen Kleene invented regular expressions.}
+
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark}
+
+\bigskip
+
+What is an example of a language that is context-free but not regular?
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{An example of context-free grammar is L = $\{a^{n}b^{n} | n > 0\}$}
+
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark}
+
+\bigskip
+
+What is an example of a language that is linear but not regular?
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{A language that is linear but not regular is: L = $\{a^{n}b^{n}c^{n} | n > 0\}$}
+
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark}
+
+\bigskip
+
+What normal form is a context-free grammar in if all its productions
+have the form $A \rightarrow aB_1 \cdots B_k$ where $k \ge 0$.
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{It is in greibach normal form}
+
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark}
+
+\bigskip
+
+Let $M$ be a nondeterministic push-down automaton (NPDA)
+$(Q,\Sigma,\Gamma,\delta,s,\bot,F)$.  A configuration of $M$ is a
+member of $Q \times \Sigma^* \times \Gamma^*$.  What do the three
+components of a configuration designate?
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{These three components make up the transition table, which shows you
+how the automaton outputs based on each input. For example: If you give it a
+value of '0', then the automaton will output 'x' or something else.}
+
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark}
+
+\bigskip
+
+Which kind of languages do nondeterministic push-down automata (NPDAs)
+accept?
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{They accept context-free grammars}
+
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark}
+
+\bigskip
+
+What is the tape used for in a Turing machine?
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{The tape in a Turing machine is basically memory and stores the program. 
+You read from it and
+you can write to it, in either direction, and it is semi-infinite. 
+Once you reach the END of the tape, the program is over, and the TM halts.}
+
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark}
+
+\bigskip
+
+What kind of language is $A$ if the decision problem ``$x \in A$'' is
+decidable?
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{The language is recursive because there is some total Turing Machine that
+accepts the language, and thus the TM will always halt since it is total.}
+
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark}
+
+\bigskip
+
+What kind of language is $A$ if the decision problem ``$x \in A$'' is
+undecidable?
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{The language CAN be recursively enumerable because the program is 
+undecidable, and the TM may not halt.}
+
+\end{minipage}
+
+\end{document}
+
+\iffalse
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\begin{minipage}{\textwidth} 
+\question{1 mark} \textbf{Q??}
+
+\bigskip
+
+\emph{A question will be written here.}
+
+\bigskip
+
+\textbf{Answer:} 
+
+\bigskip
+
+\emph{Write your answer here.}
+
+\end{minipage}
+
+\fi
+

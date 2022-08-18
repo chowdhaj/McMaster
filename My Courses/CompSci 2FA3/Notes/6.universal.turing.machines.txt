@@ -1,0 +1,86 @@
+presentation.6.universal.turing.machines.txt
+
+Let M be a Turing machine. It can either accept a string and move into the 't' state or reject a string and move into the 'r' state. It can also loop and never accepts or rejects; no determination
+
+A Turing machine is total if it halts on all inputs; so it either accepts or rejects
+
+A language is recursively enumerable if there is a Turing machine that accepts that language
+
+A language is recursive if there is a total Turing machine that accepts that language. A recursive language is special because the Turing machine will always halt. It is deterministic in a sense.
+
+A proposition is a theorem that can be immediately proved; it's pretty obvious according to Dr. Farmer. Example:
+	
+	Proposition 1: If A is recursive, then ~A is also recursive
+		 - If A is recursive then there is a total Turing machine that accepts A, and that turing machine rejects all the members of ~A. But if you reverse the accept and reverse states of the turing machine then it will accept ~A
+		 - Recursive sets are closed under complement
+	Proposition 2: If A and ~A are r.e. then A is recursive
+
+Decision Problem
+
+	- Deciable problems correspond to recursive sets
+		- Decidable IFF A is recursive
+	- Semidecidable IFF A is r.e.
+		- As long as the program is running we don't know if the program is decidable or not
+		- Correspond to r.e. problems
+		- Every decidable problem is semidecidable, but every semidecidable problem is NOT decidable
+	- Undecidable IFF A is nonrecursive
+		- Every semidecidable that is not decidable is undecidable
+
+	- All problems are divided into decidable and undecidable problems
+
+	- If A is r.e., then there is a Turing machine that will enumerate the members of A
+		- If the Turing machine only prints members of A then it enumerates A
+		- Any r.e. set that is accepted by a Turing machine, can be enumerated by a different Turing machine
+
+Regular languages are closed under complement
+Deterministic context-free languages are closed under complement
+Recursive languages are closed under complement
+
+Context-free languages are NOT closed under complement
+R.E. languages are NOT closed under complement
+
+
+
+
+Turing machines can be used to accept a language, and if that accepts that language then it is r.e. If the Turing machine is total the the language is recursive
+
+Turing machines can have infinite number of tapes and a finite number of tapes
+
+Turing machines can have two dimensional tapes
+
+Turing machines can have multiple heads
+
+Turing machines can be non-deterministic
+
+Turing machines can be used to:
+
+	- Decide a decision problem
+	- Semidecide a decision problem
+	- Compute a total function
+		- A turing machine can take 20 inputs and compute a value
+	- Compute a partial function
+		- If the Turing machine loops then it means that the Turing machine is not defined in that input
+	- Enumerate a set of values
+		- Turing machine prints each member of the set we are enumerating
+
+
+Modern computers:
+	- Can store and manipulate massive amounts of data with great speed and accuracy
+	- Can access or control a large variety of peripherial devices
+	- Can store and run programs
+	- Are implemented using electronic technology
+The greatest thing about modern computers is that they can store and run programs. This is the most important thing.
+
+
+
+Universal Turing Machine
+
+	- For each Turing machine that is a string that represents that Turing machine. The string says what is in the turing machine; the states, the input symbols, tape symbols, start state, reject state, accept state, and how the transition function - program - works. This is all encoded in ONE string of 0s and 1s, even the input to the non-universal turing machine
+
+	- A universal turing machine is designed to work as follows. Let U represent the universal turing machine.
+		- U accepts SM#SX if M accepts x
+			- SM = representation of a turing machine
+			- SX = input to SM
+		- U rejects SM#SX if M rejects x
+		- U loops on SM#SX if M loops on x
+		- U rejects y#z, if y is not a valid representation of a turing machine and z is not a valid input for y

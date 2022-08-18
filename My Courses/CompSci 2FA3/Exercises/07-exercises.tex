@@ -1,0 +1,114 @@
+\documentclass[11pt,fleqn]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{color}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sM}{\mbox{$\cal M$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\sV}{\mbox{$\cal V$}}
+\newcommand{\set}[1]{{\{ #1 \}}}
+\newcommand{\Neg}{\neg} 
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\LeftRightarrow}
+\newcommand{\Forall}{\forall}
+\newcommand{\ForallApp}{\forall\,}
+\newcommand{\Forsome}{\exists}
+\newcommand{\ForsomeApp}{\exists\,}
+\newcommand{\mdot}{\mathrel.}
+
+\begin{document}
+
+%\thispagestyle{empty}
+
+\bc
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Week 07 Exercises}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: February 14, 2020}
+
+\ec
+
+\medskip
+
+\thispagestyle{empty}
+
+\subsection*{Exercises}
+
+\be
+
+  \item Construct deterministic finite automata $M =
+    (Q,\Sigma,\delta,s,F)$ such that:
+
+  \be
+
+    \item $\Sigma = \set{a,b,\ldots,z}$ and $L(M)$ contains the single
+      string $calculemus$.
+
+    \item $\Sigma = \set{a,b}$ and $L(M) = \set{x \in \Sigma^* \mid
+      |x| \equiv 0 \mbox{ mod }3}$.
+
+    \item $\Sigma = \set{0,1}$ and $L(M) = \set{x \in \Sigma^* \mid
+      \mbox{$x$ contains the string $101$}}$.
+
+    \item $\Sigma = \set{0,1}$ and $L(M)$ is set of strings in
+      $\Sigma^*$ of the form $0^m1^n$ where $m,n \ge 1$.
+
+    \item $\Sigma = \set{a,b}$ and $L(M)$ is the set of strings in
+      $\Sigma^*$ that contain at least three occurrences of $bbb$.
+      Note: Overlapping is permitted so $bbbbb \in L(M)$.
+
+    \item $\Sigma = \set{a,b}$ and $L(M) = \set{x_1ax_2 \mid |x_1| \ge
+      3 \text{ and } |x_2| \le 4}$.
+
+  \ee
+
+  \item Let $M = (Q,\Sigma,\delta,s,F)$ and $M' = (Q,\Sigma,\delta,s,
+    Q \setminus F)$ be DFAs.  Prove that $L(M') = {\sim}L(M)$.
+
+  \item Let $\Sigma$ be a finite alphabet and $B \subseteq \Sigma^*$.
+    $B$ is \emph{reflexive} if $\epsilon \in B$ and is
+    \emph{transitive} if $BB \subseteq B$.  Prove that, if $A
+    \subseteq \Sigma^*$, then $A^*$ is smallest reflexive and
+    transitive set containing $A$.  That is, show that (1) $A
+    \subseteq A^*$, (2) $A^*$ is reflexive, (3) $A^*$ is transitive,
+    and (4) if $B$ is any other reflexive and transitive set
+    containing $A$, then $A^* \subseteq B$.
+
+  \item Let $M = (Q,\Sigma,\delta,s,F)$ be a DFA.  Prove by induction
+    on $|y|$ that, for all $x,y \in \Sigma^*$ and $q \in
+    Q$, \[\hat{\delta}(q,xy) = \hat{\delta}(\hat{\delta}(q,x),y).\]
+
+\ee
+\end{document}
+
+

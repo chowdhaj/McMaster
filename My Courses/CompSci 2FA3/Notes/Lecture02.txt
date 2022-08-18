@@ -1,0 +1,19 @@
+Lecture02.txt
+
+January 8th, 2020
+
+- Latex was invented by Leslie Lamport
+
+- A proof is a convincing/deductive argument that something is true
+
+- There is NO odd perfect number. This is conjecture because there is no proof for this, yet
+
+- Four colored theorem
+
+- 2DM3 was formal proofs
+
+- 2FA3 is traditional proofs
+
+- Traditional proofs is really good for communication
+
+- Formal proofs are mostly good for certification

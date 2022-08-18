@@ -1,0 +1,130 @@
+\documentclass[11pt,fleqn]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning,arrows}
+\usepackage{diagbox}
+%\usepackage[normalem]{ulem}
+
+\lstset{language=python,basicstyle=\ttfamily,breaklines=true,showspaces=false,showstringspaces=false,breakatwhitespace=true,texcl=true,escapeinside={\%*}{*)}}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\input{../def}
+
+\begin{document}
+
+\bc
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Week 09 Exercises}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Suggested completion date: March 13, 2020}\\[2mm]
+  {\large Revised: March 5, 2020}
+
+\ec
+
+\medskip
+
+\subsection*{Exercises}
+
+\be
+
+  \item Write regular expressions that match the following languages
+    over $\set{a,b}$:
+  
+  \be
+
+    \item The set of all strings that contain an even number of a's.
+
+\medskip
+
+\textbf{Solution}:
+
+\medskip
+
+$b^* + (b^*ab^*ab^*)^*.$
+
+\medskip
+
+    \item The set of all strings that contain an odd number of b's.
+
+    \item The set of all strings that contain an even number of a's or
+      an odd number of b's.
+
+    \item The set of all strings that contain an even number of a's
+      and an odd number of b's.
+
+  \ee
+
+  \item Describe in English the sets denoted by the following regular
+    expressions:
+
+  \be
+
+    \item $(11 + 0)^*(00 + 1)^*$.
+
+    \item $(1 + 01 + 001)^*(\epsilon + 0 + 00)$.
+
+\medskip
+
+\textbf{Solution}:
+
+\medskip
+
+The set of strings in $\set{0,1}^*$ having at most two consecutive 0s.
+
+  \ee
+
+  \item Construct NFAs that are equivalent to the following regular
+    expressions:
+
+  \be
+
+    \item $(000^* + 111^*)^*$.
+
+    \item $(01 + 10)(01 + 10)(01 + 10)$.
+
+  \ee
+ 
+  \item Let $L = \set{a^mb^n \mid m \le 4 \text{ and } n \ge 3}$.
+
+  \be
+
+    \item Write a regular expression that matches $L$.
+
+    \item Write a regular expression that matches ${\sim}L$.
+
+  \ee
+
+\newpage
+
+  \item Prove the following equations are valid for regular
+    expressions.  Here $\alpha = \beta$ means $L(\alpha) = L(\beta)$.
+
+  \be
+
+    \item $\alpha + \alpha = \alpha$.
+
+    \item $\alpha + \beta = \beta + \alpha$.
+
+    \item $\alpha(\beta + \gamma) = \alpha\beta + \alpha\gamma$.
+
+    \item $(\alpha^*)^* = \alpha^*$.
+
+    \item $(\alpha^*\beta^*)^* = (\alpha + \beta)^*$.
+
+  \ee
+
+\ee
+\end{document}
+
+

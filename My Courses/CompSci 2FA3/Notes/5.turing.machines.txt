@@ -1,0 +1,69 @@
+presentation.5.turing.machines.txt
+
+A Turing machine is an automaton. It has:
+
+	1. Tape: 
+		- Has a begin symbol and then a bunch of symbols after it
+		- The tape goes forever and has a bunch of blank symbols that go off to infinity
+		- Two way - you can move left and right
+		- Can be read and written to
+		- Semi-infinite; you can go as far as you want to the left, but not right
+		- The input stream, a^0 to a^n will always be finite
+		- Tape is unbounded, sequentially accessed
+		- Serves for both input and output and is memory
+	2. State: 
+		- Finite set of states
+	3. Program: 
+		- Is a transition function
+		- Transition function is deterministic. There is always one choice of what we can do
+		- Transition function takes a tape symbol and takes a state and produces a new tape symbol and replaces the current symbol
+
+	A deterministic, one-tape Turing Machine is a typle
+	M = (Q, Sigma, Gamma, Left-Endmarker, Blank, Delta, s, t, r)
+	where:
+		- Q = Finite set of elements called states
+		- Sigma = Input alphabet
+		- Gamma = Tape alphabet - includes all symbols in input alphabet
+		- Left-Endmarker = Special symbol from tape alphabet, which is not part of input alphabet
+		- Blank = Part of tape alphabet but not part of input alphabet
+		- Delta = Transition function that takes a state and a tape symbol and gives back a state, a new tape symbol and either L or R which represents left or right
+		- s = Start state
+		- t = Accept state - the state we end in
+		- r = Reject state - the state we end and reject 
+
+	Conditions:
+		1. We can never go left of the endmarker and we can never change the end marker
+		2. Once we are in the accept state, we always remain in the accept state. At this point the Turing machine has halted and will forever stay in the accept state
+		3. Once we are in the reject state, we are in the reject state forever
+
+	A Turing machine can run forever and never reach an accept or reject state. It can loop forever. There is no requirement that a Turing machine must have an accept or reject state.
+
+	A configuration of a Turing machine is
+	M = (q, y, n)
+		 q = state we are in
+		 y = what's on the tape {tape is infinite sequence}
+		 n = points to where the head is looking at the input stream
+
+		 Configurations are represented by alpha, beta, and gamma
+
+		 Omega is used to represent something that is infinitely repeated. It is also an infinite ordinal
+
+	M halts on x if it accepts or rejects x
+
+	A Turing machine does not have to accept or reject, it can loop and not halt. So M loops on x if it neither accepts nor rejects x
+
+	M is total if it halts on all inputs; it does not ever loop no matter the input
+
+	The language of M is the set of strings accepted by M
+
+	A language is recursively enumerable (r.e.) if it is L(M) for some Turing Machine, M
+
+	A language is recursive if it's language M is accepted by a TOTAl Turing machine, M. A total Turing machine always halts and never loops.
+
+	We don't have a way to know if a Turing machine will reject an input, but we do know if we have a total Turing machine
+
+	The recursive languages are a subset of the recursively enumerable languages (r.e.)
+
+	Turing machines work at the lowest possible level because things are manipulated one symbol at a time, and we are moving one space left or right at every step. Simple programs in Turing machines are complicated.
+
+	If a Turing machine is total then the language it accepts is recursive, and the language is context sensitive, not context free

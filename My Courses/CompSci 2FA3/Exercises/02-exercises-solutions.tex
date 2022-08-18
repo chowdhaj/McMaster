@@ -1,0 +1,614 @@
+\documentclass[11pt,fleqn]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+
+\lstset{language=python,basicstyle=\ttfamily,breaklines=true,showspaces=false,showstringspaces=false,breakatwhitespace=true,texcl=true,escapeinside={\%*}{*)}}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\sglsp}{\ }
+\newcommand{\dblsp}{\ \ }
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newenvironment{proof}{\par\noindent{\bf Proof\sglsp}}{\hfill$\Box$}
+\newcommand{\pnote}[1]{{\langle \text{#1} \rangle}} 
+
+\begin{document}
+
+%\thispagestyle{empty}
+
+\bc
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Week 02 Exercises with Solutions}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: January 16, 2020}
+
+\ec
+
+\medskip
+
+\subsection*{Background Definitions}
+
+\begin{enumerate}
+
+  \item The notation $\sum^{n}_{i=m}f(i)$ is defined by: 
+    \[\sum^{n}_{i=m}f(i) =
+      \left\{\begin{array}{ll}
+               0                          & \textrm{if } m > n\\
+               f(n) + \sum^{n-1}_{i=m}f(i) & \textrm{if } m \le n
+             \end{array}
+      \right.\] 
+
+  \item The Fibonacci sequence $\mname{fib} : \mathbb{N} \rightarrow
+    \mathbb{N}$ is defined by:
+    \[\mname{fib}(n) = 
+      \left\{\begin{array}{ll}
+               0 & \textrm{if } n = 0 \\
+               1 & \textrm{if } n = 1 \\
+               \mname{fib}(n-1) + \mname{fib}(n-2) & \textrm{if } n \ge 2
+             \end{array}
+      \right.\]
+
+   \item Let $a,b \in \mathbb{Z}$.  $a$ \emph{divides} $b$, written $a
+     \mid b$, if $b = ac$ for some $c \in \mathbb{Z}$.
+
+\end{enumerate}
+
+\subsection*{Exercises}
+
+\be
+
+  \item Prove the following statements:
+
+  
+  \be
+
+    \item The sum of two odd integers is an even integer.
+
+\medskip
+
+\textbf{Solution:}
+
+\medskip
+
+\begin{proof}
+Let $m$ and $n$ be arbitrary odd integers.  Since $m$ and $n$ are odd,
+there are integers $i$ and $j$ such that $m = 2i + 1$ and $n = 2j +1$.
+Then \[m + n = (2i + 1) + (2j + 1) = 2(i + j + 1),\] which show $m +
+n$ is even.
+\end{proof}
+
+\medskip
+
+    \item If $x$ is an even integer, then $x^2$ is also even.
+
+\medskip
+
+\textbf{Solution:}
+
+\medskip
+
+\begin{proof}
+Let $x$ be an arbitrary even integer.  Since $x$ is even, there is some
+integer $i$ such that $x = 2i$.  Then \[x^2 = (2i)^2 = 4i^2 =
+2(2i^2),\] which shows $x^2$ is even.
+\end{proof}
+
+\medskip
+
+    \item Let $a,b,c,d \in \mathbb{Z}$.  If $a \mid b$ and $c \mid d$,
+      then $ac \mid bd$. 
+
+\medskip 
+
+\textbf{Solution:}
+
+\medskip
+
+\begin{proof}
+Let $a,b,c,d \in \mathbb{Z}$ and assume $a \mid b$ and $c \mid d$.  We
+must show $ac \mid bd$.  Since $a \mid b$ and $c \mid d$, there are
+integers $i$ and $j$ such that $b = ai$ and $d = cj$.  Then \[bd =
+aicj = (ac)(ij),\] which shows $ac \mid bd$.
+\end{proof}
+
+\medskip
+ 
+    \item The square root of 2 is an irrational number.
+
+\medskip
+
+\textbf{Solution:}
+
+\medskip
+
+\begin{proof}
+Assume the statement is false, i.e., that $\sqrt{2}$ is a rational
+number.  This implies that there are integers $m$ and $n$ with no
+common divisor other than $\pm 1$ and with $n \not= 0$ such that 
+$\sqrt{2}=\frac{m}{n}$.  Then \[2 = (\sqrt{2})^2 = \Big(\frac{m}{n}\Big)^2 =
+\frac{m^2}{n^2}.\] Hence $2n^2 = m^2$ since $n \not= 0$.  This implies
+$2 \mid m^2$ which implies $2 \mid m$.  Hence there is some integer
+$k$ such that $m = 2k$ and so $2n^2 = m^2 = (2k)^2 = 2(2k^2)$.  This
+implies $2 \mid n^2$ which implies $2 \mid n$.  Therefore $2 \mid m$
+and $2 \mid n$ which contradicts our assumption that $m$ and $n$ have
+no common divisor other than $\pm 1$.
+\end{proof}
+
+\medskip
+
+  \ee
+
+  \item Prove the following statements by weak induction: 
+
+  \be
+
+    \item $\sum^{n}_{i=0}2i = n(n+1)$ for all $n \in \mathbb{N}$.
+
+\medskip
+
+\textbf{Solution:}
+
+\medskip
+
+\begin{proof}
+Let $P(n) \equiv \sum^{n}_{i=0}2*i = n*(n+1)$.  We will prove
+$P(n)$ for all $n \in \mathbb{N}$ by weak induction.
+
+\medskip
+
+\emph{Base case}: $n = 0$. Prove $P(0)$.
+\begin{align*}
+  &\phantom{{}=} \sum^{0}_{i=0}2*i & \pnote{LHS of $P(0)$}\\
+  &= 2*0     & \pnote{definition of $\textstyle{\sum}^{n}_{i=m}\,f(i)$ when $m=n$}\\
+  &= 0*(0+1) & \pnote{arithmetic; RHS of $P(0)$}
+\end{align*}
+This shows that $P(0)$ holds.
+
+\medskip
+
+\emph{Induction step}: $n \ge 0$.  Assume $P(n)$. Prove $P(n + 1)$.
+\begin{align*}
+  &\phantom{{}=} \sum^{n+1}_{i=0}2*i & \pnote{LHS of $P(n + 1)$}\\
+  &= 2*(n+1) + \sum^{n}_{i=0}2*i & \pnote{definition of $\textstyle{\sum}^{n}_{i=m}\,f(i)$}\\
+  &= 2*(n+1) + n*(n+1) & \pnote{induction hypothesis: $P(n)$}\\
+  &= n^2 + 3*n + 2     & \pnote{put in standard form}\\
+  &= (n+1)*(n+2)       & \pnote{factor; RHS of $P(n + 1)$}
+\end{align*}
+This shows that $P(n + 1)$ holds.
+
+\medskip
+
+Therefore, $P(n)$ holds for all $n \in \mathbb{N}$ by weak induction.
+\end{proof}
+
+\medskip
+
+    \item $\sum^{n}_{i=1}(2i - 1) = n^2$  for all $n \in \mathbb{N}$.
+
+\medskip
+
+\textbf{Solution:}
+
+\medskip
+
+Similar to 1a.
+
+\medskip
+
+    \item $\sum^{n}_{i=0}i^2 = \frac{n(n+1)(2n + 1)}{6}$ for all
+      $n \in \mathbb{N}$.
+
+\medskip
+
+\textbf{Solution:}
+
+\medskip
+
+\begin{proof}
+Let $P(n) \equiv \sum^{n}_{i=0}i^2 = \frac{n*(n+1)*(2*n + 1)}{6}$.  We will prove $P(n)$
+for all $n \in \mathbb{N}$ by weak induction.
+
+\medskip
+
+\emph{Base case}: $n = 0$.  Prove $P(0)$.
+\begin{align*}
+  &\phantom{{}=} \sum^{0}_{i=0}i^2 & \pnote{LHS of $P(0)$}\\
+  &= 0^2 & \pnote{definition of $\textstyle{\sum}_{i=m}^{n}f(i)$}\\
+  &= \frac{0*(0+1)*(2*0 + 1)}{6} & \pnote{arithmetic; RHS of $P(0)$}
+\end{align*}
+This shows that $P(0)$ holds.
+
+\medskip
+
+\emph{Induction step}: $n \ge 0$.  Assume $P(n)$. Prove $P(n + 1)$.
+\begin{align*}
+  &\phantom{{}=} \sum^{n+1}_{i=0}i^2\\
+    & \pnote{LHS of $P(n + 1)$}\\
+  &= (n + 1)^2 + \sum^{n}_{i=0}i^2\\
+    &\pnote{definition of $\sum_{i=m}^{n}f(i)$}\\
+  &= (n + 1)^2 + \frac{n*(n+1)*(2*n + 1)}{6}\\
+    &\pnote{induction hypothesis: $P(n)$}\\
+  &= \frac{6*(n + 1)^2 + n*(n+1)*(2*n + 1)}{6}\\
+    &\pnote{addition of fractions}\\
+  &= \frac{(n + 1)*(6*(n +1) + n*(2*n +1))}{6}\\
+    &\pnote{factor out $n + 1$}\\
+  &= \frac{(n + 1)*(2*n^2 + 7*n + 6)}{6}\\
+    &\pnote{multiply out second factor and collect like terms}\\
+  &= \frac{(n + 1)*(n + 2)*(2*n + 3)}{6}\\
+    &\pnote{factor second factor}\\
+  &= \frac{(n + 1)*(n + 2)*(2*(n + 1) +1)}{6}\\
+    &\pnote{arithmetic; RHS of $P(n + 1)$}
+\end{align*}
+This shows that $P(n + 1)$ holds.
+
+\medskip
+
+Therefore, $P(n)$ holds for all $n \in \mathbb{N}$ by weak induction.
+\end{proof}
+
+\medskip
+
+    \item $\sum^{n-1}_{i=0}2^i = 2^n - 1$ for all $n \in \mathbb{N}$.
+
+\medskip
+
+\textbf{Solution:}
+
+\medskip
+
+See the lecture slides for the 1 Mathematical Proof topic.
+
+\medskip
+
+    \item $\sum^{n}_{i=0} \mname{fib}(i) = \mname{fib}(n+2) - 1$ for
+      $n \in \mathbb{N}$.
+
+\medskip
+
+\textbf{Solution:}
+
+\medskip
+
+\begin{proof}
+Let $P(n) \equiv \sum^{n}_{i=0} \mname{fib}(i) = \mname{fib}(n+2) -
+1$.  We will prove $P(n)$ for all $n \in \mathbb{N}$ by weak
+induction.
+
+\medskip
+
+\emph{Base case}: $n = 0$. Prove $P(0)$.
+\begin{align*}
+  &\phantom{{}=} \sum^{0}_{i=0}\mname{fib}(i) & \pnote{LHS of $P(0)$}\\
+  &= \mname{fib}(0) & \pnote{def.\ of $\textstyle{\sum}^{n}_{i=m}\,f(i)$ when $m=n$}\\
+  &= \mname{fib}(0) + \mname{fib}(1) - 1 & \pnote{arithmetic and definition of \mname{fib}}\\
+  &= \mname{fib}(0 + 2) - 1 & \pnote{definition of \mname{fib}; RHS of $P(0)$}
+\end{align*}
+This shows that $P(0)$ holds.
+
+\medskip
+
+\emph{Induction step}: $n \ge 0$.  Assume $P(n)$. Prove $P(n + 1)$.
+\begin{align*}
+  &\phantom{{}=} \sum^{n+1}_{i=0}\mname{fib}(i) & \pnote{LHS of $P(n + 1)$}\\
+  &= \mname{fib}(n + 1) + \sum^{n}_{i=0}\mname{fib}(i)
+    & \pnote{def.\  of $\textstyle{\sum}^{n}_{i=m}\,f(i)$}\\
+  &= \mname{fib}(n + 1) + \mname{fib}(n + 2) - 1
+    & \pnote{ind.\ hypo.: $P(n)$}\\
+  &= \mname{fib}((n + 1) + 2) - 1
+    & \pnote{def.\ of \mname{fib}; RHS of $P(n + 1)$}
+\end{align*}
+This shows that $P(n + 1)$ holds.
+
+\medskip
+
+Therefore, $P(n)$ holds for all $n \in \mathbb{N}$ by weak induction.
+\end{proof}
+
+\medskip
+
+    \item $\sum^{n}_{i=0}(\mname{fib}(i))^2 = \mname{fib}(n) *
+      \mname{fib}(n+1)$ for all $n \in \mathbb{N}$.
+
+\medskip
+
+\textbf{Solution:}
+
+\medskip
+
+\begin{proof}
+Let $P(n) \equiv \sum^{n}_{i=0}(\mname{fib}(i))^2 = \mname{fib}(n) *
+\mname{fib}(n+1)$.  We will prove $P(n)$ for all $n \in \mathbb{N}$
+by weak induction.
+   	
+\medskip
+   	
+\emph{Base case}: $n = 0$. Prove $P(0)$.
+\begin{align*}
+  &\phantom{{}=} \sum^{0}_{i=0}(\mname{fib}(i))^2 & \pnote{LHS of $P(0)$}\\
+  &= (\mname{fib}(0))^2 & \pnote{definition of $\textstyle{\sum}_{i=m}^{n}f(i)$ when $m=n$}\\
+  &= 0^2 & \pnote{definition of \mname{fib}}\\
+  &= 0 * 1 & \pnote{arithmetic}\\
+  &= \mname{fib}(0) * \mname{fib}(0 + 1)& \pnote{definition of \mname{fib}; RHS of $P(0)$}
+\end{align*}
+This shows that $P(0)$ holds.
+	
+\medskip
+   	
+\emph{Induction step}: $n \ge 0$.  Assume $P(n)$.  Prove $P(n + 1)$.
+\begin{align*}
+  &\phantom{{}=} \sum^{n+1}_{i=1}(\mname{fib}(i))^2 
+    & \pnote{LHS of $P(n + 1)$}\\
+  &= (\mname{fib}(n+1))^2 + \sum^{n}_{i=1}(\mname{fib}(i))^2
+    & \pnote{def.\ of $\textstyle{\sum}_{i=m}^{n}f(i)$}\\
+  &= (\mname{fib}(n+1))^2 + \mname{fib}(n) * \mname{fib}(n+1)
+    & \pnote{ind.\  hypo.: $P(n)$}\\
+  &=  \mname{fib}(n+1)*(\mname{fib}(n+1)+\mname{fib}(n))
+    & \pnote{factor out $\mname{fib}(n+1)$}\\
+  &= \mname{fib}(n+1)*\mname{fib}(n + 2)
+    & \pnote{def.\ of $\mname{fib}$}\\
+  &= \mname{fib}(n+1)*\mname{fib}((n + 1) + 1)
+    & \pnote{RHS of $P(n + 1)$}\\
+\end{align*}
+This shows that $P(n + 1)$ holds.
+
+\medskip
+
+Therefore, $P(n)$ holds for all $n \in \mathbb{N}$ by weak induction.
+\end{proof}
+
+  \ee
+
+  \item Prove the following statements by strong induction:
+
+  \be
+
+    \item If $n \in \mathbb{N}$ with $n \ge 2$, then $n$ is a product
+      of prime numbers.
+
+\medskip
+
+\textbf{Solution:}
+
+\medskip
+
+See the lecture slides for the 1 Mathematical Proof topic.
+
+\medskip
+
+    \item $\mname{fib}(n) < 2^n$ for all $n \in \mathbb{N}$.
+
+\medskip
+
+\textbf{Solution:}
+
+\medskip
+
+\begin{proof}
+Let $P(n) \equiv \mname{fib}(n) < 2^n$.  We will prove $P(n)$
+for all $n \in \mathbb{N}$ by strong induction.
+
+\medskip
+
+\emph{Base case 1}: $n = 0$. Prove $P(0)$.
+\begin{align*}
+  &\phantom{{}=} \mname{fib}(0) & \pnote{LHS of $P(0)$}\\
+  &= 0                          & \pnote{definition of \mname{fib}}\\
+  &< 1                          & \pnote{arithmetic}\\
+  &= 2^0                        & \pnote{arithmetic; RHS of $P(0)$}
+\end{align*}
+This shows that $P(0)$ holds.
+
+\medskip
+
+\emph{Base case 2}: $n = 1$.  Prove $P(1)$.
+\begin{align*}
+  &\phantom{{}=} \mname{fib}(1) & \pnote{LHS of $P(1)$}\\
+ &= 1                           & \pnote{definition of \mname{fib}}\\
+ &< 2                           & \pnote{arithmetic}\\
+ &= 2^1                         & \pnote{arithmetic; RHS of $P(1)$}
+\end{align*}
+This shows that $P(1)$ holds.
+
+\medskip
+
+\emph{Induction step}: $n \ge 2$. Assume $P(m)$ for all $m <
+n$. Prove $P(n)$.
+\begin{align*}
+  &\phantom{{}=} \mname{fib}(n)              & \pnote{LHS of $P(n)$}\\
+  &= \mname{fib}(n - 1) + \mname{fib}(n - 2) & \pnote{definition of \mname{fib}}\\
+  &< 2^{n-1} + \mname{fib}(n - 2)            & \pnote{induction hypothesis: $P(n-1)$}\\
+  &< 2^{n-1} + 2^{n-2}                        & \pnote{induction hypothesis: $P(n-2)$}\\
+  &< 2^{n-1} + 2^{n-1}                        & \pnote{arithmetic}\\
+  &= 2^n                                     & \pnote{arithmetic; RHS of $P(n)$}
+\end{align*}
+This shows that $P(n)$ holds.
+
+\medskip
+
+Therefore, $P(n)$ holds for all $n \in \mathbb{N}$ by strong induction.
+\end{proof}
+
+\medskip
+
+    \item It takes $n - 1$ divisions to break up a rectangular
+      chocolate bar containing $n$ squares into individual squares.
+
+\medskip
+
+\textbf{Solution:}
+
+\medskip
+
+\begin{proof}
+For a positive integer $n$, let $P(n)$ hold iff every rectangular
+chocolate bar containing $n$ squares needs $n - 1$ divisions to be
+broken into individual squares.  We will prove $P(n)$ for all $n
+\in \mathbb{N}$ with $n \ge 1$ by strong induction.
+
+\medskip
+
+\emph{Base case}: $n = 1$. Prove $P(1)$.  A chocolate bar containing
+1 square is already broken into individual squares, and so 0 divisions
+are needed to break it up.  This shows that $P(1)$ holds.
+
+\medskip
+
+\emph{Induction step}: $n \ge 2$. Assume $P(m)$ for all $m < n$. Prove
+$P(n)$.  Suppose we have a $a \times b$ chocolate bar containing $n =
+ab$ squares.  W.l.o.g., we may assume that the first division of the
+chocolate bar breaks it into $(a - c) \times b$ and $c \times b$
+chocolate bars.  By the induction hypothesis, each of these chocolate
+bars can be broken up into individual squares with $(a - c)b - 1$ and
+$cb - 1$ divisions, respectively.  Then the number of division needed
+to break up the original chocolate bar is \[1 + (a - c)b -1 + cb - 1 =
+1 + ab - 1 - 1 = n - 1.\] This shows that $P(n)$ holds.
+
+\medskip
+
+Therefore, $P(n)$ holds for all $n \in \mathbb{N}$ with $n \ge 1$ by
+strong induction.
+\end{proof}
+
+\medskip
+
+  \ee
+
+  \item Let $t_n,s_n,o_n$ be the $n$th triangle, square, and oblong
+    numbers, respectively, where $n \in \mathbb{N}$.
+
+  \be
+
+    \item Define $t_n,s_n,o_n$ by recursion.
+
+    \item Prove by induction that every triangle number is exactly
+      half of an oblong number.
+
+    \item Prove by induction that the sum of every two consecutive
+      triangle numbers is a square number.
+
+  \ee
+
+\textbf{Solution:}
+
+  \be
+
+    \item $t_n = 
+    \left\{\begin{array}{ll}
+             0          & \textrm{if } n = 0 \\
+             t_{n-1} + n & \textrm{if } n > 0
+           \end{array}
+    \right.$
+
+    $s_n = 
+    \left\{\begin{array}{ll}
+             0                 & \textrm{if } n = 0 \\
+             s_{n-1} + 2*n - 1  & \textrm{if } n > 0
+           \end{array}
+    \right.$
+
+    $o_n = 
+    \left\{\begin{array}{ll}
+             0             & \textrm{if } n = 0 \\
+             o_{n-1} + 2*n & \textrm{if } n > 0
+           \end{array}
+    \right.$
+
+    \item \textbf{Theorem} $t_n = o_n/2$ for all $n \in \mathbb{N}$.
+
+\medskip
+
+\begin{proof}
+Let $P(n) \equiv t_n = o_n/2$.  We will prove $P(n)$ for all $n \in
+\mathbb{N}$ by weak induction.
+
+\medskip
+
+\emph{Base case}: $n = 0$. Prove $P(0)$.
+\begin{align*}
+  &\phantom{{}=} t_0 & \pnote{LHS of $P(0)$}\\
+  &= 0               & \pnote{definition of $t_n$}\\
+  &= 0/2             & \pnote{arithmetic}\\
+  &= o_0/2           & \pnote{definition of $o_n$; RHS of $P(0)$}
+\end{align*}
+This shows that $P(0)$ holds.
+
+\medskip
+
+\emph{Induction step}: $n \ge 0$. Assume $P(n)$. Prove $P(n + 1)$.
+\begin{align*}
+  &\phantom{{}=} t_{n+1} & \pnote{LHS of $P(n + 1)$}\\
+  &= t_n + n + 1         & \pnote{definition of $t_n$}\\
+  &= o_n/2 + n + 1       & \pnote{induction hypothesis: $P(n)$}\\
+  &= (o_n + 2*(n + 1))/2 & \pnote{arithmetic}\\
+  &= o_{n+1}/2           & \pnote{def.\ of $o_n$; RHS of $P(n + 1)$}
+\end{align*}
+This shows that $P(n + 1)$ holds.
+
+\medskip
+
+Therefore, $P(n)$ holds for all $n \in \mathbb{N}$ by weak induction.
+\end{proof}
+
+    \item \textbf{Theorem} $t_n + t_{n+1} = s_{n+1}$ for all $n \in
+      \mathbb{N}$.
+
+\medskip
+
+\begin{proof}
+Let $P(n) \equiv t_n + t_{n+1} = s_{n+1}$.  We will prove $P(n)$ for
+all $n \in \mathbb{N}$ by weak induction.
+
+\medskip
+
+\emph{Base case}: $n = 0$. Prove $P(0)$.
+\begin{align*}
+  &\phantom{{}=} t_0 + t_1 & \pnote{LHS of $P(0)$}\\
+  &= 0 + 1                 & \pnote{definition of $t_n$}\\
+  &= 1                     & \pnote{arithmetic}\\
+  &= s_1                   & \pnote{definition of $s_n$; LHS of $P(0)$}
+\end{align*}
+This shows that $P(0)$ holds.
+
+\medskip
+
+\emph{Induction step}: $n \ge 0$. Assume $P(n)$. Prove $P(n + 1)$.
+\begin{align*}
+  &\phantom{{}=} t_{n+1} + t_{n+2}  & \pnote{LHS of $P(n + 1)$}\\
+  &= t_n + n + 1 + t_{n+1} + n + 2  & \pnote{definition of $t_n$}\\
+  &= s_{n+1} + n + 1 + n + 2        & \pnote{ind.\ hypo.: $P(n)$}\\
+  &= s_{n+1} + 2*(n + 2) - 1        & \pnote{arithmetic}\\
+  &= s_{n+2}                        & \pnote{def.\ of $s_n$; RHS of $P(n + 1)$}
+\end{align*}
+This shows that $P(n + 1)$ holds.
+
+\medskip
+
+Therefore, $P(n)$ holds for all $n \in \mathbb{N}$ by weak induction.
+\end{proof}
+
+  \ee
+
+\ee
+\end{document}
+
+

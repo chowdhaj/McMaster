@@ -1,0 +1,66 @@
+pushdownAutomata.txt
+
+A Pushdown Automata [PDA] is a way to implement a Context Free Grammar in a similar way we design Finite Automata for Regular Grammar.
+
+Regular grammar can be defined using Finite State Automaton [FSM]
+
+Pushdown Automata is used to describe Context Free Languages [CFG]
+
+PDAs are more powerful than FSMs, partly because they have more memory
+
+FSMs have limited memory and thus cannot design some languages
+
+A PDA is an FSM with a Stack
+
+The Stack is essentially infinite memory and helps the PDA to be more powerful than FSMs
+
+A stack arranges elements on top of each other
+
+A stack does two basic operations:
+	- Push: Add element to top of stack
+	- Pop: Read and remove element from top of stack
+
+Here is a stack:
+
+| c |    <-- Top of Stack
+-----
+| b |
+-----
+| a |    <-- Bottom of Stack
+-----
+
+A Pushdown Automata has 3 components:
+
+	1) Input Tape
+	2) Finite Control Unit
+	3) Stack With Infinite Size
+
+A PDA is formally defined by a 7-Tuple. For example:
+
+	P = (Q, Sigma, r, del, q0, z0, F)
+	where:
+		Q = A finite set of states
+		Sigma = Finite set of input symbols
+		r = Finite stack alphabet
+		del = Transition function
+		q0 = Start state
+		z0 = Start stack symbol
+		F = Set of final states
+
+The Transition function (del) takes three arguments:
+	(q, a, X)
+	where:
+		q = State in Q
+		a = Either an input symbol in Sigma or a = epsilon
+		X = Stack symbol that is a member of r
+
+The output of the Transition function (del) is a finite set of pairs (p,v) where:
+
+	p = New state
+	v = String of stack symbols that replaces X at the top of the stack
+
+	i.e.
+
+		If v = epsilon then the stack is popped
+		If v = X then the stack is unchanged
+		If v = YZ then X is replaced by Z and Y is pushed onto the stack

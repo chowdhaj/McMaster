@@ -1,0 +1,199 @@
+\documentclass[11pt,fleqn]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+
+\lstset{language=python,basicstyle=\ttfamily,breaklines=true,showspaces=false,showstringspaces=false,breakatwhitespace=true,texcl=true,escapeinside={\%*}{*)}}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+
+\begin{document}
+
+%\thispagestyle{empty}
+
+\bc
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Week 03 Exercises}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: January 17, 2020}
+
+\ec
+
+\medskip
+
+\subsection*{Exercises}
+
+\be
+
+  \item Let $\mname{FinSeq}_{\mathbb{N}}$ be the set of finite sequences whose
+    members are in $\mathbb{N}$.
+
+  \be
+
+    \item Define $\mname{FinSeq}_{\mathbb{N}}$ as an inductive set.
+
+    \item Use an auxiliary function, recursion, and pattern matching
+      to define the function \[\mname{reverse} :
+      \mname{FinSeq}_{\mathbb{N}} \rightarrow
+      \mname{FinSeq}_{\mathbb{N}}\] such that $\mname{reverse}(s)$ is
+      the reverse of $s$ for all $s \in \mname{FinSeq}_{\mathbb{N}}$.
+
+    \item Write the structural induction principle for
+      $\mname{FinSeq}_{\mathbb{N}}$.
+
+  \ee
+
+  \item Let \mname{Nat} be the natural numbers defined as an inductive
+    set in the lecture notes, $\mathbb{B}$ be the set of boolean
+    values \mname{true} and \mname{false}, $\mname{odd} : \mname{Nat}
+    \rightarrow \mathbb{B}$ be the function that maps the odd natural
+    numbers to \mname{true} and the even natural numbers to
+    \mname{false}, and $\mname{even} : \mname{Nat} \rightarrow
+    \mathbb{B}$ be the function that maps the even natural numbers to
+    \mname{true} and the odd natural numbers to \mname{false}.  Define
+    \mname{odd} and \mname{even} simultaneously by pattern matching
+    using ``mutual recursion''.
+
+  \item Let \mname{BinTree} be the inductive set and \mname{nodes} and
+    \mname{ht} be the functions defined in the lecture notes.  Let
+    $\mname{leaves} : \mname{BinTree} \rightarrow \mathbb{N}$ be the
+    function that maps a binary to the number of leaf nodes in it.
+
+  \be
+
+    \item Define \mname{leaves} by pattern matching and recursion.
+
+    \item Prove that, for all $t \in
+      \mname{BinTree}$, \[\mname{leaves}(t) \le 2^{{\sf ht}(t)}\] by
+        structural induction.
+
+  \ee
+
+  \item Let \mname{BinTree} be the inductive set defined in the
+    lecture notes.  Let $\mname{mirror} : \mname{BinTree} \rightarrow
+    \mname{BinTree}$ be the function that maps a binary tree to its
+    ``mirror image''.
+
+  \be
+
+    \item Define $\mname{mirror}$ by pattern matching and recursion.
+
+    \item Prove that, for all $t \in \mname{BinTree}$,
+      \[\mname{mirror}(\mname{mirror}(t)) = t\] by structural
+      induction.
+
+  \ee
+
+  \item Let \mname{BinTree} be the inductive set defined in the
+    lectures.  A \emph{subtree} of $t \in \mname{BinTree}$ is $t$
+    itself or a subcomponent of $t$ that is a member of
+    \mname{BinTree}.
+
+  \be
+
+    \item Define a function $\mname{subtrees} : \mname{BinTree}
+      \rightarrow \mname{set}(\mname{BinTree})$ that maps each $t \in
+      \mname{BinTree}$ to the set of subtrees of $t$.
+
+    \item Prove by structural induction that, if $t \in
+      \mname{BinTree}$ contains $n$ \mname{Branch} nodes, then $t$
+      has at most $2n + 1$ subtrees.
+
+  \ee
+
+  \item Let $S$ be the set of bit strings defined inductively by:
+
+  \be
+
+    \item $\texttt{"0"} \in S$.
+
+    \item If $s \in S$, then $\texttt{"0"} + s \in S$ and $s +
+      \texttt{"0"} \in S$.
+
+    \item If $s \in S$, then , $\texttt{"0"} + s + \texttt{"1"} \in S$
+      and $\texttt{"1"} + s + \texttt{"0"} \in S$.
+
+  \ee
+
+  $s + t$ denotes the concatenation of $s$ and $t$.  Prove by
+  structural induction that, for all strings $s \in S$, the number of
+  1s in $s$ is less than or equal to the number of 0s in $s$.
+
+  \item Suppose $(S_1,\le_1)$ and $(S_2,\le_2)$ are weak partial
+    orders.  Prove that $(S_1 \times S_2, \le)$ is a weak partial
+    order where $(s_1,s_2) \le (s'_1,s'_2)$ iff $s_1 \le_1 s'_1$ and
+    $s_2 \le_2 s'_2$.
+
+  \item Let ${<_{\rm lex}} \subseteq (\mathbb{N} \times \mathbb{N})
+    \times (\mathbb{N} \times \mathbb{N})$ be lexicographical order,
+    i.e., \[(x_1,y_1) <_{\rm lex} (x_2, y_2)\] iff $x_1 < x_2$ or
+    ($x_1 = x_2$ and $y_1 < y_2$).  
+
+  \be
+
+    \item Prove that $(\mathbb{N} \times \mathbb{N},<_{\rm lex})$ is a
+      well-order.
+
+    \item Write the ordinal induction principle for $(\mathbb{N}
+      \times \mathbb{N},<_{\rm lex})$.
+
+    \item Prove by the ordinal induction principle for $(\mathbb{N}
+      \times \mathbb{N},<_{\rm lex})$ that $A$, the version of the
+      Ackermann function presented in the lecture notes, is defined on
+      all members of $\mathbb{N} \times \mathbb{N}$.
+
+  \ee
+
+  \item Let $(S,<)$ be a partial order such that $S$ is finite.  Prove
+    that $(S,<)$ is well-founded.
+
+  \item Let $(\mathbb{N},R_{\sf suc})$ be the mathematical structure
+    where \[m \mathrel{R_{\sf suc}} n$ iff $n = m + 1.\]  Prove that
+    $(\mathbb{N},R_{\sf suc})$ is well-founded.
+
+  \item The Ackermann function was originally defined
+    as the ternary function $B : \mathbb{N} \times \mathbb{N} \times
+    \mathbb{N} \rightarrow \mathbb{N}$ such that:
+
+  \be
+
+    \item $B(m,n,0) = m + n$.
+
+    \item $B(m,0,1) = 0$.
+
+    \item $B(m,0,2) = 1$.
+
+    \item $B(m,0,p) = m$ for $p > 2$.
+
+    \item $B(m,n,p) = B(m,B(m,n-1,p),p-1)$ for $n > 0$ and $p > 0$.
+
+  \ee
+
+  Prove that $B$ is defined on all members of $\mathbb{N} \times
+  \mathbb{N} \times \mathbb{N}$ using well-founded induction.
+ 
+\ee
+\end{document}
+
+

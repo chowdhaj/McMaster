@@ -1,0 +1,389 @@
+\documentclass[11pt,fleqn]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{tabularx}
+
+\lstset{language=python,basicstyle=\ttfamily,breaklines=true,showspaces=false,showstringspaces=false,breakatwhitespace=true,texcl=true,escapeinside={\%*}{*)}}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sM}{\mbox{$\cal M$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\sV}{\mbox{$\cal V$}}
+\newcommand{\set}[1]{{\{ #1 \}}}
+\newcommand{\Neg}{\neg} 
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\LeftRightarrow}
+\newcommand{\Forall}{\forall}
+\newcommand{\ForallApp}{\forall\,}
+\newcommand{\Forsome}{\exists}
+\newcommand{\ForsomeApp}{\exists\,}
+\newcommand{\mdot}{\mathrel.}
+
+\begin{document}
+
+%\thispagestyle{empty}
+
+\bc
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Week 06 Exercises with Solutions}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: February 16, 2020}
+
+\ec
+
+\medskip
+
+\subsection*{Background Definitions}
+
+Consider the following definitions:
+
+\be
+
+  \item $\Sigma_{\rm stack} = (\sB,\sC,\sF,\sP,\tau)$ where:
+
+  \be
+
+    \item $\sB = \set{\mname{Element},\mname{Stack}}$.
+
+    \item $\sC = \set{\mname{error},\mname{bottom}}$.
+
+    \item $\sF = \set{\mname{push},\mname{pop},\mname{top}}$.
+
+    \item $\sP = \emptyset$.
+
+    \item $\tau(\mname{error}) = \mname{Element}$.
+
+    \item $\tau(\mname{bottom}) = \mname{Stack}$.
+
+    \item $\tau(\mname{push}) = \mname{Element} \times \mname{Stack}
+      \rightarrow \mname{Stack}$.
+
+    \item $\tau(\mname{pop}) = \mname{Stack} \rightarrow
+      \mname{Stack}$.
+
+    \item $\tau(\mname{top}) = \mname{Stack} \rightarrow
+      \mname{Element}$.
+
+  \ee
+
+  \item $\Sigma_{\rm grp} =
+    (\set{G},\set{e},\set{*,\mname{inv}},\emptyset,\tau)$ where
+    $\tau(e) = G$, $\tau(*) = G\times G \rightarrow G$, and
+    $\tau(\mname{inv}) = G \rightarrow G$.
+
+  \item Let $\Gamma_{\rm grp}$ be the following set of
+    $\Sigma$-sentences:
+
+  \be
+
+    \item[Assoc] $\ForallApp x,y,z : G \mdot (x * y) * z = x *
+      (y * z)$.
+
+    \item[IdLeft] $\ForallApp x : G \mdot e * x = x$.
+
+    \item[IdRight] $\ForallApp x : G \mdot x * e = x$.
+
+    \item[InvLeft] $\ForallApp x : G \mdot \mname{inv}(x) * x = e$.
+
+    \item[InvRight] $\ForallApp x : G \mdot x * \mname{inv}(x) = e$.
+
+  \ee
+
+  \item A \emph{partition} of a set $S$ is a nonempty set $U$ of
+    subsets of $S$ such that, for all $x \in S$, $x$ is a member of
+    exactly one member of $U$.  Hence (1) the members of $U$ are
+    disjoint and (2) their union equals $S$.
+
+  \item A \emph{lattice} is a weak partial order $(U,\le)$ such that
+    each pair of elements of $U$ has both a least upper bound and a
+    greatest lower bound.
+
+  \item Let $M_1 = (D_1,e_1,*_1)$ and $M_2 = (D_2,e_2,*_2)$ be
+    two monoids.  A \emph{monoid homomorphism} from $M_1$ to $M_2$ is
+    a function $h : D_1 \rightarrow D_2$ such that:
+
+  \be
+
+    \item $h(x *_1 y) = h(x) *_2 h(y)$ for all $x,y \in D_1$.
+
+    \item $h(e_1) = e_2$.
+
+  \ee
+
+\ee
+
+\subsection*{Exercises}
+
+\be
+
+  \item Construct in MSFOL a theory $T = (\Sigma_{\rm stack},\Gamma_{\sf
+    stack})$ of stacks.  $\Gamma_{\sf stack}$ should contain axioms
+  that say:
+
+  \be
+
+    \item The top of the bottom stack is the error element.
+
+    \item Let $s$ be a stack obtained by pushing an element $e$ onto a
+      stack $s'$.  The top of $s$ is $e$.
+
+    \item Pop of the bottom stack is the bottom stack.
+
+    \item Let $s$ be a stack obtained by pushing an element $e$ onto a
+      stack $s'$.  The pop of $s$ is $s'$.
+
+  \ee
+
+  \textbf {Solution:}\\
+    $\Sigma_{\rm stack}$ is defined in Background Definitions.\\
+    $\Gamma_{\sf stack}$ contains the following:
+    \be
+      \item $\mname{top(\mname{bottom})} = \mname{error}$
+      \item $\ForallApp e : \mname{Element},\,s' : \mname{Stack} \mdot \mname{top}(\mname{push}(e,\,s')) = e$
+      \item $\mname{pop(\mname{bottom})} = \mname{bottom}$
+      \item $\ForallApp e : \mname{Element},\,s' : \mname{Stack} \mdot \mname{pop}(\mname{push}(e,\,s')) = s'$
+    \ee
+
+  \item A \emph{group} is a monoid with an inverse operation.  $T_{\rm
+    grp} = (\Sigma_{\rm grp}, \Gamma_{\rm grp})$ is a theory of
+    groups.  Show that models of $T_{\rm grp}$ can be directly derived
+    from $(\mathbb{Z},0,+)$ and $(\mathbb{Q},1,*)$ but not from
+    $(\mathbb{N},0,+)$ and $(\mathbb{Z},1,*)$.
+
+  \textbf{Solution:}
+    \begin{quote}
+      In each case, we must show/argue that the function provided for $*$ is associative, 
+      that the constant provided for $e$ is a left and right identity for that operator, and provide 
+      a function for $\mname{inv}$ which is a right and left inverse of the function for $*$.
+
+  \be
+    \item[$(\mathbb{Z},0,+)$:] $+$ is associative, $0$ is the identity for $+$, and for $\textsf{inv}$ 
+      we may take the unary $-$, since $x + - x = 0$ and $- x + x = 0$.
+    \item[$(\mathbb{Q},1,*)$:] Take $\mathbb{Q} \backslash \{ 0 \}$ as $G$, rather than $\mathbb{Q}$, 
+      because there is no multiplicative inverse for $0$. Then, $*$ is associative, $1$ is the identity for $*$, 
+      and for $\textsf{inv}$ we may take the unary ``recipricol'', since $x * \frac{1}{x} = 1$ and $\frac{1}{x} 
+      * x = 1$ (since we have removed $0$).
+    \item[$(\mathbb{N},0,+)$:] while $+$ is associative and $0$ is the identity for $+$, we cannot provide an 
+      inverse for plus; this can be seen because e.g. $1 + y \neq 0$ for any $y$.
+    \item[$(\mathbb{Z},1,*)$:] while $*$ is associative and $1$ is the identity for $*$, we cannot provide an 
+      inverse for $*$; this can be seen because e.g. $1 + y \neq 0$ for any $y$..
+  \ee
+\end{quote}
+
+  \item Let $\Sigma = (\alpha, p : \alpha \rightarrow \mathbb{B}, q :
+    \alpha \rightarrow \mathbb{B})$ be a signature of MSFOL.  What
+    should $\Gamma$ be so that each model for the theory $T =
+    (\Sigma,\Gamma)$ is a set of values partitioned into two
+    components defined by $p$ and $q$.
+
+  \textbf{Solution:}
+
+    Let $\Gamma$ contain the following $\Sigma$-sentences:
+
+    \begin{enumerate}
+
+      \item $\Forall x : \alpha \mdot \Neg(p\,x \land q\,x)$.
+
+      \item $\Forall x : \alpha \mdot p\,x \Or q\,x$.
+
+    \end{enumerate}
+
+    Let $\sM = (\set{D_\alpha},I)$ be a model for $T$. Then clearly the
+    two sets \[\set{d \in D_\alpha \;|\; V_{\phi[x : \alpha \mapsto
+          d]}^{\mbox{M}}p\,(x:\alpha) = T}\] and \[\set{d \in D_\alpha
+    \;|\; V_{\phi[x : \alpha \mapsto d]}^{M}q\,(x:\alpha) =
+    T}\] are a partition of $D_\alpha$.
+
+  \item Let $\Sigma_{\rm pairs}$ be the signature
+    $(\sB,\emptyset,\sF,\emptyset,\tau)$  where:
+
+  \be
+
+    \item $\sB = \set{\alpha,\beta,\gamma}$.
+
+    \item $\sF = \set{\mname{mkPair},\mname{left},\mname{right}}$
+      where $\tau(\mname{mkPair}) = \alpha \times \beta \rightarrow
+      \gamma$, $\tau(\mname{left}) = \gamma \rightarrow \alpha$, and
+      $\tau(\mname{right}) = \gamma \rightarrow \beta$.
+
+  \ee
+
+  What should $\Gamma_{\rm pairs}$ be so that $T_{\rm pairs} =
+  (\Sigma_{\rm pairs}, \Gamma_{\rm pairs})$ is a theory of
+  mathematical structures that contain (1) sets $A$, $B$, and $C$
+  where $C$ is a set of values that have the same structure as ordered
+  pairs of members of $A$ and $B$ and (2) functions to construct and
+  destruct the pairs in $C$?
+
+\textbf{Solution:}\\
+$\Gamma_{\rm pairs}$ should consist of the following sentences:
+\be
+    \item OnlyPairs   $\Forall z : \gamma \mdot \ForsomeApp x : \alpha , y : \beta \mdot \textsf{mkPair}\ x\ y = z$                                                   
+    \item mkPairInj   $\Forall x, x' : \alpha, y, y' : \beta \mdot \textsf{mkPair}\ x\ y = \textsf{mkPair}\ x'\ y' \newline \phantom{x} \Implies (x = x' \And y = y')$ 
+     \item IsLeftProj  $\Forall x : \alpha, y : \beta \mdot \textsf{left}\ (\textsf{mkPair}\ x\ y) = x$                                                                
+     \item IsRightProj $\Forall x : \alpha, y : \beta \mdot \textsf{right}\ (\textsf{mkPair}\ x\ y) = y$
+\ee
+
+  \item Let $\Sigma_{\sf lattice} =
+    (\set{U},\emptyset,\emptyset,\set{\le}, \tau)$ where $\tau(\le) =
+    U \times U \rightarrow \mathbb{B}$.  Construct in MSFOL a theory
+    $T=(\Sigma_{\sf lattice},\Gamma_{\sf lattice})$ of lattices.
+
+  \textit{Solution.}
+
+\qquad $\Sigma_{\sf lattice}$ is defined in Background Definitions.
+
+\qquad $\Gamma_{\sf lattice}$ contain the following:
+
+  \be
+	\item $\forall \; x \in U \;.\; x \le x$
+
+	\item $\forall \; x, y \in U \;.\; (x \le y \land y \le x) \Rightarrow  x = y$
+
+	\item $\forall \; x, y, z \in U \;.\; (x \le y \land y \le z) \Rightarrow x \le z$
+
+	\item $\ForallApp x,y \in U \mdot \ForsomeApp z \in U \mdot$\\
+          \hspace*{2ex}$x \le z \And y \le z \And (\ForallApp w \in U
+          \mdot x \le w \And y \le w \Implies z \le w)$.
+
+	\item $\ForallApp x,y \in U \mdot \ForsomeApp z \in U \mdot$\\
+          \hspace*{2ex}$z \le x \And z \le y \And (\ForallApp w \in U
+          \mdot w \le x \And w \le y \Implies w \le z)$.
+
+  \ee
+
+  \item Explain why it is not possible to construct a theory of
+    well-founded relations in MSFOL.
+
+\textbf{Solution:}
+\begin{quote}
+  Recall the definition of a well founded relation: a binary relation $R$ on a set $U$ is well founded if every non-empty subset of $U$ has an $R$-minimal element.
+
+  Since it is not possible to quantify over subsets of a sort in MSFOL, it is not possible to construct a theory of well-founded relations in MSFOL.
+\end{quote}
+
+  \item Construct in MSFOL a theory of vector spaces.
+
+\textbf{Solution:}
+Let $T_{vs} = (\Sigma_{vs},\Gamma_{vs})$ where $\Sigma_{vs}$ contains the following:
+\begin{itemize}
+  \item $\sB = \set{F, V}$
+  \item $\sC = \set{1, \vec{\mathbf{0}}}$
+  \item $\sF = \set{*, \cdot, +, +_F, -}$
+  \item $\sP = \set{F, V}$
+  \item $\tau$ has:
+        \begin{itemize}
+          \item $\tau(1) = F$
+          \item $\tau(\vec{\mathbf{0}}) = V$
+          \item $\tau(*) = F \times F \rightarrow F$
+          \item $\tau(\cdot) = F \times V \rightarrow V$
+          \item $\tau(+) = V \times V \rightarrow V$
+          \item $\tau(+_F) = F \times F \rightarrow F$
+          \item $\tau(-) = V \rightarrow V$
+        \end{itemize}
+\end{itemize}
+
+and $\Gamma_{vs}$ contains the following axioms:
+\begin{itemize}
+  \item $\ForallApp \vec x, \vec y: V \mdot \vec x + \vec y = \vec y + \vec x$
+  \item $\ForallApp \vec x, \vec y, \vec z: V \mdot (\vec x + \vec y) + \vec z = \vec x + (\vec y + \vec z)$
+  \item $\ForallApp \vec x : V \mdot \vec{\mathbf{0}} + \vec x = \vec x$
+  \item $\ForallApp \vec x : V \mdot \vec x + \vec{\mathbf{0}} = \vec x$
+  \item $\ForallApp \vec x : V \mdot \vec x + (- \vec x) = \vec{\mathbf{0}}$
+  \item $\ForallApp r, s : F,\,\vec x : V \mdot r \mdot (s \cdot \vec x) = (r * s) \cdot \vec x$
+  \item $\ForallApp r, s : F,\,\vec x : V \mdot (r +_F s) \cdot \vec x = r \cdot \vec x + s \cdot \vec x$
+  \item $\ForallApp r : F,\,\vec x, \vec y : V \mdot r \cdot (\vec x + \vec y) = r \cdot \vec x + r \cdot \vec y$
+  \item $\ForallApp \vec x : V \mdot 1 \cdot \vec x = \vec x$
+\end{itemize}
+
+  \item Construct in MSFOL a theory $T$ of monoid homomorphisms where
+    each model for $T$ contains a monoid homomorphism.
+
+\textbf{Solution:}
+
+Let $\Sigma =
+  (\set{M_1,M_2},\set{e_1,e_2},\set{\circ_1,\circ_2,h},\emptyset,\tau)$
+where $\tau$ is defined as follows:
+
+\begin{enumerate}
+
+  \item $\tau\,e_1 = M_1$.
+
+  \item $\tau\,e_2 = M_2$.
+
+  \item $\tau\,\circ_1 = M_1 \times M_1 \rightarrow M_1$.
+
+  \item $\tau\,\circ_2 = M_2 \times M_2 \rightarrow M_2$.
+
+  \item $\tau\,h = M_1 \rightarrow M_2$.
+
+\end{enumerate}
+
+Let $T = (\Sigma,\Gamma)$ where $\Gamma$ contains the following
+$\Sigma$-sentences:
+
+\begin{enumerate}
+
+  \item $\Forall x,y,z : M_1 \mdot (x \circ_1 y) \circ_1 z = x
+          \circ_1 (y \circ_1 z)$.
+
+  \item $\Forall x : M_1 \mdot e \circ_1 x = x$.
+
+  \item $\Forall x : M_1 \mdot x \circ_1 e = x$.
+
+  \item $\Forall x,y,z : M_2 \mdot (x \circ_2 y) \circ_2 z = x
+          \circ_2 (y \circ_2 z)$.
+
+  \item $\Forall x : M_2 \mdot e \circ_2 x = x$.
+
+  \item $\Forall x : M_2 \mdot x \circ_2 e = x$.
+
+  \item $\Forall x,y : M_1 \mdot h\,(x \circ_1 y) = (h\,x)
+          \circ_2 (h\,y)$.
+
+  \item $h\,e_1 = e_2$.
+
+\end{enumerate}
+
+If \mbox{$\cal H$} = $(\set{D_{M_1},D_{M_2}},I)$ is a model for $T$, then
+clearly $I\,h$ is a monoid homomorphism.  If $g$ is a monoid
+homomorphism in some mathematical model, then clearly there is a
+$\Sigma$-interpretation \mbox{$\cal H$} = $(\set{D_{M_1},D_{M_2}},I)$ such that
+$g = I\,h$.  Therefore, $T$ is a theory of monoid homomorphisms.
+
+
+\ee
+\end{document}
+
+

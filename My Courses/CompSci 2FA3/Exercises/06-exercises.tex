@@ -1,0 +1,216 @@
+\documentclass[11pt,fleqn]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+
+\lstset{language=python,basicstyle=\ttfamily,breaklines=true,showspaces=false,showstringspaces=false,breakatwhitespace=true,texcl=true,escapeinside={\%*}{*)}}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sM}{\mbox{$\cal M$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\sV}{\mbox{$\cal V$}}
+\newcommand{\set}[1]{{\{ #1 \}}}
+\newcommand{\Neg}{\neg} 
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\LeftRightarrow}
+\newcommand{\Forall}{\forall}
+\newcommand{\ForallApp}{\forall\,}
+\newcommand{\Forsome}{\exists}
+\newcommand{\ForsomeApp}{\exists\,}
+\newcommand{\mdot}{\mathrel.}
+
+\begin{document}
+
+%\thispagestyle{empty}
+
+\bc
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Week 06 Exercises}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: February 7, 2020}
+
+\ec
+
+\medskip
+
+\subsection*{Background Definitions}
+
+Consider the following definitions:
+
+\be
+
+  \item $\Sigma_{\rm stack} = (\sB,\sC,\sF,\sP,\tau)$ where:
+
+  \be
+
+    \item $\sB = \set{\mname{Element},\mname{Stack}}$.
+
+    \item $\sC = \set{\mname{error},\mname{bottom}}$.
+
+    \item $\sF = \set{\mname{push},\mname{pop},\mname{top}}$.
+
+    \item $\sP = \emptyset$.
+
+    \item $\tau(\mname{error}) = \mname{Element}$.
+
+    \item $\tau(\mname{bottom}) = \mname{Stack}$.
+
+    \item $\tau(\mname{push}) = \mname{Element} \times \mname{Stack}
+      \rightarrow \mname{Stack}$.
+
+    \item $\tau(\mname{pop}) = \mname{Stack} \rightarrow
+      \mname{Stack}$.
+
+    \item $\tau(\mname{top}) = \mname{Stack} \rightarrow
+      \mname{Element}$.
+
+  \ee
+
+  \item $\Sigma_{\rm grp} =
+    (\set{G},\set{e},\set{*,\mname{inv}},\emptyset,\tau)$ where
+    $\tau(e) = G$, $\tau(*) = G\times G \rightarrow G$, and
+    $\tau(\mname{inv}) = G \rightarrow G$.
+
+  \item Let $\Gamma_{\rm grp}$ be the following set of
+    $\Sigma$-sentences:
+
+  \be
+
+    \item[Assoc] $\ForallApp x,y,z : G \mdot (x * y) * z = x *
+      (y * z)$.
+
+    \item[IdLeft] $\ForallApp x : G \mdot e * x = x$.
+
+    \item[IdRight] $\ForallApp x : G \mdot x * e = x$.
+
+    \item[InvLeft] $\ForallApp x : G \mdot \mname{inv}(x) * x = e$.
+
+    \item[InvRight] $\ForallApp x : G \mdot x * \mname{inv}(x) = e$.
+
+  \ee
+
+  \item A \emph{partition} of a set $S$ is a nonempty set $U$ of
+    subsets of $S$ such that, for all $x \in S$, $x$ is a member of
+    exactly one member of $U$.  Hence (1) the members of $U$ are
+    disjoint and (2) their union equals $S$.
+
+  \item A \emph{lattice} is a weak partial order $(U,\le)$ such that
+    each pair of elements of $U$ has both a least upper bound and a
+    greatest lower bound.
+
+  \item Let $M_1 = (D_1,e_1,*_1)$ and $M_2 = (D_2,e_2,*_2)$ be
+    two monoids.  A \emph{monoid homomorphism} from $M_1$ to $M_2$ is
+    a function $h : D_1 \rightarrow D_2$ such that:
+
+  \be
+
+    \item $h(x *_1 y) = h(x) *_2 h(y)$ for all $x,y \in D_1$.
+
+    \item $h(e_1) = e_2$.
+
+  \ee
+
+\ee
+
+\subsection*{Exercises}
+
+\be
+
+  \item Construct in MSFOL a theory $T = (\Sigma_{\rm stack},\Gamma_{\sf
+    stack})$ of stacks.  $\Gamma_{\sf stack}$ should contain axioms
+  that say:
+
+  \be
+
+    \item The top of the bottom stack is the error element.
+
+    \item Let $s$ be a stack obtained by pushing an element $e$ onto a
+      stack $s'$.  The top of $s$ is $e$.
+
+    \item Pop of the bottom stack is the bottom stack.
+
+    \item Let $s$ be a stack obtained by pushing an element $e$ onto a
+      stack $s'$.  The pop of $s$ is $s'$.
+
+  \ee
+
+  \item A \emph{group} is a monoid with an inverse operation.  $T_{\rm
+    grp} = (\Sigma_{\rm grp}, \Gamma_{\rm grp})$ is a theory of
+    groups.  Show that models of $T_{\rm grp}$ can be directly derived
+    from $(\mathbb{Z},0,+)$ and $(\mathbb{Q},1,*)$ but not from
+    $(\mathbb{N},0,+)$ and $(\mathbb{Z},1,*)$.
+
+  \item Let $\Sigma = (\alpha, p : \alpha \rightarrow \mathbb{B}, q :
+    \alpha \rightarrow \mathbb{B})$ be a signature of MSFOL.  What
+    should $\Gamma$ be so that each model for the theory $T =
+    (\Sigma,\Gamma)$ is a set of values partitioned into two
+    components defined by $p$ and $q$.
+
+  \item Let $\Sigma_{\rm pairs}$ be the signature
+    $(\sB,\emptyset,\sF,\emptyset,\tau)$  where:
+
+  \be
+
+    \item $\sB = \set{\alpha,\beta,\gamma}$.
+
+    \item $\sF = \set{\mname{mkPair},\mname{left},\mname{right}}$
+      where $\tau(\mname{mkPair}) = \alpha \times \beta \rightarrow
+      \gamma$, $\tau(\mname{left}) = \gamma \rightarrow \alpha$, and
+      $\tau(\mname{right}) = \gamma \rightarrow \beta$.
+
+  \ee
+
+  What should $\Gamma_{\rm pairs}$ be so that $T_{\rm pairs} =
+  (\Sigma_{\rm pairs}, \Gamma_{\rm pairs})$ is a theory of
+  mathematical structures that contain (1) sets $A$, $B$, and $C$
+  where $C$ is a set of values that have the same structure as ordered
+  pairs of members of $A$ and $B$ and (2) functions to construct and
+  destruct the pairs in $C$?
+
+  \item Let $\Sigma_{\sf lattice} =
+    (\set{U},\emptyset,\emptyset,\set{\le}, \tau)$ where $\tau(\le) =
+    U \times U \rightarrow \mathbb{B}$.  Construct in MSFOL a theory
+    $T=(\Sigma_{\sf lattice},\Gamma_{\sf lattice})$ of lattices.
+
+  \item Explain why it is not possible to construct a theory of
+    well-founded relations in MSFOL.
+
+  \item Construct in MSFOL a theory of vector spaces.
+
+  \item Construct in MSFOL a theory $T$ of monoid homomorphisms where
+    each model for $T$ contains a monoid homomorphism.
+
+\ee
+\end{document}
+
+

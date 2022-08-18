@@ -1,0 +1,497 @@
+\documentclass[11pt,fleqn]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+
+\lstset{language=python,basicstyle=\ttfamily,breaklines=true,showspaces=false,showstringspaces=false,breakatwhitespace=true,texcl=true,escapeinside={\%*}{*)}}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\sglsp}{\ }
+\newcommand{\dblsp}{\ \ }
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newenvironment{proof}{\par\noindent{\bf Proof\sglsp}}{\hfill$\Box$}
+\newcommand{\pnote}[1]{{\langle \text{#1} \rangle}}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\sV}{\mbox{$\cal V$}}
+\newcommand{\set}[1]{{\{ #1 \}}}
+\newcommand{\Neg}{\neg} 
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\LeftRightarrow}
+\newcommand{\Forall}{\forall}
+\newcommand{\ForallApp}{\forall\,}
+\newcommand{\Forsome}{\exists}
+\newcommand{\ForsomeApp}{\exists\,}
+\newcommand{\mdot}{\mathrel.}
+
+\begin{document}
+
+%\thispagestyle{empty}
+
+\bc
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Week 04 Exercises}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: February 1, 2020}
+
+\ec
+
+\medskip
+
+\be
+
+  \item Prove that $(\sP(S), \subset)$ is a strict partial order where
+    $S$ is a nonempty set and $\sP(S)$ is the power set of $S$.
+    
+	\textbf{SOLUTION:}
+	\begin{proof}
+	Recall that a strict partial order $(S, <)$ has the following definitions:
+	\begin{align*}
+		\mbox{Irreflexivity: } & \forall\,x \in S \mdot \lnot(x < x)\\
+		\mbox{Asymmetry: } & \forall\, x, y \in S \mdot x < y \Rightarrow \lnot(y < x)\\
+		\mbox{Transitivity: } & \forall\, x, y, z \in S \mdot x < y \land y < z \Rightarrow x < z
+	\end{align*}
+	We'll prove all three of these properties for $(\sP(S), \subset)$.
+	
+	By definition $\forall s_1,s_2 \in \sP(S) ~.~ s_1 \subset s_2 \iff (\forall y \in s_1 ~.~ y \in s_2) \wedge (\exists x \in s_2 ~.~ x \not\in s_1)$ \\
+	
+	Irreflexivity: $\forall s \in \sP(S) ~.~ \neg{(s \subset s)}$. 
+	We proceed by contradiction:
+	\begin{align*}
+		& s \subset s & \\
+		\iff & (\forall y \in s ~.~ y \in s) \wedge (\exists x \in s ~.~ x \not\in s) & \pnote{definition of $\subset$} \\
+		\Rightarrow & \exists x \in s ~.~ x \not\in s & \pnote{$A \wedge B \Rightarrow B$} \\
+		\Rightarrow & False & \pnote{obvious} \\
+	\end{align*}
+	We have a contradiction therefore $\neg{(s \subset s)}$.
+	Alternatively, it is clearly irreflexive because no set is a proper subset of itself. 
+		
+	Asymmetry: $\forall s_1,s_2 \in \sP(S) ~.~ s_1 \subset s_2 \Rightarrow \neg{(s_2 \subset s_1)}$.
+	\begin{align*}
+		& s_1 \subset s_2 & \\
+		\iff & (\forall x \in s_1 ~.~ x \in s_2) \wedge (\exists y \in s_2 ~.~ y \not\in s_1) & \pnote{definition of $\subset$} \\
+		\iff & \neg{(\exists x \in s_1 ~.~ x \not\in s_2)} \wedge (\exists y \in s_2 ~.~ y \not\in s_1) & \pnote{definition of $\exists$} \\
+		\iff & \neg{(\exists x \in s_1 ~.~ x \not\in s_2)} \wedge \neg{(\forall y \in s_2 ~.~ y \in s_1)} & \pnote{definition of $\exists$} \\
+		\iff & \neg{((\exists x \in s_1 ~.~ x \not\in s_2) \vee (\forall y \in s_2 ~.~ y \in s_1))} & \pnote{De Morgan's} \\
+		\Rightarrow & \neg{((\exists x \in s_1 ~.~ x \not\in s_2) \wedge (\forall y \in s_2 ~.~ y \in s_1))} & \pnote{$\neg{(A \vee B)} \Rightarrow \neg{(A \wedge B)}$} \\
+		\iff & \neg{(s_2 \subset s_1)} & \pnote{definition of $\subset$} \\
+	\end{align*}
+	Therefore $s_1 \subset s_2 \Rightarrow \neg{(s_2 \subset s_1)}$.
+	Alternatively, it is clearly asymmetric because no set can be both a proper subset and a proper superset of another set.
+	
+	Transitivity: $\forall s_1,s_2,s_3 \in \sP(S) ~.~ s_1 \subset s_2 \wedge s_2 \subset s_3 \Rightarrow s_1 \subset s_3$.
+	First we'll show $s_1 \subset s_2 \wedge s_2 \subset s_3 \Rightarrow \forall x \in s_1 ~.~ x \in s_3 $:
+	\begin{align*}
+		& s_1 \subset s_2 \wedge s_2 \subset s_3 & \\
+		\iff & (\forall w \in s_1 ~.~ w \in s_2) \wedge (\exists x \in s_2 ~.~ x \not\in s_1) & \\
+		&~~~~\wedge (\forall y \in s_2 ~.~ y \in s_3) \wedge (\exists z \in s_3 ~.~ z \not\in s_2) & \pnote{definition of $\subset$} \\
+		\Rightarrow & (\forall w \in s_1 ~.~ w \in s_2) \wedge (\forall y \in s_2 ~.~ y \in s_3) & \pnote{$A \wedge B \Rightarrow A$} \\
+		\iff & (\forall x ~.~ x \in s_1 \Rightarrow x \in s_2) \wedge (\forall x ~.~ x \in s_2 \Rightarrow x \in s_3) & \\
+		\iff & \forall x ~.~ (x \in s_1 \Rightarrow x \in s_2) \wedge (x \in s_2 \Rightarrow x \in s_3) & \\
+		\Rightarrow & \forall x ~.~ x \in s_1 \Rightarrow x \in s_3 & \pnote{transitivity of $\Rightarrow$} \\
+	\end{align*}
+	Next we'll show $s_1 \subset s_2 \wedge s_2 \subset s_3 \Rightarrow \exists x \in s_3 ~.~ x \not\in s_1 $:
+	\begin{align*}
+		& s_1 \subset s_2 \wedge s_2 \subset s_3 & \\
+		\iff & (\forall w \in s_1 ~.~ w \in s_2) \wedge (\exists x \in s_2 ~.~ x \not\in s_1) & \\
+		&~~~~\wedge (\forall y \in s_2 ~.~ y \in s_3) \wedge (\exists z \in s_3 ~.~ z \not\in s_2) & \pnote{definition of $\subset$} \\
+		\Rightarrow & (\exists x \in s_2 ~.~ x \not\in s_1) \wedge (\forall y \in s_2 ~.~ y \in s_3) & \pnote{$A \wedge B \Rightarrow A$} \\
+		\Rightarrow & \exists x \in s_2 ~.~ x \not\in s_1 \wedge x \in s_3 & \\
+		\Rightarrow & \exists x \in s_3 ~.~ x \not\in s_1 &
+	\end{align*}
+	Therefore \[s_1 \subset s_2 \wedge s_2 \subset s_3 \Rightarrow (\forall x ~.~ x \in s_1 \Rightarrow x \in s_3)\] and 
+	\[s_1 \subset s_2 \wedge s_2 \subset s_3 \Rightarrow (\exists x \in s_3 ~.~ x \not\in s_1).\]
+	Using the definition of $\subset$ we can trivially see that these two implications mean that \[s_1 \subset s_2 \wedge s_2 \subset s_3 \Rightarrow s_1 \subset s_3.\]
+	Alternatively, it is clearly transitive because $s_1 \subset s_2$ and $s_2 \subset s_3$ means that each element of $s_1$ must also be in $s_2$ and so also in $s_3$, and also that there is some element in $s_2$ that is not in $s_1$, but is in $s_3$.
+
+	\end{proof}
+  \item  Consider the weak partial order \[P =
+    (\set{\set{1}, \set{2}, \set{4}, \set{1,2}, \set{1,4}, \set{2,4},
+    \set{3,4}, \set{1,3,4}, \set{2,3,4}}, \subseteq).\]
+
+  \be
+
+    \item Find the maximal elements in $P$.
+    
+    \textbf{SOLUTION:}
+    
+    The maximal elements in $P$ are $\set{1,2}$, $\set{1,3,4}$, and $\set{2,3,4}$ as all other elements in P are ``smaller'' than at least one of these with respect to $\subseteq$ and each of these are only ``smaller'' than themselves (e.g. $\set{1,2} \subseteq \set{1,2}$, but for all other elements, $x$: $\set{1,2} \not\subseteq x$).
+    \\
+    \item Find the minimal elements in $P$.
+    
+    \textbf{SOLUTION:}
+    
+    The minimal elements in $P$ are $\set{1}$, $\set{2}$, $\set{4}$ as all other elements in P are ``greater'' with respect to $\subseteq$ and these are only ``greater'' than themselves.
+	\\
+    \item Find the maximum element in $P$ if it exists.
+    
+    \textbf{SOLUTION:}
+
+    There is no maximum element in $P$, as the two maximal elements of $P$ are not unique in $P$.
+   \\
+    \item Find the minimum element in $P$ if it exists.
+    
+    \textbf{SOLUTION:}
+    
+    There is no minimum element in $P$, as the three minimal elements of $P$ are not unique in $P$.
+\\
+    \item Find all the upper bounds of $\set{\set{2},\set{4}}$ in $P$.
+    
+    \textbf{SOLUTION:}
+    
+    The upper bounds of $\set{\set{2}, \set{4}}$ in $P$, are $\set{2,4}$, $\set{2,3,4}$ (\emph{Note:} $\set{1,2}, \set{1,4}$ are \textbf{NOT} upper bounds on $\set{\set{2}, \set{4}}$, as an upper bound has to be larger with respect to $\subseteq$ for \textbf{BOTH} $\set{2}$ and $\set{4}$.)
+\\
+    \item Find the least upper bound of $\set{\set{2},\set{4}}$ in $P$
+      if it exists.
+      
+      \textbf{SOLUTION:}
+      
+      Out of the two upper bounds $\set{2, 4},\set{2,3,4}$, $\set{2,4} \subseteq \set{2,3,4}$, so $\set{2,4}$ is the least upper bound.
+\\
+    \item Find all the lower bounds of $\set{\set{1,3,4},
+      \set{2,3,4}}$ in $P$.
+
+	\textbf{SOLUTION:}
+	
+	The lower bounds of $\set{\set{1,3,4},\set{2,3,4}}$ are $\set{4}, \set{3,4}$.
+	\\
+    \item Find the greater lower bound of $\set{\set{1,3,4},
+      \set{2,3,4}}$ in $P$ if it exists.
+      
+      \textbf{SOLUTION:}
+      
+      Out of the two lower bounds, $\set{4} \subseteq \set{3,4}$, so $\set{3,4}$ is the greatest lower bound.
+
+  \ee 
+
+  \item Let $(U,I)$ where $I$ is the binary relation such that $a
+    \;I\; b$ iff $a = b$.  Show that $(U,I)$ is a weak partial order
+    and not a weak total order.
+    
+    \textbf{SOLUTION:}
+    
+    The relation of a weak partial order is reflexive, antisymmetric and transitive. So we must show that $I$ has these properties.
+    
+    \bi
+    \item $\ForallApp x \in U \mdot (x I x)$, since $x = x$.
+    \item $\ForallApp x,y \in U \mdot x I y \And y I x \Implies x = y$, I is equality.
+    \item $\ForallApp x,y,z \in U \mdot x I y \And y I z \Implies x I z$, since equality is transitive.
+    \ei
+    
+    We have shown that $(U,I)$ is a weak partial order. 
+    To show that $(U,I)$ is \emph{not} a weak \emph{total} order, we observe that $I$ is not total, since total means: 
+    $\ForallApp x,y \in U \mdot x I y \vee y I x$ 
+    but if $x \neq y$, we have neither $x I y$ nor $y I x$. 
+    
+    (Note: we have implicitly assumed that there are at least two individuals of sort $U$! Otherwise $(U,I)$ would be a weak total order)
+
+  \item Let $(\mathbb{Q} \cup
+    \set{-\infty,+\infty}, <)$ be the strict total order such that $<$
+    is the same as $<_{\rm rat}$ on $\mathbb{Q}$ and $-\infty$ and
+    $+\infty$ are minimum and maximum elements, respectively, of
+    $(\mathbb{Q} \cup \set{-\infty,+\infty}, <)$.  Prove that
+    \[(\mathbb{Q} \cup \set{-\infty,+\infty}, <)\] is dense without
+    assuming that $(\mathbb{Q}, <_{\rm rat})$ is dense.
+
+\textbf{SOLUTION:} We recall the definition of dense:
+\begin{center}
+A set $S$ is \emph{dense} if and only if, for any interval $(a,b) \subseteq S$ where $a < b$, there exists a $c \in S$ such that $a < c < b$ 
+\end{center}
+We can express this as a predicate:
+\[\mbox{dense}(S) \equiv \forall\, a, b \in S \,.\, a < b \Rightarrow (\exists\, c \in S \,.\, a < c \land c < b)\]
+Now, we must show the predicate: 	$\mbox{dense}(\mathbb{Q} \cup \set{-\infty, +\infty})$ holds.
+
+We observe 4 cases:
+\be
+	\item $a = -\infty, b = +\infty$: \\
+		Let c = 2.
+		Therefore $a < c < b$.
+	\item $a = -\infty, b = \frac{x}{y}$ for $x,y \in \mathbb{N}$ (therefore $b \in \mathbb{Q}$): \\
+		Let $c = \frac{x}{2y}$.
+		Therefore $a < c = \frac{x}{2y} = \frac{b}{2} < b$.
+	\item $a = \frac{x}{y}, b = +\infty$ for $x,y \in \mathbb{N}$ (therefore $a \in \mathbb{Q}$): \\
+		Let $c = \frac{2x}{y}$.
+		Therefore $a < 2a = \frac{2x}{y} = c < b$.
+	\item $a = \frac{x}{y}, b = \frac{m}{n}$ for $x,y,m,n \in \mathbb{N}$ (therefore $a,b \in \mathbb{Q}$): \\
+		Let $c = \frac{2xn+1}{2yn}$.
+		Note $a = \frac{xn}{yn}, b = \frac{my}{yn}$ and therefore: $xn < my$ and $xn < xn + 1 \leq my$ since $my, xn \in \mathbb{N}$.
+		Therefore $a = \frac{x}{y} = \frac{2xn}{2yn} < \frac{2xn+1}{2yn} < \frac{2xn+2}{2yn} = \frac{2(xn+1)}{2yn} \leq \frac{2my}{2yn} = \frac{m}{n}$.
+\ee
+
+
+
+  \item Let $(S,<)$ be a strict total order such
+    that there exist $a,b \in S$ with $a < b$ (i.e., $S$ has at least
+    two members).  Show that, if $(S,<)$ is dense, then $(S,<)$ is not
+    a well-order.
+
+  \bigskip
+
+\begin{proof}
+By assumption, there are $a,b \in S$ with $a < b$.  Assume $(S,<)$ is
+dense.  We will show that $(S,<)$ is not a well-order.  Define the
+infinite sequence $c_0,c_1,c_2, \ldots$ of members of $S$ by natural
+number recursion as follows:
+
+\be
+
+  \item $c_0$ is some member of $S$ such that $a < c_0 < b$.  We know
+    $c_0$ exists since $(S,<)$ is dense.
+
+  \item If $n > 0$, then $c_n$ is some member of $S$ such that $a <
+    c_n < c_{n-1}$.  We know $c_n$ exists since $(S,<)$ is dense.
+
+\ee
+
+By construction, \[c_0 > c_1 > c_2 > \cdots .\] $(S,<)$ is thus not
+Noetherian since there is an infinite descending sequence of members
+of $S$.  $(S,<)$ is not Noetherian implies $(S,<)$ is not a
+well-order.
+\end{proof}
+
+
+  \item Consider the mathematical structure $(L,<_L)$ where $L$ is a
+    list of integers and $<_L$ is the binary relation on $L$ defined
+    by:
+    \[[a_0,a_1,\ldots,a_n] <^* [b_0,b_1,\ldots,b_n] \mbox{  iff  }
+      \left(\sum_{i=0}^{n} a_i\right) < \left(\sum_{i=0}^{n}
+      b_i\right).\]  Prove that $(L,<_L)$ is a strict partial order
+      that is not a strict total order.
+      
+      \textbf{SOLUTION:}
+      
+      \begin{proof}
+      We need to prove the following statements about $(L, <_L)$:
+      \begin{align*}
+      \mbox{Irreflexivity: }& \forall\, \ell \in L \,.\, \lnot(\ell <_L \ell)\\ 
+      \mbox{Asymmetry: }& \forall\, \ell, k \in L \,.\, \ell <_L k \Rightarrow \lnot(k <_L \ell)\\
+      \mbox{Transitivity: }& \forall\, \ell, k, j \in L \,.\, \ell <_L k \land k <_L j \Rightarrow \ell <_L j\\
+      \mbox{Anti-Trichotomous: } & \exists\, \ell, k \in L \,.\, \lnot(\ell <_L k) \land \lnot(\ell = k) \land \lnot(k <_L \ell)^\dagger
+      \end{align*}
+      \footnotesize $\dagger$: Logically negate the definition of Trichotomy, then apply De Morgan's Law to reach the above definition.
+      \normalsize
+      
+      Irreflexivity:
+      
+      For any $\ell \in L$, we have:
+      \begin{align*}
+      &\lnot(\ell <_L \ell) &\pnote{Definition of Irreflexivity}\\
+      \equiv\,& \lnot\left(\left(\sum_{i=0}^{|\ell|} \ell_i\right) < \left(\sum_{i=0}^{|\ell|} \ell_i\right)\right) & \pnote{Definition of $<_L$}\\
+      \equiv\,& true & \pnote{Irreflexivity of $<$}
+      \end{align*}
+      
+      Asymmetry:
+      
+      For any $\ell, k \in L$ satisfying $\ell <_L k$, we have:
+      \begin{align*}
+      &\lnot(k <_L \ell) &\pnote{Definition of Asymmetry}\\
+      \equiv\,& \lnot\left(\left(\sum_{i=0}^{|k|} k_i\right) < \left(\sum_{i=0}^{|\ell|} \ell_i\right)\right) & \pnote{Definition of $<_L$}\\
+      \equiv\,& true & \pnote{Asymmetry of $<$ with Assumption $\ell <_L k$, Def. of $<_L$}
+      \end{align*}
+      
+      Transitivity:
+      
+      For any $\ell, k, j \in L$ satisfying $\ell <_L k \land k <_L j$, we have:
+	\begin{align*}
+	&\ell <_L j & \pnote{Definition of Transitivity}\\
+	\equiv\,& \left(\sum_{i=0}^{|\ell|} \ell_i\right) < \left(\sum_{i=0}^{|j|} j_i\right) & \pnote{Definition of $<_L$}\\
+	\equiv\,&true&\pnote{Transitivity of $<$ with Assumption, Def. of $<_L$}
+	\end{align*}
+	
+	Anti-Trichotomy:
+	\begin{align*}
+	&\exists\, \ell, k \in L \,.\, \lnot(\ell <_L k) \land \lnot(\ell = k) \land \lnot(k <_L \ell) & \pnote{Def. of Anti-Trichotomy}\\
+	\Leftarrow\,&(\lnot(\ell <_L k) \land \lnot(\ell = k) \land \lnot(k <_L \ell))[\ell, k \mapsto [1,2], [2,1]] & \pnote{$\exists$ witness}\\
+	\equiv\,&\lnot([1,2] <_L [2,1]) \land \lnot([1,2] = [2,1]) \land \lnot([2,1] <_L [1,2]) & \pnote{Substitution}\\
+	\equiv\,&\lnot([1,2] <_L [2,1]) \land true \land \lnot([2,1] <_L [1,2]) & \pnote{Inequality of lists}\\
+	\equiv\,&\lnot(1+2 < 2+1) \land \lnot (2+1 < 1+2) & \pnote{Def. of $<_L$}\\
+	\equiv\,&true &\pnote{Asymmetry of $<$}
+	\end{align*}
+      \end{proof}
+
+  \item Construct a strict partial order $(U,<)$ such that $U$ is
+    infinite, $<$ is well founded, and $(U,<)$ is not a total order 
+    (and thus $(L,<_L)$ is not a well-order).
+	
+	\textbf{SOLUTION:}
+	
+	Let $U \equiv \mathbb{N} \times \mathbb{N}$. \\
+	For clarity we rename $<$ as $<_2$ and use $<$ as normal. \\
+	Let $(x_1, x_2) <_2 (y_1, y_2) \iff x_1 < y_1 \wedge x_2 < y_2$.
+	
+	\be
+	\item $(\mathbb{N} \times \mathbb{N}, <_2)$ is a strict partial order: \\
+		Strict partial orders are irreflexive, asymmetric, and transitive.
+		
+		\bi
+			\item Irreflexive: \\
+				We proceed by contradiction.
+				\begin{align*}
+					&(x_1, x_2) <_2 (x_1, x_2) & \pnote{negated definition of irreflexive} \\
+					\Rightarrow & x_1 < x_1 & \pnote{ partial application of definition of $<_2$} \\
+					\Rightarrow & False & \pnote{$(\mathbb{N}, <)$ is irreflexive}
+				\end{align*}
+			\item Asymmetric: \\
+				\begin{align*}
+					&(x_1, x_2) <_2 (y_1, y_2) & \\
+					\Rightarrow & x_1 < y_1 & \pnote{ partial application of definition of $<_2$} \\
+					\Rightarrow & \neg{}(y_1 < x_1) & \pnote{$(\mathbb{N}, <)$ is asymmetric} \\
+					\Rightarrow & \neg{}((y_1, y_2) <_2 (x_1, x_2)) & \pnote{trivial with $<_2$ definition}
+				\end{align*}
+				Therefore $(x_1, x_2) <_2 (y_1, y_2) \Rightarrow \neg{}((y_1, y_2) <_2 (x_1, x_2))$.
+			\item Transitive: \\
+				\begin{align*}
+				&(x_1, x_2) <_2 (y_1, y_2) \wedge (y_1, y_2) <_2 (z_1, z_2) & \\
+				\Rightarrow & x_1 < y_1 \wedge x_2 < y_2 \wedge y_1 < z_1 \wedge y_2 < z_2 & \pnote{definition of $<_2$} \\
+				\Rightarrow &  x_1 < y_1 < z_1 \wedge x_2 < y_2 < z_2 & \pnote{rearranging} \\
+				\Rightarrow &  x_1 < z_1 \wedge x_2 < z_2 & \pnote{$(\mathbb{N}, <)$ is transitive} \\
+				\Rightarrow & (x_1, x_2) <_2 (z_1, z_2) & \pnote{definition of $<_2$}
+				\end{align*}
+				Therefore $(x_1, x_2) <_2 (y_1, y_2) \wedge (y_1, y_2) <_2 (z_1, z_2) \Rightarrow (x_1, x_2) <_2 (z_1, z_2)$.
+		\ei
+		Therefore our order is a strict partial order.
+	
+	\item $(\mathbb{N} \times \mathbb{N}, <_2)$ is infinite: \\
+	We know $\mathbb{N}$ is infinite so clearly $\mathbb{N} \times \mathbb{N}$ is infinite (we can construct an infinite list of some of the members of $\mathbb{N} \times \mathbb{N}$ by pairing $x\in \mathbb{N}$ with itself for all such $x$).
+	
+	\item $(\mathbb{N} \times \mathbb{N}, <_2)$ is well founded: \\
+		It is well founded if every nonempty subset of $\mathbb{N} \times \mathbb{N}$ has a $<_2$-minimal element.
+		In other words,
+		\[\forall S \subseteq (\mathbb{N} \times \mathbb{N}) \backslash \emptyset \mdot \exists (y_1,y_2) \in S \mdot \forall (x_1,x_2) \in \mathbb{N} \times \mathbb{N} \mdot (x_1,x_2) \in S \Rightarrow \neg{}((x_1,x_2) <_2 (y_1,y_2))\]
+		
+		We proceed by weak induction on the size of the nonempty subset.\\
+		Base Case: \\
+		The nonempty subset has 1 element. The 1 element is the minimal element and it is ``less'' than all 0 other elements.\\\\
+		Inductive Step: \\
+		Assume that subsets of size $n$ have a minimal element and that the minimal element is ``less'' than all other elements. \\
+		Prove that subsets of size $n+1$ have a minimal element and that the minimal element is ``less'' than all other elements: \\
+		Split a subset of size $n+1$ into a set of size $n$ and a set of size 1. \\
+		Let $x$ be the minimal element of the set of size $n$ which we know exists by the induction hypothesis. \\
+		Let $y$ be the single element in the set of size 1. \\
+		In the original subset of size $n+1$, either $x$ or $y$ is a minimal element. \\
+		If $x <_2 y$, then $x$ is a minimal element because no element is ``less'' than $x$, $x$ is also ``less'' than all other elements. \\
+		If $y <_2 x$, then $y$ is a minimal element because we have shown that $<_2$ is transitive and therefore $y$ is ``less'' than all other elements because it is ``less'' than $x$ which is less than all others excluding $y$ and this makes $y$ minimal because $<_2$ is asymmetric.\\
+		Therefore our order is well founded.
+		\\\\
+		(Note: If we had not included in the induction hypothesis that the minimal element was ``less'' than all others, we would not have known that in the case of $y <_2 x$ that $\neg{}(z <_2 y)$ for all $z \in \mathbb{N} \times \mathbb{N}$, instead we would only know that $\neg{}(z <_2 x)$ for all $z \in \mathbb{N} \times \mathbb{N}$ where $z \neq y$ and that $\neg{}(x <_2 y)$. I.e. it would be plausible that $x$ was not ``less'' than $y$, but that other things were ``less'' than y despite not being ``less'' than $x$)
+	
+	\item $(\mathbb{N} \times \mathbb{N}, <_2)$ is not a total order: \\
+		Strict total orders have the properties of strict partial orders, but are also trichotomous so we must show $(\mathbb{N} \times \mathbb{N}, <_2)$ is not trichotomous:
+		\begin{align*}
+			&\forall (x_1,x_2),(y_1,y_2) \in \mathbb{N} \times \mathbb{N} \mdot \\
+			&~~ \neg{}((x_1,x_2) <_2 (y_1,y_2) \vee (y_1,y_2) <_2 (x_1,x_2) \vee (x_1,x_2) = (y_1,y_2))
+		\end{align*}
+		
+		Try $(x_1,x_2) = (3,2) ,~ (y_1,y_2) = (2,3)$:
+		\begin{align*}
+			&\neg{((3,2) <_2 (2,3) \vee (2,3) <_2 (3,2) \vee (3,2) = (2,3))} \\
+			\iff &\neg{}(False \vee False \vee False) \\
+			\iff &True
+		\end{align*}
+		
+		Therefore our order is not a strict total order.
+	\ee
+	
+	Therefore $(\mathbb{N} \times \mathbb{N}, <_2)$ meets the given criteria.
+
+
+  \item Let \mname{Type} be the inductive set (representing
+    $\sB$-types) defined in the lectures.  Define $a(\alpha)$ be the
+    number of $\mathbb{B}$ and \mname{Base} constructors occurring in
+    $\alpha$ and $b(\alpha)$ be the number of \mname{Function} and
+    \mname{Product} constructors occurring in $\alpha$.  Prove by
+    structural induction that, for all $\alpha \in
+    \mname{Type}$, \[a(\alpha) \le b(\alpha) + 1.\]
+    
+    \textbf{SOLUTION:}
+
+\begin{proof}
+Let $P(\alpha) \equiv a(\alpha) \le b(\alpha) + 1$.  We will prove
+$P(\alpha)$ for all $\alpha \in \mname{Type}$ by structural induction.
+
+\medskip
+
+\emph{Base case}: $\alpha = \mathbb{B}$ or $\alpha \in \sB$.
+We need to prove $P(\alpha)$.
+\begin{align*}
+  &\phantom{{}=} a(\alpha)   & \pnote{LHS of $P(\alpha)$}\\
+  &\le 1                     & \pnote{definition of $a$}\\
+  &=   0 + 1                 & \pnote{arithmetic}\\
+  &= b(\alpha) + 1           & \pnote{definition of $b$; RHS of $P(\alpha)$}
+\end{align*}
+So $P(\alpha)$ holds.
+
+\emph{Induction step}: $\alpha = C(\beta_1,\beta_2)$ where $C$ is
+\mname{Function} or \mname{Product} and $\beta_1,\beta_2 \in
+\mname{Type}$.  Assume $P(\beta_1)$ and $P(\beta_2)$.  We need to
+prove $P(\alpha)$.
+\begin{align*}
+  &\phantom{{}=} a(C(\beta_1,\beta_2))      & \pnote{LHS of $P(\alpha)$}\\
+  &= a(\beta_1) + a(\beta_2)                & \pnote{definition of $a$}\\
+  &\le  (b(\beta_1) + 1) + (b(\beta_2) + 1) & \pnote{induction hypothesis}\\
+  &= (1 + b(\beta_1) + b(\beta_2)) + 1      & \pnote{arithmetic}\\
+  &= b(C(\beta_1,\beta_2)) + 1          & \pnote{definition of $b$; RHS of $P(\alpha)$}
+\end{align*}
+So $P(\alpha)$ holds.
+
+\medskip
+
+Therefore, $P(\alpha)$ holds for all $\alpha \in \mname{Type}$ by
+structural induction.
+\end{proof}
+
+  \item Construct a signature of MSFOL that is suitable for 
+    formalizing real number arithmetic.
+    
+    \textbf{SOLUTION:}
+    
+    Let $\Sigma = (\sB, \sC, \sF, \sP, \tau)$ be the MSFOL signature that is suitable for arithmetic over $\mathbb{R}$. Then:
+    \begin{align*}
+    \sB &= \set{\mathbb{R}}\\
+    \sC &= \set{0, 1}\\
+    \sF &= \set{+, *, -, \div}\\
+    \sP &= \set{=, <}
+    \end{align*}
+    Where $\tau$ maps the set $\sC \cup \sF \cup \sP$ to $\sB$ as follows:
+    \begin{align*}
+    \tau(0) &= \mathbb{R}\\
+    \tau(1) &= \mathbb{R}\\
+    \tau(+) &= \mathbb{R} \times \mathbb{R} \rightarrow \mathbb{R}\\
+    \tau(-) &= \mathbb{R} \times \mathbb{R} \rightarrow \mathbb{R}\\
+    \tau(*) &= \mathbb{R} \times \mathbb{R} \rightarrow \mathbb{R}\\
+    \tau(\div) &= \mathbb{R} \times \mathbb{R} \rightarrow \mathbb{R}\\
+    \tau(=) &= \mathbb{R} \times \mathbb{R} \rightarrow \mathbb{B}\\
+    \tau(<) &= \mathbb{R} \times \mathbb{R} \rightarrow \mathbb{B}
+    \end{align*}
+
+\ee
+\end{document}
+

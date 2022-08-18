@@ -1,0 +1,589 @@
+\documentclass[11pt,fleqn]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+
+\lstset{language=python,basicstyle=\ttfamily,breaklines=true,showspaces=false,showstringspaces=false,breakatwhitespace=true,texcl=true,escapeinside={\%*}{*)}}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sM}{\mbox{$\cal M$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\sV}{\mbox{$\cal V$}}
+\newcommand{\sU}{\mbox{$\cal U$}}
+\newcommand{\set}[1]{{\{ #1 \}}}
+\newcommand{\Neg}{\neg} 
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\LeftRightarrow}
+\newcommand{\Forall}{\forall}
+\newcommand{\ForallApp}{\forall\,}
+\newcommand{\Forsome}{\exists}
+\newcommand{\ForsomeApp}{\exists\,}
+\newcommand{\mdot}{\mathrel.}
+
+\begin{document}
+
+%\thispagestyle{empty}
+
+\bc
+
+{\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+{\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+{\large \textbf{Winter 2020}}\\[8mm]
+{\huge \textbf{Week 05 Exercises with Solutions}}\\[6mm]
+{\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+{\large \textbf{McMaster University}}\\[6mm]
+{\large Revised: Feb 9, 2020}
+
+\ec
+
+\medskip
+
+\subsection*{Background Definitions}
+
+Consider the following definitions:
+
+\be
+
+\item $\Sigma_{\rm mon} =
+  (\set{M},\set{e},\set{*},\emptyset,\tau)$ where $\tau(e) =
+  M$ and $\tau(*) = M \times M \rightarrow M$.
+
+\item Let $\Gamma_{\rm mon}$ be the following set of $\Sigma$-sentences:
+
+\be
+
+\item[Assoc] $\ForallApp x,y,z : M \mdot (x * y) * z = x *
+  (y * z)$.
+
+\item[IdLeft] $\ForallApp x : M \mdot e * x = x$.
+
+\item[IdRight] $\ForallApp x : M \mdot x * e = x$.
+
+\ee
+
+\item $T_{\rm mon} = (\Sigma_{\rm mon}, \Gamma_{\rm mon})$.
+
+\item $\sM_{\rm nat}$ is the $\Sigma_{\rm mon}$-structure derived from
+$(\mathbb{N},0,+)$.
+
+\item $\sM_{\rm triv}$ is the $\Sigma_{\rm mon}$-structure derived
+from the \emph{trivial monoid} $(\set{0},0,+)$.
+
+\item $\Sigma_{\rm grp} =
+  (\set{G},\set{e},\set{*,\mname{inv}},\emptyset,\tau)$ where
+$\tau(e) = G$, $\tau(*) = G\times G \rightarrow G$, and
+$\tau(\mname{inv}) = G \rightarrow G$.
+
+\item Let $\Gamma_{\rm grp}$ be the following set of
+$\Sigma$-sentences:
+
+\be
+
+\item[Assoc] $\ForallApp x,y,z : G \mdot (x * y) * z = x *
+  (y * z)$.
+
+\item[IdLeft] $\ForallApp x : G \mdot e * x = x$.
+
+\item[IdRight] $\ForallApp x : G \mdot x * e = x$.
+
+\item[InvLeft] $\ForallApp x : G \mdot \mname{inv}(x) * x = e$.
+
+\item[InvRight] $\ForallApp x : G \mdot x * \mname{inv}(x) = e$.
+
+\ee
+
+\item $T_{\rm grp} = (\Sigma_{\rm grp}, \Gamma_{\rm grp})$.
+
+\item $\Sigma_{\rm stack} = (\sB,\sC,\sF,\sP,\tau)$ where:
+
+\be
+
+\item $\sB = \set{\mname{Element},\mname{Stack}}$.
+
+\item $\sC = \set{\mname{error},\mname{bottom}}$.
+
+\item $\sF = \set{\mname{push},\mname{pop},\mname{top}}$.
+
+\item $\sP = \emptyset$.
+
+\item $\tau(\mname{error}) = \mname{Element}$.
+
+\item $\tau(\mname{bottom}) = \mname{Stack}$.
+
+\item $\tau(\mname{push}) = \mname{Element} \times \mname{Stack}
+  \rightarrow \mname{Stack}$.
+
+\item $\tau(\mname{pop}) = \mname{Stack} \rightarrow
+  \mname{Stack}$.
+
+\item $\tau(\mname{top}) = \mname{Stack} \rightarrow
+  \mname{Element}$.
+
+\ee
+
+\ee
+
+\subsection*{Exercises}
+
+\be 
+
+  \item Let $\Sigma = (\alpha, a:\alpha, f : \alpha \times \alpha
+    \rightarrow \alpha, p: \alpha \times \alpha \rightarrow \mathbb{B})$.
+    Compute \mname{fvar} and \mname{bvar} for each of the following
+    $\Sigma$-formulas:
+
+  \be
+
+    \item $\ForsomeApp x : \alpha \mdot \ForsomeApp y : \alpha
+      \mdot p(z:\alpha)$.
+      
+      \textbf{SOLUTION:}
+      
+      Easy way: We can simply observe that $z:\alpha$ is not bounded by $\forall$ or $\exists$ and that $x:\alpha$ and $y:\alpha$ are.
+      Thus \mname{fvar} is $\{z:\alpha\}$ and \mname{bvar} is $\{x:\alpha, y:\alpha\}$.
+      
+      \medskip
+      
+      Long way:
+      We'll use the definitions of \mname{fvar} and \mname{bvar} given via pattern matching.\\
+      First we'll find \mname{fvar} and \mname{bvar} for basic formulas using existential quantifier, logical and, and logical or (we'll use these for part a and b as well).
+      
+      \begin{align*}
+	  	& \mname{fvar}(\exists x:\alpha . A) 					& &\mname{bvar}(\exists x:\alpha . A)\\
+	  	=~ & \mname{fvar}(\neg{(\forall x:\alpha . \neg{A})}) 	& =~ & \mname{bvar}(\neg{(\forall x:\alpha . \neg{A})})\\
+	  	=~ & \mname{fvar}(\forall x:\alpha . \neg{A}) 			& =~ & \mname{bvar}(\forall x:\alpha . \neg{A})\\
+	  	=~ & \mname{fvar}(\neg{A})\backslash \{x:\alpha\} 		& =~ & \mname{bvar}(\neg{A}) \cup \{x:\alpha\}\\
+	  	=~ & \mname{fvar}(A)\backslash \{x:\alpha\} 			& =~ & \mname{bvar}(A) \cup \{x:\alpha\}
+      \end{align*}
+      \begin{align*}
+      	& \mname{fvar}(A \vee B) 								& & \mname{bvar}(A \vee B)\\
+      	=~ & \mname{fvar}(\neg{A} \Rightarrow B) 				& =~ & \mname{bvar}(\neg{A} \Rightarrow B)\\
+      	=~ & \mname{fvar}(\neg{A}) \cup \mname{fvar}(B) 		& =~ & \mname{bvar}(\neg{A}) \cup \mname{bvar}(B)\\
+      	=~ & \mname{fvar}(A) \cup \mname{fvar}(B) 				& =~ & \mname{bvar}(A) \cup \mname{bvar}(B)
+      \end{align*}
+      \begin{align*}
+		& \mname{fvar}(A \wedge B) 								& & \mname{bvar}(A \wedge B)\\
+		=~ & \mname{fvar}(\neg{(\neg{A} \vee \neg{B})}) 		& =~ & \mname{bvar}(\neg{(\neg{A} \vee \neg{B})})\\
+		=~ & \mname{fvar}(\neg{A} \vee \neg{B}) 				& =~ & \mname{bvar}(\neg{A} \vee \neg{B})\\
+		=~ & \mname{fvar}(\neg{A}) \cup \mname{fvar}(\neg{B}) 	& =~ & \mname{bvar}(\neg{A}) \cup \mname{bvar}(\neg{B})\\
+		=~ & \mname{fvar}(A) \cup \mname{fvar}(B) 				& =~ & \mname{bvar}(A) \cup \mname{bvar}(B)
+	  \end{align*}
+
+	Now we will find \mname{fvar} and \mname{bvar}:
+	\begin{align*}
+		& \mname{fvar}(\ForsomeApp x : \alpha \mdot \ForsomeApp y : \alpha \mdot p(z:\alpha)) \\
+		=~ & \mname{fvar}(\ForsomeApp y : \alpha \mdot p(z:\alpha)) \backslash\{x : \alpha\} \\
+		=~ & (\mname{fvar}(p(z:\alpha)) \backslash\{y : \alpha\}) \backslash\{x : \alpha\} \\
+		=~ & (\mname{fvar}(z:\alpha) \backslash\{y : \alpha\}) \backslash\{x : \alpha\} \\
+		=~ & (\{z:\alpha\} \backslash\{y : \alpha\}) \backslash\{x : \alpha\} \\
+		=~ & \{z:\alpha\}
+	\end{align*}
+	
+	\begin{align*}
+		& \mname{bvar}(\ForsomeApp x : \alpha \mdot \ForsomeApp y : \alpha \mdot p(z:\alpha)) \\
+		=~ & \mname{bvar}(\ForsomeApp y : \alpha \mdot p(z:\alpha)) \cup \{x : \alpha\} \\
+		=~ & (\mname{bvar}(p(z:\alpha)) \cup \{y : \alpha\}) \cup \{x : \alpha\} \\
+		=~ & (\emptyset \cup \{y : \alpha\}) \cup \{x : \alpha\} \\
+		=~ & \{y : \alpha, x : \alpha\}
+	\end{align*}
+	
+    \item $f(x:\alpha) = a \And {}$\\
+      $\ForallApp y : \alpha \mdot
+      ((p(y:\alpha) \Or p(x:\alpha)) \Implies \ForsomeApp x :
+      \alpha \mdot p(f(x:\alpha)))$.
+      
+      Easy way: We can simply observe that $x:\alpha$ is not bounded by $\forall$ or $\exists$ in its first occurrence and $x:\alpha$ and $y:\alpha$ both have an occurrence bounded by $\forall$ or $\exists$ after the conjunction.
+      Thus \mname{fvar} is $\{x:\alpha\}$ and \mname{bvar} is $\{x:\alpha, y:\alpha\}$.
+      
+      \medskip
+      
+      Long way:
+      We'll use the definitions of \mname{fvar} and \mname{bvar} given via pattern matching.\\
+      
+      For clarity, let $A \equiv \ForallApp y : \alpha \mdot ((p(y:\alpha) \Or p(x:\alpha)) \Implies \ForsomeApp x : \alpha \mdot p(f(x:\alpha)))$
+    \begin{align*}
+	    & \mname{fvar}( f(x:\alpha) = a \And {} A) \\
+	    =~ & \mname{fvar}( f(x:\alpha) = a) \cup \mname{fvar}(A) \\
+	    =~ & \mname{fvar}( f(x:\alpha)) \cup \mname{fvar}(a) \cup \mname{fvar}(A) \\
+	    =~ & \mname{fvar}( x:\alpha) \cup \mname{fvar}(a) \cup \mname{fvar}(A) \\
+	    =~ & \{x:\alpha\} \cup \mname{fvar}(a) \cup \mname{fvar}(A) \\
+	    =~ & \{x:\alpha\} \cup \emptyset \cup \mname{fvar}(A) \\
+	    =~ & \{x:\alpha\} \cup \mname{fvar}(A) \\
+	    =~ & \{x:\alpha\} \cup \\
+	    & ~~~~(\mname{fvar}((p(y:\alpha) \Or p(x:\alpha)) \Implies \ForsomeApp x : \alpha \mdot p(f(x:\alpha))) \backslash \{y : \alpha\}) \\
+	    =~ & \{x:\alpha\} \cup \\
+	    & ~~~~((\mname{fvar}((p(y:\alpha) \Or p(x:\alpha))) \cup \mname{fvar}(\ForsomeApp x : \alpha \mdot p(f(x:\alpha)))) \backslash \{y : \alpha\}) \\
+	    =~ & \{x:\alpha\} \cup \\
+	    & ~~~~((\mname{fvar}(p(y:\alpha)) \cup \mname{fvar}(p(x:\alpha))
+	    	\cup \mname{fvar}(\ForsomeApp x : \alpha \mdot p(f(x:\alpha)))) 
+	    	\backslash \{y : \alpha\}
+	    	) \\
+	    =~ & \{x:\alpha\} \cup \\
+	    & ~~~~((\mname{fvar}(y:\alpha) \cup \mname{fvar}(x:\alpha)
+	    \cup \mname{fvar}(\ForsomeApp x : \alpha \mdot p(f(x:\alpha)))) 
+	    \backslash \{y : \alpha\}
+	    ) \\
+	    =~ & \{x:\alpha\} \cup \\
+	    & ~~~~((\{y:\alpha\} \cup \{x:\alpha\}
+	    \cup \mname{fvar}(\ForsomeApp x : \alpha \mdot p(f(x:\alpha)))) 
+	    \backslash \{y : \alpha\}
+	    ) \\
+	    =~ & \{x:\alpha\} \cup \\
+	    & ~~~~((\{y:\alpha\} \cup \{x:\alpha\}
+	    \cup (\mname{fvar}(p(f(x:\alpha))) \backslash \{x : \alpha\}))
+	    \backslash \{y : \alpha\}
+	    ) \\
+	    =~ & \{x:\alpha\} \cup \\
+	    & ~~~~((\{y:\alpha\} \cup \{x:\alpha\}
+	    \cup (\mname{fvar}(f(x:\alpha)) \backslash \{x : \alpha\}))
+	    \backslash \{y : \alpha\}
+	    ) \\
+	    =~ & \{x:\alpha\} \cup \\
+	    & ~~~~((\{y:\alpha\} \cup \{x:\alpha\}
+	    \cup (\mname{fvar}(x:\alpha) \backslash \{x : \alpha\}))
+	    \backslash \{y : \alpha\}
+	    ) \\
+	    =~ & \{x:\alpha\} \cup \\
+	    & ~~~~((\{y:\alpha\} \cup \{x:\alpha\}
+	    \cup (\{x:\alpha\} \backslash \{x : \alpha\}))
+	    \backslash \{y : \alpha\}
+	    ) \\
+	    =~ & \{x:\alpha\} \cup \\
+	    & ~~~~((\{y:\alpha\} \cup \{x:\alpha\}
+	    \cup \emptyset)
+	    \backslash \{y : \alpha\}
+	    ) \\
+	    =~ & \{x:\alpha\} \cup \{x:\alpha\} \\
+	    =~ & \{x:\alpha\}
+    \end{align*}
+    
+    \begin{align*}
+	    & \mname{bvar}( f(x:\alpha) = a \And {} A) \\
+	    =~ & \mname{bvar}( f(x:\alpha) = a) \cup \mname{bvar}(A) \\
+	    =~ & \emptyset \cup \mname{bvar}(A) \\
+	    =~ & \mname{bvar}(\ForallApp y : \alpha \mdot ((p(y:\alpha) \Or p(x:\alpha)) \Implies \ForsomeApp x : \alpha \mdot p(f(x:\alpha)))) \\
+	    =~ & \mname{bvar}((p(y:\alpha) \Or p(x:\alpha)) \Implies \ForsomeApp x : \alpha \mdot p(f(x:\alpha))) \cup \{y : \alpha\} \\
+	    =~ & \mname{bvar}(p(y:\alpha) \Or p(x:\alpha)) \cup
+	    \mname{bvar}(\ForsomeApp x : \alpha \mdot p(f(x:\alpha))) \cup 
+	    \{y : \alpha\} \\
+	    =~ & \mname{bvar}(p(y:\alpha) \Or p(x:\alpha)) \cup
+	    \mname{bvar}(\ForsomeApp x : \alpha \mdot p(f(x:\alpha))) \cup 
+	    \{y : \alpha\} \\
+	    =~ & \mname{bvar}(p(y:\alpha)) \cup
+	    \mname{bvar}(p(x:\alpha)) \cup
+	    \mname{bvar}(\ForsomeApp x : \alpha \mdot p(f(x:\alpha))) \cup 
+	    \{y : \alpha\} \\
+	    =~ & \emptyset \cup
+	    \emptyset \cup
+	    \mname{bvar}(\ForsomeApp x : \alpha \mdot p(f(x:\alpha))) \cup 
+	    \{y : \alpha\} \\
+	    =~ & \mname{bvar}(\ForsomeApp x : \alpha \mdot p(f(x:\alpha))) \cup 
+	    \{y : \alpha\} \\
+	    =~ & \mname{bvar}(p(f(x:\alpha))) \cup \{x : \alpha\} \cup \{y : \alpha\} \\
+	    =~ & \emptyset \cup \{x : \alpha\} \cup \{y : \alpha\} \\
+	    =~ & \{x : \alpha , y : \alpha\} \\
+    \end{align*}
+
+  \ee
+
+  \item Compute the following substitutions:
+
+  \be
+
+    \item $f(x:\alpha) = a \And {}$\\
+      $\ForallApp y : \alpha \mdot
+      ((p(y:\alpha) \Or p(x:\alpha)) \Implies \ForsomeApp x :
+      \alpha \mdot p(f(x:\alpha)))[x \mapsto f(a)]$.
+
+	  \textbf{SOLUTION:} (Note: the first free x is not included in the substitution; it's only on the body of the $\forall$)
+	  \[f(x:\alpha) = a \And (\ForallApp y : \alpha \mdot
+	  ((p(y:\alpha) \Or p(f(a))) \Implies \ForsomeApp x :
+	  \alpha \mdot p(f(x:\alpha))))\]
+
+    \item $f(x:\alpha) = a \And {}$\\
+      $\ForallApp y : \alpha \mdot
+      ((p(y:\alpha) \Or p(x:\alpha)) \Implies \ForsomeApp x :
+      \alpha \mdot p(f(x:\alpha)))[y \mapsto f(a)]$.
+      
+      \textbf{SOLUTION:} We first note that the occurrences of $y : \alpha$ is bound in the above expression where the substitution were to occur. 
+      So, we compute the substitution and get:
+      \[f(x:\alpha) = a \And (\ForallApp y : \alpha \mdot
+      ((p(y:\alpha) \Or p(x:\alpha)) \Implies \ForsomeApp x :
+      \alpha \mdot p(f(x:\alpha))))\]
+      after substitution (i.e. there was no change). 
+
+    \item $f(x:\alpha) = a \And {}$\\
+      $\ForallApp y : \alpha \mdot
+      ((p(y:\alpha) \Or p(x:\alpha)) \Implies \ForsomeApp x :
+      \alpha \mdot p(f(x:\alpha)))[z \mapsto f(a)]$.
+
+	  \textbf{SOLUTION:} We first note that there are no occurrences of $z$. 
+	  So, we compute the substitution and get:
+	  \[f(x:\alpha) = a \And (\ForallApp y : \alpha \mdot
+	  ((p(y:\alpha) \Or p(x:\alpha)) \Implies \ForsomeApp x :
+	  \alpha \mdot p(f(x:\alpha))))\]
+	  after substitution (i.e. there was no change). 
+
+  \ee
+
+  \item Construct a signature of MSFOL that is suitable
+    for formalizing:
+
+  \be
+
+    \item A queue of abstract elements.
+
+\textbf {Solution:}\\
+  Let $\Sigma_{\sf queue} =
+    	(\sB,\sC,\sF,\sP,\tau)$ where:
+
+  \be
+
+    \item $\sB = \set{\mname{Element},\mname{Queue}}$.
+
+    \item $\sC = \set{\mname{error}, \mname{empty}}$.
+
+    \item $\sF = \set{\mname{front}, \mname{back}, \mname{enqueue},
+      \mname{dequeue}}$.
+
+    \item $\sP = \emptyset$.
+
+    \item $\tau(\mname{error}) = \mname{Element}$.
+
+    \item $\tau(\mname{empty}) = \mname{Queue}$.
+
+    \item $\tau(\mname{front}) = \mname{Queue} \rightarrow \mname{Element}$.
+
+    \item $\tau(\mname{back}) = \mname{Queue} \rightarrow \mname{Element}$.
+
+    \item $\tau(\mname{enqueue}) = \mname{Element} \times
+      \mname{Queue} \rightarrow \mname{Queue}$.
+
+    \item $\tau(\mname{dequeue}) = \mname{Queue} \rightarrow
+      \mname{Queue}$.
+
+  \ee
+
+    \item An abstract field.
+
+\textbf {Solution:}\\
+  Let $\Sigma_{\sf absField} =
+    	(\sB,\sC,\sF,\sP,\tau)$ where:
+  \be
+
+    \item $\sB = \set{\mname{F}}$.
+
+    \item $\sC = \set{0_{\sf F},1_{\sf F}}$.
+
+    \item $\sF = \set{+_{\sf F}, *_{\sf F}, -_{\sf
+        F},\phantom{x}^{-1}_{\sf F}}$.
+
+    \item $\sP = \emptyset$.
+
+    \item $\tau(0_{\sf F}) = \tau(1_{\sf F}) = \mname{F}$.
+
+    \item $\tau(-_{\sf F}) = \tau(\phantom{x}^{-1}_{\sf F}) =
+      \mname{F} \rightarrow \mname{F}$.
+
+    \item $\tau(*_{\sf F}) = \tau(+_{\sf F}) = \mname{F} \times
+      \mname{F} \rightarrow \mname{F}$.
+
+  \ee
+
+    \item An abstract vector space over an abstract field.
+
+\textbf {Solution:}\\
+  Let $\Sigma_{\sf vecSpace} =
+    	(\sB,\sC,\sF,\sP,\tau)$ where:
+  \be
+
+    \item $\sB = \set{\mname{F}, \mname{V}}$.
+
+    \item $\sC = \set{0_{\sf F}, 1_{\sf F}, 0_{\sf V}}$.
+
+    \item $\sF = \set{+_{\sf F}, *_{\sf F}, -_{\sf
+        F},\phantom{x}^{-1}_{\sf F}, +_{\sf V}, -_{\sf V}, *_{\sf V}}$.
+
+    \item $\sP = \emptyset$.
+
+    \item $\tau(0_{\sf F}) = \tau(1_{\sf F}) = \mname{F}$.
+
+    \item $\tau(-_{\sf F}) = \tau(\phantom{x}^{-1}_{\sf F}) =
+      \mname{F} \rightarrow \mname{F}$.
+
+    \item $\tau(*_{\sf F}) = \tau(+_{\sf F}) = \mname{F} \times
+      \mname{F} \rightarrow \mname{F}$.
+
+    \item $\tau(0_{\sf V}) = \mname{V}$.
+
+    \item $\tau(-_{\sf V}) = \mname{V} \rightarrow \mname{V}$.
+
+    \item $\tau(+_{\sf V}) = \mname{V} \times \mname{V} \rightarrow \mname{V}$.
+
+    \item $\tau(*_{\sf V}) = \mname{F} \times \mname{V} \rightarrow \mname{V}$.
+
+  \ee
+
+  \ee
+
+  \item Let $\Sigma_{\rm ord} = (\sB,\sC,\sF,\sP,\tau)$ be the
+    signature defined in the lecture slides.  Construct $\Sigma_{\rm
+      ord}$-structures that define the following mathematical
+    structures: $(\mathbb{N},\le)$, $(\mathbb{Z},<)$, $(\mathbb{Q},>)$,
+    and $(\mathbb{R},\not=)$.
+
+\medskip
+
+\textbf {Solution:}
+
+$\Sigma_{\rm ord} = (\set{U},\emptyset,\emptyset,\set{<},\tau)$ where
+$\tau(<) = U \times U \rightarrow \mathbb{B}$.  Let $\sM_{\mathbb{N}}
+= (\set{D_U},I)$ where $D_U = \mathbb{N}$ and $I(<)(m,n) = m \le n$
+for all $m,n \in \mathbb{N}$.  $\sM_{\mathbb{N}}$ is a $\Sigma_{\rm
+  ord}$-structure defining $(\mathbb{N},\le)$.
+
+The other $\Sigma_{\rm ord}$-structures are constructed in a similar
+manner.
+
+\item Construct a $\Sigma_{\rm stack}$-structure such that $D_{\sf Element} = \mathbb{N}$, $D_{\sf Stack}$ is the set of finite sequences of members of $\mathbb{N}$, and the function symbols of $\Sigma_{\rm stack}$ manipulate the members of $D_{\sf Stack}$ as stacks.\\
+\textbf {Solution:}\\
+An  $\Sigma_{}$-structure is a pair $\sM_{}$ = $(D, I)$ \\
+\\
+Let the following be the signature of a language for stacks. \\
+\\
+$\Sigma_{\rm stack} =
+  (\set{\rm Element,Stack},\set{\rm error,\rm bottom},\set{push,pop,top},\emptyset,\tau)$ \\
+\\ where \\ $\tau(\rm error) =
+  \rm Element$ and $\tau(\rm bottom) =
+  \rm Stack$ and \\ $\tau(\rm push) = \rm Element \times \rm Stack \rightarrow \rm Stack$. \\  $\tau(\rm pop) = \rm Stack \rightarrow \rm Stack$
+\\
+$\tau(\rm top) = \rm Stack \rightarrow \rm Element$ \\
+\\
+Let $\sM_{\rm stack}$ be the $\Sigma_{\rm stack}$-structure derived from the following: \\
+\\
+$\sM_{\rm stack}$ = $(\mathbb{N},\{\mathbb{N}\},\rm error, \rm bottom, \rm push, \rm pop,\rm  top)$.
+\\
+\\
+Where $D$ is a collection $\{D_{\sf Stack},D_{\sf Element}\| \sf Stack, \sf Element \in \sB\}$\\
+\\
+and
+\\
+\\
+$D_{\sf Stack} = \{\mathbb{N}\}$\\
+$D_{\sf Element} = \mathbb{N}$\\
+\\
+and
+\\
+\\
+$I(\rm error) \in D_{\sf Element}$ \\
+$I(\rm bottom) \in D_{\sf Stack}$ \\
+$I(\rm push) : D_{\sf Element} \times D_{\sf Stack} \rightarrow  D_{\sf Stack} $ \\
+$I(\rm pop) : D_{\sf Stack} \rightarrow  D_{\sf Stack} $ \\
+$I(\rm top) : D_{\sf Stack} \rightarrow  D_{\sf Element} $ \\
+\\
+\\
+Therefore, with the structure defined above: \\
+\\
+$I(\rm error) = \rm error $ \\
+$I(\rm bottom) = \rm bottom $ \\
+$I(\rm push)= \rm push $ \\
+$I(\rm pop)= \rm pop $ \\
+$I(\rm top) = \rm top $\\
+
+
+\item Which of the following $\Sigma_{\rm mon}$-formulas are
+satisfiable and which are universally valid?
+
+\be
+
+\item $e = e$.\\
+\textbf {Solution:}\\
+Universally valid. "=" is reflexive, regardless of the interpretation.
+
+\item $e = e * e$.\\
+\textbf {Solution:}\\
+Satisfiable. Both $\sM_{\rm nat}$ and $\sM_{\rm triv}$ satisfy $e = e * e$, and valid in both because, $0 = 0 + 0$. Not universally valid since the structure $(\mathbb{N},1,+)$ does not satisfy the formula since $1 = 1 + 1 \equiv$ \texttt{False}
+
+\item $\ForallApp x : M \mdot x = e$.\\
+\textbf {Solution:}\\
+Satisfiable. It is satisfied by and valid for $\sM_{\rm triv}$ since \begin{equation*}
+  (\ForallApp x : \{0\} \mdot x = 0) \equiv \texttt{True}
+\end{equation*} $\sM_{\rm nat}$ does not satisfy the formula since \begin{equation*}
+  (\ForallApp x : \mathbb{N} \mdot x = 0) \equiv \texttt{False}
+\end{equation*}
+
+\item $\ForallApp x : M \mdot x \not= e$.\\
+\textbf {Solution:}\\
+Neither satisfiable nor universally valid (follows from the universal validity of a.)
+
+\ee
+
+\item Which of the following $\Sigma_{\rm mon}$-formulas are valid
+in $\sM_{\rm nat}$ and which are valid in $\sM_{\rm triv}$?
+
+\be
+
+\item $e = e$. \\
+\textbf {Solution:}\\
+Valid.
+\item $e = e * e$. \\
+\textbf {Solution:}\\
+Valid. Follows from IdLeft and IdRight.
+\item $\ForallApp x : M \mdot x = e$. \\
+\textbf {Solution:}\\
+Valid in $\sM_{\rm triv}$. Not valid in $\sM_{\rm nat}$.
+\item $\ForallApp x : M \mdot x \not= e$. \\
+\textbf {Solution:}\\
+Not valid.
+\ee
+
+\item Which are the following $\Sigma_{\rm mon}$-formulas are valid
+in $T_{\rm mon}$.
+
+\be
+
+\item $e = e$.\\
+\textbf {Solution:}\\
+Valid (Universally as given in 1a.)
+
+\item $e = e * e$.\\
+\textbf {Solution:}\\
+Valid. Follows from \mname{IdLeft} and \mname{IdRight}
+
+\item $\ForallApp x : M \mdot x = e$.\\
+\textbf {Solution:}\\
+Not Valid. $\sM_{\rm nat}$ is a model of $T_{\rm mon}$, and this is not valid in $\sM_{\rm nat}$.
+
+\item $\ForallApp x : M \mdot x \not= e$.\\
+\textbf {Solution:}\\
+Not Valid. (Follows from 1d since it isn't satisfiable).
+
+\ee
+\ee
+\end{document}

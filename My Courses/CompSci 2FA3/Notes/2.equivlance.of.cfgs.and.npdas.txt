@@ -1,0 +1,15 @@
+equivlance.of.cfgs.and.npdas.txt
+
+In an NPDA when there is no set of final states, this means that it is going to accept by empty state/stack/string.
+
+When accepting by empty state/stack/string, you need to cover all possible cases. It is kind of like harcoding each possible transition. This is not a one size fits all approach. 
+
+Context free grammars and NPDAs are equivlent. Let G be a CFG, then there is an NPDA M such that L(G) = L(M) by empty stack. This relation also works vice versa.
+
+CFGs and NPDAs accept the same class of languages. This is the class of context free languages.
+
+Lemmas help us prove theorems that we want. Lemmas help prove other things.
+
+In a leftmost derivation you always replace the leftmost non-terminal
+
+CFGs work by building up the String and NPDAs work by breaking it down to the empty string. 

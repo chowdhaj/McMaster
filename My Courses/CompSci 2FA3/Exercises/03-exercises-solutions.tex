@@ -1,0 +1,839 @@
+\documentclass[11pt,fleqn]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+
+\lstset{language=python,basicstyle=\ttfamily,breaklines=true,showspaces=false,showstringspaces=false,breakatwhitespace=true,texcl=true,escapeinside={\%*}{*)}}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\sglsp}{\ }
+\newcommand{\dblsp}{\ \ }
+\newcommand{\mdot}{\mathrel.}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\ForallApp}{\forall\,}
+\newcommand{\ImpliesAlt}{\Rightarrow}
+\newenvironment{proof}{\par\noindent{\bf Proof\sglsp}}{\hfill$\Box$}
+\newcommand{\pnote}[1]{{\langle \text{#1} \rangle}} 
+
+\begin{document}
+
+%\thispagestyle{empty}
+
+\bc
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Week 03 Exercises with Solutions}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: January 25, 2020}
+
+\ec
+
+\medskip
+
+\subsection*{Exercises}
+
+\be
+
+  \item Let $\mname{FinSeq}_{\mathbb{N}}$ be the set of finite sequences whose
+    members are in $\mathbb{N}$.
+
+
+  \be
+
+    \item Define $\mname{FinSeq}_{\mathbb{N}}$ as an inductive set. 
+
+ \medskip
+\textbf{Solution:}
+\medskip
+
+$\mname{FinSeq}_{\mathbb{N}}$ is the inductive set defined by the
+following constructors:
+
+  \bi
+
+      \item $\mname{Nil} : \mname{FinSeq}_{\mathbb{N}}$.
+
+      \item $\mname{Cons} : \mathbb{N} \times \mname{FinSeq}_{\mathbb{N}}\rightarrow \mname{FinSeq}_{\mathbb{N}}$.
+
+  \ei
+
+
+    \item Define by pattern matching the function \[\mname{reverse} :
+      \mname{FinSeq}_{\mathbb{N}} \rightarrow
+      \mname{FinSeq}_{\mathbb{N}}\] such that $\mname{reverse}(s)$ is
+      the reverse of $s$ for all $s \in \mname{FinSeq}_{\mathbb{N}}$.
+      
+\medskip
+\textbf{Solution:}
+\medskip
+
+We first need to define an auxiliary function:
+
+\medskip
+$\mname{revAux}: \mname{FinSeq}_{\mathbb{N}} \times
+\mname{FinSeq}_{\mathbb{N}} \rightarrow \mname{FinSeq}_{\mathbb{N}}$
+
+$\mname{revAux}(\mname{Nil},y) = y$\\
+$\mname{revAux}(\mname{Cons}(a,x), y) = \ \mname{revAux}(x, \mname{Cons}(a,y))$ 
+
+\medskip 
+
+$\mname{reverse}(x) = \ \mname{revAux}(x,\mname{Nil})  $ 
+
+    \item Write the structural induction principle for
+      $\mname{FinSeq}_{\mathbb{N}}$.
+
+\medskip
+
+\textbf{Solution:}
+
+\medskip
+    \bi
+
+      \item[] $(P(\mname{Nil}) \land 
+      (\forall s :\mname{FinSeq}_{\mathbb{N}} \mdot
+      P(s) \Rightarrow \forall x : \mathbb{N} \mdot P(\mname{Cons}(x,s))))$\\
+      \hspace*{2ex}${} \Rightarrow \forall s : \mname{FinSeq}_{\mathbb{N}} \mdot P(s)$.
+
+    \ei
+
+  \ee
+
+  \item Let \mname{Nat} be the natural numbers defined as an inductive
+    set in the lecture notes, $\mathbb{B}$ be the set of boolean
+    values \mname{true} and \mname{false}, $\mname{odd} : \mname{Nat}
+    \rightarrow \mathbb{B}$ be the function that maps the odd natural
+    numbers to \mname{true} and the even natural numbers to
+    \mname{false}, and $\mname{even} : \mname{Nat} \rightarrow
+    \mathbb{B}$ be the function that maps the even natural numbers to
+    \mname{true} and the odd natural numbers to \mname{false}.  Define
+    \mname{odd} and \mname{even} simultaneously by pattern matching
+    using ``mutual recursion''.
+    
+\medskip
+
+\textbf{Solution:}
+\begin{gather*}
+\mname{even}(0) = \mname{true}\\ 
+\mname{even}(\mname{S}(x)) = \mname{odd}(x) 
+\end{gather*}
+\begin{gather*}
+\mname{odd}(0) = \mname{false}\\ 
+\mname{odd}(\mname{S}(x)) = \mname{even}(x) 
+\end{gather*}
+
+
+
+  \item Let \mname{BinTree} be the inductive set and \mname{nodes} and
+    \mname{ht} be the functions defined in the lecture notes.  Let
+    $\mname{leaves} : \mname{BinTree} \rightarrow \mathbb{N}$ be the
+    function that maps a binary to the number of leaf nodes in it.
+
+  \be
+	
+    \item Define \mname{leaves} by pattern matching and recursion.
+
+    \medskip
+    \textbf{Solution:}
+\begin{gather*}
+\mname{leaves}(\mname{Leaf}(n)) = 1.\\ 
+\mname{leaves}(\mname{Branch}(t_1, n, t_2)) \ \, = \mname{leaves}(t_1) + \mname{leaves}(t_2). 
+\end{gather*}
+Assuming function \mname{max} is defined and returns the maximum of two numbers.
+\begin{gather*}
+\mname{ht}(\mname{Leaf}(n)) = 0.\\
+\mname{ht}(\mname{Branch}(t_1, n, t_2)) = 1 + \mname{max}(\mname{ht}(t_1), \mname{ht}(t_2)). \\
+\end{gather*}
+
+     \item Prove that, for all $t \in \mname{BinTree}$, \[\mname{leaves}(t)
+    \le 2^{{\sf ht}(t)}\] by structural induction.
+
+\medskip
+
+\textbf{Solution}:
+
+\medskip
+    
+\begin{proof} 
+Let $P(t) \equiv \mname{leaves}(t) \le 2^{{\sf ht}(t)}$ for $t \in
+\mname{BinTree}$.  We will prove $P(t)$ for all $t \in
+\mname{BinTree}$ by structural induction.
+
+\textit{Base case:} Prove $P(\mname{Leaf}(n))$ where $n \in \mathbb{N}$.
+
+\begin{align*}
+P(\mname{Leaf}(n)) \equiv \,& \mname{leaves}(\mname{Leaf}(n)) \leq 2^{{\sf ht}({\sf Leaf}(n))} & \pnote{definition of $P$} \\
+\equiv \, & \mname{leaves}(\mname{Leaf}(n)) \leq 2^{0} & \pnote{definition of \mname{ht}} \\
+\equiv \, & 1 \leq 2^{0} & \pnote{definition of \mname{leaves}} \\
+\equiv \, & 1 \leq 1 & \pnote{arithmetic} \\
+\end{align*}
+
+\textit{Induction step:} Assume $P(t_1)$ and $P(t_2)$ hold for $t_1,
+t_2 \in \mname{BinTree}$.  We will prove $P(\mname{Branch}(t_1,n,t_2)$
+where $n \in \mathbb{N}$.  Let $t = \mname{Branch}(t_1,n,t_2)$.
+
+\begin{align*}
+P(t) \equiv \,& \mname{leaves}(t) \leq 2^{{\sf ht}(t)} & \pnote{definition of $P$} \\
+\equiv \,& \mname{leaves}(t_1) + \mname{leaves}(t_2) \leq 2^{{\sf ht}(t)} & \pnote{definition of \mname{leaves}} \\
+\equiv \,& 2^{{\sf ht}(t_1)} + 2^{{\sf ht}(t_2)}  \leq 2^{{\sf ht}(t)} &  \pnote{induction hypothesis} \\
+\equiv \,& 2^{{\sf ht}(t_1)} + 2^{{\sf ht}(t_2)}  \leq 2^{1 + {\sf max}({\sf ht}(t_1), {\sf ht}(t_2))} &  \pnote{definition of \mname{ht}} \\
+\equiv \,& 2^{{\sf ht}(t_1)} + 2^{{\sf ht}(t_2)}  \leq 2 * 2^{{\sf max}({\sf ht}(t_1), {\sf ht}(t_2))} &  \pnote{arithmetic}
+\end{align*}
+
+
+\end{proof}
+
+\ee
+
+  \item Let \mname{BinTree} be the inductive set defined in the
+    lecture notes.  Let $\mname{mirror} : \mname{BinTree} \rightarrow
+    \mname{BinTree}$ be the function that maps a binary tree to its
+    ``mirror image''.
+
+  \be
+
+    \item Define $\mname{mirror}$ by pattern matching.
+    
+    \medskip
+    \textbf{Solution:}
+    \medskip
+    
+    $\mname{mirror} \ (\mname{Leaf}(n)) = \mname{Leaf}(n)$ \\
+    $\mname{mirror} \ (\mname{Branch}(t_1, n, t_2)) = 
+    	\mname{Branch}(\mname{mirror}(t_2), n, \mname{mirror}(t1))$ 
+
+    \item Prove that, for all $t \in \mname{BinTree}$,
+      \[\mname{mirror}(\mname{mirror}(t)) = t\] by structural
+      induction.
+      
+    \medskip
+    \textbf{Solution:}
+    \medskip
+    
+\begin{proof} Let $P(t) \equiv \mname{mirror}(\mname{mirror}(t)) = t$. 
+We will prove that $P(t)$ for all $t \in \mname{BinTree}$ by
+structural induction.
+
+\medskip
+
+\textit{Base case:} Prove $P(\mname{Leaf(n)})$.
+\begin{align*}
+P(\mname{Leaf}(n)) \equiv \, & \mname{mirror} (\mname{mirror}(\mname{Leaf}(n))) = \mname{Leaf}(n) & \pnote{definition of $P$} \\
+ \equiv \, & \mname{mirror}(\mname{Leaf}(n)) = \mname{Leaf}(n)  & \pnote{definition of mirror}  \\
+  \equiv \, & \mname{Leaf}(n) = \mname{Leaf}(n)  & \pnote{definition of mirror}  
+\end{align*}
+
+\textit{Induction step:} Assume $P(t_1)$ and $P(t_2)$. Prove
+$P(\mname{Branch}(t_1, n, t_2))$
+
+To save space let $\mname{mir} \equiv \mname{mirror}$.
+\begin{align*}
+P(\mname{Branch}(t_1, n, t_2)) \equiv \, & \mname{mir} (\mname{mir}(\mname{Branch}(t_1, n, t_2))) = \mname{Branch}(t_1, n, t_2) \\ 
+& \pnote{definition of $P$} \\
+ \equiv \, & \mname{mir}(\mname{Branch}(\mname{mir}(t_2), n, \mname{mir}(t_1))) = \mname{Branch}(t_1, n, t_2)  \\
+& \pnote{definition of mirror}  \\
+  \equiv \, & \mname{Branch}(\mname{mir}(\mname{mir}(t_1)), n, \mname{mir}(\mname{mir}(t_2))) = \mname{Branch}(t_1, n, t_2)  \\
+  & \pnote{definition of mirror}  \\
+  \equiv \, & \mname{Branch}(t_1, n, t_2) = \mname{Branch}(t_1, n, t_2)  \\
+& \pnote{inductive hypothesis}  
+\end{align*}
+
+\end{proof}
+
+  \ee
+
+  \item Let \mname{BinTree} be the inductive set defined in the
+    lectures.  A \emph{subtree} of $t \in \mname{BinTree}$ is $t$
+    itself or a subcomponent of $t$ that is a member of
+    \mname{BinTree}.
+
+  \be
+
+    \item Define a function $\mname{subtrees} : \mname{BinTree}
+      \rightarrow \mname{set}(\mname{BinTree})$ that maps each $t \in
+      \mname{BinTree}$ to the set of subtrees of $t$.
+      
+      \medskip
+      \textbf{Solution:}
+ \begin{align*}
+ \mname{subtrees}(\mname{Leaf}(a)) & = \{\mname{Leaf}(a)\} \\
+  \mname{subtrees}(\mname{Branch}(t_1, n, t_2)) & = 
+     \{(\mname{Branch}(t_1, n, t_2))\} \cup \mname{subtrees}(t_1) \cup \mname{subtrees}(t_2)  
+\end{align*}
+    \item Prove by structural induction that, if $t \in
+      \mname{BinTree}$ contains $n$ \mname{Branch} nodes, then $t$
+      has at most $2n + 1$ subtrees.
+      
+      \medskip
+      \textbf{Solution:}
+      \medskip
+      
+       \begin{proof}
+
+\textit{Base case:} Prove $P(\mname{Leaf(a)})$ i.e., $ n = 0$
+
+\begin{align*}
+P(\mname{Leaf(a)}) \equiv \,& |\mname{subtrees}(\mname{Leaf(a)})| \leq 2n + 1 & \pnote{definition of P} \\
+\equiv \, &|\{\mname{Leaf(a)}\}| \leq 2n + 1 & \pnote{definition of subtrees} \\
+\equiv \, & 1 \leq 2n + 1 & \pnote{cardinality of set} \\
+\equiv \, & 1 \leq 2*(0) + 1 & \pnote{n = 0} \\
+\equiv \, & 1 \leq 1 & \pnote{arithmetic} \\
+\end{align*}
+
+\textit{Induction step:} Assume $P t$ holds for all trees with $k$ branch nodes. Prove $P t$ for trees with $(k+1)$ branch nodes. There are two scenarios:
+
+\bi
+\item The tree consists of a root node and a subtree t1 that has $k$ branch nodes. 
+\ei
+
+\begin{align*}
+P(t) \equiv \,& |\mname{subtrees}(t)| \leq 2(k+1) + 1 & \pnote{definition of P} \\
+\equiv \, & 1+ |\mname{subtrees}(t1)| \leq 2(k+1) + 1 & \pnote{definition of subtrees and cardinality} \\
+\equiv \, & 1 + (2k+1)\leq 2(k+1) + 1 & \pnote{induction hypothesis} \\
+\equiv \, & 2k+2 \leq 2k+3 & \pnote{arithmetic} \\
+\end{align*}
+
+\bi
+\item The tree consists of a root node and two subtrees t1 and t2, with each having
+$k1$ and $k2$ nodes, respectively.  Moreover, $k1$+$k2$ = $k$ branch nodes. 
+\ei
+
+\begin{align*}
+P(t) \equiv \,& |\mname{subtrees}(t)| \leq 2(k+1) + 1 & \pnote{definition of P} \\
+\equiv \, & 1+ |\mname{subtrees}(t1)| + |\mname{subtrees}(t2)| \leq 2(k+1) + 1 & \pnote{definition of subtrees} \\
+& &  \pnote{and set cardinality} \\
+\equiv \, & 1 + (2k1+1) + (2k2+1) \leq 2(k+1) + 1 & \pnote{induction hypothesis} \\
+\equiv \, & 2(k1+k2) + 3 \leq 2(k+1) + 1 & \pnote{arithmetic} \\
+\equiv \, & 2k+3  \leq 2k+3 & \pnote{addition of nodes} \\
+\end{align*} 
+
+\end{proof}
+
+  \ee
+
+  \item Let $S$ be the set of bit strings defined inductively by:
+
+  \be
+
+    \item $\texttt{"0"} \in S$.
+
+    \item If $s \in S$, then $\texttt{"0"} + s \in S$ and $s +
+      \texttt{"0"} \in S$.
+
+    \item If $s \in S$, then , $\texttt{"0"} + s + \texttt{"1"} \in S$
+      and $\texttt{"1"} + s + \texttt{"0"} \in S$.
+
+  \ee
+
+  $s + t$ denotes the concatenation of $s$ and $t$.  Prove by
+  structural induction that, for all strings $s \in S$, the number of
+  1s in $s$ is less than or equal to the number of 0s in $s$.
+
+\textbf{Solution:}
+
+Let us consider the set $S$ as the inductive type defined by the
+following constructors:
+
+\be
+
+\item $\mname{0} : S$
+
+\item $\mname{0-left} : S \rightarrow S$.
+
+\item $\mname{0-right} : S \rightarrow S$.
+
+\item $\mname{0-1} : S \rightarrow S$.
+
+\item $\mname{1-0} : S \rightarrow S$.
+
+\ee
+
+Define $\mname{zeros} : S \rightarrow \mathbb{N}$ and $\mname{ones} : S
+\rightarrow \mathbb{N}$ by pattern matching as follows:
+
+\bi
+
+\item[] $\mname{zeros}\,\mname{0} = 1$.
+
+$\mname{zeros}\,(\mname{0-left}\,s) = 1 + \mname{zeros}\,s$.
+
+$\mname{zeros}\,(\mname{0-right}\,s) = 1 + \mname{zeros}\,s$.
+
+$\mname{zeros}\,(\mname{0-1}\,s) = 1 + \mname{zeros}\,s$.
+
+$\mname{zeros}\,(\mname{1-0}\,s) = 1 + \mname{zeros}\,s$.
+
+\item[] $\mname{ones}\,\mname{0} = 1$.
+
+$\mname{ones}\,(\mname{0-left}\,s) = \mname{ones}\,s$.
+
+$\mname{ones}\,(\mname{0-right}\,s) = \mname{ones}\,s$.
+
+$\mname{ones}\,(\mname{0-1}\,s) = 1 + \mname{ones}\,s$.
+
+$\mname{ones}\,(\mname{1-0}\,s) = 1 + \mname{ones}\,s$.
+
+\ei
+
+\textbf{Theorem}. $\mname{ones}(s) \le \mname{zeros}(s)$ for $s \in S$.
+
+\begin{proof}
+	Let $P(s) \equiv \mname{ones}(s) \le \mname{zeros}(s)$.  We will prove
+	$P(s)$ for all $s \in S$ by structure induction for $S$.
+	
+	\medskip
+	
+	\emph{Base case}: Prove $P(\mname{0})$.
+	\begin{align*}
+	\mname{ones}(\mname{0})
+	& = 0 & \pnote{definition of \mname{ones}}\\
+	& < 1 & \pnote{arithmetic}\\
+	& = \mname{zeros}(\mname{0}) & \pnote{definition of \mname{zeros}}
+	\end{align*}
+	This shows that $P(\mname{0})$ holds.
+	
+	\medskip
+	
+	\emph{Induction step 1}: Assume $P(s)$. Prove $P(\mname{0-left}(s))$.
+	\begin{align*}
+	\mname{ones}(\mname{0-left}(s)) 
+	& = \mname{ones}(s)                    & \pnote{definition of \mname{ones}}\\ 
+	& \le \mname{zeros}(s)                 & \pnote{induction hypothesis}\\ 
+	& < \mname{zeros}(\mname{0-left}(s)) & \pnote{definition of \mname{zeros}}
+	\end{align*}
+	This shows that $P(\mname{0-left}(s))$ holds.
+	
+	\medskip
+	
+	\emph{Induction step 2}: Assume $P(s)$. Prove $P(\mname{0-right}(s))$.
+	The proof is similar to the previous case.
+	
+	\medskip
+	
+	\emph{Induction step 3}: Assume $P(s)$. Prove $P(\mname{0-1}(s))$.
+	\begin{align*}
+	\mname{ones}(\mname{0-1}(s)) 
+	& = 1 + \mname{ones}(s)                    & \pnote{definition of \mname{ones}}\\ 
+	& \le 1 + \mname{zeros}(s)                 & \pnote{induction hypothesis}\\ 
+	& = \mname{zeros}(\mname{0-left}(s)) & \pnote{definition of \mname{zeros}}
+	\end{align*}
+	This shows that $P(\mname{0-1}(s))$ holds.
+	
+	\medskip
+	
+	\emph{Induction step 4}: Assume $P(s)$. Prove $P(\mname{1-0}(s))$.
+	The proof is similar to the previous case.
+	
+\end{proof}
+
+  \item Suppose $(S_1,\le_1)$ and $(S_2,\le_2)$ are weak partial
+    orders.  Prove that $(S_1 \times S_2, \le)$ is a weak partial
+    order where $(s_1,s_2) \le (s'_1,s'_2)$ iff $s_1 \le_1 s'_1$ and
+    $s_2 \le_2 s'_2$.
+    
+\medskip
+
+\textbf{Solution:}
+
+\medskip
+
+\begin{proof}
+	If $(S_1 \times S_2, \leq)$ is reflexive, antisymmetric, and transitive, then it is a weak partial order.
+	We already know that $(S_1,\le_1)$ and $(S_2,\le_2)$ are weak partial orders so they are reflexive, antisymmetric, and transitive. Definitions for a weak partial order, $(S,\leq)$, are given below:
+	\begin{align*}
+		\forall x \in S.~		& x \leq x 										& \pnote{reflexive}\\
+		\forall x,y	\in S.~		& x \leq y \wedge y \leq x \Rightarrow x=y 		& \pnote{antisymmetric}\\
+		\forall x,y,z \in S.~ 	& x \leq y \wedge y \leq z \Rightarrow x \leq z 	& \pnote{transitive}
+	\end{align*}
+	
+	We also have the given property of $(S_1 \times S_2, \leq)$:
+	\begin{align*}
+		\forall s_1 \in S_1, \forall s_2 \in S_2.~ 	& (s_1,s_2) \le (s'_1,s'_2) \iff s_1 \le_1 s'_1 \wedge s_2 \le_2 s'_2
+	\end{align*}
+	\medskip
+	\textbf{Reflexivity of $(S_1 \times S_2, \leq)$:} For any $x_1 \in S_1$ and $x_2 \in S_2$ we see that:
+	\begin{align*}
+				& x_1 \le_1 x_1 \wedge x_2 \le_2 x_2 	& \pnote{$S_1$ and $S_2$ are reflexive}\\
+		\iff	& (x_1,x_2) \le (x_1,x_2) 				& \pnote{given property}
+	\end{align*}
+	Therefore $\forall (x_1,x_2) \in S_1 \times S_2~.~(x_1,x_2) \le (x_1,x_2)$.
+	This shows that $(S_1 \times S_2, \leq)$ is reflexive.
+
+	\medskip
+	\textbf{Antisymmetry of $(S_1 \times S_2, \leq)$:} For any $x_1,y_1 \in S_1$ and $x_2,y_2 \in S_2$ we see that:
+	\begin{align*}
+						& (x_1,x_2) \le (y_1,y_2) \wedge (y_1,y_2) \le (x_1,x_2) 						& \\
+		\Rightarrow~	& x_1 \le_1 y_1 \wedge x_2 \le_2 y_2 \wedge y_1 \le_1 x_1 \wedge y_2 \le_2 x_2 	& \pnote{given property}\\
+		\Rightarrow~	& x_1 = y_1 \wedge x_2 = y_2													& \pnote{$S_1$ and $S_2$ are antisymmetric}\\
+		\Rightarrow~	& (x_1,x_2) = (y_1,y_2)															&
+	\end{align*}
+	By transitivity of $\Rightarrow$, $\forall (x_1,x_2),(y_1,y_2) \in S_1 \times S_2~.~(x_1,x_2) \le (y_1,y_2) \wedge (y_1,y_2) \le (x_1,x_2) \Rightarrow (x_1,x_2) = (y_1,y_2)$.
+	This shows that $(S_1 \times S_2, \leq)$ is antisymmetric.
+
+	\medskip
+	\textbf{Transitivity of $(S_1 \times S_2, \leq)$:} For any $x_1,y_1,z_1 \in S_1$ and $x_2,y_2,z_2 \in S_2$ we see that:
+	\begin{align*}
+						& (x_1,x_2) \le (y_1,y_2) \wedge (y_1,y_2) \le (z_1,z_2)						& \\
+		\Rightarrow~	& x_1 \le_1 y_1 \wedge x_2 \le_2 y_2 \wedge y_1 \le_1 z_1 \wedge y_2 \le_2 z_2 	& \pnote{given property}\\
+		\Rightarrow~	& x_1 \le_1 z_1 \wedge x_2 \le_2 z_2											& \pnote{$S_1$ and $S_2$ are transitive}\\
+		\Rightarrow~	& (x_1,x_2) \le (z_1,z_2)														& \pnote{given property}
+	\end{align*}
+	By transitivity of $\Rightarrow$, $\forall (x_1,x_2),(y_1,y_2),(z_1,z_2) \in S_1 \times S_2~.~(x_1,x_2) \le (y_1,y_2) \wedge (y_1,y_2) \le (z_1,z_2) \Rightarrow (x_1,x_2) \le (z_1,z_2)$.
+	This shows that $(S_1 \times S_2, \leq)$ is transitive.
+	
+	\medskip
+	Therefore $(S_1 \times S_2, \leq)$ is a weak partial order.
+\end{proof}
+
+  \item Let ${<_{\rm lex}} \subseteq (\mathbb{N} \times \mathbb{N})
+    \times (\mathbb{N} \times \mathbb{N})$ be lexicographical order,
+    i.e., \[(x_1,y_1) <_{\rm lex} (x_2, y_2)\] iff $x_1 < x_2$ or
+    ($x_1 = x_2$ and $y_1 < y_2$).  
+
+  \be
+
+    \item Prove that $(\mathbb{N} \times \mathbb{N},<_{\rm lex})$ is a
+      well-order.
+      
+    
+\medskip
+
+\textbf{Solution:}
+
+\medskip
+
+\begin{proof}
+	A well-order is a strict total order that contains no infinite descending sequences. 
+	Strict total orders are irreflexive, asymmetric, transitive, and trichotomous. 
+	
+	\textbf{Irreflexive:} $\forall (x,y) \in (\mathbb{N} \times \mathbb{N}) ~.~ \neg{((x,y) <_{\rm lex} (x,y))}$\\
+	Prove by contradiction: Assume $(x,y) <_{\rm lex} (x,y)$\\
+	\begin{align*}
+		& (x,y) <_{\rm lex} (x,y) & \\
+		& ~~~~\pnote{definition of $<_{\rm lex}$}&\\
+		\iff & x<x \vee (x=x \wedge y<y) & \\
+		& ~~~~\pnote{$<$ is irreflexive: $\neg{(x<x)}$ and $\neg{(y<y)}$}&\\
+		\iff & False \vee (x=x \wedge False) & \\
+		& ~~~~\pnote{basic logic} & \\
+		\iff & False & 
+	\end{align*}
+	Our assumption implies false therefore the assumption was false; $(\mathbb{N} \times \mathbb{N},<_{\rm lex})$ is irreflexive.
+	\medskip
+	
+	\textbf{Asymmetric:} $\forall (x_1,y_1),(x_2,y_2) \in (\mathbb{N} \times \mathbb{N}) ~.~ (x_1,y_1) <_{\rm lex} (x_2,y_2) \Rightarrow \neg{((x_2,y_2) <_{\rm lex} (x_1,y_1))}$\\
+	Prove by contradiction: Assume $\neg{((x_1,y_1) <_{\rm lex} (x_2,y_2) \Rightarrow \neg{(x_2,y_2) <_{\rm lex} (x_1,y_1)})}$\\
+	\begin{align*}
+		& \neg{((x_1,y_1) <_{\rm lex} (x_2,y_2) \Rightarrow \neg{((x_2,y_2) <_{\rm lex} (x_1,y_1))})} & \\
+		& ~~~~\pnote{$p\Rightarrow q \equiv \neg{p}\vee q$}\\
+		\iff & \neg{(\neg{((x_1,y_1) <_{\rm lex} (x_2,y_2))} \vee \neg{((x_2,y_2) <_{\rm lex} (x_1,y_1))})} & \\
+		& ~~~~\pnote{De Morgan's}\\
+		\iff & ((x_1,y_1) <_{\rm lex} (x_2,y_2)) \wedge ((x_2,y_2) <_{\rm lex} (x_1,y_1)) & \\
+		& ~~~~\pnote{definition of $<_{\rm lex}$}\\
+		\iff & (x_1 < x_2 \vee (x_1=x_2 \wedge y_1 < y_2)) \wedge (x_2 < x_1 \vee (x_2=x_1 \wedge y_2 < y_1)) & \\
+		& ~~~~\pnote{$\vee$ and $\wedge$ rules to expand}\\
+		\iff & (x_1 < x_2 \wedge x_2 < x_1) \vee (x_1 < x_2 \wedge x_2=x_1 \wedge y_2 < y_1) & \\
+		& ~~~~~~\vee (x_1=x_2 \wedge y_1 < y_2 \wedge x_2 < x_1) & \\
+		& ~~~~~~\vee (x_1=x_2 \wedge y_1 < y_2 \wedge x_2=x_1 \wedge y_2 < y_1) & \\
+		& ~~~~\pnote{$<$ is asymmetric}\\
+		\Rightarrow & False \vee (x_1 < x_2 \wedge x_2=x_1 \wedge y_2 < y_1) & \\
+		& ~~~~~~\vee (x_1=x_2 \wedge y_1 < y_2 \wedge x_2 < x_1) & \\
+		& ~~~~~~\vee False & \\
+		& ~~~~\pnote{if $x_1 = x_2$, then $x_1 < x_2 \Rightarrow x_1 < x_1$ (contradicting that $<$ is irreflexive}\\
+		\Rightarrow & False \vee False \vee False \vee False & \\
+		\iff & False
+	\end{align*}
+	Our assumption implies false therefore the assumption was false; $(\mathbb{N} \times \mathbb{N},<_{\rm lex})$ is asymmetric.
+	\medskip
+	
+	\textbf{Transitive:} $\forall (x_1,y_1),(x_2,y_2),(x_3,y_3) \in (\mathbb{N} \times \mathbb{N}) ~.~ (x_1,y_1) <_{\rm lex} (x_2,y_2) \wedge (x_2,y_2) <_{\rm lex} (x_3,y_3) \Rightarrow (x_1,y_1) <_{\rm lex} (x_3,y_3)$\\
+	\begin{align*}
+		& (x_1,y_1) <_{\rm lex} (x_2,y_2) \wedge (x_2,y_2) <_{\rm lex} (x_3,y_3) & \\
+		& ~~~~\pnote{definition of $<_{\rm lex}$} & \\
+		\iff & (x_1 < x_2 \vee (x_1 = x_2 \wedge y_1 < y_2)) \wedge (x_2 < x_3 \vee (x_2 = x_3 \wedge y_2 < y_3)) & \\
+		& ~~~~\pnote{$\vee$ and $\wedge$ rules to expand}\\
+		\iff & (x_1 < x_2 \wedge x_2 < x_3) & \\
+		& ~~~~~~\vee (x_1 < x_2 \wedge x_2 = x_3 \wedge y_2 < y_3) & \\
+		& ~~~~~~\vee (x_1 = x_2 \wedge y_1 < y_2 \wedge x_2 < x_3) & \\
+		& ~~~~~~\vee (x_1 = x_2 \wedge y_1 < y_2 \wedge x_2 = x_3 \wedge y_2 < y_3) & \\
+		& ~~~~\pnote{$<$ is transitive} & \\
+		\Rightarrow & (x_1 < x_3) & \\
+		& ~~~~~~\vee (x_1 < x_2 \wedge x_2 = x_3 \wedge y_2 < y_3) & \\
+		& ~~~~~~\vee (x_1 = x_2 \wedge y_1 < y_2 \wedge x_2 < x_3) & \\
+		& ~~~~~~\vee (x_1 = x_2 \wedge x_2 = x_3 \wedge y_1 < y_3) & \\
+		& ~~~~\pnote{use $x_i = x_j$ terms to trivially rewrite} & \\
+		\Rightarrow & (x_1 < x_3) & \\
+		& ~~~~~~\vee (x_1 < x_3 \wedge y_2 < y_3) & \\
+		& ~~~~~~\vee (y_1 < y_2 \wedge x_1 < x_3) & \\
+		& ~~~~~~\vee (x_1 = x_3 \wedge y_1 < y_3) & \\
+		& ~~~~\pnote{$A \wedge B \Rightarrow A$} & \\
+		\Rightarrow & (x_1 < x_3) & \\
+		& ~~~~~~\vee (x_1 < x_3) & \\
+		& ~~~~~~\vee (x_1 < x_3) & \\
+		& ~~~~~~\vee (x_1 = x_3 \wedge y_1 < y_3) & \\
+		& ~~~~\pnote{$A \vee A \iff A$} & \\
+		\iff & (x_1 < x_3) \vee (x_1 = x_3 \wedge y_1 < y_3) & \\
+		& ~~~~\pnote{definition of $<_{\rm lex}$} & \\
+		\iff & (x_1,y_1) <_{\rm lex} (x_3,y_3) & \\
+	\end{align*}
+	By transitivity of implication we now have:
+	\[(x_1,y_1) <_{\rm lex} (x_2,y_2) \wedge (x_2,y_2) <_{\rm lex} (x_3,y_3) \Rightarrow (x_1,y_1) <_{\rm lex} (x_3,y_3)\]
+	Therefore $(\mathbb{N} \times \mathbb{N},<_{\rm lex})$ is transitive.
+	\medskip
+
+	\textbf{Trichotomous:} $\forall (x_1,y_1),(x_2,y_2) \in (\mathbb{N} \times \mathbb{N}) ~.~ (x_1,y_1) <_{\rm lex} (x_2,y_2) \vee (x_2,y_2) <_{\rm lex} (x_1,y_1) \vee (x_1,y_1) = (x_2,y_2)$\\
+	\begin{align*}
+		& (x_1,y_1) <_{\rm lex} (x_2,y_2) \vee (x_2,y_2) <_{\rm lex} (x_1,y_1) \vee (x_1,y_1) = (x_2,y_2) & \\
+		& ~~~~\pnote{definition of $<_{\rm lex}$} & \\
+		\iff & (x_1 < x_2 \vee (x_1 = x_2 \wedge y_1 < y_2)) & \\
+		& ~~~~~~\vee (x_2 < x_1 \vee (x_2 = x_1 \wedge y_2 < y_1)) & \\
+		& ~~~~~~\vee (x_1,y_1) = (x_2,y_2) & \\
+		& ~~~~\pnote{expanding the =} & \\
+		\iff & (x_1 < x_2 \vee (x_1 = x_2 \wedge y_1 < y_2)) & \\
+		& ~~~~~~\vee (x_2 < x_1 \vee (x_2 = x_1 \wedge y_2 < y_1)) & \\
+		& ~~~~~~\vee (x_1 = x_2 \wedge y_1 = y_2) & \\
+		& ~~~~\pnote{rearranging terms} & \\
+		\iff & x_1 < x_2 \vee x_2 < x_1 & \\
+		& ~~~~~~\vee (x_1 = x_2 \wedge y_1 < y_2) & \\
+		& ~~~~~~\vee (x_2 = x_1 \wedge y_2 < y_1) & \\
+		& ~~~~~~\vee (x_1 = x_2 \wedge y_1 = y_2) & \\
+		& ~~~~\pnote{$(A \wedge B) \vee (A \wedge C) \iff A \wedge (B \vee C)$} & \\
+		\iff & x_1 < x_2 \vee x_2 < x_1 & \\
+		& ~~~~~~\vee (x_1 = x_2 \wedge (y_1 < y_2 \vee y_2 < y_1 \vee y_1 = y_2)) & \\
+		& ~~~~\pnote{$<$ is trichotomous} & \\
+		\iff & x_1 < x_2 \vee x_2 < x_1 & \\
+		& ~~~~~~\vee (x_1 = x_2 \wedge True) & \\
+		& ~~~~\pnote{reducing} & \\
+		\iff & x_1 < x_2 \vee x_2 < x_1 \vee x_1 = x_2 & \\
+		& ~~~~\pnote{$<$ is trichotomous} & \\
+		\iff & True & \\
+	\end{align*}
+	Looking at the above in reverse we see that true implies $(x_1,y_1) <_{\rm lex} (x_2,y_2) \vee (x_2,y_2) <_{\rm lex} (x_1,y_1) \vee (x_1,y_1) = (x_2,y_2)$.
+	Therefore $(\mathbb{N} \times \mathbb{N},<_{\rm lex})$ is trichotomous.
+	\medskip
+	
+	\textbf{Moving on...}\\
+	Next, we will prove by contradiction that $(\mathbb{N} \times \mathbb{N}, <_{\rm lex})$ contains no infinite descending sequences. 
+	Assume there is an infinite descending sequence:
+		$$...<_{\rm lex} (x_2,y_2) <_{\rm lex} (x_1,y_1) <_{\rm lex} (x_0,y_0)$$
+	We observe two cases:
+	\be
+		\item There is an infinite number of distinct $x_i$.\\
+		This contradicts that $(\mathbb{N},<)$ is a well-order as the sequence of distinct $x_i$ would form an infinite descending sequence.
+		\item There is a finite number of distinct $x_i$.\\
+		Then $\exists k . \forall i, i \geq k \Rightarrow x_i = x_{i+1}$.
+		But then the sequence of $y_i \text{ for } i \geq k$ would form an infinite descending sequence which again contradicts that $(\mathbb{N}, <)$ is a well-order.
+	\ee
+	Therefore $(\mathbb{N} \times \mathbb{N}, <_{\rm lex})$ has no infinite descending sequence.
+	
+\end{proof}
+
+    \item Write the ordinal induction principle for $(\mathbb{N}
+      \times \mathbb{N},<_{\rm lex})$.
+
+\medskip
+
+\textbf{Solution:}
+
+\medskip
+
+\begin{proof}
+	The ordinal induction principle for $(\mathbb{N} \times \mathbb{N}, <_{\rm lex})$ is:\\
+	\begin{align*}
+		\forall (x,y) \in & \mathbb{N} \times \mathbb{N} ~.~ \\
+			& (
+				(\forall (x',y') \in \mathbb{N} \times \mathbb{N} ~.~
+					(x',y') <_{\rm lex} (x,y) \Rightarrow P(x',y')) \\
+			& \Rightarrow P(x,y))
+	\end{align*}
+	for any property $P$ of $\mathbb{N} \times \mathbb{N}$.
+\end{proof}
+
+    \item Prove by the ordinal induction principle for $(\mathbb{N}
+      \times \mathbb{N},<_{\rm lex})$ that the version of the
+      Ackermann function presented in the lecture notes is defined on
+      all members of $\mathbb{N} \times \mathbb{N}$.
+
+\medskip
+
+\textbf{Solution:}
+
+\medskip
+
+\begin{proof}
+	Let $A: \mathbb{N} \times \mathbb{N} \rightarrow \mathbb{N}$ be the Ackermann function defined by:
+	\begin{itemize}
+		\item $A(0,n) = n+1$
+		\item $A(m,0) = A(m-1, 1), if m>0$
+		\item $A(m,n) = A(m-1,A(m,n-1)), if m,n > 0$
+	\end{itemize}
+
+	Let $P(m,n)$ hold iff $A(m,n)$ exists.\\
+
+	Base Case: $(m,n) = (0,0)$\\
+	\begin{align*}
+		A(0,0) = 0+1 = 1
+	\end{align*}
+	Therefore $A(0,0)$ is defined and $P(0,0)$ holds.
+	
+	Inductive Step: $(0,0) <_{\rm lex} (m,n)$. 
+	Assume $P(m',n')$ for all $(m',n') <_{\rm lex} (m,n)$.
+	Prove $P(m,n)$.\\
+	
+	We have three cases for the inductive step:
+	\be
+		\item $m = 0$\\
+			\begin{align*}
+				A(0,n) = n+1
+			\end{align*}
+			Therefore $A(0,n)$ is defined.
+		\item $m \neq 0 ~,~ n = 0$\\
+			\begin{align*}
+				A(m,0) = A(m-1,1)
+			\end{align*}
+			Since $(m-1,1) <_{\rm lex} (m,0)$, $A(m-1,1)$ is defined by the induction hypothesis.\\
+			Therefore $A(m,0)$ is defined.
+		\item $m \neq 0 ~,~ n \neq 0$\\
+			\begin{align*}
+				A(m,n) = A(m-1, A(m,n-1))
+			\end{align*}
+			Since: $A(m,n-1) <_{\rm lex} A(m,n)$\\
+			Therefore, by the induction hypothesis, $A(m,n-1)$ is defined.\\
+			Also: $A(m-1, A(m,n-1)) <_{\rm lex} A(m,n)$\\
+			Therefore, by the induction hypothesis, $A(m-1, A(m,n-1))$ is defined.\\
+			Therefore $A(m,n)$ is defined for $m,n \neq 0$.
+	\ee
+	In each case we found that $A(m,n)$ was defined, therefore $P(m,n)$ holds given the inductive hypothesis.
+	
+	Therefore $A(m,n)$ is defined on all members of $\mathbb{N} \times \mathbb{N}$.
+	
+\end{proof}
+
+  \ee
+
+  \item Let $(S,<)$ be a partial order such that $S$ is finite.  Prove
+    that $(S,<)$ is well-founded.
+
+\medskip
+
+\textbf{Solution:}
+
+\medskip
+    
+\begin{proof}
+	$(S,<)$ is a strict partial order and is therefore irreflexive ($\neg{x < x}$), and transitive ($x<y \wedge y<z \Rightarrow x<z$).
+	For this question we won't need the asymmetry of strict partial orders.
+	
+	We know that $(S,<)$ is well-founded iff $(S,<)$ is Noetherian iff every descending $<$-sequence of members of S is finite.\\
+	We proceed by contradiction.
+	Assume there exists an infinite descending $<$-sequence:
+	$$...< x_2 < x_1 < x_0$$
+	Choose $n$ such that $x_n = x_i$ for some $i<n$. 
+	We know that such an $n$ exists because this is an infinite sequence of members of S, but there is only a finite number of members of S.\\
+	Trivially, with transitivity, we can see that for any member of the sequence, $a$, and every earlier member in the sequence, $b$: $a<b$ (i.e. the $n_{th}$ member of the sequence is less than all earlier members).\\
+	Thus $x_n < x_i$, and since $x_n = x_i$, this means that $x_n < x_n$, but then $(S,<)$ is not irreflexive and is not a strict partial order.
+	Therefore by contradiction, there is no infinite descending $<$-sequence, every descending $<$-sequence of members of S is finite, and $(S,<)$ is well-founded.
+\end{proof}
+
+  \item Let $(\mathbb{N},R_{\sf suc})$ be the mathematical structure
+    where \[m \mathrel{R_{\sf suc}} n$ iff $n = m + 1.\]  Prove that
+    $(\mathbb{N},R_{\sf suc})$ is well-founded.
+
+\medskip
+
+\textbf{Solution:}
+
+\medskip
+
+\begin{proof}
+	As in question 8 we will prove by contradiction by assuming there exists an infinite descending $R_{\sf suc}$-sequence:
+	$$...~R_{\sf suc}~ x_2 ~R_{\sf suc}~ x_1 ~R_{\sf suc}~ x_0$$
+	Because $m \mathrel{R_{\sf suc}} n \iff n = m + 1$, we can rewrite the sequence as:
+	$$... ~R_{\sf suc}~ x_0 - (x_0+1) ~R_{\sf suc}~ x_0 - x_0 ... ~R_{\sf suc}~ x_0 - 2 ~R_{\sf suc}~ x_0 - 1 ~R_{\sf suc}~ x_0$$
+	But here we see that one of the members of the sequence is $x_0 - (x_0+1) = -1$ and $-1 \not\in \mathbb{N}$ so the sequence cannot continue.
+	Therefore, by contradiction, $(\mathbb{N},R_{\sf suc})$ is well-founded.\\\\
+\end{proof}
+
+  \item The Ackermann function was originally defined
+    as the ternary function $B : \mathbb{N} \times \mathbb{N} \times
+    \mathbb{N} \rightarrow \mathbb{N}$ such that:
+
+  \be
+
+    \item $B(m,n,0) = m + n$.
+
+    \item $B(m,0,1) = 0$.
+
+    \item $B(m,0,2) = 1$.
+
+    \item $B(m,0,p) = m$ for $p > 2$.
+
+    \item $B(m,n,p) = B(m,B(m,n-1,p),p-1)$ for $n > 0$ and $p > 0$.
+
+  \ee
+
+  Prove that $B$ is defined on all members of $\mathbb{N} \times
+  \mathbb{N} \times \mathbb{N}$ using well-founded induction.
+    
+\medskip
+
+\textbf{Solution:}
+
+\begin{proof}
+Let $U = \mathbb{N} \times \mathbb{N} \times \mathbb{N}$ and $R
+\subseteq U$ be the relation defined by \[(m,n,p) \mathrel{R}
+(m',n',p') \text{ iff (1) $p' < p$ or (2) $p' = p$ and $n' < n$}.\]
+Every nonempty subset of $U$ has an $R$-minimal element since
+$(\mathbb{N},<)$ is a well-order; hence $(U,R)$ is well founded.  Let
+$P(m,n,p)$ mean that $B(m,n,p)$ is defined.  We will prove that
+$P(m,n,p)$ holds for all $(m,n,p) \in U$ by the well-founded induction
+principle for $(U,R)$:
+
+\bi
+
+  \item[] $(\ForallApp (m,n,p) \in U \mdot {}$\\ 
+    \hspace*{2ex}$(\ForallApp (m',n',p') \in U \mdot
+       (m',n',p') \mathrel{R} (m,n,p)\ImpliesAlt P(m',n',p')){}$\\ 
+    \hspace*{4ex}$\ImpliesAlt P(m,n,p))$\\
+    \hspace*{2ex}$\ImpliesAlt \ForallApp (m,n,p) \in U \mdot P(m,n,p)$.
+
+\ei
+
+Let $(m,n,p) \in U$.  Assume that, for all $(m',n',p') \in U$ with
+\[(m',n',p') \mathrel{R} (m,n,p),\] $P(m',n',p')$ holds.  
+We must show that $P(m,n,p)$ holds.
+
+\emph{Case 1}: $n = 0$ or $p = 0$.  Then $B(m,n,p)$ is clearly defined
+and thus $P(m,n,p)$ holds.
+
+\emph{Case 2}: $n > 0$ and $p > 0$.  Then $B(m,n-1,p)$ is defined by
+$P(m,n-1,p)$ since $(m,n-1,p) \mathrel{R} (m,n,p)$ and
+$B(m,B(m,n-1,p),p-1)$ is defined by $P(m,B(m,n-1,p),p-1)$ since
+$(m,B(m,n-1,p),p-1) \mathrel{R} (m,n,p)$.  Then $B(m,n,p)$ is clearly
+defined and thus $P(m,n,p)$ holds.
+
+Therefore, $B$ is total.
+\end{proof}
+
+\ee
+\end{document}
+
+

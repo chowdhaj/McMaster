@@ -1,0 +1,240 @@
+\documentclass[11pt,fleqn]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+
+\lstset{language=python,basicstyle=\ttfamily,breaklines=true,showspaces=false,showstringspaces=false,breakatwhitespace=true,texcl=true,escapeinside={\%*}{*)}}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sM}{\mbox{$\cal M$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\sV}{\mbox{$\cal V$}}
+\newcommand{\set}[1]{{\{ #1 \}}}
+\newcommand{\Neg}{\neg} 
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\LeftRightarrow}
+\newcommand{\Forall}{\forall}
+\newcommand{\ForallApp}{\forall\,}
+\newcommand{\Forsome}{\exists}
+\newcommand{\ForsomeApp}{\exists\,}
+\newcommand{\mdot}{\mathrel.}
+
+\begin{document}
+
+%\thispagestyle{empty}
+
+\bc
+
+  {\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+  {\large \textbf{Discrete Mathematics with Applications II}}\\[2mm]
+  {\large \textbf{Winter 2020}}\\[8mm]
+  {\huge \textbf{Week 05 Exercises}}\\[6mm]
+  {\large \textbf{Dr.~William M. Farmer}}\\[2mm]
+  {\large \textbf{McMaster University}}\\[6mm]
+  {\large Revised: February 6, 2020}
+
+\ec
+
+\medskip
+
+\subsection*{Background Definitions}
+
+Consider the following definitions:
+
+\be
+
+  \item $\Sigma_{\rm stack} = (\sB,\sC,\sF,\sP,\tau)$ where:
+
+  \be
+
+    \item $\sB = \set{\mname{Element},\mname{Stack}}$.
+
+    \item $\sC = \set{\mname{error},\mname{bottom}}$.
+
+    \item $\sF = \set{\mname{push},\mname{pop},\mname{top}}$.
+
+    \item $\sP = \emptyset$.
+
+    \item $\tau(\mname{error}) = \mname{Element}$.
+
+    \item $\tau(\mname{bottom}) = \mname{Stack}$.
+
+    \item $\tau(\mname{push}) = \mname{Element} \times \mname{Stack}
+      \rightarrow \mname{Stack}$.
+
+    \item $\tau(\mname{pop}) = \mname{Stack} \rightarrow
+      \mname{Stack}$.
+
+    \item $\tau(\mname{top}) = \mname{Stack} \rightarrow
+      \mname{Element}$.
+
+  \ee
+
+  \item $\Sigma_{\rm mon} =
+    (\set{M},\set{e},\set{*},\emptyset,\tau)$ where $\tau(e) =
+    M$ and $\tau(*) = M \times M \rightarrow M$.
+
+  \item $\sM_{\rm nat}$ is the $\Sigma_{\rm mon}$-structure derived from
+    $(\mathbb{N},0,+)$.
+
+  \item $\sM_{\rm triv}$ is the $\Sigma_{\rm mon}$-structure derived
+    from the \emph{trivial monoid} $(\set{0},0,+)$.
+
+  \item Let $\Gamma_{\rm mon}$ be the following set of $\Sigma$-sentences:
+
+  \be
+
+    \item[Assoc] $\ForallApp x,y,z : M \mdot (x * y) * z = x *
+      (y * z)$.
+
+    \item[IdLeft] $\ForallApp x : M \mdot e * x = x$.
+
+    \item[IdRight] $\ForallApp x : M \mdot x * e = x$.
+
+  \ee
+
+  \item $T_{\rm mon} = (\Sigma_{\rm mon}, \Gamma_{\rm mon})$.
+
+\ee
+
+\subsection*{Exercises}
+
+\be
+
+  \item Let $\Sigma = (\alpha, a:\alpha, f : \alpha \times \alpha
+    \rightarrow \alpha, p: \alpha \times \alpha \rightarrow
+    \mathbb{B})$.  Compute \mname{fvar} and \mname{bvar} for each of
+    the following $\Sigma$-formulas:
+
+  \be
+
+    \item $\ForsomeApp x : \alpha \mdot \ForsomeApp y : \alpha
+      \mdot p(z:\alpha)$.
+
+    \item $f(x:\alpha) = a \And {}$\\
+      $\ForallApp y : \alpha \mdot
+      ((p\,(y:\alpha) \Or p\,(x:\alpha)) \Implies \ForsomeApp x :
+      \alpha \mdot p(f(x:\alpha)))$.
+
+  \ee
+
+  \item Compute the following substitutions:
+
+  \be
+
+    \item $f(x:\alpha) = a \And {}$\\
+      $\ForallApp y : \alpha \mdot
+      ((p(y:\alpha) \Or p(x:\alpha)) \Implies \ForsomeApp x :
+      \alpha \mdot p(f(x:\alpha)))[x \mapsto f(a)]$.
+
+    \item $f(x:\alpha) = a \And {}$\\
+      $\ForallApp y : \alpha \mdot
+      ((p(y:\alpha) \Or p(x:\alpha)) \Implies \ForsomeApp x :
+      \alpha \mdot p(f(x:\alpha)))[y \mapsto f(a)]$.
+
+    \item $f(x:\alpha) = a \And {}$\\
+      $\ForallApp y : \alpha \mdot
+      ((p(y:\alpha) \Or p\,(x:\alpha)) \Implies \ForsomeApp x :
+      \alpha \mdot p(f(x:\alpha)))[z \mapsto f(a)]$.
+
+  \ee
+
+  \item Construct a signature of MSFOL that is suitable
+    for formalizing:
+
+  \be
+
+    \item A queue of abstract elements.
+
+    \item An abstract field.
+
+    \item An abstract vector space over an abstract field.
+
+  \ee
+
+  \item Let $\Sigma_{\rm ord} = (\sB,\sC,\sF,\sP,\tau)$ be the
+    signature defined in the lecture slides.  Construct $\Sigma_{\rm
+      ord}$-structures that define the following mathematical
+    structures: $(\mathbb{N},\le)$, $(\mathbb{Z},<)$, $(\mathbb{Q},>)$,
+    and $(\mathbb{R},\not=)$.
+
+  \item Let $\Sigma_{\rm stack}$ be the signature defined above.
+    Construct a $\Sigma_{\rm stack}$-structure such that $D_{\sf
+      Element} = \mathbb{N}$, $D_{\sf Stack}$ is the set of finite
+    sequences of members of $\mathbb{N}$, and the function symbols of
+    $\Sigma_{\rm stack}$ manipulate the members of $D_{\sf Stack}$ as
+    stacks.
+
+  \item Which of the following $\Sigma_{\rm mon}$-formulas are
+    satisfiable and which are universally valid?
+
+  \be
+
+    \item $e = e$.
+
+    \item $e = e * e$.
+
+    \item $\ForallApp x : M \mdot x = e$.
+
+    \item $\ForallApp x : M \mdot x \not= e$.
+
+  \ee
+
+  \item Which of the following $\Sigma_{\rm mon}$-formulas are valid
+    in $\sM_{\rm nat}$ and which are valid in $\sM_{\rm triv}$?
+
+  \be
+
+    \item $e = e$.
+
+    \item $e = e * e$.
+
+    \item $\ForallApp x : M \mdot x = e$.
+
+    \item $\ForallApp x : M \mdot x \not= e$.
+
+  \ee
+
+  \item Which are the following $\Sigma_{\rm mon}$-formulas are valid
+    in $T_{\rm mon}$.
+
+  \be
+
+    \item $e = e$.
+
+    \item $e = e * e$.
+
+    \item $\ForallApp x : M \mdot x = e$.
+
+    \item $\ForallApp x : M \mdot x \not= e$.
+
+  \ee
+
+\ee
+\end{document}

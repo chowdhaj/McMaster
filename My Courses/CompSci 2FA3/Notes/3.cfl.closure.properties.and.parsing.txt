@@ -1,0 +1,38 @@
+presentation.3.cfl.closure.properties.and.parsing.txt
+
+Context Free Languages are closed under union. Taking the union of two CFLs will always produce a CFL
+
+CFLs are closed under union, concatenation, and asterate
+
+CFLs are not closed under complementation and intersection
+
+The complement of L is ~L. So ~L contains all the set of strings that are not in L.
+
+Regular languages are closed under union, concatenation, asterate, complementation, and intersection
+
+Regular languages are very special because they have a lot of closure properties
+
+
+
+Deterministic Push Down Automaton
+
+	Deterministic means that every situation has only one possible transition that can be applied.
+
+	A deterministic context-free language (DCFL) is a language accepted by a DPDA
+
+	Every DCFL is a CFL, but not every CFL is a DCFL. This is because Deterministic Pushdown Automata can be simulated by Non-deterministic push down automata. The set of deterministic context free languages is a subset of all context free languages. It is a proper subset. There are languages that are context free, but not deterministic context free. Example:
+		L = {xx | x e {a, b}*} is not a CFL, but ~L is a CFL, so ~L is not a DCFL by Theorem 13
+
+	DCFLs are closed under complement, unlike CFLs
+
+Parsing
+
+	Let L be a programming language. A parser for L that takes a program in L and returns a parse tree of the program. The parse tree shows the construction of the program. Parse trees are also called Syntax trees. The parser makes sure the program is syntactically correct. If not it will return an error.
+
+	A parser recognizes what strings are programs in a programming language. 
+
+	A compiler starts off with a lexical analyzer. It looks for tokens which are members of a regular language. It will use a DPDA and identify all the tokens, and turn the string of symbols into a string of tokens, and this will be fed to the parser and the parser will produce a parse tree. This parse tree is translated according to the compilation.
+
+	The parser is an important part of the compiler. The syntax of a programming language is usually specified by a context free grammar; a special kind of CFG that is deterministic. 
+
+	The parser can be implemented as a DPDA that can be automatically generated from the CFG. 

@@ -1,0 +1,60 @@
+presentation.4.models.of.computation...txt
+
+Effective Methods
+
+	- An effective method, or mechanical method, is a method that can be used to solve a whole family of problems in a mechanical way. -An effective method must satifies the following:
+		1. The method consists of a series of steps in which each step results from executing a precise instruction. So you keep applying instructions until you have a solution.
+		2. Each instruction is expressed by a finite number of symbols. 
+		3. The number of possible instructions is finite
+		4. The method finishes after a finite number of steps
+		5. The method solves every problem in the family
+		6. The method requires no ingenuity to succeed. 
+	- Effective methods can be performed by both humans and machines.
+
+Models Of Computation
+
+	- A model of computation is a model that describes how an output is computed from an input. For example:
+		- Lambda Calculus (Alonzo Church, 1936)
+		- Turing Machines (Alan Turing, 1937)
+		- General Recursive Functions (Godel & Herbrand, 1936)
+			- Map natural numbers to other natural numbers. Provide a very effective way to represent computation. 
+		- Combinatory Logic (Moses Schofinkel, 1924)
+			- Further developed by Haskell Curry in 1930
+		- Post Systems (Emil Post, 1936)
+		- Unlimited Register Machines (Shepherdson & Sturgis, 1963)
+			- Very similar to real computers
+			- Computation is done with registers and data is moved back and forth between registers.
+	- The models above are very different from each other, but are computationally equivalent. This means that a computation that can be represented in one model, can be represented in all models. Computation can be categorized radically different ways but it all means the same. The inherent nature of computation can be expressed in a number of ways.
+	- Church and Turing used their models to show that there are undecidable decision problems
+
+Church-Turing Thesis
+
+	- Any model of computation equivalent to those listed above captures exactly our intuition of what an effective method is
+	- Modern computers are kind of similar to these models of computation except that modern computers have limited memory
+	- Any effective method can be solved by a modern computer
+	- The Church-Turing Thesis is just an assumption that is backed up with a huge amount of evidence. There can be a whole class of problems that can be solved by a different model that no one else has thought of yet. 
+	- The models listed above were developed before modern computers
+
+The Great Limitation Theorems
+
+	- There are certain limitations in mathematics and computing. These are called the Great Limitation Theorems, according to Dr. Farmer. The theorems are:
+		- First Incompleteness Theorem: No consistent, sufficiently strong, recursively axiomatizable proof system can prove all the truths of natural number arithmetic.
+			- Any reasonable proof system that we have cannot prove every proof about natural numbers. There will be things about the natural number system that it wont be able to prove
+			- A reasonable proof system is consistent, sufficiently strong, recursively axiomatizable. 
+				- Consistent = Proof system is sound and cannot prove its negation
+				- Sufficiently Strong = Can prove very basic things like natural numbers
+				- Recursively Axiomatizable = There is a computer program or a mechanical way of telling what is an axiom and what is not
+		- Second Incompleteness Theorem: No consistent, sufficiently strong, recursively axiomatizable proof system can prove its own consistency.
+			- A consistent proof system cannot prove that it itself is consistent
+			- The only way to prove a proof system is to come up with a stronger proof system. The Strong proof system will prove the weak proof system.
+			- Thus we have to assume that the system is right
+		- Undefinability of Truth: Truth cannot be defined in any sufficiently strong theory
+		- Undecidability of First Order Logic
+			- Validity is undecidable in first order logic
+			- The problem of determining whether a formula is valid in first order logic, true in every model, the problem is undecidable 
+			- There are undecidable decision problems
+	- The great limitation theorems state that there are limits on what can be proved, defined, and computed.
+
+- Meta-theorems are theorems about theorems, but are not theorems that the theory can prove.
+
+- Meta-theorems can show great limitation theorems
