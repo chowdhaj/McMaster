@@ -1,0 +1,76 @@
+Module                  Size  Used by
+simple                 16384  0
+ppdev                  20480  0
+vboxvideo              53248  1
+ttm                    98304  1 vboxvideo
+intel_powerclamp       16384  0
+drm_kms_helper        155648  1 vboxvideo
+snd_intel8x0           40960  0
+snd_ac97_codec        131072  1 snd_intel8x0
+ac97_bus               16384  1 snd_ac97_codec
+drm                   364544  4 ttm,drm_kms_helper,vboxvideo
+input_leds             16384  0
+serio_raw              16384  0
+snd_pcm               106496  2 snd_ac97_codec,snd_intel8x0
+snd_timer              32768  1 snd_pcm
+fb_sys_fops            16384  1 drm_kms_helper
+joydev                 20480  0
+i2c_piix4              24576  0
+snd                    81920  4 snd_ac97_codec,snd_intel8x0,snd_timer,snd_pcm
+syscopyarea            16384  2 drm_kms_helper,vboxvideo
+soundcore              16384  1 snd
+sysfillrect            16384  2 drm_kms_helper,vboxvideo
+vboxguest             286720  1 vboxvideo
+sysimgblt              16384  2 drm_kms_helper,vboxvideo
+8250_fintek            16384  0
+parport_pc             32768  0
+parport                49152  2 ppdev,parport_pc
+mac_hid                16384  0
+ib_iser                49152  0
+rdma_cm                49152  1 ib_iser
+iw_cm                  45056  1 rdma_cm
+ib_cm                  45056  1 rdma_cm
+ib_sa                  36864  2 rdma_cm,ib_cm
+ib_mad                 49152  2 ib_cm,ib_sa
+ib_core               106496  6 rdma_cm,ib_cm,ib_sa,iw_cm,ib_mad,ib_iser
+ib_addr                16384  2 rdma_cm,ib_core
+iscsi_tcp              20480  0
+libiscsi_tcp           24576  1 iscsi_tcp
+libiscsi               53248  3 libiscsi_tcp,iscsi_tcp,ib_iser
+scsi_transport_iscsi    98304  4 iscsi_tcp,ib_iser,libiscsi
+autofs4                40960  2
+btrfs                 987136  0
+raid10                 49152  0
+raid456               110592  0
+async_raid6_recov      20480  1 raid456
+async_memcpy           16384  2 raid456,async_raid6_recov
+async_pq               16384  2 raid456,async_raid6_recov
+async_xor              16384  3 async_pq,raid456,async_raid6_recov
+async_tx               16384  5 async_pq,raid456,async_xor,async_memcpy,async_raid6_recov
+xor                    24576  2 btrfs,async_xor
+raid6_pq              102400  4 async_pq,raid456,btrfs,async_raid6_recov
+libcrc32c              16384  1 raid456
+raid1                  36864  0
+raid0                  20480  0
+multipath              16384  0
+linear                 16384  0
+hid_generic            16384  0
+usbhid                 49152  0
+hid                   118784  2 hid_generic,usbhid
+crct10dif_pclmul       16384  0
+crc32_pclmul           16384  0
+ghash_clmulni_intel    16384  0
+aesni_intel           167936  0
+aes_x86_64             20480  1 aesni_intel
+lrw                    16384  1 aesni_intel
+gf128mul               16384  1 lrw
+glue_helper            16384  1 aesni_intel
+ablk_helper            16384  1 aesni_intel
+cryptd                 20480  3 ghash_clmulni_intel,aesni_intel,ablk_helper
+ahci                   36864  2
+psmouse               131072  0
+libahci                32768  1 ahci
+e1000                 135168  0
+pata_acpi              16384  0
+fjes                   28672  0
+video                  40960  0
