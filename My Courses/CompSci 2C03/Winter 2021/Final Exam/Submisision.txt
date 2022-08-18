@@ -1,0 +1,181 @@
+Course: CompSci 2C03
+Name: Jatin Chowdhary
+MacID: Chowdhaj
+Date: April 17th, 2021
+
+FINAL EXAM
+
+Multiple Choice Questions
+
+1. C
+
+2. A
+
+3. C
+
+4. C
+
+5. D
+
+6. A
+
+7. A 
+
+8. B
+
+9. C
+
+10. A
+
+Descriptive Questions
+
+1. a) Let Theta(n) = n^2 log2 n + 2n + 1; choose c1 = 1, c2 = 4, &
+      no = 1
+
+      Also, T(n) is in Theta(n) because both contain the same greatest 
+      factor, which is (n^2 log2 n). This is the largest/dominating
+      factor. 
+
+   b) T(n) is not in Theta(n^2) because T(n) does not contain any
+      variable with a degree of exactly 2. 
+
+2. Quicksort will make O(N) compares when sorting an array of 'N'
+   items with just two distinct keys. Let's assume we have the array:
+   arr [1, 2, 2, 2, 1, 1, 1]. It does not matter if the pivot is 1 or
+   2, because in the end, there will be two sub-arrays where all the
+   1's will be in the first sub-array and all the 2's will be in the
+   second sub-array. Quicksort only needs to iterate through the
+   main array once to get all the keys in their respective arrays. 
+   Thus, Quicksort will make O(N) compares. 
+
+3. Computing MST of Figure 2 via Kruskal's algorithm
+
+Order edges by weights:
+    1 : O--1
+    2 : 0--3
+    2 : 1--3
+    3 : 4--6
+    4 : 3--6
+    4 : 5--6
+    5 : 0--5
+    6 : 0--2
+    7 : 4--5
+
+Add edges, in order of ascending weight, to MST, and make sure there
+is/are no cycle(s):
+
+    0--1
+    0--3
+    4--6
+    3--6
+    5--6
+    0--2
+
+4. Finding the shortest paths in an undirected positive edge-weighted
+graphs can be done using Dijkstra's algorithm. The outline is:
+
+    1. Mark all nodes, expect for the source node as unvisited, and
+       set their distances to infinity, and set the distance of the
+       starting/source node to 0. Add source node to 'nodesVisited'
+       array. 
+    2. Visit nearby/reachable nodes and update their distances by
+       adding the current node's distance and the edge that connects
+       current node to nearby node. If this calculated distance is
+       smaller than whatever is in the 'distTo' array, then update its
+       value, and other arrays like 'prevNode'
+    3. Repeat step 2 until all nodes have been visited. You keep track
+       of visited nodes using an array. At the start of the algorithm,
+       you have two arrays, one that contains list of all nodes, and
+       another array that contains visited nodes. 
+
+You can also use Bellman-Ford, but BF is mostly for graphs with
+negative weights. 
+
+5. a) The period, 'p' will be inside the border, and the border array
+      will indicate its number of occurrences. 
+
+   b) By definition, the border contains strings, 'w' that are both
+      prefix and suffix of 'w'. Knowing this, I would use the border
+      array to isolate the occurrences of borders. This would give me
+      a list of indices of the minimum period. 
+
+6. a) text = a b a a b a a c b c b a a a b
+
+Symbol | Frequency
+-------|-----------
+a      | 8
+-------|-----------
+b      | 5
+-------|-----------
+c      | 2
+
+Prefix-free code trie:
+
+              (15)
+             /    \
+          0 /      \ 1
+           /        \
+         (7)        (a)
+        /   \
+     0 /     \ 1
+      /       \
+    (c)       (b)
+
+Symbol | Huffman Code
+-------|-----------
+a      | 1
+-------|-----------
+b      | 01
+-------|-----------
+c      | 00
+
+Encoded string is: 1 01  1  1 01  1  1 00 01 00 01  1  1  1 01
+                   a  b  a  a  b  a  a  c  b  c  b  a  a  a  b
+
+Encoding of the tree: 
+0 1 01100001 0 1 01100011 1 01100010
+
+b) text = a b a a b a a c b c b a a a b
+
+a = 01100001 (Binary) = 61 (hex)
+b = 01100010 (Binary) = 62 (hex)
+c = 01100011 (Binary) = 63 (hex)
+
+The results of the encoding is as follows:
+a   b   a   ab   aa   c   b    cb   aa   ab   [EOF]
+61  62  61  81   83   63  62   86   83   81    80
+
+The symbol table, and the entries added to it during the encoding
+process is:
+
+Key | Value
+----|------
+a   | 61
+----|------
+b   | 62
+----|------
+c   | 63
+----|------
+... | ...
+----|------
+ab  | 81
+----|------
+ba  | 82 
+----|------
+aa  | 83
+----|------
+aba | 84
+----|------
+aac | 85
+----|------
+cb  | 86
+----|------
+bc  | 87
+----|------
+cba | 88
+----|------
+aaa | 89
+----|------
+----|------
+----|------
+EOF | 80
