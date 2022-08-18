@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# number of expected arguments
+EXPECTED_ARGS=1
+
+# exit value if the number of arguments is wrong
+E_BADARGS=1
+
+
+if [ $# -ne $EXPECTED_ARGS ]
+then
+  echo "Usage: `basename $0` {arg}"
+  exit $E_BADARGS
+fi
+
+if [ ! -e $1 ]
+then
+  echo "file $1 does not exist"
+  exit $E_BADARGS
+fi
+
+for myfile in $1/*
+do
+if [ -d "$myfile" ]
+then
+  echo "$myfile (DIR)"
+elif [ -f "$myfile" ]
+then 
+  echo "$myfile"
+fi
+done

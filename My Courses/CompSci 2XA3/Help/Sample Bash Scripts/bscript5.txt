@@ -1,0 +1,16 @@
+#!/bin/bash
+
+EXPECTED_ARGS=4
+
+if [ $# -ne $EXPECTED_ARGS ] 
+then
+  echo "Usage: `basename $0` {arg}" 
+  exit
+fi
+
+grep "$3\|$4" $1 > $2
+
+# play with the variations:
+#grep -E "$3|$4" $1 > $2
+#grep -e $3 -e $4 $1 > $2
+#egrep "$3|$4" $1 > $2

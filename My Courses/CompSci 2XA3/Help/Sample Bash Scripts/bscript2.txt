@@ -1,0 +1,23 @@
+#!/bin/bash
+
+name=`ls `
+for i in $name
+do
+  if [ -d $i ]
+  then
+    cd $i
+    svn_rem
+    cd ..
+  fi
+
+  if [ -f $i ]
+  then
+     if [[ "$i" == *~ || "$i" == *.log ||\
+           "$i" == "*.aux" || "$i" == *.bak || \
+           "$i" == *.dvi || "$i" == *.zip ]]
+     then
+       svn rm --force $i
+       echo removing file $i
+     fi
+  fi
+done

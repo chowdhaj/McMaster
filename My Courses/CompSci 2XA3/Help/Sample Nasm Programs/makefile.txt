@@ -1,0 +1,79 @@
+all: prog1 prog2 first endian endian1 ios subprog3 subprog2 subprog1 loop1 loop2 loop3 argv
+
+argv: argv.o asm_io.o
+	gcc -m32 -o argv argv.o driver.c asm_io.o
+
+first: first.o asm_io.o driver.c
+	gcc -m32 -o first driver.c first.o asm_io.o
+
+first.o: first.asm asm_io.inc
+	nasm -f elf32 first.asm 
+
+prog2: prog2.o
+	gcc -m32 -o prog2 prog2.o
+
+prog1: prog1.o
+	gcc -m32 -o prog1 prog1.o
+
+ios: ios.o
+	gcc -m32 -o ios ios.o
+
+endian1: endian1.c
+	gcc -o endian1 endian1.c
+
+endian: endian.c
+	gcc -o endian endian.c
+
+prog1.o: prog1.asm
+	nasm -f elf32 -o prog1.o prog1.asm
+
+ios.o: ios.asm
+	nasm -f elf32 -o ios.o ios.asm
+
+prog2.o: prog2.asm
+	nasm -f elf32 -o prog2.o prog2.asm
+
+argv.o: argv.asm
+	nasm -f elf32 -o argv.o argv.asm
+
+loop3: loop3.o asm_io.o driver.c
+	gcc -m32 -o loop3 driver.c loop3.o asm_io.o
+
+loop2: loop2.o asm_io.o driver.c
+	gcc -m32 -o loop2 driver.c loop2.o asm_io.o
+
+subprog1: subprog1.o asm_io.o driver.c
+	gcc -m32 -o subprog1 driver.c subprog1.o asm_io.o
+
+subprog2: subprog2.o asm_io.o driver.c
+	gcc -m32 -o subprog2 driver.c subprog2.o asm_io.o
+
+subprog3: subprog3.o asm_io.o driver.c
+	gcc -m32 -o subprog3 driver.c subprog3.o asm_io.o
+
+loop1: loop1.o asm_io.o driver.c
+	gcc -m32 -o loop1 driver.c loop1.o asm_io.o
+
+loop3.o: loop3.asm asm_io.inc
+	nasm -f elf32 loop3.asm
+
+loop2.o: loop2.asm asm_io.inc
+	nasm -f elf32 loop2.asm
+
+loop1.o: loop1.asm asm_io.inc
+	nasm -f elf32 loop1.asm
+
+subprog1.o: subprog1.asm asm_io.inc
+	nasm -f elf32 subprog1.asm
+
+subprog2.o: subprog2.asm asm_io.inc
+	nasm -f elf32 subprog2.asm
+
+subprog3.o: subprog3.asm asm_io.inc
+	nasm -f elf32 subprog3.asm
+
+asm_io.o: asm_io.asm
+	nasm -f elf32 -d ELF_TYPE asm_io.asm
+
+clean:
+	rm prog1 prog2 *.o first endian endian1 subprog2 subprog1 loop1 loop2 loop3 ios argv

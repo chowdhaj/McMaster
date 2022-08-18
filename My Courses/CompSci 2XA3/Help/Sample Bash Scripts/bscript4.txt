@@ -1,0 +1,15 @@
+#!/bin/bash
+
+EXPECTED_ARGS=3
+
+if [ $# -ne $EXPECTED_ARGS ] 
+then
+  echo "Usage: `basename $0` {arg}" 
+  exit
+fi
+
+>$1
+for ((i=1; i<=$3; i++))
+do
+  echo "$i,$2">>$1
+done

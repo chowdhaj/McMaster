@@ -1,0 +1,16 @@
+#!/bin/bash
+
+name="XXX"
+for i in {1..10}
+do
+  >$name
+  ext=".$i"
+  name=$name$ext
+done
+
+files=`ls XXX*`
+for name in $files
+do
+  newname=`echo $name | sed 's/XXX/yyy/'`
+  mv $name $newname
+done
