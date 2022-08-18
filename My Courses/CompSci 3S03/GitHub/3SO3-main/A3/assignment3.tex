@@ -1,0 +1,270 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.7in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{tabularray}
+%\usepackage{minted}
+\newcommand{\NULL}{\texttt{NULL}}
+\newcommand{\LAnd}{\ \wedge\ }
+\newcommand{\LOr}{\ \vee\ }
+\newcommand{\LSet}{\texttt{Linked\_Set<G>}\ }
+\newcommand{\Sprite}{\texttt{Sprite}}
+
+\title{3S03 - Software Testing \\
+Assignment 2}
+\author{Mark Hutchison \\
+hutchm6@mcmaster.ca \and
+Jatin Chowdhary \\
+chowdhaj@mcmaster.ca}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section*{Question 1 - Sprite Test Plan}
+
+\begin{longtblr}[
+    caption = {Question 1 Table},
+    label = {tab:q1},
+  ]{
+    colspec = {|XX[2]|},
+    hlines,
+    row{even} = {gray9},
+  }
+    \textbf{Objectives and Goals} & The company in question has been tasked with the development of a First-Person Shooter (FPS) video game. Typically, first person shooters are programmed in object-oriented languages like C++ and C\#. However, the $\Sprite$ test plan will be discussed as if the video game is programmed in Java. This is because we are more familiar with Java. Video games typically involve many elements being on screen at a time. Hence, it makes sense to create a uniform class system that can manage all of the on-screen sprites at a time. \\
+    \textbf{Requirements for Review} & The purpose of the $\Sprite$ class is to efficiently and effectively collect and maintain the information related to an in-game $\Sprite$ object. The class will be responsible for storing and maintaining the position of the $\Sprite$ instance, its location on a playing field, and recording/applying the bitmap of the $\Sprite$. In addition to these values, we will need methods in the class responsible for managing movement of the $\Sprite$'s position, field location, and collision detection. \\
+    \textbf{Specification Testing} & The specification should clearly describe what information is available and accessible within the $\Sprite$. This includes the type of the information and a brief description - what does the data represent. Standard \textit{getter} and \textit{setter} tests should be developed according to the specifications to ensure data consistency. In addition, methods are also detailed in the specification; assuming it is well written. To that effect, if the \textit{getter} and \textit{setter} methods can be trusted, then they should be tested. Fortunately, these can be turned into unit tests, and automated to check against the descriptions in the specification. \\
+    \textbf{Implementation Testing} & With respect to testing, having an actual implementation is very useful, because a QA team can manually test the implementation of the specification. Informally speaking, in the world of video games, if you want to break collision-detection or $\Sprite$ rendering, then you should hire a group of professional speed runners. Professional speed runners can break a video game - the implementation - in ways developers cannot fathom during development. The primary goal of implementation testing is to find areas in the code that operate as specified, but (potentially) in the wrong order or in an unforeseen manner. Furthermore, the specification - assuming it is well written - does not guarantee that the resulting implementation will be bug-free. For example, just because the specification describes $\Sprite$'s in isolation, it does not mean that they will work as intended in a real system. \\
+    \textbf{Interaction Testing} & In order to hypothesize, or anticipate, what can break during interaction testing, it is imperative to think about what data is being updated (in the system). For instance, collision-detection is typically calculated in one instance at a constant rate. Consequently, players can take advantage of this by manipulating their character model at the right time, or in the right way, to break collision-detection. For example, the popular survival horror game "Five Nights at Freddy's" contains a game breaking bug. If you jump and move into the right wall beside the stairs of Gator Golf, you fall right through the wall and into the void below. Similarly, first-person shooters like \textit{Call of Duty} are riddled with "elevator" bugs, where smashing buttons and moving the character in a specific way can trigger the player to fly straight up into the air. Based off these examples, it is very important that we ensure the collision-detection can handle all of the various forms of movement. Also, it is a good idea to check if movement can break the bitmap itself - as this is pretty common in amateur $\Sprite$ development, according to my Graphics professor. \\
+    \textbf{Additional Information} \textit{(Something to think about)} & The requirements for this first-person shooter have been quite vague. This is an issue that needs to be addressed \textbf{before} any development begins. For instance, we need to be made aware of the target demographic. For example, if the target demographic is professional players, then mechanisms like collision-detection need to be thoroughly tested. In addition, these systems need to be extremely accurate. After all, the livelihood of professional video game players relies on the accuracy and speed of mechanisms like collision-detection. On the other hand, if the target market is casual players, then some error can be tolerated without compromising the final product and integrity of the game. Furthermore, the hardware upon which the game will run on needs to be brought in preliminary discussions, because it will help us (the developers) understand what can and cannot be done.
+\end{longtblr}
+
+\newpage
+
+\section*{Question 2 - Pre and Post Conditions for Linked Sets}
+
+\begin{enumerate}
+    \item Class Invariant:
+    \begin{itemize}
+        \item Condition 1: If the linked set contains no items, it would contain a null ``current'' pointer, would return a count of 0 items, and wouldn't be able to call the first, has, at, item, or move item methods. Denoted in boolean form as
+
+        $linked\_set = NULL \Rightarrow current = NULL \LAnd count() = 0 \LAnd is\_empty() \LAnd \lnot (first() \LOr at(i) \LOr has(v) \LOr item() \LOr move\_item(v))$.
+        \item Meanwhile, there are a certain amount of properties that exist for a filled linked set. Denoted in boolean form as
+
+        $linked\_set \neq NULL \Rightarrow current \neq NULL \LAnd count() \geq 1 \LAnd \lnot is\_empty()$.
+
+        The behavior of individual methods is dependent on the current state of the linked set, meaning their individual post and pre conditions tell us more about their functionality and can't be universally assumed.
+        \item Condition 3: Ironically having no Discrete Math notation, we also have guarantees on Type Information, however these are covered in the default type system, as well as each condition breakdown below.
+    \end{itemize}
+    \item \texttt{linked\_set()}
+    \begin{itemize}
+        \item Preconditions:
+        \begin{itemize}
+            \item There is no data to have a precondition on, thus no precondition.
+        \end{itemize}
+        \item Postconditions:
+        \begin{itemize}
+            \item The postconditions of the constructor are simply validators on the initialization of the linked set. This would include:
+            \begin{itemize}
+                \item The internal Linked List data structure is empty, or initialized to a null node.
+                \item The size of the linked set is 0 due to the fact that it is empty.
+                \item A null pointer would be established to represent our "current" node.
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+    \item \texttt{G first()}
+    \begin{itemize}
+        \item Preconditions:
+        \begin{itemize}
+            \item The function assumes that there is an element at the front of the linked set to return the value of. Therefore, the Linked Set may not be empty. (i.e. a $count() > 0$ or $head \neq \NULL$ condition)
+        \end{itemize}
+        \item Postconditions:
+        \begin{itemize}
+            \item Due to the preconditions, we know the output set doesn't change, meaning that the set remains non-empty with the same $count$.
+            \item The output element must be a valid member of type $G$.
+        \end{itemize}
+    \end{itemize}
+    \item \texttt{G at(int i)}
+    \begin{itemize}
+        \item Preconditions:
+        \begin{itemize}
+            \item The value of $i$ must be greater than, or equal to 0 (unless not 0 indexed, then 1).
+            \item The value of $i$ must be less than the total amount of nodes in the Linked List (or equal to if not 0-indexed).
+        \end{itemize}
+        \item Postconditions:
+        \begin{itemize}
+            \item Due to the preconditions, we know the output set doesn't change, meaning that the set remains non-empty with the same $count$.
+            \item The output element must be a valid member of type $G$.
+        \end{itemize}
+    \end{itemize}
+    \item \texttt{boolean has(G v)}
+    \begin{itemize}
+        \item Preconditions:
+        \begin{itemize}
+            \item The Linked List may be empty. It can never have an element of value $v$ if it is empty. If this conditions fails though, the user may automatically return false instead of throwing an exception. Either way, it is a precondition that must be considered according to specifications.
+        \end{itemize}
+        \item Postconditions:
+        \begin{itemize}
+            \item Due to the preconditions, we know the output set doesn't change, meaning that the set has the same $count$.
+            \item Simply return the result of $v \in \LSet s$. There really is no postconditions to this function.
+        \end{itemize}
+    \end{itemize}
+    \item \texttt{G item()}
+    \begin{itemize}
+        \item Preconditions:
+        \begin{itemize}
+            \item The "current" node pointer must be instantiated.
+            \item The set must not be empty.
+        \end{itemize}
+        \item Postconditions:
+        \begin{itemize}
+            \item Due to the preconditions, we know the output set doesn't change, meaning that the set remains non-empty with the same $count$.
+            \item Since this returns an item of type $G$, it must be a valid member of the set. Apart from that, there really are no postconditions.
+        \end{itemize}
+    \end{itemize}
+    \item \texttt{int count()}
+    \begin{itemize}
+        \item Preconditions:
+        \begin{itemize}
+            \item Depending on the specifications, there may be no preconditions. But, if the specification states that a set must not be empty, then that is a precondition. However, majority of implementations do not enforce this precondition, so it is likely not a requirement.
+        \end{itemize}
+        \item Postconditions:
+        \begin{itemize}
+            \item If emptiness is illegal, then a postcondition could include the set remaining non-empty. Regardless, the $count$ of the set shouldn't change.
+            \item Returns an integer, or an error depending on earlier mentioned preconditions. There likely is no postconditions.
+        \end{itemize}
+    \end{itemize}
+    \item \texttt{boolean is\_equal(Linked\_Set<G> t)}
+    \begin{itemize}
+        \item Preconditions:
+        \begin{itemize}
+            \item Logically speaking, even an empty linked set could be equal to another empty linked set. So this wouldn't be an issue. However, depending again on specifications, a precondition may be required to enforce both are non-empty.
+            \item Also, since this is asking a question, it likely means you wouldn't require the two linked sets to contain the same count of elements. Therefore, this is not a requirement.
+            \begin{itemize}
+                \item However, for coding purposes, if two linked sets don't have the same count of elements, then it is impossible for them to be equal.
+            \end{itemize}
+        \end{itemize}
+        \item Postconditions:
+        \begin{itemize}
+            \item Returns a simple boolean, or potentially an error depending on earlier mentioned preconditions regarding emptiness.
+            \item If emptiness is illegal, then a postcondition could include the set remaining non-empty. Regardless, the $count$ of the set shouldn't change.
+        \end{itemize}
+    \end{itemize}
+    \item \texttt{void move\_item(G v)}
+    \begin{itemize}
+        \item Preconditions:
+        \begin{itemize}
+            \item Because this requires a cursor item to be present, the Linked Set must not be empty.
+            \item The cursor instance must exist.
+            \item The wording is slightly odd, but it sounds like $v$ must be in the linked set in order to be moved to the left of the cursor. Therefore, it should pass the $has$ function as a precondition.
+        \end{itemize}
+        \item Postconditions:
+        \begin{itemize}
+            \item Again, due to the wording given, a post condition may include that the set may not grow in size. The $count$ must remain consistent.
+            \item Because the count cannot change, the output set must not be empty either, and must include $v$ due to preconditions not changing.
+        \end{itemize}
+    \end{itemize}
+\end{enumerate}
+
+\newpage
+
+\section*{Question 3 - Fuel Tracker Testing Specifications}
+
+From a high level overview, the fuel tracker application needs to handle high or low volatility fuel. Based on this input, the application needs to determine the correct and appropriate settings for the truck of fuel. Somethings we can assume that are defined in the program are:
+
+\begin{itemize}
+    \item The capacity of the tank (i.e. 1200) defined as a constant integer. We will call it \texttt{TOTAL\_CAPACITY}.
+    \item The expansion space of the tank (i.e. 800) defined as a constant integer. We will call it \texttt{SAFE\_CAPACITY}.
+    \item The cutoff capacity for high volatile fuels (i.e. 80\%) defined as a constant integer and as a float. In other words, both 80 and 0.8 are defined as constant integer and float, respectively. We call these \texttt{CUTOFF\_CAPACITY\_PERCENT} and \texttt{CUTOFF\_CAPACITY\_DECIMAL}, respectively.
+    \item The type of the fuel(s) defined as an $ENUM$ in a separate class. For the purpose of this question, we will assume only 2 types of fuels are defined in the $ENUM$ class, and they are \texttt{HIGH\_VOLATILITY} and \texttt{LOW\_VOLATILITY}.
+\end{itemize}
+
+\textit{Note: It is better to define the capacities as a constant float, rather than a constant integer. However, there is no strict ruleset, and for simplicity sake we will use integers.} \\
+
+The following test cases pertain to our fuel tracker application. I decided to use pseudocode rather than $jUnit$ to write out each test case. This is because a mission critical application like fuel tracking should be written in a safe language. Hence, the test cases are written in pseudocode, allowing for maximum adaptability.
+
+\begin{enumerate}
+
+    \item Test Case: \textit{Return Total Capacity For Tank}
+        \begin{itemize}
+            \item Name: testTotalCapacityForTank
+            \item Description: Checks if the application returns the correct total capacity of the tank. This capacity/number is used to determine how much \texttt{LOW\_VOLATILITY} fuel can be loaded.
+            \item Input(s): fuelType = \texttt{LOW\_VOLATILITY}
+            \item Pre-Condition: $N/A$
+            \item Test Condition: if (fuelType == \texttt{LOW\_VOLATILITY}) then return \texttt{TOTAL\_CAPACITY}.
+            \item Expected Output: \texttt{TOTAL\_CAPACITY} is returned to the caller (\textit{and maybe even printed to the screen}).
+            \item Post-Condition: $N/A$
+        \end{itemize}
+    \item Test Case: \textit{Return Safe Capacity For Tank}
+        \begin{itemize}
+            \item Name: testSafeCapacityForTank
+            \item Description: Checks if the application returns the correct total capacity of the tank. This capacity/number is used to determine how much \texttt{HIGH\_VOLATILITY} fuel can be loaded.
+            \item Input(s): fuelType = \texttt{HIGH\_VOLATILITY}
+            \item Pre-Condition: $N/A$
+            \item Test Condition: if (fuelType == \texttt{HIGH\_VOLATILITY}) then return \texttt{SAFE\_CAPACITY}.
+            \item Expected Output: \texttt{SAFE\_CAPACITY} is returned to the caller (\textit{and maybe even printed to the screen}).
+            \item Post-Condition: $N/A$
+        \end{itemize}
+    \item Test Case: \textit{Load High Volatility Fuel}
+        \begin{itemize}
+            \item Name: testLoadForHighVolatilityFuel
+            \item Description: Demonstrates that the application can correctly check if the input fuel is \texttt{HIGH\_VOLATILITY}, and then load the fuel to the correct amount, \texttt{SAFE\_CAPACITY}.
+            \item Input(s): fuelType = \texttt{HIGH\_VOLATILITY}, fillAmount = \texttt{SAFE\_CAPACITY}
+            \item Pre-Condition: currentTankLoad < \texttt{SAFE\_CAPACITY} \textit{(We prefer the tank to be empty to test this, but it is also plausible that some fuel already exists in the tank.)}
+            \item Test Condition: if (fuelType == \texttt{HIGH\_VOLATILITY}) then fill tank with \texttt{HIGH\_VOLATILITY} fuel upto \texttt{SAFE\_CAPACITY}.
+            \item Expected Output: Tank is successfully filled to \texttt{SAFE\_CAPACITY}
+            \item Post-Condition: Tank contains a total of \texttt{SAFE\_CAPACITY} litres of \texttt{HIGH\_VOLATILITY} fuel.
+        \end{itemize}
+    \item Test Case: \textit{Load Low Volatility Fuel}
+        \begin{itemize}
+            \item Name: testLoadForLowVolatilityFuel
+            \item Description: Demonstrates that the application can correctly check if the input fuel is \texttt{LOW\_VOLATILITY}, and then load the fuel to the correct amount, \texttt{TOTAL\_CAPACITY}.
+            \item Input(s): fuelType = \texttt{LOW\_VOLATILITY}, fillAmount = \texttt{TOTAL\_CAPACITY}
+            \item Pre-Condition: currentTankLoad < \texttt{TOTAL\_CAPACITY} \textit{(We prefer the tank to be empty to test this, but it is also plausible that some fuel already exists in the tank.)}
+            \item Test Condition: if (fuelType == \texttt{LOW\_VOLATILITY}) then fill tank with \texttt{LOW\_VOLATILITY} fuel upto \texttt{TOTAL\_CAPACITY}.
+            \item Expected Output: Tank is successfully filled to \texttt{TOTAL\_CAPACITY}
+            \item Post-Condition: Tank contains a total of \texttt{TOTAL\_CAPACITY} litres of \texttt{LOW\_VOLATILITY} fuel.
+        \end{itemize}
+    \item Test Case: \textit{Incorrect Fuel Type Argument}
+        \begin{itemize}
+            \item Name: testIncorrectFuelType
+            \item Description: Tests the application's ability to handle exceptions pertaining to incorrect fuel type as input. \textit{Note: We have no information about how this program is implemented. Perhaps the user interface requires the user to manually type the name of the fuel they wish to load. Alternatively, a dropdown menu can be presented to the user. In this case, the fuelType can be NULL, if no option is selected. Regardless, we need to ensure that our application can handle incorrect fuel type input(s) or argument(s)}.
+            \item Input(s): (fuelType = OTHER) \textit{Note: If the application requires the user to manually type the name of the fuel, then this test would look different. In this case, we are testing for a String mismatch.}
+            \item Pre-Condition: $N/A$
+            \item Test Condition: if ((fuelType != \texttt{LOW\_VOLATILITY}) || (fuelType != \texttt{HIGH\_VOLATILITY})) then raise/throw Exception
+            \item Expected Output: Throw exception and print error (indicating that the fuel type is not valid) (\textit{and possibly allow user to retry, depending on the circumstance}).
+            \item Post-Condition: $N/A$
+        \end{itemize}
+    \item Test Case: \textit{}
+        \begin{itemize}
+            \item Name: testIllegalLoadLimit
+            \item Description: Demonstrates that the application can detect if incorrect load limits are specified (by the user or programmer).
+            \item Input(s): \texttt{SAFE\_CAPACITY} = 1000, \texttt{TOTAL\_CAPACITY} = 1200
+            \item Pre-Condition: $N/A$
+            \item Test Condition: if ((\texttt{SAFE\_CAPACITY} <= (\texttt{TOTAL\_CAPACITY}) * (\texttt{CUTOFF\_CAPACITY\_DECIMAL})) \&\& (\texttt{SAFE\_CAPACITY} > 0)) then $True$, otherwise raise/throw exception.
+            \item Expected Output: Throw exception and print error (indicating that the safe capacity is too large given the total capacity) (\textit{and possibly allow user to retry, depending on the circumstance}).
+            \item Post-Condition: $N/A$
+        \end{itemize}
+    \item Test Case: \textit{}
+        \begin{itemize}
+            \item Name: testPrematureExit
+            \item Description: Demonstrates that the program cannot be terminated while the user is loading up the fuel tank. This prevents several issues like not allowing the user to fill a tank past the specified limit. In addition, preventing the program from terminating while a tank is being loaded prevents extra fuel from being discharged/wasted.
+            \item Input(s): fuelType = \texttt{HIGH\_VOLATILITY}, fillAmount = \texttt{SAFE\_CAPACITY}.
+            \item Pre-Condition: $N/A$
+            \item Test Condition: While program is in use, it will not terminate. (\textit{In other words, if the program is not done, it will not exit.})
+            \item Expected Output: Throw exception and print error (indicating that the program cannot be terminated while it is in use). (\textit{However, in the case of an emergency, there should be an emergency shutoff switch. But this should be a hardware killswitch, rather than a software implementation}).
+            \item Post-Condition: $N/A$
+        \end{itemize}
+
+\end{enumerate}
+
+\end{document}
