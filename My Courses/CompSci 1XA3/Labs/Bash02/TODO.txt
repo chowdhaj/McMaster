@@ -1,0 +1,5 @@
+This Is The TODO FILE
+Lab Date: February 6th, 2018
+
+openssl smime -encrypt -binary -aes-256-cbc -in Bash02.hs 
+              -out Bash02.hs.enc -outform DER public.pem

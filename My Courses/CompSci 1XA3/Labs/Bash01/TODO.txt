@@ -1,0 +1,4 @@
+This Is The TODO FILE
+Lab Date: January 23rd, 2018
+
+openssl rsautl -encrypt -inkey public.pem -pubin -in Bash01.hs -out Bash01.hs.enc
