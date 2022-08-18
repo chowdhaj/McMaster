@@ -1,0 +1,202 @@
+\documentclass[11pt]{beamer}
+\usetheme{Dresden}
+%\usecolortheme{beaver}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{verbatim}
+\author{NCC Moore}
+\title{Topic 1 - Introduction}
+\institute{McMaster University} 
+\date{Fall 2021} 
+\subject{COMPSCI 3MI3 - Principles of Programming Languages} 
+\stepcounter{section}
+
+\definecolor{burntOrange}{rgb}{1, 0.4, 0.1} 
+\usecolortheme[named=burntOrange]{structure} 
+
+\begin{document}
+
+\begin{frame}
+\center
+COMPSCI 3MI3 - Principles of Programming Languages
+\titlepage
+
+Adapted from ``Types and Programming Languages'' by Benjamin C. Pierce 
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\section[Intro]{Intro to the Intro}
+\begin{frame}[fragile=singleslide]{So What's the Point of this Course?}
+We are going to study how programming languages can be \emph{constructed} using the formal mathematical tools you learned last year in COMPSCI 2LC3.
+\begin{itemize}
+\item We will use \textbf{formal methods} to define and reason about programming languages.  
+\item Using these tools, we will construct a number of small programming languages, and reason about their correctness.  
+\item \textbf{Type Theory} will be a major topic in this course, as will \textbf{Lambda Calculus}.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Formal Methods}
+In computer science, we use \textbf{formal methods} to reason about the correctness of software (and hardware).  Advanced mathematics are employed to attempt to demonstrate the consistency of a program with implicit or explicit specifications or requirements (see COMPSCI 3RA3).  
+\begin{itemize}
+\item ``full strength'' formal methods include:
+	\begin{itemize}
+	\item Hoare Logic
+	\item Algebraic Specification Languages
+	\item Modal Logic
+	\item Denotational Semantics
+	\end{itemize}
+\item ``lightweight'' formal methods include:
+	\begin{itemize}
+	\item Model Checkers
+	\item Satisfiability Modulo Theory solvers
+	\item Run-Time Monitoring
+	\item \textbf{Type Systems}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+         
+\begin{frame}[fragile=singleslide]{Type Systems}
+A \textbf{type system} is a tractable syntactic method for proving the absence of certain program behaviours by classifying phrases according to the kinds of values they compute.  
+\begin{itemize}
+\item \textbf{tractable} $\rightarrow$ In Computer Science, a problem is \emph{intractable} if it can be solved in theory, but not in practice.  
+\begin{itemize}
+\item For example, the \textbf{state explosion problem} is a source of intractability. 
+\end{itemize}
+\item \textbf{syntactic} $\rightarrow$ That is, we analysing a program's \emph{grammatical structure}.
+\end{itemize}
+Using type systems, we can demonstrate the \emph{absence} of certain bad behaviours, but not their \emph{presence}, so type systems are necessarily conservative.  
+\end{frame}         
+
+\begin{frame}[fragile=singleslide]{Static vs Dynamic Checking}
+There are two main types of type checkers:
+\begin{itemize}
+\item \textbf{Static}
+\begin{itemize}
+\item Analysis is based on information extracted from the program's \textbf{abstract syntax} or \textbf{parse tree}.
+\item Examples include Ada, C, C++, C\#, JADE, Java, Fortran, \textbf{Haskell}, ML, Pascal, and Scala. 
+\end{itemize}
+\item \textbf{Dynamic}
+\begin{itemize}
+\item Analysis is based on information revealed \emph{at runtime}.
+\item Examples include Groovy, JavaScript, Lisp, Lua, Objective-C, PHP, Prolog, \textbf{Python}, Ruby, Smalltalk and Tcl
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{What Sorts of Things Can be Type Checked?}
+
+\center
+We can check that:
+\vspace{-0.5em}
+\flushleft
+\begin{itemize}
+\item Arguments to functions or operators are of compatible types.
+\item A class actually contains a requested member function.
+\item A function recieves the correct number of arguments.
+\item Access violation of private members.
+\end{itemize}
+\center
+We can't check that:
+\flushleft
+\begin{itemize}
+\item Specific values are being given to operators, such as dividing by zero.
+\item The function $x$ returns value $y$ when given input $z$.
+\end{itemize}
+\vspace{0.5em}
+The set of errors which a type system checks for is a \emph{design consideration of the language}!  
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{You're Just Not My Type!}
+Type systems can figure out a lot on their own, but we (the programmers) can help them out with \textbf{type annotations}.
+\begin{itemize}
+\item Most languages minimize the number of annotations required by \textbf{inferring} types when they aren't specified (see Python and Haskell).
+\item Other languages require an explicit declaration for everything (see C), though some degree of type inference is standard in most languages.
+\end{itemize}
+In some languages, such as \textbf{Agda}, the type system is used to create ``proof carrying code''.  In Agda, you can't get something to compile without having also created a proof of your program's correctness within the type system.  
+\end{frame}
+
+\section[Applications]{Applications of Type Theory}
+\begin{frame}[fragile=singleslide]{So What's This Good for Again?}
+\begin{center}
+\includegraphics[scale=0.28]{figures/typechecker.jpg} \\
+``It turns out that a fair amount of careful analysis is required to avoid false and embarassing claims of type soundness for programming languages.  As a consequence, the classification, description, and study of type systems has emerged as a formal discipline.''  -- Luca Cardelli, 1996
+\end{center}
+\end{frame}
+
+\begin{frame}{Detecting Errors}
+The most obvious benefit of type checking is early error detection.
+\begin{itemize}
+\item In general, errors are best caught at compile-time, rather than at run-time.
+\item This is what gives richly typed languages (like Haskell) their ``it just works'' quality.  
+\item You get the most bang for your buck when you start encoding your data structures in your type system.  
+\begin{itemize}
+\item This has an added maintainability benefit.  If a data structure has to change, your type system can reliably indicate every place in your program that needs subsequent modification.  
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Abstraction and Documentation}
+Rigorous type systems enforce disciplined programming.  
+\begin{itemize}
+\item Type checking allows us to guarantee that modularization techniques such as class structures, modules, packages, and functions aren't being misused.  
+\item Enforcing type signatures leads to more abstract software design, which is good for everyone involved! 
+\end{itemize}
+Typing also makes programs easier to read.
+\begin{itemize}
+\item Type information gives useful hints about behaviour.  
+\item Unlike descriptions found in comments, which can get out-of-date, otherwise it would fail to type-check. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Language Safety}
+``Informally [...], safe languages can be defined as ones that make it impossible to shoot yourself in the foot while programming.'' (Pierce, 2002) 
+\begin{itemize}
+\item Safety refers to whether or not a language protects its own abstractions.  
+\begin{itemize}
+\item In Haskell, lists can only be accessed in the normal way.
+\item In C, pointer manipulation can be used to violate the bounds of arrays to read adjacent data.
+\end{itemize}
+\item Language safety can be enforced either statically or dynamically, though often a combined approach is used. 
+\begin{itemize}
+\item Haskell, for example, checks array bounds dynamically.   
+\end{itemize}
+\end{itemize}
+\begin{tabular}{| l || c | c |}
+\hline 
+& Statically Checked & Dynamically Checked \\ \hline \hline
+Safe & ML, Haskell, Java & Lisp, Scheme, Perl, Postscript \\ \hline
+Unsafe & C, C++ & \\ \hline 
+\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Further Applications}
+\begin{itemize}
+\item Frontloading correctness checking as static typechecking reduces the need for runtime checks, thereby improving efficiency.
+\item In network security, preventing undesirable and unexpected behaviours is important! 
+\item In automated theorem proving, type systems are used to represent logical propositions and proofs.  
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Wait, I Thought this Class was About Programming Languages...}
+In this course, we are going to start off with the bare-bones basics of programming language construction and design.  The tools we learn will allow us to reason about programming languages, and will structure our later discussions of type theory. 
+\begin{itemize}
+ \item ``In modern languages, the type system is often taken as the foundation of the language's design, and the organizing principle, in light of which every other aspect of the design is considered.'' (Pierce, 2002) 
+ \end{itemize} 
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Last Slide Comic}
+\begin{center}
+\includegraphics[scale=0.3]{figures/garbage.png}
+\end{center}
+\end{frame}
+
+\end{document}

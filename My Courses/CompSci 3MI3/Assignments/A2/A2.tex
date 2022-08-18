@@ -1,0 +1,131 @@
+\documentclass{exam}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\let\OldTexttt\texttt
+
+\renewcommand{\texttt}[1]{\OldTexttt{\color{teal}{#1}}}
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.05}
+\definecolor{mGreen2}{rgb}{0.05,0.65,0.05}
+\definecolor{mGray2}{rgb}{0.55,0.55,0.55}
+\definecolor{mPurple2}{rgb}{0.63,0.05,0.05}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+\definecolor{backgroundColour2}{rgb}{0.95,0.92,0.95}
+
+\lstdefinestyle{C}{
+    backgroundcolor=\color{backgroundColour},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{mGray},
+    stringstyle=\color{mPurple},    
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\definecolor{t_comment}{rgb}{0.2,1,0.2}
+\definecolor{t_mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{t_mPurple}{rgb}{0.58,0,0.05}
+\definecolor{t_blue}{rgb}{0.4,0.6,0.8}
+\definecolor{t_mGreen2}{rgb}{0.05,0.65,0.05}
+\definecolor{t_mGray2}{rgb}{0.75,0.75,0.75}
+\definecolor{t_mPurple2}{rgb}{0.63,0.05,0.05}
+\definecolor{t_bg}{rgb}{0.15,0.15,0.18}
+
+\lstdefinestyle{terminal}{
+    backgroundcolor=\color{t_bg},   
+    commentstyle=\color{t_comment},
+    keywordstyle=\color{t_blue},
+    numberstyle=\tiny\color{t_mGray},
+    stringstyle=\color{t_mGray2}, 
+    basicstyle=\footnotesize\color{t_mGray2},
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=none,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\graphicspath{{.}}
+\begin{document}
+
+\begin{center}
+\fbox{\fbox{\parbox{5.5in}{\centering
+\Large{COMPSCI 3MI3 : Assignment 2} \\
+\large{Fall 2021} \\ 
+Nicholas Moore}}}
+\end{center}
+
+\begin{questions}
+\question[4] \textbf{Question 1 : Hey Jude} \\
+Consider the following diagram: \\
+\begin{center}
+\includegraphics[scale=0.4]{figures/jude.jpg}
+\end{center}
+Write an EBNF grammar which completely describes the grammar of the song ``Hey Jude'' by the Beatles, as given in the diagram above.  
+\question[6] \textbf{Question 2 : Syntax Rapid Fire!} \\
+Write EBNF grammars for the following.
+\begin{itemize}
+\item Identifiers in Python
+\item Identifiers in Haskell
+\item For loop in C. You don't have to write grammar for statements or expressions.  
+\end{itemize}
+Note: This question expects you to do a little research to find out what characters are valid in Python and Haskell identifiers.  
+\question[10] \textbf{Grammar in More Depth} \\
+Define the following list of terms in Python using the inference rule style we discussed in lecture.  You do not need to define any terms other than the ones given.
+\begin{itemize}
+\item for loop
+\item while loop
+\item Assignment statement
+\item Slicing operation with all start and end point, as well as interval specified.
+\item function declaration
+\end{itemize}
+\question \textbf{Implementation of UAE in Haskell} \\
+\begin{parts}
+\part[3] \textbf{Defining Our Terms} \\
+Using Haskell's Type System, create an implementation of Untyped Arithmetic Expressions, as described in lecture.  You should implement this language as a custom data type.  Please have whatever types you define derive the Eq and Show typeclasses.  \emph{You don't have to implement any semantics or type checking.}  These are topics we'll be covering later in the course, and you'll get plenty of practice in later assignments.  
+
+Note: Transcribing the term names directly from the textbook isn't going to work, so you'll have to modify them slightly to avoid conflicts with some Haskell keywords like \texttt{True} and \texttt{False}.  You are free to choose whatever modifications you like to the term names, just make sure your terms are still understandable as the originals.  
+\part[3] \textbf{Writing Untyped Arithmetic Expressions}  
+Write Haskell functions which encode the following arithmetic expressions.  These functions should constants of the term type.
+\begin{equation}
+\texttt{succ}\: (\texttt{succ}\: (\texttt{succ}\: 0)) 
+\end{equation}
+\begin{equation}
+\texttt{succ}\:(\texttt{pred}\: (\texttt{iszero} (\texttt{succ true})))
+\end{equation}
+\begin{equation}
+\texttt{if} \: (\texttt{iszero}\: (\texttt{succ}\: (\texttt{pred} \: 0)))\: \texttt{then}\: (\texttt{pred}\: \texttt{false})\: \texttt{else}\: (\texttt{succ}\: (\texttt{succ}\: (\texttt{succ}\: (\texttt{succ}\: 0))))
+\end{equation}
+
+Once you have written these expressions, load your Haskell file into ghci (because who needs the hassle of adding a main function).  If you've done everything correctly, this file should typecheck, and you should even be able to write arithmetic expressions in ghci using your brand-new term datatype.  
+
+\part[4] \textbf{Wait, Isn't that an Error?}
+While syntactically correct, the expressions in the previous question contained some semantic errors.  Find all such errors, and explain why the error is an error.  
+\end{parts}
+
+% No hints in the tex file? What a shame! I guess you'll just have to use stackoverflow...
+
+\end{questions}
+\end{document}

@@ -1,0 +1,393 @@
+\documentclass[11pt]{beamer}
+\usetheme{Dresden}
+%\usecolortheme{beaver}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{verbatim}
+\author{NCC Moore}
+\title{Topic 2 - Mathematical Preliminaries}
+\institute{McMaster University} 
+\date{Fall 2021} 
+\subject{COMPSCI 3MI3 - Principles of Programming Languages} 
+\stepcounter{section}
+
+\definecolor{burntOrange}{rgb}{1, 0.4, 0.1} 
+\usecolortheme[named=burntOrange]{structure} 
+
+\begin{document}
+
+\begin{frame}
+\center
+COMPSCI 3MI3 - Principles of Programming Languages
+\titlepage
+
+Adapted from Chapter 2 of ``Types and Programming Languages'' by Benjamin C. Pierce 
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Wait, this is a Math Class!?}
+Before we get started with the course proper, it will be useful to review some of the math we'll need.  
+\begin{itemize}
+\item If you are unfamiliar with some of the concepts in this lecture, or don't feel you know the material very well, you are \emph{strongly} encouraged to study these topics in preparation for the rest of this course.   
+\item This course is pretty mathy, so a firm foundation is essential.  
+\end{itemize}
+\end{frame}
+
+\section[Set Basics]{Sets, Relations, and Functions}
+\begin{frame}[fragile=singleslide]{Sets, Relations, and Functions}
+\begin{center}
+\includegraphics[scale=1.6]{figures/ynot.jpg}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Sets}
+We will use standard notation for sets.
+\begin{itemize}
+\item The elements of a set are delimited by curly braces: 
+\begin{equation}
+\mathbb{N} = \{0,1,2,3,4,\dots\} 
+\end{equation}
+The above is the set of \textbf{Natural Numbers}.
+\item The empty set is denoted by \O
+\item Set comprehensions are written as:
+\begin{equation}
+\{ x \in S\:|\:\Phi(x) \}
+\end{equation}
+This is interpretted as ``the collection of all elements of $S$ satisfying the predicate $\Phi(x)$.''  In lecture, you will often hear me pronounce this as ``such that''.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Game Set Match}
+\center
+\begin{tabular}{|| c | c || c | c ||}
+\hline 
+ & Set Operators &  & Logical Operators\\ \hline
+$s \in S$ & Membership & $\exists$ & Existential Quantifier \\ \hline
+$S \cup T $ & Union & $\forall$ & Universal Quantifier \\ \hline
+$S \cap T $ & Intersection & $\neg$ & Negation \\ \hline
+$S \setminus T$ & Difference & $\lor$ & Or \\ \hline
+$|S|$ & Set Size & $\land$ & And\\ \hline
+$ S \subseteq T $ & Subset & $\implies$ & Implication \\ \hline
+$ S \supseteq T $ & Superset & $\iff$ & ``If and only if''\\ \hline
+$ S \subset T $ & Strict Subset & $\vdash$ & Proves \\ \hline
+$ S \supset T $ & Strict Superset & $\models$ & Models\\ \hline
+$\mathcal{P}(S)$ & Power Set of $S$ & $\top$ $\bot$ & True and False \\ \hline    
+\end{tabular}
+
+\begin{itemize}
+\item $S \times T$ denotes the set of all possible tuples containing one element from $S$ and one element from $T$. 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Relations}
+An $n$-place \textbf{relation} on a collection of sets $S_1, S_2, S_3, \dots, S_n$ is a set containing tuples of elements of from $S_1$ through $S_n$.  R is a subset of the set of all possible such tuples.   
+\begin{equation}
+R \subseteq S_1 \times S_2 \times S_3 \times \dots \times S_n
+\end{equation}
+If $s_1 \in S_1$ through $s_n \in S_n$, we say these elements are \textbf{related by $R$} if $(s_1,\dots,s_n) \in R$ 
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{In Related News}
+A one place relation on a set $S$ is called a \textbf{predicate} on $S$.
+\begin{itemize}
+\item We say a predicate $P$ is true of an element $s \in S$ if $s \in P$. 
+\item We will often write predicates in the form $P(s)$, like functions mapping elements of $S$ to truth values.  
+\end{itemize}
+A two-place relation $R$ on sets $S$ and $T$ is called a \textbf{binary relation}.
+\begin{itemize}
+\item We will often write $s\:R\:t$ instead of the more proper $(s,t) \in R$.
+\item When we have a binary relation on elements of the same set $U$, we say that $R$ is a binary relation \emph{on $U$}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Relation Properties}
+The \textbf{domain} of a relation $R \subseteq S \times T$ is written $dom(R)$.
+\begin{itemize}
+\item The domain of $R$ is the set of all elements $s \in S$ such that $(s,t) \in R$, for some $t$.
+\end{itemize}
+The \textbf{codomain} or \textbf{range} of $R$ is written $range(R)$
+\begin{itemize}
+\item The codomain of $R$ is the set of all elements $t \in T$ such that $(s,t) \in R$, for some $s$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Functions}
+If a relation $R \subseteq S \times T$ has the following property, it is a \textbf{partial function}:
+\begin{equation}
+((s,t_1) \in R) \land ((s, t_2) \in R) \implies (t_1 = t_2)
+\end{equation}
+\begin{itemize}
+\item If $s \in S$ is also in the domain of $R$, we say that ``$s$ is \textbf{defined on} $R$.  We write this $R(s) \downarrow$
+\begin{itemize}
+\item Otherwise, we say $s$ is \textbf{undefined on} $R$, and write this $R(s) \uparrow$
+\end{itemize}
+\item If, in addition, $dom(R) = S$, that is, if every element of $S$ is in the domain of $R$, then $R$ is a \textbf{total function}.  
+\end{itemize}
+Supposing we have a binary relation $R$ on $S$, and a predicate $P$ on $S$, we say that $P$ is \textbf{preserved on} $R$ if:
+\begin{equation}
+P(s) \land s\:R\:t \implies P(t)
+\end{equation}
+\end{frame}
+
+\section[Ordered Sets]{Ordered Sets}
+\begin{frame}[fragile=singleslide]{Ordered Sets}
+\begin{center}
+\includegraphics[scale=0.5]{figures/science.png}\\
+``A proof is a repeatable experiment in persuasion.'' -Jim Horning, 
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Binary Relation Properties}
+\textbf{Reflexivity} - If a relation $R$ relates every element of $S$ back to itself.
+\begin{equation}
+\forall s \in S \:|\: s\:R\:s
+\end{equation}
+\textbf{Symmetry} - If the inverse of every tuple in $R$ is also in $R$:
+\begin{equation}
+\forall s, t \in S \:|\: s\:R\:t \implies t\:R\:s
+\end{equation}
+\textbf{Antisymmetry} - If there are no tuples in $R$ satisfying the above property, unless $s = t$ 
+\begin{equation}
+\forall s, t \in S \:|\: s\:R\:t \land t\:R\:s \implies s = t
+\end{equation}
+\textbf{Transitivity} - If a relation exibits the \emph{transitive property}:
+\begin{equation}
+\forall s, t, u \in S \:|\: s\:R\:t \land t\:R\:u \implies s\:R\:u
+\end{equation}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Binary Relation Properties Extended}
+\begin{itemize}
+\item If a relation $R$ on $S$ is reflexive, transitive, and symmetric, the relation is called an \textbf{equivalence}.
+\item The \textbf{reflexive closure} of a relation $R$ is the smallest reflexive relation $R'$ such that $R \subseteq R'$.  
+\item Similarly, the \textbf{transitive closure} of $R$ is the smallest transitive relation $R^+$ such that $R \subseteq R^+$
+\item The \textbf{reflexive and transitive closure} of $R$ is the smallest reflexive and transitive relation such that $R \subseteq R^*$
+\end{itemize}
+Another way to think of a \textbf{closure}, is as the set of all the tuples that would need to be added to $R$ to satisfy the given property.
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Preorders and Partial Orders}
+If a binary relation $R$ on $S$ is transitive and reflexive, we call it a \textbf{preorder on $S$}.
+\begin{itemize}
+\item We will use either $s \leq t$ or $s \sqsubseteq t$ to indicate a preorder.  
+\item $s < t$ means that $s \leq t \land s \neq t$ 
+\item A preorder which is also antisymmetric is a \textbf{partial order}.
+\end{itemize}
+In some ways it's better to think of preorders and partial orders as graphs, with nodes as elements of $S$ and tuples in the relation as edges of the graph.
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Total Orders}
+\begin{itemize}
+\item Over $\mathbb{N}$, $\mathbb{Z}$ or $\mathbb{R}$, we already know what orderings are intuitively.
+\item The usual ordering over the above sets is a \textbf{total order}.  
+\item A total order is a partial order with one additional property: \textbf{strong connectivity} or \textbf{totality}.
+\item This means that, in addition to being transitive, reflexive and antisymmetric:
+\begin{equation}
+\forall s, t \in S \:|\: s \leq t \lor t \leq s
+\end{equation}
+That is to say, every pair of elements in S is related by $\leq$.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Joins and Meets}
+If $\leq$ is a partial order on $S$, with $s,t \in S$, then $j \in S$ is the \textbf{join} (or \emph{least upper bound}) of $s$ and $t$ if:
+\begin{enumerate}
+\item $s \leq j \land t \leq j$ and
+\item if for any element $k \in S$, $s \leq k \land t \leq k \implies j \leq k $  
+\end{enumerate}
+Similarily, $m \in S$ is the \textbf{meet} (or \emph{greatest lower bound}) of $s,t \in S$ if:
+\begin{enumerate}
+\item $m \leq s \land m \leq t$ 
+\item for any element $n \in S$, $n \leq s \land n \leq t \implies n \leq m$
+\end{enumerate}   
+\end{frame}
+
+\begin{frame}{Chain Chain Chain}
+Suppose we have a preorder $\leq$ on $S$.  A \textbf{decreasing chain} is a sequence of elements of $S$:
+\begin{equation}
+s_1, s_2, s_3, \dots , s_n
+\end{equation}
+Such that for every $i$: 
+\begin{equation}
+s_{i+1} < s_i
+\end{equation}
+\begin{itemize}
+\item Chains can be \textbf{finite} or \textbf{infinite}.  
+\item A set with no infinite decreasing chains is said to be \textbf{well founded}.  
+\item For example, the total ordering over $\mathbb{N}$ is well founded, but the same ordering over $\mathbb{Z}$ is not.   
+\end{itemize}
+\end{frame}
+
+\section[Induction]{Proofs and Induction}
+\begin{frame}[fragile=singleslide]{Proof By Induction}
+\begin{center}
+\includegraphics[scale=0.2]{figures/induction.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{We're Going to Have to Induce!}
+\textbf{[Principle of Ordinary Induction on Natural Numbers]} \\
+Suppose $P$ is a predicate on $\mathbb{N}$.  We take as axiomatic that:
+\begin{equation}
+P(0) \land ( \forall i \in \mathbb{N} \:|\: P(i) \implies P(i+1) ) \implies \forall n \in \mathbb{N} \: | \: P(n)
+\end{equation}
+In other words, if we can establish the \emph{base case} of $P(0)$, and that $P(i+1)$ is a necessary consequence of $P(i)$, we can conclude that $P$ holds for all $\mathbb{N}$
+\begin{itemize}
+\item For example, the following argument follows the above structure:
+\begin{itemize}
+\item Premise: You were completely lost in this class in the first week of class.
+\item Premise: For any week of class, if you were lost last week you will be lost this week.
+\item Conclusion: You will always be lost in class.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Employee Induction Program}
+\textbf{[Principle of Complete Induction on Natural Numbers]} \\
+Suppose $P$ is a predicate on $\mathbb{N}$.  We take as axiomatic that:
+\begin{itemize}
+\item If, for each natural number $n$, it is given that $P(i)$ holds for all $i < n$, and this demonstrates that $P$ holds for $n$, we may conclude that $P$ holds for all $\mathbb{N}$.  In other words:
+\end{itemize}
+\begin{equation}
+P(0) \land (P(0) \land P(1) \land \dots \land P(n) \implies P(n+1)) \implies (\forall k \in \mathbb{N} \:|\: P(k))
+\end{equation}
+
+\textbf{Complete} or \textbf{Strong} Induction is so named because it uses a stronger hypothesis than simple induction. 
+\begin{itemize}
+\item For example...
+\begin{itemize}
+\item Premise: You were lost in this class for all weeks prior to a particular week.
+\item Premise: Being lost for all weeks prior to a particular week implies you are lost in that particular week
+\item Conclusion: You will always be lost in this class.  
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{A Numerical Example}
+Consider the \textbf{Fundamental Theorem of Arithmetic}:
+\begin{itemize}
+\item Every natural number greater than 1 is the product of one or more prime numbers.
+\end{itemize}
+We can prove this using complete induction. \\
+\textbf{Base Case} -
+	\begin{itemize}
+	\item In this case, we are concerned with the natural numbers greater than 1, so our base case will be 2.  
+	\item Is 2 the product of prime factors? 
+	\begin{itemize}
+	\item The only two factors of 2 are 1 and 2.  
+	\item The definition of a prime number is a number which has no factors other than 1 and itself. $\therefore$ 2 is a prime number.  
+	\item This argument also applies to 1. $\therefore$ 1 is a prime number.
+	\item 1 and 2 are prime, $\therefore$ 2 is the product of prime numbers.  
+	\end{itemize}
+	\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{A Numerical Example (cont.)}
+\textbf{Iterative Case} \\ 
+\begin{itemize}
+\item If $n \in \mathbb{N}$ is prime, then it is trivially the product of a prime number and 1.  
+\item Otherwise, $n$ has two factors, which must be less than $n$. 
+\begin{equation}
+n = m_1m_2 
+\end{equation}
+\vspace{-1.2em}
+\begin{itemize}
+\item If it is given that $m_1$ and $m_2$ are prime factorizable:
+\begin{equation}
+m_1 = p_1p_2 \dots p_k
+\end{equation}
+\begin{equation}
+m_2 = q_1q_2 \dots q_j
+\end{equation}
+Where all $p_i$ and $q_i$ are prime numbers. 
+\begin{equation}
+\therefore n = p_1p_2 \dots p_kq_1q_2 \dots q_j
+\end{equation}
+\end{itemize} 
+\item $n$ has no factor which is not prime, since primes are irreducible. 
+\item $\therefore$ $n$ is the product of prime factors.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Add to My Order}
+\textbf{Lexicographic Ordering}, or \textbf{dictionary ordering} is a way of generalizing an ordering to pairs, or even longer sequences of elements.  For pairs:
+\begin{equation}
+(m, n) \leq (m', n') \iff m < m' \lor (m = m' \land n \leq n')
+\end{equation}
+If you take the set of English letters, and alphabetical order as an ordering over them, lexicographic ordering is the way that words are arranged in the dictionary.  Hence, \emph{dictionary ordering}. 
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Inducted into the Math Hall of Fame}
+\textbf{[Principle of Lexicographic Induction]}  \\
+Supposing $P$ is a predicate on pairs of natural numbers and $\leq$ is a lexicographic ordering relation, we take as axiomatic:
+\begin{itemize}
+\item If $P(0,0)$, and 
+\item If, for each pair (m,n) of natural numbers:
+\begin{itemize}
+\item given $P(m',n')$ for all $(m',n') < (m,n)$
+\item we can conclude $P(m,n)$
+\end{itemize}
+\item Then $P(m,n)$ holds for all $m,n \in \mathbb{N}$.
+\end{itemize}
+This method is also known as \textbf{nested} or \textbf{inner induction}.  
+\begin{itemize}
+\item This method can be easily expanded to larger tuples.
+\item Induction on pairs is fairly common, triples are occasionally useful, and increasingly rare beyond that.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Structural Induction}
+\textbf{[Principle of Structural Induction]} \\
+One form of induction we will be using frequently in this course is \textbf{structural induction}.  Suppose $P$ is a predicate on the members of a recursively defined structure (nodes in a tree, for example), we take as axiomatic that:
+\begin{itemize}
+\item For each member $s$:
+\begin{itemize}
+\item If from $P(r)$ holding for all immediate submembers $r$ of $s$
+\item We may conclude $P(s)$
+\end{itemize}
+\item We may conclude $P(s)$ holds for all members of the structure.  
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{An Example Involving Beverages}
+To demonstrate structural induction, let's argue that a cup contains tea and not coffee.
+\begin{itemize}
+\item Let's assume that we started off with $n$ cups of tea.
+\item Let's also assume that a cup of tea is formed by pouring two other cups of tea together to form a larger one.  
+\end{itemize}
+\vspace{-0.5em}
+\begin{columns}
+\begin{column}{0.7\textwidth}
+\begin{itemize}
+\item Our predicate in this case is ``the cup contains tea and not coffee''.  Since coffee cannot be produced by any tea combining process... 
+\item We can conclude that, no matter where we are in the tea pouring process, or which combination of pours or cups we have used, there is no cup which contains coffee.  
+\end{itemize}
+\end{column}
+\begin{column}{0.3\textwidth}
+\includegraphics[scale=0.5]{figures/anarchy.png}
+\end{column}
+\end{columns}
+
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Last Slide Comic}
+\begin{center}
+Jokes at the students' expense time! 
+\includegraphics[scale=0.15]{figures/extensions.png}
+\end{center}
+\end{frame}
+
+\end{document}

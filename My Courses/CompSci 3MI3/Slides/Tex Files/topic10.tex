@@ -1,0 +1,857 @@
+\documentclass[11pt]{beamer}
+\usetheme{Dresden}
+%\usecolortheme{beaver}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{mathpartir}
+\usepackage{ebproof}
+\usepackage{syntax}
+\author{NCC Moore}
+\title{Topic 10 - References}
+\institute{McMaster University} 
+\date{Fall 2021} 
+\subject{COMPSCI 3MI3 - Principles of Programming Languages} 
+\stepcounter{section}
+
+%\renewcommand{\texttt}[1]{\OldTexttt{\color{teal}{#1}}}
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.05}
+\definecolor{mGreen2}{rgb}{0.05,0.65,0.05}
+\definecolor{mGray2}{rgb}{0.55,0.55,0.55}
+\definecolor{mPurple2}{rgb}{0.63,0.05,0.05}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+\definecolor{backgroundColour2}{rgb}{0.95,0.92,0.95}
+
+\lstdefinestyle{C}{
+    backgroundcolor=\color{backgroundColour},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{mGray},
+    stringstyle=\color{mPurple},    
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\definecolor{burntOrange}{rgb}{1, 0.4, 0.1} 
+\usecolortheme[named=burntOrange]{structure} 
+
+\begin{document}
+
+\begin{frame}
+\center
+COMPSCI 3MI3 - Principles of Programming Languages
+\titlepage
+
+Adapted from ``Types and Programming Languages'' by Benjamin C. Pierce 
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\section[Intuitive]{Inuitionistic Assignment}
+\begin{frame}[fragile=singleslide]{Pure vs Impure Features}
+So far, all of the language features we have considered have been \textbf{pure}.
+\begin{itemize}
+\item That is, features whose operation and results stay within the confines of the existing program. 
+\end{itemize}
+All practical languages, including the ``purely function language'' Haskell, must contain \textbf{impure} features in order to be useful. 
+\begin{itemize}
+\item These are features which have effects exterior to the program itself.  Examples include:
+\begin{itemize}
+\item Assignment to mutable variables; file I/O; displaying data; network connections; interprocess communication; etc.
+\end{itemize}
+\item These are more generally referred to as \textbf{computational effects}.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{(Re)Enter Mutable References!}
+So far, our calculus has been incapable of describing and reasoning about computational effects.
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+\item In this topic, we're going to show how \textbf{mutable references} can be formalized and added to our calculus.  
+\item A mutable reference is a reference to a location in a data storage device.  
+\end{itemize}  
+\end{column}
+\begin{column}{0.5\textwidth}
+\includegraphics[height=0.6\textheight]{figures/pointers.jpg}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{For Your Next Assignment...}
+Almost all programming languages provide an assignment operation, including Haskell! 
+\begin{itemize}
+\item When you use the \texttt{$<-$} operator to jailbreak\footnote{that's not official terminology, that's just what it feels like.} data from the IO monad you use assignment to do so! 
+\end{itemize}
+In our case, assignment is an operation which changes the contents of a previously allocated piece of storage.
+\begin{itemize}
+\item For our discussion, we're going to abstract away messy details like what exactly the data is being stored in and how. 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{How Does This Assignment Work?}
+In general, variable storage is comprised of three operations:
+\begin{itemize}
+\item Memory allocation, aka \textbf{referencing}.
+\item A ``store'' operation, aka \textbf{assignment}.
+\item A ``retrieve'' operation, aka \textbf{dereferencing}.
+\end{itemize}
+Depending on the programming language, some or all of these operations may be made implicit by the language's grammar.
+\begin{itemize}
+\item Python hides allocation and retrieval, but storage is explicit.
+\item C/C++ hides retrieval, with allocation and storage being explicit.
+\item In ML, all three operations are explicit.  
+\end{itemize}
+Retrieval is implicit in Python and C because, when we retrieve a variable's value inside an expression, there is no explicit retrieval operator.  In ML, there is an explicit retrieval operator.  
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Operation!}
+In order to formalize memory interactions, it makes sense to keep these three operations separate and explicit.  We will therefore follow the ML model.  
+\begin{itemize}
+\item We will use the expression \texttt{ref <value>} to denote the allocation of a memory cell.
+\begin{itemize}
+\item Note that an initialization value will be required at the syntactic level.  
+\item This operator creates a reference to a newly allocated memory cell, which must be captured in order to be preserved.  
+\item We'll talk later about what does the capturing.  For now, imagine something like a C++ program's namespace.  
+\end{itemize}
+\item We will use \texttt{r := <value>} to denote storage of a value in an \emph{existing} memory cell.
+\item We will use \texttt{!r} to denote retrieval from a memory cell.  
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Typing Rules for Reference Operations}
+Of course, if we have any new additions to our language, we need to talk typing! 
+
+\begin{equation}
+\inferrule{\Gamma \vdash t_1 : T_1}{\Gamma \vdash \texttt{ref } t_1 : Ref\:T_1}\tag{T-Ref}
+\end{equation}
+
+\begin{equation}
+\inferrule{\Gamma \vdash t_1 : Ref\:T_1}{\Gamma \vdash !t_1 : T_1} \tag{T-Deref}
+\end{equation}
+
+\begin{equation}
+\inferrule{\Gamma \vdash t_1 : Ref\:T_1 \and \Gamma \vdash t_2 : T_1}{\Gamma \vdash t_1 := t_2 : Unit} \tag{T-Assign}
+\end{equation}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Making References}
+\begin{itemize}
+\item For reference creation, it would make sense for the type of \texttt{ref <value>} to be the type of the value.
+\item However, this isn't accurate!  \texttt{ref} doesn't create a value, it creates a \textbf{reference to} a value.
+\item Therefore, let's add a new type to our calculus.  
+\end{itemize}
+
+\begin{grammar}
+<T> ::= ...
+\alt Ref <T>
+\end{grammar}
+
+So, just as C pointers are typed as \emph{references to} some other data type, we set the type of our created reference as a \textbf{reference to} some other type already in our calculus.  
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Dereference Went Over His Head}
+The dereferencing operation has very straightforward typing.
+\begin{itemize}
+\item The type contained within $Ref$ is the type of the dereferenced reference.  
+\end{itemize}
+Assignment, however, has some interesting subtleties:  
+\begin{itemize}
+\item First, the assignment itself has type $Unit$, which will allow us to perform sequencing.  
+\item Second, note that the term being assigned is constrained via antecedent to be the same type as the type contained by $Ref$.  
+\item The term being written, and the cell being written to \textbf{must have the same datatype}, or the term is untypable.  
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{A Sample Program}
+Using the above semantics, we are able to construct programs such as the following:
+
+\begin{lstlisting}[style=C]
+x = ref 0;
+y = ref 0;
+z = ref 0;
+x := 2;
+y := 2;
+z := !x + !y;
+!z 
+>> 4
+\end{lstlisting}
+Notice how we are initializing these three variables.  
+\begin{itemize}
+\item The $=$ sign, rather than $:=$, tells us that we are not assigning the results of $ref 0$ to a location represented by $x$.
+\item The use of $=$ is the same as expression renaming in pure lambda calculus (\texttt{add}, \texttt{pred}, etc.).
+\end{itemize}
+\end{frame}
+
+
+\section[Memory]{Memory Management Implications}
+\begin{frame}[fragile=singleslide]{Alias James Bond}
+In the previous example, we used variables \texttt{x}, \texttt{y} and \texttt{z} to store \emph{references to} some memory storage unit.  Let's explore some of the subtleties of our memory system by considering the following program:
+\begin{lstlisting}[style=C]
+x = ref 5;
+y = x;
+x := 10;
+!y
+>> 10
+\end{lstlisting}
+\begin{itemize}
+\item Note that, although we never assign to \texttt{y}, the changes to \texttt{x} are seen when we dereference $y$.
+\item This is because both \texttt{x} and \texttt{y} reference the same memory cell!
+\item In order for \texttt{x} and \texttt{y} to reference independent values, we would have had to allocate a new memory cell to \texttt{y}. 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Replication in Snake Language}
+Aliasing is also something you can do in Python with mutable data structures.
+
+\begin{lstlisting}[style=C, language=python]
+>>> L = [1,2,3]
+>>> M = L
+>>> L[1] = "potato"
+>>> M
+[1,"potato",3]
+\end{lstlisting}
+\begin{itemize}
+\item In Python, this is a well known noob trap.  An inexperienced programmer will think they are copying the data structure, when they are in fact only copying the reference.
+\item Programming experts such as ourselves, however, can put aliasing to good use! 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Sharing is Caring}
+We can pass the results of calculations around our program using aliased memory cells as \emph{implicit communication channels}!
+
+\begin{lstlisting}[style=C, escapeinside={(*}{*)}]
+c = ref 0
+inc_c = (*$\lambda$*)x : Unit. (c := succ (!c); c!) ;
+dec_c = (*$\lambda$*)x : Unit. (c := pred (!c); c!) ;
+inc_c unit;
+>> 1
+inc_c unit;
+>> 2
+dec_c unit;
+>> 1
+\end{lstlisting} 
+\begin{itemize}
+\item We declared two functions, \texttt{inc_c} and \texttt{dec_c}, which'
+\begin{itemize}
+\item assign to \texttt{c} either the successor or the predecessor of it's current value, and 
+\item give the current value of \texttt{c} as a result.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Decrement Inc.}
+If we then package \texttt{inc_c} and \texttt{dec_c} as a record\footnote{we'll be talking about records and other data structures next week} as follows...
+
+\begin{lstlisting}[style=C]
+o = {i = inc_c, d = dec_c};
+\end{lstlisting}
+
+\begin{itemize}
+\item This allows us to pass around both functions (and their shared state) as a unit.  
+\item In effect, we have constructed a very rudimentary \textbf{object}.
+\item In Object Oriented Programming, an object combines:
+\begin{itemize}
+\item Some set of persistent data.
+\item Operations over said data.
+\end{itemize}
+And allows the programmer to work with the object as a singular entity.  
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Garbage Collection}
+We've talked quite a bit about memory allocation, but what about memory \textbf{deallocation?}
+\begin{itemize}
+\item Our language intentionally does not contain an explicit deallocation operation.  Such operations are not, in general, \textbf{type safe}.
+\item Consider the following scenario:
+\begin{itemize}
+\item Process A allocates a $Nat$ memory cell.
+\item Process B creates an alias to said memory cell.
+\item Process A deallocates the memory cell.
+\item Process B now has a \textbf{Dangling Reference}. 
+\end{itemize}
+\item The fact that process B has a reference to a memory cell which is no longer allocated is \emph{precisely} the sort of situation we want to avoid!
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Smelly, Smelly Garbage}
+\begin{itemize}
+\item What if our scenario continued:
+\begin{itemize}
+\item Process C allocates a $Bool$ memory cell, and is given \emph{the same cell that process A received!}
+\end{itemize}
+\item There is no guarantee that a deallocated memory cell won't be reused by the same program.
+\item If reused, there is no guarantee that a memory cell will receive the same type of value as before.  
+\item Thus, Process B thinks it has a reference to a $Nat$ memory cell, when in fact the memory cell contains a $Bool$.
+\item This is a clear violation of our type system! 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Collection Day is Friday!}
+The way most modern languages solve the dangling reference problem is through a run-time process known as \textbf{garbage collection}.
+\begin{itemize}
+\item Garbage collection requires access to the table of allocated memory cells.
+\item The program is periodically paused, and checked that it contains at least one valid reference to each entry in the table.  
+\item Any orphaned memory cells are then deallocated.
+\begin{itemize}
+\item Generally, it is impossible to reconstruct a reference to a memory cell once lost.
+\item Deallocation of memory cells to which no references point is generally considered safe.
+\end{itemize}
+\item Garbage collection is like the sound effects in a video game.  It's doing it's job if you forget it's even there.  
+\end{itemize}
+\end{frame}
+
+
+\section[Storage]{Memory Storage}
+\begin{frame}[fragile=singleslide]{Modelling Memory Storage}
+\begin{center}
+\includegraphics[height=0.8\textheight]{figures/savetheplanet.jpeg}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Modelling Memory Storage}
+One question that should occur naturally to us, now that we have expanded our set of types to include references, is what does a reference value look like?  
+\begin{itemize}
+\item So far, we have been renaming such values with variables, without actually exploring the concept.
+\item In our previous example programs, we have been using our intuitions about how computer memory works to fill in \emph{how} memory is stored and retrieved.  
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Memories of the Real World}
+In most computer languages, memory is modelled as an array of bytes. 
+\begin{itemize}
+\item The run-time system keeps track of what bytes are currently in use.
+\item When more memory is requested, the size of the requested memory is passed to the run-time system.
+\item A free region large enough for the data being allocated is found (or not). 
+\item The run-time system then marks that region as being used, and returns the index of the newly allocated region.  
+\end{itemize}
+This is essentially how dynamic memory allocation works in C.  The address returned by \texttt{malloc()} is a \textbf{memory reference value}.
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Abstraction Distraction!}
+For our purposes, such messy implementation details are unnecessary.  
+\begin{itemize}
+\item The first thing we don't need to know is how the values are being stored. 
+\begin{itemize}
+\item i.e., that the data is stored in binary code in a RAM chip (for example).
+\end{itemize}
+\item We can think of our \textbf{memory store} as an array of \textbf{values}, rather than of \textbf{bytes}.
+\item We also don't need to know that references themselves are numbers.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Memory Location Set!}
+
+\begin{itemize}
+\item Let us take memory references to be elements of some uninterpreted set $\mathcal{L}$ of \textbf{store locations}.
+\begin{itemize}
+\item $\mathnormal{l}$ will be a metavariable ranging over $\mathcal{L}$.
+\item We will add $\mathnormal{l}$ to the terms of our language, to mean ``a memory location value.''
+\end{itemize}
+\item The memory store itself can then be simply a partial function from locations $l \in \mathcal{L}$ to our set of values $\mathcal{V}$
+\begin{itemize}
+\item We will use the metavariable $\mu$ to range over the \emph{set of possible memory stores}.
+\item In our equations, we will use $\mu$ to mean ``some arrangement of memory.''
+\end{itemize}
+From now on, we will refer to references as \textbf{locations}, and the memory storage device as simply the \textbf{store}.
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[fragile=singleslide]{Getting C Sick}
+By modelling memory this way, we are \emph{intentionally distancing ourselves} from the way that memory is managed by C (and family).
+\begin{itemize}
+\item Because we are not interpreting our locations as numbers, we don't have to worry about what happens if we try to perform arithmetic over them.
+\item While extremely useful, pointer arithmetic is \emph{notoriously problematic} when it comes to type systems.  
+\begin{itemize}
+\item If some location $n$ is typed \texttt{float}, this tells us nothing about what might be stored at a location like $n+4$.
+\item How would we go about typing an operation like this without actually executing the program?
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{The Mysterious $151^{st}$ Pok\'emon}
+We can conceive of the context provided by $\mu$ similarly to how we already talk about the typing context $\Gamma$.
+\begin{itemize}
+\item Rather than being attached to the typing relation, $\mu$ will be attached to the terms themselves:
+\end{itemize}
+
+\begin{equation}
+t\:|\:\mu
+\end{equation}
+
+When considering the evaluation of $t$, it is possible that evaluation will have a side effect on $\mu$.  We therefore modify the general form of evaluation, $t \rightarrow t'$ by adding two different state contexts:
+\begin{equation}
+t\:|\:\mu \rightarrow t'\:|\:\mu'
+\end{equation}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{$\mu$tual Affection}
+\begin{itemize}
+\item If no side effects happened, $\mu = \mu'$. 
+\item Otherwise, the difference between $\mu$ and $\mu'$ represents the effect on the state of the evaluation of the term $t$.
+\item In effect, we have enriched our notion of \emph{abstract machines}, so that a machine state is not just a program counter (represented as a term), but a program counter plus the current contents of the store.  
+\end{itemize}
+\end{frame}
+
+\section[Semantics]{Storage Semantics}
+\begin{frame}[fragile=singleslide]{Teenage $\mu$tant Ninja Turtles!}
+Let's refactor our evaluation rules for pure $\lambda$-Calculus in light of the new rules.  
+
+\begin{equation}
+(\lambda x: T_{11}. t_{12}) v_2\:|\:\mu \rightarrow [x \mapsto v_2]t_{12}\:|\:\mu \tag{E-AppAbs}
+\end{equation}
+
+\begin{equation}
+\inferrule{t_1\:|\:\mu \rightarrow t_1'\:|\:\mu'}{t_1\:t_2\:|\:\mu \rightarrow t_1'\:t_2\:|\:\mu'} \tag{E-App1}
+\end{equation}
+
+\begin{equation}
+\inferrule{t_2\:|\:\mu \rightarrow t_2'\:|\:\mu'}{t_1\:t_2\:|\:\mu \rightarrow t_1\:t_2'\:|\:\mu'} \tag{E-App2}
+\end{equation}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{$\mu$ Suede Shoes}
+Let's examine some of the subtleties.
+\begin{itemize}
+\item Note in the two congruence rules E-App1 and E-App2 we presume $\mu$ may be effected by the evaluation of $t_1$ and $t_2$.  
+\begin{itemize}
+\item Whether or not this is true, the change is reflected in the overall evaluation.
+\end{itemize}
+\item However, with E-AppAbs, we have the same $\mu$ before and after.
+\begin{itemize}
+\item This is one way of stating that function application \emph{has no side effects!}
+\item The only operations we have so far which effect state are allocation and assignment.  Since there is no sub-evaluation implied, we know that $\mu$ will remain unchanged.
+\begin{itemize}
+\item This property will be very useful later on! 
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Here are my Terms.}
+Formally, we will add the following terms to our calculus.
+
+\begin{grammar}
+<t> ::= ...
+\alt ref t
+\alt !t
+\alt t := t
+\alt $\mathnormal{l}$
+\end{grammar}
+Further, our complete list of values becomes: 
+\begin{grammar}
+<v> ::= $\lambda$ x:<T>.<t>
+\alt unit
+\alt $\mathnormal{l}$
+
+\end{grammar}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{For Internal Use Only!}
+While we have added $\mathnormal{l}$ to our calculus, we do not necessarily intend for a programmer to ever use it.
+\begin{itemize}
+\item We intend for $\mathnormal{l}$ to encode intermediate, implicit results of calculations, rather than explicit ones.
+\item In other words, we are working on the \textbf{internal language}.  
+\begin{itemize}
+\item $\mathnormal{l}$ is available for constructing derived forms, but our goal is that locations can be safely ignored by the programmer.\footnote{unlike in C programming.}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Dereferencing }
+Let's now formalize our evaluation rules for \emph{dereferencing}.
+
+\begin{equation}
+\inferrule{t_1\:|\:\mu \rightarrow t_1'\:|\:\mu'}{!t_1\:|\:\mu \rightarrow !t_1'\:|\:\mu'} \tag{E-Deref}
+\end{equation}
+
+\begin{equation}
+\inferrule{\mu(\mathnormal{l}) = v}{!\mathnormal{l}\:|\:\mu \rightarrow v\:|\:\mu} \tag{E-DerefLoc}
+\end{equation}
+
+By now these rules should have a familiar form.
+\begin{itemize}
+\item The congruence rule E-Deref lets us evaluate $t_1$ until a value is reached.  
+\item Then, if a location is the result of evaluating $t_1$, and if $\mathnormal{l} \in dom(\mu)$, we can replace $!\mathnormal{l}$ with the retrieved value.  
+\item Note that dereferencing anything other than $\mathnormal{l}$ is disallowed by the set of evaluation rules available.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Assignment}
+
+\begin{equation}
+\inferrule{t_1\:|\:\mu \rightarrow t_1'\:|\:\mu'}{t_1 := t_2\:|\:\mu \rightarrow t_1' := t_2\:|\:\mu'} \tag{E-Assign1}
+\end{equation}
+
+\begin{equation}
+\inferrule{t_2\:|\:\mu \rightarrow t_2'\:|\:\mu'}{v_1 := t_2\:|\:\mu \rightarrow v_1 := t_2'\:|\:\mu'} \tag{E-Assign2}
+\end{equation}
+
+\begin{equation}
+l := v_2\:|\:\mu \rightarrow unit\:|\:[\mathnormal{l} \mapsto v_2]\mu \tag{E-Assign}
+\end{equation}
+\vspace{-0.5em}
+\begin{itemize}
+\item Once again, we are required to fully evaluate $t_1$ and $t_2$ via congruence rules before performing the assignment.
+\item The assignment itself requires a location and a value.
+\item The notation $[\mathnormal{l} \mapsto v_2]\mu$ means ``a store which maps $\mathnormal{l}$ to $v$, with all other locations mapping to the same things as in $\mu$.''
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Allocation}
+
+\begin{equation}
+\inferrule{t_1\:|\:\mu \rightarrow t_1'\:|\:\mu'}{ref\:t_1\:|\:\mu \rightarrow ref\: t_1'\:|\:\mu'} \tag{E-Ref}
+\end{equation}
+
+\begin{equation}
+\inferrule{\mathnormal{l} \notin dom(\mu)}{ref\:v_1\:|\:\mu \rightarrow \mathnormal{l}\:|\:(\mu, \mathnormal{l} \mapsto v_1)} \tag{E-RefV}
+\end{equation}
+
+To evaluate allocation...
+\begin{itemize}
+\item We must first evaluate $t_1$ to a value using the congruence rule E-Ref.
+\item Then, we select a \emph{fresh location} $\mathnormal{l}$ not already used in $\mu$.
+\item We extend $\mu$ with a mapping between this fresh location and the given value.
+\item The term itself directly evaluates to this fresh location.  
+\end{itemize}
+
+\end{frame}
+
+
+\section[Typing]{Store Typing}
+\begin{frame}[fragile=singleslide]{Store Typing}
+\begin{center}
+Insert Meme Here
+% \includegraphics[height=0.8\textheight]{figures/•}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Let's Talk Typing!}
+Now that we have formalized the storage and retrieval of \textbf{values} from storage, one question remains, ``What about the typing?''
+\begin{itemize}
+\item We will answer this question by elaborating on some of our natural intuitions.  
+\end{itemize}
+We could start by saying that the type of a location in storage should be the type of the value stored there.  This would yield a typing rule such as the following.
+\begin{equation}
+\inferrule{\Gamma \vdash \mu(\mathnormal{l}) : T_1}{\Gamma \vdash \mathnormal{l} : Ref T_1} 
+\end{equation}
+That is, to type a location, we look up the value at that location and type it.  
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Four Place Relation!}
+In effect, by making the type of a location dependent on the program state, we have changed the typing relation from:
+\begin{itemize}
+\item A three place relation from a typing context $\Gamma$ and a term $t$ to a type $T$. ($\Gamma \vdash t : T$)
+\end{itemize}
+Into:
+\begin{itemize}
+\item A four place relation from a typing context $\Gamma$, a memory state $\mu$, and a term $t$ to a type $T$. ($\Gamma\:|\:\mu \vdash t : T$)
+\end{itemize}
+Thus, our typing rule is refined to: 
+\begin{equation}
+\inferrule{\Gamma\:|\:\mu \vdash \mu(\mathnormal{l}) : T_1}{\Gamma\:|\:\mu \vdash \mathnormal{l} : Ref T_1} 
+\end{equation}
+All the rest of our typing rules will need similar modification.  Most won't do anything interesting with $\mu$, but most will need to pass $\mu$ to sub-derivations.
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Problematic Content}
+This approach has two big downsides, however.  
+\begin{itemize}
+\item First, we have made typing a term dependent on typing another term.  If we have a situation like the following, where terms stored in memory are dependent on other terms stored in memory, things can get quite inefficient.
+\end{itemize}
+\begin{align*}
+( \mathnormal{l}_1 \mapsto \lambda x:Nat. 999, \\
+\mathnormal{l}_2 \mapsto \lambda x:Nat. (!\mathnormal{l}_1) x, \\
+\mathnormal{l}_3 \mapsto \lambda x:Nat. (!\mathnormal{l}_2) x, \\
+\mathnormal{l}_4 \mapsto \lambda x:Nat. (!\mathnormal{l}_3) x, \\
+... ) \\
+\end{align*} \\
+\vspace{-1.5em}
+Not only could we potentially have to type a \textbf{lot} of locations to get the type of one location in particular, we have to \emph{recalculate it each time!}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Even More Problematic Content}
+This is not even as bad as things can get! What if our memory locations were storing circular references?  
+\begin{align*}
+(\mathnormal{l}_1 \mapsto \lambda x:Nat. (!\mathnormal{l}_2) x, \\
+\mathnormal{l}_2 \mapsto \lambda x:Nat. (!\mathnormal{l}_1) x  ) 
+\end{align*}
+\begin{itemize}
+\item Our current typechecker would get stuck in an infinite loop!  
+\item It turns out that such structures do exist in practice, like doubly linked lists.  
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Sigma!}
+Surely we can make this more efficient.  Let's recall the following:
+\begin{itemize}
+\item The type of a location is derivable upon allocation from the type of the instantiating value.
+\item According to our semantics, we are only allowed to assign values to locations of a matching type.  
+\item The thing we are constantly recalculating \emph{has been fixed from the start!}
+\end{itemize}
+So, rather than relying on our memory store $\mu$, let's create a new \textbf{typing store} $\Sigma$!
+\begin{itemize}
+\item We are expanding the definition of allocation so that, when a new location is allocated, a corresponding entry in $\Sigma$ is created.
+\item Just as $\mu$ is a partial function from locations to values, $\Sigma$ is a partial function from locations to types.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Super Sigma Fighter!}
+\begin{equation}
+\inferrule{\Sigma(\mathnormal{l}) = T_1}{\Gamma\:|\:\Sigma \vdash \mathnormal{l} : Ref\:T_1} \tag{T-Ref}
+\end{equation}
+\begin{itemize}
+\item $\Gamma$ starts off empty, and has typings added as the program is evaluated.
+\item $\Sigma$ is used the same way. 
+\item Just as an empty $\Gamma$ is written $\O$, an empty $\Sigma$ will be written the same.
+\item As evaluation progresses, $\Sigma$ will acquire more and more typings.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Typing Allocation}
+Now that we've got location typing under control, the rest of the typing rules fall into place much sac we would expect.  
+
+\begin{equation}
+\inferrule{\Gamma \:|\:\Sigma \vdash t_1 : T_1}{\Gamma \:|\:\Sigma \vdash ref\:t_1 : Ref\:T_1} \tag{T-Ref}
+\end{equation}
+
+\begin{equation}
+\inferrule{\Gamma \:|\:\Sigma \vdash t_1 : Ref\:T_{11}}{\Gamma \:|\:\Sigma \vdash !t_1 : T_{11}} \tag{T-Deref}
+\end{equation}
+
+\begin{equation}
+\inferrule{\Gamma \:|\:\Sigma \vdash t_1 : Ref\:T_{11} \and \Gamma \:|\:\Sigma \vdash t_2 : T_{11}}{\Gamma \:|\:\Sigma \vdash t_1 := t_2 : Unit} \tag{T-Assign}
+\end{equation}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{I Wish I'd Used a Serif Font For This Class}
+There is only one subtlety here:
+\begin{itemize}
+\item In T-Ref, note that, although this is an allocation operation, we make no changes to $\Sigma$ via this typing rule.
+\begin{itemize}
+\item This is because the typing store is updated by \textbf{evaluation}, not \texttt{typechecking}.
+\item This is not implied by the inference rule for allocation in the textbook, as $\Sigma$ doesn't appear anywhere in it.
+\item The conjecture of your humble professor is that the textbook overlooked this, probably because it would mean carrying both $\mu$ and $\Sigma$ through each evaluation rule as well.  
+\item If we added $\Sigma$ to E-RefV, it would look something like this: 
+\end{itemize}
+\end{itemize}
+\begin{equation}
+\inferrule{\mathnormal{l} \notin dom(\mu) \and \Gamma\:|\:\Sigma \vdash v_1 : T_1}{ref\:v_1\:|\:\mu\:|\:\Sigma \rightarrow \mathnormal{l}\:|\:(\mu, \mathnormal{l} \mapsto v_1)\:|\:(\Sigma, \mathnormal{l} \mapsto T_1)} \tag{E-RefV}
+\end{equation}
+\end{frame}
+
+\section[Safety]{Type Safety of References}
+\begin{frame}[fragile=singleslide]{Type Safety of References}
+\begin{center}
+\includegraphics[height=0.8\textheight]{figures/linkedlistinterviewproblem.png} 
+
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Progress and Preservation Strike Again! }
+Only one thing remains: to verify the soundness of this extension of our calculus.  
+\begin{itemize}
+\item Remember, we demonstrate the soundness of our type system by demonstrating:
+\begin{itemize}
+\item Progress
+\begin{itemize}
+\item A well-typed term is either a value, or may be evaluated once under single-step operational semantics.  That is, a well-typed term is not currently stuck.  
+\end{itemize}
+\item Preservation
+\begin{itemize}
+\item If a term is well-typed, and we evaluate it once under single-step operational semantics, the resulting term is also well typed.  
+\end{itemize}
+\end{itemize}
+\item Progress is easy enough to be made an assignment question, but preservation is somewhat more interesting.  
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Poorly Preserved}
+Since we have extended both the evaluation and typing relations with value and type storage, we need to update our preservation theorem accordingly.  
+\begin{itemize}
+\item Intuitively, we might construct the following.
+\end{itemize}
+
+\begin{equation}
+(\Gamma \:|\:\Sigma \vdash t : T) \land (t\:|\:\mu \rightarrow t'\:|\:\mu') \implies (\Gamma\:|\:\Sigma \vdash t' : T) \tag{Wrong!}
+\end{equation}
+\begin{itemize}
+\item There is nothing in this approach that requires consistency between the way $\Sigma$ and $\mu$ have been constructed.
+\item There is an implicit assumption that, if you look up a location in both $\mu$ and $\Sigma$, the type given by $\Sigma$ will be valid for the value found in $\mu$.
+\item Essentially, we need to define well-typedness for stores.  
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Well Typed Documents}
+\textbf{Definition} \\
+A store $\mu$ is said to be \textbf{well typed} with respect to a typing context $\Gamma$ and a store typing $\Sigma$ if:
+\begin{itemize}
+\item $dom(\mu) = dom(\Sigma)$
+\item $\forall \mathnormal{l} \in dom(\mu)\:|\:\mu(\mathnormal{l}) : \Sigma(\mathnormal{l})$
+\end{itemize}
+We write this $\Gamma \:|\:\Sigma \vdash \mu$
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Less Poorly Preserved}
+Let's include this new idea of the well-typedness of a store to our preservation theorem.
+
+\begin{align*}
+& \:(\Gamma \:|\:\Sigma \vdash t : T) \\
+\land & \:(t\:|\:\mu \rightarrow t'\:|\:\mu') \\
+\land & \:(\Gamma \:|\:\Sigma \vdash \mu) \\
+\implies & \:(\Gamma\:|\:\Sigma \vdash t' : T) 
+\end{align*}
+We're getting closer, but this overlooks one crucial fact.  The typing store may change during evaluation! 
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Preservation}
+We already recognized that $\mu$ can grow through evaluation, so we can hypothesize the existence of some $\Sigma'$ to which a similar transformation has been applied. \\ 
+\vspace{1em}
+\textbf{THEOREM: [Preservation]} \\
+\begin{align*}
+& \:(\Gamma \:|\:\Sigma \vdash t : T) \\
+\land & \:(t\:|\:\mu \rightarrow t'\:|\:\mu') \\
+\land & \:(\Gamma \:|\:\Sigma \vdash \mu) \\
+\implies & \:(\exists \Sigma' \supseteq \Sigma \:|\: \\
+& \:\:\:\:\:\:\:\:\:\:\:(\Gamma\:|\:\Sigma' \vdash t' : T) \\
+& \:\:\:\:\:\land\:(\Gamma\:|\:\Sigma' \vdash \mu') \\
+& \:)  
+\end{align*}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Weakness is our Strength}
+One subtlety here is the fact that we've made no attempt to formalize how $\Sigma'$ might be derived from $\Sigma$. 
+\begin{itemize}
+\item We did this a bit earlier, when talking about E-RefV.  
+\item The claim that we're making here is substantially weaker than ``$\Sigma'$ has this precise relation to $\Sigma$.''
+\item If we can prove this weaker claim, ``$\mu'$ and $t'$ are both well typed under some expanded version of $\Sigma$,'' we have achieved our goal without having to get into a lot of extraneous detail.  
+\begin{itemize}
+\item Essentially, adding this extra detail substantially complicates the theorem without making it any more useful.  
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Make Life Rue the Day It Gave Cave Johnson Lemmas!}
+In order to prove preservation, we will need the following three technical lemmas. \\ 
+\vspace{1em}
+\textbf{LEMMA: [Preservation Over Substitution]} 
+\begin{equation}
+(\Gamma, x:S\:|\:\Sigma \vdash t : T) \land (\Gamma \:|\:\Sigma \vdash s: S) \implies (\Gamma \:|\:\Sigma \vdash [x \mapsto s]t : T])
+\end{equation} \\
+\textbf{LEMMA: [Preservation Over Storage]}
+\begin{equation}
+(\Gamma \:|\:\Sigma \vdash \mu) \land (\Sigma(\mathnormal{l}) = T) \land (\Gamma \:|\:\Sigma \vdash v : T) \implies (\Gamma \:|\:\Sigma \vdash [\mathnormal{l} \mapsto v]\mu))
+\end{equation}
+\textbf{LEMMA: [Weakening Over Typing Stores]}
+\begin{equation}
+(\Gamma\:|\:\Sigma \vdash t : T) \land (\Sigma' \supseteq \Sigma) \implies (\Gamma \:|\:\Sigma' \vdash t : T)
+\end{equation}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{I Don't Want Your Stupid Lemmas!}
+For the previous lemmas, proofs are not interesting enough for us to go through in detail.
+\begin{itemize}
+\item Preservation over substitution is proven in the same way as we proved it in topic 8.
+\item Preservation over storage is immediate from the definition of $\Gamma \:|\: \Sigma \vdash \mu$.
+\item Weakening over typing stores can be shown via a fairly easy induction.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Preservation VIII}
+
+\emph{Proof Sketch Of Preservation}
+\begin{itemize}
+\item Straightforward induction on evaluation derivations, using the provided lemmas, plus the inversion property of our new typing rules (itself a straightforward extension of the inversion lemma of simply typed $\lambda$-Calculus).
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Failure Can Still Be Progress!}
+The theorem of progress, formally stated is: \\ 
+\vspace{1em}
+\textbf{THEOREM: [Progress]} \\ 
+Suppose $t$ to be a closed, well typed term (that is, $\O \:|\: \Sigma \vdash t : T$ for some $T$ and $\Sigma$).  Then either $t$ is a value, or else, for any store $\mu$ such that $\O \:|\:\Sigma \vdash \mu$, there is some term $t'$ and store $\mu'$ such that $t\:|\:\mu \rightarrow t'\:|\:\mu'$. \\
+\vspace{1em}
+\emph{Proof Sketch}
+\begin{itemize}
+\item Straightforward induction on typing derivations, following the pattern established in topic 8.  
+\item The canonical forms lemma needs two additional cases, stating that all values of type $Ref\:T$ are locations, and similarly for $Unit$.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Last Slide Comic}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/flaweddata.png}
+\end{center}
+\end{frame}
+
+
+\end{document}

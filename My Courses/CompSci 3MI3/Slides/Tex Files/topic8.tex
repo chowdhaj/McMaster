@@ -1,0 +1,852 @@
+\documentclass[11pt]{beamer}
+\usetheme{Dresden}
+%\usecolortheme{beaver}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{mathpartir}
+\usepackage{ebproof}
+\usepackage{syntax}
+\usepackage{flagderiv}
+\usepackage{rotating}
+\author{NCC Moore}
+\title{Topic 8 - Simply Typed Lambda Calculus}
+\institute{McMaster University} 
+\date{Fall 2021} 
+\subject{COMPSCI 3MI3 - Principles of Programming Languages} 
+\stepcounter{section}
+
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.05}
+\definecolor{mGreen2}{rgb}{0.05,0.65,0.05}
+\definecolor{mGray2}{rgb}{0.55,0.55,0.55}
+\definecolor{mPurple2}{rgb}{0.63,0.05,0.05}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+\definecolor{backgroundColour2}{rgb}{0.95,0.92,0.95}
+
+\lstdefinestyle{C}{
+    backgroundcolor=\color{backgroundColour},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{mGray},
+    stringstyle=\color{mPurple},    
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\definecolor{burntOrange}{rgb}{1, 0.4, 0.1} 
+\usecolortheme[named=burntOrange]{structure} 
+
+\begin{document}
+
+\begin{frame}
+\center
+COMPSCI 3MI3 - Principles of Programming Languages
+\titlepage
+
+Adapted from ``Types and Programming Languages'' by Benjamin C. Pierce 
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\section[Intro]{Introduction to Typed Lambda Calculus}
+\begin{frame}[fragile=singleslide]{Introduction to Typed Lambda Calculus}
+\begin{center}
+\includegraphics[height=0.8\textheight]{figures/progress2.jpg}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{TAE-k Some Constructive Criticism!}
+In the previous topic, we developed a type system for arithmetic expressions.  
+\begin{itemize}
+\item Pros:
+\begin{itemize}
+\item Well-typed programs were guaranteed to evaluate.  
+\end{itemize}
+\item Cons:
+\begin{itemize}
+\item Untypeable programs were not guaranteed to not evaluate.
+\end{itemize}
+\item Essentially, TAE was too conservative.  It drew a boundary between ``good'' and ``bad'' terms, but in our efforts to keep all the bad terms out, we also kept out a lot of good terms as well. 
+\item In this topic, we'll try to improve this result.  
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{$\lambda$ Gramma'!}
+In this topic, we will be considering a language containing the pure $\lambda$-Calculus covered in topics 5 and 6, enriched with Booleans.  We will be using the following grammar. \\
+
+\dotfill
+\begin{grammar}
+<t> ::= <x>
+\alt $\lambda$ <x>. <t>
+\alt <t> <t>
+\alt \texttt{true}
+\alt \texttt{false}
+\alt \texttt{if} <t> \texttt{then} <t> \texttt{else} <t> 
+\end{grammar}
+\dotfill
+
+
+Where $x$ is a variable in the $\lambda$-Calculus sense.
+\begin{itemize}
+\item We will intentionally exclude numbers to keep things simple for the time being.  
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Face Your Limitations!}
+Unfortunately, in Typed $\lambda$-Calculus (TLC), we will soon run into the same troubles we had in UAE.  Consider the following (pseudo-) expression.\\
+\vspace{-0.5em}
+\begin{equation}
+\texttt{if <some long computation> then true else } (\lambda x.x)
+\end{equation} \\ 
+\vspace{-0.5em}
+\begin{itemize}
+\item The above expression remains untypeable, unless we evaluate that long, cumbersome expression.
+\item Remember, that in $\lambda$-Calculus, some expressions, such as the $\Omega$-Function, \textbf{diverge!}
+\item Thus, we can't say for certain that typing the above expression is \emph{even possible in a finite universe!}
+\begin{itemize}
+\item A lot of languages (like Haskell) get around this problem by \emph{requiring} the \texttt{then} and \texttt{else} cases to have the same type. 
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{A (Preliminary) Set of Types}
+Our approach to typing in TLC will be very similar to TAE.  We will define a typing relation mapping terms of our language to a set of types.  
+\begin{itemize}
+\item So, we first need to define our set of types for TLC.
+\end{itemize}
+
+\begin{equation}
+T = \{ Bool, \Rightarrow\}
+\end{equation}
+
+\begin{itemize}
+\item The reason for including $Bool$ should be obvious... but what the heck is with the arrow? 
+\item It's obvious that we need some kind of type to represent functions, so we'll have $\Rightarrow$ stand in for now.   
+\begin{itemize}
+\item This will make more sense in a few slides.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{It's Not Implication, That's Long Double Arrow}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{center}
+\includegraphics[scale=0.3]{figures/arrows.jpg}
+\end{center}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+\item Implication
+\begin{itemize}
+\item $\implies$
+\end{itemize}
+\item Evaluation Relation
+\begin{itemize}
+\item $\rightarrow$
+\end{itemize}
+\item Substitution
+\begin{itemize}
+\item $\mapsto$
+\end{itemize}
+\item \textbf{Function Type}
+\begin{itemize}
+\item $\Rightarrow$
+\end{itemize}
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Green Arrow is Worse Batman}
+Let's give our new type some meaning, in the form of a typing rule! 
+\begin{equation}
+\lambda x. t : \Rightarrow
+\end{equation}
+Thus, every term with a $\lambda$ has our new type.  We can now determine the type of expressions such as:
+\begin{equation}
+\texttt{if true then } (\lambda x. \texttt{true}) \texttt{ else } (\lambda x. \lambda y. y) :\:\Rightarrow
+\end{equation}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Too Conservative!}
+Although this gives a sufficient description to use a TAE-style typing relation, $\Rightarrow$ currently tells us precious little about the functions themselves.  
+\begin{itemize}
+\item $(\lambda x. \texttt{true})$ is a function which takes one argument and yields a Boolean.
+\item $(\lambda x. \lambda y. y)$ is a function which takes one argument and yields another function! 
+\end{itemize}
+Things we generally like to know about functions:
+\begin{itemize}
+\item The number of arguments a function expects.
+\item The types of those arguments.
+\item The type of the value to be returned.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Refined Arrows}
+Let's refactor our definition of $\Rightarrow$ to include this information.
+\begin{itemize}
+\item Let's replace $\Rightarrow$ with an infinite family of types:
+\end{itemize}
+\begin{equation}
+T_1 \Rightarrow T_2
+\end{equation}
+The above represents a function which expects an argument of type $T_1$, and yields a result of type $T_2$.  Our set of types would then be generated by the following grammar.\\
+
+\dotfill
+\begin{grammar}
+<T> ::= <T> $\Rightarrow$ <T>
+\alt Bool
+\end{grammar}
+\dotfill
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Recursive Type Definitions!?}
+This grammar allows us to construct some really interesting types! 
+\begin{itemize}
+\item $Bool \Rightarrow Bool$
+\begin{itemize}
+\item A function mapping a Boolean argument to a Boolean result.  
+\end{itemize}
+\item $Bool \Rightarrow Bool \Rightarrow Bool$
+\begin{itemize}
+\item A function mapping a Boolean argument to a function mapping a Boolean argument to a Boolean result.  
+\item $\Rightarrow$ is (funnily enough) \textbf{right associative}, so the above is equivalent to $Bool \Rightarrow (Bool \Rightarrow Bool)$
+\end{itemize}
+\item $(Bool \Rightarrow Bool) \Rightarrow (Bool \Rightarrow Bool)$
+\begin{itemize}
+\item A function mapping functions taking and returning a Boolean to functions taking and returning a Boolean.
+\end{itemize}
+\item \emph{Plus an infinite number of similar variations!}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[fragile=singleslide]{Is This Looking Like Haskell Yet?}
+\begin{lstlisting}[style=C, language=haskell]
+func1 :: Bool -> Bool
+
+func2 :: Bool -> Bool -> Bool
+
+func3 :: (Bool -> Bool) -> (Bool -> Bool)
+\end{lstlisting}
+
+\begin{center}
+\includegraphics[scale=0.25]{figures/Haskell.jpg}
+\end{center}
+
+\end{frame}
+
+\section[Relation]{The Typing Relation}
+\begin{frame}[fragile=singleslide]{The Typing Relation}
+We know we want typing information for function inputs, but so far we have no idea how to get them.  In general there are two approaches:
+\begin{itemize}
+\item \textbf{Explicit Typing} \emph{(Used in this course)}.
+\begin{itemize}
+\item Typing annotations are explicitly provided in the syntax of the function.  
+\item For TLC, we will annotate $\lambda$ abstractions as follows:
+\end{itemize}
+\end{itemize}
+\begin{equation}
+\lambda x:T_1 . t_2
+\end{equation}
+\begin{itemize}
+\item \textbf{Implicit Typing} \emph{(Advanced topic in type theory)}.
+\begin{itemize}
+\item We analyze the way a function is used to determine its typing information. 
+\end{itemize}
+\end{itemize}
+In reality, most languages use some amount of type inference, but for now, we will use explicit typing in TLC.  
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Function Typing Inference Rule}
+It should be obvious that the return type of a function of the form:
+\begin{equation}
+\lambda x:T_1 . t_2
+\end{equation}
+Is simply the type of the term $t_2$.  We can thus construct an inference rule for typing $\lambda$ abstractions.
+
+\begin{equation}
+\inferrule{t_2 : T_2}{(\lambda x : T_1 . t_2) : T_1 \Rightarrow T_2}
+\end{equation}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{More Information Required!}
+There is, however, a problem with the foregoing inference mechanism.  We do not yet have the ability to use typing information for abstracted variables to find the type of the inner term.  Consider the following expression:
+
+\begin{equation}
+\lambda x : Bool. \texttt{ if } x \texttt{ then } s_2 \texttt{ else } s_3
+\end{equation}
+
+We'll call the inner term above $t_2$, and assume $s_2$ and $s_3$ have the same type $T_2$.  
+
+\begin{itemize}
+\item If we consider only the information contained in $t_2$, this term is untypeable.  
+\item $x$ \emph{must} be of type $Bool$ in order for $t_2$ to be well typed.  
+\item We need some way to convey this information to $t_2$
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Get Some Context!}
+On the previous slide, we consider $x : Bool$ to be the \textbf{context} in which we can say that the inner term (and therefore the entire function) is well-typed.  We write this as:
+\begin{equation}
+x : Bool \vdash t_2 : T_2
+\end{equation}
+\begin{itemize}
+\item In TLC, our typing relation becomes a \textbf{three-place relation}, taking elements from:
+\begin{itemize}
+\item The set of terms.
+\item The set of types.
+\item The set of contexts.
+\end{itemize}
+\begin{equation}
+\text{context} \vdash \text{term} : \text{type}
+\end{equation}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Don't Context This Point!}
+In general, we will often need to keep track of multiple context variables, because $\lambda$ calculus has to manage arbitrarily nested abstraction operations.  
+\begin{itemize}
+\item This means that the context we talked about in the previous slide is actually a \textbf{set} of variable typings, and is a subset of \emph{all possible} variable typings.  For example,
+\end{itemize}
+\begin{equation}
+\{ w : T_1, x : T_2,  y : T_3 \} \vdash z : T_4
+\end{equation}
+We generalize this form to:
+\begin{equation}
+\Gamma \vdash t : T
+\end{equation}
+Where $\Gamma$ is the set of variable type relations.
+\begin{itemize}
+\item This is often called either the \textbf{typing context} or the \textbf{typing environment}.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Gamma Rays!}
+More formally, $\Gamma$ can be expressed as follows: \\
+
+\begin{equation}
+\Gamma = \begin{cases}
+\O \\
+\Gamma , x : T \\
+\end{cases}
+\end{equation}
+
+%\dotfill
+%\begin{grammar}
+%<\Gamma > ::= \O \hspace{0.5em}| <\Gamma > , <x> : <T>
+%\end{grammar}
+%\dotfill \\
+That is to say, the typing context is either empty (\O), or composed by adding one piece of typing information to another context.
+\begin{itemize}
+\item We use a comma to add typing pairs to $\Gamma$.
+\end{itemize}
+If we are working with an empty context, we will often keep the turnstile character, but omit $\Gamma$.  The following: 
+
+\begin{equation}
+\vdash t_1 : T_1
+\end{equation}
+
+Means ``In the absence of any other typing information, $t_1 : T_1$''. 
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Function Typing, But Properly This Time}
+Using this information, we can refactor our typing rule for $\lambda$ abstractions:
+
+\begin{equation}
+\inferrule{\Gamma, x : T_1 \vdash t_2 : T_2}{\Gamma \vdash (\lambda x : T_1. t_2) : T_1 \Rightarrow T_2} \tag{T-Abs}
+\end{equation}
+In humanspeak:
+\begin{itemize}
+\item Given a lambda abstraction $(\lambda x : T_1. t_2)$, a typing context $\Gamma$,
+\item If we can conclude that $t_2 : T_2$ from both $\Gamma$ and the typing information provided by $x$,
+\item We can also conclude that the type of the abstraction is $T_1 \Rightarrow T_2$.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Gamma Strain}
+Things of note:
+\begin{itemize}
+\item The way this is formulated, if begin with an empty $\Gamma$, and try to type nested $lambda$ abstractions, we a new typing assumption to $\Gamma$ for each $\lambda$ deep we are in the derivation.  
+\item Consider the following example.   
+\begin{equation}
+\vdash \lambda x : Bool. \lambda y : Bool. \lambda z : Bool. y 
+\end{equation}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Using Gammas}
+\small
+\begin{flagderiv}
+\assume{}{\vdash \lambda x : Bool. \lambda y : Bool. \lambda z : Bool. y}{Assume}
+\assume{}{\Gamma_1 \vdash \lambda y : Bool. \lambda z : Bool. y}{Assume}
+\assume{}{\Gamma_2 \vdash \lambda z : Bool. y}{Assume}
+\assume{}{\Gamma_3 \vdash y}{Assume}
+\conclude{}{\Gamma_3 \vdash y : Bool}{T-Var on 4}
+\conclude{}{\Gamma_2 \vdash (\lambda z : Bool. y) : Bool \Rightarrow Bool}{T-Abs on 5}
+\conclude{}{\Gamma_1 \vdash (\lambda y : Bool.\lambda z : Bool. y) : Bool \Rightarrow Bool \Rightarrow Bool}{T-Abs on 6}
+\conclude{}{\vdash (\lambda x : Bool. \lambda y : Bool.\lambda z : Bool. y) : Bool \Rightarrow Bool \Rightarrow Bool \Rightarrow Bool}{T-Abs on 6}
+\end{flagderiv}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Gamma Contents}
+In the previous slide, the contents of the various typing contexts is as follows: 
+
+\begin{equation}
+\Gamma_1 = \{x : Bool\}
+\end{equation}
+
+\begin{equation}
+\Gamma_2 = \{x : Bool, y : Bool \}
+\end{equation}
+
+\begin{equation}
+\Gamma_3 = \{x : Bool, y : Bool, z : Bool \}
+\end{equation}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Typing of Variables}
+You may have noticed in the previous derivation, we used a rule we haven't defined yet! 
+\begin{equation}
+\inferrule{x : T \in \Gamma}{\Gamma \vdash x : T} \tag{T-Var}
+\end{equation}
+This rule simply states that, if a variable has a type association in $\Gamma$, we can pull that type out of $\Gamma$ and type that variable with it.  
+
+\begin{itemize}
+\item In order for this to work, however, we can't have duplicated variable names in $\Gamma$.
+\item We can use the same meta-rule that we used while describing substitution semantics.  If a conflict occurs, we relabel the term with a non-conflicting variable name.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Submit Your Application!}
+To round off our terms in pure $\lambda$-Calculus, let's address function application.
+\begin{equation}
+\inferrule{\Gamma \vdash t_1 : T_1 \Rightarrow T_2 \and \Gamma \vdash t_2 : T_{1}}{\Gamma \vdash t_1\:t_2 : T_2} \tag{T-App}
+\end{equation}
+
+Simply stated: 
+\begin{itemize}
+\item If $t_1$ evaluates to a function mapping a term typed as $T_1$ to a term typed $T_2$,
+\item and the term provided as an argument has type $T_1$, 
+\item we may conclude that the application of $t_2$ to $t_1$ has type $T_2$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{}
+\begin{center}
+\includegraphics[height=0.8\textheight]{figures/STPLC.png}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Simply Typed \textbf{Pure} $\lambda$-Calculus}
+Things of note:
+\begin{itemize}
+\item In the foregoing slide, the highlighted parts are things that have been added, relative to our operational semantics of untyped pure $\lambda$ calculus.  
+\item Fun Fact: The pure type system is actually \textbf{degenerate}.
+\begin{itemize}
+\item That is, there are \emph{no valid well-typed terms} in this calculus.  
+\end{itemize}
+\item The reason is the way we are defining types themselves.
+\item We've recursively defined T, but no base case has been provided! 
+\item This is why our examples so far have included the Booleans. 
+\end{itemize}
+\end{frame}
+
+
+\section[Properties]{Properties of Typing}
+\begin{frame}[fragile=singleslide]{Properties of Typing}
+\begin{center}
+\includegraphics[scale=0.5]{figures/settheory.png}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Inversion Lemma}
+As with TAE, it will be useful to be able to derive the types of subterms of TLC from the typing information of the superterm.  We will therefore introduce: \\
+\vspace{1em}
+\textbf{LEMMA [Inversion of the Typing Relation]}
+
+\begin{equation}
+\Gamma \vdash x : R \implies x : R \in \Gamma \tag{I-Var}
+\end{equation}
+\vspace{0em}
+\begin{equation}
+\begin{split}
+& \Gamma \vdash (\lambda x : T_1. t_2) : R \\
+\implies & \exists R_2 \:|\: R = T_1 \Rightarrow R_2 \land \Gamma , x : T_1 \vdash t_2 : R_2
+\end{split} \tag{I-Abs}
+\end{equation}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Inversion Aversion!}
+
+\begin{equation}
+\Gamma \vdash t_1\:t_2 : R \implies \exists T_{11} \:|\: \Gamma \vdash t_1 : T_{11} \Rightarrow R \land \Gamma \vdash t_2 : T_{11} \tag{I-App}
+\end{equation}
+\vspace{0em}
+\begin{equation}
+\Gamma \vdash true : R \implies R = Bool \tag{I-True}
+\end{equation}
+\vspace{0em}
+\begin{equation}
+\Gamma \vdash false : R \implies R = Bool \tag{I-False}
+\end{equation}
+\vspace{0em}
+\begin{equation}
+\begin{split}
+& \Gamma \vdash \texttt{if } t_1 \texttt{ then } t_2 \texttt{ else }  t_3 : R \\
+\implies & \Gamma \vdash t_1 : Bool \land \Gamma \vdash t_2 : R \land \Gamma \vdash t_3 : R \\
+\end{split} \tag{I-If}
+\end{equation}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Everyone is Unique!}
+Although we have chosen the path of explicit typing for TLC, so far we have only explicitly typed variables in function abstractions.
+\begin{itemize}
+\item It remains to be shown that this is sufficient to make the whole system typeable.  
+\item One property that helps convince us of this is \textbf{uniqueness}.
+\end{itemize}
+\vspace{1em}
+\textbf{THEOREM [Uniqueness of Types]}
+In a given typing context $\Gamma$, if all the free variables of a term $t$ are in the domain of $\Gamma$, $t$ has at most one type.  
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Which Means No One Is Unique!}
+Another way of stating this is that if a term is typeable, its type is unique.  
+\begin{itemize}
+\item Furthermore, there is only one derivation of this typing, which can be built from our typing relation's inference rules.  
+\end{itemize}
+\emph{Proof Sketch:}
+\begin{itemize}
+\item We essentially have to prove that not more than one typing rule can apply to any particular term at the same time.  
+\item The observation that each typing rule applies to at maximum one term of the language is actually sufficient to demonstrate this property.  
+\begin{itemize}
+\item i.e., T-App only applies to terms of the form $t_1 t_2$, etc.  
+\end{itemize}
+\end{itemize}
+It seems simple enough, but without this \emph{nothing else works.}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Make Life Take the Lemmas Back!}
+Similarly to TAE, it will be useful to have canonical forms to refer to. \\
+
+\textbf{LEMMA [Canonical Forms]}
+
+\begin{enumerate}
+\item If $v$ is a value of type $Bool$, then $v$ is either \texttt{true} or \texttt{false}.
+\item If $v$ is a value of type $T_1 \Rightarrow T_2$, then $v = \lambda x : T_1. t_2$.
+\end{enumerate}
+
+\emph{Proof Sketch:}
+\begin{itemize}
+\item This proof would proceed in the exact same manner as the canonical forms proof of TAE. 
+\item That is, Demonstrate that the exclusivity of both categories with respect to the given values.
+\end{itemize}
+\end{frame}
+
+
+\section[Progress]{Proof of Progress}
+\begin{frame}[fragile=singleslide]{Proof of Progress}
+\begin{center}
+\includegraphics[height=0.8\textheight]{figures/progress.jpg}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Progress I}
+The theorem of progress, as applied to TLC, is as follows: \\
+
+\textbf{THEOREM [Progress of Simply Typed $\lambda$-Calculus]} \\
+Suppose $t$ is a well typed term with an empty typing context (that is, $\vdash t : T$ for some T).  Either $t$ is a value, or else there is some $t'$ such that $t \rightarrow t'$. \\ 
+\vspace{1em}
+The reason we are assuming an empty typing context here is that, if we can prove this for an empty typing context, we can add as much additional typing  information as we like to $\Gamma$, and the property will still hold.  \\
+\vspace{1em}
+\emph{Proof by Induction on Typing Derivations :}
+\begin{itemize}
+\item We will proceed by case analysis over all possible typing rules:
+\begin{itemize}
+\item T-True; T-False; T-If; T-Var; T-Abs; T-App 
+\end{itemize}
+\end{itemize} 
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Progress II}
+Let's address T-True, T-False and T-If at the same time.
+\begin{itemize}
+\item Recall our proofs of these properties from the progress theorem of TAE.  Is there anything about TLC that would invalidate them?
+\item Nope! So let's save ourselves the time of repeating them.
+\end{itemize}
+What about T-Var?
+\begin{itemize}
+\item Consider the premise of T-Var: $x : T \in \Gamma$
+\item Remember that we assumed $\Gamma = \O$
+\item Since nothing can be an element of \O, T-Var can't be used under our current set of assumptions, so we don't have to worry about it! 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Progress III}
+What about T-Abs?
+\begin{itemize}
+\item $\lambda$ abstractions are values under TLC, so our theorem is trivially satisfied.  
+\end{itemize}
+What about T-App?  We can immediately state:
+\begin{mathpar}
+t = t_1\:t_2 \and \vdash t_1 : T_{11} \Rightarrow T_{12} \and \vdash t_2 : T_{11}
+\end{mathpar}
+\begin{itemize}
+\item Via the induction hypothesis, either $t_1 \in \mathcal{V}$ or $t_1 \rightarrow t_1'$.
+\item Also via the induction hypothesis, either $t_2 \in \mathcal{V}$ or $t_2 \rightarrow t_2'$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Progress IV}
+\begin{center}
+\begin{tabular}{| c | c | c |}
+\hline
+& $t_1 \in \mathcal{V}$ & $t_1 \rightarrow t_1'$  \\ \hline
+$t_2 \in \mathcal{V}$ & E-AppAbs* & E-App1 \\ \hline
+ $t_2 \rightarrow t_2'$ & E-App2 & E-App1 \\ \hline
+\end{tabular}
+\end{center}
+Applications of E-App1 and E-App2 are immediate from the evaluation rules, but E-AppAbs requires a bit more explanation.  
+\begin{itemize}
+\item In order for E-AppAbs to be applicable, $t_1$ must be of the form $\lambda x : T_{11}. t_{12}$, and $t_2$ must be a value.
+\begin{itemize}
+\item We know that $t_2 \in \mathcal{V}$
+\item We can use clause 2 of the inversion lemma to deduce $t_1$ has the correct form, because we have previously stated that $t_1 : T_{11} \Rightarrow T_{12}$
+\end{itemize}
+\end{itemize}
+\emph{Progress therefore holds for all typing rules of TLC.} \textbf{QED}
+\end{frame}
+
+\section[Preservation]{Proof of Preservation}
+\begin{frame}[fragile=singleslide]{Proof of Preservation}
+\begin{center}
+\includegraphics[height=0.8\textheight]{figures/math5.jpg}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Mutant Permutations!}
+In order to support the proof of preservation you will work together to create in tutorial next week, I'm going to throw some lemmas at you. 
+\begin{itemize}
+\item The first states that the elements of a typing context $\Gamma$ may be permuted without changing what is derivable from it.  
+\item Recall that all the variables in $\Gamma$ are presumed to be unique, and such uniqueness is guaranteed by relabelling as required.
+\end{itemize}
+\vspace{1em}
+\textbf{LEMMA [PERMUTATION]} \\
+If $\Gamma \vdash t : T$ and $\Delta$ is a permutation of $\Gamma$, then $\Delta \vdash t : T$.  Moreover, the latter derivation has the same depth as the former.  \\
+\vspace{1em}
+\emph{Proof Sketch:} Straightforward induction on typing derivations.
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Weak in the Knees}
+It can also be said that, if we can derive $t : T$ from some $\Gamma$, then we can add more items to $\Gamma$ without changing this fact. \\
+\vspace{1em}
+\textbf{LEMMA [Weakening]} \\
+If $\Gamma \vdash t : T$ and $x \notin dom(\Gamma)$, then $\Gamma, x : S \vdash t : T$.  Moreover, the latter derivation has the same depth as the former. \\
+\vspace{1em}
+\emph{Proof Sketch:} Straightforward induction on typing derivations.
+\begin{itemize}
+\item Both of the above lemmas should be fairly obvious and boring.  
+\item They will help us prove that well-typedness is preserved when variables are substituted with terms of appropriate types.  
+\end{itemize}
+This property is ubiquitous in the safety proofs of programming languages, where it is referred to as ``the substitution lemma.''
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Substitution Lemma I}
+\textbf{LEMMA [Preservation of Types Under Substitution]}
+\begin{equation}
+\Gamma, x : S \vdash t : T \land \Gamma \vdash s : S \implies \Gamma \vdash [x \mapsto s]t : T
+\end{equation} 
+\begin{itemize}
+\item Another way to state this is that, if we have some $x$ which $\Gamma$ types as $S$, and we have some $s$ that has \emph{the same type}, we can substitute $x$ for $s$ in $t$, without the type of $t$ changing. 
+\item Proof will proceed by induction over typing derivations, and using a case analysis over typing rules.   
+\end{itemize}
+Just as a reminder:
+\begin{center}
+\fbox{\includegraphics[scale=0.3]{figures/subrules4.png}}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Substitution Lemma II}
+Let's first consider T-True.
+\begin{mathpar}
+t = \texttt{true} \and T = Bool
+\end{mathpar}
+\begin{itemize}
+\item If $t$ is either Boolean literal, it is unaffected by substitution operations.  
+\item We can therefore conclude that $\Gamma \vdash [x \mapsto s] true : Bool$ is trivially true. 
+\end{itemize}
+And of course, the same argument applies to T-False.
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Substitution Lemma III}
+Consider T-If
+\begin{mathpar}
+t = \texttt{if } t_1 \texttt{ then } t_2 \texttt{ else } t_3 \\
+\Gamma, x : S \vdash t_1 : Bool \and \Gamma, x : S \vdash t_2 : T \and  \Gamma, x : S \vdash t_3 : T
+\end{mathpar}
+Using the induction hypothesis, we also have: 
+\begin{mathpar}
+\Gamma \vdash [x \mapsto s] t_1 : Bool \and \Gamma \vdash [x \mapsto s] t_2 : T \and \Gamma \vdash [x \mapsto s] t_3 : T
+\end{mathpar} 
+From here, we can apply the typing rule T-If to conclude $t : T$.  Thus, well-typedness is preserved under substitution in this case.  
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Substitution Lemma IV}
+Consider T-Var.  We can immediately state:
+\begin{mathpar}
+t = z \and z : T \in (\Gamma, x : S)
+\end{mathpar}
+\begin{itemize}
+\item That is to say, we know $t$ to be some variable (we've picked the name $z$ for no particular reason).
+\item We know that $z$ has type $T$, via the antecedent of the typing relation.  
+\end{itemize}
+If we refer back to our substitution semantics, the only factor affecting the substitution of a variable for a term is whether that term is, in fact, the variable itself.  
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Substitution Lemma V}
+\begin{itemize}
+\item Consider the case where $x = z$
+\begin{itemize}
+\item $[x \mapsto s] z$ would then evaluate to $s$. 
+\item $x = z \land z = t \implies x = t$  
+\item Via the uniqueness of types, $x : S \land t : T \implies S = T$
+\item Subbing these results into equation 17...
+\end{itemize}
+\begin{equation}
+\Gamma, x : S \vdash x : S \land \Gamma \vdash s : S \implies \Gamma \vdash s : S
+\end{equation}
+\begin{itemize}
+\item Our conclusion is explicitly one of our premises! 
+\end{itemize}
+\item Now consider $x \neq z$
+\begin{itemize}
+\item $[x \mapsto s] z$ would then evaluate to $z$ (and from there to $t$).
+\end{itemize}
+\begin{equation}
+\Gamma, x : S \vdash t : T \land \Gamma \vdash s : S \implies \Gamma \vdash t : T
+\end{equation}
+\item By applying the weakening lemma to the conclusion, our conclusion has the first form as the first premise.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Substitution Lemma VI}
+Let's consider T-Abs.  We immediately have: 
+\begin{mathpar}
+t = \lambda y : T_2. t_1 \and T = T_2 \Rightarrow T_1 \and \Gamma, x : S, y : T_2 \vdash t_1 : T_1 
+\end{mathpar}
+By our meta-rule of substitutions in $\lambda$ expressions, we derive:
+\begin{mathpar}
+x \neq y \and y \notin FV(s)
+\end{mathpar}
+Using the the permutation lemma on the rightmost equation: 
+\begin{equation}
+\Gamma, y : T_2, x : S \vdash t_1 : T_1
+\end{equation}
+Using the weakening lemma on $\Gamma \vdash s : S$: 
+\begin{equation}
+\Gamma, y : T_2 \vdash s : S
+\end{equation}
+By the induction hypothesis: 
+\begin{equation}
+\Gamma, y : T_2 \vdash [x \mapsto s] t_1 : T_1. 
+\end{equation}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Substitution Lemma VII}
+Recall T-Abs:
+\begin{equation}
+\inferrule{\Gamma, x : T_1 \vdash t_2 : T_2}{\Gamma \vdash \lambda x : T_1 . t_2 : T_1 \Rightarrow T_2}
+\end{equation}
+Applying this to equation 22, we get:
+\begin{equation}
+\Gamma \vdash \lambda y : T_2 . [x \mapsto s] t_1 : T_2 \Rightarrow T_1
+\end{equation}
+The definition of substitution is:
+\begin{equation}
+[x \mapsto s](\lambda y : T_2.t_1) = \lambda y : T_2. [x \mapsto s] t_1
+\end{equation}
+\begin{itemize}
+\item The left-hand side is of type $T_2 \Rightarrow T_1$ from our original case analysis.
+\item The right-hand side has the same type via equations 20 - 24.
+\end{itemize}
+Therefore, well-typedness is preserved by substitution in this case.  
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Substitution Lemma VIII}
+Finally, let's consider T-App.  We immediately have: 
+\begin{mathpar}
+t = t_1\:t_2 
+\and \Gamma, x : S \vdash t_1 : T_2 \Rightarrow T_1 
+\and \Gamma, x : S \vdash t_2 : T_2 
+\and T = T_1 
+\end{mathpar}
+Via the induction hypothesis, we also have:
+\begin{mathpar}
+\Gamma \vdash [x \mapsto s] t_1 : T_2 \Rightarrow T_1 
+\and \Gamma \vdash [x \mapsto s] t_2 : T_2
+\end{mathpar}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Substitution Lemma IX}
+Recall the typing rule for application (with some slight renaming):
+\begin{equation}
+\inferrule{\Gamma \vdash t_1 : T_2 \Rightarrow T \and \Gamma \vdash t_2 : T_2}{\Gamma \vdash t_1\:t_2 : T}
+\end{equation}
+And recall our substitution rule for application...
+\begin{equation}
+[x \mapsto s](t_1\:t_2) = [x \mapsto s]t_1\:[x \mapsto s]t_2
+\end{equation}
+By applying T-App to our induction hypotheses, we determine that:
+\begin{equation}
+\Gamma \vdash ([x \mapsto s]t_1\:[x \mapsto s]t_2) : T
+\end{equation}
+Thus, typing is preserved over substitution in the case of function application. 
+\begin{itemize}
+\item \textbf{QED!}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Last Slide Comic}
+\begin{center}
+\includegraphics[height=0.8\textheight]{figures/virus.png} 
+\end{center}
+\end{frame}
+
+\end{document}

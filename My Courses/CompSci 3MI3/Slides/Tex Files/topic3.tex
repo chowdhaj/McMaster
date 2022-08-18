@@ -1,0 +1,539 @@
+\documentclass[11pt]{beamer}
+\usetheme{Dresden}
+%\usecolortheme{beaver}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{syntax}
+\usepackage{mathpartir}
+\author{NCC Moore}
+\title{Topic 3 - Syntax \& Untyped Arithmetic Expressions}
+\institute{McMaster University} 
+\date{Fall 2021} 
+\subject{COMPSCI 3MI3 - Principles of Programming Languages} 
+\stepcounter{section}
+
+%\renewcommand{\texttt}[1]{\OldTexttt{\color{teal}{#1}}}
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.05}
+\definecolor{mGreen2}{rgb}{0.05,0.65,0.05}
+\definecolor{mGray2}{rgb}{0.55,0.55,0.55}
+\definecolor{mPurple2}{rgb}{0.63,0.05,0.05}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+\definecolor{backgroundColour2}{rgb}{0.95,0.92,0.95}
+
+\lstdefinestyle{C}{
+    backgroundcolor=\color{backgroundColour},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{mGray},
+    stringstyle=\color{mPurple},    
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\definecolor{burntOrange}{rgb}{1, 0.4, 0.1} 
+\usecolortheme[named=burntOrange]{structure} 
+
+\begin{document}
+
+\begin{frame}
+\center
+COMPSCI 3MI3 - Principles of Programming Languages
+\titlepage
+
+Adapted from ``Types and Programming Languages'' by Benjamin C. Pierce 
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\section[Intro]{Introduction}
+\begin{frame}[fragile=singleslide]{Introduction}
+In order to talk more rigorously about programming languages, we need to learn the languages of formal language description.  
+\begin{itemize}
+\item To do so, we will discuss a very small (almost trivial) language of numbers and booleans, \textbf{Untyped Arithmetic Expressions (UAE)}  
+\item We will use formal mathematical tools to reason about:
+\begin{itemize}
+\item Abstract syntax
+\item Evaluation
+\item Modelling of run-time errors
+\end{itemize}
+\end{itemize} 
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Basic Nomenclature}
+The following nomenclature will be essential going forward.  We will describe these informally now, and more formally as they come up throughout the course.  
+\begin{itemize}
+\item \textbf{Literal} $\rightarrow$ The base of expressions.  Examples include \texttt{4}, \texttt{9}, \texttt{true}, and \texttt{82.4}  
+\item \textbf{Identifier} $\rightarrow$ Things we assign names to in our code, like \texttt{foo}, \texttt{bar}, \texttt{myFunc} and \texttt{myObject}
+\item \textbf{Expression} $\rightarrow$ Literals and Identifiers, plus an assortment of operators.  For example, \texttt{3 + 5}, \texttt{True || False}
+\item \textbf{Statement} $\rightarrow$ Imperative commands like if-statements, loops, assignment statements, return statements, and the like.  
+\end{itemize}
+All of these things are \textbf{terms}, but terms can be other things as well.
+\end{frame}
+
+\section[EBNF]{Extended Backus Naur Form}
+\begin{frame}[fragile=singleslide]{Extended Backus Naur Form}
+In order to define a language, we must have a way to define the grammar of that language.  \textbf{EBNF} is a standardized notation that computer scientists use to define languages.  
+\begin{itemize}
+\item The concept is somewhat similar to regular expressions.
+\item In EBNF, we create \textbf{rules}, which define valid grammatical constructions.
+\item These rules may be nested inside each other, and may be recursive.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{EBNF Examples}
+The following grammar describes how we write the integers. \\
+\dotfill
+\begin{grammar}
+<Integer> ::= [-]<digit>\{<digit>\}
+
+<digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 
+\end{grammar}
+\dotfill
+\begin{itemize}
+\item Here, we have two rules.  The top level rule, \texttt{$<$Integer$>$}, and a sub-rule, \texttt{$<$digit$>$}.
+\item ``\texttt{|}'' denotes a set of options.  For example, \texttt{$<$digit$>$} can be any of the numbers indicated, but no others.  
+\item ``\texttt{[]}'' denote something which is optional.  For example, the negative sign denoting a negative integer may be absent. 
+\item ``\texttt{\{\}}'' denote zero or more repetitions of the contents.  For example, zero or more digits may follow the first.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{EBNF Examples}
+The following grammar is for writing hexadecimal integers. \\
+\dotfill
+\begin{grammar}
+<Hex Integer> ::= [-]<hex digit>\{<hex digit>\}
+
+<hex digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | A | B | C | D | E | F
+\end{grammar}
+\dotfill \\
+Note that the grammar describing decimal integers is a \textbf{subset of} the grammar for hexadecimal integers.  
+\begin{itemize}
+\item Although every \texttt{Integer} is also a \texttt{Hex Integer}, this does not imply anything about how either group would be interpretted.  
+\item EBNF describes \emph{syntax}, not \emph{semantics}!
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Death and Syntaxes!}
+Here are a few more example grammars:
+\begin{itemize}
+\item A Python list.  Items in quotes are taken literally.
+\end{itemize}
+\dotfill
+\begin{grammar}
+<List> ::= `[' <Object List> `]'
+
+<Object List> ::= <Object>, <Object List> | <Object>
+\end{grammar}
+\dotfill
+\begin{itemize}
+\item A Python function.  
+\end{itemize}
+\dotfill
+\begin{grammar}
+<Function> ::= def <Identfier> (<Argument List>) : `\\n\\t' <Statement List>
+\end{grammar}
+\dotfill
+\end{frame}
+
+\section[UAE Syntax]{Untyped Arithmetic Expression Syntax}
+\begin{frame}{Untyped Aritmetic Expressions!}
+%\includegraphics[scale=1]{figures/here_to_help.png}
+\begin{center}
+\includegraphics[scale=0.4]{figures/here-to-help.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{UAE Syntax}
+We are going to use a number of conventions to describe UAE, starting with EBNF. \\
+\dotfill
+\begin{grammar}
+<t> ::= true
+\alt false
+\alt if <t> then <t> else <t>
+\alt 0
+\alt succ <t>
+\alt pred <t>
+\alt iszero <t>
+\end{grammar}
+\dotfill \\
+Here, \texttt{t} is a \textbf{metavariable}.  EBNF is a \textbf{metalanguage} (a language which describes languages), and \texttt{t} is a variable of that language.
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Semantic Observations}
+You may have noticed that we are defining the natural numbers in terms of zero and a successor function, similar to Peano Arithmetic.  
+\begin{itemize}
+\item For convenience, we will sometimes abbreviate successive applications of \texttt{succ} using arabic numerals. For example,
+\end{itemize}
+\begin{equation}
+succ(succ(succ(0))) = 3
+\end{equation}
+\begin{itemize}
+\item We will use a number of metavariable names, such as \texttt{s}, \texttt{t}, \texttt{u} and \texttt{v} throughout this course, in the same way that we might use \texttt{n} and \texttt{m} for natural numbers.  
+\item You may notice as well that we have a very minimal number of operations on our three literals, \texttt{true}, \texttt{false}, and \texttt{0}.
+\item We only have a conditional, a predicate testing if a term is eqivalent to zero, a successor and a predecessor.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Writing Expressions}
+We compose terms in our language using our recursive grammar.
+\begin{lstlisting}[style=C]
+if false then 0 else 1
+ >> 1
+iszero pred succ 0
+ >> true
+\end{lstlisting}
+We will use $>>$ to denote the \textbf{values} resulting from executing small programs in our small languages.  For ease of reading, we will also often use:
+\begin{itemize}
+\item Round braces for grouping and precedence.
+\item Semicolons to terminate lines.
+\end{itemize}
+\begin{lstlisting}[style=C]
+if false then 0 else 1;
+iszero (pred (succ 0));
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Invalid Forms}
+Note that, according to our grammar, we can construct a number invalid programs, such as:
+
+\begin{lstlisting}[style=C]
+if 0 then 0 else 0;
+succ true;
+iszero false;
+\end{lstlisting}
+Our grammar alone is not sufficient to preclude this type of error.  Remember, grammars do not  describe semantics, only syntax! The above statements are equivalent to an English sentence like ``Plastic orbits acrue Dakota portably.''  Grammatically correct, but nonsense.  
+\begin{itemize}
+\item In general, these are examples of \textbf{type errors}.
+\item This type of error is precisely the sort of thing we want our type system to exclude.
+\end{itemize}
+\end{frame}
+
+\section[Syntax]{Several Descriptions of Syntax}
+\begin{frame}[fragile=singleslide]{Define Your Terms!}
+In the previous section, we defined the language of a small grammar using EBNF.  Let's examine some equivalent descriptions using the following:
+\begin{itemize}
+\item Defining Terms Inductively
+\item Defining Terms Using Inference Rules
+\item Defining Terms Concretely
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Inductive Definition}
+The set of \emph{terms} is the smallest set $\mathcal{T}$ such that:
+\begin{equation}
+\{\texttt{true}, \texttt{false}, \texttt{0}\} \subseteq \mathcal{T}
+\end{equation}
+\begin{equation}
+t_1 \in \mathcal{T}, \implies \{\texttt{succ}\: t_1, \texttt{pred}\: t_1, \texttt{iszero}\: t_1\} \subseteq \mathcal{T}
+\end{equation}
+\begin{equation}
+t_1, t_2, t_3 \in \mathcal{T} \implies \{ \texttt{if}\: t_1 \:\texttt{then}\: t_2 \:\texttt{else}\: t_3\} \subseteq \mathcal{T}
+\end{equation}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Induction! And Destruction!}
+Inductive definitions are ubiquitous in the study of programming languages.  
+\begin{itemize}
+\item The first clause gives us three simple expressions that are in $\mathcal{T}$. 
+\item The second and third clauses give us four compound expressions that are in $\mathcal{T}$.
+\item The word ``smallest'' tells us that $\mathcal{T}$ has no elements except those required by the above clauses.  
+\end{itemize}
+Fundamentally, this defines our set of terms as a set of \emph{trees}.  Although this grammar does not mention parentheses, we will use them for clarification.  
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Terms By Rules of Inference}
+We can also use rules of inference to represent our grammar, similarly to rules of \emph{natural deduction} used in the presentation of logical systems.  \\
+
+$\mathcal{T}$ shall be the set of terms defined by the following rules: 
+\begin{center}
+\begin{mathpar}
+\texttt{true} \in \mathcal{T} 
+\and \texttt{false} \in \mathcal{T}
+\and \texttt{0} \in \mathcal{T} \\
+\and \inferrule{t \in \mathcal{T}}{\texttt{succ}\: t \in \mathcal{T} \and \texttt{pred}\: t \in \mathcal{T} \and \texttt{iszero}\: t \in \mathcal{T}} \\
+\and \inferrule{t_1 \in \mathcal{T} \and t_2 \in \mathcal{T} \and t_3 \in \mathcal{T}}{\texttt{if}\: t_1 \: \texttt{then} \: t_2 \: \texttt{else} \: t_3 \in \mathcal{T}}
+\end{mathpar}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Powers of Inference}
+Rules of inference are read, ``if we have established the premise(s) above the line, we may derive the conclusion(s) below the line.''  
+\begin{itemize}
+\item These are also referred to as \textbf{antecedents} and \textbf{consequents}.  
+\item In this type of formulation, the fact that $\mathcal{T}$ the smallest set satisfying these rules is often not stated explicitly.  
+\item Rules with no premises (such as $\texttt{true} \in \mathcal{T}$) are often called \textbf{axioms}.  
+\item Formally, the above ``inference rules'' are properly termed ``rule schemas''.  
+\begin{itemize}
+\item They may represent infinite sets of concrete rules, via the inclusion of \textbf{metavariables}.
+\end{itemize}
+\end{itemize} 
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Terms, Concretely}
+For each natural number $i$, define the set $S_i$ as follows:
+\begin{align*}
+S_0 &= \varnothing \\
+S_{i+1} &= \:\:\:\:\{true, false, 0\} \\
+& \:\:\:\:\:\cup \{t \in S_i \:|\: \texttt{succ}\: t, \texttt{pred}\: t, \texttt{iszero}\: t\} \\
+& \:\:\:\:\:\cup \{t_1, t_2, t_3 \in S_i | \texttt{if}\: t_1\: \texttt{then}\: t_2 \: \texttt{else} \: t_3\} \\
+\text{And let} \\
+S &= \bigcup_i S_i
+\end{align*}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Concrete and Steel}
+The previous description provides not only a definition for the language, but a mechanism for generating the terms of the language as well.
+\begin{itemize}
+\item $S_0$ is empty.
+\item $S_1$ contains only our constants
+\item $S_2$ contains all terms built from our constants
+\item $S_3$ contains all terms built from the terms in $S_2$
+\item And so on...
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Does $\mathcal{T} = S$?}
+While it may be obvious to casual inspection that the inductive forumation of UAE is equivalent to the constructive formulation, a rigorous mathematician doesn't jump to such conclusions!
+\begin{itemize}
+\item Proving that the two formulations are equivalent will expose any inequivalencies, should they exist.  
+\item Such inequivalencies, if carried forward, may have disastrous consequences! 
+\end{itemize}
+As a demonstration of mathematical reasoning over these formulations, we will prove that the set of terms $\mathcal{T}$, inductively defined, is equivalent to the set $S$, which has been constructively defined.  
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Let's Prove $\mathcal{T} = S$}
+We defined $\mathcal{T}$ as the smallest set satisfying the following conditions:
+\begin{equation}
+\{\texttt{true}, \texttt{false}, \texttt{0}\} \subseteq \mathcal{T}
+\end{equation}
+\begin{equation}
+t_1 \in \mathcal{T}, \implies \{\texttt{succ}\: t_1, \texttt{pred}\: t_1, \texttt{iszero}\: t_1\} \subseteq \mathcal{T}
+\end{equation}
+\begin{equation}
+t_1, t_2, t_3 \in \mathcal{T} \implies \{ \texttt{if}\: t_1 \:\texttt{then}\: t_2 \:\texttt{else}\: t_3\} \subseteq \mathcal{T}
+\end{equation}
+To prove $S = \mathcal{T}$, it is sufficient to prove:
+\begin{itemize}
+\item That $S$ also satisfies the above conditions.
+\item For $S'$, which represents any set satisfying the above conditions, $S$ must be a subset of that set.  That is, $S$ is always \emph{smaller than or equal to} a generic set satisfying the conditions.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Does $S$ Satisfy the Inductive Definition?}
+Let's consider our conditions one at a time.
+\begin{itemize}
+\item $\{\texttt{true}, \texttt{false}, \texttt{0}\} \subseteq \mathcal{T}$
+\begin{itemize}
+\item In our constructive definition, $S_1$ contains only these constant terms.  
+\begin{equation}
+\therefore \{\texttt{true}, \texttt{false}, \texttt{0}\} = S_1 \subseteq S
+\end{equation}
+\end{itemize}
+\item $t \in \mathcal{T}, \implies \{\texttt{succ}\: t, \texttt{pred}\: t, \texttt{iszero}\: t\} \subseteq \mathcal{T}$
+\begin{itemize}
+\item If $t \in S$, then it follows that $t$ must be an element of some $S_i$, since there is no other possible origin for $t$.  
+\item Given that one of sets used to construct $S_{i+1}$ is $\{t \in S_i \:|\: \texttt{succ}\: t, \texttt{pred}\: t, \texttt{iszero}\: t\}$, and since $S_{i+1} \subset S$, it follows that: 
+\begin{equation}
+\texttt{succ}\: t, \texttt{pred}\: t, \text{and}\: \texttt{iszero}\: t \in S
+\end{equation}
+\end{itemize}
+\item The same argument as above may be applied to $t_1, t_2, t_3 \in \mathcal{T} \implies \{ \texttt{if}\: t_1 \:\texttt{then}\: t_2 \:\texttt{else}\: t_3\} \subseteq \mathcal{T}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Is $S$ the Smallest?}
+Suppose some set $S'$ satisfies the conditions set out in our inductive definition of $\mathcal{T}$.  We will start by proving, via complete induction, that $S_i \subseteq S'$.  It will be then trivial to show that $S \subseteq S'$  
+\begin{itemize}
+\item Premise: $\forall j < i$, assume $S_j \subseteq S$.  
+ \begin{itemize}
+ \item Case: $i = 0$
+  \begin{itemize}
+  \item If $i = 0$, then $S_0 = \varnothing$, which is trivially $\in S'$ 
+  \end{itemize}
+ \item Otherwise, $i = j+1$ for some $j \in \mathbb{N}$
+  \begin{itemize}
+  \item Let $t \in S_{j+1}$. $S_{j+1}$ is constructed from three smaller sets, so $t$ has three possible origins.
+\begin{equation}
+t \in \{\texttt{true}, \texttt{false}, \texttt{0}\}
+\end{equation}
+\begin{equation}
+t \in \{\texttt{succ}\: t_1, \texttt{pred}\: t_1, \texttt{iszero}\: t_1\}
+\end{equation} 
+\begin{equation}
+t = \texttt{if}\: t_1 \:\texttt{then}\: t_2 \:\texttt{else}\: t_3 
+\end{equation}
+  Where $t_1,t_2, t_3 \in S_j$
+  \end{itemize}
+ \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Is $S$ the Smallest? (cont.)}
+\begin{itemize}
+\item Following from this:
+\begin{itemize}
+\item For equation 10, we know $t \in S'$ via equation 5 above.
+\item For equation 11, we know $t \in S'$ via equation 6 above, and the fact that $t_1 \in S'$ via the induction hypthosesis.
+\item For equation 12, we know $t \in S'$ via equation 7 above, and the induction hypothesis over $t_1, t_2 \:\text{and}\: t_3$.
+\end{itemize}
+\item Since every possible $t$ is an element of $S'$, it follows that $S_i$, which is the union of every $t$ we just discussed, is also a subset of $S'$, thus completing our inductive sub-proof.
+\item By a similar argument, since each $S_i \subseteq S'$, and $S$ is the union of all $S_i$, it follows that $S \subseteq S'$.
+\item Therefore, for any arbitrarily constructed set $S'$ satisfying the conditions of $\mathcal{T}$, the $S$ obtained by our constructive definition is at most as big as $S'$.  Therefore, $S$ is the \emph{smallest set for which the conditions hold}.
+\end{itemize}
+\end{frame}
+
+\section[Induction]{Induction on Terms}
+\begin{frame}[fragile=singleslide]{Induction on Terms}
+\begin{center}
+\includegraphics[scale=0.4]{figures/proofs.png} \\
+``Induction is the glory of science and the scandal of philosophy.'' \\-- C.D. Broad
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Depth and Size}
+To facilitate reasoning about current and future languages, it will be useful to define the concepts \textbf{depth} and \textbf{size}. 
+\begin{itemize}
+\item The depth of a term is analogous to the depth of a tree, i.e., the longest path from our starting term to a terminal constant.
+\item Continuing the tree analogy, the size of a term is the number of nodes in the tree.  Here, a node is any of the terms described by our grammar.  
+\end{itemize} 
+In addition, it will be useful to be able to extract the set of constants used in any particular term.
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Set of Constants}
+The set of constants appearing in a term $t$, written $Consts(t)$ is written as follows: \\
+\vspace{0.5em}
+\begin{tabular}{ l  l  l }
+$Consts(\texttt{true})$ & $=$ & $\{ \texttt{true}\}$ \\ 
+$Consts(\texttt{false})$ & $=$ & $\{ \texttt{false}\}$ \\
+$Consts(\texttt{0})$ & $=$ & $\{ \texttt{0}\}$ \\
+$Consts(\texttt{succ}\: t_1)$ & $=$ & $Consts(t_1)$ \\
+$Consts(\texttt{pred}\: t_1)$ & $=$ & $Consts(t_1)$ \\
+$Consts(\texttt{iszero}\: t_1)$ & $=$ & $Consts(t_1)$ \\
+$Consts(\texttt{if}\: t_1 \:\texttt{then}\: t_2 \:\texttt{else}\: t_3)$ & $=$ &  $Consts(t_1) \cup Consts(t_2)$\\
+ & & $\:\:\:\:\cup\:Consts(t_3)$\\
+\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Size of a Term}
+The size of a term $t$, written $size(t)$ is written as follows: \\
+\vspace{0.5em}
+\begin{tabular}{ l  l  l }
+$size(\texttt{true})$ & $=$ & $1$ \\ 
+$size(\texttt{false})$ & $=$ & $1$ \\
+$size(\texttt{0})$ & $=$ & $1$ \\
+$size(\texttt{succ}\: t_1)$ & $=$ & $size(t_1) + 1$ \\
+$size(\texttt{pred}\: t_1)$ & $=$ & $size(t_1) + 1$ \\
+$size(\texttt{iszero}\: t_1)$ & $=$ & $size(t_1) + 1$ \\
+$size(\texttt{if}\: t_1 \:\texttt{then}\: t_2 \:\texttt{else}\: t_3)$ & $=$ & $size(t_1) + size(t_2) + size(t_3) + 1$ \\
+ & & \\
+\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Depth of a Term}
+The depth of a term $t$, written $depth(t)$ is written as follows: \\
+\vspace{0.5em}
+\begin{tabular}{ l  l  l }
+$depth(\texttt{true})$ & $=$ & $1$ \\ 
+$depth(\texttt{false})$ & $=$ & $1$ \\
+$depth(\texttt{0})$ & $=$ & $1$ \\
+$depth(\texttt{succ}\: t_1)$ & $=$ & $depth(t_1) + 1$ \\
+$depth(\texttt{pred}\: t_1)$ & $=$ & $depth(t_1) + 1$ \\
+$depth(\texttt{iszero}\: t_1)$ & $=$ & $depth(t_1) + 1$ \\
+$depth(\texttt{if}\: t_1 \:\texttt{then}\: t_2 \:\texttt{else}\: t_3)$ & $=$ & $max(depth(t_1), depth(t_2),$ \\
+ & & $\:\:\:\: depth(t_3)) + 1$ \\
+\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Induction on Size and Depth}
+With these new definitions, we can now introduce three exciting new forms of induction! 
+\vspace{0.5em}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\textbf{[Induction on Size]}
+\begin{itemize}
+\item If, for $s \in \mathcal{T}$
+\begin{itemize}
+\item Given $P(r)$ for all $r$ such that $size(r) < size(s)$
+\item we can show $P(s)$
+\end{itemize}
+\item We may conclude $\forall s \in \mathcal{T} \:|\: P(s)$
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\textbf{[Induction on depth]}
+\begin{itemize}
+\item If, for $s \in \mathcal{T}$
+\begin{itemize}
+\item Given $P(r)$ for all $r$ such that $depth(r) < depth(s)$
+\item we can show $P(s)$
+\end{itemize}
+\item We may conclude $\forall s \in \mathcal{T} \:|\: P(s)$
+\end{itemize}
+\end{column}
+\end{columns}
+\vspace{0.5em}
+These two forms of induction are derived from Complete Induction over $\mathbb{N}$
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Structural Induction over Terms}
+\textbf{[Structural Induction Over Terms]}
+\begin{itemize}
+\item If, for $s \in \mathcal{T}$
+\item We can show $P(c)$ for the language constants, and
+\begin{itemize}
+\item Given $P(r)$ for all immediate subterms of $r$ of $s$
+\item we can show $P(s)$
+\end{itemize}
+\item We may conclude $\forall s \in \mathcal{T} \:|\: P(s)$
+\end{itemize}
+These methods of induction are equivalent to each other, but using one or the other can \emph{simplify our proofs}.
+\begin{itemize}
+\item Formally, these three forms of induction are interderivable.  
+\item As a matter of style, we will often use structural induction:
+\begin{enumerate}
+\item Because it is a bit more intuitive.
+\item To avoid having to detour into numbers.
+\end{enumerate}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Structural Induction over Terms (cont.)}
+In general, proofs in the above style will have the following structure:
+\begin{itemize}
+\item We are given a term $t$ and a property $P$.
+\item We assume $P$ holds for all subterms of $t$.
+\item We then break the proof into cases.  Our goal is to demonstrate $P(t)$, for each possible subterm.  
+\item Since languages can have a \emph{lot} of terms, we will often only create proofs explicitly for the interesting cases.  
+\begin{itemize}
+\item What constitutes an ``uninteresting'' case will become more obvious as we progress through the course.  
+\end{itemize}
+\item This will be sufficient to complete our proof.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Last Slide Comic}
+\begin{center}
+\includegraphics[scale=0.3]{figures/recursion.png}
+\end{center}
+\end{frame}
+
+\end{document}

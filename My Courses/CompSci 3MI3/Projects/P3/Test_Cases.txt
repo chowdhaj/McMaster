@@ -1,0 +1,382 @@
+// Boolean Truth Value
+
+*Main> x = (Val Tru)
+*Main> run x
+Expression Typechecks as : BOOL
+
+ |> Val Tru
+ |> memory = []
+Val Tru
+
+-------------------------------------------
+// Boolean Falsity Value
+
+*Main> x = (Val Fls)
+*Main> run x
+Expression Typechecks as : BOOL
+
+ |> Val Fls
+ |> memory = []
+Val Fls
+
+-------------------------------------------
+// Simple If-then-else (invalid)
+
+*Main> x = (If (Val Tru) (Val Fls) (Val Z))
+*Main> run x
+[...]
+*** Exception: Error! Typechecking Failed!
+-------------------------------------------
+// Simple If-then-else (valid)
+
+*Main> x = (If (Val Tru) (Val Fls) (Val Tru))
+*Main> run x
+Expression Typechecks as : BOOL
+
+ |> If (Val Tru) (Val Fls) (Val Tru)
+ |> memory = []
+
+ |> Val Fls
+ |> memory = []
+Val Fls
+
+-------------------------------------------
+// Predecessor & Successor Chain
+
+*Main> x = Pred $ Succ $ Succ $ Pred $ Succ $ Succ $ Val Z
+*Main> run x
+Expression Typechecks as : NAT
+
+ |> Pred (Succ (Succ (Pred (Succ (Succ (Val Z))))))
+ |> memory = []
+
+ |> Pred (Succ (Succ (Pred (Succ (Val (SuccNV Z))))))
+ |> memory = []
+
+ |> Pred (Succ (Succ (Pred (Val (SuccNV (SuccNV Z))))))
+ |> memory = []
+
+ |> Pred (Succ (Succ (Val (SuccNV Z))))
+ |> memory = []
+
+ |> Pred (Succ (Val (SuccNV (SuccNV Z))))
+ |> memory = []
+
+ |> Pred (Val (SuccNV (SuccNV (SuccNV Z))))
+ |> memory = []
+
+ |> Val (SuccNV (SuccNV Z))
+ |> memory = []
+Val (SuccNV (SuccNV Z))
+
+-------------------------------------------
+// Numeric Zero Value
+
+*Main> x = (Val Z)
+*Main> run x
+Expression Typechecks as : NAT
+
+ |> Val Z
+ |> memory = []
+Val Z
+
+-------------------------------------------
+// IsZero of pred-succ chain (true)
+
+*Main> x = IsZero $ Pred $ Pred $ Succ $ Succ $ Val Z
+*Main> run x
+Expression Typechecks as : BOOL
+
+ |> IsZero (Pred (Pred (Succ (Succ (Val Z)))))
+ |> memory = []
+
+ |> IsZero (Pred (Pred (Succ (Val (SuccNV Z)))))
+ |> memory = []
+
+ |> IsZero (Pred (Pred (Val (SuccNV (SuccNV Z)))))
+ |> memory = []
+
+ |> IsZero (Pred (Val (SuccNV Z)))
+ |> memory = []
+
+ |> IsZero (Val Z)
+ |> memory = []
+
+ |> Val Tru
+ |> memory = []
+Val Tru
+
+-------------------------------------------
+// IsZero of pred-succ chain (false)
+
+*Main> x = IsZero $ Pred $ Pred $ Succ $ Succ $ Succ $ Val Z
+*Main> run x
+Expression Typechecks as : BOOL
+
+ |> IsZero (Pred (Pred (Succ (Succ (Succ (Val Z))))))
+ |> memory = []
+
+ |> IsZero (Pred (Pred (Succ (Succ (Val (SuccNV Z))))))
+ |> memory = []
+
+ |> IsZero (Pred (Pred (Succ (Val (SuccNV (SuccNV Z))))))
+ |> memory = []
+
+ |> IsZero (Pred (Pred (Val (SuccNV (SuccNV (SuccNV Z))))))
+ |> memory = []
+
+ |> IsZero (Pred (Val (SuccNV (SuccNV Z))))
+ |> memory = []
+
+ |> IsZero (Val (SuccNV Z))
+ |> memory = []
+
+ |> Val Fls
+ |> memory = []
+Val Fls
+
+-------------------------------------------
+// IsZero (invalid)
+
+*Main> x = IsZero $ Val UnitV
+*Main> run x
+[]
+*** Exception: Error! Typechecking Failed!
+-------------------------------------------
+// Two-step UAE
+
+*Main> x = If (IsZero (Val Z)) (Val Tru) (Val Fls)
+*Main> run x
+Expression Typechecks as : BOOL
+
+ |> If (IsZero (Val Z)) (Val Tru) (Val Fls)
+ |> memory = []
+
+ |> If (Val Tru) (Val Tru) (Val Fls)
+ |> memory = []
+
+ |> Val Tru
+ |> memory = []
+Val Tru
+
+-------------------------------------------
+// Abstraction (λ-Calc True)
+
+*Main> x = Val $ L Q NAT $ Val $ L F NAT $ Val $ Var Q 
+*Main> run x
+Expression Typechecks as : Arrow NAT (Arrow NAT NAT)
+
+ |> Val (L Q NAT (Val (L F NAT (Val (Var Q)))))
+ |> memory = []
+Val (L Q NAT (Val (L F NAT (Val (Var Q)))))
+
+-------------------------------------------
+// Application
+
+*Main> x = (App (Val (L Q NAT (Val (L F NAT (Val (Var Q)))))) (Val Z))
+*Main> run x
+Expression Typechecks as : Arrow NAT NAT
+
+ |> App (Val (L Q NAT (Val (L F NAT (Val (Var Q)))))) (Val Z)
+ |> memory = []
+
+ |> Val (L F NAT (Val Z))
+ |> memory = []
+Val (L F NAT (Val Z))
+
+-------------------------------------------
+// Abstraction (λ-Calc False)
+
+*Main> fls = Val $ L Q BOOL $ Val $ L R BOOL $ Val $ Var R
+*Main> run fls
+Expression Typechecks as : Arrow BOOL (Arrow BOOL BOOL)
+
+ |> Val (L Q BOOL (Val (L R BOOL (Val (Var R)))))
+ |> memory = []
+Val (L Q BOOL (Val (L R BOOL (Val (Var R)))))
+
+-------------------------------------------
+// Function As Argument
+
+*Main> func = Val (L X (Arrow NAT BOOL) (App (Val (Var X)) (Val Z)))
+*Main> run func
+Expression Typechecks as : Arrow (Arrow NAT BOOL) BOOL
+
+ |> Val (L X (Arrow NAT BOOL) (App (Val (Var X)) (Val Z)))
+ |> memory = []
+Val (L X (Arrow NAT BOOL) (App (Val (Var X)) (Val Z)))
+*Main> 
+
+-------------------------------------------
+// Function As Arugment Full Application
+
+*Main> func = App (Val (L X (Arrow NAT BOOL) (App (Val (Var X)) (Val Z)))) (Val (L Y NAT (IsZero (Val (Var Y)))))
+*Main> run func
+Expression Typechecks as : BOOL
+
+ |> App (Val (L X (Arrow NAT BOOL) (App (Val (Var X)) (Val Z)))) (Val (L Y NAT (IsZero (Val (Var Y)))))
+ |> memory = []
+
+ |> App (Val (L Y NAT (IsZero (Val (Var Y))))) (Val Z)
+ |> memory = []
+
+ |> IsZero (Val Z)
+ |> memory = []
+
+ |> Val Tru
+ |> memory = []
+Val Tru
+
+-------------------------------------------
+// Unit Value
+
+*Main> u = Val UnitV
+*Main> run u
+Expression Typechecks as : Unit
+
+ |> Val UnitV
+ |> memory = []
+Val UnitV
+
+-------------------------------------------
+// Let Binding
+
+*Main>  x = (Let X (Val UnitV) (App (Val (L X Unit (Val (Var X)))) (Val (Var X))))
+*Main> run x
+Expression Typechecks as : Unit
+
+ |> Let X (Val UnitV) (App (Val (L X Unit (Val (Var X)))) (Val (Var X)))
+ |> memory = []
+
+ |> App (Val (L A Unit (Val (Var A)))) (Val UnitV)
+ |> memory = []
+
+ |> Val UnitV
+ |> memory = []
+Val UnitV
+
+-------------------------------------------
+// Single Sequencing
+
+*Main> x = (Seq (Val UnitV) (IsZero (Val Z)))
+*Main> run x
+Expression Typechecks as : BOOL
+
+ |> Seq (Val UnitV) (IsZero (Val Z))
+ |> memory = []
+
+ |> IsZero (Val Z)
+ |> memory = []
+
+ |> Val Tru
+ |> memory = []
+Val Tru
+
+-------------------------------------------
+// Multiple Sequencing
+
+*Main> x = Seq (Val UnitV) $ Seq (Val UnitV) $ Seq (Val UnitV) $ (Val Tru)
+*Main> run x
+Expression Typechecks as : BOOL
+
+ |> Seq (Val UnitV) (Seq (Val UnitV) (Seq (Val UnitV) (Val Tru)))
+ |> memory = []
+
+ |> Seq (Val UnitV) (Seq (Val UnitV) (Val Tru))
+ |> memory = []
+
+ |> Seq (Val UnitV) (Val Tru)
+ |> memory = []
+
+ |> Val Tru
+ |> memory = []
+Val Tru
+-------------------------------------------
+// Wrong Sequence
+
+*Main> x = Seq (Val UnitV) $ Seq (Val Fls) $ Seq (Val UnitV) $ (Val Tru)
+*Main> run x
+[...]
+*** Exception: Error! Typechecking Failed!
+-------------------------------------------
+/* Small program
+
+Bool x = True;
+x = False;
+print x;
+*/
+
+*Main> y = DeRef $ Val $ Var X
+*Main> z = Assign (Val (Var X)) $ Val Fls
+*Main> x = Let X (Alloc (Val Tru)) (Seq z y)
+*Main> run x
+Expression Typechecks as : BOOL
+
+ |> Let X (Alloc (Val Tru)) (Seq (Assign (Val (Var X)) (Val Fls)) (DeRef (Val (Var X))))
+ |> memory = []
+
+ |> Let X (Val (Location L0)) (Seq (Assign (Val (Var X)) (Val Fls)) (DeRef (Val (Var X))))
+ |> memory = [(L0,Tru)]
+
+ |> Seq (Assign (Val (Location L0)) (Val Fls)) (DeRef (Val (Location L0)))
+ |> memory = [(L0,Tru)]
+
+++(Val UnitV,[(L0,Fls)])
+
+ |> Seq (Val UnitV) (DeRef (Val (Location L0)))
+ |> memory = [(L0,Fls)]
+
+ |> DeRef (Val (Location L0))
+ |> memory = [(L0,Fls)]
+
+ |> Val Fls
+ |> memory = [(L0,Fls)]
+Val Fls
+-------------------------------------------
+*Main> q = Let I (Alloc (Val Z)) $ Seq (App (Val (L X Unit (Assign (Val (Var I)) (Succ (DeRef (Val (Var I))))))) (Val UnitV)) (DeRef (Val (Var I)))  
+*Main> run q
+Expression Typechecks as : NAT
+
+ |> Let I (Alloc (Val Z)) (Seq (App (Val (L X Unit (Assign (Val (Var I)) (Succ (DeRef (Val (Var I))))))) (Val UnitV)) (DeRef (Val (Var I))))
+ |> memory = 
+
+ |> Let I (Val (Location L0)) (Seq (App (Val (L X Unit (Assign (Val (Var I)) (Succ (DeRef (Val (Var I))))))) (Val UnitV)) (DeRef (Val (Var I))))
+ |> memory = 
+      >>(L0,Z)
+
+ |> Seq (App (Val (L X Unit (Assign (Val (Location L0)) (Succ (DeRef (Val (Location L0))))))) (Val UnitV)) (DeRef (Val (Location L0)))
+ |> memory = 
+      >>(L0,Z)
+
+ |> Seq (Assign (Val (Location L0)) (Succ (DeRef (Val (Location L0))))) (DeRef (Val (Location L0)))
+ |> memory = 
+      >>(L0,Z)
+
+ |> Seq (Assign (Val (Location L0)) (Succ (Val Z))) (DeRef (Val (Location L0)))
+ |> memory = 
+      >>(L0,Z)
+
+ |> Seq (Assign (Val (Location L0)) (Val (SuccNV Z))) (DeRef (Val (Location L0)))
+ |> memory = 
+      >>(L0,Z)
+
+++(Val UnitV,[(L0,SuccNV Z)])
+
+ |> Seq (Val UnitV) (DeRef (Val (Location L0)))
+ |> memory = 
+      >>(L0,SuccNV Z)
+
+ |> DeRef (Val (Location L0))
+ |> memory = 
+      >>(L0,SuccNV Z)
+
+ |> Val (SuccNV Z)
+ |> memory = 
+      >>(L0,SuccNV Z)
+Val (SuccNV Z)
+*Main> 
+
+-------------------------------------------
+
+// If you develop any test cases of your own, it would be real sporting of you to post them to Piazza.  Don't share your code of course (because that's plagiarism), but you are allowed to share test cases and test case outputs (as in this document.)
+

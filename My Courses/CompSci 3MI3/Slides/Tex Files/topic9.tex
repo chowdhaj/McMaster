@@ -1,0 +1,597 @@
+\documentclass[11pt]{beamer}
+\usetheme{Dresden}
+%\usecolortheme{beaver}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{mathpartir}
+\usepackage{ebproof}
+\usepackage{syntax}
+\author{NCC Moore}
+\title{Topic 9 - External vs Internal Languages}
+\institute{McMaster University} 
+\date{Fall 2021} 
+\subject{COMPSCI 3MI3 - Principles of Programming Languages} 
+\stepcounter{section}
+
+%\renewcommand{\texttt}[1]{\OldTexttt{\color{teal}{#1}}}
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.05}
+\definecolor{mGreen2}{rgb}{0.05,0.65,0.05}
+\definecolor{mGray2}{rgb}{0.55,0.55,0.55}
+\definecolor{mPurple2}{rgb}{0.63,0.05,0.05}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+\definecolor{backgroundColour2}{rgb}{0.95,0.92,0.95}
+
+\lstdefinestyle{C}{
+    backgroundcolor=\color{backgroundColour},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{mGray},
+    stringstyle=\color{mPurple},    
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\definecolor{burntOrange}{rgb}{1, 0.4, 0.1} 
+\usecolortheme[named=burntOrange]{structure} 
+
+\begin{document}
+
+\begin{frame}
+\center
+COMPSCI 3MI3 - Principles of Programming Languages
+\titlepage
+
+Adapted from ``Types and Programming Languages'' by Benjamin C. Pierce 
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\section[C-H]{The Curry Howard Correspondence}
+\begin{frame}[fragile=singleslide]{The Curry Howard Correspondence}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/curryhoward.jpg}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Reasoning with Typing Relations}
+Consider the $\Rightarrow$ type constructor. 
+\begin{itemize}
+\item We have a mechanism for \textbf{introducing} it (T-Abs)
+\item We have a mechanism for \textbf{eliminating} it (T-App)
+\end{itemize}
+If you go on to study advanced topics in type theory (beyond the scope of this course), you will find that many type constructors use introduction and elimination rules, and that this is often how we talk about them.  \\
+\vspace{1em}
+But what else do we have rules for introducing and eliminating? 
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{I Don't Like the Implication!}
+That's right folks! It's our old friend \textbf{implication}, from propositional logic! 
+\begin{itemize}
+\item With natural deduction, we \textbf{introduce} implication by proposing a hypothesis, and demonstrating that some other term of the logic can be derived from it.  
+\begin{equation}
+\Gamma, A \vdash B
+\end{equation}
+can be rewritten as 
+\begin{equation}
+\Gamma \vdash A \implies B
+\end{equation}
+\item We \textbf{eliminate} implication by combining an implication with the premise of the implication.  i.e., 
+\end{itemize}
+\begin{equation}
+A \land (A \implies B) \vdash B
+\end{equation}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{The Curry Howard Correspondence}
+It turns out that there is more than a little conceptual overlap between type systems and logic.\\
+\vspace{1em}
+\begin{center}
+\begin{tabular}{ c | c }
+Logic & Type Theory \\ \hline
+Propositions & Types \\ 
+$P \subset Q$ & $P \Rightarrow Q$ \\
+$P \land Q$ & $P \times Q$\footnote{we'll see this one a bit later on.} \\
+Proof of proposition $P$ & Proof of $t : P$ \\ 
+Proposition $P$ is provable & type $P$ is inhabited \\
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{I Wonder if Haskell Curry Even Liked Curry}
+As this property was being investigated (historically speaking), a greater and greater correspondence was found.  
+\begin{itemize}
+\item The advancement of mathematical logic as a science has yielded great benefits in type theory, and vice versa! 
+\begin{itemize}
+\item Essentially, the fields of Type Theory and Mathematical Logic can cheat off each other's homework.  
+\end{itemize}
+\item Type System F, which uses quantification over parametric polymorphic types has its correspondence in second-order constructive logic. 
+\item \emph{Linear Logic} (Girard, 1987) led to the development of \emph{Linear Type Systems} (Wadler 1990, and many others)
+\item \emph{Modal Logics} have been used to help design frameworks for \emph{partial evaluation} and \emph{run-time code generation} (Davies and Pfenning, 1996). 
+\end{itemize}
+\end{frame}
+
+\section[Erasure]{Erasure and Typeability}
+\begin{frame}[fragile=singleslide]{Erasure and Typeability}
+\begin{center}
+\includegraphics[height=0.8\textheight]{figures/math12.png} 
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Practical Considerations}
+Let's consider for a moment how we would use a type system in a real-world compiler (that is, in compiled languages).
+\begin{itemize}
+\item Ordinarily, typechecking is a \textbf{preprocessing} step.
+\begin{itemize}
+\item Essentially, we use typechecking to verify the integrity of a program's AST.  
+\item Used in this manner, it is easy to confuse a type error with a syntax error. 
+\end{itemize}
+\item Some advanced programming languages use type annotations during \textbf{generation} as well.
+\item However, typing information \emph{almost never} makes it into the \textbf{object code}.  
+\begin{itemize}
+\item Typing information is only rarely relevant to \textbf{execution}.  
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Erased... From History!}
+At some point during compilation, typing annotations are normally removed to improve performance.  
+\begin{itemize}
+\item We can formalize this idea with a \textbf{type erasure function}.
+\end{itemize}
+\begin{tabular}{ l l }
+$erase(x)$ & $= x$ \\
+$erase(\lambda x : T_1.t_2)$ & = $\lambda x. erase(t_2)$ \\
+$erase(t_1\:t_2)$ & $= erase(t_1)\:erase(t_2)$
+\end{tabular}
+\begin{itemize}
+\item This operation is recursive traversal of our term, removing typing information from $\lambda$'s as we go.  
+\item Because we have carefully kept our typing system separate from our evaluation semantics, we can remove typing information with no effect on a program's actual execution.  i.e.,
+\end{itemize}
+\begin{equation}
+t \rightarrow t' \implies erase(t) \rightarrow erase(t'). 
+\end{equation}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{DELETE!! DELETE!!}
+Another interesting property of type erasure is as follows:
+\begin{equation}
+erase(t) \rightarrow m' \implies \exists t' \:|\: t \rightarrow t' \land erase(t') = m'
+\end{equation}
+\begin{itemize}
+\item This is to say, if we erase the types from a term $t$ and evaluate it one step, this implies the existence of a typed term $t'$ which, once erased, is equivalent to $m'$.
+\item The gist of these two properties is that it doesn't matter if we erase or evaluate first, we get to the same result.
+\item Both properties can be proved almost trivially using induction on evaluation derivations.  
+\end{itemize}
+\end{frame}
+
+\section[C vs C]{Church-Style vs. Curry-Style}
+\begin{frame}[fragile=singleslide]{Church-Style vs. Curry-Style}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/churchcurry.jpg}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Curry Style!}
+Our general approach to language design in this class has been:
+\begin{itemize}
+\item Start with some terms representing desired behaviours (syntax).
+\item Formalize those behaviours using evaluation rules (semantics).
+\item Apply a typing system to reject undesired behaviours (typing).  
+\end{itemize}
+This is often called a \textbf{Curry-Style} language definition, because semantics are given priority over typing.  
+\begin{itemize}
+\item i.e., we can remove the typing and still have a functional system. 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Church Style!}
+A different approach is as follows:
+\begin{itemize}
+\item Start with some terms representing desired behaviours (syntax).
+\item Identify the well-typed terms using typing rules (typing).
+\item Give semantics \textbf{only} to well-typed terms (semantics).
+\end{itemize}
+Under \textbf{Church-Style} language design, typing is given priority.
+\begin{itemize}
+\item Questions like ``How does an ill-typed term behave?'' don't occur, because no ill-typed term can \emph{even be evaluated!}
+\item Historically, 
+\begin{itemize}
+\item Explicitly typed languages have normally been presented Church-Style.
+\item Implicitly typed languages have normally been presented Curry-Style.
+\end{itemize}
+\item So, Church-style is sometimes confused with explicit typing (and the same in reverse for Curry).
+\end{itemize}
+\end{frame}
+
+
+\section[Atomic]{Atomic Types}
+\begin{frame}[fragile=singleslide]{Atomic Types}
+\begin{center}
+\includegraphics[height=0.65\textheight]{figures/emlo.jpg} \\
+\textbf{Only now, in the first week of November, can we begin to have an intelligent conversation about the design of programming languages.}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Atomic Types}
+Every programming language provides a set of atomic types, which normally includes:
+\begin{itemize}
+\item Booleans ($\mathbb{B}$), Unsigned Integers ($\mathbb{N}$), Integers ($\mathbb{Z}$), Real Numbers ($\mathbb{R}$), Characters, Strings, etc.
+\end{itemize}
+These are sometimes known as \textbf{primitives}.  These are normally accompanied by a set of \textbf{primitive operations}, such as:
+\begin{itemize}
+\item $+$, $-$, $\times$, $\div$, $==$, $\&\&$, $||$, etc.
+\end{itemize}
+We have discussed $\mathbb{B}$ and $\mathbb{N}$ at length so far.  The rest of these operators and types can be added to our language semantics in a similar way.  
+\begin{itemize}
+\item For the rest of this course, we will occasionally bring in the rest of these data types, in order to make our examples more interesting.  
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Abstract All The Types!}
+In order to reason with our ever expanding language definitions, it will be useful to abstract away the details of these types and their operations.
+
+\begin{itemize}
+\item Let's suppose that our language comes with some set $\mathcal{A}$ of \textbf{uninterpreted}, or \emph{unknown} base types.
+\item Let's also suppose we have \emph{no primitive operations} to worry about.  
+\end{itemize}
+We can accomplish this by including the elements of $\mathcal{A}$ in the set of types $T$ for our language.
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Atomic Type Semantics}
+\includegraphics[width=\textwidth]{figures/atomic.png}
+Note that this extends simply typed pure $\lambda$-Calculus.
+\begin{itemize}
+\item We will use $A$, $B$, $C$, etc. as the names of base types.  
+\item We will also use $A$ to mean a \textbf{meta-variable} which ranges over the atomic types.
+\begin{itemize}
+\item The two uses will always be distinguishable from context.  
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Operation Consternation}
+It doesn't seem very useful to have a variable for a bunch of types we haven't specified, especially when they don't even do anything.
+\begin{itemize}
+\item Actually, this is not so different from the way we've been using types so far.  
+\item This allows us to assign types to variables in $\lambda$ abstractions, and reason about them.  
+\end{itemize}
+For Example:
+\begin{equation}
+(\lambda x:A. x) : A \Rightarrow A
+\end{equation}
+Is an identity function on some type A.
+\begin{equation}
+(\lambda f:A\Rightarrow A. \lambda x:A. f\:(f\:x)) : (A \Rightarrow A) \Rightarrow A \Rightarrow A
+\end{equation}
+Is a function that repeats twice the behaviour of some given function $f$ on an argument $x$.
+\end{frame}
+
+\section[Sequencing]{Formalizing Sequencing}
+\begin{frame}[fragile=singleslide]{Now Things are Getting Interesting!}
+So far, our languages have consisted entirely of stateless expression simplifications. 
+\begin{itemize}
+\item If we want to reason about ``real world languages,'' it will be necessary to find formal mathematical expression for the concepts of \textbf{assignment} and \textbf{sequencing}.
+\begin{itemize}
+\item In essence, we need to move from just talking about expressions to also talking about \textbf{statements}.  
+\end{itemize}
+\item Consider a simple imperative assignment operation in a language like C.
+\begin{itemize}
+\item What does it return?
+\item What type would it have?
+\end{itemize}
+\end{itemize}
+True to form, we will answer these questions as laboriously as possible.  
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Assignment}
+In general, we don't think of assignment statements\footnote{More on assignment next week folks!} as directly returning anything.
+\begin{itemize}
+\item The interesting part of an assignment statement is \emph{the effect it has on memory}.
+\item In other words, we want a particular \textbf{side-effect}.
+\begin{itemize}
+ \item Side effects include memory manipulation, displaying data using \texttt{stdout}, taking keyboard inputs, and many other useful things computers do.
+ \end{itemize}
+\end{itemize}
+Assuming our goal for Type Theory as a science is for all correct behaviour to be well-typed, how would we go about giving a type to such operations?
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Enter the Unit Type}
+Essentially, we want something like a blank or empty type.
+\begin{itemize}
+\item We shall design such a type: $Unit$.
+\item In the last section, the Atomic Types were \textbf{uninterpreted}.  That is, we didn't care about the internal details or evaluation mechanisms.
+\item $Unit$ will be \textbf{interpreted}, but very simple.  
+\item Semantically, we want $Unit$ to behave roughly like the \texttt{void} type in languages like C and Java.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Unit Type Semantics}
+\includegraphics[width=\textwidth]{figures/unit.png} 
+The above semantics extend simply typed pure $\lambda$-Calculus. 
+\begin{itemize}
+\item Don't worry about $t_1 ; t_2$.  That's sequencing and we're talking about it next. 
+ \end{itemize} 
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Unit Type Semantics}
+In the above semantics...
+\begin{itemize}
+\item We introduce not only a new type, $Unit$, but a new term \texttt{unit}.
+\item We also define \texttt{unit} as a value.
+\item We have given no evaluation rules to \texttt{unit}, so it is a \emph{normal form}.
+\item The new typing rule T-Unit sets the term \texttt{unit} as having type $Unit$.  
+\begin{itemize}
+\item In the absence of further additions, we can easily derive an inversion lemma and canonical form from this description.  
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Sequencing and Wildcards}
+\begin{center}
+\includegraphics[height=0.8\textheight]{figures/seq.jpg}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Sequencing}
+In languages with side effects, it is often useful to evaluate two or more expressions in sequence.
+\begin{itemize}
+\item In programming languages (that aren't snake language), this is achieved with \texttt{;} 
+\item For this course, we will consider $t_1 ; t_2$ to be a  \textbf{sequencing operator}.
+\item Semantically, we want \texttt{;} to execute $t_1$, throw away it's trivial direct result, and then execute $t_2$.
+\begin{itemize}
+\item We assume that $t_1$ has some kind of useful side effect, so that it's not completely pointless. 
+\end{itemize}
+\item In terms of typing, we expect $t_1 : Unit$, and make no constraints on $t_2$.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Going to the Formal}
+In general, there are two approaches to formalizing \texttt{;}.
+\begin{itemize}
+\item We can define a new term for it, complete with typing and evaluation rules.
+\item We can define \texttt{;} as a \textbf{derived form}.  That is, we define it using our existing terms, requiring no new evaluation or typing rules.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{A Wild New Term Appears!}
+Defining sequencing as a separate term, we would start with the following grammar:
+
+\begin{grammar}
+<t> ::= ...
+\alt <t> ; <t>
+\end{grammar}
+To this we would add the following evaluation rules:
+\begin{equation}
+\inferrule{t_1 \rightarrow t_1'}{t_1 ; t_2 \rightarrow t_1' ; t_2} \tag{E-Seq}
+\end{equation}
+\begin{equation}
+\texttt{unit} ; t_2 \rightarrow t_2 \tag{E-SeqNext}
+\end{equation}
+With the typing rule 
+\begin{equation}
+\inferrule{\Gamma \vdash t_1 : Unit \and \Gamma \vdash t_2 : T_2}{\Gamma \vdash (t_1 ; t_2) : T_2}
+\end{equation}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Derived Form Approach}
+If this course has taught us one thing, it's that we should always seek to \emph{minimize the number of terms in our language}.  
+\begin{itemize}
+\item Each term we add makes it more cumbersome to prove properties of our language. 
+\end{itemize}
+Sequencing can be captured within our existing semantics by the following expression:
+\begin{equation}
+t_1 ; t_2 \stackrel{def}{=} (\lambda x : Unit.t_2)\:t_1
+\end{equation}
+Which, of course, throws away $t_1$, once it has been evaluated to a value under call-by-value semantics, and simply yields $t_2$
+\end{frame}
+
+\begin{frame}{Internal vs External Languages}
+Derived forms are everywhere in modern programming languages, where they are often called \textbf{syntactic sugar}.
+\begin{itemize}
+\item They allow the programmer to use the language more easily by providing abstractions of the language used by the compiler.  
+\item Ultimately, however, programs must be \textbf{desugared} before object code generation.  
+\begin{itemize}
+\item Higher-level constructs are replaced with equivalent terms in the inner language.  
+\end{itemize}
+\item This forms the distinction between:
+\begin{itemize}
+\item The \textbf{external language}, or that of the programmer.
+\item The \textbf{internal language}, or that of object code generation. 
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Sequencing is a Derived Form I}
+In order to ensure language safety, it is necessary to demonstrate an equivalency between the internal and external semantics of a language.
+\begin{itemize}
+\item In a real language, this would equate to demonstrating equivalency between a program and its compiled object code.  
+\end{itemize}
+\vspace{1em}
+\textbf{THEOREM [Sequencing is a Derived Form]}
+Define $\lambda^\mathcal{E}$ as the \textbf{external calculus}.  This language will be composed of simply typed $\lambda$-Calculus, enriched with the Unit type and term, and with the term $t_1 ; t_2$, E-Seq, E-SeqNext, and T-Seq. \\
+\vspace{1em}
+Define $\lambda^\mathcal{I}$ as the \textbf{internal calculus}.  This language will be composed of the simply typed $\lambda$-Calculus and Unit type and term \emph{only}.
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Sequencing is a Derived Form II}
+Define $e \in \lambda^\mathcal{E} \rightarrow \lambda^\mathcal{I}$ as an \textbf{elaboration function}, which translates from the external language to the internal language.  It does so by replacing all instances of $t_1 ; t_2$ with $(\lambda x : Unit.t_2)\:t_1$. For each term $t$ of $\lambda^\mathcal{E}$, we have:
+\begin{equation}
+t \xrightarrow{\mathcal{E}} t' \iff e(t) \xrightarrow{\mathcal{I}} e(t')
+\end{equation}
+\begin{equation}
+\Gamma \vdash^{\mathcal{E}} t : T \iff \Gamma \vdash^{\mathcal{I}} e(t) : T
+\end{equation}
+\begin{itemize}
+\item For equation 10, if a term $t$ evaluates to $t'$ in the external language, the internal representation of $t$ evaluates to the internal representation of $t'$, \emph{and vice versa}.
+\item For equation 11, if a term has some type $T$ in the external language, it's internal representation will have the same type, \emph{and vice versa}.
+\end{itemize}
+\end{frame}
+
+\section[Ascription]{Ascription}
+\begin{frame}[fragile=singleslide]{Ascription}
+So far, we have only given explicit typing information within $\lambda$ abstractions, but most languages support the ability to \textbf{ascribe} types to existing terms.  
+\begin{itemize}
+\item This is related to the idea of casting in C\textbackslash C++, but works more like a type assertion.  
+\item We want the the term $(t\:as\:T)$ to read as ``the term $t$, to which we ascribe the type $T$.''
+\end{itemize}
+We will present ascription semantics as a new term of the language, and in tutorial you will see how it can be expressed using a derived form.  
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Ascription Semantics}
+\includegraphics[width=\textwidth]{figures/ascription.png} \\
+The above is an extension of the pure, typed $\lambda$-Calculus. \\
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Ascription Description}
+
+In the above semantics, we have two evaluation rules and a typing rule:
+\begin{itemize}
+\item The congruence rule E-Ascribe1.
+\item An elimination rule E-Ascribe.
+\begin{itemize}
+\item This evaluation works similarly to E-SeqNext.  Once $t$ has been fully evaluated, the next step is to throw away the ascription.  
+\end{itemize}
+\item The typing rule T-Ascribe, which types an ascription term as the type being ascribed.
+\begin{itemize}
+\item Note the antecedent.  A type ascription is only well-typed if $t_1 : T$ was \emph{already derivable from $\Gamma$!}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Wait, What?}
+If a type ascription $t\:as\:T$ gives $t$ the type $T$, how could $t$ not be well typed?
+\begin{itemize}
+\item If ascription behaved as stated above (which is what your humble professor understood when he first read it), wouldn't we add the typing information to $\Gamma$ and move on? 
+\end{itemize}
+According to the given semantics, type ascription doesn't give $t$ type $T$, it \textbf{checks that} $t$ \textbf{already has} type $T$. 
+\begin{itemize}
+\item Ascriptions are most practical when used with \textbf{polymorphic types}.  If a term may have one of a set of types, ascription can be used to select one or more types from among the set.
+\item Otherwise, ascription is commonly used in \textbf{documentation}.  
+\begin{itemize}
+\item It can be easy to lose track of typing in long and complicated expressions.  
+\item By ascribing a type and running the type checker, you can check to make sure a term is the type you think it is.  
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\section[Let]{Let Bindings}
+\begin{frame}[fragile=singleslide]{Let Bindings}
+When writing complex expressions, it is often useful to give names to subexpressions, so that they may be referred to by name.  
+\begin{itemize}
+\item We've been doing this informally since we introduced $\lambda$-Calculus. 
+\item The main way of doing this in Haskell explicitly is  \texttt{where} bindings, though the process is also implicit in pattern matching. 
+\end{itemize}
+Semantically, we want the term $(let\:x = t_1\:in\:t_2)$ to evaluate to a substitution of $x$ for $t_1$ in $t_2$.
+\begin{itemize}
+\item This is identical to substitution in pure $\lambda$-Calculus.
+\item Unlike our in-class examples, we don't substitute one-at-a-time, but all at once.  
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Let Binding Semantics}
+If we were adding let bindings as a new term, we would do it as follows.  
+\includegraphics[width=\textwidth]{figures/Let.png}
+The above is an extension of purely typed $\lambda$-Calculus.
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Let-ting Our Hair Down}
+In the above semantics, we again have two evaluation rules and a typing rule.
+\begin{itemize}
+\item The elimination rule E-LetV evaluates to a substitution over $t_2$.
+\begin{itemize}
+\item Note that this substitution is \emph{semantically identical} to the substitution produced by E-AppAbs.
+\end{itemize}
+\item The congruence rule E-Let lets us to evaluate $t_1$ one step.
+\item Setting execution up this way (only allowing values to be substituted) is a tremendous time-saving feature! 
+\begin{itemize}
+\item If we just performed a straight substitution without fully evaluating $t_1$, we would multiply the amount of work the computer has to do by the number of times we sub in $t_1$.  
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Let-ting the Cat Out of the Bag}
+\begin{itemize}
+\item For typing, it is obvious that the type of a let binding should be the type of $t_2$.
+\item However, we may require the type of the bound variable in order to determine this type (hence the second antecedent).
+\item This leaves the question, what is the type of the bound variable, considering we have not defined its type in our let binding syntax? 
+\item Intuitively, $x$ and $t_1$ should have the same type, given the nature of substitution.
+\begin{itemize}
+\item We have proven theorems to this effect in the past.
+\end{itemize}
+\item Hence, our first antecedent.  Whatever type is derivable for $t_1$ will type $x$ for the purposes of finding the typing of $t_2$.
+\begin{itemize}
+\item And if $t_1$ is not well-typed, neither is our let binding! 
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Let it Go! Let it Go!}
+Finally, can we express let bindings using a derived form?
+\begin{center}
+\includegraphics[scale=0.175]{figures/yesandno.jpg}
+\end{center}
+Intuitively, we can introduce the called for substitution easily using an abstraction-application pair:
+\begin{equation}
+let\:x=t_1\:in\:t_2 \stackrel{def}{=} (\lambda x : T_1. t_2)\:t_1
+\end{equation}
+But the right-hand-side contains a symbol that the left-hand-side does not!
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Take a Let-ter, Maria!}
+From whence has this typing information been derived!?
+\begin{itemize}
+\item If we expect this typing information to be present after desugaring (which is a syntactic requirement), we need to know where this term comes from.  
+\item In our typing rules, we derive the type of $x$ by first deriving the type of $t_1$. We can use the typechecker!
+\item We therefore have two options:
+\begin{itemize}
+\item Regard the derived form as a transformation on typing derivations.
+\item \textbf{Decorate} the terms of our language with the results of typechecking.
+\end{itemize}
+\item In short, the evaluation semantics of let bindings can be desugared, but the typing behaviour \emph{must} be built into the inner language.  
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Last Slide Comic}
+\begin{center}
+\includegraphics[height=0.8\textheight]{figures/TextbookSass.jpeg}
+\end{center}
+\end{frame}
+
+\end{document}
+

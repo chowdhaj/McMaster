@@ -1,0 +1,730 @@
+ \documentclass[11pt]{beamer}
+\usetheme{Dresden}
+%\usecolortheme{beaver}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{mathpartir}
+\usepackage{ebproof}
+\usepackage{syntax}
+\author{NCC Moore}
+\title{Topic 11 - Data Structures}
+\institute{McMaster University} 
+\date{Fall 2021} 
+\subject{COMPSCI 3MI3 - Principles of Programming Languages} 
+\stepcounter{section}
+
+%\renewcommand{\texttt}[1]{\OldTexttt{\color{teal}{#1}}}
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.05}
+\definecolor{mGreen2}{rgb}{0.05,0.65,0.05}
+\definecolor{mGray2}{rgb}{0.55,0.55,0.55}
+\definecolor{mPurple2}{rgb}{0.63,0.05,0.05}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+\definecolor{backgroundColour2}{rgb}{0.95,0.92,0.95}
+
+\lstdefinestyle{C}{
+    backgroundcolor=\color{backgroundColour},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{mGray},
+    stringstyle=\color{mPurple},    
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\definecolor{burntOrange}{rgb}{1, 0.4, 0.1} 
+\usecolortheme[named=burntOrange]{structure} 
+
+\begin{document}
+
+\begin{frame}
+\center
+COMPSCI 3MI3 - Principles of Programming Languages
+\titlepage
+
+Adapted from ``Types and Programming Languages'' by Benjamin C. Pierce 
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+
+\section[Pairs]{Pairs}
+\begin{frame}[fragile=singleslide]{Pairs}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figures/pairs.jpg}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Adding Data Structures}
+Any good programmer knows that programming without data structures is like trying to bury the evidence with a soup spoon: slow and painful with a high probability of failure, and you should probably be asking yourself how you got in this position in the first place. \\  
+\vspace{1em}
+Over the course of this topic, we will introduce a variety of data structures to our calculus.
+\begin{itemize}
+\item Most of these will require additions to our internal calculus.  
+\item We will therefore be adding syntax in the regular manner, and not through the use of derived forms.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{The Most Basic Data Structure}
+We will begin by introducing \textbf{pairs}.
+\begin{itemize}
+\item A pair is very simply defined as a collection of two terms:
+\begin{equation}
+\{t_1, t_2\}
+\end{equation}
+\item We will access the individual elements of a pair using \textbf{projection}. 
+\begin{itemize}
+\item The term $\{t_1,t_2\}.1$ evaluates to $t_1$.
+\item The term $\{t_1,t_2\}.2$ evaluates to $t_2$.  
+\end{itemize}
+\item These two projections are the equivalents of the \texttt{fst} and \texttt{snd} functions in Haskell.  
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Pair Semantics}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+Congruence Rules
+\begin{equation}
+\inferrule{t \rightarrow t'}{t.1 \rightarrow t'.1} \tag{E-Proj1}
+\end{equation}
+\begin{equation}
+\inferrule{t \rightarrow t'}{t.2 \rightarrow t'.2} \tag{E-Proj2}
+\end{equation}
+\begin{equation}
+\inferrule{t_1 \rightarrow t_1'}{\{t_1,t_2\} \rightarrow \{t_1',t_2\}} \tag{E-Pair1}
+\end{equation}
+\begin{equation}
+\inferrule{t_2 \rightarrow t_2'}{\{v_1,t_2\} \rightarrow \{v_1,t_2'\}} \tag{E-Pair2}
+\end{equation}
+\end{column}
+\begin{column}{0.5\textwidth}
+By now, these congruence rules should be well familiar.  
+\begin{itemize}
+\item Note that we have a separate congruence rule for evaluating the inside of either projection.  
+\item Otherwise, execution is controlled the same way as with the congruence rules for function application or sequencing.
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Pear Semantics Continued}
+In addition, we have the following elimination rules:
+\begin{equation}
+\{v_1, v_2\}.1 \rightarrow v_1 \tag{E-PairBeta1}
+\end{equation}
+
+\begin{equation}
+\{v_1, v_2\}.2 \rightarrow v_2 \tag{E-PairBeta2}
+\end{equation}
+
+Again, these rules are quite straightforward.
+\begin{itemize}
+\item A pair by itself with no projection is considered a \textbf{value}. 
+\item Aside from that, there really isn't that much to say about it... But can you think of how we can express the above as a derived form?
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Ask Your Pair-ents!}
+It's a trick question! 
+\begin{itemize}
+\item We already covered the derived forms of pairs and projection way back in topic 5!
+\end{itemize}
+\begin{equation}
+\texttt{pair} = \lambda f : T_1. \lambda s : T_2. \lambda b : T_3.\:b\:f\:s
+\end{equation}
+\begin{equation}
+\texttt{fst} = \lambda p : T_1.\:p\:\texttt{tru} 
+\end{equation}
+\begin{equation}
+\texttt{snd} = \lambda p : T_1.\:p\:\texttt{fls} 
+\end{equation}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Ap-pair-ent Typings}
+How we go about typing pairs is slightly more interesting.  
+\begin{itemize}
+\item We could make the decision to require the type of both arguments to be identical.
+\begin{itemize}
+\item This would make a certain degree of sense, we might even be tempted to say that the type of the pair itself is the type of either component.
+\item This sort of coercion would make our pairs something very different from the derived forms discussed above. 
+\end{itemize}
+\item A better way to think about it, however, is as so:
+\begin{itemize}
+\item We have introduced a new \emph{value}, $\{v_1, v_2\}$. 
+\item What sort of type could this new value be a canonical form of? 
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Mortal Pair-il}
+So, the question becomes, how do you represent the type of something that contains two types?
+\begin{itemize}
+\item We must \textbf{expand the type system!}
+\end{itemize}
+\begin{grammar}
+<T> ::= ...
+\alt <T> $\times$ <T>
+\end{grammar}
+This is known as the \textbf{product} or the \textbf{Cartesian Product} type constructor.
+\begin{itemize}
+\item If we consider the total number of possible combinations of the two types there are, it is the carnality of $T$ squared.  
+\item This informs the use of $\times$ as the type product operator.  
+\end{itemize}
+Since we are adding this new type constructor, pairs \textbf{cannot} be a derived form, despite having clear and easy implementations in pure $\lambda$-Calculus
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Typing Rules for Pairs}
+The following typing rules intuitively follow our evaluation semantics.
+
+\begin{columns}
+\begin{column}{0.6\textwidth}
+\begin{equation}
+\inferrule{\Gamma \vdash t_1 : T_1 \and \Gamma \vdash t_2 : T_2}{\Gamma \vdash \{t_1, t_2\} : T_1 \times T_2} \tag{T-Pair}
+\end{equation}
+
+\begin{equation}
+\inferrule{\Gamma \vdash t : T_1 \times T_2}{\Gamma \vdash t.1 : T_1} \tag{T-Proj1}
+\end{equation}
+
+\begin{equation}
+\inferrule{\Gamma \vdash t : T_1 \times T_2}{\Gamma \vdash t.2 : T_2} \tag{T-Proj2}
+\end{equation}
+
+\end{column}
+\begin{column}{0.5\textwidth}
+Aside from the use of the new product type constructor, these typing rules are wholly unremarkable. \\
+\vspace{1em}
+One thing to note is that we are maintaining our pattern of only having one typing rule per term of the calculus.  
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\section[Tuples]{Tuples}
+\begin{frame}[fragile=singleslide]{Tuples}
+\begin{center}
+\includegraphics[height=0.5\textheight]{figures/projecting.png}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Tip Top Tuples}
+Tuples are a straightforward generalization of pairs to data structures containing an arbitrary number of elements.  
+\begin{itemize}
+\item Unfortunately, this means that we need to come up with a notation for uniformly describing systems of arbitrary arity.  
+\item That is, we need a notation for a list of numbers.  
+\end{itemize}
+The textbook uses the following notation for a tuple of $n$ elements, which is more formal, but less readable.
+\begin{equation}
+t_i^{i \in 1..n}
+\end{equation}
+For this course, we will opt for the less rigorous, but far more readable: 
+\begin{equation}
+t_{1..n}
+\end{equation}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Syntax!}
+We will add the term on the previous slide to our calculus.
+\begin{grammar}
+<t> = ...
+\alt \{<t>$_{1..n}$ \}
+\alt <t>.(1..n)
+\end{grammar}
+\begin{itemize}
+\item Further, we will define tuples containing only values to be values themselves:
+\end{itemize}
+
+\begin{grammar}
+<v> :: ...
+\alt \{<v>$_{1..n}$\}
+\end{grammar}
+
+\begin{itemize}
+\item Finally, we will also add the following type constructor:
+\end{itemize}
+
+\begin{grammar}
+<T> :: ...
+\alt \{<T>$_{1..n}$\}
+\end{grammar}
+
+\begin{itemize}
+\item The above notation lets us avoid messy and long tuple type notations, such as $T_1 \times T_2 \times T_3 \times ... \times T_n$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Evaluation Rules}
+
+\begin{equation}
+\inferrule{j \in 1..n}{\{v_{1..n}\}.j \rightarrow v_j} \tag{E-ProjTuple}
+\end{equation}
+
+\begin{equation}
+\inferrule{t \rightarrow t'}{t.i \rightarrow t'.i} \tag{E-Proj}
+\end{equation}
+
+\begin{equation}
+\inferrule{t_j \rightarrow t'_j}{\{v_{1..(j-1)}, t_j, t_{(j+1)..n}\} \rightarrow \{v_{1..(j-1)}, t'_j, t_{(j+1)..n}\}} \tag{E-Tuple}
+\end{equation}
+
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{I'm Not Projecting, You Are!}
+\begin{itemize}
+\item The projection elimination and congruence rules are straightforward adaptations of E-PairBeta1,2, and E-Proj1,2.
+\item The congruence rule E-Tuple actually describes a \textbf{set} of inference rules.  
+\item True to form, we control the execution of the elements of the tuple by requiring all the elements preceding any particular value to be evaluated to values before the congruence rule can be applied.
+\item That is, to evaluate any element of a tuple, all elements to the left must be evaluated first.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Tuping Typles}
+\begin{equation}
+\inferrule{\forall i \in 1..n\:|\:\Gamma \vdash t_i : T_i}{\Gamma \vdash \{t_{1..n}\} : \{ T_{1..n}\} } \tag{T-Tuple}
+\end{equation}
+
+\begin{equation}
+\inferrule{j \in 1..n \and \Gamma \vdash t : \{ T_{1..n}\} }{ \Gamma \vdash t.j : T_j} \tag{T-Proj}
+\end{equation}
+Again, the above inference rules should be relatively straightforward.  
+\begin{itemize}
+\item T-Tuple states that in order for a tuple to be well typed, each of it's elements must be well typed.
+\item T-Proj states the inverse.  If a tuple is well typed, an element projected from it will also be well typed.
+\end{itemize}
+
+\end{frame}
+
+
+\section[Records]{Records}
+\begin{frame}[fragile=singleslide]{This is Going On Your PERMANENT RECORD}
+\begin{itemize}
+\item We got to tuples from pairs by generalizing their size.  
+\item We can get to records from tuples by generalizing their means of access.
+\end{itemize}
+Whereas a tuple uses the natural numbers as a means of accessing it's members, we can generalize this to some element $f$ of a set of \textbf{field names} $\mathcal{F}$.
+\begin{itemize}
+\item The textbook uses $\mathnormal{l} \in \mathcal{L}$ for ``the set of label names.''
+\item We will use $f \in \mathcal{F}$ because:
+\begin{itemize}
+\item Field names and labels are synonymous in this context.
+\item To avoid confusion with memory locations.
+\end{itemize}
+\end{itemize}
+The step from tuples to records in our calculus is roughly the same as the step from tuples to dictionaries in Python.  
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Record Syntax}
+Syntax for records is highly similar to that of tuples.
+\begin{grammar}
+<t> ::= ...
+\alt \{<f>$_{1..n}$ = <t>$_{1..n}$ \}
+\alt <t>.<f>
+\end{grammar}
+Similarly to its cousins, a record containing only values is itself a value.
+\begin{grammar}
+<v> ::= ...
+\alt \{<f>$_{1..n}$ = <v>$_{1..n}$ \}
+\end{grammar}
+And field names will also be necessary to look up an element type in a record type, so we include the field name.
+\begin{grammar}
+<T> ::= ...
+\alt \{<f>$_{1..n}$ : <T>$_{1..n}$ \}
+\end{grammar}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Evaluation Rules}
+All three of our data structures so far have used curly braces to emphasize that they are very straight forward extensions of each other.  
+\begin{itemize}
+\item The following evaluation rules are straightforward adaptations of those for tuples.
+\end{itemize}
+
+\begin{equation}
+\inferrule{j \in 1..n}{\{f_{1..n} = v_{1..n} \}.f_j \rightarrow v_j} \tag{E-ProjRcd}
+\end{equation}
+
+\begin{equation}
+\inferrule{t \rightarrow t_1'}{t_1.f \rightarrow t_1'.f} \tag{E-Proj}
+\end{equation}
+
+\begin{equation}
+\inferrule{i \in 1..(j-1) \and k \in (j+1) ..n \and t_j \rightarrow t_j' }{\{f_i=v_i, f_j=t_j, f_k=t_k\} \rightarrow \{f_i=v_i, f_j=t'_j, f_k=t_k\}} \tag{E-Rcd}
+\end{equation}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Record Scratch}
+The evaluation rule E-ProjRcd relies on a slightly informal convention, which we should make explicit.
+\begin{itemize}
+\item If $\{f_{1..n} = v_{1..n} \}$ is a record and $f_j$ is the label of its $j^{th}$ field, then \{f_{1..n} = v_{1..n}.f_j \} evaluates in one step to the $j^{th}$ value, $v_j$. 
+\item Both this rule, and E-ProjTuple could be reformulated to make this behaviour more explicit.  
+\item However, this would come at great cost to readability, so we will keep the rule in the form listed.  
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Ordering Records On The Internet!}
+In some sense, the definition provided above fails to fully abstract tuple-style numeric element access into record-style field access.
+\begin{itemize}
+\item Consider the congruence rule E-Rcd.  
+\begin{itemize}
+\item Following the python example of dictionaries, it would be reasonable to expect something like E-Rcd to be impossible.
+\item The numeric sequencing of field names is relied upon to guarantee the determinacy of the evaluation of a record. 
+\item If the set of field names was simply a pure set, no such ordering would be implied.  
+\item The way we've defined them, we are closer to python's \textbf{ordered dictionary}, than it's default dictionary.  
+\end{itemize}
+\item Whether the language assumes unordered records are primitive, or uses primitive ordered records and evaluation rules which allow reordering, is a design decision that may have performance implications.  
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Accidentally Hit Record!}
+The typing rules for records are about what you would expect.
+
+\begin{equation}
+\inferrule{\forall i \in 1..n\:|\:\Gamma \vdash t_i : T_i}{\Gamma \vdash \{f_{1..n}=t_{1..n}\} : \{f_{1..n} : T_{1..n}\} } \tag{T-Rcd}
+\end{equation}
+
+\begin{equation}
+\inferrule{j \in 1..n \and \Gamma \vdash t : \{ f_{1..n} : T_{1..n}\} }{ \Gamma \vdash t.f_j : T_j} \tag{T-Proj}
+\end{equation}
+\begin{itemize}
+\item So, for example, the following record which indicates the degree to which science fiction franchises have been ruined by Hollywood since the financial crash of 2008:
+\begin{itemize}
+\item \texttt{\{startrek=95.6, starwars=99.9, foundationseries=false\}}
+\end{itemize}
+\item Would have type 
+\begin{itemize}
+\item \texttt{\{Float, Float, Bool\}}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\section[Pattern Matching]{Pattern Matching}
+\begin{frame}[fragile=singleslide]{Game Set Match!}
+Let's take a brief diversion from our study of data structures, and examine something we can do with them: \textbf{pattern matching!}
+\begin{itemize}
+\item In Haskell, pattern matching is ubiquitous, and the delight of many a new Haskell programmer.  
+\item In Haskell, complex data types can be broken down into labelled subcomponents via pattern matching.  For example:
+\end{itemize}
+
+\begin{lstlisting}[language=Haskell]
+snd :: (a, b) -> b
+snd (x, y) = y
+\end{lstlisting}
+
+\begin{itemize}
+\item With our current toolkit, we can create the rudiments of a pattern matching system.  
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{I'm Detecting a Pattern...}
+Our pattern matching operation will be a generalization of \textbf{let bindings}.
+
+\begin{grammar}
+<t> ::= ...
+\alt let <p> = <t> in <t>
+\end{grammar}
+
+In order to accomplish this, we need to open up a new syntactic category for patterns.
+
+\begin{grammar}
+<p> ::= <x>
+\alt \{ <f>$_{1..n}$ = <p>$_{1..n}$\}
+\end{grammar}
+
+We'll be pattern matching over records/tuples/pairs, so we require a pattern which matches the data structure we are trying to match.  
+\begin{itemize}
+\item Hence, a pattern may be either a lone variable, or a record containing only variable names or other patterns.  
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{We Have A Match Captain!}
+Let's take a look at the evaluation rules for pattern matching.
+
+\begin{equation}
+\texttt{let }p = v \texttt{ in } t \rightarrow match(p,v)t \tag{E-LetV}
+\end{equation}
+
+\begin{equation}
+\inferrule{t \rightarrow t'}{\texttt{let }p = t \texttt{ in } t \rightarrow \texttt{let }p = t' \texttt{ in } t} \tag{E-Let}
+\end{equation}
+The congruence rule is nothing special, but what's with the mysterious \emph{match} function? 
+\begin{itemize}
+\item In Haskell:
+\begin{itemize}
+\item Inputs get applied to the pattern, and components of the input are identified with various variable names.
+\item Then, occurrences of those variable names in the return expression are \textbf{substituted for} the input components. 
+\item Whatever this \emph{match} function is, we know we want it to \textbf{create substitutions}.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Match 3 is Lazy Game Design}
+In this course, whenever we need to define the behaviour of a function or relation, we always specify it as ``the smallest function or relation satisfying a set of inference rules.''
+\begin{itemize}
+\item We shall define the behaviour of \emph{match} using the same mechanism.
+\end{itemize}
+
+\begin{equation}
+match(x, v) = [x \mapsto v] \tag{M-Var}
+\end{equation}
+
+\begin{equation}
+\inferrule{\forall i \in 1..n \:|\: match(p_{1..n}, v_{i..n}) = \sigma_{1..n}}{match(\{f_{1..n}=p_{1..n} \}, \{f_{1..n}=v_{1..n} \} ) = \sigma_1 \circ \sigma_2 \circ ... \circ \sigma_n } \tag{M-Rcd}
+\end{equation}
+
+Where $\circ$ is function composition.  
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Match My Moves!}
+Let's go through a few examples.
+
+\begin{align*}
+& \texttt{let } \{x,y,z\} = \{2,4,6\} \texttt{ in } x \cdot z - y \\
+\xrightarrow{\texttt{E-LetV}} & match(\{x,y,z\}, \{2,4,6\})(x \cdot z - y) \\
+\xrightarrow{\texttt{M-Rcd}} & match(x,2)\circ match(y,4)\circ match(z, 6)(x \cdot z-y) \\
+\xrightarrow{\texttt{M-Var}} \xrightarrow{\texttt{M-Var}} \xrightarrow{\texttt{M-Var}} & [x \mapsto 2][y \mapsto 4][z \mapsto 6](xz-y) \\
+\xrightarrow{\texttt{Subst}} \xrightarrow{\texttt{Subst}} \xrightarrow{\texttt{Subst}} & 2 \cdot 6 - 4 \\
+\xrightarrow{\texttt{Arith}} \xrightarrow{\texttt{Arith}}  & 8 \\
+\nrightarrow &  \\
+\end{align*}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Mix and Match}
+
+\begin{align*}
+& \texttt{let } \{x,y\} = \{2,\{4,6\}\} \texttt{ in } ((\lambda t. \lambda f. f)\:x\:y) \\
+\xrightarrow{\texttt{E-LetV}} & match(\{x,y\}, \{2,\{4,6\}\})((\lambda t. \lambda f. f)\:x\:y) \\
+\xrightarrow{\texttt{M-Rcd}}& match(x, 2) \circ match(y,\{4,6\})((\lambda t. \lambda f. f)\:x\:y) \\
+\xrightarrow{\texttt{M-Var}} \xrightarrow{\texttt{M-Var}} & [x \mapsto 2][y \mapsto \{4,6\}]((\lambda t. \lambda f. f)\:x\:y) \\
+\xrightarrow{\texttt{Subst}} \xrightarrow{\texttt{Subst}} & (\lambda t. \lambda f. f)\:2\:\{4,6\} \\
+\xrightarrow{\texttt{E-AppAbs}}  & (\lambda f. f)\:\{4,6\} \\
+\xrightarrow{\texttt{E-AppAbs}}  & \{4,6\} \\
+\nrightarrow &  \\
+\end{align*} \\
+\vspace{-2em}
+Typing and soundness for pattern matching will be the subject of next week's tutorial.  
+\end{frame}
+
+
+\section[Lists]{Lists}
+\begin{frame}[fragile=singleslide]{Listing Our Complaints.}
+The final data structure we'll cover is the \textbf{list}.
+\begin{itemize}
+\item Unlike tuples, which are heterogeneously typed, lists are homogeneously typed.
+\item The list semantics we are about to discuss are precisely those used by Haskell.
+\end{itemize}
+A list is a finite collection of elements, which are uniformly typed.  We will discuss syntax, typing and semantics for the following:
+\begin{center}
+
+\begin{tabular}{| c | c |}
+\hline
+Term & Haskell Syntax \\ \hline
+empty list & \texttt{[]} \\ \hline
+list constructor & \texttt{x:xs} \\ \hline
+test for empty list & \texttt{null xs} \\ \hline
+head of a list & \texttt{head xs} \\ \hline
+tail of a list & \texttt{tail xs} \\ \hline
+\end{tabular}
+
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Landing on Luxury Syntax}
+Like $\lambda$ abstractions, each of our list terms will require \textbf{type annotation}.
+\begin{grammar}
+<t> :: ...
+\alt nil[<T>]
+\alt cons[<T>] <t> <t>
+\alt isnil[<T>] <t>
+\alt head[<T>] <t>
+\alt tail[<T>] <t> 
+\end{grammar}
+Both empty lists and lists containing only values will be values themselves.
+\begin{grammar}
+<v> ::= ...
+\alt nil[<T>]
+\alt cons[<T>] <v> <v>
+\end{grammar}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Evaluating Cons}
+\begin{itemize}
+\item In the same way that \texttt{true} has no evaluation rules, \texttt{nil} has no evaluation rules.
+\item Since \texttt{cons} doesn't really do anything except exist, we only have two congruence rules for it:  
+\end{itemize}
+
+\begin{equation}
+\inferrule{t_1 \rightarrow t_1'}{cons[T]\:t_1\:t_2 \rightarrow cons[T]\:t_1'\:t_2} \tag{E-Cons1}
+\end{equation}
+
+\begin{equation}
+\inferrule{t_2 \rightarrow t_2'}{cons[T]\:v_1\:t_2 \rightarrow cons[T]\:v_1\:t_2'} \tag{E-Cons2}
+\end{equation}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Evaluating \texttt{isnil}}
+The evaluation rules for \texttt{isnil} are a bit more interesting, and should remind us strongly of our old friend isZero.
+
+\begin{equation}
+isnil[S] (nil[T]) \rightarrow true \tag{E-IsNilNil}
+\end{equation}
+
+\begin{equation}
+isnil[S] (cons[T] v_1 v_2) \rightarrow false \tag{E-IsNilCons}
+\end{equation}
+
+\begin{equation}
+\inferrule{t_1 \rightarrow t_1'}{isnil[T] t_1 \rightarrow isnil[T] t_1'} \tag{E-IsNil}
+\end{equation}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Evaluating Head and Tail}
+Evaluation Rules for \texttt{head} and \texttt{tail} should give us no surprises.  You just pop either the first or second component of cons respectively.
+\begin{equation}
+head[S] (cons[T] v_1 v_2) \rightarrow v_1 \tag{E-HeadCons}
+\end{equation}
+
+\begin{equation}
+tail[S] (cons[T] v_1 v_2) \rightarrow v_2 \tag{E-TailCons}
+\end{equation}
+
+\begin{equation}
+\inferrule{t \rightarrow t'}{head[T] t \rightarrow head[T] t'} \tag{E-Head}
+\end{equation}
+
+\begin{equation}
+\inferrule{t \rightarrow t'}{tail[T] t \rightarrow tail[T] t'} \tag{E-Tail}
+\end{equation}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Typing Lists}
+Before we begin our typing rules for lists, we must update our set of types.  
+\begin{itemize}
+\item Just as with references, it makes sense to be able to differentiate a list of Booleans from a single Boolean at the level of the type system.
+\item Therefore, we expand our types as follows:
+\end{itemize}
+
+\begin{grammar}
+<T> ::= ...
+\alt List <T> 
+\end{grammar}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Typing Rules}
+
+\begin{columns}
+\begin{column}{0.6\textwidth}
+\begin{equation}
+\Gamma \vdash nil[T] : List T \tag{T-Nil}
+\end{equation}
+
+\begin{equation}
+\inferrule{\Gamma \vdash t_1 : T \and \Gamma \vdash t_2 : List T}{\Gamma \vdash cons[T]\:t_1\:t_2 : List T} \tag{T-Cons}
+\end{equation}
+
+\begin{equation}
+\inferrule{\Gamma \vdash t : List T}{\Gamma \vdash isnil[T] t : Bool} \tag{T-IsNil}
+\end{equation}
+
+\begin{equation}
+\inferrule{\Gamma \vdash t : List T}{\Gamma \vdash head[T] t : T} \tag{T-Head}
+\end{equation}
+
+\begin{equation}
+\inferrule{\Gamma \vdash t : List T}{\Gamma \vdash tail[T] t : List T} \tag{T-Tail}
+\end{equation}
+\end{column}
+\begin{column}{0.4\textwidth}
+Only the usual subtleties apply.
+\begin{itemize}
+\item The main utility provided here is the prevention of elements of incompatible types to a list.
+\end{itemize}
+\end{column} 
+\end{columns}
+\end{frame}
+
+
+%\section[Recursion]{General Recursion}
+%\begin{frame}[fragile=singleslide]{General Recursion}
+%\begin{center}
+%Insert Meme Here
+%%\includegraphics[height=0.8\textheight]{figures/•}
+%\end{center}
+%\end{frame}
+%
+%
+%\begin{frame}[fragile=singleslide]{Return of the Fixed Point Combinator!}
+%As we saw in topic 6, general recursion may be implemented in $\lambda$-Calculus through the use of the fixed point combinator.  
+%\begin{equation}
+%\texttt{fix} = \lambda f. (\lambda x. f\:(\lambda y. x\:x\:y))\:(\lambda x. f\:(\lambda y. x\:x\:y))
+%\end{equation}
+%For reasons we will explore next week, neither the $\Omega$-function, nor the fixed point combinator can be well typed under simply typed $\lambda$-Calculus.
+%\begin{itemize}
+%\item This is because they lead to non-terminating typing calculations. 
+%\item That said, recursion is a very useful (particularly in the absence of loops).
+%\item We will define a new term, \texttt{fix}, which provides the functionality of the fixed point combinator.
+%\item Giving it an internal elaborated representation would break the type system, so we'll stick to a term-based description.
+%\end{itemize}
+%\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Last Slide Comic}
+\includegraphics[width=\textwidth]{figures/flinch.png}
+\end{frame}
+
+
+\end{document}

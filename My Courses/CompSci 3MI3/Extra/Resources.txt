@@ -1,0 +1,19 @@
+Resources.txt
+
+Functional Programming & Haskell (Computerphile):
+https://www.youtube.com/watch?v=LnX3B9oaKzw
+
+Learn Haskell In One Video:
+https://www.youtube.com/watch?v=02_H3LjqMr8
+
+Learn You A Haskell For Great Good:
+http://learnyouahaskell.com/
+
+99 Haskell Problems:
+https://wiki.haskell.org/H-99:_Ninety-Nine_Haskell_Problems
+
+Lambda Calculus (Computerphile):
+https://www.youtube.com/watch?v=eis11j_iGMs
+
+What Is A Monad:
+https://www.youtube.com/watch?v=t1e8gqXLbsU

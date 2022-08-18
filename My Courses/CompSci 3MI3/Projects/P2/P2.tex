@@ -1,0 +1,192 @@
+\documentclass{exam}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{mathpartir}
+\usepackage{amsmath}
+\usepackage{syntax}
+
+\let\OldTexttt\texttt
+
+\renewcommand{\texttt}[1]{\OldTexttt{\color{teal}{#1}}}
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.05}
+\definecolor{mGreen2}{rgb}{0.05,0.65,0.05}
+\definecolor{mGray2}{rgb}{0.55,0.55,0.55}
+\definecolor{mPurple2}{rgb}{0.63,0.05,0.05}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+\definecolor{backgroundColour2}{rgb}{0.95,0.92,0.95}
+
+\lstdefinestyle{C}{
+    backgroundcolor=\color{backgroundColour},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{mGray},
+    stringstyle=\color{mPurple},    
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\definecolor{t_comment}{rgb}{0.2,1,0.2}
+\definecolor{t_mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{t_mPurple}{rgb}{0.58,0,0.05}
+\definecolor{t_blue}{rgb}{0.4,0.6,0.8}
+\definecolor{t_mGreen2}{rgb}{0.05,0.65,0.05}
+\definecolor{t_mGray2}{rgb}{0.75,0.75,0.75}
+\definecolor{t_mPurple2}{rgb}{0.63,0.05,0.05}
+\definecolor{t_bg}{rgb}{0.15,0.15,0.18}
+
+\lstdefinestyle{terminal}{
+    backgroundcolor=\color{t_bg},   
+    commentstyle=\color{t_comment},
+    keywordstyle=\color{t_blue},
+    numberstyle=\tiny\color{t_mGray},
+    stringstyle=\color{t_mGray2}, 
+    basicstyle=\footnotesize\color{t_mGray2},
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=none,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\graphicspath{{.}}
+\begin{document}
+
+\begin{center}
+\fbox{\fbox{\parbox{5.5in}{\centering
+\Large{COMPSCI 3MI3 : Project 2 - Untyped $\lambda$-Calculus} \\
+\large{Fall 2021} \\ 
+Nicholas Moore \\
+\large{Project Due: {\color{red} Sunday October $31^{th}$ at 11:59 PM}}
+}}}
+\end{center}
+
+When complete, submit the code for this part as ULC.hs through the Avenue dropbox.
+
+\section*{Part 1: Implementing Untyped $\lambda$-Calculus}
+
+\begin{questions}
+\question[5] \textbf{Term Definitions} \\
+The grammar of the untyped $\lambda$-Calculus is given below.
+
+\begin{grammar}
+<t> ::= <Var> 
+\alt $\lambda$ <Var> . <t>
+\alt <t> <t> 
+
+<Var> ::= A | B | C | D | E | F | G | H | I | J | K | M | N | O | P | Q | R | S | U | V | W | X | Y | Z
+\end{grammar}
+
+Unlike our terms of UAE, in $\lambda$-Calculus, we need to be able to handle something close to the idea of algebraic variables.  So, we will add the following restriction.  In our Haskell implementation, what we mean by ``variable'' is one element from a set of labels.  This set contains every letter of the standard English alphabet.  You are allowed to skip a few of these if you are using them in your term data type.
+
+Implement this grammar as a recursive datatype in Haskell.  Both data types will need to derive Eq, and it would be convenient for them to also derive Show.
+
+\question[5] \textbf{Free Variables} \\ 
+Implement a function which takes in a term as defined above, and returns a list containing the free variables in that term.  The rules for finding these are as follows:
+
+\begin{tabular}{l l l}
+$FV(x)$ & $=$ & $\{x\}$ \\
+$FV(\lambda x. t_1)$ & $=$ & $FV(t_1) \setminus \{x\}$ \\ 
+$FV(t_1 t_2)$ & $=$ & $FV(t_1) \cup FV(t_2)$ \\
+\end{tabular}
+
+This will require use of Haskell lists.  You may find some of the functions in \texttt{Data.List} useful:
+\begin{itemize}
+\item \texttt{union}
+\item \texttt{\textbackslash \textbackslash}
+\item \texttt{nub} (as a last resort!)
+\end{itemize}
+
+For more information, check the documentation at \url{https://hoogle.haskell.org/}
+
+\question[5] \textbf{Relabelling} \\
+In order to implement our rules of substitution, we will need a way to relabel terms.  In general, terms that differ only in the names of bound variables are interchangeable in all contexts.  Write a function in Haskell which, given a term, the name of a variable to replace, and the name of a variable to replace it with, replaces each occurrence of the first variable with the second.  \\
+
+You may assume all occurrences of the variable we are replacing are bound.  You may also assume that, if a subexpression contains a lambda abstraction over the same variable name, that we are replacing that variable name too.
+
+\question[10] \textbf{Substitution} \\ 
+The rules of substitution are given as follows:
+
+\includegraphics[scale=0.4]{figures/Substitution.png}
+
+Write a function in Haskell named \texttt{sub} which performs substitution over the terms defined in question 1.  This function should accept as arguments:
+\begin{itemize}
+\item The term the substitution is being performed on
+\item The variable label being substituted out.
+\item The term that is being substituted in.
+\end{itemize}
+
+Your function should also implement the meta-rule implicit in the above substitution rules, that if the abstracted variable is in the set of free variables of the term being substituted in, it must be relabelled with a label that does not conflict with any of the other labels.  The function you wrote in the previous part should help with that.  
+
+The function should output the term produced as a result of the substitution operation. 
+
+\question[5] \textbf{Normal Forms} \\
+Write a Haskell function, \texttt{isNF} which accepts as an argument a term of our calculus, and outputs a Boolean value (that is, a Haskell \texttt{Bool}, not a Church Boolean).  This function must determine whether or not a term is in normal form, according to the call by value evaluation strategy.  
+
+\question[5] \textbf{Small Step Operational Semantics} \\
+Consider the operational semantics of the call by value evaluation strategy of $\lambda$-Calculus.   
+
+\includegraphics[scale=0.33]{figures/ssos.png}
+
+Using these operational semantics, write a function, \texttt{ssos}.  This function will take a term as input, and will output the result of a single step of our call by value evaluation strategy. 
+
+\question[2] \textbf{Full Evaluation}
+Write a function, \texttt{eval}, which, when applied to a term, fully evaluates it.  
+
+\section*{Part 2: Implementing Some Functions}
+
+When you have completed this section, submit the code as ULC2.hs to the Avenue dropbox.  
+
+\question \textbf{Boolean Functions} \\
+
+\begin{parts}
+
+\part[1] \textbf{Logical Not} \\
+Write a Haskell function which uses your newly developed $\lambda$-Calculus to implement a logical not operation over Church Booleans. This function should take a term of our calculus, and return a term of our calculus.  You are not allowed to use pattern matching for this question!
+
+\part[1] \textbf{Logical And} \\
+Repeat the above for a logical and operator.  This function should take two terms of our calculus, and return a third.  
+
+\part[1] \textbf{Logical Or} \\
+Repeat the above for a logical or operator.  This function should take two terms of our calculus, and return a third. 
+
+\end{parts}
+
+\question \textbf{Numeric Functions}
+
+\begin{parts}
+\part[2] \textbf{Numeric Sum} \\
+Write a Haskell function which uses your newly developed $\lambda$-Calculus to implement addition over church numerals. This function should take two terms of our calculus and return a third.  You are not allowed to use pattern matching for this question, you have to do it exclusively in $\lambda$-Calculus! 
+
+\part[2] \textbf{Numeric Times} \\
+Repeat the above for a numeric multiplication operator.  This function should take two terms of our calculus, and return a third.  
+
+\part[3] \textbf{Predecessor} \\
+Repeat the above for a predecessor function over church numerals.  This function should take one term of our calculus, and return another. 
+
+\end{parts}
+
+\end{questions}
+
+\end{document}

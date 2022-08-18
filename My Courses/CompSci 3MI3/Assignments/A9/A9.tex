@@ -1,0 +1,133 @@
+\documentclass{exam}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{listings}
+
+\let\OldTexttt\texttt
+
+\renewcommand{\texttt}[1]{\OldTexttt{\color{teal}{#1}}}
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.05}
+\definecolor{mGreen2}{rgb}{0.05,0.65,0.05}
+\definecolor{mGray2}{rgb}{0.55,0.55,0.55}
+\definecolor{mPurple2}{rgb}{0.63,0.05,0.05}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+\definecolor{backgroundColour2}{rgb}{0.95,0.92,0.95}
+
+\lstdefinestyle{C}{
+    backgroundcolor=\color{backgroundColour},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{mGray},
+    stringstyle=\color{mPurple},    
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\definecolor{t_comment}{rgb}{0.2,1,0.2}
+\definecolor{t_mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{t_mPurple}{rgb}{0.58,0,0.05}
+\definecolor{t_blue}{rgb}{0.4,0.6,0.8}
+\definecolor{t_mGreen2}{rgb}{0.05,0.65,0.05}
+\definecolor{t_mGray2}{rgb}{0.75,0.75,0.75}
+\definecolor{t_mPurple2}{rgb}{0.63,0.05,0.05}
+\definecolor{t_bg}{rgb}{0.15,0.15,0.18}
+
+\lstdefinestyle{terminal}{
+    backgroundcolor=\color{t_bg},   
+    commentstyle=\color{t_comment},
+    keywordstyle=\color{t_blue},
+    numberstyle=\tiny\color{t_mGray},
+    stringstyle=\color{t_mGray2}, 
+    basicstyle=\footnotesize\color{t_mGray2},
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=none,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\graphicspath{{.}}
+\begin{document}
+
+\begin{center}
+\fbox{\fbox{\parbox{5.5in}{\centering
+\Large{COMPSCI 3MI3 : Assignment 9} \\
+\large{Fall 2021} \\ 
+Nicholas Moore}}}
+\end{center}
+
+\begin{questions}
+
+
+\question[12] \textbf{Progress of Reference Semantics} \\
+In topic 10, we presented the following definition of progress, which had to be redefined with our inclusion of $\mu$ and $\Sigma$ in our calculus.   \\
+
+\textbf{THEOREM: [Progress]} \\ 
+Suppose $t$ to be a closed, well typed term (that is, $\O \:|\: \Sigma \vdash t : T$ for some $T$ and $\Sigma$).  Then either $t$ is a value, or else, for any store $\mu$ such that $\O \:|\:\Sigma \vdash \mu$, there is some term $t'$ and store $\mu'$ such that $t\:|\:\mu \rightarrow t'\:|\:\mu'$. \\
+
+\emph{Proof Sketch}
+\begin{itemize}
+\item Straightforward induction on typing derivations, following the pattern established in topic 8.  
+\item The canonical forms lemma needs two additional cases, stating that all values of type $Ref\:T$ are locations, and similarly for $Unit$.
+\end{itemize}
+
+Produce a proof of progress for simply typed $\lambda$ calculus, augmented with $Unit$, the sequencing operator, and our operations on references.  You do not need to reprove parts of the calculus which have not changed, but you do need to state that they haven't changed, and that the theorem still holds for them.
+
+As noted above, you need to add a couple cannonical forms.  Include these new canonnical forms (you don't have to prove them).  
+
+\question[14] \textbf{Preservation of Reference Semantics.} \\
+In topic 10, we developed the following definition of preservation.
+
+\textbf{THEOREM: [Preservation]} \\
+\begin{equation}
+(\Gamma \:|\:\Sigma \vdash t : T) \land (t\:|\:\mu \rightarrow t'\:|\:\mu') \land (\Gamma \:|\:\Sigma \vdash \mu) \implies (\exists \Sigma' \supseteq \Sigma \:|\: (\Gamma\:|\:\Sigma' \vdash t' : T) \land (\Gamma\:|\:\Sigma' \vdash \mu') )
+\end{equation}
+
+\emph{Proof Sketch Of Preservation}
+\begin{itemize}
+\item Straightforward induction on evaluation derivations, using the provided lemmas, plus the inversion property of our new typing rules (itself a straightforward extension of the inversion lemma of simply typed $\lambda$-Calculus).
+\end{itemize}
+
+In order to prove preservation, we will need the following three technical lemmas. \\ 
+\vspace{1em}
+\textbf{LEMMA: [Preservation Over Substitution]} 
+\begin{equation}
+(\Gamma, x:S\:|\:\Sigma \vdash t : T) \land (\Gamma \:|\:\Sigma \vdash s: S) \implies (\Gamma \:|\:\Sigma \vdash [x \mapsto s]t : T])
+\end{equation} \\
+\textbf{LEMMA: [Preservation Over Storage]}
+\begin{equation}
+(\Gamma \:|\:\Sigma \vdash \mu) \land (\Sigma(\mathnormal{l}) = T) \land (\Gamma \:|\:\Sigma \vdash v : T) \implies (\Gamma \:|\:\Sigma \vdash [\mathnormal{l} \mapsto v]\mu))
+\end{equation}
+\textbf{LEMMA: [Weakening Over Typing Stores]}
+\begin{equation}
+(\Gamma\:|\:\Sigma \vdash t : T) \land (\Sigma' \supseteq \Sigma) \implies (\Gamma \:|\:\Sigma' \vdash t : T)
+\end{equation}
+
+Give a proof of preservation as defined above, over simply typed $\lambda$-Calculus, augmented with $Unit$, the sequencing operator, and our operations on references.  You may use the lemmas above without needing to prove them.  The inversion lemmas described should be formally stated, but no proof need be given of them.
+
+Once again, you do not need to reprove parts of the calculus which have not changed, but you do need to state that they haven't changed, and that the theorem holds for them.  
+
+\end{questions}
+\end{document}

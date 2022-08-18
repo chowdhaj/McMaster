@@ -1,0 +1,773 @@
+\documentclass[11pt]{beamer}
+\usetheme{Dresden}
+%\usecolortheme{beaver}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{mathpartir}
+\usepackage{ebproof}
+\usepackage{xcolor}
+\usepackage{syntax}
+\author{NCC Moore}
+
+\title{Topic 5 - Untyped Lambda Calculus}
+\institute{McMaster University} 
+\date{Fall 2021} 
+\subject{COMPSCI 3MI3 - Principles of Programming Languages} 
+\stepcounter{section}
+
+
+
+
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.05}
+\definecolor{mGreen2}{rgb}{0.05,0.65,0.05}
+\definecolor{mGray2}{rgb}{0.55,0.55,0.55}
+\definecolor{mPurple2}{rgb}{0.63,0.05,0.05}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+\definecolor{backgroundColour2}{rgb}{0.95,0.92,0.95}
+
+\lstdefinestyle{C}{
+    backgroundcolor=\color{backgroundColour},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{mGray},
+    stringstyle=\color{mPurple},    
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\definecolor{burntOrange}{rgb}{1, 0.4, 0.1} 
+\usecolortheme[named=burntOrange]{structure} 
+
+\begin{document}
+
+\begin{frame}
+\center
+COMPSCI 3MI3 - Principles of Programming Languages
+\titlepage
+
+Adapted from ``Types and Programming Languages'' by Benjamin C. Pierce 
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\section[Intro]{Introduction to Lambda-Calculus}
+
+\begin{frame}[fragile=singleslide]{}
+\begin{center}
+\includegraphics[scale=0.4]{figures/thinklambda.jpg}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Computation my Friends! Computation!}
+In the 1960s, Peter Landin observed that complex programming languages can be understood by capturing their essential mechanisms as a small core calculus.  
+\begin{itemize}
+\item The core language used by Landin was \textbf{$\lambda$-Calculus}
+\begin{itemize}
+\item Developed in the 1920s by Alonzo Church.
+\item Reduces \emph{all} computation to function \textbf{definition} and \textbf{application}.
+\end{itemize}
+\end{itemize}
+The strength of $\lambda$-Calculus comes from it's \emph{simplicity} and its capacity for \textbf{formal reasoning}. 
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Languages Based on $\lambda$-Calculus }
+\begin{center}
+\includegraphics[width=0.3\textwidth]{figures/haskell.png} 
+\includegraphics[width=0.3\textwidth]{figures/Ocaml.png} 
+\includegraphics[width=0.3\textwidth]{figures/lisp.png} \\
+Haskell \hspace{14em} Lisp \\
+\vspace{2em}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{}
+\begin{center}
+Inclusion of lambda expressions in multi-paradigm languages has been a trend recently...
+\includegraphics[width=\textwidth]{figures/excel-lambda.png}
+\end{center}
+\end{frame}
+
+\section[Basics]{The Basics}
+\begin{frame}[fragile=singleslide]{The Tactile (As Opposed to Visual) Basics}
+Abstraction is the programmer's most reliable weapon.  For a true programmer, the following statement should be instinctively irritating:
+\begin{lstlisting}[style=C]
+(5*4*3*2*1) + (7*6*5*4*3*2*1) + (3*2*1)
+\end{lstlisting}
+Your humble professor couldn't even type the above without using copy-paste.  Our instinct tells us to rewrite the above as:
+\begin{lstlisting}[style=C]
+factorial(n) = if n = 0 then 1 else n * factorial (n-1) 
+factorial(5) + factorial(7) + factorial(3)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Baby's First $\lambda$}
+\begin{lstlisting}[style=C]
+factorial(n) = if n = 0 then 1 else n * factorial (n-1) 
+\end{lstlisting}
+Right now, the left-hand side is doing too much work (that is, any at all).  Let's introduce a new operator, $\lambda$, which does the work of \texttt{(n)} in the above.
+{\small
+\begin{equation}
+\texttt{factorial = } \lambda \texttt{n . if n = 0 then 1 else n * factorial (n-1)}
+\end{equation}}
+In Haskell, this would be written:
+\begin{lstlisting}[style=C, language=Haskell]
+factorial = 
+  (\ n -> if n = 0 then 1 else (factorial (n-1)))
+\end{lstlisting}
+\begin{itemize}
+\item In equation 1, \textbf{function application} is in the traditional $f(x)$ form, whereas Haskell and $\lambda$-Calculus use a space character for function application.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{$\lambda$-Calculus}
+In $\lambda$-Calculus, \emph{everything} is either a function definition or a function application of this form.  
+\begin{itemize}
+\item The arguments accepted by functions are functions
+\item The results returned by functions are also functions.  
+\end{itemize}
+\begin{center}
+\includegraphics[scale=0.2]{figures/recursion.jpg}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{$\lambda$-Calculus Syntax}
+Untyped $\lambda$-Calculus is comprised of only 3 terms! \\
+\dotfill
+\begin{grammar}
+<t> ::= <x> 
+\alt $\lambda$<x> . <t>
+\alt <t> <t>
+\end{grammar}
+\dotfill \\
+These terms are:
+\begin{itemize}
+\item Variable names
+\item $\lambda$ Abstraction
+\item Function Application.
+\end{itemize}
+\end{frame}
+
+
+\section[Typography]{Typographic Details}
+\begin{frame}[fragile=singleslide]{}
+\begin{center}
+\includegraphics[height=0.8\textheight]{figures/layers.jpeg}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Layers of Syntax}
+When working with programming languages, it is useful to be able to re-organize, and even transform our syntax before applying semantics to it.  It is very common to distinguish:
+\begin{itemize}
+\item \textbf{Concrete Syntax}
+\begin{itemize}
+\item The syntax the programmer actually encodes the program in.
+\end{itemize}
+\item from \textbf{Abstract Syntax}
+\begin{itemize}
+\item A tree structure containing the terms of the program
+\end{itemize}
+\end{itemize}
+It is sometimes useful to specify even more layers than these.  
+\begin{itemize}
+\item The syntax of a complex language can often be vastly simplified via purely syntactic transformations.
+\item Redundant constructs can be simplified to reduce the number of distinct terms (aka \textbf{desugaring})
+\begin{itemize}
+\item e.g., changing array access to pointer arithmetic in C
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{AST}
+Abstract syntax is an excellent way of visualizing a program's structure, especially in resolving operator precedence.  
+\begin{itemize}
+\item For example, under BEDMAS, the expression $1+2*3$ would be the left diagram, not the right diagram:
+\end{itemize}
+\begin{center}
+\includegraphics[scale=0.3]{figures/ast1.png} \\
+BEDMAS trees are evaluated leaf-first, but as we'll see, in $\lambda$ expressions may be evaluated using a number of different strategies.  
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{ASTs of $\lambda$-Calculus}
+In order to reduce the number of redundant parentheses in our concrete syntax for $\lambda$-Calculus:
+\begin{itemize}
+\item Function application will be \textbf{left-associative}.  That is, \texttt{s t u} is interpretted as: \\
+\end{itemize}
+
+\begin{center}
+\includegraphics[scale=0.3]{figures/ast2.png}
+\end{center}
+\begin{itemize}
+\item or, in concrete syntax, \texttt{(s t) u}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Scope of $\lambda$ Operator}
+The abstraction operator $\lambda$ is taken to extend to the right as far as possible.  For the following expression:
+\begin{itemize}
+\item $\lambda$\texttt{x.}$\lambda$\texttt{y.x y x}
+\end{itemize}
+We would construct an AST:
+
+\begin{center}
+\includegraphics[scale=0.4]{figures/ast3.png}
+\end{center}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Free vs Bound Variables}
+In predicate calculus, we recognize a distinction between \textbf{free} and \textbf{bound} variables.
+\begin{equation}
+\exists x\:|\:x \neq y
+\end{equation}
+In the above:
+\begin{itemize}
+\item $x$ is \textbf{bound} by the existential quantifier.
+\item $y$ is not bound by a quantifier and is therefore \textbf{free}
+\end{itemize}
+In $lambda$-Calculus, we apply the same concepts and the same terms to the relationship between variables and the abstraction operator $\lambda$.
+\begin{equation}
+(\lambda x . x\:y)\:x
+\end{equation}
+\begin{itemize}
+\item The first occurance of $x$ is \textbf{bound}.
+\item Both $y$ and the second occurrance of $x$ are \textbf{free}.
+\end{itemize}
+\end{frame}
+
+
+\section[Semantics]{Operational Semantics}
+\begin{frame}[fragile=singleslide]{Operational Semantics}
+\begin{center}
+\includegraphics[height=0.8\textheight]{figures/atheism.jpg}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Only One Evaluation Rule!}
+Each execution step performs a function application on a term with at least one abstracted variable.  
+\begin{itemize}
+\item This means both a $\lambda$ abstraction \emph{and} a function application must be present and adjacent for a term to be reducible.  
+\end{itemize}
+These terms reduce by \textbf{substituting} the abstracted variable with the term applied to the function.  In other words:
+\begin{equation}
+(\lambda x. t_1)\:t_2 \rightarrow [x \mapsto t_2]\:t_1
+\end{equation}
+\begin{itemize}
+\item A $\lambda$ expression which may be simplified is known as a \textbf{redex}, or \emph{reducible expression}.
+\item The above evaluation process is known as \textbf{beta-reduction}.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Using All our Substitutions}
+In the previous slide, the symbol $[x \mapsto t_2]\:t_1$ stands for ``the term obtained by the replacement of all free occurances of $x$ in $t_1$ by $t_2$.
+\begin{itemize}
+\item We will eventually need to define \emph{two} sets of operational semantics, one for rewriting lambda expressions, and another for performing substitutions.  
+\end{itemize}
+Examples:
+\begin{equation}
+(\lambda x.x)\: y \rightarrow y
+\end{equation}
+\begin{equation}
+(\lambda x . x\:(\lambda x . x))\:(u\:r) \rightarrow u\:r\:(\lambda x . x)
+\end{equation}
+Note in this last example that the substitution operation does not pass to the inner $\lambda$ expression.  This is because occurances of $x$ inside this expression are not \textbf{free}, but \textbf{bound} to the containing abstraction.  
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Evaluation Dilemma!}
+So far, we have a reasonably rigorous definiton for beta reduction, and our intuitions about substitution derived from our high-school algebra classes.  
+\begin{itemize}
+\item The goal is be able to create an algorithm which evaluates lambda expressions.  
+\item What happens if we have a choice of multiple beta-reductions in a single $\lambda$ expression?  
+\item We need an \emph{evaluation strategy}, which we can build into our operational semantics. 
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Our Test Expression}
+To examine strategies, we will use a running example expression:
+\begin{equation}
+(\lambda x. x)\:((\lambda x.x)\:(\lambda z. (\lambda x . x)\:z))
+\end{equation}
+\begin{itemize}
+\item $\lambda x. x$ is effectively an \textbf{identity function}, so we write it as $id$.
+\end{itemize}
+\begin{equation}
+id\:(id\:(\lambda z. id\:z))
+\end{equation}
+The above expression has three redexes:
+\begin{equation}
+{\color{red} id\:(id\:(\lambda z. id\:z))}
+\end{equation}
+
+\begin{equation}
+id\:({\color{red} id\:(\lambda z. id\:z)})
+\end{equation}
+\\
+\begin{equation}
+id\:(id\:(\lambda z. {\color{red}id\:z}))
+\end{equation}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{The Worst Strategy Ever}
+Under \textbf{Full Beta-Reduction}, the redexes may be reduced in any order.  
+\begin{itemize}
+\item Full beta-reduction is not really even a stategy.
+\item This algorithm is non-deterministic.
+\end{itemize}
+\begin{center}
+\includegraphics[scale=0.25]{figures/Full-Reduction.jpg}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Normal Order}
+\textbf{Normal order} begins with the leftmost, outermost redex, and proceeds until there are no more redexes to evaluate. This is the way a human would probably choose to it if they weren't thinking about it too hard. \\
+\vspace{1em}
+\begin{center}
+\begin{tabular}{c l}
+& ${\color{red} id\:(id\:(\lambda z. id\:z))}$ \\ 
+$\rightarrow$ & ${\color{red} id\:(\lambda z. id\:z)}$ \\ 
+$\rightarrow$ & $\lambda z. {\color{red} id\:z}$ \\
+$\rightarrow$ & $\lambda z. z$ \\
+$\nrightarrow$ &  \\
+\end{tabular}
+\end{center}
+Under this strategy (and those to follow), evaluation is a \emph{partial function}, as each term $t$ evaluates to \emph{at most} one term $t'$
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Call By Name}
+The \textbf{call by name} strategy is more restrictive than normal order.  You can't evaluate anything that isn't an outer-most term.  \\
+\vspace{1em}
+\begin{center}
+\begin{tabular}{c l}
+& ${\color{red} id\:(id\:(\lambda z. id\:z))}$ \\ 
+$\rightarrow$ & ${\color{red} id\:(\lambda z. id\:z)}$ \\ 
+$\rightarrow$ & $\lambda z. id\:z$ \\
+$\nrightarrow$ &  \\
+\end{tabular}
+\end{center}
+In this case, $\lambda z. id\:z$ is considered a \textbf{normal form}.  
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Haskell is Cool!}
+An optimized version of call by name strategy, called \textbf{call by need} is used by Haskell to evaluate expressions.  
+\begin{itemize}
+\item In order to avoid having to re-evaluate the arguments of expressions, Haskell overwrites all occurances of an expression the first time that expression is evaluated.  
+\item As a result, they only need to be evaluated \emph{once}.
+\item Effectively, this is a reduction relation on syntax \textbf{graphs}, rather than syntax \textbf{trees}.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Call By Value}
+Most languages use \textbf{call by value}, where only the outermost redexes are reduced, and a redex is only reduced when the right-hand-side has already been reduced to a value.
+\begin{itemize}
+\item Here, as elsewhere, a value is a term in normal form.
+\end{itemize}
+\vspace{1em}
+\begin{center}
+\begin{tabular}{c l}
+& $ id\: {\color{red}(id\:(\lambda z. id\:z))}$ \\ 
+$\rightarrow$ & ${\color{red} id\:(\lambda z. id\:z)}$ \\ 
+$\rightarrow$ & $\lambda z. id\:z$ \\
+$\nrightarrow$ &  \\
+\end{tabular}
+\end{center}
+
+We will be using this strategy a lot, because it is commonly implemented in programming languages, and easier to enrich with added features.  
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Curry in a Hurry!}
+You may have noticed that so far our functions have only taken one argument.  
+\begin{itemize}
+\item It would be almost trivial to define an extension to our calculus which allows multiple arguments.
+\item We don't have to, however, because of \textbf{currying}.
+\end{itemize}
+Because our functions are \textbf{higher order functions}, that is, they can return a function as their result, we can describe a function taking multiple arguments as a series of functions taking one argument, that pass their result to the next.  
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Coconut Lamb Curry!}
+This is how we might pass multiple arguments in a richer language:
+
+\begin{equation}
+(\lambda(x,y,z). s) (a,b,c) \rightarrow [x \mapsto a][y \mapsto b][z \mapsto c]s
+\end{equation}
+
+In our calculus, the following statement is equivalent. \\
+\vspace{1em}
+\begin{center}
+\begin{tabular}{c l}
+& $(\lambda x.\lambda y.\lambda z.\:s)\:a\:b\:c$ \\ 
+$\rightarrow$ & $(\lambda y.\lambda z.\:[x \mapsto a]s)\:b\:c$ \\
+$\rightarrow$ & $(\lambda z.\:[x \mapsto a][y \mapsto b]s)\:c$ \\
+$\rightarrow$ & $[x \mapsto a][y \mapsto b][z \mapsto c]s)$ \\
+$\nrightarrow$ & \\
+\end{tabular} \\
+It should be noted that our untyped $\lambda$-Calculus has not been designed for use by programmers, but for greater simplicity in proving mathematical properties.  
+\end{center}
+
+\end{frame}
+
+
+\section[Booleans]{Church Booleans}
+\begin{frame}[fragile=singleslide]{Church Booleans}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/Currying.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Strong Like Bool}
+Now that we have our new mode of computation established, let's start reconstructing the elements of UAE, starting with the Booleans!
+\begin{itemize}
+\item We can define true and false values as follows.
+\begin{itemize}
+\item We use \texttt{tru} and \texttt{fls} here to avoid confusion with the \texttt{true} and \texttt{false} of UAE.
+\end{itemize}
+\end{itemize}
+\begin{equation}
+\texttt{tru} = \lambda t. \lambda f. t
+\end{equation}
+\begin{equation}
+\texttt{fls} = \lambda t. \lambda f. f
+\end{equation}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Wait, What?}
+Our definitions of Boolean values won't make a lot of sense until we show how they're used.  Consider the following $\lambda$ expression, reproducing UAE's \texttt{if then else} term:
+\begin{equation}
+\texttt{test} = \lambda t_1. \lambda t_2. \lambda t_3.\:t_1\:t_2\:t_3
+\end{equation}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{center}
+\underline{With $t_1 = \texttt{tru}$}
+\begin{tabular}{c l}
+& $(\lambda t_1. \lambda t_2. \lambda t_3.\:t_1\:t_2\:t_3)\:\texttt{tru}\:u\:v$ \\ 
+$\rightarrow$ & $(\lambda t_2.\lambda t_3.\:\texttt{tru}\:t_2\:t_3)\:u\:v$ \\
+$\rightarrow$ & $(\lambda t_3.\:\texttt{tru}\:u\:t_3)\:v$ \\
+$\rightarrow$ & $\texttt{tru}\:u\:v$ \\
+$\rightarrow$ & $(\lambda t. \lambda f. t)\:u\:v$ \\
+$\rightarrow$ & $(\lambda f. u)\:v$ \\
+$\rightarrow$ & $u$ \\
+$\nrightarrow$ & \\
+\end{tabular}
+\end{center}
+
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{center}
+\underline{With $t_1 = \texttt{fls}$}
+\begin{tabular}{c l}
+& $(\lambda t_1. \lambda t_2. \lambda t_3.\:t_1\:t_2\:t_3)\:\texttt{fls}\:u\:v$ \\ 
+$\rightarrow$ & $(\lambda t_2.\lambda t_3.\:\texttt{fls}\:t_2\:t_3)\:u\:v$ \\
+$\rightarrow$ & $(\lambda t_3.\:\texttt{fls}\:u\:t_3)\:v$ \\
+$\rightarrow$ & $\texttt{fls}\:u\:v$ \\
+$\rightarrow$ & $(\lambda t. \lambda f. f)\:u\:v$ \\
+$\rightarrow$ & $(\lambda f. f)\:v$ \\
+$\rightarrow$ & $v$ \\
+$\nrightarrow$ & \\
+\end{tabular}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Boolean Operators}
+Adding pieces to $\lambda$-Calculus is very different from adding pieces to UAE.   
+\begin{itemize}
+\item To expand UAE, we needed to add additional terms and evaluation rules. 
+\begin{itemize}
+\item The more terms and evaluation rules we add, the longer and more complicated our proofs become! 
+\end{itemize}
+\item By contrast, when we ``added'' Booleans to our $\lambda$-Calculus, \emph{nothing actually had to be added to the language itself!}
+\begin{itemize}
+\item \texttt{tru} and \texttt{fls} are not terms, but \textbf{labels} for $\lambda$ expressions \emph{that were already valid terms!}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Conservative Extension}
+Consider two theories, $T_1$ and $T_2$.  We say that $T_2$ is a \textbf{conservative extension} of $T_1$ if:
+\begin{itemize}
+\item Every theorem of $T_1$ is a theorem of $T_2$
+\item Any theorem of $T_2$ in the language of $T_1$ is already a theorem of $T_1$.
+\end{itemize}
+The relationship between $\lambda$-Calculus, and $\lambda$-Calculus with Booleans fits the above description.
+\begin{itemize}
+\item We did not have to introduce any additional theorems to describe the Booleans.  
+\item Our Boolean extension still has all the rules of $\lambda$-Calculus.
+\end{itemize}
+The reason this is useful, is that anything proven about $\lambda$-Calculus is \emph{automatically true} of any conservative extension! 
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Boolean And}
+Since adding language elements is so easy under $\lambda$-Calculus, let's add a few more! 
+\begin{equation}
+\texttt{and} = \lambda b. \lambda c.\:b\:c\:fls
+\end{equation}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{center}
+\underline{With input \texttt{tru} \texttt{tru}}
+\begin{tabular}{c l}
+& $(\lambda b. \lambda c.\:b\:c\:\texttt{fls})\:\texttt{tru}\:\texttt{tru}$ \\ 
+$\rightarrow$ & $(\lambda c.\:\texttt{tru}\:c\:\texttt{fls})\:\texttt{tru}$ \\
+$\rightarrow$ & $\texttt{tru}\:\texttt{tru}\:\texttt{fls}$ \\
+$\rightarrow$ & $(\lambda t. \lambda f. t)\:\texttt{tru}\:\texttt{fls}$ \\
+$\rightarrow$ & $(\lambda f. \texttt{tru})\:\texttt{fls}$ \\
+$\rightarrow$ & $\texttt{tru}$ \\
+$\nrightarrow$ & \\
+\end{tabular}
+\end{center}
+
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{center}
+\underline{With input \texttt{tru} \texttt{fls}}
+\begin{tabular}{c l}
+& $(\lambda b. \lambda c.\:b\:c\:\texttt{fls})\:\texttt{tru}\:\texttt{fls}$ \\ 
+$\rightarrow$ & $(\lambda c.\:\texttt{tru}\:c\:\texttt{fls})\:\texttt{fls}$ \\
+$\rightarrow$ & $\texttt{tru}\:\texttt{fls}\:\texttt{fls}$ \\
+$\rightarrow$ & $(\lambda t. \lambda f. t)\:\texttt{fls}\:\texttt{fls}$ \\
+$\rightarrow$ & $(\lambda f. \texttt{fls})\:\texttt{fls}$ \\
+$\rightarrow$ & $\texttt{fls}$ \\
+$\nrightarrow$ & \\
+\end{tabular}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+
+\begin{frame}[fragile=singleslide]{Completing Our Truth Table}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{center}
+\underline{With input \texttt{fls} \texttt{tru}}
+\begin{tabular}{c l}
+& $(\lambda b. \lambda c.\:b\:c\:\texttt{fls})\:\texttt{fls}\:\texttt{tru}$ \\ 
+$\rightarrow$ & $(\lambda c.\:\texttt{fls}\:c\:\texttt{fls})\:\texttt{tru}$ \\
+$\rightarrow$ & $\texttt{fls}\:\texttt{tru}\:\texttt{fls}$ \\
+$\rightarrow$ & $(\lambda t. \lambda f. f)\:\texttt{tru}\:\texttt{fls}$ \\
+$\rightarrow$ & $(\lambda f. f)\:\texttt{fls}$ \\
+$\rightarrow$ & $\texttt{fls}$ \\
+$\nrightarrow$ & \\
+\end{tabular}
+\end{center}
+
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{center}
+\underline{With input \texttt{fls} \texttt{fls}}
+\begin{tabular}{c l}
+& $(\lambda b. \lambda c.\:b\:c\:\texttt{fls})\:\texttt{fls}\:\texttt{fls}$ \\ 
+$\rightarrow$ & $(\lambda c.\:\texttt{fls}\:c\:\texttt{fls})\:\texttt{fls}$ \\
+$\rightarrow$ & $\texttt{fls}\:\texttt{fls}\:\texttt{fls}$ \\
+$\rightarrow$ & $(\lambda t. \lambda f. f)\:\texttt{fls}\:\texttt{fls}$ \\
+$\rightarrow$ & $(\lambda f. f)\:\texttt{fls}$ \\
+$\rightarrow$ & $\texttt{fls}$ \\
+$\nrightarrow$ & \\
+\end{tabular}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Pairs}
+Using the selectivity of Church Booleans, we can easily use them to encode \textbf{pairs}.
+\begin{equation}
+\texttt{pair} = \lambda f. \lambda s. \lambda b.\:b\:f\:s
+\end{equation}
+\begin{equation}
+\texttt{fst} = \lambda p.\:p\:tru 
+\end{equation}
+\begin{equation}
+\texttt{snd} = \lambda p.\:p\:fls 
+\end{equation}
+\begin{itemize}
+\item $b$ is used to select between $f$ and $s$
+\item \texttt{fst} and \texttt{snd} merely apply \texttt{tru} and \texttt{fls} respectively.
+\item Since \texttt{tru} selects the first argument, it also selects the first term in the pair.
+\item Likewise for \texttt{fls}
+\end{itemize}
+\end{frame}
+
+\section[Numerals]{Church Numerals}
+\begin{frame}[fragile=singleslide]{Church Numerals}
+\begin{center}
+\includegraphics[scale=0.35]{figures/cortex.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Church Numerals}
+We can define the natural numbers in $\lambda$-Calculus in a manner still quite similar to Peano arithmetic.  
+
+\begin{align}
+c_0 &= \lambda s. \lambda z.\:z \\
+c_1 &= \lambda s. \lambda z.\:s\:z \\
+c_2 &= \lambda s. \lambda z.\:s\:(s\:z) \\
+c_3 &= \lambda s. \lambda z.\:s\:(s\:(s\:z)) \\
+\vdots \nonumber
+\end{align}
+In other words, Church numerals take two arguments, a successor $s$ and a zero term $z$. 
+\begin{itemize}
+\item $z$ is applied to $s$, and the result is applied to another $s$ and so on, until we reach $n$ applications.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Correspondance with Booleans}
+
+The observant student may have noticed that $c_0$ has the same definition as \texttt{fls}.
+
+\begin{itemize}
+\item This is sometimes called a \textbf{pun} in computer science.
+\item The same thing occurs in lower level languages, where the interpretation of a sequence of bits is context dependant. 
+\item In C, the bit arrangement 0x00000000 corresponds to:
+\begin{itemize}
+\item Zero (Integer)
+\item False (Boolean)
+\item "\textbackslash 0\textbackslash 0\textbackslash 0\textbackslash 0" (Character Array)
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{\texttt{Succ}-ess!}
+We can define the successor function on Church Numerals as follows:
+\begin{equation}
+\texttt{succ} = \lambda n. \lambda s. \lambda z.\:s\:(n\:s\:z)
+\end{equation}
+
+\begin{center}
+\underline{Successor of Two} \\
+\begin{tabular}{c l}
+& $\texttt{succ } c_2$ \\ 
+$\rightarrow$ & $(\lambda n. \lambda s. \lambda z.\:s\:(n\:s\:z))\:c_2$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:s\:(c_2\:s\:z)$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:s\:((\lambda s. \lambda z.\:s\:(s\:z))\:s\:z)$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:s\:((\lambda z.\:s\:(s\:z))\:z)$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:s\:(s\:(s\:z))$ \\
+$\rightarrow$ & $c_3$ \\
+$\nrightarrow$ & \\
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{\texttt{Add}-itional Functions!}
+Similarily, we can define addition as follows:
+\begin{equation}
+\texttt{plus} = \lambda m. \lambda n. \lambda s. \lambda z.\:m\:s(n\:s\:z)
+\end{equation}
+
+\begin{center}
+\underline{Freedom is the freedom to say...} \\
+\begin{tabular}{c l}
+& $\texttt{plus}\:c_2\:c_2$ \\ 
+$\rightarrow$ & $(\lambda m. \lambda n. \lambda s. \lambda z.\:m\:s\:(n\:s\:z)) c_2 c_2$ \\
+$\rightarrow$ & $(\lambda n. \lambda s. \lambda z.\:c_2\:s\:(n\:s\:z)) c_2$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:c_2\:s\:(c_2\:s\:z)$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:(\lambda s. \lambda z.\:s\:(s\:z))\:s\:((\lambda s. \lambda z.\:s\:(s\:z))\:s\:z)$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:(\lambda z.\:s\:(s\:z))\:((\lambda s. \lambda z.\:s\:(s\:z))\:s\:z)$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:(s\:(s\:((\lambda s. \lambda z.\:s\:(s\:z))\:s\:z)))$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:(s\:(s\:((\lambda z.\:s\:(s\:z))\:z)))$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:(s\:(s\:(s\:(s\:z))))$ \\
+$\rightarrow$ & $c_4$ \\
+$\nrightarrow$ & \\
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{\texttt{Times} Have Changed}
+Finally, let's define a multiplication operator.  
+\begin{equation}
+times = \lambda m. \lambda n.\:m\:(\texttt{plus}\:n)\:c_0 
+\end{equation}
+
+\begin{center}
+\underline{$3 \times 2 = ?$} \\
+\begin{tabular}{c l}
+& $\texttt{times}\:c_3\:c_2$ \\ 
+$\rightarrow$ & $(\lambda m. \lambda n.\:m\:(\texttt{plus}\:n)\:c_0)\:c_3\:c_2$ \\
+$\rightarrow$ & $(\lambda n.\:c_3\:(\texttt{plus}\:n)\:c_0)\:c_2$ \\
+$\rightarrow$ & $(\lambda s. \lambda z.\:s\:(s\:(s\:z)))\:(\texttt{plus}\:c_2)\:c_0$ \\
+$\rightarrow$ & $(\texttt{plus}\:c_2)\:((\texttt{plus}\:c_2)\:((\texttt{plus}\:c_2)\:c_0))$ \\
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Sub-Derivation}
+Technically this is cheating, since we don't have a rule for this type of substitution in the semantic, and it violates our evaluation strategy.
+\begin{center}
+\begin{tabular}{c l}
+& $\texttt{plus}\:c_2$ \\ 
+$\rightarrow$ & $(\lambda m. \lambda n. \lambda s. \lambda z.\:m\:s\:(n\:s\:z))\:(\lambda s. \lambda z.\:s\:(s\:z))$ \\ 
+$\rightarrow$ & $(\lambda n. \lambda s. \lambda z.\:(\lambda s. \lambda z.\:s\:(s\:z))\:s\:(n\:s\:z))$ \\
+$\rightarrow$ & $(\lambda n. \lambda s. \lambda z.\:(\lambda z.\:s\:(s\:z))\:(n\:s\:z))$ \\
+$\rightarrow$ & $(\lambda n. \lambda s. \lambda z.\:(s\:(s\:(n\:s\:z))))$ \\
+\end{tabular}
+\end{center}
+(It saves a lot of time though)
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{}
+\begin{center}
+\begin{tabular}{c l}
+& $(\texttt{plus}\:c_2)\:((\texttt{plus}\:c_2)\:((\texttt{plus}\:c_2)\:c_0))$ \\ 
+$\rightsquigarrow$ & $(\lambda n. \lambda s. \lambda z.\:(s\:(s\:(n\:s\:z))))\:((\texttt{plus}\:c_2)\:((\texttt{plus}\:c_2)\:c_0))$ \\ 
+$\rightarrow$ & $\lambda s. \lambda z.\:(s\:(s\:(((\texttt{plus}\:c_2)\:((\texttt{plus}\:c_2)\:c_0))\:s\:z)))$ \\ 
+$\rightsquigarrow$ & $\lambda s. \lambda z.\:(s\:(s\:(((\lambda n. \lambda s. \lambda z.\:(s\:(s\:(n\:s\:z))))\:((\texttt{plus}\:c_2)\:c_0))\:s\:z)))\:$ \\ 
+$\rightarrow$ & $\lambda s. \lambda z.\:(s\:(s\:((\lambda z.\:(s\:(s\:(((\texttt{plus}\:c_2)\:c_0)\:s\:z))))\:z)))\:$ \\ 
+$\rightarrow$ & $\lambda s. \lambda z.\:(s\:(s\:(s\:(s\:(((\texttt{plus}\:c_2)\:c_0)\:s\:z)))))$ \\ 
+$\rightsquigarrow$ & $\lambda s. \lambda z.\:(s\:(s\:(s\:(s\:(((\lambda n. \lambda s. \lambda z.\:(s\:(s\:(n\:s\:z))))\:c_0)\:s\:z)))))$ \\ 
+$\rightarrow$ & $\lambda s. \lambda z.\:(s\:(s\:(s\:(s\:((\lambda s. \lambda z.\:(s\:(s\:(c_0\:s\:z))))\:s\:z)))))$ \\ 
+$\rightarrow$ & $\lambda s. \lambda z.\:(s\:(s\:(s\:(s\:((\lambda z.\:(s\:(s\:(c_0\:s\:z))))\:z)))))$ \\ 
+$\rightarrow$ & $\lambda s. \lambda z.\:(s\:(s\:(s\:(s\:(s\:(s\:(c_0\:s\:z)))))))$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:(s\:(s\:(s\:(s\:(s\:(s\:((\lambda s. \lambda z.\:z)\:s\:z)))))))$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:(s\:(s\:(s\:(s\:(s\:(s\:((\lambda z.\:z)\:z)))))))$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:(s\:(s\:(s\:(s\:(s\:(s\:z))))))$ \\
+$\nrightarrow$ & \\
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Last Slide Comic}
+\begin{center}
+\includegraphics[height=0.8\textheight]{figures/math-cartoon.jpg}
+\end{center}
+\end{frame}
+
+\end{document}

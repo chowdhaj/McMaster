@@ -1,0 +1,672 @@
+\documentclass[11pt]{beamer}
+\usetheme{Dresden}
+%\usecolortheme{beaver}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{mathpartir}
+\usepackage{ebproof}
+\usepackage{syntax}
+\usepackage{flagderiv}
+\usepackage{xcolor}
+\author{NCC Moore}
+\title{Topic 7 - Introduction to Type Theory}
+\institute{McMaster University} 
+\date{Fall 2021} 
+\subject{COMPSCI 3MI3 - Principles of Programming Languages} 
+\stepcounter{section}
+
+%\renewcommand{\texttt}[1]{\OldTexttt{\color{teal}{#1}}}
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.05}
+\definecolor{mGreen2}{rgb}{0.05,0.65,0.05}
+\definecolor{mGray2}{rgb}{0.55,0.55,0.55}
+\definecolor{mPurple2}{rgb}{0.63,0.05,0.05}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+\definecolor{backgroundColour2}{rgb}{0.95,0.92,0.95}
+
+\lstdefinestyle{C}{
+    backgroundcolor=\color{backgroundColour},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{mGray},
+    stringstyle=\color{mPurple},    
+    basicstyle=\footnotesize,Make
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\definecolor{burntOrange}{rgb}{1, 0.4, 0.1} 
+\usecolortheme[named=burntOrange]{structure} 
+
+\begin{document}
+
+\begin{frame}
+\center
+COMPSCI 3MI3 - Principles of Programming Languages
+\titlepage
+
+Adapted from ``Types and Programming Languages'' by Benjamin C. Pierce 
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\section[Typing]{The Typing Relation}
+\begin{frame}[fragile=singleslide]{The Typing Relation}
+\begin{center}
+\includegraphics[height=0.65\textheight]{figures/theoryland.jpg} \\
+``The road from untyped to typed universes has been followed many times, in many different fields, and largely for the same reasons.'' \\
+-- Luca Cardelli \& Peter Wegner (1985)
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Typing Arithmetic Expressions}
+Back in September, we developed a compact, simple language of Booleans and natural numbers.  
+\begin{itemize}
+\item We will now revisit UAE, and augment it with \textbf{static types}.
+\item This will transform \emph{Untyped} Arithmetic Expressions (UAE) into \emph{Typed} Arithmetic Expressions (TAE).
+\item Once again, we will use this simple language to explore concepts related to type theory that will prove useful later.  
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Grammar of UAE}
+Recall the grammar of UAE.
+\begin{grammar}
+<t> ::= true 
+\alt false
+\alt if <t> then <t> else <t>
+\alt 0
+\alt succ <t>
+\alt pred <t>
+\alt iszero <t>
+\end{grammar}
+We also defined two subsets of our set of terms $\mathcal{T}$:
+\begin{equation}
+\mathcal{V} = \{\texttt{true}, \texttt{false}, \mathcal{NV}\}
+\end{equation}
+\begin{equation}
+\mathcal{NV} = \{\texttt{0}, \texttt{succ }\mathcal{NV}\}
+\end{equation}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Stuckness Revisited}
+Previously, we saw that UAE will either evaluate to an element of $\mathcal{V}$ or $\mathcal{NV}$, or get \textbf{stuck}.
+\begin{itemize}
+\item Roughly, stuck terms contain a type incompatability between operators and the terms they operate on.  
+\item For example \texttt{iszero true} has no evaluation rules which apply, so no further evaluation is possible.  
+\item We consider such programs \emph{meaningless} or \textbf{erroneous}.
+\end{itemize}
+It would be useful to be able to tell if a term is going to result in an error \emph{before} evaluating it.
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Introducing... Types!}
+We need a way to specify what sort of value a term will produce when executed.  
+\begin{itemize}
+\item We know that UAE values are divided into \textbf{Booleans} and \textbf{Natural Numbers}.
+\item We can therefore define the following \emph{set of the types of UAE}.
+\end{itemize}
+\begin{equation}
+T = \{Nat, Bool\}
+\end{equation}
+We say that a term $t$ ``has type $T$'' if it is obvious in some way that the result must be a value associated with the specified type.
+\begin{itemize}
+\item The type of a term should be easy to distinguish \emph{without evaluation}.  
+\item This is the difference between \textbf{static analysis} and \textbf{dynamic analysis}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{The Typing Relation}
+Effectively, we are talking about a \textbf{mapping} or \textbf{relation} between our set of terms $\mathcal{T}$ and our set of types $T$.  
+\begin{itemize}
+\item We call this a \textbf{typing relation}, and we will using the colon symbol to indicate this relation.  For example:
+\end{itemize}
+\begin{equation}
+\texttt{true} : Bool
+\end{equation}
+\begin{equation}
+\texttt{false} : Bool
+\end{equation}
+\begin{equation}
+\texttt{0} : Nat
+\end{equation}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Typing Rules for Booleans}
+Like our operational semantics, the typing relation is defined using a set of \textbf{inference rules}.
+\begin{center}
+\includegraphics[scale=0.4]{figures/TR1.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Typing Iffiness}
+Note the form of the rule T-If.
+\begin{itemize}
+\item If both $t_2$ and $t_3$ have \emph{the same type} $T$, then the if expression itself has type $T$.
+\item If $t_2$ and $t_3$ are of \emph{different types}, the type of the if expression \textbf{cannot be determined!}
+\item The premise $t_1 : Bool$ also tells us that the guard term \emph{must} be Boolean in order for the type of the expression to be determinable.  
+\end{itemize}
+A term which can be typed is called \textbf{typable}, or \textbf{well-typed}. A term which can't be typed is called \textbf{untypable}.
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Non-totality in Typing Relations}
+Fundamentally, we want a type system which does not need to evaluate terms to yield useful information.  
+\begin{itemize}
+\item It is impossible to tell which way the if expression will evaluate, unless we evaluate $t_1$.  
+\item So, rather than forcing evaluation to determine typing, we say that such terms are \emph{not in the typing relation}.  
+\end{itemize}
+The typing relation is not total over $\mathcal{T}$, meaning...
+
+\begin{equation}
+dom(:) \subseteq \mathcal{T}
+\end{equation}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Wrong Values}
+The set of untypable expressions contains, as a subset, all of the nonsense terms we are seeking to capture, such as \texttt{succ true}.  In other words, 
+\begin{equation}
+\mathcal{W} \subseteq \mathcal{T} \setminus dom(:)
+\end{equation}
+Where $\mathcal{W}$ is the set of all terms which are syntactically correct, but contain semantic errors.  
+\begin{itemize}
+\item This is the set of all terms that would evaluate to \texttt{Wrong} under UAE in Project 1.  
+\end{itemize}
+We can't say, however, that \emph{all} terms which are not well typed are the result of type mismatches.  The following evaluates to a value, but is untypeable:
+\begin{equation}
+\texttt{if true then false else } 0
+\end{equation}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Natural Numbers}
+Similarily, typing rules for the natural number operations is as follows:
+\begin{center}
+\includegraphics[scale=0.4]{figures/TR2.png}
+\end{center}
+\end{frame}
+
+\section[Formalities]{Formalities}
+\begin{frame}[fragile=singleslide]{Formalities of the UAE Type System}
+\begin{center}
+\includegraphics[scale=0.4]{figures/logician.png}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Definition of the Typing Relation}
+Formally, the \textbf{typing relation} for arithmetic expressions is the smallest binary relation between terms and types satisfying all the typing rules given in the previous section.
+\begin{itemize}
+\item A term $t$ is \textbf{well-typed} if there is some $T$ such that $t : T$ 
+\end{itemize}  
+When talking about types, we will often make statements like:
+\begin{itemize}
+\item If a term of the form $\texttt{succ } t_1$ has any type at all, then it has type \texttt{Nat}.
+\end{itemize}
+It will be handy to be able to derive the types of subterms from their containing terms, and not just type terms by their subterms.  
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Inversion of the Typing Relation}
+The following inversion rules are immediately derivable from our typing rules: \\
+\vspace{1em}
+\textbf{LEMMA: [Inversion of the Typing Relation]}
+\begin{equation}
+\texttt{true} : R \implies R = Bool
+\end{equation}
+\begin{equation}
+\texttt{false} : R \implies R = Bool
+\end{equation}
+\begin{equation}
+\texttt{if } t_1 \texttt{ then } t_2 \texttt{ else } t_3 : R \implies t_1 : Bool \land t_2 : R \land t_3 : R
+\end{equation}
+\begin{equation}
+0 : R \implies R = Nat
+\end{equation}
+\begin{equation}
+\texttt{succ } t_1 : R \implies R = Nat \land t_1 : Nat
+\end{equation}
+\begin{equation}
+\texttt{pred } t_1 : R \implies R = Nat \land t_1 : Nat
+\end{equation}
+\begin{equation}
+\texttt{iszero } t_1 : R \implies R = Bool \land t_1 : Nat
+\end{equation}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Typing Derivations}
+In the same way that our evaluation relation rules allowed us to create evaluation derivations, our typing relation rules allow us to produce \textbf{typing derivations}.
+\begin{itemize}
+\item \textbf{Statements} are formal assertions (in the Dr. Farmer sense) about the typing of programs.
+\item \textbf{Typing rules} are implications between statements.
+\item \textbf{Derivations} are deductions based on typing rules.  
+\end{itemize}
+For example, consider the term $\texttt{if iszero } 0 \texttt{ then } 0 \texttt{ else pred } 0$
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Example Typing Derivation}
+We derive our type like so:
+{\tiny
+\begin{flagderiv}
+\assume{1}{\texttt{if iszero } 0 \texttt{ then } 0 \texttt{ else pred } 0}{}
+\assume{2}{\texttt{iszero } 0}{Hypothesis}
+\assume{3}{0}{Hypothesis}
+\step{4}{Nat}{T-Zero on 3}
+\conclude{5}{0 : Nat}{T-Intro on 3, 4}
+\step{6}{Bool}{T-IsZero on 2, 5}
+\conclude{7}{\texttt{iszero } 0 : Bool}{T-Intro on 2, 6}
+\assume{8}{0}{Hypothesis}
+\step{9}{Nat}{T-Zero on 8}
+\conclude{10}{0 : Nat}{T-Intro on 8, 9}
+\end{flagderiv}}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Example Typing Derivation (cont.)}
+Continuing our derivation... 
+{\tiny
+\begin{flagderiv}
+\assume{1}{\texttt{if iszero } 0 \texttt{ then } 0 \texttt{ else pred } 0}{}
+\assume*{(11)}{\texttt{pred } 0}{Hypothesis}
+\assume*{(12)}{0}{Hypothesis}
+\step*{(13)}{Nat}{T-Zero on 12}
+\conclude*{(14)}{0 : Nat}{T-Intro on 12, 13}
+\step*{(15)}{Nat}{T-Pred on 11, 14}
+\conclude*{(16)}{\texttt{pred } 0 : Nat}{T-Intro on 11, 15}
+\step*{(17)}{Nat}{T-If on 1, 7, 10, 15}
+\conclude*{(18)}{\texttt{if iszero } 0 \texttt{ then } 0 \texttt{ else pred } 0 : Nat}{T-Intro on 1, 17}
+\end{flagderiv}}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Everyone Wants to be Unique!}
+\textbf{THEOREM [Uniqueness of Types]} \\
+Each term $t$ has at most one type.  That is, if $t$ is well-typed, then its type is unique.  Additionally, there is only one derivation of this type, based on our inference rules.  
+\begin{itemize}
+\item To prove the above, we would proceed via structural induction on $t$, break it into a case analysis, invoking the appropriate inversion formula (plus the induction hypothesis) in each case.  
+\end{itemize}
+We can also use induction over typing derivations to generate proofs, the same way we used induction over evaluation relations to generate proofs under UAE.  
+\end{frame}
+
+\section[Soundness]{The Safety of Type Systems}
+\begin{frame}[fragile=singleslide]{The Safety of Type Systems}
+\begin{center}
+\includegraphics[scale=0.45]{figures/axioms.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Type Safety}
+The most important property of TAE, or any other type system, is that of \textbf{safety}.
+\begin{itemize}
+\item Safety and \textbf{soundness} not quite the same thing, but the textbook uses them interchangeably.  
+\begin{itemize}
+ \item In mathematical logic, a logical system is sound iff every formula that can be proved in the system is logically valid with respect to the semantics of the system.  
+ \end{itemize} 
+\item i.e., if a term is well typed, it can't get stuck. 
+\begin{itemize}
+\item That is, we reach a normal form without having reached a value.  
+\end{itemize}
+\item We generally prove safety by demonstrating the theorems of \textbf{Progress} and \textbf{Preservation}
+\end{itemize}  
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Theoremception!}
+
+\textbf{THEOREM [Progress of Typed Arithmetic Expressions]} \\
+
+A well-typed term is not (currently) stuck.  That is, either it is a value, or one of our evaluation rules can be applied.  \\
+
+\vspace{1em}
+
+\textbf{THEOREM [Preservation of Typed Arithmetic Expressions]} \\
+
+If a well-typed term takes a step of evaluation, then the resulting term is also well-typed.  \\
+
+\vspace{1em}
+
+\begin{itemize}
+\item Taken together, we can say that any well-typed term will eventually evaluate to a value without getting stuck.
+\item We can argue this inductively over evaluation derivations.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{When Life gives you Lemmas}
+In order to prove the theorems on the previous slide, we will need to more tightly associate values with types.  The \textbf{canonnical forms} of a type are the values in our language which have that type.  \\
+\vspace{1em}
+
+\textbf{LEMMA [Canonical Forms]}
+\begin{enumerate}
+\item If $v$ is a value of type $Bool$, then $v$ is either \texttt{true} or \texttt{false}
+\item If $v$ is a value of type $Nat$, then $v$ is a numeric value. 
+\begin{itemize}
+\item That is, $v$ is either $0$, or $\texttt{succ } nv$, where $nv$ is also a numeric value.
+\end{itemize}
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Pachelbel's Canonical Form}
+To prove the above, we first address the two clauses individually, starting with the first.
+\begin{itemize}
+\item According to UAE grammar, values have four forms: \texttt{true}, \texttt{false}, $0$, and $\texttt{succ } nv$.
+\item For \texttt{true} and \texttt{false}, we can derive a Boolean type from clauses 1 and 2 of the inversion lemma. 
+\item For $0$, we derive $Nat$, rather than $Bool$ from clause 4 of the inversion lemma.
+\item For $\texttt{succ } nv$ we note from clause 5 of the inversion lemma that the term must have type $Nat$, not $Bool$. 
+\begin{itemize}
+\item Unlike the other terms, $\texttt{succ } t$ is not always well typed.
+\item Fortunately, we assume typability in our hypothesis.
+\end{itemize}
+\item We can therefore conclude that the only Boolean values are \texttt{true} and \texttt{false}.
+\end{itemize}
+The argument for clause 2 is precisely symmetrical.  
+\end{frame}
+
+\section[Progress]{Proof of Progress of TAE}
+\begin{frame}[fragile=singleslide]{Proof of Progress of TAE}
+\begin{center}
+\includegraphics[scale=0.3]{figures/progress.jpg}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Progress I}
+We may now attempt prove the progress of TAE.  If we state the theorem somewhat more rigorously... \\ 
+\vspace{1em}
+
+\textbf{THEOREM : [Progress]} \\
+Suppose $t$ is a well-typed term of TAE.  That is, $t : T$ for some $T$.  We may conclude that $t$ is either a value, or else there is some $t'$ such that $t \rightarrow t'$.  \\ 
+\vspace{1em}
+
+All well-typed terms are well-typed because a typing rule applies to them.  We will proceed via case analysis of our typing rules.  
+\begin{itemize}
+\item For T-True, T-False, and T-Zero, all three apply if $t$ is a value, so our theorem is satisfied.
+\item The rest will require induction over typing derivations.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Progress II}
+Let's consider T-If.  Our term must be of the form:
+\begin{equation}
+t = \texttt{if } t_1 \texttt{ then } t_2 \texttt{ else } t_3
+\end{equation}
+Additionally, we get the premises of T-If for free:
+\begin{mathpar}
+t_1 : Bool 
+\and t_2 : T
+\and t_3 : T
+\end{mathpar}
+
+\begin{itemize}
+\item By the induction hypothesis, $t_1$ is either a value, or there is some $t_1'$ such that $t_1 \rightarrow t_1'$
+\begin{itemize}
+\item If a value, $t_1$ must be \texttt{true} or \texttt{false}, via the canonical forms lemma. In these cases either E-IfTrue or E-IfFalse apply to $t$ respectively.
+\item If $t_1 \rightarrow t_1'$, then E-If is applicable to $t$.  
+\end{itemize}
+\item So, in all cases, $t$ is either a value, or $t \rightarrow t'$.   
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Progress III}
+Let's now consider T-Succ.  We can immediately state:
+\begin{mathpar}
+t = \texttt{succ } t_1 \and t_1 : Nat
+\end{mathpar}
+\begin{itemize}
+\item By the induction hypothesis, $t_1$ is either a value, or there is some $t_1'$ such that $t_1 \rightarrow t_1'$
+\begin{itemize}
+\item If $t_1$ is a value, it must be a numeric value, via the cannonical forms lemma.  $t$ is therefore a value as well.
+\item If $t_1 \rightarrow t_1'$, Then E-Succ is applicable. 
+\end{itemize}
+\item In all cases, therefore, $t$ is either a value, or $t \rightarrow t'$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Progress IV}
+Let's consider T-Pred.  We can immediately state:
+\begin{mathpar}
+t = \texttt{pred } t_1 \and t_1 : Nat
+\end{mathpar}
+\begin{itemize}
+\item By the induction hypothesis, $t_1$ is either a value, or there is some $t_1'$ such that $t_1 \rightarrow t_1'$
+\begin{itemize}
+\item If $t_1$ is a value, it must be a numeric value via the canonical forms lemma.  
+\begin{itemize}
+\item If $t_1 = 0$, E-PredZero applies to $t$.
+\item If $t_1 = \texttt{succ } t_2$, E-PredSucc applies to $t$.
+\end{itemize}
+In either case, an evaluation rule applies to $t$.
+\item If $t_1 \rightarrow t_1'$, the congruency rule E-Pred applies to $t$.
+\end{itemize}
+\item Therefore, in all cases, $t$ is either a value, or $t \rightarrow t'$.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Proof of Progress V}
+Finally, let's consider T-IsZero.  We can immediately state:
+\begin{mathpar}
+t = \texttt{isZero } t_1 \and t_1 : Nat
+\end{mathpar}
+\begin{itemize}
+\item By the induction hypothesis, $t_1$ is either a value, or there is some $t_1'$ such that $t_1 \rightarrow t_1'$
+\begin{itemize}
+\item If $t_1$ is a value, it must be a numeric value via the canonical forms lemma.  
+\begin{itemize}
+\item If $t_1 = 0$, E-IsZeroZero applies to $t$.
+\item If $t_1 = \texttt{succ } t_2$, E-IsZeroSucc applies to $t$.
+\end{itemize}
+In either case, an evaluation rule applies to $t$.
+\item If $t_1 \rightarrow t_1'$, the congruency rule E-IsZero applies to $t$.
+\end{itemize}
+\item Therefore, in all cases, $t$ is either a value, or $t \rightarrow t'$.
+\end{itemize}
+
+\textbf{We may therefore conclude that, for all possible well-typed terms, that the term is either a value, or can be evaluated using an evaluation rule.} \emph{QED}
+\end{frame}
+
+\section[Preservation]{Preservation}
+\begin{frame}[fragile=singleslide]{Preservation}
+\begin{center}
+\includegraphics[scale=0.4]{figures/physicists.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Preservation I}
+More rigorously stated... 
+
+\textbf{THEOREM [Preservation of Typed Arithmetic Expressions]}
+\begin{equation}
+t : T \land t \rightarrow t' \implies t' : T
+\end{equation}
+Proof is by induction on typing derivations.  That is, we will assume that the above holds for all subderivations.  We will then proceed by case analysis of the ``final'' typing derivation.  \\ 
+\vspace{1em}
+We will be checking... 
+\begin{mathpar}
+\text{T-True} \and \text{T-False} \and \text{T-Zero} \\
+\text{T-If} \and \text{T-Succ} \and \text{T-Pred} \and \text{T-IsZero}
+\end{mathpar}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Preservation II}
+Consider T-True.  We may immediately state:
+\begin{mathpar}
+t = \texttt{true} \and T = Bool
+\end{mathpar}
+\begin{itemize}
+\item In this case, $t \nrightarrow t'$.  The left-hand-side of our implication is false, so the theorem is vacuously true.  
+\end{itemize}
+We immediately see that the exact same argument is applicable to T-False and T-Zero.  \\
+\vspace{1em}
+\hrule
+\begin{mathpar}
+{\color{orange} \text{T-True}} \and {\color{orange} \text{T-False}} \and {\color{orange} \text{T-Zero}} \\
+\text{T-If} \and \text{T-Succ} \and \text{T-Pred} \and \text{T-IsZero}
+\end{mathpar}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Proof of Preservation III}
+Consider T-If.  We may immediately state:
+\begin{mathpar}
+t = \texttt{if } t_1 \texttt{ then } t_2 \texttt{ else } t_3 \\
+t_1 : Bool \and t_2 : T \and t_3 : T
+\end{mathpar}
+
+\begin{itemize}
+\item Since we are trying to conclude $t' : T$ from $t \rightarrow t'$, as well as $t : T$, we can also perform case analysis over the evaluation rules of if expressions.
+\begin{itemize}
+\item For E-IfTrue, we know $t_1 = \texttt{true}$ and $t' = t_2$.
+\begin{itemize}
+\item Since we have $t_2 : T$ above, we may conclude $t' : T$.
+\end{itemize}
+\item E-IfFalse proceeds as above, but with $t_3$ instead of $t_2$.
+\item For E-If, we know that $t_1 \rightarrow t_1'$ and $\texttt{if } t_1 \texttt{ then } t_2 \texttt{ else } t_3 \rightarrow \texttt{if } t_1' \texttt{ then } t_2 \texttt{ else } t_3$.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Preservation IV}
+\begin{itemize}
+\item In this case, our induction hypothesis states $t_1 : T \land t_1 \rightarrow t_1' \implies t_1' : T$.
+\begin{itemize}
+\item We know $t_1 : Bool$ (via typing relation case analysis)
+\item We know that $t_1 \rightarrow t_1'$ (via evaluation relation case analysis)
+\item We can conclude therefore that $t_1' : Bool$
+\end{itemize}
+\item Since we have $t_1' : Bool$, $t_2 : T$ and $t_3 : T$, we conclude via our typing relation inference rule that $\texttt{if } t_1' \texttt{ then } t_2 \texttt{ else } t_3 : T$.
+\end{itemize}
+In all cases, therefore, we conclude $t' : T$. \\
+\vspace{1em}
+\hrule
+\begin{mathpar}
+{\color{orange} \text{T-True}} \and {\color{orange} \text{T-False}} \and {\color{orange} \text{T-Zero}} \\
+{\color{orange} \text{T-If}} \and \text{T-Succ} \and \text{T-Pred} \and \text{T-IsZero}
+\end{mathpar}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Proof of Preservation V}
+Let us now consider T-Succ.  We can immediately state: 
+\begin{mathpar}
+t = \texttt{succ } t_1 \and T = Nat \and t_1 : Nat
+\end{mathpar}
+\begin{itemize}
+\item In this case, there is only one rule, E-Succ which can be used in $t \rightarrow t'$.
+\begin{itemize}
+\item From this, we know that $t_1 \rightarrow t_1'$. 
+\end{itemize}
+\item Since we have this fact with the fact that $t_1 : Nat$, we conclude that $t_1' : Nat$.  
+\item Since we know $t' = \texttt{succ } t_1'$ and $t_1' : Nat$, we can use our typing relation rules to conclude $t' : Nat$ \\
+\end{itemize} 
+\hrule 
+\vspace{0.5em}
+\begin{mathpar}
+{\color{orange} \text{T-True}} \and {\color{orange} \text{T-False}} \and {\color{orange} \text{T-Zero}} \\
+{\color{orange} \text{T-If}} \and {\color{orange} \text{T-Succ}} \and \text{T-Pred} \and \text{T-IsZero}
+\end{mathpar}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Preservation VI}
+Our T-Pred case proceeds along similar lines.  We can immediately state: 
+\begin{mathpar}
+t = \texttt{pred } t_1 \and T : Nat \and t_1 : Nat
+\end{mathpar}
+In this case, we must examine E-Pred, E-PredZero and E-PredSucc
+\begin{itemize}
+\item The proof of the congruence rule E-Pred is the same as the proof of E-Succ, so we won't repeat it.  
+\item Consider E-PredZero.  We can immediately state that both $t' = 0$, and $t_1 = 0$.
+\begin{itemize}
+\item $t' : Nat$ is immediate from T-Zero.
+\end{itemize}
+\item Consider E-PredSucc.  We can immediately state that $t_1 = \texttt{succ } t_2$ and that $t' = t_2$.
+\item To finish this case, we can use clause 5 of the inversion lemma.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Preservation VII}
+Clause 5 of the inversion lemma:
+\begin{equation}
+\texttt{succ } s_1 : R \implies R = Nat \land s_1 : Nat
+\end{equation}
+
+\begin{itemize}
+\item If we set $s = t_2$, then $\texttt{succ } s = t_1$.
+\item We know that $t_1 : Nat$ from our case analysis. 
+\item We can therefore conclude $t_2 : Nat$ from the inversion lemma.
+\item That is to say, $t' : Nat$.
+\end{itemize}
+Therefore, any case results in $t' : Nat$.  
+\hrule 
+\vspace{0.5em}
+\begin{mathpar}
+{\color{orange} \text{T-True}} \and {\color{orange} \text{T-False}} \and {\color{orange} \text{T-Zero}} \\
+{\color{orange} \text{T-If}} \and {\color{orange} \text{T-Succ}} \and {\color{orange} \text{T-Pred}} \and \text{T-IsZero}
+\end{mathpar}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Preservation VIII}
+Finally, consider the case of T-IsZero.  We immediately know:
+\begin{mathpar}
+t = \texttt{isZero } t_1 \and T = Bool \and t_1 : Nat
+\end{mathpar}
+There are three evaluation rules which may apply: E-IsZero, E-IsZeroZero, E-IsZeroSucc
+\begin{itemize}
+\item The proof of E-IsZero is too similar to the congruence rules E-Pred and E-Succ to restate.  
+\item Consider E-IsZeroZero. We immediately know $t' = \texttt{true}$.
+\begin{itemize}
+ \item We may immediately conclude from T-True that $t' : Bool$. 
+ \end{itemize} 
+\item Consider E-IsZeroSucc.  We immediately know that $t' = \texttt{false}$
+\begin{itemize}
+\item $t' : Bool$ is immediate from T-False.
+\end{itemize}
+\item Therefore, $t' : Bool$ in all cases.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Preservation IX}
+\begin{mathpar}
+{\color{orange} \text{T-True}} \and {\color{orange} \text{T-False}} \and {\color{orange} \text{T-Zero}} \\
+{\color{orange} \text{T-If}} \and {\color{orange} \text{T-Succ}} \and {\color{orange} \text{T-Pred}} \and {\color{orange} \text{T-IsZero}}
+\end{mathpar}
+\hrule 
+\vspace{0.5em}
+We have therefore demonstrated that the property of preservation holds in all possible cases, for all possible typing relations.  
+\begin{center}
+\emph{QED}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Last Slide Comic}
+\begin{center}
+\includegraphics[height=0.8\textheight]{figures/logout.png}
+\end{center}
+\end{frame}
+
+
+\end{document}

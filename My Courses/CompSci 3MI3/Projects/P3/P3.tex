@@ -1,0 +1,249 @@
+\documentclass{exam}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{mathpartir}
+\usepackage{ebproof}
+\usepackage{xcolor}
+\usepackage{syntax}
+
+\let\OldTexttt\texttt
+
+\renewcommand{\texttt}[1]{\OldTexttt{\color{teal}{#1}}}
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.05}
+\definecolor{mGreen2}{rgb}{0.05,0.65,0.05}
+\definecolor{mGray2}{rgb}{0.55,0.55,0.55}
+\definecolor{mPurple2}{rgb}{0.63,0.05,0.05}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+\definecolor{backgroundColour2}{rgb}{0.95,0.92,0.95}
+
+\lstdefinestyle{C}{
+    backgroundcolor=\color{backgroundColour},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{mGray},
+    stringstyle=\color{mPurple},    
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\definecolor{t_comment}{rgb}{0.2,1,0.2}
+\definecolor{t_mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{t_mPurple}{rgb}{0.58,0,0.05}
+\definecolor{t_blue}{rgb}{0.4,0.6,0.8}
+\definecolor{t_mGreen2}{rgb}{0.05,0.65,0.05}
+\definecolor{t_mGray2}{rgb}{0.75,0.75,0.75}
+\definecolor{t_mPurple2}{rgb}{0.63,0.05,0.05}
+\definecolor{t_bg}{rgb}{0.15,0.15,0.18}
+
+\lstdefinestyle{terminal}{
+    backgroundcolor=\color{t_bg},   
+    commentstyle=\color{t_comment},
+    keywordstyle=\color{t_blue},
+    numberstyle=\tiny\color{t_mGray},
+    stringstyle=\color{t_mGray2}, 
+    basicstyle=\footnotesize\color{t_mGray2},
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=none,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\graphicspath{{.}}
+\begin{document}
+
+\begin{center}
+\fbox{\fbox{\parbox{5.5in}{\centering
+\Large{COMPSCI 3MI3 : Project 3 - A Mini Language} \\
+\large{Fall 2021} \\ 
+Nicholas Moore}}}
+\end{center}
+
+\section{The Task}
+
+Throughout this course, we have been developing language components and type checking rules which evaluate the terms of a simple programming language.  The time has come to tie it all together, and Build! That! Language! 
+
+You are tasked with developing a Haskell program which implements the following language features covered in this course. 
+\begin{itemize}
+\item Booleans (As defined in Typed Arithmetic Expression language)
+\item Naturals (As defined in Typed Arithmetic Expression language)
+\item Simply Typed Pure $\lambda$-Calculus 
+\item The Unit data type and value
+\item Let bindings
+\item The Sequencing Operator
+\item Reference Operations
+\end{itemize}
+
+You will develop a Haskell function, \texttt{ssos}, which implements the semantics of the above language features.  You will also develop a function \texttt{typeCheck}, which determines whether or not a term is well typed.  You have been provided with data types in the file \texttt{template.hs}.  There are likely to be minor variations with the datatypes you used in previous projects.  For this project, you will be required to use the data types provided.  
+
+The recommended approach to this project is to go through the language constructs in the order provided, testing as you go, and making sure that one language feature works before the next one is attempted.  It is highly recommended that you take a backup after completing each language feature, or store your solutions in a (\textbf{private!}) repository.  Foir more information on how your project is to be submitted and scored, see \S 2.
+
+\subsection{Test Cases}
+A file called \texttt{Test\_Cases.txt} has been provided.  This plain-text file contains numerous test cases, with both evaluated results and the found type.  Step-by-step evaluations, including intermediate memory states, have been provided.
+
+\subsection{\texttt{eval} and \texttt{run}}
+As with previous projects in this course, you will construct an \texttt{eval} function which repeatedly applies the term you are evaluating to \texttt{ssos} until a normal form is reached (regardless of correctness).
+
+Due to the addition of a typechecker, we can finally verify the correctness of our programs \textbf{before} executing them.  You will need to write a function, \texttt{run}, which first typechecks the given term, and only evaluates it if the term typechecks.  
+
+\subsection{Booleans (Challenge Rating $\star\:\star$)}
+
+\includegraphics[width = \textwidth]{figures/Bool-E.png}
+\includegraphics[width = \textwidth]{figures/Bool-T.png}
+
+Implementation of Boolean semantics was a large component of Project 1, so our main task with the Booleans in Project 3 will be creating the typechecker.  Recall that typechecking is a process that may fail to find a type for a term.  While single step semantics, augmented with reflexivity is a total function over terms, typing is a \textbf{partial function} over terms.  The way that Haskell handles partial functions is using the \texttt{Maybe} monad. 
+\begin{itemize}
+\item You can apply the \texttt{Maybe} monad to a type to indicate that it may or may not exist.
+\begin{itemize}
+\item For example, a value of the type \texttt{Maybe Bool} might be a Boolean, or it might not exist.  
+\end{itemize}
+\item \texttt{Maybe}'s values are either \texttt{Just x} or \texttt{Nothing}, with x being a term of the type within the \texttt{Maybe}.
+\end{itemize}
+
+So, rather than our typechecker directly yielding a type as a value, we want it to return a value wrapped in the \texttt{Maybe} monad.  This way, any time our type inference rules fail to determine the type of an expression, we return \texttt{Nothing}.  This is reflected in the project template.
+
+\subsection{Naturals ($\star\:\star$)}
+
+\includegraphics[width = \textwidth]{figures/Nat-E.png}
+\includegraphics[width = \textwidth]{figures/Nat-T.png}
+
+You will notice that, in the provided code template, we have amalgamated our former syntactic categories of values and numeric values (and a few more besides!)  Before we had a type system, we needed two categories of value to correctly restrict the construction of successor values.  With the addition of typechecking, this happily becomes unnecessary.  Since the input term to the successor function is required to be typed $Nat$, we can be confident that a well-typed term does not need to be restricted in this manner at the semantic level.  
+
+\subsection{$\lambda$-Calculus ($\star\star\star\:\star$)}
+
+\includegraphics[width = \textwidth]{figures/STPLC.png}
+\includegraphics[width = \textwidth]{figures/substitution.png}
+
+Typechecking $\lambda$-Calculus requires the introduction of $\Gamma$ as a parameter of our typechecking function.  In the provided template, pairs in the $\Gamma$ relation are expressed as a list of two element tuples.  Naturally, $\Gamma$ must be passed down through recursive calls to the typechecking function, with modifications any time we are typechecking through a $\lambda$ abstraction (or let binding).  
+
+You will notice that, in the provided template, both variables and abstractions have been included in the set of values, rather than in the set of terms.  This is intentional.  $\lambda$ abstractions in particular must be values in order for us to be able to store them in memory.  
+
+Finally, on the subject of substitution.  The above substitution rules apply for the terms of pure $\lambda$-Calculus, but no rules are provided for the other terms.  You may assume that substitutions are passed through all other terms with subterms, and that a substitution applied to a non-variable value does nothing.  You may assume similar behaviour for relabelling operations.  
+
+\subsection{The Unit Type ($\star$)}
+
+\includegraphics[width = \textwidth]{figures/unit.png}
+There's not much to say about the unit type and value.  Most of the work has been provided for you in the code template, and unit has no evaluation rules.  
+
+\subsection{Let Bindings ($\star\:\star$)}
+
+\includegraphics[width = \textwidth]{figures/Let.png}
+
+Let bindings in this form are not substantially different from $\lambda$ abstractions with application, except for the fact that we use a form of type inference to type the variable.  
+
+The only tricky part is, in order for type checking to work, let bindings must also contribute a variable-type pair to $\Gamma$.  As with $\lambda$ abstraction, typing information for the variable bound by a let binding must also be made available to sub-calls to the typechecking function.  
+
+Let bindings are included in this project because we will be using them for a special purpose, when we implement reference operations.  Essentially, we will use let bindings to simulate the algebraic variable manipulation used to construct programs in the textbook and lectures.  
+
+\subsection{The Sequencing Operator ($\star\:\star$)}
+
+\begin{equation}
+\inferrule{t_1 \rightarrow t_1'}{t_1 ; t_2 \rightarrow t_1' ; t_2} \tag{E-Seq}
+\end{equation}
+\begin{equation}
+\texttt{unit} ; t_2 \rightarrow t_2 \tag{E-SeqNext}
+\end{equation}
+\begin{equation}
+\inferrule{\Gamma \vdash t_1 : Unit \and \Gamma \vdash t_2 : T_2}{\Gamma \vdash (t_1 ; t_2) : T_2} \tag{T-Seq}
+\end{equation}
+
+On it's own, the sequencing operator should be reasonably straightforward to implement.  We have chosen here to model sequencing in the manner of our external language, with sequencing as a full term of the language with its own evaluation and typing rules.  
+
+\subsection{Reference Operations ($\star\star\star\star\star$)}
+
+\includegraphics[width = \textwidth]{figures/Ref1.png} \\
+
+\includegraphics[width = \textwidth]{figures/Ref2.png}
+
+Reference operations are the most difficult portion of this project.  The grading scheme has been set such that completing the entire project up to section \S 1.8 is worth 90\% (an A+).  A complete and correct submission with a complete and operational implementation of referencing is worth 110\% (An A++?) Getting the semantics working is easier than getting the typing operational, but both are challenging.
+
+\subsubsection{Semantics ($\star\star\star\:\star$)}
+
+Implementing the evaluation rules for referencing has a few tricky parts:
+\begin{itemize}
+\item For (E-RefV), an unused location must be obtained from the available locations.  It doesn't matter which location is chosen, so long as it is fresh.  It is acceptable, if no more locations are available and another is requested, that the program fails with whatever error your implementation would naturally trip.  The process greatly resembles selection of a fresh variable name during relabelling.
+\item Note that \emph{all} evaluation rules must be augmented with a proper handling of $\mu$.  Remember, reflexivity rules need to pass on changes that may have been made to $\mu$ during the handling of the subterm.  
+\item Another place $\mu$ will need to be factored in is in your \texttt{eval} function.  Under multi-step single step operational semantics, it is correct for the state of $\mu$ to be pass from one call to \texttt{ssos} to the next.  This is the reason that, in the code template, \texttt{ssos} returns a tuple containing both a term and some $\mu$.  
+\end{itemize}
+Aside from these points, implementing the referencing evaluation rules should be relatively straightforward.  The difficulty of this part is largely the refactoring of \texttt{ssos} to handle $\mu$ correctly.  
+
+\subsubsection{Typing ($\star\star\star\star\star$)}
+
+An observant student may have noticed that, while the code template contains data structures for $\Gamma$ and $\mu$, the typing store $\Sigma$ is noticeably absent.  For this project, we will modify our semantics, so as to eliminate the use of $\Sigma$.
+
+So far, our implementation has managed to keep typing and evaluation rules completely separate.  The population of $\Sigma$ with location-type pairs is, however, strictly a run-time phenomenon.  It is dependent on locations found during memory allocation.  In theory, if the new memory location selection mechanism you coded in \S 1.9.1 was deterministic, and if the typechecker and the single step semantics were persuaded to execute subterms in the same order, a typing traversal would reliably yield the same locations as evaluation traversal in the same order.  This is, however, a very bad model of how real memory works, and so we won't reconstruct $\Sigma$ during pure typechecking.
+
+To solve this problem, we must first \textbf{restrict the typing rule for memory allocation so that it is only well typed when it occurs in a let binding}.  Free occurrences of memory instantiation outside of let bindings will not be considered well typed.  Thus, the type of any allocated locations will be added as a type for the bound variable to $\Gamma$.  From there, the typing rule for variables will pick the reference type out of $\Gamma$ later on in the program.  
+
+While this approach is somewhat restrictive, it makes the construction of a separate typing store completely unnecessary.  Our typing and evaluation rules remain separate and distinct, and nobody has to completely, painfully and laboriously rewrite \texttt{eval}, \texttt{typeCheck} and \texttt{ssos} to account for data sharing between execution and typechecking.  
+
+
+
+\section{Scoring}
+
+Scoring will be progressive, based on the number of language features you correctly implement.
+\begin{center}
+
+\begin{tabular}{| c | c | c | c | c |}
+\hline 
+Feature Set & Semantics & Type Checking & Total & Cumulative \\ \hline
+$\mathbb{B}$ & 2 & 13 & 15 & 15 / 100 \\ \hline
+$\mathbb{B} \cup \mathbb{N}$  & 2 & 13 & 15 & 30 / 100 \\ \hline   % 30
+$\mathbb{B} \cup \mathbb{N} \cup \lambda$ & 4 & 21 & 25 & 55 / 100\\ \hline % 55 
+$\mathbb{B} \cup \mathbb{N} \cup \lambda \cup \mathbb{U}$ & 3 & 2 & 5 & 60 / 100 \\ \hline % 60
+$\mathbb{B} \cup \mathbb{N} \cup \lambda \cup \mathbb{U} \cup \mathbb{L}$ & 8 & 7 & 15 & 75 / 100 \\ \hline % 75
+$\mathbb{B} \cup \mathbb{N} \cup \lambda \cup \mathbb{U} \cup \mathbb{L} \cup \mathbb{S}$ & 8 & 7 & 15 & 90 / 100 \\ \hline % 90
+$\mathbb{B} \cup \mathbb{N} \cup \lambda \cup \mathbb{U} \cup \mathbb{L} \cup \mathbb{S} \cup \mathbb{R}$ & 8 & 12 & 20 & 110 / 100 \\ \hline % 110
+\end{tabular}
+\vspace{1em}
+\begin{tabular}{| c | c |}
+\hline
+Booleans & $\mathbb{B}$ \\ \hline
+Naturals & $\mathbb{N}$ \\ \hline
+$\lambda$-Calculus & $\lambda$ \\ \hline
+Unit Type & $\mathbb{U}$ \\ \hline
+Let bindings & $\mathbb{L}$ \\ \hline
+Sequencing & $\mathbb{S}$ \\ \hline
+References & $\mathbb{R}$ \\ \hline
+\end{tabular}
+
+\end{center}
+
+\begin{itemize}
+\item According to the above, the maximum grade available for this project is 110\%. 
+\item Only the above feature sets are valid feature sets.  If a feature is skipped, the project will be graded with whichever of the above feature sets is the largest subset of the provided features.  
+\begin{itemize}
+\item For example, an implementation containing $\mathbb{B} \cup \mathbb{N} \cup \mathbb{U}$ will be graded as $\mathbb{B} \cup \mathbb{N}$, because it skipped $\lambda$.
+\end{itemize}
+\item Full marks will only be available for solutions in which lines of the \texttt{ssos} and \texttt{typeCheck} functions have been commented with the evaluation and typing rule names implemented in that line.  For the most part, each typing or evaluation rule only requires one line in either function.  Lines which do not correspond to an explicit rule should have a comment indicating the purpose of the line.
+\begin{itemize}
+\item For example, lines giving values reflexivity in \texttt{ssos} should be indicated with a comment.  
+\end{itemize}
+\item Your final submission should be a single Haskell source file, named \texttt{<Your MacID>.hs}.  Submission is through the Avenue dropbox.  
+\end{itemize}
+
+
+\end{document}

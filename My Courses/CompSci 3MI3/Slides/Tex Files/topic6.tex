@@ -1,0 +1,608 @@
+  \documentclass[11pt]{beamer}
+\usetheme{Dresden}
+%\usecolortheme{beaver}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{mathpartir}
+\usepackage{ebproof}
+\author{NCC Moore}
+\title{Topic 6 - Untyped Lambda Calculus 2 : Extensions and Formalities}
+\institute{McMaster University} 
+\date{Fall 2021} 
+\subject{COMPSCI 3MI3 - Principles of Programming Languages} 
+\stepcounter{section}
+
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.05}
+\definecolor{mGreen2}{rgb}{0.05,0.65,0.05}
+\definecolor{mGray2}{rgb}{0.55,0.55,0.55}
+\definecolor{mPurple2}{rgb}{0.63,0.05,0.05}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+\definecolor{backgroundColour2}{rgb}{0.95,0.92,0.95}
+
+\lstdefinestyle{C}{
+    backgroundcolor=\color{backgroundColour},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{mGray},
+    stringstyle=\color{mPurple},    
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+\definecolor{burntOrange}{rgb}{1, 0.4, 0.1} 
+\usecolortheme[named=burntOrange]{structure} 
+
+\begin{document}
+
+\begin{frame}
+\center
+COMPSCI 3MI3 - Principles of Programming Languages
+\titlepage
+
+Adapted from ``Types and Programming Languages'' by Benjamin C. Pierce 
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\section[UAE Terms]{More UAE Terms in Lambda Calculus}
+\begin{frame}[fragile=singleslide]{More UAE Terms in $\lambda$ Calculus}
+Over the course of this topic, we will continue to expand our knowledge of $\lambda$-Calculus.
+\begin{itemize}
+\item We will polish off the last remaining terms of UAE.
+\item We will discuss the \textbf{enrichment} of the calculus, so that it is less of a pain to work with.
+\item We will examine the ways in which $\lambda$-Calculus can be used as a general computational engine.  
+\item We will discuss the formalities of the language.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{isZero}
+In order to test a expression to see if it is $c_0$ or not, we must find arguments for the Church numerals which yield \texttt{tru} if no successors have been applied, and \texttt{fls} otherwise.
+\begin{itemize}
+\item Here's a reminder of what Church numerals look like:
+\end{itemize}
+
+\begin{align}
+c_0 &= \lambda s. \lambda z.\:z \\
+c_1 &= \lambda s. \lambda z.\:s\:z \\
+c_2 &= \lambda s. \lambda z.\:s\:(s\:z) \\
+c_3 &= \lambda s. \lambda z.\:s\:(s\:(s\:z)) \\
+\vdots \nonumber
+\end{align}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Coke Zero}
+To design a function that returns \texttt{tru} or \texttt{fls} when applied to Church numerals, we need to find some \textbf{inputs} to a church numeral which yield the correct \textbf{output}.  
+\begin{itemize}
+\item $c_0$ simply echos the second argument, so making the second argument \texttt{tru} will yield $\texttt{iszro}\:c_0 = \texttt{tru}$
+\item We might observe that each numeral that would return \texttt{fls} applies $z$ to one or more $s$.  
+\item So, if we make $s$ something that always returns \texttt{fls}, no matter what is applied to it, we have success! 
+\begin{itemize}
+\item $\lambda x. \texttt{fls}$ is the simplest function that fits the above description.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Zero to Hero}
+So, our \texttt{iszro} function needs to take a church numeral, and apply the above functions to it. 
+\begin{equation}
+\texttt{iszero} = \lambda m. m:(\lambda x. \texttt{fls})\:\texttt{tru}
+\end{equation}
+
+\begin{center}
+\underline{$\texttt{iszero}\:c_0$} \\
+\begin{tabular}{c l}
+& $(\lambda m. m\:(\lambda x. \texttt{fls})\:\texttt{tru})\:c_0$ \\ 
+$\rightarrow$ & $c_0\:(\lambda x. \texttt{fls})\:\texttt{tru}$ \\
+$\rightarrow$ & $(\lambda s. \lambda z.\:z)\:(\lambda x. \texttt{fls})\:\texttt{tru}$ \\
+$\rightarrow$ & $(\lambda z.\:z)\:\texttt{tru}$ \\
+$\rightarrow$ & $\texttt{tru}$ \\
+$\nrightarrow$ &  \\
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{The Mask of Zero}
+\begin{center}
+\underline{$\texttt{iszero}\:c_2$} \\
+\begin{tabular}{c l}
+& $(\lambda m. m\:(\lambda x. \texttt{fls})\:\texttt{tru})\:c_2$ \\ 
+$\rightarrow$ & $c_2\:(\lambda x. \texttt{fls})\:\texttt{tru}$ \\
+$\rightarrow$ & $(\lambda s. \lambda z.\:s\:(s\:z))\:(\lambda x. \texttt{fls})\:\texttt{tru}$ \\
+$\rightarrow$ & $(\lambda z.\:(\lambda x. \texttt{fls})\:((\lambda x. \texttt{fls})\:z))\:\texttt{tru}$ \\
+$\rightarrow$ & $(\lambda x. \texttt{fls})\:((\lambda x. \texttt{fls})\:\texttt{tru})$ \\
+$\rightarrow$ & $\texttt{fls}$ \\
+$\nrightarrow$ &  \\
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Predecessor(!)}
+Testing to see if something is zero is relatively straightforward, but predecessor requires some cleverness.
+\begin{itemize}
+\item In UAE, we defined \texttt{pred} as an annihilation operation over successors. 
+\item In $\lambda$-Calculus, we essentially need to \emph{reconstruct our numeral}, while keeping a \emph{history of the previous value}.  
+\end{itemize}
+\begin{equation}
+\texttt{prd} = \lambda m. fst\:(m\:ss\:zz)
+\end{equation}
+Where
+\begin{equation}
+ss = \lambda p. \texttt{pair}\:(\texttt{snd}\:p)\:(\texttt{plus}\:c_1\:(\texttt{snd p}))
+\end{equation}
+\begin{equation}
+zz = \texttt{pair}\:c_0\:c_0 
+\end{equation}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Predecessor of $c_2$}
+\begin{center}
+\underline{$\texttt{pred}\:c_2$} \\
+\begin{tabular}{c l}
+& $(\lambda m. fst\:(m\:ss\:zz))\:c_2$ \\ 
+$\rightarrow$ & $fst\:(c_2\:ss\:zz)$ \\ 
+$\rightarrow$ & $(\lambda p.\:p\:tru)\:(c_2\:ss\:zz)$ \\ 
+$\rightarrow$ & $c_2\:ss\:zz\:tru$ \\ 
+$\rightarrow$ & $(\lambda s. \lambda z.\:s\:(s\:z))\:ss\:zz\:tru$ \\ 
+$\rightarrow$ & $(\lambda z.\:ss\:(ss\:z))\:zz\:tru$ \\ 
+$\rightarrow$ & $\:ss\:(ss\:zz)\:tru$ \\ 
+$\rightarrow$ & $(\lambda p. \texttt{pair}\:(\texttt{snd}\:p)\:(\texttt{plus}\:c_1\:(\texttt{snd}\:p)))\:(ss\:zz)\:\texttt{tru}$ \\
+$\rightarrow$ & $\texttt{pair}\:(\texttt{snd}\:(ss\:zz))\:(\texttt{plus}\:c_1\:(\texttt{snd\:(ss\:zz)}))\:\texttt{tru}$ \\
+$\rightarrow$ & $(\lambda f. \lambda s. \lambda b.\:b\:f\:s)\:(\texttt{snd}\:(ss\:zz))\:(\texttt{plus}\:c_1\:(\texttt{snd (ss\:zz)}))\:\texttt{tru}$ \\
+$\rightarrow$ $\rightarrow$ $\rightarrow$ & $\texttt{tru}\:(\texttt{snd}\:(ss\:zz))\:(\texttt{plus}\:c_1\:(\texttt{snd (ss\:zz)}))$ \\
+$\rightarrow$ & $(\lambda t.\lambda f. t)\:(\texttt{snd}\:(ss\:zz))\:(\texttt{plus}\:c_1\:(\texttt{snd (ss\:zz)}))$ \\
+$\rightarrow$ $\rightarrow$ & $\texttt{snd}\:(ss\:zz)$ \\
+
+
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Predecessor of $c_2$}
+\begin{tabular}{c l}
+ & $\texttt{snd}\:(ss\:zz)$ \\
+$\rightarrow$ & $(\lambda p.\:p\:\texttt{fls}) \:(ss\:zz)$ \\
+$\rightarrow$ & $ss\:zz\:\texttt{fls} \:$ \\
+$\rightarrow$ & $(\lambda p. \texttt{pair}\:(\texttt{snd}\:p)\:(\texttt{plus}\:c_1\:(\texttt{snd p})))\:zz\:\texttt{fls} \:$ \\
+$\rightarrow$ & $\texttt{pair}\:(\texttt{snd}\:zz)\:(\texttt{plus}\:c_1\:(\texttt{snd zz}))\:\texttt{fls} \:$ \\
+$\rightarrow$ & $(\lambda f. \lambda s. \lambda b.\:b\:f\:s)\:(\texttt{snd}\:zz)\:(\texttt{plus}\:c_1\:(\texttt{snd zz}))\:\texttt{fls} \:$ \\
+$\rightarrow$ $\rightarrow$ $\rightarrow$ & $\texttt{fls}\:(\texttt{snd}\:zz)\:(\texttt{plus}\:c_1\:(\texttt{snd zz}))$ \\
+$\rightarrow$ $\rightarrow$ & $\texttt{plus}\:c_1\:(\texttt{snd zz})$ \\
+$\rightarrow$ & $(\lambda m. \lambda n. \lambda s. \lambda z.\:m\:s\:(n\:s\:z))\:c_1\:(\texttt{snd zz})$ \\
+$\rightarrow$ $\rightarrow$ & $\lambda s. \lambda z.\:c_1\:s\:((\texttt{snd zz})\:s\:z)$ \\
+$\nrightarrow$ &  \\
+\end{tabular}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Latent Evaluations}
+Because we are using the call by value strategy, we actually can't evaluate any further than this.  
+\begin{itemize}
+\item Remember that call by value doesn't allow us to evaluate the subexpressions of a term with a lambda.
+\item This leads to an interesting property of $\lambda$-Calculus: \textbf{Latent Evaluations}.
+\item Undersupplied $\lambda$ expressions won't fully execute, in effect, storing evaluations for later retrieval.
+\item These evaluations will only be calculated if the expression is supplied with a sufficient number of arguments.  
+\item We often say these forms are \textbf{functionally equivalent} to the normal forms that would arise from full $\beta$-reduction, and use them interchangeably.  
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile=singleslide]{Continuing using normal order...}
+\begin{center}
+\begin{tabular}{c l}
+ & $\lambda s. \lambda z.\:c_1\:s\:((\texttt{snd zz})\:s\:z)$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:(\lambda s. \lambda z.\:s\:z)\:s\:((\texttt{snd zz})\:s\:z)$ \\
+$\rightarrow$ $\rightarrow$ & $\lambda s. \lambda z.\:s\:(\texttt{snd zz}\:s\:z)$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:s\:((\lambda p.\:p\:\texttt{fls})\:\texttt{zz}\:s\:z)$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:s\:(\texttt{zz}\:\texttt{fls}\:s\:z)$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:s\:(\texttt{pair}\:c_0\:c_0\:\texttt{fls}\:s\:z)$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:s\:((\lambda f. \lambda s. \lambda b.\:b\:f\:s)\:c_0\:c_0\:\texttt{fls}\:s\:z)$ \\
+$\rightarrow$ $\rightarrow$ $\rightarrow$ & $\lambda s. \lambda z.\:s\:(\texttt{fls}\:c_0\:c_0\:s\:z)$ \\
+$\rightarrow$ $\rightarrow$ & $\lambda s. \lambda z.\:s\:(c_0\:s\:z)$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:s\:(c_0\:s\:z)$ \\
+$\rightarrow$ & $\lambda s. \lambda z.\:s\:((\lambda s. \lambda z.\:z)\:s\:z)$ \\
+$\rightarrow$ $\rightarrow$ & $\lambda s. \lambda z.\:s\:z$ \\
+$\rightarrow$ & $c_1$ \\
+$\nrightarrow$ &  \\
+\end{tabular}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{For higher numerals...}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+\item The way this algorithm works is to start at $c_0$, and build our way up to the number we're trying to take the predecessor of.  
+\item One half of the pair keeps track of the last numeral we were on, so when we reach the numeral we're trying to take the predecessor of...
+\item We just need to skim off the first element.
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\includegraphics[scale=0.35]{figures/pred.png}
+\end{column}
+\end{columns}
+\end{frame}
+
+\section[Enrichment]{Enriching the Calculus}
+\begin{frame}[fragile=singleslide]{Enriching the $\lambda$-Calculus}
+\begin{center}
+\includegraphics[scale=0.5]{figures/more-math.jpg}
+\end{center}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{That Was Pretty Painful!}
+As the previous, 3 full slide derivation has demonstrated, $\lambda$-Calculus can be pretty painful to do any actual work in!  
+\begin{itemize}
+\item Wouldn't it be convenient if there was some sort of advanced electrical computational engine that could perform such calculations...
+\item Hundreds even, in the blink of an eye! 
+\end{itemize}
+Hopefully we are now satisfied that all of our usual values and operators have some expression under $\lambda$-Calculus.  For convenience of calculation, let's move away from the pure system, and add some additional semantic content. 
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Adding UAE}
+
+We can convert easily between terms in UAE and our previously defined $\lambda$ expression equivalents:
+
+\begin{equation}
+\texttt{realbool} = \lambda b. b \texttt{ true false}
+\end{equation}
+
+\begin{equation}
+\texttt{churchbool} = \lambda b. \texttt{if } b \texttt{ then tru else fls}
+\end{equation}
+
+\begin{equation}
+\texttt{realnat} = \lambda c_n. c_n\:(\lambda x. \texttt{succ}\:x)\:0
+\end{equation} 
+
+\begin{equation}
+\texttt{churchnat} = \lambda n. (\lambda \texttt{succ}. \lambda 0. n)\:s\:z
+\end{equation} 
+
+From here, it's just a matter of using the right operations on the right values.
+\end{frame}
+
+\section[Computability]{Turing Completeness and Lambda Calculus}
+\begin{frame}[fragile=singleslide]{Turing Completeness and Lambda Calculus}
+\begin{center}
+\includegraphics[scale=0.2]{figures/Turing.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Turing Completeness/Equivalence}
+To review, a system of computation is considered \textbf{Turing Complete} or \texttt{Turing Equivalent} if it can perform all the actions of a Turing machine.  The minimal set of things you need to be able to do is:
+\begin{itemize}
+\item Support conditional branching.
+\begin{itemize}
+\item This implies support for arbitrary go-to operations.
+\end{itemize}
+\item An infinite amount of tape (or memory).  
+\end{itemize}
+Technically, no physical computer is Turing Complete, because of physical constraints on memory. 
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Church-Turing Thesis}
+The Church-Turing Thesis states: 
+\begin{itemize}
+\item A function on the natural numbers can be calculated by an effective method if and only if it is computable by a Turing machine.
+\item A secondary effect of this is that a program is computable via a Turing Machine iff it is computable using a $\lambda$ expression.
+\end{itemize}
+UAE is not Turing Complete because the Theorem of Evaluation holds.  
+\begin{itemize}
+\item This theorem means a UAE expression's evaluation chain must be finite for a finite term.  
+\item We can construct a finite Turing Machine which runs infinitely.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Curious Constructions}
+Theorem of Evaluation does not hold for $\lambda$-Calculus!
+\begin{itemize}
+\item This doesn't mean it isn't determinate, because it is (depending on your evaluation strategy).
+\end{itemize}
+This only means that finite $\lambda$ expressions can have infinite evaluation chains, such as the $\Omega$-Function:
+\begin{equation}
+\Omega = (\lambda x. x\:x) (\lambda x. x\:x)
+\end{equation}
+When you $\beta$-reduce $\Omega$, you get $\Omega$ right back again!
+\begin{equation}
+(\lambda x. x\:x) (\lambda x. x\:x) \rightarrow (\lambda x. x\:x) (\lambda x. x\:x)
+\end{equation}
+Because these functions do not converge on a normal form, they are known as \textbf{divergent}.
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{R(e(c(u(r(s(i(o(n()))))))))}
+The $\Omega$-Function is an interesting function, but it isn't very practical. 
+\begin{itemize}
+\item Its cousin, the \texttt{Y-Combinator}, encodes general recursion in the $\lambda$-Calculus.
+\end{itemize}
+\begin{equation}
+\texttt{Y} = \lambda f. (\lambda x. f\:(x\:x))\:(\lambda x. f\:(x\:x))
+\end{equation}
+\begin{itemize}
+\item Unfortunately, it only works under call by name.  The following \textbf{fixed-point combinator} solves the problem of general recursion for the call by value evaluation strategy.
+\end{itemize}
+\begin{equation}
+\texttt{fix} = \lambda f. (\lambda x. f\:(\lambda y. x\:x\:y))\:(\lambda x. f\:(\lambda y. x\:x\:y))
+\end{equation}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Factorial Again}
+Recall the factorial function:
+\begin{equation}
+n! = 
+\begin{cases}
+ 1 & n = 0 \\ 
+ n \times (n - 1)! & n > 0 \\
+\end{cases}
+\end{equation}
+
+We can now encode it as follows.
+\begin{equation}
+g = \lambda \texttt{fct}. \lambda n. \texttt{if } n == 0 \texttt{ then } 1 \texttt{ else } n \times (\texttt{fct}\:(n - 1))
+\end{equation}
+\begin{equation}
+\texttt{factorial} = \texttt{fix } g
+\end{equation}
+To save time and energy, we are encoding this using the enriched calculus. 
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Example Time!}
+\begin{center}
+\underline{$\texttt{factorial }3$} \\
+\begin{tabular}{c l}
+& $\texttt{fix}\:g\:3$ \\ 
+$\rightarrow$ & $(\lambda f. (\lambda x. f\:(\lambda y. x\:x\:y))\:(\lambda x. f\:(\lambda y. x\:x\:y)))\:g\:3$ \\ 
+$\rightarrow$ & $(\lambda x. g\:(\lambda y. x\:x\:y))\:(\lambda x. g\:(\lambda y. x\:x\:y))\:3$ \\ 
+setting & $h = \lambda x.g\:(\lambda y. x\:x\:y)$ \\
+yields & $(\lambda x. g\:(\lambda y. x\:x\:y))\:h\:3$ \\
+$\rightarrow$ & $g\:(\lambda y. h\:h\:y)\:3$ \\
+setting & $\texttt{fct} = \lambda y. h\:h\:y$ \\
+yields & $g\:\texttt{fct}\:3$ \\
+$\rightarrow$ & $(\lambda \texttt{fct}. \lambda n. \texttt{if } n == 0 \texttt{ then } 1 \texttt{ else } n \times (\texttt{fct}\:(n - 1)))\:\texttt{fct}\:3$ \\
+$\rightarrow$ $\rightarrow$ & $\texttt{if } 3 == 0 \texttt{ then } 1 \texttt{ else } 3 \times (\texttt{fct}\:(3 - 1))$ \\
+$\rightarrow$ $\rightarrow$ & $3 \times (\texttt{fct}\:2)$ \\
+$\rightarrow$ & $3 \times ((\lambda y. h\:h\:y)\:2)$ \\
+$\rightarrow$ & $3 \times (h\:h\:2)$ \\
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{}
+
+\begin{center}
+\begin{tabular}{c l}
+ & $3 \times (h\:h\:2)$ \\
+$\rightarrow$ & $3 \times ((\lambda x.g\:(\lambda y. x\:x\:y))\:h\:2)$ \\
+$\rightarrow$ & $3 \times (g\:\texttt{fct}\:2)$ \\
+$\rightarrow$ $\rightarrow$ & $3 \times (g\:\texttt{fct}\:2)$ \\
+$\rightarrow$ $\rightarrow$ $\rightarrow$ & $3 \times (\texttt{if } 2 == 0 \texttt{ then } 1 \texttt{ else } 2 \times (\texttt{fct}\:(2 - 1)))$ \\
+$\rightarrow$ $\rightarrow$ & $3 \times 2 \times (\texttt{fct}\:1)$ \\
+$\rightarrow$ $\rightarrow$ $\rightarrow$ & $6 \times (h\:h\:1)$ \\
+$\rightarrow$ $\rightarrow$ & $6 \times (g\:\texttt{fct}\:1)$ \\
+$\rightarrow$ $\rightarrow$ $\rightarrow$ & $6 \times (\texttt{if } 1 == 0 \texttt{ then } 1 \texttt{ else } 1 \times (\texttt{fct}\:(1 - 1)))$ \\
+$\rightarrow$ $\rightarrow$ & $6 \times 1 \times (\texttt{fct}\:0)$ \\
+$\rightarrow$ $\rightarrow$ $\rightarrow$ & $6 \times (h\:h\:0)$ \\
+$\rightarrow$ $\rightarrow$ & $6 \times (g\:\texttt{fct}\:0)$ \\
+$\rightarrow$ $\rightarrow$ $\rightarrow$ & $6 \times (\texttt{if } 0 == 0 \texttt{ then } 1 \texttt{ else } 0 \times (\texttt{fct}\:(0 - 1)))$ \\
+$\rightarrow$ $\rightarrow$ $\rightarrow$ & $6$ \\
+$\nrightarrow$ & \\
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+\section[Formalities]{Formalities}
+\begin{frame}[fragile=singleslide]{Formalities}
+\begin{center}
+\includegraphics[scale=0.13]{figures/math4.jpg}
+
+``There may, indeed, be other applications of the system than its use as a logic.'' \\
+- Alonzo Church, 1932 - 
+\end{center}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile=singleslide]{Inductive Syntax of $\lambda$-Calculus}
+For the rest of this topic, we will examine the subtleties of a more rigorous definition of the $\lambda$ calculus, beginning with an inductive definition of its syntax. \\
+\vspace{1em}
+Let $\mathcal{V}$ be a countable set of variable names.  The set of terms is the smallest set $\mathcal{T}$ such that:
+\begin{enumerate}
+\item $\mathcal{V} \subseteq \mathcal{T}$
+\item $t_1 \in \mathcal{T} \land x \in \mathcal{V} \implies \lambda x. t_1 \in \mathcal{T}$
+\item $t_1, t_2 \in \mathcal{T} \implies t_1\:t_2 \in \mathcal{T}$
+\end{enumerate}
+
+\begin{itemize}
+\item Via this definition, we can define size and depth the same way as we did under UAE.  
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Free Variables with Every Order}
+We can define a new function over $\lambda$-Calculus, in the style of the \texttt{consts} operator of UAE.  \\
+\vspace{1em}
+The set of \emph{free variables} of a term $t$, written $FV(t)$ is defined as follows: \\
+\vspace{0.5em}
+\begin{tabular}{l l l}
+$FV(x)$ & $=$ & $\{x\}$ \\
+$FV(\lambda x.t_1)$ & $=$ & $FV(t_1) \setminus \{x\}$ \\
+$FV(t_1 t_2)$ & $=$ & $FV(t_1) \cup FV(t_2)$ \\ 
+\end{tabular}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Use Substitute!}
+At the beginning of our discussion of the $\lambda$-Calculus, we said it would be necessary to develop a semantic of both the calculus itself, and the substitution operation.  Let's start with substitution.  
+\begin{itemize}
+\item We will start with an intuitive definition based on our knowledge of elementary-school algebra, and develop a more robust definition by exposing issues with the naive approach.  
+\end{itemize}
+Let us define naive substitution as follows: \\
+\vspace{0.4em}
+\begin{tabular}{l l l l}
+$[x \mapsto s]x$ & $=$ & $s$ & \\
+$[x \mapsto s]y$ & $=$ & $y$ & if $x \neq y$ \\
+$[x \mapsto s]\lambda y. t_1$ & $=$ & $\lambda y.[x \mapsto s]t_1$ & \\ 
+$[x \mapsto s](t_1\:t_2)$ & $=$ & $([x \mapsto s]t_1)\:([x \mapsto s]t_2)$ & \\ 
+\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Substitute is a Move in the Pokemon Games}
+This works reasonably well in most situations, such as the following:
+\begin{equation}
+[x \mapsto (\lambda z.z\:w)](\lambda y.x) \rightarrow \lambda y. \lambda z. z\:w
+\end{equation}
+But the naive description contains a bug!  
+\begin{itemize}
+\item Consider the following:
+\end{itemize}
+\begin{equation}
+[x \mapsto y](\lambda x. x) \rightarrow \lambda x. y
+\end{equation}
+\begin{itemize}
+\item This happens because we pass the substitution through lambdas without checking first to see if the variable we're replacing is bound!
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Maybe I Should Have Substituted a Better Joke...}
+If we fix the bit where we ignore bound vs. free variables...
+
+\includegraphics[scale=0.25]{figures/subrules2.png}
+
+This expression now evaluates the way we expect it to...
+\begin{equation}
+[x \mapsto y](\lambda x. x) \rightarrow \lambda x. x
+\end{equation}
+But the following expression doesn't.
+\begin{equation}
+[x \mapsto z](\lambda z. x) \rightarrow \lambda z. z
+\end{equation}
+\vspace{-1.5em}
+\begin{itemize}
+\item When we sub in $z$, it becomes bound to $\lambda z$.  
+\item This is known as \textbf{variable capture}.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Accept No Substitutes!}
+In order to avoid having our variables captured, we might add the condition that, in order for a substitution to pass through a $\lambda$ abstraction, the abstracted variable must not be in the set of free variables contained within the expression we are subbing in.
+
+\includegraphics[scale=0.3]{figures/subrules3.png}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{No Substitutions, Extensions or Refunds!}
+We're not out of the woods yet, however.  
+\begin{itemize}
+\item Consider the following example:
+\end{itemize}
+\begin{equation}
+[x \mapsto y\:z](\lambda y. x\:y)
+\end{equation}
+\begin{itemize}
+\item No substitution can be performed, even though it would be reasonable to expect one.  
+\item By relabelling $y$ to some other arbitrary label, we can avoid the capture as well.  For example:
+\end{itemize}
+\begin{equation}
+[x \mapsto y\:z](\lambda y. x\:y) \rightarrow [x \mapsto y\:z](\lambda w. x\:w) \rightarrow (\lambda w. y\:z\:w)
+\end{equation}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Relabel Them Variables!}
+By convention in $\lambda$-Calculus, terms that differ only in the names of bound variables are interchangeable in all contexts.  
+\begin{itemize}
+\item By adding the meta-rule that we rename variables whenever a substitution would result in variable capture, we can actually simplify our rules for substitution:
+\end{itemize}
+
+\includegraphics[scale=0.35]{figures/subrules4.png}
+
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Operational Semantics of $\lambda$-Calculus}
+Finally, we are ready to discuss the operational semantics of the call by value evaluation strategy of $\lambda$-Calculus
+\begin{center}
+\includegraphics[width = \textwidth]{figures/semantics.png}
+\end{center}
+Note that these are the semantics for the \textbf{pure $\lambda$-Calculus}.  
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Things of note}
+\begin{itemize}
+\item The set of values here is somewhat more interesting than in UAE.  
+\begin{itemize}
+\item Since this strategy doesn't evaluate past $\lambda$'s, all $\lambda$ abstractions are values.  
+\end{itemize}
+\item In these semantics, we have one application rule (E-AppAbs), and two \emph{congruence} rules, (E-App1) and (E-App2).
+\item Note how the placement of values controls the flow of execution.  
+\begin{itemize}
+\item We may only proceed with (E-App2) if $t_1$ is a value, implying that (E-App1) is inapplicable.  
+\item The reason this strategy is called ``call by value'' is because the term being substituted in (E-AppAbs) must be a value. 
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\section[Extra]{Extras}
+\begin{frame}[fragile=singleslide]{$\lambda$-Calculus Self Interpreter}
+A self-interpreter is a program which implements its own semantics.  
+\begin{itemize}
+\item Some programming languages, including Haskell, have their compilers and interpreters implemented in the language they are implementing.
+\begin{itemize}
+\item Python's interpreter is written in C...
+\end{itemize}
+\end{itemize}
+The following is a self-interpreting $\lambda$ expression, reliant on the Y-Combinator.
+\begin{equation}
+Y\:(\lambda e.\lambda m. m\:(\lambda x. x)\:(\lambda m.\lambda n. e\:m\:(e\:n))\:(\lambda m. \lambda v. e\:(m\:v)))
+\end{equation}
+I don't have an example of it's operation, I just found it while researching this slide deck, thought it was cool, and threw it in at the end. 
+\begin{itemize}
+\item Mogensen, T. (1994). Efficient Self-Interpretation in Lambda Calculus. Journal of Functional Programming.
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[fragile=singleslide]{Last Slide Comic}
+\begin{center}
+\includegraphics[height=0.8\textheight]{figures/crysis.png}
+\end{center}
+\end{frame}
+
+\end{document}

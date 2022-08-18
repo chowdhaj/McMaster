@@ -1,0 +1,644 @@
+\documentclass[11pt]{beamer}
+\usetheme{Dresden}
+%\usecolortheme{beaver}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{mathpartir}
+\usepackage{ebproof}
+\usepackage{flagderiv}
+\usepackage{verbatim}
+\author{NCC Moore}
+\title{Topic 4 - Operational Semantics}
+\institute{McMaster University} 
+\date{Fall 2021} 
+\subject{COMPSCI 3MI3 - Principles of Programming Languages} 
+\stepcounter{section}
+
+\definecolor{burntOrange}{rgb}{1, 0.4, 0.1} 
+\usecolortheme[named=burntOrange]{structure} 
+
+\begin{document}
+
+\begin{frame}
+\center
+COMPSCI 3MI3 - Principles of Programming Languages
+\titlepage
+
+Adapted from ``Types and Programming Languages'' by Benjamin C. Pierce 
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\section[Styles]{Semantic Styles}
+\begin{frame}[fragile=singleslide]{Arguing Semantics}
+In the last topic we examined various strategies for formally specifying language syntax.  By specifying the \textbf{semantics} of our Untyped Arithmetic Expressions language, we will have a complete and working model of a programming language that's ready for implementation\footnote{By you! During an assignment!}! \\
+\vspace{1em}
+In general there are three major semantic styles.  
+\begin{itemize}
+\item Operational Semantics
+\begin{itemize}
+\item Small-Step 
+\item Big-Step 
+\end{itemize}
+\item Denotational Semantics
+\item Axiomatic Semantics 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Operational Semantics}
+Under operational semantics, we define how a language behaves by specifying an \textbf{abstract machine} for it.  
+\begin{itemize}
+\item An abstract machine is abstract because it operates on the terms of the language themselves.
+\begin{itemize}
+\item This is in contrast to a regular machine, which must first translate the terms to instructions in the computer processor's instruction set.  
+\end{itemize}
+\item For simple languages (such as UAE), the \emph{state} of this abstract machine is simply a term of the language.
+\item The machine's behaviour is specified by a \textbf{transition function}. 
+\item The \emph{meaning} of a term is the final state of the abstract machine at the point of halting.    
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Operational Semantics (cont.)}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\textbf{Small Step} \\
+For each state, gives either the results of a single simplification, or indicates the machine has halted.  
+\end{column}
+\begin{column}{0.5\textwidth} 
+\textbf{Big Step} \\
+A single transition within the abstract machine evaluates the term to its final result.  
+\vspace{1em}
+\end{column}
+\end{columns}
+\vspace{0.5em}
+Sometimes, we will use two different operational semantics for the same language.  For example:
+\begin{itemize}
+\item One might be abstract, on the terms of the language as used by the programmer.
+\item Another might represent the structures used by the compiler/interpreter.
+\end{itemize}
+In the above case, proving correspondance between these two machines is \emph{proving the correctness of an implementation of the language}, i.e., proving the correctness of the compiler itself.  
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Denotational Semantics}
+Rather than viewing meaning as a sequence of machine states, under denotational semantics, the meaning of a term is taken to be a \emph{mathematical object}, such as a function or a number.  We need two things:
+\begin{itemize}
+\item \textbf{Semantic Domains} $\rightarrow$ A collection of sets of mathematical objects which we can map terms to.
+\item \textbf{Interpretation Function} $\rightarrow$ A mapping between the terms of our language and the elements of our semantic domains.  
+\end{itemize}
+For example:
+\begin{itemize}
+\item In the previous topic, we said we would sometimes simplify expressions, like writing $\texttt{succ} (\texttt{succ} (\texttt{succ} 0))$ as $3$.
+\begin{itemize}
+\item $\mathbb{N}$ is the semantic domain.
+\item The interpretation function maps terms of UAE to $\mathbb{N}$.
+\begin{itemize}
+\item Nominally, by counting the number of \texttt{succ} invokations.
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Denotational Semantics (cont.)}
+The search for semantic domains to model language features is an area of computer science research known as \textbf{domain theory}, and is especially applicable to functional programming languages. \\
+\vspace{1em}
+Denotational semantics have a number of advantages
+\begin{itemize}
+\item It avoids messy implementation details
+\item Properties of the semantic domains can be used to reason about program behaviours. For example:
+\begin{itemize}
+\item Proving two programs have the same behaviour.
+\item Proving a program meets some specification.
+\item Proving that certain behaviours are impossible, be they desireable or undesirable.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Axiomatic Semantics}
+\begin{itemize}
+\item Operational and Denotational Semantics start with a language behaviour, and then derive laws of reasoning from these definitions.  
+\item \textbf{Axiomatic Semantics} work in the reverse direction.  We take the laws themselves as the definition of the language.
+\item This means that the meaning of a term is precisely \emph{that which can be proved about it}.  
+\item This normally takes the form of assertions about the modification of program states made by program instructions.
+\item This approach is closely related to \textbf{Hoare Logic}. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Semantic Cage Match}
+During the early development of these semantic styles (1960s-70s), operational semantics were generally regarded as inferior to the more abstract styles.  
+\begin{itemize}
+\item Denotational semantics as a style has a tough time dealing with concurrency and nondeterminism, which is fatal in the internet age.
+\item Axiomatic semantics run into a similar issue with procedures.  
+\end{itemize}
+In reality, each of these styles made contributions to the others, but operational semantics eventually won out because of its simplicity.  \emph{In this course, we will be using Operational Semantics exclusively.}
+\end{frame}
+
+\section[Bool Eval]{Evaluation of Booleans via Small Step Operational Semantics}
+
+\begin{frame}[fragile=singleslide]{Operational Semantics of Booleans}
+Let us first consider the small step semantics of the boolean elements of UAE.
+\begin{center}
+\includegraphics[scale=0.26]{figures/B_smallstep.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Let's Break it Down...}
+In the left-hand column we see two syntactic specifications.  
+\begin{itemize}
+\item The first, is a re-stating of the terms we are interested in, particularly those relating to booleans and boolean operations.
+\item The second defines a subset of terms, called \textbf{values}, which are the possible final results of evaluation.  
+\end{itemize}
+The right-hand column defines an \textbf{evaluation relation} on terms, written $t \implies t'$
+\begin{itemize}
+\item We pronounce this ``t evaluates to t' in one step.'' 
+\item This relation is defined by the following three rules of inference.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Inference Rules}
+Let's examine our rules of inference in detail, starting with:
+\begin{equation}
+\texttt{if true then } t_2 \texttt{ else } t_3 \rightarrow t_2
+\end{equation}
+If our conditional expression is a literal truth value, we can simplify the expression to whatever term is represented by $t_2$. \\
+\vspace{1em}
+Similarily for the second rule: 
+\begin{equation}
+\texttt{if false then } t_2 \texttt{ else } t_3 \rightarrow t_3
+\end{equation}
+A literal false value can simplify the if statement to just the else-branch term.  
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Inference Rules (cont.)}
+The third evaluation rule (E-If) is less straightforward:
+\begin{equation}
+\inferrule{t_1 \rightarrow t_1'}{\texttt{if } t_1 \texttt{ then } t_2 \texttt{ else } t_3 \rightarrow \texttt{if } t_1' \texttt{ then } t_2 \texttt{ else } t_3}
+\end{equation}
+\begin{itemize}
+\item If we can evaluate $t_1$ to $t_1'$, we can substitute the guard term of an if-expression to $t_1'$, assuming it was $t_1$ originally.  
+\item In fact, we can use a \emph{different} abstract machine to establish $t_1 \implies t_1'$.
+\begin{itemize}
+\item You can think of this as the abstract machine spawning an instance of itself in order to evaluate the guard expression.  
+\end{itemize}
+\item Note the absence of similar rules for the true and false branches of this if-expression.  
+\item We've baked an \textbf{order of evaluation} into our semantics, because the if-expression \emph{must} be evaluated \emph{before} branches can be evaluated.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{The One-Step Evaluation Relation}
+Our evaluation relation $\rightarrow$ is defined as the smallest binary relation on terms satisfying the three rules given.  
+\begin{itemize}
+\item When a pair $(t,t')$ is in our evaluation relation, we say that ``the evaluation statement $t \rightarrow t'$ is \textbf{derivable}.'' 
+\item By smallest, we mean that the relation contains no pairs other than those derived from instances of our inference rules.  
+\begin{itemize}
+\item Since there are an infinite number of terms, there are also an infinite number of instances of the inference rules, and an infinite number of pairs in our evaluation relation.  
+\end{itemize}
+\item We can demonstrate the derivability of a given pair using \textbf{formal derivation}.
+\begin{itemize}
+\item The textbook uses inference tree style proofs, but here I'm using natural deduction style proofs because they are easier to follow and fit on the slides better\footnote{I tried both.}.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Example Evaluation}
+Consider the following expression in UAE:
+\begin{equation}
+\texttt{if true then (if false then false else false) else true}
+\end{equation}
+Let's set $t$ to the inner if expression so the derivation tree fits on the page:
+\begin{equation}
+t = \texttt{if false then false else false}
+\end{equation}
+We prove the results of the evaluation as follows:
+{\small
+\begin{flagderiv}
+\assume{1}{\texttt{if true then } t\texttt{ else true}}{}
+\step{2}{t}{E-IfTrue on \ref{1}}
+\step{3}{false}{E-IfFalse on \ref{2}}
+\conclude{4}{\texttt{if true then } t\texttt{ else true} \rightarrow \texttt{false}}{E-intro on \ref{1} to \ref{3}}
+\end{flagderiv}}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Example Evaluation 2}
+\begin{equation}
+\texttt{if (if true then false else true) then true else false}
+\end{equation}
+\begin{equation}
+t = \texttt{if true then false else true}
+\end{equation}
+\vspace{-1em}
+{\small
+\begin{flagderiv}
+\assume{}{\texttt{if } t \texttt{ then true else false}}{}
+\assume{2}{t}{Assume}
+\step{3}{\texttt{false}}{E-IfTrue on \ref{2}}
+\conclude{4}{t \rightarrow \texttt{false}}{E-intro on \ref{2} and \ref{3}}
+\step{5}{\texttt{if false then true else false}}{E-If on \ref{1} and \ref{4}}
+\conclude{6}{\texttt{if } t \texttt{ then true else false} \rightarrow \texttt{false}}{E-Intro on \ref{1} to \ref{5}}
+\end{flagderiv}}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Observations}
+Note that we have no ability to evaluate the inner if expression before the outer one, because there is no evaluation rule which gives us that ability! 
+\begin{itemize}
+\item If we had rules for evaluating the branches of an if statement, we would have to make a choice about which rule to follow to evaluate the statement.  
+\item This would make the evaluation relation \textbf{ambiguous} and \textbf{non-deterministic}. 
+\item The way our semantics are currently arranged, our evaluation relation is \textbf{deterministic}, providing a clear \textbf{evaluation strategy}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Induction on Derivations}
+Fact: $t \rightarrow t'$ is derivable iff there is a derivation proof with $t \rightarrow t'$ as its conclusion.  
+\begin{itemize}
+\item This fact can be used to reason about the properties of the evaluation relation.  
+\end{itemize}
+\textbf{[Induction on Derviations]}
+\begin{itemize}
+\item If we can show that
+\begin{itemize}
+\item Given that the same property holds for all sub-derivations,
+\item The property must necessarily hold for the super-derivation,
+\end{itemize}
+\item We may conclude that the property holds for all possible derivations.  
+\end{itemize}
+Here, \textbf{sub-derivation} is a derivation occuring \emph{after} the derivation at hand.  So, in example evaluation 1 above, if E-IfTrue is the derivation, E-IfFalse is it's sub-derivation.  
+\end{frame}
+
+\section[Determinacy]{Proof of Determinacy}
+\begin{frame}[fragile=singleslide]{Determinacy}
+As an excercise in induction on derivations, let us consider the following theorem. \\
+\vspace{1em}
+\textbf{THEOREM :} \\
+\textbf{[Determinacy of One-Step Evaluation]}  \\
+\begin{equation}
+t \rightarrow t' \land t \rightarrow t'' \implies t' = t''
+\end{equation}
+That is to say, if a term $t$ evaluates to $t'$, and the same term evaluates to $t''$, $t'$ and $t''$ must be the same term.  
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Determinacy}
+We will prove the above theorem by induction on a derivation of $t \rightarrow t'$.  
+\begin{itemize}
+\item We will assume the desired result for all smaller derivations.
+\item We will then perform case analysis over the three available evaluation rules.  
+\end{itemize}
+Note that this is \emph{not} induction over the \emph{length} of a derivation sequence.  This technique bears more resemblance to \textbf{structural induction} than to \textbf{complete induction}.   \\
+\vspace{1em}
+We're going to go through this one in quite a bit of detail, so buckle up! 
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Determinacy I}
+Just a reminder of the thing we're trying to prove...
+\begin{equation}
+t \rightarrow t' \land t \rightarrow t'' \implies t' = t''
+\end{equation}
+We can make certain determinations about our cases based on the derivation used in $t \rightarrow t'$.  That derivation must be one of the following:
+\begin{itemize}
+\item E-IfTrue, E-IfFalse, E-If
+\end{itemize}
+So let's start with E-IfTrue.
+\begin{itemize}
+\item If E-IfTrue was the last derivation, we know that $t$ must be of the form:
+\end{itemize}
+\begin{equation}
+\texttt{if true then } t_2 \texttt{ else } t_3
+\end{equation}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Determinacy II}
+In order for $t_1$ to not equal $t_2$, we would need to apply a different rule to it, other than E-IfTrue, so let's examine the possibilities.
+\begin{itemize}
+\item E-IfFalse $>>$ This strategy may only apply if $t_1 = \texttt{false}$.  Since $t_1 = \texttt{true}$, this is not a legal strategy.  
+\item E-If $>>$ This strategy can only be applied if $t_1$ can be evaluated.  Since $t_1 \in V$ (that is, it is a member of our set of values), further evaluation is impossible.   
+\end{itemize}
+Therefore, the $\rightarrow$ in $t \rightarrow t''$ must be E-IfTrue.  Therefore, $t' = t''$ in this case.  
+\vspace{1em}
+We can make a symmetrical argument in the case where we start with E-IfFalse.  
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Determinacy III}
+Now, let us consider the case of E-If.  We know that:
+\begin{equation}
+t = \texttt{if } s_1 \texttt{ then } s_2 \texttt{ else } s_3
+\end{equation}
+And that, via E-If,
+\begin{equation}
+t' = \texttt{if } s_1' \texttt{ then } s_2 \texttt{ else } s_3
+\end{equation}
+And we have the premise:
+\begin{equation}
+s_1 \rightarrow s_1'
+\end{equation}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Determinacy IV}
+We can apply the same argument from the E-IfTrue case to this as well.  We know that the only valid rule to apply to $t \rightarrow t''$ is E-If, so we know that:
+\begin{equation}
+t'' = \texttt{if } s_1'' \texttt{ then } s_2 \texttt{ else } s_3
+\end{equation}
+And we also have access to the premise:
+\begin{equation}
+s_1 \rightarrow s_1''
+\end{equation}
+However, this is insufficient to prove our final case!  
+\begin{itemize}
+\item We have $s_1 \rightarrow s_1'$ and $s_1 \rightarrow s_1''$, but in order for $t' = t''$, we have to show that $s_1' = s_1''$, since that is the only point of difference between $t'$ and $t''$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Determinacy V}
+We haven't needed the induction hypothesis so far, but here it is:
+\begin{itemize}
+\item We assume, for all sub-derivations of $t \rightarrow t'$, that:
+\end{itemize}
+\begin{equation}
+s \rightarrow s' \land s \rightarrow s'' \implies s' = s''
+\end{equation}
+And there we have it!  
+\begin{itemize}
+\item Since we know  $s_1 \rightarrow s_1'$ and  $s_1 \rightarrow s_1''$, we may conclude $s_1' = s_1''$ ! 
+\item $s_1' = s_1''$, so both $t'$ and $t''$ must be the same term! 
+\end{itemize}
+Therefore, the inductive step holds! 
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Proof of Determinacy VI}
+For completeness, we should also address our base case briefly.
+\begin{itemize}
+\item In this case, the base case is the final derivation, which will yield a value, rather than another expression.  
+\item The only derivation rules which can yeild a value are E-IfTrue and E-IfFalse.
+\item A very similar argument may be employed to show that $t \rightarrow t'$ cannot use a different rule than $\rightarrow t''$, because the guard term of $t$:
+\begin{enumerate}
+\item Must be a value (i.e., must be irreducible), because this is the final evaluation step.
+\item Can be either true or false, but not both, via our language definition.
+\end{enumerate}
+\end{itemize}
+We can therefore conclude that both our base case and inductive step hold.
+\begin{center}
+\emph{Quod Erat Demonstrandum}
+\end{center}
+\end{frame}
+
+
+\section[Normal Forms]{Normal Forms}
+\begin{frame}[fragile=singleslide]{}
+\begin{center}
+\includegraphics[scale=0.34]{figures/NormalForm.jpg}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Normal Form}
+As programmers, \emph{how} and expression is evaluated is much less interesting than \emph{what} it evaluates to.
+\begin{itemize}
+\item A term $t$ is in it's \textbf{Normal Form} if no evaluation rule applies to it. 
+\item That is, there is no $t'$ such that $t \rightarrow t'$
+\item For the present system of untyped booleans, we know intuitively that the normal form of all terms is \texttt{true} or \texttt{false}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Values Are In Normal Form!}
+\textbf{THEOREM :} \\
+\textbf{[Every Value is in Normal Form]}  \\
+Our set of values is in this case just \texttt{true} and \texttt{false}.
+\begin{itemize}
+\item Given that a term is in normal form if no evaluation rule applies to it, and 
+\item Given that we have no rules for evaluating \texttt{true} and \texttt{false}, 
+\item We can conclude that they are in normal form.
+\end{itemize}
+This is somewhat trivial to demonstrate, but we need to be careful as we add terms to UAE not to disrupt it.
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{If It's In Normal Form... It's a Value!}
+\textbf{THEOREM :} \\
+\textbf{[If $t$ is in Normal Form, $t$ is a Value]}  \\
+Proof:
+\begin{itemize}
+\item Let's say that $t$ is \emph{not} a value.  We seek to show that $t$ can't be in a state where an evaluation rule does not apply to it.
+\item Let's also introduce an induction hypothesis, and assume that subterms of $t$ are either in normal form or can be evaluated.  
+\item If $t$ is not a value, for the present subset of UAE, there is only one term that is not a value. $t$ must therefore have the form:
+\end{itemize}
+\begin{equation}
+\texttt{if } t_1 \texttt{ then } t_2 \texttt{ else } t_3
+\end{equation}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{If It's In Normal Form... It's a Value! II}
+\begin{itemize}
+\item Whether or not any evaluation rule applies to it depends on what $t_1$ is.  There are three possibilities:
+\begin{itemize}
+\item $t_1$ is the \texttt{true} value.  If this is the case, E-IfTrue applies.
+\item Similarly for $t_1 = \texttt{false}$ and E-IfFalse.
+\item Since the two above cases take care of the cases where the subterm $t_1$ is a value, via the induction hypothesis, $t_1$ must be able to be evaluated.  This means that E-If applies to $t$.
+\end{itemize}
+\item Therefore, if $t$ is not a value, it can be evaluated, meaning it is not in normal form.
+\item Therefore, values are the only thing in normal form.
+\item Therefore, if it's in normal form, it's a value! 
+\end{itemize}
+We will see later on that this isn't necessarily the case for all languages.  $succ\:0$ cannot be evaluated, but is also not a value.  
+\end{frame}
+
+\section[Termination]{Termination of Booleans}
+\begin{frame}[fragile=singleslide]{Termination}
+A property of extreme importance, when it comes to programs in various programming languages, is the property of \textbf{termination}.
+\begin{itemize}
+\item In our context, evaluation \textbf{terminates} when the term we are evaluating reaches some normal form.  
+\item In order for a language like UAE to have any practical utility whatsoever, evaluation must terminate.
+\item In practical terms, it should be impossible for a finite term to take an infinite amount of time to terminate.
+\begin{itemize}
+\item i.e., we want to make sure no evaluation rule returns us to a previous state, thus causing an \emph{infinite loop} in evaluation.  
+\end{itemize}
+\end{itemize}
+Although the \textbf{halting problem} is undecidable for larger languages, UAE is small enough that we can prove termination unequivocally.  
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{}
+\begin{center}
+\includegraphics[scale=0.3]{figures/Terminator.jpg}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Multi-step Evaluation ($\rightarrow^*$)}
+Let's define the \textbf{multi-step evalution relation} $\rightarrow^*$
+\begin{itemize}
+\item Multi-step Evaluation is the \textbf{reflexive, transitive closure} of one-step evaluation.  That is, it is the smallest relation such that:
+\end{itemize}
+\begin{equation}
+t \rightarrow t' \implies t \rightarrow^* t'
+\end{equation}
+\begin{equation}
+\forall t \in \mathcal{T} \:|\: t \rightarrow^* t
+\end{equation}
+\begin{equation}
+t \rightarrow^* t' \land t' \rightarrow^* t'' \implies t \rightarrow^* t''
+\end{equation}
+This last property is critical, because it means that, if you start with $t_0$, and you end up with $t_n$ through a series of applications of single-step evaluation, multi-step evaluation can jump directly from $t_0$ to $t_n$, or any point in-between with one application of $\rightarrow^*$.
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Uniqueness of Normal Form}
+\textbf{THEOREM :} \\
+\textbf{[Uniqueness of Normal Forms]}  \\
+Consider $t, u, u' \in \mathcal{T}$, where $u$ and $u'$ are normal forms.
+\begin{equation}
+t \rightarrow^* u \land t \rightarrow^* \implies u = u' 
+\end{equation}
+That is to say, if $u$ and $u'$ are both the results of multi-step evaluation of $t$, \emph{and} are in normal form, they must be the same thing!
+\begin{itemize}
+\item This is a fancy way of saying that a term may not eventually evaluate to more than one normal form.  
+\item This is a fancy way of saying that fully evaluated terms must have only one solution.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Uniqueness of Normal Form (Proof)}
+From the determinacy of single-step evaluation, we already know that:
+\begin{equation}
+t \rightarrow t' \land t \rightarrow t'' \implies t' = t''
+\end{equation}
+This reduces what we need to prove from:
+\begin{itemize}
+\item Terms can't have multiple solutions
+\end{itemize}
+To...
+\begin{itemize}
+\item Terms can't have multiple normal forms in a given chain of single-step evaluations.  
+\end{itemize}
+Here, we use the definition of the normal form:
+\begin{itemize}
+\item A term $t$ is in normal form if there are no evaluation rules which apply to it.
+\end{itemize}
+There can't be multiple normal forms along our evaluation path, because something in normal form can't be evaluated further.  \textbf{QED}!
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Termination of Evaluation}
+\textbf{THEOREM :} \\
+\textbf{[Termination of Evaluation]}  \\
+\begin{equation}
+\forall t \in \mathcal{T} \: \exists t' \in \mathcal{N} | t \rightarrow^* t'  
+\end{equation}
+Where $\mathcal{N}$ is the set of normal forms of $\mathcal{T}$.  \\ 
+\vspace{1em}
+To prove this, let's make some observations about single-step evaluations.  
+\begin{itemize}
+\item Previously, we had defined the size of a term analogously to the size of a tree.  
+\item Let's introduce a lemma... \\
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Does the Size Reduce? }
+\textbf{LEMMA :}
+\begin{equation}
+s \rightarrow s' \implies size(s) > size(s').  
+\end{equation}
+Proving this lemma shouldn't be difficult.  Because $s$ is being evaluated, we know it's not in normal form, meaning it must be an if-expression.
+\begin{itemize}
+\item According to the definition of $size$:
+\end{itemize}  
+\begin{equation}
+size(\texttt{if}\: s_1 \:\texttt{then}\: s_2 \:\texttt{else}\: s_3)=size(s_1) + size(s_2) + size(s_3) + 1
+\end{equation}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Yes it does!}
+\begin{itemize}
+\item Using structural induction, we will assume that our lemma applies to subterms of $s$.  
+\item We know that $s$ will evaluate to either $s_2$ or $s_3$, or that $s_1$ will be evaluated to some $s_1'$.
+\begin{itemize}
+\item Niether $size(s_2)$ nor $size(s_3)$ can be greater than $size(s_1) + size(s_2) + size(s_3) + 1$ because \emph{that's not how addition works!}
+\item Our induction hypothesis states that $size(s_1) > size(s_1')$, so...
+\end{itemize}
+\end{itemize}
+\begin{equation}
+size(s_1) + size(s_2) + size(s_3) + 1 > size(s_1') + size(s_2) + size(s_3) + 1
+\end{equation} 
+We can therefore conclude that the size of $s$ must be less than the size of $s'$.
+\end{frame}
+ 
+\begin{frame}[fragile=singleslide]{Decreasing Chains!}
+We have therefore demonstrated that evaluation represents a \emph{decreasing chain with respect to size}.  Now, we need an argument for whether this chain is \textbf{finite} or \texttt{infinite}.
+\begin{itemize}
+\item This can be determined quite easily, by deciding if the domain of size is well founded.  
+\item There are no sizes possible which are less than 1.  
+\begin{itemize}
+\item You could make the argument that the size of $\varnothing$ is 0, though we haven't defined it that way.
+\end{itemize}
+\item The domain of $size$ is therefore $\mathbb{N}$, which is \textbf{well founded}.
+\item Therefore, evaluation chains can't be infinite.  They therefore terminate! 
+\end{itemize}
+\end{frame}
+
+\section[Arithmetic]{Arithmetic Semantics}
+\begin{frame}[fragile=singleslide]{More Semantics!}
+So far, we have only been concerned with the Boolean terms of UAE.  Time to make things more complicated!
+\begin{itemize}
+\item As we construct our semantics for arithmetic operations, we are also interested in the problem of nonsense programs.  
+\begin{itemize}
+\item With just the boolean terms, it was impossible to create nonsense.
+\end{itemize}
+\item Although this is still an untyped expression language, terms have limited applicability.  Applying a term to an incompatible term will create nonsense.
+\item When a term is in normal form, but is not a value, we say that the term is \textbf{stuck}.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Extended UAE Semantics}
+\begin{center}
+\includegraphics[scale=0.25]{figures/A_smallstep.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Numeric Values}
+In order to properly define our semantics, we need to be able to distinguish between boolean and numeric values.  
+\begin{itemize}
+\item To this end, we create two new syntactic categories: $\mathcal{V}$ and $\mathcal{NV}$, for (Boolean) values and Numeric values.  
+\item Items of both categories have all the properties of values, such as correspondance to normal form and uniqueness.  
+\item Note the inclusion of \texttt{succ nv} in \texttt{nv}.
+\begin{itemize}
+\item This means that, if we have an unbroken chain of \texttt{succ} terms terminating in zero, this constitues a value.
+\item This asserts the natural numbers as being values! 
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Why are Numeric Values Necessary?}
+Consider the following expression in UAE: 
+\begin{lstlisting}[language=C]
+iszero succ pred succ 0 
+\end{lstlisting}
+Which rule applies?
+\begin{enumerate}
+\item E-IsZeroSucc
+\item E-IsZero
+\item Both
+\item Neither
+\end{enumerate}
+\begin{center}
+\hrule
+\vspace{0.5em}
+Those rules again... \\
+\includegraphics[scale=0.3]{figures/isZero.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{To Resolve Ambiguity!}
+The answer is E-IsZero!
+\begin{itemize}
+\item We can't use E-IsZeroSucc, because \texttt{succ pred succ 0} is not a value.  \emph{It can be evaluated!}
+\item If E-IsZeroSucc did not require a numeric value, the rule would also apply to evaluatable \texttt{succ} terms.  
+\item This would cause a rather nasty \textbf{ambiguity}, destroying our language's determinacy! Basically...
+\end{itemize}
+\begin{equation}
+t \rightarrow t' \land t \rightarrow t'' \text{ no longer implies } t' = t''
+\end{equation}
+This is something to avoid at all costs, even if we could show that it doesn't break the determinacy of mult-step semantics.  
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Last Slide Comic}
+\begin{center}
+\includegraphics[scale=0.5]{figures/miracle.png}
+\end{center}
+\end{frame}
+
+\end{document}
