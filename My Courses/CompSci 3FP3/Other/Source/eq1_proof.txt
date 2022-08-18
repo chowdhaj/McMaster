@@ -1,0 +1,26 @@
+
+  filter p . map f
+=  { definition filter }
+  concat . map(guard p) . map f
+=  { map functor }
+  concat . map(guard p . f)
+=  { definition guard }
+  concat . map(if(p, wrap, nil) . f)
+=  { if over composition }
+  concat . map(if(p . f, wrap . f, nil . f))
+=  { nil constant }
+  concat . map(if(p . f, wrap . f, nil))
+=  { wrap natural }
+  concat . map(if(p . f, map f . wrap, nil))
+=  { nil natural }
+  concat . map(if(p . f, map f . wrap, map f . nil))
+=  { composition over if }
+  concat . map(map f . if(p . f, wrap, nil))
+=  { map functor }
+  concat . map(map f) . map(if(p . f, wrap, nil))
+=  { concat natural }
+  map f . concat . map(if(p . f, wrap, nil))
+=  { definition guard }
+  map f . concat . map(guard(p . f))
+=  { definition filter }
+  map f . filter(p . f)
