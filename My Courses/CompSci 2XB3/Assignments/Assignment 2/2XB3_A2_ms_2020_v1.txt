@@ -1,0 +1,54 @@
+Marking scheme for 2XB3 Assignment 2:
+Winter 2020
+
+Total Points:  100
+************************************************************************
+**  PROGRAM COMPILATION AND EXECUTION
+************************************************************************
+CE Program compiles w/o error 	Maximum points: 1  Weight:100%
+RE Program executes w/o errors  Maximum points: 4  Weight:100%
+-	How far is it running? 
+
+For example if your grade for RE is 2 out of 4 it means that your final mark (as calculated by the forthcoming items) will be multiplied by 0.5.
+If your code does not compile (CE=0) or does not run at all (RE=0) regardless of the rest of your code, your final mark will be 0.   
+
+************************************************************************
+**  Analysis - 10%
+************************************************************************
+AN1	Analysis was submitted. If 0 skip to next section (0-1) weight: 3%
+AN2 	Type of graph is correctly identified. (0-1) weight: 1%
+AN3	Nodes and edges correctly identified. (0-2) weight: 2%
+AN4	Graph and algorithm description sufficient. (0-2) weight: 4%
+
+************************************************************************
+**  BFS/DFS - 30%
+************************************************************************
+BF1	BFS correctly implemented (0-3) weight: 12%  
+BF2	DFS correctly implemented (0-3) weight:  12%
+BF3	Posed questions have been answered sufficiently (0-2) weight: 6%
+
+************************************************************************
+**  JUnit - 15%
+************************************************************************
+JU1	JUnit class is implemented. If 0, skip to next section. (0-1) weight: 5%
+JU2	JUnit tests that cities are connected. (0-2) weight: 5%
+JU3	JUnit tests are sufficient in breadth and depth (0-2) weight: 5%
+
+************************************************************************
+**  Shortest Path - 35%
+************************************************************************
+SP1	Shortest Path algorithm is correctly implemented. (0-2) weight: 20%
+SP2	Constraints are accounted for (i.e. You choose to stop by McDonalds to
+have a Big Mac meal in the first city, you can still stop at a McDonalds in the second city, but you
+cannot choose a Big Mac meal there. However, at your third city, you can once again have a Big
+Mac meal).
+(0-3) weight 9%.
+SP3	Complexity of problem is described. (0-2) weight: 3%
+SP4	Complexity of modified problem is described. (0-2) weight: 3%
+
+************************************************************************
+**  Output - 10%
+************************************************************************
+OT1	Two different output files are included. (0-1) weight: 5%
+OT2	a2_out.txt contains the BFS/DFS paths and the table for 3.4. (0-2) weight: 3%
+OT3	a2_answers.txt contains written answers for 3.1, 3.2, and 3.4. (0-1) weight: 2%
