@@ -1,0 +1,19 @@
+#!/bin/bash
+# check if th enumber of arguments is 4
+if [ $# -ne 4 ] 
+then
+    echo "Usage: `basename $0` \$1 \$2 \$3 \$4" 
+    exit
+fi
+
+#extract all the lines with $3 or $4 from $1 and create $2
+grep "$3\|$4" $1 > $2
+
+# explore some other possible forms 
+#grep -E "$3|$4" $1 > $2
+#grep -e $3 -e $4 $1 > $2
+#egrep "$3|$4" $1 > $2    #egrep=grep -E
+
+
+#final line
+echo "done" >> $2

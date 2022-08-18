@@ -1,0 +1,11 @@
+#!/bin/bash
+Files=`(find .  -type f)`
+for f in $Files
+do
+ if [ "$(dirname $f)" != "." ]
+ then
+   echo $(basename $f).$(dirname $f)
+ else
+   echo $(basename $f)
+ fi
+done

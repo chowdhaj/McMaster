@@ -1,0 +1,134 @@
+
+<!-- saved from url=(0066)http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab.cgi?lab -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style> a:hover { background-color: yellow; } </style>
+<title>CS 2XA3 (2018/19, Term I) Minor Lab 5</title>
+</head>
+
+<body>
+
+<h1><img src="./Minor Lab 5_files/logo.jpg" width="786" height="92" alt="logo.jpg (32213 bytes)"></h1>
+
+<h1>CS 2XA3 (2018/19, Term I) Minor Lab 5 -- lab section L02</h1>
+
+<table border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/labs.cgi?lab" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" name="exec" value="Back To Lab Menu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/login/back.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" name="back" value="Back To Main Menu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/login/logout.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" value="Log Out"></p>
+    </form>
+    </td>
+  </tr>
+</tbody></table>
+
+
+<table border="0" width="785">
+<tbody><tr>
+  <td><big>Lab 5 walk-through</big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><font color="#FF0000"><em><strong></strong></em></font></big></td></tr>
+<tr>
+  <td><big><font color="#0000FF"><em><strong>If you are in the correct lab room and during the SCHEDULED time slot for your lab section for Minor Lab 5 and working on one of the lab's workstations, go into Marks+Comments to see if your attendance was registered. If you signed on the course website too early (the most common problem), your attendance would not be recorded; in such case, please log out and signed on again. If your attendance is still not recorded, please, ask your TA to record your attendance and email Prof. Franek right away. If you are not using one of the lab's workstations, please, have the TA record your attendance.</strong></em></font></big></td></tr>
+<tr><td><big><font color="#808080"><em><strong>The Minor Labs are open book labs, the students can bring and use any notes etc.
+They can access any website, Google, Wikipedia etc. They are
+allowed  to cooperate with other people, inside or outside the lab.</strong></em></font></big></td></tr>
+<tr><td><big>Minor Lab 5 walk-through</big></td></tr>
+<tr><td><big>Before you start:<br>
+Download <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/slides/progs/asm_io.asm" download=""><font face="Courier New, Courier, monospace" color="#0000FF"><font face="Courier New, Courier, monospace" color="#0000FF">asm_io.asm</font></font></a><font face="Courier New, Courier, monospace" color="#0000FF">, <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/slides/progs/asm_io.inc" download=""><font face="Courier New, Courier, monospace" color="#0000FF">asm_io.inc</font></a>, 
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/slides/progs/cdecl.h" download=""><font face="Courier New, Courier, monospace" color="#0000FF">cdecl.h</font></a>, 
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/slides/progs/driver.c" download=""><font face="Courier New, Courier, monospace" color="#0000FF">driver.c</font></a>, 
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab5/lab5_1-skel.asm" download=""><font face="Courier New, Courier, monospace" color="#0000FF">lab5_1-skel.asm</font></a>, 
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab5/lab5_2-skel.asm" download=""><font face="Courier New, Courier, monospace" color="#0000FF">lab5_2-skel.asm</font></a></font></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><font color="#FF9900"><strong>Task 1. Write NASM program <font face="Courier New, Courier, monospace">lab5_1.asm</font></strong></font></big></td></tr>
+<tr><td><big>The detailed requirements are in the skeleton of the program <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab5/lab5_1-skel.asm" download=""><font face="Courier New, Courier, monospace" color="#0000FF">lab5_1-skel.asm</font></a> in the form of comments.
+Here we give an overview of the program.</big><ul>
+<li><big>The program expects two command line arguments (the name of the program and one argument).</big></li>
+<li><big>It checks the number of command line arguments and if is it not 2, the program terminates with an error message.</big></li>
+<li><big>Then the program checks the first command line argument (i.e. <font face="Courier New, Courier, monospace" color="#0000FF">argv[1]</font>) 
+whether it is a string <font face="Courier New, Courier, monospace" color="#0000FF">"1"</font> or <font face="Courier New, Courier, monospace" color="#0000FF">"2"</font>. If neither, the program terminates with an error message. <em>The way to do it is to check the first byte of</em> <font face="Courier New, Courier, monospace" color="#0000FF">argv[1]</font> <em>and it should be a char</em> <font face="Courier New, Courier, monospace" color="#0000FF">1</font> <em>or a char</em> <font face="Courier New, Courier, monospace" color="#0000FF">2</font><em>, and then the second byte of the argument and it should be</em> 0 <em>(null).</em></big></li>
+<li><big>If the command line argument was <font face="Courier New, Courier, monospace" color="#0000FF">"1"</font>,
+the <font face="Courier New, Courier, monospace" color="#0000FF">display_array</font> subroutine is called with parameter 1, otherwise with parameter 2.</big></li>
+<li><big>The subroutine <font face="Courier New, Courier, monospace" color="#0000FF">display_array</font> displays either the array 
+<font face="Courier New, Courier, monospace" color="#0000FF">arr1</font> (if the parameter was 1) or the array
+<font face="Courier New, Courier, monospace" color="#0000FF">arr2</font> (if the parameter was 2).</big></li>
+<li><big>The subroutine <font face="Courier New, Courier, monospace" color="#0000FF">display_array</font> displays the array by traversing it left to right and displaying the content of each item encountered, separated by commas (no comma after the last item).</big></li></ul>
+</td></tr><tr><td>Sample runs:<br>
+<font face="Courier New, Courier, monospace" color="#CC6600">
+<pre>[teststudent@moore ~/2XA3/L5] lab5_1
+incorrect number of command line arguments
+[teststudent@moore ~/2XA3/L5] lab5_1 a b
+incorrect number of command line arguments
+[teststudent@moore ~/2XA3/L5] lab5_1 a
+incorrect command line argument
+[teststudent@moore ~/2XA3/L5] lab5_1 1
+1,2,3,4,5,6,7,8,9,10
+[teststudent@moore ~/2XA3/L5] lab5_1 2
+11,12,13,14,15,16,17,18,19,20</pre></font></td></tr>
+<tr><td></td> 
+</tr><tr><td><big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a sample solution for 
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab5/lab5_1.asm"><font color="#3300FF" face="Courier New, Courier, monospace">lab5_1.asm</font></a>, and the necessary 
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab5/makefile"><font color="#3300FF" face="Courier New, Courier, monospace">makefile</font></a></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr>
+  <td><big><font color="#FF9900"><strong>Task 2. Write NASM program <font face="Courier New, Courier, monospace">lab5_2.asm</font></strong></font></big></td></tr>
+<tr>
+  <td><big>If you have not downloaded the following files for <font color="#3300FF" face="Courier New, Courier, monospace">lab5_1.asm</font>, download them now:<br>
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/slides/progs/asm_io.asm" download=""><font face="Courier New, Courier, monospace" color="#0000FF"><font face="Courier New, Courier, monospace" color="#0000FF">asm_io.asm</font></font></a><font face="Courier New, Courier, monospace" color="#0000FF">, <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/slides/progs/asm_io.inc" download=""><font face="Courier New, Courier, monospace" color="#0000FF">asm_io.inc</font></a>, 
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/slides/progs/cdecl.h" download=""><font face="Courier New, Courier, monospace" color="#0000FF">cdecl.h</font></a>, 
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/slides/progs/driver.c" download=""><font face="Courier New, Courier, monospace" color="#0000FF">driver.c</font></a>, 
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab5/lab5_2-skel.asm" download=""><font face="Courier New, Courier, monospace" color="#0000FF">lab5_2-skel.asm</font></a></font></big></td></tr>
+<tr><td><big></big></td></tr><tr>
+  <td><big>The detailed requirements are in the skeleton of the program <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab5/lab5_2-skel.asm" download=""><font face="Courier New, Courier, monospace" color="#0000FF">lab5_2-skel.asm</font></a> in the form of comments.
+Here we give an overview of the program.</big><br><ul>
+  <li><big>Your task is to program the subroutine <font face="Courier New, Courier, monospace" color="#0000FF">line1</font>.</big></li>
+<li><big>The subroutine expects one parameter, an address <font face="Courier New, Courier, monospace" color="#0000FF">a</font>
+where an integer <font face="Courier New, Courier, monospace" color="#0000FF">N1</font> is stored. It finds 
+<font face="Courier New, Courier, monospace" color="#0000FF">N2</font> at address <font face="Courier New, Courier, monospace" color="#0000FF">a+36</font>, and <font face="Courier New, Courier, monospace" color="#0000FF">N3</font> at address <font face="Courier New, Courier, monospace" color="#0000FF">a+72</font>&nbsp;.</big></li>
+<li><big>The <font face="Courier New, Courier, monospace" color="#0000FF">asm_main</font> subroutine sets it up properly and makes a proper call to 
+<font face="Courier New, Courier, monospace" color="#0000FF">line1</font>, so you do not have to worry about it. Your task is solely to program
+<font face="Courier New, Courier, monospace" color="#0000FF">line1</font> subroutine.</big></li>
+<li><big>What <font face="Courier New, Courier, monospace" color="#0000FF">line1</font> is supposed to do is explained in the comments in the 
+skeleton, but we describe it here briefly as well.</big></li>
+<li><big><font face="Courier New, Courier, monospace" color="#0000FF">line1</font> displays the array 
+<font face="Courier New, Courier, monospace" color="#0000FF">line</font> that is composed like this:<br>
+<font face="Courier New, Courier, monospace" color="#0000FF">12-N1</font> dots, <font face="Courier New, Courier, monospace" color="#0000FF">N1</font> 
+pluses, one <font face="Courier New, Courier, monospace" color="#0000FF"><strong>|</strong></font>, <br>
+<font face="Courier New, Courier, monospace" color="#0000FF">N1</font> pluses, <font face="Courier New, Courier, monospace" color="#0000FF">12-N1</font> 
+dots, followed by the same pattern for <font face="Courier New, Courier, monospace" color="#0000FF">N2</font> and followed by the same pattern for 
+<font face="Courier New, Courier, monospace" color="#0000FF">N3</font>&nbsp; For instance, if <font face="Courier New, Courier, monospace" color="#0000FF">N1</font>=4, <font face="Courier New, Courier, monospace" color="#0000FF">N2</font>=2, 
+<font face="Courier New, Courier, monospace" color="#0000FF">N3</font>=1, the line will look likes this<br>
+<font color="#CC6600" face="Courier New"><strong>........++++|++++..................++|++.....................+|+...........</strong></font></big></li>
+<li><big>Hence you need an external loop for <font face="Courier New, Courier, monospace" color="#0000FF">N1</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">N2</font>, and <font face="Courier New, Courier, monospace" color="#0000FF">N3</font>&nbsp;,
+and a whole bunch of internal loops: a loop to store <font face="Courier New, Courier, monospace" color="#0000FF">12-N1</font> dots in
+<font face="Courier New, Courier, monospace" color="#0000FF">line</font>, then another loop to store 
+<font face="Courier New, Courier, monospace" color="#0000FF">N2</font> pluses in <font face="Courier New, Courier, monospace" color="#0000FF">line</font>&nbsp;, then store <font face="Courier New, Courier, monospace" color="#0000FF"><strong>'|'</strong></font> in <font face="Courier New, Courier, monospace" color="#0000FF">line</font>, then another loop to store <font face="Courier New, Courier, monospace" color="#0000FF">N2</font> pluses, and a loop to 
+store <font face="Courier New, Courier, monospace" color="#0000FF">12-N1</font> dots in 
+<font face="Courier New, Courier, monospace" color="#0000FF">line</font>
+(note that you can cut and paste the code to speed up the coding as the same loops are repeated).</big></li>
+<li><big>After all the loops are done, the <font face="Courier New, Courier, monospace" color="#0000FF">line</font> is displayed.</big></li>
+<li><big>Note, that you can use for testing various values of <font face="Courier New, Courier, monospace" color="#0000FF">N1</font>&nbsp;,
+<font face="Courier New, Courier, monospace" color="#0000FF">N2</font>&nbsp;,
+<font face="Courier New, Courier, monospace" color="#0000FF">N3</font>&nbsp;, see 
+<font face="Courier New, Courier, monospace" color="#0000FF">asm_main</font> subroutine.</big></li>
+</ul></td></tr>
+<tr><td>&nbsp;</td></tr> 
+<tr>
+  <td><big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a sample solution for 
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab5/lab5_2.asm"><font color="#3300FF" face="Courier New, Courier, monospace">lab5_2.asm</font></a>, and the necessary 
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab5/makefile"><font color="#3300FF" face="Courier New, Courier, monospace">makefile</font></a></big></td></tr>
+</tbody></table>
+
+
+</body></html>

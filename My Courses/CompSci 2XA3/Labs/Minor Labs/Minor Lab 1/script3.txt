@@ -1,0 +1,5 @@
+#!/bin/bash
+#The od command is used to dump contents in different formats
+#-N option enables to specify the number of bytes for dump
+#-x option enables us to specify the output format
+od -N 10 -x /bin/zcat

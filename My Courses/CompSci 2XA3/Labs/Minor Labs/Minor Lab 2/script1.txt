@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# create a subdirectory XXX
+mkdir XXX
+
+# create a few files there, their contents are unimportant
+echo " " >  XXX/file1
+echo " " > XXX/file2
+echo " " > XXX/file3
+
+# get a list of all regular files in the current directory and all subdirectories
+Files=`(find .  -type f)`
+
+# walk through the list
+for f in $Files
+do
+ # dirname gives name of the directory in which a file resides
+ # the current directory is .
+ if [ "$(dirname $f)" != "." ]
+ then
+   # these are files in a subdirectory
+   x=$(dirname $f)  #get the name of the file with the directory
+   # note that the directory name starts with ./ so we have to remove it
+   y=${x:2}         #remove ./ from the name of the directory
+   echo $(basename $f) \($y\)
+ else
+   # these are files in the current directory
+   echo $(basename $f)
+ fi
+done
+
+# remove XXX and all the files in it
+rm -r XXX

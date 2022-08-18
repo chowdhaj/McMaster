@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# check if the numberof arguments is 3
+if [ $# -ne 3 ] 
+then
+    echo "Usage: `basename $0` \$1 \$2 \$3" 
+    exit
+fi
+
+# redirect standard output to $1
+>$1
+
+# loop through and create the lines and ad them to $1
+for ((i=1; i<=$3; i++))
+do
+    echo "$i,$2">>$1
+done

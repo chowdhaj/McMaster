@@ -1,0 +1,156 @@
+
+<!-- saved from url=(0066)http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab.cgi?lab -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style> a:hover { background-color: yellow; } </style>
+<title>CS 2XA3&nbsp; (2018/19, &amp;term) Minor Lab 3</title>
+</head>
+
+<body>
+
+<h1><img src="./Minor Lab 3_files/logo.jpg" width="786" height="92" alt="logo.jpg (32213 bytes)"></h1>
+
+<h1>CS 2XA3 (2018/19, Term I) Minor Lab 3 -- lab section L02</h1>
+
+<table border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/labs.cgi?lab" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" name="exec" value="Back To Lab Menu">&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/login/back.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" name="back" value="Back To Main Menu">&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/login/logout.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" value="Log Out"></p>
+    </form>
+    </td>
+  </tr>
+</tbody></table>
+
+<p>&nbsp;</p>
+
+
+<table border="0" width="785">
+<tbody><tr><td><big><font color="#FF0000"><em><strong></strong></em></font></big></td></tr>
+<tr><td><big><font color="#0000FF"><em><strong>If you are in the correct lab room and during the SCHEDULED time slot for your lab section for Minor Lab 3 and working on one of the lab's workstations, go into Marks+Comments to see if your attendance was registered. If you signed on the course website too early (the most common problem), your attendance would not be recorded; in such case, please log out and sign on again. If your attendance is still not recorded, please, ask your TA to record your attendance and email Prof. Franek right away. If you are not using one of the lab's workstations, please, have the TA record your attendance.</strong></em></font></big></td></tr>
+<tr>
+  <td><big><font color="#808080"><em><strong>The Minor Labs are open book labs, you can bring and use any notes etc., you can access any website, Google, Wikipedia etc. You are allowed to cooperate with other people, inside or outside the lab. The TA can provide extensive individual help as long as this would not deprive other students of the TA's help.</strong></em></font></big></td></tr>
+
+
+<tr><td>&nbsp;</td></tr>
+<tr>
+  <td><big><big>Lab 3 walk-through</big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr>
+  <td><big><big><font color="#FF9900">Task 1. Create scripts <font face="Courier New, Courier, monospace">s1</font> and <font face="Courier New, Courier, monospace">s2</font> and <font face="Courier New, Courier, monospace">makefile</font></font></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big>Create a bash script <font color="#0000FF">s1</font> that has 3 command line
+            arguments. If the number of arguments is not correct, it displays a message and
+            terminates. If the number of arguments is correct, it creates a text file with the name
+            given by <font color="#0000FF">$1</font>, and the content of the file is <font color="#0000FF">$3</font> lines containing the line number and <font color="#0000FF">$2</font>
+            separated by a comma. For instance, if <font color="#0000FF">s1 hello bye 100</font> is
+            executed, a file named <font color="#0000FF">hello</font> will be created and it will
+            contain 100 lines: <font color="#008040">1,bye</font> … <font color="#008040">100,bye</font></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab3/task1/s1">a sample solution for script s1</a></big></td></tr>
+            <tr><td>&nbsp;</td></tr>
+<tr><td><big>Create a bash script <font color="#0000FF">s2</font> that has four line
+            arguments. It creates a file whose name is <font color="#0000FF">$2</font> from a file
+            whose name is <font color="#0000FF">$1</font>. It creates it by copying from <font color="#0000FF">$1</font> the lines that contain strings <font color="#0000FF">$3</font>
+          or <font color="#0000FF">$4</font>. The last line of the file <font color="#0000FF">$1</font>
+          should say <font color="#0000FF">done</font>. For instance, executing <font color="#0000FF">s2 hello test 1 3</font> will create a file named <font color="#0000FF">test</font>
+          containing all the lines from the file <font color="#0000FF">hello</font> that contain <font color="#008040">1</font> or <font color="#008040">3</font> and a line <font color="#0000FF">done</font>, or <font color="#0000FF">s2 hello test a bc</font> will
+            create a file named <font color="#0000FF">test</font> containing all the lines from the
+            file <font color="#0000FF">hello</font> that contain <font color="#0000FF">a</font> or <font color="#0000FF">bc</font> and a line <font color="#0000FF">done</font>.</big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab3/task1/s2">a sample solution for script s2</a></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big>Prepare the following makefile:</big><br>
+      <ul><li><big>The file <font color="#0000FF">test1</font> does not depend on anything. It is
+           made of 300 lines <font color="#008040">1,test1</font> … <font color="#008040">300,
+           </font>. The script <font color="#0000FF">s1</font> should be used to make it.</big></li>
+           <li><big>The file <font color="#0000FF">test2</font> depends on <font color="#0000FF">test1</font>.
+                The file <font color="#0000FF">test2</font> contains all the lines from <font color="#0000FF">test1</font> that contain pattern <font color="#008040">0,test</font> or <font color="#008040">1,test</font> . The script <font color="#0000FF">s2</font> should be used
+                to make it.</big></li>
+              <li><big>When <font color="#008040">make all</font> is executed, both <font color="#0000FF">test1</font> and <font color="#0000FF">test2</font> are created or
+                re-created. So you need to "force" re-creation of <font color="#0000FF">test1</font>
+                even when it exists an is up-to-date. So make it dependant on some imaginary file for which there is one
+                rule in the makefile -- this imaginery file does not depend on anything and is not build
+                at all (in the sample solution this imaginery file is called <font color="#0000FF"><strong>.</strong>FORCE</font>)</big></li></ul></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab3/task1/makefile">a sample solution for makefile</a></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big>Find out about the LINUX command <font color="#0000FF">script</font> for
+                recording of a terminal session; the best is to use <font color="#0000FF">man</font> or
+                google it. Read on how to finish recording of the terminal session, in particular in
+                Bourne (and hence Bash) shell.</big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big>Now run <font color="#0000FF">script</font> command to create a file named <font color="#0000FF">lab3</font> that contains the “record” of the following
+            interactive session:</big></td></tr>
+<tr><td><ul>
+              <li><big><font color="#0000FF">make all</font></big></li>
+              <li><big><font color="#0000FF">echo test1:</font></big></li>
+              <li><big><font color="#0000FF">cat test1</font></big></li>
+              <li><big><font color="#0000FF">echo test2:</font></big></li>
+              <li><big><font color="#0000FF">cat test2</font></big></li>
+              <li><big><font color="#0000FF">rm test1</font></big></li>
+              <li><big><font color="#0000FF">s1 test1 xxx 50</font></big></li>
+              <li><big><font color="#0000FF">echo test1:</font></big></li>
+              <li><big><font color="#0000FF">cat test1</font></big></li>
+              <li><big><font color="#0000FF">make all</font></big></li>
+              <li><big><font color="#0000FF">echo test1:</font></big></li>
+              <li><big><font color="#0000FF">cat test1</font></big></li>
+              <li><big><font color="#0000FF">echo test2:</font></big></li>
+              <li><big><font color="#0000FF">cat test2</font></big></li>
+</ul></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big>After exiting from <font color="#0000FF">script</font>, try display the
+                content of the file <font color="#0000FF">lab3</font> by <font color="#0000FF">cat lab3</font>
+              Can you explain what was happening at each stage of the session?</big></td></tr>
+<tr><td>&nbsp;</td></tr>          
+<tr><td><big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab3/task1/lab3">how should lab3 file look like</a></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr>
+  <td><big><big><font color="#FF9900">Task 2. Create <font face="Courier New, Courier, monospace">f2.py</font> and <font face="Courier New, Courier, monospace">makefile</font></font></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big>Download this python program <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab3/task2/f1.py" download="">f1.py</a> an
+transfer it to <em><strong>moore</strong></em>. Just in case, transform it to UNIX text
+file by running <font color="#0000FF">dos2unix f1.py</font> . Try to run the python
+program: <font color="#0000FF">python f2.py</font> , you will get an error for the <font color="#0000FF">f2.py</font> module is missing.</big></td></tr>
+<tr><td><big>Your task it to write a makefile that does three things, (i) creates the
+            module <font color="#0000FF">f2.py</font>, then executes <font color="#0000FF">f1.py</font>,
+            and then removes all traces of <font color="#0000FF">f2.py</font> and <font color="#0000FF">f2.pyc</font>&nbsp; (this file will be automatically created by python
+            when running <font color="#0000FF">f1.py</font>)</big></td></tr>
+<tr><td><big>The makefile should be executed in the silent mode, i.e. <font color="#0000FF">make
+            -s f1</font></big></td></tr>
+<tr><td><big>The output produced should look like</big><br>
+<big><font color="#0000FF">This is a nice Python program<br>
+Wed<br>
+This is the end of this nice Python program</font></big><br>
+<big>where the second line should be the current date (Mon, Tue, Wed, Thu, Fri,Sat, or Sun).</big></td></tr>
+<tr><td><big>The module <font color="#0000FF">f2.py</font> created by the makefile should
+            contain</big><br>
+            <big><font color="#0000FF"># module f2.py<br>
+            def day():<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x=" Mon Oct 9 23:01:19 EDT 2017 "<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x=x[1:4]<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print x</font><br>
+where the value of the string stored in <font color="#0000FF">x</font> is produced by
+           the date command. Note that the next line, <font color="#0000FF">x=x[1:4]</font> will
+            extract the name of the current day, in this example iot would be <font color="#0000FF">Mon</font></big></td></tr>
+<tr><td><big>So, <font color="#0000FF">f1</font> must depend on <font color="#0000FF">f1.py</font>
+            and <font color="#0000FF">f2.py</font> and is 'made' in two steps: first&nbsp; executing <font color="#0000FF">f1.py</font> by <font color="#0000FF">python f1.py</font> and second
+            removing <font color="#0000FF">f2.py</font> and <font color="#0000FF">f2.pyc</font></big></td></tr>
+<tr><td><big><font color="#0000FF">f2.py</font> must depend on an imaginery file (so it is
+            forced to be created) and is 'made' by several echo commands that will create the file</big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab3/task2/makefile"> a
+    sample solution</a></big></td></tr>
+</tbody></table>
+
+
+</body></html>

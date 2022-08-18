@@ -1,0 +1,26 @@
+all: prog2 first lab4_1 lab4_2 lab4_3
+
+prog2: prog2.o
+	gcc -m32 -o prog2 prog2.o
+first: first.o asm_io.o driver.c
+	 gcc -m32 -o first driver.c first.o asm_io.o
+lab4_1: lab4_1.o
+	gcc -m32 -o lab4_1 lab4_1.o
+lab4_2: lab4_2.o
+	gcc -m32 -o lab4_2 lab4_2.o
+lab4_3: lab4_3.o asm_io.o driver.c
+	 gcc -m32 -o lab4_3 driver.c lab4_3.o asm_io.o
+lab4_3.o: lab4_3.asm asm_io.inc
+	nasm -f elf32 lab4_3.asm 
+lab4_2.o: lab4_2.asm
+	nasm -f elf32 -o lab4_2.o lab4_2.asm
+lab4_1.o: lab4_1.asm
+	nasm -f elf32 -o lab4_1.o lab4_1.asm
+first.o: first.asm asm_io.inc
+	nasm -f elf32 first.asm 
+prog2.o: prog2.asm
+	nasm -f elf32 -o prog2.o prog2.asm
+asm_io.o: asm_io.asm
+	nasm -f elf32 -d ELF_TYPE asm_io.asm
+clean:
+	rm *.o

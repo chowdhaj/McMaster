@@ -1,0 +1,150 @@
+#!/bin/bash
+
+# create files in the current directory
+echo "I am s1" > s1
+echo "I am s1a" > s1a
+echo "I am s2" > s2
+echo "I am s2a" > s2a
+echo "I am s3" > s3
+
+# check that in the current directory the files really exist
+# set the result in variables
+x1=0
+x1a=0
+x2=0
+x2a=0
+x3=0
+x4=0
+Files=`ls`
+for f in $Files
+do
+ if [ $f = "s1" ]
+ then
+   x1=1
+ fi
+ if [ $f = "s1a" ]
+ then
+   x1a=1
+ fi
+ if [ $f = "s2" ]
+ then
+   x2=1
+ fi
+ if [ $f = "s2a" ]
+ then
+   x2a=1
+ fi
+ if [ $f = "s3" ]
+ then
+   x3=1
+ fi
+done
+
+# now go through the variables and display the corresponding message
+if [ $x1 -eq 0 ]
+then
+  echo "s1 not found in current directory"
+else
+  echo "s1 found in current directory"
+fi
+if [ $x1a -eq 0 ]
+then
+  echo "s1a not found in current directory"
+else
+  echo "s1a found in current directory"
+fi
+if [ $x2 -eq 0 ]
+then
+  echo "s2 not found in current directory"
+else
+  echo "s2 found in current directory"
+fi
+if [ $x2a -eq 0 ]
+then
+  echo "s2a found in current directory"
+else
+  echo "s2a found in current directory"
+fi
+if [ $x3 -eq 0 ]
+then
+  echo "s3 not found in current directory"
+else
+  echo "s3 found in current directory"
+fi
+
+# put all values of the variables together
+x=$x1
+x=$((x+$x1a))
+x=$((x+$x2))
+x=$((x+$x2a))
+x=$((x+$x3))
+
+# and determine if all files were found
+if [ $x -lt 5 ]
+then
+  echo "not all files found in current directory"
+else
+  echo "all files found in current directory"
+fi
+
+# in current directory, create subdirectory XXX
+mkdir XXX
+echo "XXX created"
+
+# move and rename the files
+mv s1 XXX/t1
+mv s1a XXX/t1a
+mv s2 XXX/t2
+mv s2a XXX/t2a
+mv s3 XXX/t3
+echo "all files moved to XXX"
+
+# check that all files disappeared from the current directory
+x1=0
+x1a=0
+x2=0
+x2a=0
+x3=0
+x4=0
+Files=`ls`
+for f in $Files
+do
+ if [ $f = "s1" ]
+ then
+   x1=1
+ fi
+ if [ $f = "s1a" ]
+ then
+   x1a=1
+ fi
+ if [ $f = "s2" ]
+ then
+   x2=1
+ fi
+ if [ $f = "s2a" ]
+ then
+   x2a=1
+ fi
+ if [ $f = "s3" ]
+ then
+   x3=1
+ fi
+done
+
+# put all values of the variables together
+x=$x1
+x=$((x+$x1a))
+x=$((x+$x2))
+x=$((x+$x2a))
+x=$((x+$x3))
+
+# and determine if all files were found
+if [ $x -eq 0 ]
+then
+  echo "all files disappeared from current directory"
+else
+  echo "not all files disappeared from current directory"
+fi
+
+# remove all created files and directories
+rm -r XXX

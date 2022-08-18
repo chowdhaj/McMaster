@@ -1,0 +1,140 @@
+
+<!-- saved from url=(0066)http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab.cgi?lab -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style> a:hover { background-color: yellow; } </style>
+<title>CS 2XA3 (2018/19, Term I) Minor Lab 4</title>
+</head>
+
+<body>
+
+<h1><img src="./Minor Lab 4_files/logo.jpg" width="786" height="92" alt="logo.jpg (32213 bytes)"></h1>
+
+<h1>CS 2XA3 (2018/19, Term I) Minor Lab 4 -- lab section L02</h1>
+
+<table border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/labs.cgi?lab" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" name="exec" value="Back To Lab Menu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/login/back.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" name="back" value="Back To Main Menu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/login/logout.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" value="Log Out"></p>
+    </form>
+    </td>
+  </tr>
+</tbody></table>
+
+
+&nbsp;<table border="0" width="785">
+<tbody><tr><td><big>Lab 4 walk-through</big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><font color="#FF0000"><em><strong></strong></em></font></big></td></tr>
+<tr>
+  <td><big><font color="#0000FF"><em><strong>If you are in the correct lab room and during the SCHEDULED time slot for your lab section for Minor Lab 4 and working on one of the lab's workstations, go into Marks+Comments to see if your attendance was registered. If you signed on the course website too early (the most common problem), your attendance would not be recorded; in such case, please log out and signed on again. If your attendance is still not recorded, please, ask your TA to record your attendance and email Prof. Franek right away. If you are not using one of the lab's workstations, please, have the TA record your attendance.</strong></em></font></big></td></tr>
+<tr><td><big><font color="#808080"><em><strong>The Minor Labs are open book labs, the students can bring and use any notes etc.
+They can access any website, Google, Wikipedia etc. They are
+allowed  to cooperate with other people, inside or outside the lab.</strong></em></font></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr>
+  <td><big>In the class we saw a few examples of assembler programs. In particular we discussed <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/slides/progs/prog2.asm"><font face="Courier New, Courier, monospace">prog2.asm</font></a> assembled and linked  by this <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab4/makefile"><font face="Courier New, Courier, monospace">makefile</font></a>. In this example, the I/O's of the program are actually supplied by C compiler, in particular the <font color="#3300FF" face="Courier New, Courier, monospace">printf()</font> function. Here is the  semantics of <a href="http://en.wikipedia.org/wiki/Printf_format_string"><font face="Courier New, Courier, monospace">printf()</font></a> function to refresh your memory, if you skipped the class. From the assembler's point of view, the parameters for 
+<font color="#3300FF" face="Courier New, Courier, monospace">printf()</font> must be pushed on the system stack in the reverse order, e.g. for <font color="#3300FF" face="Courier New, Courier, monospace">printf(format_string,a1,a2,a3)</font>, the 
+top of the stack must contain address of the  <font color="#3300FF" face="Courier New, Courier, monospace">format_string</font>&nbsp;, below must be the address of <font color="#3300FF" face="Courier New, Courier, monospace">a1</font>&nbsp;, below it the address of 
+<font color="#3300FF" face="Courier New, Courier, monospace">a2</font>&nbsp;, and below it the address of 
+<font color="#3300FF" face="Courier New, Courier, monospace">a3</font>&nbsp;, and so first you have push address of 
+<font color="#3300FF" face="Courier New, Courier, monospace">a3</font>&nbsp;, then address of 
+<font color="#3300FF" face="Courier New, Courier, monospace">a2</font>&nbsp;, then 
+address of <font color="#3300FF" face="Courier New, Courier, monospace">a1</font>&nbsp;, and then address of 
+<font color="#3300FF" face="Courier New, Courier, monospace">format_string</font>&nbsp;, and then you can call 
+<font color="#3300FF" face="Courier New, Courier, monospace">printf</font>&nbsp;. See for illustration <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/slides/progs/prog2.asm"><font face="Courier New, Courier, monospace">prog2.asm</font></a>&nbsp;.</big></td></tr>
+<tr><td></td></tr><tr></tr>
+<tr>
+  <td><big><font color="#FF9900"><strong>Task 1.Write NASM program <font face="Courier New, Courier, monospace">lab4_1.asm</font></strong></font></big></td></tr>
+<tr>
+  <td><big>The program has a variable, say named <font color="#3300FF" face="Courier New, Courier, monospace">x</font> 
+  (<em>you can call it whatever you want</em>) initialized to value <font color="#3300FF" face="Courier New, Courier, monospace">4</font>&nbsp;.
+It computes the square of the value of <font color="#3300FF" face="Courier New, Courier, monospace">x</font> (i.e. 16) and displays it using 
+<font color="#3300FF" face="Courier New, Courier, monospace">printf</font>. The formatting should be so that it displays 
+<font color="#3300FF" face="Courier New, Courier, monospace">4 * 4 = 16</font>&nbsp;. You will need the NASM instruction for multiplication of
+unsigned integers. You may use <font color="#3300FF" face="Courier New, Courier, monospace">MUL source</font> which computes 
+<font color="#3300FF" face="Courier New, Courier, monospace">EAX * source</font> and stores the result in 
+<font color="#3300FF" face="Courier New, Courier, monospace">EAX</font>&nbsp;. The <font color="#3300FF" face="Courier New, Courier, monospace">source</font>
+ can be memory or a register. If it is a memory, you must specify the size, i.e. 
+ <font color="#3300FF" face="Courier New, Courier, monospace">dword</font>&nbsp;. The best approach is to start with 
+ <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/slides/progs/prog2.asm"><font color="#3300FF" face="Courier New, Courier, monospace">prog2.asm</font></a> and modify it till it is in the desired form.<br>
+When assembled and linked, executing <font color="#3300FF" face="Courier New, Courier, monospace">lab4_1</font> program should display<br>
+<font color="#3300FF" face="Courier New, Courier, monospace">4 * 4 = 16</font><br>
+If you change the value of <font color="#3300FF" face="Courier New, Courier, monospace">x</font> from <font color="#3300FF" face="Courier New, Courier, monospace">4</font> to 
+<font color="#3300FF" face="Courier New, Courier, monospace">5</font>&nbsp;, re-assemble and re-link the program, and execute it, you should see<br>
+<font color="#3300FF" face="Courier New, Courier, monospace">5 * 5 = 25</font></big></td></tr>
+<tr><td>&nbsp;</td></tr> 
+<tr>
+  <td><big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a sample solution for 
+  <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab4/lab4_1.asm"><font color="#3300FF" face="Courier New, Courier, monospace">lab4_1.asm</font></a>, and the necessary 
+  <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab4/makefile"><font color="#3300FF" face="Courier New, Courier, monospace">makefile</font></a></big></td></tr>
+            <tr><td>&nbsp;</td></tr>
+<tr>
+  <td><big><font color="#FF9900"><strong>Task 2. Write NASM program lab4_2.asm</strong></font></big></td></tr>
+<tr>
+  <td><big>The program has a variable, say named <font color="#3300FF" face="Courier New, Courier, monospace">x</font> (<em>you can call it whatever you want</em>) initialized to value <font color="#3300FF" face="Courier New, Courier, monospace">2</font>&nbsp;. It computes the value of the polynomial 
+  <font color="#3300FF" face="Courier New, Courier, monospace">x<sup>2</sup> + 3*x - 5</font> and displays it using 
+  <font color="#3300FF" face="Courier New, Courier, monospace">printf</font>&nbsp;.
+  The formatting should be so that it displays <font color="#3300FF" face="Courier New, Courier, monospace">2*2 + 3*2 - 5 = 5</font>&nbsp;.
+  You will need NASM instruction for addition (use <font color="#3300FF" face="Courier New, Courier, monospace">ADD</font> as we discussed it
+    in class), and multiplication of unsigned integers; for that you may again use <font color="#3300FF" face="Courier New, Courier, monospace">MUL source</font>
+    , see above. The best approach is to start with 
+ <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/slides/progs/prog2.asm"><font color="#3300FF" face="Courier New, Courier, monospace">prog2.asm</font></a> and modify it till it is in the desired form.
+    When assembled and linked, executing <font color="#3300FF" face="Courier New, Courier, monospace">lab3_2</font> program should display<br>
+    <font color="#3300FF" face="Courier New, Courier, monospace">2*2 + 3*2 - 5 = 5</font><br>
+    If you change the value of  <font color="#3300FF" face="Courier New, Courier, monospace">x</font> from 
+    <font color="#3300FF" face="Courier New, Courier, monospace">2</font> to <font color="#3300FF" face="Courier New, Courier, monospace">3</font>&nbsp;, 
+    re-assemble and re-link the program and execute it, you should see<br>
+    <font color="#3300FF" face="Courier New, Courier, monospace">3*3 + 3*3 - 5 = 13</font></big></td></tr>
+    <tr><td>&nbsp;</td></tr> 
+<tr>
+  <td><big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a sample solution for 
+  <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab4/lab4_2.asm"><font color="#3300FF" face="Courier New, Courier, monospace">lab4_2.asm</font></a>, and the necessary 
+  <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab4/makefile"><font color="#3300FF" face="Courier New, Courier, monospace">makefile</font></a></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr>
+  <td><big><font color="#FF9900"><strong>Task 3. Write NASM program lab4_3.asm</strong></font></big></td></tr>
+<tr><td><big>Download <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/slides/progs/asm_io.asm"><font color="#3300FF" face="Courier New, Courier, monospace">asm_io.asm</font></a>, 
+  <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/slides/progs/asm_io.inc"><font color="#3300FF" face="Courier New, Courier, monospace">asm_io.inc</font></a>, 
+  <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/slides/progs/cdecl.h"><font color="#3300FF" face="Courier New, Courier, monospace">cdecl.h</font></a>,
+  <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/slides/progs/driver.c"><font color="#3300FF" face="Courier New, Courier, monospace">driver.c</font></a>, 
+  <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/slides/progs/first.asm"><font color="#3300FF" face="Courier New, Courier, monospace">first.asm</font></a></big></td></tr>
+<tr><td><big>This is a modification of <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/slides/progs/first.asm"><font color="#3300FF" face="Courier New, Courier, monospace">first.asm</font></a> 
+        to get you more familiar with the NASM I/O routines. Thus, make a program that has in the 
+        <font color="#3300FF" face="Courier New, Courier, monospace">.data section</font> a C string 
+        <font color="#3300FF" face="Courier New, Courier, monospace">"123456"</font>, two 
+        <font color="#3300FF" face="Courier New, Courier, monospace">dwords</font> initialized to 
+        <font color="#3300FF" face="Courier New, Courier, monospace">1</font> and <font color="#3300FF" face="Courier New, Courier, monospace">2</font>&nbsp;, 
+        repsectively, and a byte initialized to <font color="#3300FF" face="Courier New, Courier, monospace">'A'</font>&nbsp;.
+        The program displays the string on a single line using <font color="#3300FF" face="Courier New, Courier, monospace">print_string</font> and 
+        <font color="#3300FF" face="Courier New, Courier, monospace">print_nl</font> subroutines, and then it displays the two stored integers (with the 
+        values <font color="#3300FF" face="Courier New, Courier, monospace">1</font> and  <font color="#3300FF" face="Courier New, Courier, monospace">2</font>) 
+        on a line separated by a bunch of spaces using <font color="#3300FF" face="Courier New, Courier, monospace">print_int</font>, 
+        <font color="#3300FF" face="Courier New, Courier, monospace">print_char</font> and 
+        <font color="#3300FF" face="Courier New, Courier, monospace">print_nl</font>,
+        and then on the next line it displays the value of the stored character, i.e. <font color="#3300FF" face="Courier New, Courier, monospace">A</font>,
+        using <font color="#3300FF" face="Courier New, Courier, monospace">print_char</font> and <font color="#3300FF" face="Courier New, Courier, monospace">print_nl</font>&nbsp;.
+        
+        The program then rewrites the value of the stored string to <font color="#3300FF" face="Courier New, Courier, monospace">"ABC"</font> (it again must
+        be a C string terminated by null), the value of the stored integers to <font color="#3300FF" face="Courier New, Courier, monospace">7</font> and
+        <font color="#3300FF" face="Courier New, Courier, monospace">8</font>, and the value of the stored character to 
+    <font color="#3300FF" face="Courier New, Courier, monospace">'B'</font> and repeats the printing.</big><p></p></td></tr>
+     <tr><td>&nbsp;</td></tr> 
+<tr>
+  <td><big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a sample solution for 
+  <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab4/lab4_3.asm"><font color="#3300FF" face="Courier New, Courier, monospace">lab4_3.asm</font></a>, and the necessary 
+  <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab4/makefile"><font color="#3300FF" face="Courier New, Courier, monospace">makefile</font></a></big></td></tr>
+</tbody></table>
+
+
+</body></html>

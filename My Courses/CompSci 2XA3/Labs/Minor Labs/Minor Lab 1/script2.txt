@@ -1,0 +1,13 @@
+#!/bin/bash
+mkdir XXX
+mv s1 XXX/t1
+mv s1a XXX/t1a
+mv s2 XXX/t2
+mv s2a XXX/t2a
+mv s3 XXX/t3
+
+# check it in current directory
+ls 
+
+#check XXX
+ls XXX

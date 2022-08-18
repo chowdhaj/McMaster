@@ -1,0 +1,25 @@
+#!/bin/bash
+
+for i in {1..10}
+do
+  echo "$i$(($i+1))$(($i+2))" > lab2_file_$i
+done
+
+files=`ls`
+for f in $files
+do
+  if [ "${f:0:10}" = "lab2_file_" ]
+  then
+    echo $f:
+    cat $f
+  fi
+done
+
+files=`ls`
+for f in $files
+do
+  if [ "${f:0:10}" = "lab2_file_" ]
+  then
+    rm $f
+  fi
+done

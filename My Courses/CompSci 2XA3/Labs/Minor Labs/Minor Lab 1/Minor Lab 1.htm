@@ -1,0 +1,300 @@
+
+<!-- saved from url=(0066)http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab.cgi?lab -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style> a:hover { background-color: yellow; } </style>
+<title>CS 2XA3 (2018/19,Term I) Minor Lab 1</title>
+</head>
+
+<body>
+
+<h1><img src="./Minor Lab 1_files/logo.jpg" width="786" height="92" alt="logo.jpg (32213 bytes)"></h1>
+
+<h1>CS 2XA3 (2018/19, Term I) Minor Lab 1 -- lab section L01</h1>
+
+<table border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/labs.cgi?lab" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" name="exec" value="Back To Lab Menu">&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/login/back.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" name="back" value="Back To Main Menu">&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td height="26"><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/presubmit.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><input type="hidden" name="header" value="lab,1,L01"><p><br>
+      <input type="submit" name="exec" value="Submissions">&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/login/logout.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" value="Log Out"></p>
+    </form>
+    </td>
+  </tr>
+</tbody></table>
+
+<p>&nbsp;</p>
+
+<table border="0" width="962">
+<tbody><tr><td><big><font color="#0000FF"><em><strong>If you are in the correct lab room and during the SCHEDULED time slot for your lab section for Minor Lab 1 and working on one of the lab's workstations, go into Marks+Comments to see if your attendance was registered. If you signed on the course website too early (the most common problem), your attendance would not be recorded; in such case, please log out and sign on again. If your attendance is still not recorded, please, ask your TA to record your attendance and email Prof. Franek right away. If you are not using one of the lab's workstations, please, have the TA record your attendance.</strong></em></font></big></td></tr>
+<tr>
+  <td><big><font color="#808080"><em><strong>The Minor Labs are open book labs, you can bring and use any notes etc., you can access any website, Google, Wikipedia etc. You are allowed to cooperate with other people, inside or outside the lab. The TA can provide extensive individual help as long as this would not deprive other students of the TA's help.</strong></em></font></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big>Lab 1 walk-through</big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><font color="#FF6600">The first objective of this lab practice is to get to know the safety aspects of working in a lab</font></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big>Please, read the lab safety manual. It can be found in the help section, or the help section can be accessed via this <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/help/help.html">link</a> from here 
+directly. In the next lab (Major&nbsp;Lab&nbsp;1), there will be a mandatory safety quiz.</big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><font color="#FF6600">The second objective is to get to know the course website environment, simple manipulation of files, and uploading (submitting) a file, as well 
+as transferring files between the workstation and moore.</font></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><ol>
+<li><big>Using <em><strong>notepad</strong></em> on the workstation, create a text file named <font color="#800040"><strong>test</strong></font> with your name in it.</big></li>
+
+<li><big>In case the name of the file you created is <font color="#800040"><strong>test.txt</strong></font>, rename the file to <font color="#800040"><strong>test</strong></font>&nbsp;. 
+The lab workstations are running Windows. For Windows, it is a default option to hide the file extensions (i.e. *.txt), so you must change that option for the folder where the 
+created file is or for all folders to show the extensions (google up "displaying the file extensions in Windows 7").</big></li>
+
+<li><big>Upload (submit) the file by using the button <font color="#800040"><strong>Submissions</strong></font> above.</big></li>
+
+<li><big>Check the submitted file.</big></li>
+
+<li><big>Repeat the submission and checking to see how the "versioning" works: all submissions are preserved, they are versioned (e.g. if you submit it three times: 
+<font color="#800040"><strong>test.version0</strong></font>, <font color="#800040"><strong>test.version1</strong></font>, <font color="#800040"><strong>test</strong></font>) 
+the latest submission is without version.</big></li>
+
+<li><big><font color="#FF0000">Your files cannot be stored permanently on the lab workstation</font> ‑‑ there are there only until you log off the workstation. On the 
+other hand, files in your account on  moore<em><strong></strong></em> can be stored permanently there.</big></li>
+
+<li><big>Using <strong>Ssh</strong> connect to your account on <em><strong>moore</strong></em>. You might want to check the info how to use <strong>Ssh</strong> ‑‑
+it can be found in the help section, or accessed via this <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/help/help.html">link</a> from here.</big></li>
+
+<li><big>Transfer the file <font color="#800040"><strong>test</strong></font> to your account on <em><strong>moore</strong></em> using the file transfer feature of 
+<strong>Ssh</strong>.</big></li>
+
+<li><big>On <em><strong>moore</strong></em>, make a copy of the file there by running a LINUX command <font color="#800040"><strong>cp&nbsp;test&nbsp;test1</strong></font>&nbsp;
+(you may want to find more about the <font color="#800040"><strong>cp</strong></font> command by executing <font color="#800040"><strong>man cp</strong></font>)</big></li>
+
+<li><big>Then transfer the file<font color="#800040"><strong> test1</strong></font>&nbsp;from your account on<em><strong> moore </strong></em> to the workstation.</big></li>
+
+<li><big>Check that the file had really been transferred to the workstation.</big></li>
+
+<li><big>On the workstation, open the file with <em><strong>notepad</strong></em> to check that it has the same contents as the original file 
+<font color="#800040"><strong>test</strong></font></big></li>
+
+<li><big>Now try submit the file <font color="#800040"><strong>test1</strong></font> via the course website (using the <font color="#800040"><strong>Submissions</strong></font> <br>
+button above); <u>it should not work</u> as the name of the file is wrong even though its format is right.</big></li>
+
+<li><big>Download to your workstation this binary file called <font color="#800040"><strong>test.bin</strong></font> from <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab1/test.bin" download="">here</a>. Now try <br>
+submit it via the course website. It will not work as the name is wrong.</big></li>
+
+<li><big>Now rename the file <font color="#800040"><strong>test.bin</strong></font> on your workstation to <font color="#800040"><strong>test</strong></font> and try to
+submit it again via the course website. Though this time the name is correct, the submission will not work as the format of the file is wrong (i.e. it is not an ASCII text 
+file, it is a binary file).</big></li>
+
+<li><big>On your workstation, create a text file named <font color="#800040"><strong>test2</strong></font> using <em><strong>notepad</strong></em>, its content is not important. <br>
+Then transfer the file to your <em><strong>moore</strong></em> account.</big></li>
+
+<li><big>Using <font color="#800040"><strong>man dos2unix</strong></font> command on <em><strong>moore</strong></em>, find out how to use the utility <br>
+<font color="#800040"><strong>dos2unix</strong></font>. Transform the file <font color="#800040"><strong>test2</strong></font> to a UNIX text file using
+<font color="#800040"><strong>dos2unix test2</strong></font></big></li>
+
+<li><big>On your workstation, create a text file named <font color="#800040"><strong>2xa3submit</strong></font> using <em><strong>notepad</strong></em>. It has to contain the 
+following lines:<pre><font color="#0000FF">#!/bin/bash
+course=cs2xa3
+cd
+homedir=`pwd`
+homedir=${homedir:5}
+chmod u+rwx ../$homedir
+chmod og-rw ../$homedir
+chmod og+x ../$homedir
+# now we have the right permissions
+#####################################################################
+/nfs/u30/franek/public_html/courses/cs2xa3/labs/2xa3submit $1 $2 $3</font></pre> Transfer it to your <em><strong>moore</strong></em> account. Transform the dos text file you just 
+transferred to a UNIX text file by executing <font color="#800040"><strong>dos2unix 2xa3submit</strong></font> . Or create it using <em><strong>nano</strong></em> on 
+<em><strong>moore</strong></em> directly. Note that you can copy+paste from this webpage directly the lines to the <em><strong>notepad</strong></em> or 
+<em><strong>nano</strong></em> if you do not want to re-type it. The file should be in your home directory.</big></li>
+
+<li><big>Make the file <font color="#800040"><strong>2xa3submit</strong></font> executable by executing command <br>
+<font color="#800040"><strong>chmod&nbsp;u+x&nbsp;2xa3submit</strong></font> .</big></li>
+
+<li><big>Now it is time to execute the new command <font color="#800040"><strong>2xa3submit</strong></font>&nbsp;.
+Unless you already changed your <font color="#800040"><strong>PATH</strong></font> in the <font color="#0000FF">.bashrc</font> or <font color="#0000FF">.bashprofile</font> 
+to include the current directory, you have <br>
+to execute the command by <font color="#800040"><strong>./2xa3submit</strong></font> . You should see the message 
+<font color="#800040"><strong>usage&nbsp;‑‑&nbsp;2xa3submit&nbsp;&lt;student&nbsp;no&gt;&nbsp;&lt;lab&gt;&lt;file-to-be-submitted&gt;</strong></font> 
+It  indicates how the command <font color="#800040"><strong>2xa3submit</strong></font> should be
+used: first is the name of the command (i.e. <font color="#800040"><strong>2xa3submit</strong></font>),
+then at least one space and them comes your student number (no need for the leading 0's if
+any), then at least one space and the lab/project designation come (for this lab, it is <font color="#800040"><strong>lab1</strong></font>), and then at least one space and the name of the file to be
+submitted. For instance, if your student number is 000123456, you would type
+<font color="#800040"><strong>./2xa3submit&nbsp;&nbsp;123456&nbsp;&nbsp;lab1&nbsp;&nbsp;test2</strong></font></big></li>
+
+<li><big>Now try submit the file <font color="#800040"><strong>test2</strong></font> using <font color="#800040"><strong>2xa3submit</strong></font>&nbsp;. It should ask you for 
+your password for this course (the one you use for the course website), and after you have typed it in (make sure nobody observes you typing it in),&nbsp; then you should see a 
+message of a successful submission.</big></li>
+
+<li><big>Now use the website to check your submission.</big></li>
+
+<li><big>Thus, there are two ways you can submit work when required: either through the website from your workstation, or directly from your account on 
+<em><strong>moore </strong></em>using <font color="#800040"><strong>2xa3submit</strong></font>&nbsp;.</big></li>
+
+<li><big>If you want, you can modify the <font color="#800040"><strong>.bashrc</strong></font> file and
+add "current directory" to the <font color="#800040"><strong>PATH</strong></font>&nbsp;. Use <font color="#800040"><strong>nano .bashrc</strong></font>&nbsp;.
+It opens the file <font color="#800040"><strong>.bashrc</strong></font> in the screen editor 
+<font color="#800040"><strong>nano</strong></font>&nbsp;. If need be, see help section for the basic info on how to use 
+<font color="#800040"><strong>nano</strong></font> or access it via this <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/help/help.html">link</a> from
+here. Add at the bottom of the file a line<br>
+<font color="#800040"><strong>export PATH=$PATH:.</strong></font><br>
+note that the line ends with <strong><font color="#800040">:</font></strong>
+and <strong><font color="#800040">.</font></strong> since <strong><font color="#800040">.</font></strong> means "current directory". Save the file and close the
+editor. In order to activate the changes you just made, execute  <font color="#800040"><strong>source .bashrc</strong></font></big></li>
+
+<li><big>If you modified your <font color="#800040"><strong>PATH</strong></font>, you can than execute the submission 
+with command 
+<font color="#800040"><strong>2xa3submit&nbsp;123456&nbsp;lab1&nbsp;test2</strong></font>&nbsp; rather than with 
+<font color="#800040"><strong>./2xa3submit&nbsp;123456&nbsp;lab1&nbsp;test2</strong></font>&nbsp;, (i.e. you can
+omit the <font color="#800040"><strong>./</strong></font> at the beginning).</big></li>
+</ol></td></tr>
+
+<tr><td><big><font color="#FF6600">The third objective of this lab practice is to get to start using simple LINUX commands and bash scripts</font></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><ol>
+<li><big>Create 10 text files on your local machine (for instance, using notepad). The contents of the files are not
+important, but the names are: <font color="#0000FF">XXX1.0</font>, <font color="#0000FF">XXX1.1</font>,
+<font color="#0000FF">XXX.1.2</font> … <font color="#0000FF">XXX1.9</font></big></li>
+
+<li><big>Transfer the files from your local machine to the remote host</big></li>
+
+<li><big>Then rename the transferred files on the remote host to <font color="#0000FF">yyy1.0</font>,
+<font color="#0000FF">yyy1.1</font>, <font color="#0000FF">yyy1.2</font> … <font color="#0000FF">yyy1.9</font></big></li>
+
+<li><big>Then transfer the renamed file from the remote host to your local machine</big></li>
+
+<li><big>Check if you have <em><strong>bash</strong></em> shell by executing command <font color="#800040"><strong>which bash</strong></font> (you should get response 
+<font face="Courier New, Courier, monospace" color="#0000FF">/bin/bash</font>) and check where it is located by executing 
+<font color="#800040"><strong>whereis bash</strong></font> (you should get response<br>
+<font face="Courier New, Courier, monospace" color="#0000FF">bash:&nbsp;/bin/bash&nbsp;/usr/share/man/man1/bash.1.gz</font>)</big></li>
+
+<li><big>Then create a directory named <font color="#800040"><strong>2XA3</strong></font> (use <font color="#800040"><strong>mkdir</strong></font> command) and make it 
+your current directory (use <font color="#800040"><strong>cd</strong></font> command). Then make sure that it really is your current directory using 
+<font color="#800040"><strong>pwd</strong></font> command.</big></li>
+
+<li><big>Create a text file named <font color="#800040"><strong>xxx.yyy</strong></font> by executing command <font color="#800040"><strong>man cat &gt; xxx.yyy</strong></font></big></li>
+        
+<li><big>Display the content of the file by <font color="#800040"><strong>cat xxx.yyy</strong></font></big></li>
+
+<li><big>Rename the file <font color="#800040"><strong>xxx.yyy</strong></font> to <font color="#800040"><strong>yyy.xxx</strong></font> using 
+<font color="#800040"><strong>mv</strong></font> command.</big></li>
+
+<li><big>Move the file <font color="#800040"><strong>yyy.xxx</strong></font> from the current directory to your home directory using <font color="#800040"><strong>mv</strong></font> 
+command, then <font color="#800040"><strong>cd</strong></font> to your home directory and using <font color="#800040"><strong>ls</strong></font> check that the file is there.</big></li>
+
+<li><big>From the home directory check whether the directory <font color="#800040"><strong>2XA3</strong></font> is empty using 
+<font color="#800040"><strong>ls</strong></font> command.</big></li>
+
+<li><big>If not, still from the home directory remove all the files from <font color="#800040"><strong>2XA3</strong></font> using <font color="#800040"><strong>rm</strong></font> 
+command, and then remove the directory <font color="#800040"><strong>2XA3</strong></font> using <font color="#800040"><strong>rmdir</strong></font> command. </big></li>
+
+<li><big>Then create the directory <font color="#800040"><strong>2XA3</strong></font> anew, create the file <font color="#800040"><strong>xxx.yyy</strong></font> as before and place it in the directory <font color="#800040"><strong>2XA3</strong></font>. Now try to remove the directory <font color="#800040"><strong>2XA3</strong></font> by the command <font color="#800040"><strong>rmdir</strong></font> , it will not work.</big></li>
+
+<li><big>Consult <font color="#800040"><strong>man</strong></font> to find more about <font color="#800040"><strong>rm</strong></font>  command, and remove the directory 
+<font color="#800040"><strong>2XA3</strong></font> with all the files in it.</big></li>
+
+<li><big>Can you explain what will <font color="#800040"><strong>man cat | grep cat</strong></font> produce? How many lines&nbsp; of output?</big></li>
+
+<li><big>Can you explain what will <font color="#800040"><strong>man man | grep cat</strong></font> produce? How many lines of output?</big></li>
+
+<li><big>A bash script is a simple ASCII text file whose first line is <font color="#0000FF" face="Courier New, Courier, monospace">#!/bin/bash</font> and which contains  LINUX 
+commands (to be more precise bash commands) and is executable. A script is executed simply by typing its name on the command line and hitting <strong><em>enter</em></strong>.<br>
+Create a bash script file named <font color="#800040"><strong>s1</strong></font> which displays <font color="#0000FF" face="Courier New, Courier, monospace">Hello world</font> 
+on the screen when executed by entering the following sequence of commands
+(make sure&nbsp; that a file <font color="#800040"><strong>s1</strong></font> does not exist prior to typing in the first command) :<br>
+<font color="#0000FF" face="Courier New, Courier, monospace">echo '#!/bin/bash' &gt; s1</font><br>
+<font color="#0000FF" face="Courier New, Courier, monospace">echo 'echo "Hello world"' &gt;&gt; s1<br>
+</font>Do you understand why in the first command we use <font color="#0000FF" face="Courier New, Courier, monospace">&gt;</font> while in the 
+second command we use <font color="#0000FF" face="Courier New, Courier, monospace">&gt;&gt;</font> ? (Look up file redirection in the bash manual in Help section) 
+What would happen if we first used <font color="#0000FF" face="Courier New, Courier, monospace">&gt;&gt;</font> and then&nbsp; 
+<font color="#0000FF" face="Courier New, Courier, monospace">&gt;</font> ?</big></li>
+
+<li><big>Make the file <font color="#800040"><strong>s1</strong></font> executable by entering <font color="#800040"><strong>chmod u+x s1</strong></font> and then 
+execute the script. What would happen if you did not make it executable and tried to execute it?<br>
+If you see a message <font color="#800040"><strong>s1: command not found</strong></font> it most likely means that the directory in which you created the script 
+<font color="#800040"><strong>s1</strong></font> is not in your path, so either add this directory to your path, or add the <em>current directory</em> to your path 
+(see item 25 above), or execute the the script by <font color="#800040"><strong>./s1</strong></font> rather than by the&nbsp; usual 
+<font color="#800040"><strong>s1</strong></font>&nbsp;. Can you explain why?</big></li>
+
+<li><big>Then create the file <font color="#800040"><strong>s1a</strong></font> on your workstation by <em><strong>notepad</strong></em> and transfer it to 
+<em><strong>moore</strong></em> and modify it by <em><strong>dos2unix</strong></em>, or by using <em><strong>nano</strong></em> on <em><strong>moore</strong></em>. 
+Make it executable by <em><strong>chmod</strong></em>. It should contain the same commands as <font color="#800040"><strong>s1</strong></font> . You will be experimenting 
+with this file. Or you can use <font color="#800040"><strong>cp</strong></font> command to create it.</big></li>
+
+<li><big>Find out what happens if <font color="#800040"><strong>'</strong></font> (single quotes) were replaced by <font color="#800040"><strong>"</strong></font>&nbsp;(double quotes).
+Can you explain why? Look up quoting in <strong><em>bash</em></strong> in the Help section bash manual.</big></li>
+
+<li><big>Find out what happens if <font color="#800040"><strong>'</strong></font> (single quotes) were replaced by <font color="#800040"><strong>`</strong></font> &nbsp;(back quotes).&nbsp;&nbsp;Can you explain why? Look up quoting in <strong><em>bash</em></strong> in the Help section bash manual.</big></li>
+       
+<li><big>Create a bash script file <font color="#800040"><strong>s2</strong></font> by executing the following sequence of commands:<br>
+<font color="#0000FF" face="Courier New, Courier, monospace"><pre>echo '#!/bin/bash' &gt; s2
+echo 'echo -e "Please enter your name: "' &gt;&gt; s2
+echo 'read name' &gt;&gt; s2
+echo 'echo "Nice to meet you $name"' &gt;&gt; s2</pre></font>
+and make the script  <font color="#800040"><strong>s2</strong></font> executable. When executed, it will do the following (in black is the text entered by the user):<br>
+<font color="#0000FF" face="Courier New, Courier, monospace">Please enter your name: </font>franya<br>
+<font color="#0000FF" face="Courier New, Courier, monospace">Nice to meet you franya</font></big></li>
+
+<li><big>Make a copy of <font color="#800040"><strong>s2</strong></font> named  <font color="#800040"><strong>s2a</strong></font>&nbsp;.</big></li>
+
+<li><big>Write a bash script <font color="#800040"><strong>s3</strong></font> that displays the following system information and follows the display format as
+closely as possible:<br>
+<font color="#0000FF" face="Courier New, Courier, monospace">Kernel Details:  Linux 2.6.18-419.el5 x86_64<br>
+GNU bash, version 3.2.25(1)-release (x86_64-redhat-linux-gnu)<br>
+Copyright (C) 2005 Free Software Foundation, Inc.  <br>
+Uptime:  23:50:01 up 280 days,  13:46, 6 users,  load average: 0.00, 0.00, 0.00  <br>
+Server time : Sun Aug 5 23:50:10 EDT 2018</font><br>
+You will need to look up (use <em><strong>man</strong></em>) the info for:<ol>
+<li>built-in command <font color="#800040"><strong>uname</strong></font></li>
+<li>built-in command <font color="#800040"><strong>bash --version</strong></font></li>
+<li>built-in command <font color="#800040"><strong>uptime</strong></font></li>
+<li>built-in command <font color="#800040"><strong>date</strong></font></li>
+<li>and details about built-in command <font color="#800040"><strong>echo</strong></font> and how it handles <font color="#800040"><strong>newlines</strong></font></li>
+</ol>
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab1/script1">see a sample solution for the above script</a></big></li>
+
+<li><big>At this point you should have five script files <font color="#800040"><strong>s1</strong></font>, <font color="#800040"><strong>s1a</strong></font>, 
+<font color="#800040"><strong>s2</strong></font>, <font color="#800040"><strong>s2a</strong></font>, and <font color="#800040"><strong>s3</strong></font> in 
+your directory. Create and execute a bash script that creates a new subdirectory <font color="#800040"><strong>XXX</strong></font> and moves the files 
+<font color="#800040"><strong>s1</strong></font>, <font color="#800040"><strong>s1a</strong></font>, <font color="#800040"><strong>s2</strong></font>, 
+<font color="#800040"><strong>s2a</strong></font>, and <font color="#800040"><strong>s3</strong></font> there while renaming them to 
+<font color="#800040"><strong>t1</strong></font>, <font color="#800040"><strong>t1a</strong></font>, <font color="#800040"><strong>t2</strong></font>, 
+<font color="#800040"><strong>t2a</strong></font>, and <font color="#800040"><strong>t3</strong></font>. Using <font color="#800040"><strong>ls</strong></font> 
+command it checks that your directory contains no longer the files 
+<font color="#800040"><strong>s1</strong></font>, <font color="#800040"><strong>s1a</strong></font>, <font color="#800040"><strong>s2</strong></font>, 
+<font color="#800040"><strong>s2a</strong></font>, and <font color="#800040"><strong>s3 </strong></font>but contains the directory <font color="#800040"><strong>XXX</strong></font>, 
+and then again using <font color="#800040"><strong>ls</strong></font> command checks that the directory <font color="#800040"><strong>XXX</strong></font> contains the files 
+<font color="#800040"><strong>t1</strong></font>, <font color="#800040"><strong>t1a</strong></font>, <font color="#800040"><strong>t2</strong></font>, 
+<font color="#800040"><strong>t2a</strong></font>, and <font color="#800040"><strong>t3</strong></font>.<br>
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab1/script2">see a sample solution for the above script</a></big></li>
+
+<li><big> Look up (use <em><strong>man</strong></em>) the info for command <font color="#800040"><strong>od</strong></font>. Write a bash script that will display the 
+hexadecimal codes for the first 10 bytes of the binary file <font color="#800040"><strong>/bin/zcat</strong></font> <br>
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab1/script3">see a sample solution for the above script</a></big></li>
+
+<li><big>Write a bash script that will create a file listing all files stored in your home directory and all its subdirectories. The name of each file should be followed <br>
+by the name of the subdirectory the file is located in enclosed in ( ).&nbsp; E.g.&nbsp;&nbsp; <font color="#800040"><strong>xxx.yyy&nbsp;(2XA3)</strong></font><br>
+You are NOT allowed to use <font color="#800040"><strong>ls</strong></font> command with the <font color="#800040"><strong>-R </strong></font>option -- that would be too easy!! 
+You need to learn something about bash <em><strong>do loop</strong></em>, about bash <em><strong>if statement</strong></em>, and about bash <em><strong>conditions</strong></em>. 
+This is kind of bonus problem, will not be in Major&nbsp;Lab&nbsp;1.<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab1/script4"><br>
+see a sample solution for the above script</a></big></li>
+</ol></td></tr>
+</tbody></table>
+
+
+</body></html>

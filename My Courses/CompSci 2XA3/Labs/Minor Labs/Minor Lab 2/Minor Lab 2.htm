@@ -1,0 +1,272 @@
+
+<!-- saved from url=(0066)http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab.cgi?lab -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style> a:hover { background-color: yellow; } </style>
+<title>CS 2XA3 (2018/19,Term I) Minor Lab 2</title>
+</head>
+
+<body>
+
+<h1><img src="./Minor Lab 2_files/logo.jpg" width="786" height="92" alt="logo.jpg (32213 bytes)"></h1>
+
+<h1>CS 2XA3 (2018/19, Term I) Minor Lab 2 -- lab section L01</h1>
+
+<table border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/labs.cgi?lab" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" name="exec" value="Back To Lab Menu">&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/login/back.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" name="back" value="Back To Main Menu">&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/login/logout.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" value="Log Out"></p>
+    </form>
+    </td>
+  </tr>
+</tbody></table>
+
+<p>&nbsp;</p>
+
+<table border="0" width="962">
+<tbody><tr><td><big><font color="#FF0000"><strong><em>If you have not submitted your answers for the safety quiz in Major Lab 1, please, at the first opportunity re-visit Major Lab 1, create the file 'safety' with your answers and email it to Prof. Franek in an attachment (franek@mcmaster.ca). Your submission for the Major lab 2 next week will not be marked until you have submitted your answers to the safety quiz and you will not be able to participate in the following labs !!!</em></strong></font></big></td></tr>
+<tr>
+  <td><big><font color="#0000FF"><em><strong>If you are in the correct lab room and during the SCHEDULED time slot for your lab section for Minor Lab 2 and working on one of the lab's workstations, go into Marks+Comments to see if your attendance was registered. If you signed on the course website too early (the most common problem), your attendance would not be recorded; in such case, please log out and sign on again. If your attendance is still not recorded, please, ask your TA to record your attendance and email Prof. Franek right away. If you are not using one of the lab's workstations, please, have the TA record your attendance.</strong></em></font></big></td></tr>
+<tr>
+  <td><big><font color="#808080"><em><strong>The Minor Labs are open book labs, you can bring and use any notes etc., you can access any website, Google, Wikipedia etc. You are allowed to cooperate with other people, inside or outside the lab. The TA can provide extensive individual help as long as this would not deprive other students of the TA's help.</strong></em></font></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big>Lab 2 walk-through</big></td></tr>
+<tr><td><p><big>UNIX file name convention</big></p>
+<ol>
+<li><big>All file names are case sensitive. So filename <font color="#0000FF" face="Courier New, Courier, monospace">my.txt My.txt MY.txt</font> all are different files.</big></li>
+
+<li><big>Typically you should use upper and lowercase letters, digits, <font color="#0000FF" face="Courier New, Courier, monospace">.</font> (dot), and <font color="#0000FF" face="Courier New, Courier, monospace">_</font> (underscore) symbols.</big></li>
+
+<li><big>You can use other special characters such as blank space, but they are hard to use and it is better to avoid them.</big></li>
+
+<li><big>More precisely, file names may contain any character except <font color="#0000FF" face="Courier New, Courier, monospace">/</font>, which is reserved as the separator between files<br>and directories in a pathname. You cannot use the null character.</big></li>
+  
+<li><big>Most modern UNIX systems limit file names to 255 characters.</big></li>
+
+<li><big>A file name must be unique inside its directory. For example, inside <font color="#0000FF" face="Courier New, Courier, monospace">/home/my</font> directory you cannot create a file<br>named  <font color="#0000FF" face="Courier New, Courier, monospace">report</font> and a directory named <font color="#0000FF" face="Courier New, Courier, monospace">report</font>&nbsp;. However, other directory may have files with the same names,<br>for example, you can create a directory named <font color="#0000FF" face="Courier New, Courier, monospace">report</font>  in <font color="#0000FF" face="Courier New, Courier, monospace">/tmp</font>&nbsp;.</big></li>
+  
+<li><big>Avoid using the following characters from appearing in file names: 
+<font color="#0000FF" face="Courier New, Courier, monospace">&gt;</font>&nbsp;&nbsp;
+<font color="#0000FF" face="Courier New, Courier, monospace">&lt;</font>&nbsp;&nbsp;
+<font color="#0000FF" face="Courier New, Courier, monospace">|</font>&nbsp;&nbsp;
+<font color="#0000FF" face="Courier New, Courier, monospace">:</font>&nbsp;&nbsp;
+<font color="#0000FF" face="Courier New, Courier, monospace">&amp;</font></big></li>
+  
+<li><big>Note that UNIX allows white spaces, <font color="#0000FF" face="Courier New, Courier, monospace">&lt;</font>, 
+<font color="#0000FF" face="Courier New, Courier, monospace">&gt;</font>,
+<font color="#0000FF" face="Courier New, Courier, monospace">|</font>,
+<font color="#0000FF" face="Courier New, Courier, monospace">\</font>,
+<font color="#0000FF" face="Courier New, Courier, monospace">:</font>,
+<font color="#0000FF" face="Courier New, Courier, monospace">(</font>,
+<font color="#0000FF" face="Courier New, Courier, monospace">)</font>,
+<font color="#0000FF" face="Courier New, Courier, monospace">&amp;</font>,
+<font color="#0000FF" face="Courier New, Courier, monospace">;</font>, as well as wildcards such as 
+<font color="#0000FF" face="Courier New, Courier, monospace">?</font> and <font color="#0000FF" face="Courier New, Courier, monospace">*</font>, 
+to be quoted<br>or escaped using <font color="#0000FF" face="Courier New, Courier, monospace">\</font> symbol.</big></li>
+</ol></td></tr>
+<tr>
+  <td><big><font color="#FF6600">Task 1. Create a bash script named <big><font face="Courier New, Courier, monospace">script1</font></big></font></big></td></tr>
+<tr><td><big>The script creates in the current directory a subdirectory named <font color="#800040"><strong>XXX</strong></font> 
+and in this subdirectory a few files. The contents of the files are not important (in the sample solution provided, three files 
+named <font color="#800040"><strong>file1</strong></font>, <font color="#800040"><strong>fi1e2</strong></font>, and 
+<font color="#800040"><strong>file3</strong></font> are created, each containing just 1 empty byte). The script then checks 
+all files in the current directory and all its subdirectories and displays their names. If a file is in a subdirectory, 
+the file's name is followed by the name of the subdirectory in parenthesis. After that, the subdirectory 
+<font color="#800040"><strong>XXX</strong></font> and all its files are removed.<br>Hints: <em>use</em> <font color="#800040"><strong>find .</strong></font> <em>to list all files, have a look how the output 
+looks like -- it gives the relative pathname for each file. Use the command</em> 
+<font color="#800040"><strong>dirname &lt;pathname&gt;</strong></font> <em>to find the directory of each file. If the 
+directory name is dot, it means that the file is in the current directory, so just display it the plain file and using 
+the command</em> <font color="#800040"><strong>basename&nbsp;&lt;pathname&gt;</strong></font> . <em>If it is not dot, 
+remember the name of the directory and strip <font color="#800040"><strong><strong>./</strong></strong></font> from 
+the beginning of the pathname, then display the name of the file using</em> 
+<font color="#800040"><strong>basename&nbsp;&lt;pathname&gt;</strong></font> <me>and then the remembered 
+directory.</me></big></td></tr>
+<tr><td><big>A sample run, the current directory contains just five files named 
+<font color="#800040"><strong>script1</strong></font>, <font color="#800040"><strong>script2</strong></font>, 
+<font color="#800040"><strong>script3</strong></font>, <font color="#800040"><strong>script4</strong></font>, 
+and <font color="#800040"><strong>script5</strong></font>:</big></td></tr>
+<tr><td><big><pre><font color="#996600">script2
+script5
+script1
+script3
+script4
+file2 (XXX)
+file3 (XXX)
+file1 (XXX)</font></pre></big></td></tr>
+<tr><td><big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab2/script1">see a sample solution for the above script</a></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><font color="#FF6600">Task 2. Create a bash script named 
+<font face="Courier New, Courier, monospace">script2</font></font></big></td></tr>
+<tr><td><big>Write a bash script that creates in a loop 10 different files in the current directory
+named <font face="Courier New, Courier, monospace" color="#0000FF">lab2_file_1</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">lab2_file_2</font>,&nbsp;..., 
+<font face="Courier New, Courier, monospace" color="#0000FF">lab2_file_10</font>. The file 
+<font face="Courier New, Courier, monospace" color="#0000FF">lab2_file_1</font> contains a
+single line saying <font face="Courier New, Courier, monospace" color="#0000FF">123</font>,
+file <font face="Courier New, Courier, monospace" color="#0000FF">lab2_file_2</font>
+contains a single line saying <font face="Courier New, Courier, monospace" color="#0000FF">234</font>,
+..., file <font face="Courier New, Courier, monospace" color="#0000FF">lab2_file_10</font>
+contains a single line saying <font face="Courier New, Courier, monospace" color="#0000FF">101112</font>.
+Then it gets names of all files in the directory and in a loop it displays the names
+and contents of the created files (ignoring all other files that there may be). Then it removes all the
+created files, leaving all other files intact. Should produce an output similar to the sample run below.<br><br>
+Hints:<em> read <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/help/bash/Quoting.html#Quoting">section 3.1.2</a> of the bash manual (found in Help) to understand
+the use of</em> <font face="Courier New, Courier, monospace" color="#0000FF"><strong>'</strong></font> 
+(<em>single quote</em>)<em> and </em><font face="Courier New, Courier, monospace" color="#0000FF"><strong>"</strong></font> (<em>double quote</em>). <em>Read <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/help/bash/Arithmetic-Expansion.html#Arithmetic-Expansion">section 3.5.5</a> to understand how to do arithmetic, in particular expressions like</em> <font face="Courier New, Courier, monospace" color="#0000FF"><strong>$(($i+1))</strong></font> <em>and 
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/help/bash/Command-Substitution.html#Command-Substitution">section 3.5.4</a> to understand how to use</em> <font face="Courier New, Courier, monospace" color="#0000FF"><strong>`</strong></font> (<em>back quote</em>). <em>Read 
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/help/bash/Bash-Conditional-Expressions.html#Bash-Conditional-Expressions">section 6.4</a> to learn about bash conditional expressions.</em></big></td></tr>
+<tr><td><big>A sample run:</big></td></tr>
+<tr><td><big><pre><font color="#99660">    lab2_file_1:
+    123
+    lab2_file_10:
+    101112
+    lab2_file_2:
+    234
+    lab2_file_3:
+    345
+    lab2_file_4:
+    456
+    lab2_file_5:
+    567
+    lab2_file_6:
+    678
+    lab2_file_7:
+    789
+    lab2_file_8:
+    8910
+    lab2_file_9:
+    91011</font></pre></big></td></tr>
+<tr><td><big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab2/script2">see a sample solution for the above script</a></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><font color="#FF9900">Task 3. Create a bash script named 
+<font face="Courier New, Courier, monospace">script3</font></font></big></td></tr>
+<tr><td><big>Write a bash script that creates in the current directory a file named  
+<font face="Courier New, Courier, monospace" color="#0000FF">s1 </font>. The file 
+<font face="Courier New, Courier, monospace" color="#0000FF">s1</font> contains a single line saying 
+<font face="Courier New, Courier, monospace" color="#0000FF">I am s1</font> . Then it creates a file named 
+<font face="Courier New, Courier, monospace" color="#0000FF">s1a</font>. The file 
+<font face="Courier New, Courier, monospace" color="#0000FF">s1a</font> contains a single line saying 
+<font face="Courier New, Courier, monospace" color="#0000FF">I am s1a</font> . Then it creates a file named 
+<font face="Courier New, Courier, monospace" color="#0000FF">s2</font>. The file 
+<font face="Courier New, Courier, monospace" color="#0000FF">s2</font> contains a single line saying 
+<font face="Courier New, Courier, monospace" color="#0000FF">I am s2</font> . Then it creates a file named 
+<font face="Courier New, Courier, monospace" color="#0000FF">s2a</font>. The file 
+<font face="Courier New, Courier, monospace" color="#0000FF">s2a</font> contains a single line saying 
+<font face="Courier New, Courier, monospace" color="#0000FF">I am s2a</font> . Then it creates a file named 
+<font face="Courier New, Courier, monospace" color="#0000FF">s3</font>. The file 
+<font face="Courier New, Courier, monospace" color="#0000FF">s3</font> contains a single line saying 
+<font face="Courier New, Courier, monospace" color="#0000FF">I am s3</font> . Then in a loop it tests which of the files 
+<font face="Courier New, Courier, monospace" color="#0000FF">s1</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">s1a</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF"> s2</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">s2a</font>, and 
+<font face="Courier New, Courier, monospace" color="#0000FF">s3</font> exist in the current directory. It is achieved 
+by having 5 variables <font face="Courier New, Courier, monospace" color="#0000FF">x1</font>, <br>
+<font face="Courier New, Courier, monospace" color="#0000FF">x1a</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">x2</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">x2a</font>, and 
+<font face="Courier New, Courier, monospace" color="#0000FF">x3</font> initialized to 0. Then the script goes through 
+the list of files checking whether the file is one of the files 
+<font face="Courier New, Courier, monospace" color="#0000FF">s1</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">s1a</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">s2</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">s2a</font>, and 
+<font face="Courier New, Courier, monospace" color="#0000FF">s3</font>, and if so, the corresponding variable 
+is set to 1. Then the script goes through the variables and based on their values, it displays a message like 
+<font face="Courier New, Courier, monospace" color="#0000FF">s1 not found in current directory</font> or 
+<font face="Courier New, Courier, monospace" color="#0000FF">s1</font> found in current directory. Then all the 
+variables are summed up and if the sum is smaller than 5, a message 
+<font face="Courier New, Courier, monospace" color="#0000FF">not&nbsp;all&nbsp;files&nbsp;found&nbsp;in&nbsp;current&nbsp;directory</font> is 
+displayed, otherwise a message <font face="Courier New, Courier, monospace" color="#0000FF">all&nbsp;files&nbsp;found&nbsp;in&nbsp;current&nbsp;directory</font> is displayed. After, the script removes only the created files and terminates.</big></td></tr>
+<tr><td><big><em>When the script performs well and it produces an output like the sample run below, block out the 
+creation of one of the files</em> <font face="Courier New, Courier, monospace" color="#0000FF">s1</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">s1a</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">s2</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">s2a</font>, <em>and</em> 
+<font face="Courier New, Courier, monospace" color="#0000FF">s3</font> <em>and run the script again, you should 
+get output similar to the second sample run below</em>.</big></td></tr>
+<tr><td><big>A sample run when all files are created:</big></td></tr>
+<tr><td><font color="#0000FF"><big><pre><font color="#996600">s1 found in current directory
+s1a found in current directory
+s2 found in current directory
+s2a found in current directory
+s3 found in current directory
+all files found in current directory</font></pre></big></font></td></tr>
+<tr><td><big>A sample run when all files except 
+<font face="Courier New, Courier, monospace" color="#0000FF"><strong>s3</strong></font> are created:</big></td></tr>
+<tr><td><font color="#0000FF"><big><pre><font color="#996600">s1 found in current directory
+s1a found in current directory
+s2 found in current directory
+s2a found in current directory
+s3 not found in current directory
+not all files found in current directory</font></pre></big></font></td></tr>
+<tr><td><big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab2/script3">see a sample solution for the above script</a></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><font color="#FF9900">Task 4. Create a bash script named 
+<font face="Courier New, Courier, monospace">script4</font></font></big></td></tr>
+<tr><td><big>This is an extension of <font face="Courier New, Courier, monospace" color="#0000FF">script3 </font>. A 
+subdirectory <font face="Courier New, Courier, monospace" color="#0000FF">XXX</font> in the current directory is 
+created and the files <font face="Courier New, Courier, monospace" color="#0000FF">s1</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">s1a</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF"> s2</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">s2a</font>, and 
+<font face="Courier New, Courier, monospace" color="#0000FF">s3</font> are moved to 
+<font face="Courier New, Courier, monospace" color="#0000FF">XXX</font> while renamed to 
+<font face="Courier New, Courier, monospace" color="#0000FF">t1</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">t1a</font>, 
+<font color="#0000FF" face="Courier New, Courier, monospace"> t2</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">t2a</font>, and 
+<font face="Courier New, Courier, monospace" color="#0000FF">t3</font> . All the files in the current 
+directory are checked to see if the </big><big>files <font face="Courier New, Courier, monospace" color="#0000FF">s1</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">s1a</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">s2</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">s2a</font>, and 
+<font face="Courier New, Courier, monospace" color="#0000FF">s3</font> disappeared from the current directory. 
+For appropriate messages see the sample runs below.</big></td></tr>
+<tr><td><big><em>When the script performs well and it produces an output like the sample run below, block out the 
+moving of one of the files</em> <font face="Courier New, Courier, monospace" color="#0000FF">s1</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">s1a</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">s2</font>, 
+<font face="Courier New, Courier, monospace" color="#0000FF">s2a</font>, <em>and</em> 
+<font face="Courier New, Courier, monospace" color="#0000FF">s3</font> <em>and run the script again, you 
+should get output similar to the second sample run below</em>.</big></td></tr>
+<tr><td><big>A sample run when all files are created:</big></td></tr>
+<tr><td><big><pre><font color="#996600">s1 found in current directory
+s1a found in current directory
+s2 found in current directory
+s2a found in current directory
+s3 found in current directory
+all files found in current directory
+XXX created
+all files moved to XXX
+all files disappeared from current directory</font></pre></big></td></tr>
+<tr><td><big>A sample run when all files except 
+<font face="Courier New, Courier, monospace" color="#0000FF"><strong>s3</strong></font> are moved to
+<font face="Courier New, Courier, monospace" color="#0000FF"><strong>XXX</strong></font> :</big></td></tr>
+<tr><td><big><pre><font color="#996600">s1 found in current directory
+s1a found in current directory
+s2 found in current directory
+s2a found in current directory
+s3 found in current directory
+all files found in current directory
+XXX created
+all files moved to XXX
+not all files disappeared from current director</font></pre></big></td></tr>
+<tr><td><big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab2/script4">see a sample solution for the above script</a></big></td></tr></tbody></table>
+
+
+</body></html>
