@@ -1,0 +1,446 @@
+Posix.Thread.Libraries.Notes.txt
+
+Sauce: https://www.cs.cmu.edu/afs/cs/academic/class/
+       15492-f07/www/pthreads.html#MANPAGES
+
+- The POSIX thread libraries are a standards based thread API for C
+  and C++
+    - It allows spawning new concurrent process flows
+    - Most effective on multi-processor or multi-core systems, where 
+      the process flow can be scheduled to run on another process
+        - Running processes through parallel or distributed processing 
+          can speed up computation
+    - Threads require less overhead than creating/spawning/forking a 
+      new process
+        - This is because the system does not have to create new 
+          system virtual memory space, or new address space for the 
+          thread
+            - All threads within a process share the same address 
+              space
+    - Threads are most effective on a multi-processor or multi-core 
+      system
+        - But they can also be used on single processor systems
+            - i.e. Thread A executes while Thread B is waiting for I/O 
+                   or something else to finish
+    - Threads are spawned/created by defining a function and its 
+      arguments
+        - This is processed in the parent (or main) thread
+    - The purpose of using the POSIX thread library is to execute 
+      software faster, by utilizing multiple processors or cores
+
+- Thread Basics
+    - Thread operations include thread creation, termination, 
+      synchronization (i.e. joins, blocking, etc.), scheduling, data
+      management, and process interaction
+    - A thread does not maintain a list of created threads
+        - Nor does it know the thread that created it
+    - All threads within a process share the same address space
+        - Threads in the same process share:
+            - Process instructions
+            - Most data
+            - Open files (descriptors)
+            - Signals and signal handlers
+            - Current working directory
+            - User and Group ID
+        - However, threads do not share the following:
+            - Thread ID
+            - Set of registers
+            - Stack pointer
+            - Stack for local variables, return addresses
+            - Signal mask
+            - Priority
+            - Return value: `errno`
+    - pthread functions return "0" if it finished with no errors
+        - Note: In 'pthread_exit(0)', the '0' means NULL. It has
+                nothing to do with the exit code. Also, 'pthread_exit'
+                can be used to return data (i.e. String, struct, etc.)
+
+- Thread Creation & Termination
+    - Refer to the 'pthread1.c' source file for code
+        - Compile in C using the following command:
+          cc pthread1.c -o pthread1 -lpthread
+    - Notes:
+        - In the 'pthread1.c' example, the same function is used
+          in each thread. In other words, each thread calls the 
+          same function to execute instructions. However, the 
+          arguments are different. Also, the functions do not 
+          need to be the same. Thread A can call Function X, 
+          and Thread B can call Function Y.
+        - Threads terminate by explicitly calling 'pthread_exit(0)'
+            - This lets the thread function return to the caller
+                - Note: The '0' in 'pthread_exit(0)' is not the return
+                        value of the threaded function. Instead, it
+                        means that the return type of the function is
+                        NULL. Alternatively, a threaded function can
+                        return data (i.e. struct, string, etc.)
+            - Processes can be terminated by calling 'exit()', which
+              will terminate the process including any child threads.
+    - 'pthread_create()' function explanation:
+        - This function is used to create a thread, define its
+          attributes, threaded function, arguments, etc.
+        - i.e. 
+            int pthread_create(pthread_t * thread,
+                               const pthread_attr_t * attr,
+                               void * (*start_routine)(void *),
+                               void *arg);
+        - Arguments:
+            - pthread_t * thread
+                - Returns the thread ID
+                    - Is an (unsigned) long int defined in bits/
+                      pthreadtypes.h
+            - const pthread_attr_t * attr
+                - Set to NULL if you want to use default thread
+                  attributes
+                - Define members of the struct pthread_attr_t
+                  defined in bits/pthreadtypes.h
+                    - Attributes include:
+                        - Detached state
+                            - Default: PTHREAD_CREATE_JOINABLE
+                            - Other Options:
+                                - PTHREAD_CREATE_DETACHED
+                        - Scheduling policy
+                            - Options:
+                                - PTHREAD_INHERIT_SCHED
+                                - PTHREAD_EXPLICIT_SCHED
+                                - SCHED_OTHER
+                        - Scheduling parameter
+                        - Inherited attribute
+                            - Default: PTHREAD_EXPLICIT_SCHED
+                            - Inherit from parent thread:
+                                - PTHREAD_INHERIT_SCHED
+                        - Scope
+                            - Kernel threads:
+                                - PTHREAD_SCOPE_SYSTEM
+                            - User threads:
+                                - PTHREAD_SCOPE_PROCESS
+                        - Guard size
+                        - Stack address
+                            - See unistd.h and bits/posix_opt.h
+                                - POSIX_THREAD_ATTR_STACKADDR
+                        - Stack size
+                            - Default minimum:
+                                - PHREAD_STACK_SIZE
+                            - Set in pthread.h
+            - void * (*start_routine)(void *)
+                - Pointer to the function to be threaded
+                - The thread's function has a single argument:
+                    - A pointer to void
+                        - This is re-casted later in the thread
+                          function
+            - void * arg
+                - Pointer to argument of function thread
+                - To pass multiple arguments, send a pointer to
+                  a struct
+    - 'pthread_exit()' function explanation:
+        - This function kills the thread
+        - By default, the 'pthread_exit()' function does not return
+          any data, unless it is specified
+            - This function returns NULL (nothing), unless the return
+              value is specified by the programmer
+                - i.e. pthread_exit(0); // Returns NULL
+        - If the thread is not detached, the thread ID and return 
+          value may be examined from another thread by using 
+          'pthread_join()'
+        - i.e. 
+            void pthread_exit(void *retval);
+                - Note: The return pointer 'retval' must not be of
+                        local scope, otherwise it would cease to exist 
+                        once the thread terminates.
+    - C++ Pitfalls
+        - The sample program 'pthread1.c' will compile with the
+          GNU C and C++ compiler `g++`
+        - The following function pointer representation below will
+          work for C, but not C++
+            - i.e.
+                void print_message_function(void * ptr);
+                ...
+                ...
+                iret1 = pthread_create(&thread, NULL, 
+                    (void *) &print_message_function, 
+                    (void *) message1);
+                ...
+                ...
+
+- Thread Synchronization
+    - The thread library provides 3 synchronization mechanisms:
+        - mutexes
+            - MuTex stands for mutual exclusion lock
+            - Blocks access to variables by other threads
+                - This enforces exclusive access by a thread to a 
+                  variable or set of variables
+        - joins
+            - Makes a thread wait till others are complete or have 
+              been terminated
+        - conditions variables
+            - Data type: 'pthread_cond_t'
+    - Mutexes
+        - Used to prevent data inconsistencies due to race conditions
+            - Race conditions occur when two or more threads need to 
+              perform operations on the same memory area, but the 
+              results of the computation depends on the order in which 
+              these operations are performed
+        - Used for serializing shared resources
+            - Anytime a global resource is accessed by more than one 
+              thread, it should have a MuTex associated with it
+        - Applied to segments of memory; to protect it from other
+          threads
+            - These segments are referred to as "critical regions"
+        - Can only be applied to threads in a single process, and does
+          not work between processes; as do semaphores
+        - When a thread tries to acquire a MuTex lock that is held by 
+          another thread, the first thread is blocked until the MuTex 
+          is released/unlocked by the thread that currently has it.
+            - When a thread terminates, the MuTex lock does not get 
+              released/unlocked
+                - By default nothing happens; MuTexes must be
+                  explicitly locked and unlocked
+        - Examples:
+            - 'mutex1.txt'
+                - Function with and without MuTex
+            - 'mutex2.c'
+                - Program utilizing MuTexes
+    - Joins
+        - A join is performed when a thread must finish executing, so 
+          the program waits for it to finish
+        - A thread routine may launch multiple threads, and then wait 
+          for them to finish to get the results
+        - Waiting for threads to finish is done with a join
+        - Refer to 'join1.c' for source file for code
+            - Compile in C using the following command:
+              cc join1.c -o join1 -lpthread
+    - Condition Variables
+        - Type of condition variable is `pthread_cond_t`
+        - Used for waiting and continuing processes
+        - Allows threads to suspend execution and relinquish the 
+          processor until some condition is true
+        - Must always be associated with a MuTex
+            - This is to avoid a race condition
+            - A thread may be perpetually waiting for a signal that is
+              never sent
+                - i.e. Thread 'A' is preparing to wait, and Thread 'B' 
+                       may signal the condition before Thread 'A' 
+                       actually waits on it, resulting in a deadlock. 
+                       Thread 'A' is waiting for a signal that is
+                       never sent.
+            - Any MuTex can be used
+                - There is no explicit link between the MuTex, and the
+                  condition variable
+        - Functions used in conjunction with the condition variable:
+            - Creating/Destroying:
+                - pthread_cond_init
+                - pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
+                - pthread_cond_destroy
+            - Waiting On Condition:
+                - pthread_cond_wait
+                - pthread_cond_timedwait
+                    - Places a limit on how long it will block the 
+                      thread
+            - Waking Based On Condition:
+                - pthread_cond_signal
+                - pthread_cond_broadcast
+                    - Wakes up all threads that are blocked by the
+                      specified condition variable
+        - Refer to the 'cond1.c' source file for code
+            - Compile in C using the following command:
+              cc cond1.c -o cond1 -lpthread
+            - Notes:
+                - 'functionCount1()' is halted while the counter is 
+                   between 'COUNT_HALT1' and 'COUNT_HALT2'.
+                - The only guaranteed output is from
+                  'functionCount2()'; it will increment the counter 
+                  between the values 'COUNT_HALT1' and 'COUNT_HALT2'. 
+                    - Everything else is random.
+                - The logical conditions ('if' and 'while') must be 
+                  used to ensure that the 'signal' is executed if the
+                  'wait' is ever processed.
+                    - Poor software logic can lead to deadlock
+                - A race condition may arise with this example because 
+                  the counter is used as the condition, and can't be 
+                  locked in the 'while' statement without causing 
+                  deadlock
+
+- Thread Scheduling
+    - If this option is used, each thread may have its own scheduling 
+      properties
+        - Scheduling attributes may be specified:
+            - During thread creation
+            - Dynamically
+                - By changing the attributes of a thread already 
+                  created
+                - Changing the scheduling of a thread during
+                  synchronization operations
+            - By defining the effect of a MuTex on the thread's 
+              scheduling when creating a MuTex
+    - The thread library provides default values that are sufficient 
+      for most cases
+
+- Thread Pitfalls
+    - Race Conditions
+        - Threads are scheduled by the operating system at different
+          times
+            - Even though threads they may appear to execute in the 
+              order that they are programmed
+                - i.e. Thread A executes and finishes before Thread B, 
+                       because Thread A was created before Thread B
+                - You cannot assume that threads are executed in the 
+                  order they are created
+                    - Also, threads may execute at different speeds
+        - When threads are executing (racing to compete), they may 
+          give unexpected results
+            - This is a race condition
+        - MuTexes and Joins must be utilized to achieve a predictable 
+          execution order and outcome.
+    - Thread Safe Code
+        - Threaded routines must call functions that are 'thread safe'
+            - This means that there are no static or global variables
+              which other threads may read/write to.
+            - If static or global variables are used, then MuTexes 
+              must be applied or the function(s) must be rewritten to 
+              avoid the use of these variables.
+        - In C, local variables are dynamically allocated on the stack
+            - Thus, any function that does not use static data or 
+              other shared resources is 'thread safe'.
+        - Thread functions that are 'unsafe' may be used by only one
+          thread at a time in a program.
+            - Also, the uniqueness of the thread must be ensured.
+        - Many non-re-entrant functions return a pointer to static 
+          data.
+            - This can be avoided by returning dynamically allocated 
+              data or using caller-provided storage.
+            - 'strtok' is an example of a non-thread-safe function, 
+               because it is not re-entrant.
+                - The thread safe version of 'strtok' is 'strtok_r', 
+                  and it is re-entrant.
+    - MuTex Deadlock
+        - Occurs when a MuTex lock is acquired, and then not unlocked 
+          or 'released'.
+            - This causes the program execution to halt for an
+              indefinite amount of time.
+            - Can also be caused by poor application of MuTexes or 
+              Joins.
+        - Applying two or more mutexes to the same region of code can 
+          cause deadlock.
+            - i.e. If Thread 'A' acquires mutex_lock_1, but then fails 
+                   to acquire mutex_lock_2, because Thread 'B' has 
+                   mutex_lock_2, then Thread 'A' may eventually lock 
+                   all other threads from accessing data, including 
+                   Thread 'B'. The threads will wait indefinitely for 
+                   the resource to become free, causing a deadlock.
+                - Refer to 'mutex3.txt' for an example
+        - Always test mutexes to ensure that they are acquired, and
+          released in a non-deadlock manner.
+            - Good practice is threads trying to acquire a MuTex lock, 
+              and then waiting before trying again.
+                - Refer to 'mutex4.txt' for an example
+        - The logic conditions 'if' and 'while' must be used to ensure 
+          that the 'signal' is executed if 'wait' is ever processed.
+
+- Thread Man Pages
+    - pthread_atfork
+        - register handlers to be called at fork(2) time
+    - pthread_attr_destroy [pthread_attr_init]
+        - thread creation attributes
+    - pthread_attr_getdetachstate [pthread_attr_init]
+        - thread creation attributes
+    - pthread_attr_getinheritsched [pthread_attr_init] 
+        - thread creation attributes
+    - pthread_attr_getschedparam [pthread_attr_init] 
+        - thread creation attributes
+    - pthread_attr_getschedpolicy [pthread_attr_init]
+        - thread creation attributes
+    - pthread_attr_getscope [pthread_attr_init] 
+        - thread creation attributes
+    - pthread_attr_init 
+        - thread creation attributes
+    - pthread_attr_setdetachstate [pthread_attr_init] 
+        - thread creation attributes
+    - pthread_attr_setinheritsched [pthread_attr_init] 
+        - thread creation attributes
+    - pthread_attr_setschedparam [pthread_attr_init] 
+        - thread creation attributes
+    - pthread_attr_setschedpolicy [pthread_attr_init] 
+        - thread creation attributes
+    - pthread_attr_setscope [pthread_attr_init] 
+        - thread creation attributes
+    - pthread_cancel 
+        - thread cancellation
+    - pthread_cleanup_pop [pthread_cleanup_push] 
+        - install and remove cleanup handlers
+    - pthread_cleanup_pop_restore_np [pthread_cleanup_push] 
+        - install and remove cleanup handlers
+    - pthread_cleanup_push 
+        - install and remove cleanup handlers
+    - pthread_cleanup_push_defer_np [pthread_cleanup_push] 
+        - install and remove cleanup handlers
+    - pthread_condattr_destroy [pthread_condattr_init] 
+        - condition creation attributes
+    - pthread_condattr_init 
+        - condition creation attributes
+    - pthread_cond_broadcast [pthread_cond_init] 
+        - operations on conditions
+    - pthread_cond_destroy [pthread_cond_init] 
+        - operations on conditions
+    - pthread_cond_init 
+        - operations on conditions
+    - pthread_cond_signal [pthread_cond_init] 
+        - operations on conditions
+    - pthread_cond_timedwait [pthread_cond_init] 
+        - operations on conditions
+    - pthread_cond_wait [pthread_cond_init] 
+        - operations on conditions
+    - pthread_create 
+        - create a new thread
+    - pthread_detach 
+        - put a running thread in the detached state
+    - pthread_equal 
+        - compare two thread identifiers
+    - pthread_exit 
+        - terminate the calling thread
+    - pthread_getschedparam [pthread_setschedparam] 
+        - control thread scheduling parameters
+    - pthread_getspecific [pthread_key_create] 
+        - management of thread-specific data
+    - pthread_join 
+        - wait for termination of another thread
+    - pthread_key_create 
+        - management of thread-specific data
+    - pthread_key_delete [pthread_key_create] 
+        - management of thread-specific data
+    - pthread_kill_other_threads_np 
+        - terminate all threads in program except calling thread
+    - pthread_kill [pthread_sigmask] 
+        - handling of signals in threads
+    - pthread_mutexattr_destroy [pthread_mutexattr_init] 
+        - mutex creation attributes
+    - pthread_mutexattr_getkind_np [pthread_mutexattr_init] 
+        - mutex creation attributes
+    - pthread_mutexattr_init 
+        - mutex creation attributes
+    - pthread_mutexattr_setkind_np [pthread_mutexattr_init] 
+        - mutex creation attributes
+    - pthread_mutex_destroy [pthread_mutex_init] 
+        - operations on mutexes
+    - pthread_mutex_init 
+        - operations on mutexes
+    - pthread_mutex_lock [pthread_mutex_init] 
+        - operations on mutexes
+    - pthread_mutex_trylock [pthread_mutex_init] 
+        - operations on mutexes
+    - pthread_mutex_unlock [pthread_mutex_init] 
+        - operations on mutexes
+    - pthread_once 
+        - once-only initialization
+    - pthread_self 
+        - return identifier of current thread
+    - pthread_setcancelstate [pthread_cancel] 
+        - thread cancellation
+    - pthread_setcanceltype [pthread_cancel] 
+        - thread cancellation
+    - pthread_setschedparam 
+        - control thread scheduling parameters
+    - pthread_setspecific [pthread_key_create] 
+        - management of thread-specific data
+    - pthread_sigmask 
+        - handling of signals in threads
+    - pthread_testcancel [pthread_cancel] 
+        - thread cancellation

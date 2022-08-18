@@ -1,0 +1,20 @@
+mutex.4.txt
+
+...
+pthread_mutex_lock(&mutex_1);
+
+/* Test if already locked */
+while (pthread_mutex_trylock(&mutex_2)) {
+
+    /* Free resource to avoid deadlock */
+    pthread_mutex_unlock(&mutex_1);
+    ...
+    /* Stall here */
+    ...
+    pthread_mutex_lock(&mutex_1);
+}
+
+count++;
+pthread_mutex_unlock(&mutex_1);
+pthread_mutex_unlock(&mutex_2);
+...

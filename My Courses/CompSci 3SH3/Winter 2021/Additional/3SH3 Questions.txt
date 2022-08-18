@@ -1,0 +1,472 @@
+3SH3.Questions.txt
+
+- Is it possible to have so many interrupts that it causes a stack
+  overflow? And if this happens how does the OS deal with it?
+    => This is possible, but very rare and almost never happens. The
+       OS does a very good job at making sure something like this
+       never happens
+
+- Cache is faster than main memory (RAM). But doesn’t this statement
+  only apply to reads. If you’re constantly changing the values in
+  cache, they need to be updated in the main memory (RAM)
+    => Yes, this statement is true. If a value is changed in cache,
+       then the same value needs to be updated in RAM. When cache
+       contains an updated value, it is referred to as a dirty block
+
+- Out of the two architectures mentioned in class, Von-Neumann and
+  Harvard, is there an advantage to using one over the other?
+    => In Von-Neumann architecture, program data and instruction data
+       are stored in the same memory, and travel along the same bus.
+       Since you cannot access program data and instruction data
+       simultaneously, the Von-Neumann architecture is susceptible to
+       bottlenecks. Harvard architecture separates program data and
+       instruction data, and they have their own bus. This overcomes
+       the bottleneck in Von-Neumann architecture
+
+- DMA transfers memory from an I/O device to main memory, directly.
+  If this memory isn’t checked properly, in theory, can DMA be used to
+  compromise a system? (i.e. Hack it). 
+    => In theory it can be used to obtain arbitrary RWX privileges,
+    but newer operating systems disable DMA by default, so this is no
+    longer possible. 
+
+- Can you give an example of how race conditions can lead to a
+  security hole/bug?
+    => ???
+
+- Since System Calls are provided to programs via an API and not
+  direct access, is there a negative performance cost to this?
+    => There is a performance tradeoff in creating an intermediate
+       layer between programs and the system, but it is worth it
+       because the benefits vastly outweigh the disadvantages. Plus,
+       the performance degradation is very minute
+
+- Can you show us how to prove software correctness?
+    => ???
+
+- If there is a System Call inside a System Call, does it save the
+  state of the first System Call in the stack? If so, can you overflow
+  the stack with lots of System Calls?
+    => Yes, the state of the first system call (i.e. It’s data) is
+       saved in cache. Overflowing the stack with repeated system
+       calls is extremely unlikely to happen. The OS does a good job
+       at making sure this does not happen.
+
+- What is “smash-the-stack”?
+    => ???
+
+- Why are microkernels more secure? Is it because less code is running
+  with high-access; thus, the attack surface is less
+    => Microkernels move code from the kernel to the user space. So,
+       if there is some vulnerability in the code, and an attacker
+       manages to exploit it, then the attacker does not have full
+       control of the kernel, but only the user space. Compromising
+       the kernel gives attackers full control to do whatever they
+       want. We want the kernel to be as secure as possible, and
+       minimizing the attack vector is a valid strategy. 
+
+- Is the third column of 'lsmod' the ‘pid’?
+    => No, the third column in ‘lsmod’ is not the PID. The third
+       column indicates how many instances of the module is being
+       used. A value of 0 means that the module is not being used.
+
+- In `simple.ko` does the `ko` stand for Kernel Object? Similar to
+  object in a `simple.o` file
+    => Yes. [(*.ko)] stands for kernel object, and [(*.o)] stands for
+       object
+
+- Where do drivers sit in the hierarchy of software, OS and kernel?
+    => Drivers can be in the user-space or the kernel-space, depending
+       on the driver. Typically, drivers are kernel space. However, in
+       micro kernels, drivers are sent to user-space, and only the
+       essentials are in kernel-space.
+
+- If I remove the battery from a phone, does it lose the ability to
+  keep track of real time?
+    => This entirely depends on the source of power. If the internal
+       real time clock is powered solely by a single battery, then it
+       removing it will cause the phone to lost its ability to keep
+       track of real time. However, if the internal clock is powered
+       by a separate battery and micro-controller, then it will be
+       able to keep track of time without the main battery.
+
+- Is the kernel part of the operating system or is the OS part of the
+  kernel?
+    => The kernel is part of the operating system. It is one of the
+       first processes that runs when the operating system starts up.
+
+- What does the OS do that the kernel doesn’t do?
+    => The kernel runs all the time, while the operating system runs
+       only when it is told to do something. The kernel is the middle
+       man between hardware and software. If any program/process/
+       application wants CPU time, memory, etc., then it must ask the
+       kernel. 
+
+- If a program (i.e. Photoshop) needs more RAM, does it ask the
+  operating system and the OS asks the kernel? OR, does it directly
+  interface with the kernel through system calls?
+    => ???
+
+- Does the operating system get to directly interface with the
+  hardware? Or does it have to go through the kernel?
+    => No, the operating system does not directly interface with the
+       hardware. The OS must go through the kernel. Every process/
+       program/application goes through the kernel for hardware
+       resources.
+
+- The software or algorithm that is used for scheduling, where is it
+  stored when it’s in use?
+    => The scheduling software is part of the operating system and is
+       stored in secondary memory. When the operating system is
+       booted, essential system processes like the scheduling
+       algorithm are written to main memory, and this region is
+       protected.
+
+- What stops processes from writing or reading to other processes
+  memory?
+    => This is the job of the programmer, and is accomplished using
+       mutex and semaphores. These help in preventing processes from
+       writing to the same block of memory. On the contrary, multiple
+       processes reading the same memory is not an issue.
+
+- But in C, there is no checking for ArrayOutOfBounds. So if you have
+  an array of size 10, you can ask it to return the 1000th value, it
+  will return the value.
+    => ???
+
+- Does the kernel have a PID? If so, what is it?
+    => No it does not; the kernel does not have a PID
+
+- What is a page fault? Yield?
+    => Page fault occurs when you try to access a page that does not
+       exist. 
+       Yield is when a process gives control to another process.
+
+- If the Kernel is the most sought after attack vector, then why don’t
+  OS designers harden the kernel and make it read only? Or isolate it
+   into two parts: read-only and rwx-only, and give the second part
+   less access? Is it cause of performance tradeoff?
+    => Bad question
+
+- Is it possible to load data into registers directly from a HDD, or
+  secondary storage, and skip the RAM/Cache altogether? And vice versa
+    => This is not recommended or allowed, nor is it normal practice.
+       In fact, this is bad practice. However, there may be a
+       workaround to accomplish this. Nonetheless, swap memory is a
+       better solution to insufficient main memory.
+
+- The dispatcher and scheduling algorithm are processes, probably
+  system processes, so do they have their own state or attributes that
+  need to be saved?
+    => Yes, but this is supported by the operating system. Also, they
+       are system processes, and are part of the OS.
+
+- What do you mean by parent and child share resources? What resources
+  are being shared? 
+    => ???
+
+- What is a daemon? And what is the point of it? 
+    => ???
+
+- Why is the PID of the child process 0? Isn’t a PID of 0 reserved for
+  the Kernel?
+    => The PID, relative to the child process, is always 0. But
+       getting the PID of the child process from the parent is greater
+       than zero.
+
+- The difference between physical and virtual memory. Where would you
+  use each one? And in what scenarios would you use one over the
+  other?
+    => ???
+
+- Let’s assume there’s a process, X. Can ‘X’ tell if it is a zombie or
+  orphan process? Can other processes tell if a process is a zombie or
+  orphan process?
+    => ???
+
+- Would you say that it is good practice to always perform NULL checks
+  and check the exit status of functions?
+    => Yes
+
+- Is it good practice to immediately close a pipe or remove shared
+  memory the second you are done using it, or can you wait a little
+  while?
+    => Wait a little bit
+
+- What is the difference between a thread and a process?
+    => Both are independent sequences of execution. A process has its
+       own memory, data, address space, etc. A thread shares this data
+       with other threads, except for the stack.  Processes are heavy
+       on the system, and threads are light. Every process is a
+       thread, but not every thread is a process. 
+
+- Let’s say you have a process, called ‘P’. ‘P’ calls fork and creates
+  a child process called ‘C’. Both ‘P’ and ‘C’ create two threads. How
+  many threads are on each process? And where does the primary thread
+  fit in all of this?
+    => Depends on syntax. You can duplicate all threads when creating
+       a new process OR only create new process and no threads
+
+- If I started a thread in a child process, does the thread go away
+  when the child is terminated? What if the child is not terminated
+  and is a zombie process?
+    => They will also be zombies; zombie threads. However, modern
+       operating systems are smart enough to prevent this.
+
+- What is an example of something that cannot be parallelized? 
+    => Anything that has a huge data dependency. Here are two
+       examples:
+       1. Assume you have two numbers, A and B. You add them together
+          to get C. Then you add A and C to get D. Then you add A and
+          D to get E. Then you add A and E to get F. You repeat this
+          for many iterations. This cannot be parallelized. 
+       2. Assume you have a list of numbers called X. You compute some
+          statistic on X and get Y. Then you use X and Y to compute
+          another statistic and get Z. Then you use X and Z to get 
+          another statistic and get Q. This cannot be parallelized
+          because the next calculation depends on the previous ones. 
+
+- And what is an example of something that will have no improvements
+  if parallelized?
+    => Soon(TM)
+
+- What is a good example of something that has huge benefits if
+  parallelized?
+    => Image rendering is very good for processing, large matrix
+       multiplication, etc. 
+
+- On slide 6 it says file system, but in the diagram before it says
+  code
+    => It says file on the first slide and then file system on the
+       second slide. They mean the same thing.
+
+- In what scenarios would you use a thread over a process? And vice
+  versa?
+    => Assume you have a word processor application running with one
+       window. The current window is a process with many threads
+       associated to it. Each thread does a specific task (i.e. Spell
+       checking, formatting, etc). If you create a new window that is
+       independent of the first window, then each window is its own
+       process and has its own set of threads for spell checking,
+       formatting, etc.
+
+- When would you want to use the different types of user/kernel
+  threads?
+    => For instance, if your system has limited computing power, then
+       you would want to use one kernel thread mapped to many user
+       threads. This is good for embedded devices, especially if the
+       device has a very niche application/use. On the other hand, the
+       main operating systems use one-to-one kernel thread mapped to
+       user thread — used by Windows and Linux.
+
+- When the OS restricts the number of threads per process, what error
+  message does it print?
+    => The exit status code that is returned will indicate whether it
+       was successful in creating a new thread or process. You can
+       probably view the error in the `stderr` var/file.
+
+- Is it possible to have a three level (thread) model?
+  (i.e. Lightweight applications follow the one-to-many model.
+  Moderate applications follow the many-to-many model. And, heavy
+  applications follow the one-to-one model)
+    => Yes, this is possible, but very hard to implement. It’s a pain
+       in the arse. Not even Microsoft with its deep pockets can do
+       it.
+
+- Are race conditions caused by concurrency?
+    => Yes; anything with more than one thread/process is susceptible
+       to race conditions. But if you only had one process, then you
+       don’t have to deal with race conditions.
+
+- What is a UAF?
+    => Soon(TM)
+
+- What is “atoi”?
+    => C function to convert string into integer
+
+- How would you recover from an error like: Failed to fork, failed to
+  create thread, failed to setup shared memory, system call failed,
+  etc. 
+    => This mostly depends on the device, but you could: reboot,
+       reset, force quit the application, stall the application, and
+       retry. In embedded systems, the convention is to reset the
+       device.
+
+- Can you explain the first point on slide 22 of the threads lecture?
+    => Soon(TM)
+
+- What is the relationship between parallelism and concurrency? Is
+  parallelism a subset of concurrency?
+    => They are separate entities. One is not a subset or superset of
+    the other.
+
+- Signal handling is an issue for threads, but is it also an issue for
+  processes?
+    => Yes it is. If processes are sharing the same memory location,
+       then updating the processes on the value of the memory is a
+       challenge, similar to signal handling in threads. The problems
+       are identical for both threads and processes.
+
+- What is the difference between a Mutex and a Semaphore?
+    => Semaphores are more flexible than mutexes. 
+
+- The original DOS OS did or did not support concurrency?
+    => The original DOS did NOT support concurrency
+
+- When a process is stopped, what saves its current state? The
+  dispatcher?
+    => Yes, it is the dispatcher’s job to move process from ready
+       queue to running state. Save state of current running process,
+       load the next process. Repeat.
+
+- If concurrent systems are so hard to prove because of the higher
+  combination of states the system can be in, then why did we waste a
+  whole year doing 2DM3 and 2FA3. In hindsight, it is much better to
+  do a full year of 3SH3. And multi-processing programming is the
+  future. 
+    => ???
+
+- What is the relationship between Mac OS X and Darwin? Is OS X based
+  off of Darwin? Where does the kernel play into all of this?
+    => The OS X KERNEL is based off of Darwin; both are Micro kernel
+       architecture
+
+- How to ensure that the stack and heap do not overlap each other?
+    => Through things like Garbage Collectors, and good programming
+       practices (i.e. Freeing memory when not in use)
+
+- Does using a mutex on a global variable prevent other threads from
+  reading it?
+    => No, Mutex only protects writing to memory. Other threads can
+       read the value
+
+- What are the benefits of using implicit threading over explicit
+  threading? And vice versa?
+    => Benefit: In a thread pool, don’t create thread from scratch.
+       System takes care of creation and termination; good for
+       avoiding bad programming decisions. Compiler may also optimize. 
+    => Disadvantage: Lose control and ability to tweak minuscule
+       options. 
+
+- In a multi-threaded program, when you call ‘fork()’ on a parent
+  process, is it possible to only duplicate certain threads?
+    => ???
+
+- How do you determine the maximum number of threads you can create,
+  before the kernel or OS denies further thread creations?
+  (i.e. Sorting a YUGE list example)
+    => ???
+
+- The process tree on test 1. Explain the numbers
+    => The parent process is P0 and will always be P0. The first child
+       process is P1, and will always be P1. This does not change
+       regardless of the un-guaranteed order of execution. The second
+       fork will create P2 and P3. These are children of P0 and P1,
+       respectively. However, since the order of execution is not
+       guaranteed, P3 can be a child of P0 and P2 can be a child of
+       P1. 
+
+- Would you say that race conditions are the least reliable security
+  holes to take advantage of?
+    => Mostly yes. If the race condition is hard to achieve, then the
+       reliability of the security exploit is very low. However, in
+       some instances, the race condition can be easily triggered,
+       even though it flew under the radar for years. It’s a 50-50
+       chance. The best exploits to take advantage of are overflows 
+       (i.e. Buffer, Stack, Etc.)
+
+- How to implement a WatchDog timer? For the mutex deadlock example in
+  the cs.cmu.edu website
+    => ???
+
+- Can deadlocks be caused by an infinite loop? (i.e. Thread 1 has
+  mutex lock. Thread 1 enters infinite loop, and does not release the
+  lock. Thread 2 cannot acquire mutex lock)
+    => Yes, this is possible. It is called a Livelock. A live lock is
+       when a thread acquires a lock but enters an infinite loop. Even
+       though the lock is not released, and other threads are unable
+       to operate, the thread with the lock is operating and making
+       progress. In a deadlock, the entire program is “frozen”, and no
+       thread is making progress.  
+
+- In lecture you said that only writing to memory can cause race
+  conditions; reading memory cannot cause race conditions. However,
+  when you create a new thread/process, you request the kernel for
+  “next_available_pid”. If two threads get the same value from the
+  kernel, then this will cause problems. In this example, you are not
+  writing to shared memory, instead you are reading data.
+    => Reading memory cannot cause race conditions. In the example
+       above, the issue is with writing memory. The value of
+       “next_available_pid” needs to be incremented every time a
+       process is created. The function that does this should be
+       indivisible. 
+
+- Between deadlock prevention and avoidance, where does a watchdog
+  timer fit?
+    => It’s a different thing. It doesn’t prevent or avoid deadlock,
+       but releases it. 
+       A Watchdog timer is good for livelocks. In a livelock  the
+       system is running and making progress, but the locks are never
+       released. 
+
+- A major question with the deadlock detection algorithm is when
+  should it run? And there does not seem to be an ideal number. It’s a
+  tradeoff between efficiency and time. However, is it possible to run
+  a deadlock detection algorithm asynchronously. (i.e. User presses
+  “Refresh” if the system hangs)
+    => This is possible, but probably not advisable because running
+       deadlock detection algorithm is computationally expensive and
+       probably not something we want the user to be able to do.
+       However, the implementation does matter. Good code won’t crash
+       the system and will perform the necessary checks. 
+
+- When the allotted time quantum expires, the system checks to see if
+  other processes need to be executed. Compared to context switching,
+  is this less or more computationally expensive?
+    => It is much (much) less computationally expensive. For
+       reference, context switching takes less than 10 usec. 
+
+- NUMA Explained
+    => 
+
+- How is a virus’ signature calculated? And if you change the (source)
+  code of a virus, does that also change its signature?
+    => ???
+
+- What is a zero-day attack 
+    => A zero-day attack, also known as 0-day, is an exploit that
+       takes advantage of a bug that is new, and unknown to the
+       vendors of the product. This type of attack is very dangerous
+       because there is no publicly available security patch/fix for
+       the bug that is exploited.
+
+- What techniques are used to protect the kernel? Is there hardware/
+  software that protects the Kernel?
+    => ???
+
+- Do attacks that rely on buffer overflows have a success rate like
+  attacks that rely on exploiting race conditions?
+    => ???
+
+- What is the best kind of vulnerability for an attacker?
+  (i.e. Provides a guaranteed compromise of the system when the
+  exploit is deployed. In other words, what type of bug is the most
+  reliable to exploit?)
+    => ???
+
+- Can you give more information on MULTICS? (i.e. What does it stand
+  for?)
+    => ???
+
+- What is SMC, SVC, HVC, & ERET, and how does it relate to ARM CPU
+  architecture?
+    => ???
+
+|-------------|
+| Interesting |
+| Stuff       |
+|-------------|
+
+- Things implemented in hardware are more stable, but then you have
+  less flexibility because the implementation cannot be changed
+    - This can be disastrous if there is a hardware bug

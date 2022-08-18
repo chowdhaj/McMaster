@@ -1,0 +1,64 @@
+Lecture.0.Introduction.txt
+
+- Computer System Structure
+    - A computer system has four components
+        1. Hardware
+            - i.e. CPU, Memory, I/O Devices, etc.
+        2. Operating System
+            - i.e. Windows, Linux, etc.
+        3. Application Programs
+            - i.e. Compilers, Web Browsers, Development Kits, etc.
+        4. Users
+            - i.e. John, Mary, Kate,
+    - What is an Operating System (OS)?
+        - An Operating System:
+            - Controls and coordinates use of hardware among various 
+              application and users
+            - Services API requests from applications
+            - Helps multiple programs run concurrently on the same 
+              system
+            - Is required to run laptops, desktops, etc.
+        - Microsoft's Windows OS is one of the most complex software 
+          tools ever built for a single computer
+            - Contains more than 50 million lines of code
+
+- Popular Operating Systems
+    - GNU/Linux
+        - GNU is developed by Richard Stallman
+            - Launched in 1983
+        - Linux is developed by Linus Torvalds
+            - Released in 1991
+            - i.e. Red Hat, Fedora, Debian, Ubuntu, etc.
+        - Some distributions are FREE, and others are open-source only
+            - FREE software can be used by anyone for any purpose
+            - Open source software is when the code is publicly 
+              available, but you may need a license to use it
+    - Microsoft Windows
+        - Was started by Bill Gates
+        - Is closed source
+        - Based on proprietary software
+    - Apple's macOS 
+        - Was started by Steve Jobs
+        - Hybrid approach
+            - Based on open-source kernel named Darwin, but includes 
+              proprietary, closed-source components as well
+
+- Open Source & Free Software
+    - Free Software
+        - The source code is available, licensed to allow no-cost use, 
+          redistribution, and modification are permitted
+            - You can take Free software, modify it, and then sell it 
+              as your own software
+            - Anybody can develop the software, but no one can 
+              publicly claim it
+    - Open Source
+        - The source code is available, but a license to allow no-cost 
+          use may not be offered
+            - i.e. You must pay to use the software
+
+- Berkeley Software Distribution (BSD)
+    - Started in 1978 as a derivative of AT&T's Unix
+    - Open source; code is publicly available
+        - Released in 1994
+    - Examples of distributions:
+        - FreeBSD, NetBSD, OpenBSD, and DragonflyBSD

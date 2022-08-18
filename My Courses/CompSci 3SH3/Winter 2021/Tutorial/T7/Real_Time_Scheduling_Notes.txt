@@ -1,0 +1,147 @@
+Real-Time Scheduling
+
+- POSIX Real-Time Scheduling
+    - Real time scheduling allows you to define how long a thread
+      should run for and its operations
+    - The POSIX.1b standard
+    - API provides functions for managing real-time threads
+        - API = Application Programming Interface
+        - An API provides a way to communicate with services
+            - You can decide which endpoints are exposed
+    - Defines two scheduling classes for real-time threads:
+        1. SCHED_FIFO
+            - Threads are scheduled using a FCFS strategy with a FIFO
+              queue
+                - There is no time-slicing for threads of equal
+                  priority
+                - FIFO = First In, First Out
+                - FCFS = First Come, First Served
+            - Threads/processes are scheduled in a sequential manner
+        2. SCHED_RR
+            - Similar to SCHED_FIFO, except time-slicing occurs for
+              threads of equal priority
+            - RR = Round Robin
+                - In RR, each process has a time quantum, `q`,
+                  assigned to it, and the process can only run for
+                  `q` units of time
+                - Each thread/process gets a certain amount of CPU
+                  time, and has to yield once that time is up so
+                  another process can execute, regardless if the first
+                  thread/process finished or not
+                - RR is similar to a circular queue
+                    - Incompleted threads/processes are pushed to the
+                      back of the queue
+                - Ideal for processes/threads that require a large `q`
+    - If needed, you can implement your own scheduling algorithm
+    - Defines two functions for getting and setting scheduling policy:
+        1. pthread_attr_getschedpolicy(pthread_attr_t * attr,
+                int * policy);
+            - Gets the current scheduling policy that is applied
+            - Part of the POSIX library
+        2. pthread_attr_setschedpolicy(pthread_attr_t * attr,
+                int * policy); 
+            - Sets the scheduling policy of a thread
+            - Part of the POSIX library
+    - Conceptually, there is a list of runnable processes associated
+      with each static priority level
+        - These lists can contain both SCHED_FIFO and SCHED_RR
+          processes 
+            - The two scheduling policies share the same set of static
+              priorities
+    - When selecting a process to run, the scheduler takes the process
+      at the head of the non-empty list with the highest static
+      priority, regardless of the scheduling policy of that process
+    - The scheduling policies affect how the processes move within
+      those lists
+        - For SCHED_FIFO, once a process reaches the head of the list
+          for a given priority it will stay there until it blocks or
+          yields. 
+        - For SCHED_RR, a runnable process that has exceeded its
+          maximum time quantum will be moved to the end of the list
+          for its static priority
+    - There are scenarios where you'd want to use one scheduling
+      algorithm over another
+        - i.e. SCHED_FIFO should be used when processing payment. This
+               is because the first payment should go through before
+               another payment is made
+        - i.e. SCHED_RR should be used when dealing with threads or
+               processes that require a lot of CPU time. This is b/c
+               you don't want a single process to hog all the CPU time
+               as it would in SCHED_FIFO. For example: downloading 10
+               files at once. The files are concurrently downloaded
+               at once.
+
+- POSIX Real-Time Scheduling API
+    - i.e. Sample Code
+
+        #include <pthread.h>
+        #include <stdio.h>
+        #define NUM_THREADS 5
+
+        int main(int argc, char * argv[]) {
+
+            int i, policy;
+            pthread_t_tid[NUM_THREADS];
+            pthread_attr_t attr;
+
+            /* Get the default attributes */
+            pthread_attr_init(&attr);
+
+            /* Get the current scheduling policy */
+            if (pthread_attr_getschedpolicy(&attr, &policy) != 0) {
+                fprintf(stderr, "Unable to get policy.\n");
+            } else {
+                if (policy == SCHED_OTHER) {
+                    printf("Scheduling: Other\n");
+                } else if (policy == SCHED_RR) { 
+                    printf("Scheduling: Round Robin\n");
+                } else if (policy == SCHED_FIFO) {
+                    printf("Scheduling: FIFO\n");
+                }
+            }
+
+            /* Set the scheduling policy - FIFO, RR, or other */
+            if (pthread_attr_setschedpolicy(&attr, SCHED_FIFO) !=0 ) {
+                fprintf(stderr, "Unable to set policy\n");
+            }
+
+            /* Create the threads */
+            for (i = 0; i < NUM_THREADS; i++) {
+                pthread_create(&tid[i], &attr, runner, NULL);
+            }
+
+            /* Join on each thread */
+            for (i = 0; i < NUM_THREADS; i++) {
+                pthread_join(tid[i], NULL);
+            }
+
+            return 0;
+        }
+
+        /* Each thread will begin control in this function */
+        void * runner (void * param) {
+            /* Do some work... */
+            pthread_exit(0);
+        }
+        // END
+    - When a thread is created, you can immediately assign a policy,
+      or let the operating system take care of it
+    - The `pthread_attr_getschedpolicy` function may return an error
+        - This potential error needs to be handled/accounted for
+    - The `pthread_attr_setschedpolicy` function may return an error,
+      and the policy won't be set
+        - This probably error needs to be handled/accounted for
+    - Policies work with both mutexes and semaphores
+    - Synchronization is where only a single thread is allowed to
+      access a critical section at a time
+        - Mutexes and semaphores block common resources that are used
+          by different threads
+    - Scheduling policies are about giving a process/thread time to 
+      execute
+        - It defines how much CPU time the process/thread gets
+    - Policies are applied to threads
+        - When a policy is applied to a thread, all the processes have
+          that policy
+        - Threads can have different policies
+    - When a process is forked, the child process gets the same
+      scheduling policy as the parent process

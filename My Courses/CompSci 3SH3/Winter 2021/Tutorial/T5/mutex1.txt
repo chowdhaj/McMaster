@@ -1,0 +1,75 @@
+mutex1.txt
+
+- Example Of Threaded Function With & Without Mutex
+    - i.e.
+|---------------------------|------------------------------------|
+| Without Mutex             | With Mutex                         |
+|---------------------------|------------------------------------|
+| int counter = 0;          | /*                                 |
+|                           |  * Scope of variable and mutex     |
+| // Increment Counter      |  * are the same. Both are global   |
+| // Function               |  * variables                       |
+| void func_inc_counter() { |  */                                |
+|     counter++;            | pthread_mutex_t mutex1 =           |
+| }                         |     PTHREAD_MUTEX_INITIALIZER;     |
+|                           | int counter = 0;                   |
+|                           |                                    |
+|                           | // Increment Counter Function      |
+|                           | void func_increment_counter() {    |
+|                           |     pthread_mutex_lock(&mutex1);   |
+|                           |     counter++;                     |
+|                           |     pthread_mutex_unlock(&mutex1); |
+|                           | }                                  |
+|---------------------------|------------------------------------|
+|                Possible Execution Sequence                     |
+|-------------|-------------|-------------|----------------------|
+| Thread 1    | Thread 2    | Thread 1    | Thread 2             |
+|-------------|-------------|-------------|----------------------|
+| counter = 0 | counter = 0 | counter = 0 | counter = 0          |
+|-------------|-------------|-------------|----------------------|
+| counter = 1 | counter = 1 | counter = 1 | Thread 2 locked out  |
+|             |             |             | Thread 1 has exclu-  |
+|             |             |             | sive use of varia-   |
+|             |             |             | ble `counter`        |
+|-------------|-------------|-------------|----------------------|
+|             |             |             | counter = 2          |
+|-------------|-------------|-------------|----------------------|
+    - If the register operations load and store for the incrementing 
+      variable `counter` occur with unfortunate timing, then it is 
+      possible to have each thread increment and overwrite the same 
+      variable with the same value.
+        - This occurs without a MuTex lock
+    - It is possible that thread #2 first increments `counter`,
+      locking out thread #1 until it is complete, and then thread #1 
+      would increment it to 2
+        - This occurs with MuTex, and the output is just as
+          correct as the other possible execution sequence
+        - i.e.
+            |----------|--------------------------|-------------|
+            | Sequence | Thread 1                 | Thread 2    |
+            |----------|--------------------------|-------------|
+            | 1        | counter = 0              | counter = 0 |
+            |----------|--------------------------|-------------|
+            | 2        | Thread 1 is locked out   | counter = 1 |
+            |          | Thread 2 has exclusive   |             |
+            |          | use of variable          |             |
+            |          | counter                  |             | 
+            |----------|--------------------------|-------------|
+            | 3        | counter = 2              |             |
+            |----------|--------------------------|-------------|
+    - The MuTex lock ensures that only one thread can access the
+      `counter` variable at a time. If thread #1 is modifying 
+      `counter`, then thread #2 is siting idle. If thread #2 is
+      modifying `counter`, then thread #1 is sitting idle. 
+        - In other words, if a thread tries to acquire a MuTex lock 
+          which is held by another thread, the first thread gets 
+          blocked until the MuTex lock is released/unlocked by the 
+          thread that currently has it.
+            - If a thread terminates, by any means, the MuTex lock is
+              not released/unlocked
+                - By default, nothing happens
+                - MuTexes must be explicitly acquired and released;
+                  or locked and unlocked
+    - In this example, the order of execution is not guaranteed.
+        - Thus, thread #1 or thread #2 can acquire the MuTex lock
+          before each other.

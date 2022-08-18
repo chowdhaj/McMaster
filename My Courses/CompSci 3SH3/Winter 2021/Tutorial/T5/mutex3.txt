@@ -1,0 +1,52 @@
+mutex3.txt
+
+/* 
+ * The order of applying the mutex is also important. 
+ * The following code segment illustrates a potential 
+ *   for deadlock if 'function1' acquires the first mutex,
+ *   and 'function2' acquires the second mutex. Neither
+ *   function can progress forward, and all resources 
+ *   are tied up and locked.
+ */
+
+void * function1() {
+
+    ...
+    pthread_mutex_lock(&lock1);    /* Execution step 1 */
+    pthread_mutex_lock(&lock2);    /* Execution step 3 DEADLOCK */
+    
+    /* 
+     * NOTE:
+     * If 'function1' acquires the first mutex, 
+     *   and 'function2' acquires the second, 
+     *   all resources are tied up and locked.
+     */
+
+    ...
+    ...
+    pthread_mutex_lock(&lock2);
+    pthread_mutex_lock(&lock1);
+    ...
+} 
+
+void * function2() {
+
+    ...
+    pthread_mutex_lock(&lock2);   /* Execution step 2 */
+    pthread_mutex_lock(&lock1);
+    ...
+    ...
+    pthread_mutex_lock(&lock1);
+    pthread_mutex_lock(&lock2);
+    ...
+} 
+
+int main(void) {
+
+    ...
+    pthread_create(&thread1, NULL, function1, NULL);
+    pthread_create(&thread2, NULL, function1, NULL);
+    ...
+
+    return 0;
+}
