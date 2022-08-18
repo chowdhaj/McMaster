@@ -1,0 +1,122 @@
+
+<!-- saved from url=(0069)http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/entity.cgi -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style> a:hover { background-color: yellow; } </style>
+<title>CS 2SD3&nbsp; (2021/22, &amp;term) Assignment 4</title>
+</head>
+
+<body>
+
+<h1><img src="./Assignment4_files/logo.jpg" width="786" height="92" alt="logo.jpg (32213 bytes)"></h1>
+
+<h1>CS 2SD3 (2021/22, Term II) Assignment 4</h1>
+
+<table border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+ <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/entities.cgi" method="post">
+      <input type="hidden" name="snow" value="1807"><p><br>
+      <input type="submit" name="exec" value="Back To Assignments+Tests Menu">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/login/back.cgi" method="post">
+      <input type="hidden" name="snow" value="1807"><p><br>
+      <input type="submit" name="back" value="Back To Main Menu">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td height="26"><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/presubmit.cgi" method="post">
+      <input type="hidden" name="snow" value="1807"><input type="hidden" name="header" value="assgn,4,-,T03"><p><br>
+      <input type="submit" name="exec" value="Submissions">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/login/logout.cgi" method="post">
+      <input type="hidden" name="snow" value="1807"><p><br>
+      <input type="submit" value="Log Out"></p>
+    </form>
+    </td>
+  </tr>
+</tbody></table>
+
+<p><big>sample solution: <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/assgn4/assgn4.go"><font face="Courier New, Courier, monospace">assgn4.go</font></a></big></p>
+
+<form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/print_ms.cgi?assgn,4,-,T03" method="post">
+<input type="hidden" name="snow" value="1807"><p><br>
+<input type="submit" name="print_ms" value="View marking scheme"></p>
+</form>
+
+
+<table border="0" width="785">
+<tbody><tr><td><big><big><font color="#FF0000">Rules for assignments -- please read</font> <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/rules.html">here</a></big></big></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><p><big>In this assignment, there is a single deliverable, a GO program named <font color="#0000FF" face="Courier New, Courier, monospace">assgn4.go</font>&nbsp;. The file <font color="#0000FF" face="Courier New, Courier, monospace">assgn4.go</font> can be submitted either via the course web site, or via the submission script <font color="#0000FF" face="Courier New, Courier, monospace">2sd3submit</font>&nbsp;. Instructions on how to create the submission script <font color="#0000FF" face="Courier New, Courier, monospace">2sd3submit</font> and how to use it can be found <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/2sd3submit_instructions.html">here</a>&nbsp;. For <font color="#0000FF" face="Courier New, Courier, monospace">2sd3submit</font> submission, please use <font color="#0000FF" face="Courier New, Courier, monospace">2sd3submit&nbsp;AAA&nbsp;assgn4&nbsp;assgn4.go</font> where <font color="#0000FF" face="Courier New, Courier, monospace">AAA</font> is your student number.</big></p></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr>
+  <td><big>To download GO system for your machine and to read the documentation, please visit <a href="https://go.dev/"><font color="#0000FF" face="Courier New, Courier, monospace">golang.org</font></a>&nbsp;. There are also there the basic tutorials to learn the fundamentals of GO if you want to learn more than in the ocurse. But, it is preferable for you to do the assignment on <em><strong>mills</strong></em> where GO is already installed.</big></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><big><ul><li>Before you start, fetch the file <font color="#0000FF" face="Courier New, Courier, monospace">assgn4_skel.go</font> using <font color="#0000FF" face="Courier New, Courier, monospace">2sd3fetch&nbsp;XXX&nbsp;assgn4/assgn4_skel.go</font> where <font color="#0000FF" face="Courier New, Courier, monospace">XXX</font> stands for your student number.</li>
+<li>Fetch the file <font color="#0000FF" face="Courier New, Courier, monospace">runit</font> using <font color="#0000FF" face="Courier New, Courier, monospace">2sd3fetch&nbsp;XXX&nbsp;assgn4/runit</font> where <font color="#0000FF" face="Courier New, Courier, monospace">XXX</font> stands for your student number. Make the file executable by <font color="#0000FF" face="Courier New, Courier, monospace">chmod&nbsp;u+x&nbsp;runit</font> and use it to execute your program <font color="#0000FF" face="Courier New, Courier, monospace">assgn4.go</font>. The way to use it is <font color="#0000FF" face="Courier New, Courier, monospace">runit&nbsp;Y</font> where <font color="#0000FF" face="Courier New, Courier, monospace">Y</font> is the number of goroutines you want to run.</li></ul></big></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+  
+<tr>
+  <td><big><strong>Description of the GO program <font color="#0000FF" face="Courier New, Courier, monospace">assgn4.go</font></strong></big></td></tr>
+
+<tr><td><ol>
+<li><big>Your task is to write a simple GO program with several goroutines. The program initializes a global <font color="#0000FF" face="Courier New, Courier, monospace">int64</font> array <font color="#0000FF" face="Courier New, Courier, monospace">array[1000000]</font> so that each value <font color="#0000FF" face="Courier New, Courier, monospace">array[i]&nbsp;=&nbsp;i+1</font>&nbsp;, and to sum up all the entries in the array. This arrays is defined, but not populated by data in the main routine. The values and the summation are performed by the goroutines.<br>
+<em>Note that the sum should come to </em>500000500000<em> as </em>500000500000=500000&nbsp;*&nbsp;1000001<em> -- see the famous story about little Gauss</em> <a href="https://www.nctm.org/Publications/TCM-blog/Blog/The-Story-of-Gauss/">here</a></big> .</li>
+
+<li><big>The program obtains <font color="#0000FF" face="Courier New, Courier, monospace">N</font>&nbsp;, which is the number of goroutines it should run, via the command line arguments. For that you must import into your program packages <font color="#0000FF" face="Courier New, Courier, monospace">os</font> and <font color="#0000FF" face="Courier New, Courier, monospace">strconv</font>&nbsp;. The object <font color="#0000FF" face="Courier New, Courier, monospace">os.Args</font> is an array of command line arguments and its length can be obtained using the built-in function <font color="#0000FF" face="Courier New, Courier, monospace">len()</font>&nbsp;, i.e. <font color="#0000FF" face="Courier New, Courier, monospace">len(os.Args)</font> will return the numebr of how many words were on the command line when the program was started.</big></li>
+
+<li><big>Then you must use <font color="#0000FF" face="Courier New, Courier, monospace">strconv</font> to convert the first argument which is a string into the corresponding number, i.e. <font color="#0000FF" face="Courier New, Courier, monospace">N&nbsp;=&nbsp;strconv.Atoi(os.Args[1])</font></big></li>
+
+<li><big>If the first command argument cannot be converted to a number, display an error message and terminate the program.</big></li>
+
+<li><big>The main routine dispatches <font color="#0000FF" face="Courier New, Courier, monospace">N</font> goroutines. Each goroutine gets a portion of the range of the array to process, i.e. to populate it with data and sum it up. The portions should be as equitably sized as possible so should not be one goroutine doing a huge job and another doing a small job. Thus, the portions of the range each goroutine gets assigned should be almost equal, i.e. any two should differ at most by 1.</big></li>
+
+<li><big>When a goroutine finishes its job, it it sends the result via a communication channel to the main routine that adds or those partial sums together and displays it on the screen.</big></li>
+
+<li><big>Each goroutine displays what portion it is doing.</big></li>
+
+<li><big>When passing the array that is defined and created in the main routine, you must pass it to the goroutine as a slice and not as an array, otherwise the goroutine would choke on the size of the array. Hence, if the goroutine is named <font color="#0000FF" face="Courier New, Courier, monospace">doit()</font>&nbsp;, you will pass it in this way: <font color="#0000FF" face="Courier New, Courier, monospace">go doit(array[0:],from,to,c)</font> where the <font color="#0000FF" face="Courier New, Courier, monospace">from</font> and <font color="#0000FF" face="Courier New, Courier, monospace">to</font> indicate which portion the goroutine should populate with data and sum up, while <font color="#0000FF" face="Courier New, Courier, monospace">c</font> is the communications channel that will be used to send the partial sum to the main routine. To pass the array as an array would be <font color="#0000FF" face="Courier New, Courier, monospace">go doit(array,from,to,c)</font>&nbsp;.</big></li></ol></td></tr>
+
+
+<tr><td>&nbsp;</td></tr>
+
+<tr>
+  <td bgcolor="#FFFFCC"><big>Here is a sample of the output for an incorrect execution <font color="#0000FF" face="Courier New, Courier, monospace">go run assgn4</font></big></td></tr>
+
+<tr><td bgcolor="#FFFFCC"><big><pre><font color="#CC6600" face="Courier New, Courier, monospace">usage: program &lt;number-of-goroutines&gt;</font></pre></big></td></tr>
+
+<tr>
+  <td bgcolor="#FFFFCC"><big>Here is a sample of the output for an incorrect execution <font color="#0000FF" face="Courier New, Courier, monospace">go run assgn4 3 5</font></big></td></tr>
+
+<tr><td bgcolor="#FFFFCC"><big><pre><font color="#CC6600" face="Courier New, Courier, monospace">usage - assgn3 &lt;number-of-goroutines&gt;</font></pre></big></td></tr>
+
+<tr>
+    <td bgcolor="#FFFFCC"><big>Here is a sample of the output for an incorrect execution <font color="#0000FF" face="Courier New, Courier, monospace">go run assgn4 hello</font></big></td></tr>
+
+<tr><td bgcolor="#FFFFCC"><big><pre><font color="#CC6600" face="Courier New, Courier, monospace">Wrong command line argument</font></pre></big></td></tr>
+<tr>
+  <td bgcolor="#FFFFCC"><big>Here is a sample of the output on the screen for a correct execution <font color="#0000FF" face="Courier New, Courier, monospace">go run assgn4 5</font></big></td></tr>
+
+<tr><td bgcolor="#FFFFCC"><big><pre><font color="#CC6600" face="Courier New, Courier, monospace">number of goroutines =  5
+slice =  200000
+doing  600000  --  799999
+doing  800000  --  999999
+doing  400000  --  599999
+doing  200000  --  399999
+doing  0  --  199999
+500000500000</font></pre></big></td></tr>
+
+</tbody></table>
+
+
+</body></html>

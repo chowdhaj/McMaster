@@ -1,0 +1,167 @@
+
+<!-- saved from url=(0069)http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/entity.cgi -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style> a:hover { background-color: yellow; } </style>
+<title>CS 2SD3&nbsp; (2021/22, &amp;term) Assignment 1</title>
+</head>
+
+<body>
+
+<h1><img src="./Assignment1_files/logo.jpg" width="786" height="92" alt="logo.jpg (32213 bytes)"></h1>
+
+<h1>CS 2SD3 (2021/22, Term II) Assignment 1</h1>
+
+<table border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/entities.cgi" method="post">
+      <input type="hidden" name="snow" value="1807"><p><br>
+      <input type="submit" name="exec" value="Back To Assignments+Tests Menu">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/login/back.cgi" method="post">
+      <input type="hidden" name="snow" value="1807"><p><br>
+      <input type="submit" name="back" value="Back To Main Menu">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td height="26"><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/presubmit.cgi" method="post">
+      <input type="hidden" name="snow" value="1807"><input type="hidden" name="header" value="assgn,1,-,T03"><p><br>
+      <input type="submit" name="exec" value="Submissions">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/login/logout.cgi" method="post">
+      <input type="hidden" name="snow" value="1807"><p><br>
+      <input type="submit" value="Log Out"></p>
+    </form>
+    </td>
+  </tr>
+</tbody></table>
+
+<p><big><font color="#999999">sample solution: 
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/assgn1/assgn1.c"><font face="Courier New, Courier, monospace">assgn1.c</font></a></font></big></p><font color="#999999">
+
+<form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/print_ms.cgi?assgn,1,-,T03" method="post">
+<input type="hidden" name="snow" value="1807"><p><br>
+<input type="submit" name="print_ms" value="View marking scheme"></p>
+</form>
+
+
+<table border="0" width="785">
+<tbody><tr><td><big><big><font color="#FF0000">Rules for assignments -- please read</font> <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/rules.html">here</a></big></big></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><p><big>In this assignment, there is a single deliverable, a C program named <font color="#0000FF" face="Courier New, Courier, monospace">assgn1.c</font>&nbsp;. The file <font color="#0000FF" face="Courier New, Courier, monospace">assgn1.c</font> can be submitted either via the course web site, or via the submission script <font color="#0000FF" face="Courier New, Courier, monospace">2sd3submit</font>&nbsp;. Instructions on how to create the submission script <font color="#0000FF" face="Courier New, Courier, monospace">2sd3submit</font> and how to use it can be found <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/2sd3submit_instructions.html">here</a>&nbsp;. For <font color="#0000FF" face="Courier New, Courier, monospace">2sd3submit</font> submission, please use <font color="#0000FF" face="Courier New, Courier, monospace">2sd3submit&nbsp;AAA&nbsp;assgn1&nbsp;assgn1.c</font> where <font color="#0000FF" face="Courier New, Courier, monospace">AAA</font> is your student number.</big></p></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr>
+  <td><big>Before you start working on this assignment, you need to fetch a few files using the bash script named <font color="#0000FF" face="Courier New, Courier, monospace">2sd3fetch</font>&nbsp;see the instructions <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/2sd3fetch_instructions.html">here</a>&nbsp;. In the following, <font color="#0000FF" face="Courier New, Courier, monospace">XXX</font> stands for your student number:</big>
+    <ol>
+  
+<li><big>Fetch the log header file <font color="#0000FF" face="Courier New, Courier, monospace">log.h</font> with <font color="#0000FF" face="Courier New, Courier, monospace">2sd3fetch&nbsp;XXX&nbsp;log.h</font></big></li>
+
+<li><big>Fetch the source code for the logging functions <font color="#0000FF" face="Courier New, Courier, monospace">log.c</font> with <font color="#0000FF" face="Courier New, Courier, monospace">2sd3fetch&nbsp;XXX&nbsp;log.c</font></big></li>
+<li><big>Fetch the source code for the C program <font color="#0000FF" face="Courier New, Courier, monospace">job.c</font> with <font color="#0000FF" face="Courier New, Courier, monospace">2sd3fetch&nbsp;XXX&nbsp;job.c</font></big></li>
+
+<li><big>Fetch a skeleton for the C program you are to write with <font color="#0000FF" face="Courier New, Courier, monospace">2sd3fetch&nbsp;XXX&nbsp;assgn1/assgn1_skel.c</font></big></li>
+
+<li><big>Fetch the makefile for the complete program with <font color="#0000FF" face="Courier New, Courier, monospace">2sd3fetch XXX assgn1/makefile</font></big></li></ol></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+  
+<tr>
+  <td><big><strong>Description of the C program <font color="#0000FF" face="Courier New, Courier, monospace">assgn1.c</font></strong></big></td></tr>
+
+<tr><td><ol>
+<li><big><em><font color="#FF0000">Since this is not a programming course, there are no partial marks or credits for having a correct header for a function or a correct variable etc. as you may be used to. The program will be tested solely on its performance, i.e. how well it performs the required tasks.</font></em></big></li>
+
+<li><big>Your task is to complete the skeleton of <font color="#0000FF" face="Courier New, Courier, monospace">assgn1.c</font>&nbsp;. The program is a simple job dispatcher. The major topic of the assignment is UNIX signaling as you control the jobs by sending them appropriate signals.</big></li>
+
+<li><big><font color="#0000FF">job.c</font> is a program that simulates jobs. It can become <font color="#0000FF"><em>jobN</em></font> if it is executed with the 
+command line argument <font color="#0000FF"><em>N</em></font>, but you do not have to worry about it, it is all done by calling the subroutine 
+<font color="#0000FF" face="Courier New, Courier, monospace">create_job( )</font> in <font color="#0000FF" face="Courier New, Courier, monospace">assgn1.c</font>&nbsp;. Each job runs in a simple loop whose size is randomly determined and on each run through the loop it sleeps for exactly 1 second. Thus each job takes an arbitrary 
+time to finish its execution.</big></li>
+
+<li><big>Your task is to complete <font color="#0000FF" face="Courier New, Courier, monospace">assgn1.c</font> so it works as a simple job dispatcher. First, 
+<font color="#0000FF" face="Courier New, Courier, monospace">assgn1</font> is to be
+executed with a single command line argument which must be a number between 3 and 6. It will be a number of jobs to be processed. You need a data structure to record
+for each job created its PID and some other info. The PID is returned by the function <font color="#0000FF" face="Courier New, Courier, monospace">create_job( )</font>&nbsp;. For instance, if you are to process 4 jobs, you will execute <font color="#0000FF" face="Courier New, Courier, monospace">create_job( )</font> four times<pre><font color="#0000FF" face="Courier New, Courier, monospace">for(i = 0; i &lt; 4; i++) {
+  pid = create_job(i);
+  save the pid in your data structure
+}</font></pre></big></li>
+
+<li><big>You are to have three job queues, the high-priority queue, the medium-priority queue, and the low-priority queue. Every job starts in the high-priority queue. After a job has been through the high-priority queue twice, it is "demoted" to the medium-priority queue. After a job has been through a medium-priority queue 4 times, it is "demoted" to the low-priority queue. It stays in the low-priority queue until it is done.
+The dispatcher dispatches the jobs from the high-priority queue, when it is empty, it dispatches the jobs from the medium-priority queue, and when it finally becomes empty, it dispatches the jobs from the low-priority queue. The "time-slice" for each job is 1 second. A job is "removed from processing" by sending it the signal <font color="#0000FF" face="Courier New, Courier, monospace">SIGUSR2</font>. A job processing is "started" by sending it the signal <font color="#0000FF" face="Courier New, Courier, monospace">SIGUSR1</font>.</big></li>
+
+<li><big>A job that executes can either terminate (in which case <font color="#0000FF" face="Courier New, Courier, monospace">assgn1</font> receives the signal <font color="#0000FF" face="Courier New, Courier, monospace">SIGCHLD</font> and 
+this fact is taken care of in the <font color="#0000FF" face="Courier New, Courier, monospace">SIGCHLD</font> <font color="#0000FF" face="Courier New, Courier, monospace">handler sigc_handler( )</font>) or its time is up (in which case 
+<font color="#0000FF" face="Courier New, Courier, monospace">assgn1</font> receives the signal <font color="#0000FF" face="Courier New, Courier, monospace">SIGALRM</font> and this fact is taken care of in the <font color="#0000FF">SIGALRM</font>
+handler <font color="#0000FF" face="Courier New, Courier, monospace">siga_handler( )</font></big></li>
+
+<li><big>Note that you have to "fill in" the code in <font color="#0000FF" face="Courier New, Courier, monospace">assgn1.c</font> in all places that start with <font color="#0000FF" face="Courier New, Courier, monospace">TO DO</font> and end 
+with <font color="#0000FF" face="Courier New, Courier, monospace">END TO DO</font>. They are "commented out" so even the skeleton program can compile. After putting in your code, do not forget to 
+"uncomment it". In the <font color="#0000FF" face="Courier New, Courier, monospace">TO DO</font> sections in the skeleton program it is indicated which UNIX system calls you need. The main purpose of this
+assignment is UNIX signal handling and dispatching.</big></li>
+
+</ol></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><big>See a hint how to implement the required data structures <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/assgn1/queue_help.html">here</a></big></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr><td bgcolor="#FFFFCC"><big>Here is a sample of the output on the screen when <font color="#0000FF" face="Courier New, Courier, monospace">assgn1</font> 
+is run with 4 jobs:</big></td></tr>
+
+<tr><td bgcolor="#FFFFCC"><big><pre><font color="#CC6600" face="Courier New, Courier, monospace">Switched on high-priority job 0
+Switched off high-priority job 0
+Switched on high-priority job 1
+Switched off high-priority job 1
+Switched on high-priority job 2
+Switched on high-priority job 3
+Switched off high-priority job 3
+Switched on high-priority job 0
+Switched off high-priority job 0
+Switched on high-priority job 1
+Switched off high-priority job 1
+Switched on high-priority job 3
+Switched off high-priority job 3
+Switched on medium-priority job 0
+Switched off medium-priority job 0
+Switched on medium-priority job 1
+Switched off medium-priority job 1
+Switched on medium-priority job 3
+Switched off medium-priority job 3
+Switched on medium-priority job 0
+Switched on medium-priority job 1
+Switched off medium-priority job 1
+Switched on medium-priority job 3
+Switched off medium-priority job 3
+Switched on medium-priority job 1
+Switched off medium-priority job 1
+Switched on medium-priority job 3
+Switched off medium-priority job 3
+Switched on medium-priority job 1
+Switched off medium-priority job 1
+Switched on medium-priority job 3
+Switched off medium-priority job 3
+Switched on low-priority job 1
+Switched off low-priority job 1
+Switched on low-priority job 3
+Switched off low-priority job 3
+Switched on low-priority job 1
+Switched off low-priority job 1
+Switched on low-priority job 3
+Switched on low-priority job 1</font></pre></big></td></tr>
+
+<tr>
+  <td bgcolor="#FFFFCC"><big>Here is the <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/assgn1/assgn1.log"><font color="#0000FF" face="Courier New, Courier, monospace">assgn1.log</font></a> for the run displayed above.</big></td></tr>
+
+</tbody></table>
+
+
+</font></body></html>

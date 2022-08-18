@@ -1,0 +1,163 @@
+
+<!-- saved from url=(0069)http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/entity.cgi -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style> a:hover { background-color: yellow; } </style>
+<title>CS 2SD3&nbsp; (2021/22, &amp;term) Assignment 3</title>
+</head>
+
+<body>
+
+<h1><img src="./Assignment3_files/logo.jpg" width="786" height="92" alt="logo.jpg (32213 bytes)"></h1>
+
+<h1>CS 2SD3 (2021/22, Term II) Assignment 3</h1>
+
+<table border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/entities.cgi" method="post">
+      <input type="hidden" name="snow" value="1807"><p><br>
+      <input type="submit" name="exec" value="Back To Assignments+Tests Menu">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/login/back.cgi" method="post">
+      <input type="hidden" name="snow" value="1807"><p><br>
+      <input type="submit" name="back" value="Back To Main Menu">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td height="26"><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/presubmit.cgi" method="post">
+      <input type="hidden" name="snow" value="1807"><input type="hidden" name="header" value="assgn,3,-,T03"><p><br>
+      <input type="submit" name="exec" value="Submissions">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/login/logout.cgi" method="post">
+      <input type="hidden" name="snow" value="1807"><p><br>
+      <input type="submit" value="Log Out"></p>
+    </form>
+    </td>
+  </tr>
+</tbody></table>
+
+
+<p><big><big>sample solution: <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/assgn3/assgn3.c"><font face="Courier New, Courier, monospace">assgn3.c</font></a></big></big></p>
+
+
+<form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/print_ms.cgi?assgn,3,-,T03" method="post">
+<input type="hidden" name="snow" value="1807"><p><br>
+<input type="submit" name="print_ms" value="View marking scheme"></p>
+</form>
+
+
+<table border="0" width="785">
+
+<tbody><tr><td><big><big><font color="#FF0000">Rules for assignments -- please read</font> <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/rules.html">here</a></big></big></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><p><big>In this assignment, there is a single deliverable, a C program named <font color="#0000FF" face="Courier New, Courier, monospace">assgn3.c</font>&nbsp;. The file <font color="#0000FF" face="Courier New, Courier, monospace">assgn3.c</font> can be submitted either via the course web site, or via the submission script <font color="#0000FF" face="Courier New, Courier, monospace">2sd3submit</font>&nbsp;. Instructions on how to create the submission script <font color="#0000FF" face="Courier New, Courier, monospace">2sd3submit</font> and how to use it can be found <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/2sd3submit_instructions.html">here</a>&nbsp;. For <font color="#0000FF" face="Courier New, Courier, monospace">2sd3submit</font> submission, please use <font color="#0000FF" face="Courier New, Courier, monospace">2sd3submit&nbsp;AAA&nbsp;assgn3&nbsp;assgn3.c</font> where <font color="#0000FF" face="Courier New, Courier, monospace">AAA</font> is your student number.</big></p></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr>
+  <td><big>Before you start working on this assignment, you need to fetch a few files using the bash script named <font color="#0000FF" face="Courier New, Courier, monospace">2sd3fetch</font>&nbsp;see the instructions <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/2sd3fetch_instructions.html">here</a>&nbsp;. In the following, <font color="#0000FF" face="Courier New, Courier, monospace">XXX</font> stands for your student number:</big>
+    <ol>
+    
+<li><big>If you do not have it yet, fetch the log header file <font color="#0000FF" face="Courier New, Courier, monospace">log.h</font> with <font color="#0000FF" face="Courier New, Courier, monospace">2sd3fetch&nbsp;XXX&nbsp;log.h</font></big></li>
+
+<li><big>If you do not have it yet, fetch the source code for the logging functions <font color="#0000FF" face="Courier New, Courier, monospace">log.c</font> with <font color="#0000FF" face="Courier New, Courier, monospace">2sd3fetch&nbsp;XXX&nbsp;log.c</font></big></li>
+
+<li><big>Fetch a skeleton for the C program you are to write with <font color="#0000FF" face="Courier New, Courier, monospace">2sd3fetch&nbsp;XXX&nbsp;assgn3/assgn3_skel.c</font></big></li>
+
+<li><big>Fetch the makefile for the complete program with <font color="#0000FF" face="Courier New, Courier, monospace">2sd3fetch XXX assgn3/makefile</font></big></li></ol></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+  
+<tr>
+  <td><big><strong>Description of the C program <font color="#0000FF" face="Courier New, Courier, monospace">assgn3.c</font></strong></big></td></tr>
+
+<tr><td><ol>
+<li><big><em><font color="#FF0000">Since this is not a programming course, there are no partial marks or credits for having a correct header for a function or a correct variable etc. as you may be used to. The program will be tested solely on its performance, i.e. how well it performs the required tasks.</font></em></big></li>
+
+<li><big>Your task is to complete the skeleton of <font color="#0000FF" face="Courier New, Courier, monospace">assgn3.c</font>&nbsp;. The program is a simple multithreaded program where the threads are dispatch with 2 parameters as opposed to <font color="#0000FF" face="Courier New, Courier, monospace">assgn2.c</font> where each thread was dispatched with one piece of information.</big></li>
+
+<li><big>The program checks the number of command line arguments and if it is not 2, the an error message and the usage<br><font color="#0000FF" face="Courier New, Courier, monospace">usage&nbsp;-&nbsp;assgn3&nbsp;&lt;number&nbsp;of&nbsp;threads&gt;</font> are displayed and the program terminates.</big></li>
+
+<li><big>From the command line argument <font color="#0000FF" face="Courier New, Courier, monospace">&lt;number&nbsp;of&nbsp;threads&gt;</font> it determines the number of threads the program will use and stores the number in a variable.</big></li>
+
+<li><big>Then program checks if the number of threads  is in the range <font color="#0000FF" face="Courier New, Courier, monospace">2..10</font>&nbsp;; if not, an error message and the usage are displayed and the program terminates.</big></li>
+
+<li><big>Then the program initializes the global <font color="#0000FF" face="Courier New, Courier, monospace">long</font> array named <font color="#0000FF" face="Courier New, Courier, monospace">arr</font> with random values in the range <font color="#0000FF" face="Courier New, Courier, monospace">0..10</font> using the function <font color="#0000FF" face="Courier New, Courier, monospace">init_arr()</font>&nbsp;.</big></li>
+
+<li><big>Then the program determines how many items of the array  <font color="#0000FF" face="Courier New, Courier, monospace">arr[]</font> each of the threads should process:<ul>
+<li>if the length of the array is divisible by the number of threads, each thread will process the same number of items = <strong>length&nbsp;of&nbsp;the&nbsp;array&nbsp;/&nbsp;the&nbsp;number&nbsp;of&nbsp;threads</strong><br>
+<em>e.g. for </em>5<em> threads, each will process </em>1000000&nbsp;/&nbsp;5&nbsp;=&nbsp;200000<em> items</em></li>
+<li>if it is not divisible, then the number of items is = <strong>1+length&nbsp;of&nbsp;the&nbsp;array&nbsp;/&nbsp;the&nbsp;number&nbsp;of&nbsp;threads</strong>&nbsp;, and
+the last thread will process the leftover items (which will be slightly less);<br>
+<em>e.g. for </em>6<em> threads, the first </em>5<em> threads will process </em>166667<em> items </em>(1000000&nbsp;/&nbsp;6 = 166666)<em>, and the last thread will process the remaining </em>166665<em> items </em>(1000000&nbsp;-&nbsp;5&nbsp;*&nbsp;166667&nbsp;=&nbsp;166665)</li></ul><br>
+note that this assures that all threads process almost the same amount of items -- any difference is at most  1 -- to assure as balanced load for the threads as possible.</big></li>
+
+<li>The processing of a thread is coded in the function <big><font color="#0000FF" face="Courier New, Courier, monospace">doit()</font>&nbsp;It consists of summing up the number of items of the global array <font color="#0000FF" face="Courier New, Courier, monospace">arr[]</font> and adding it to a global variable, so when all the threads are finished, the whole array had been summed up.</big></li>
+
+<li><big>Note that each thread (i.e. the function <font color="#0000FF" face="Courier New, Courier, monospace">doit()</font>) needs to know the range of the items it should sum up. The program thus creates two tables, one that holds indices of threads, and the other containing the thread id. Hence, if a thread knows its index, it knows what section of the array to sum up: the number of items (see 7.) is stored in a global variable and each threads processes <strong>from</strong>&nbsp;=&nbsp;index&nbsp;*&nbsp;number&nbsp;of&nbsp;items <strong>to</strong>&nbsp;=&nbsp;from&nbsp;+&nbsp;no_of_items&nbsp;-&nbsp;1, and if <strong>to</strong> exceeds the end of the array (for the very last thread), it has to be trimmed.<br>
+  Thus, <font color="#0000FF" face="Courier New, Courier, monospace">doit(*void param)</font> has one argument, an address of where the index is stored, and for each thread's dispatch, the parameter must be set.</big></li>
+
+<li><big>Your task is to complete the skeleton program <font color="#0000FF" face="Courier New, Courier, monospace">assgn3_skel.c</font> so it behaves as described.</big></li>
+
+</ol></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr>
+  <td bgcolor="#FFFFCC"><big>Here is a sample of the output for <font color="#0000FF" face="Courier New, Courier, monospace">assgn3</font></big></td></tr>
+
+<tr><td bgcolor="#FFFFCC"><big><pre><font color="#CC6600" face="Courier New, Courier, monospace">wrong number of command line arguments
+usage - assgn3 &lt;number of threads&gt;</font></pre></big></td></tr>
+
+<tr>
+  <td bgcolor="#FFFFCC"><big>Here is a sample of the output for <font color="#0000FF" face="Courier New, Courier, monospace">assgn3 30</font></big></td></tr>
+
+<tr><td bgcolor="#FFFFCC"><big><pre><font color="#CC6600" face="Courier New, Courier, monospace">wrong number of threads, must be 2 - 10
+usage - assgn3 &lt;number of threads&gt;</font></pre></big></td></tr>
+
+<tr>
+  <td bgcolor="#FFFFCC"><big>Here is a sample of the output on the screen when <font color="#0000FF" face="Courier New, Courier, monospace">assgn3</font> 
+is run with 3 threads, i.e. <font color="#0000FF" face="Courier New, Courier, monospace">assgn3 3</font></big></td></tr>
+
+<tr><td bgcolor="#FFFFCC"><big><pre><font color="#CC6600" face="Courier New, Courier, monospace">dispatched thread 0 with tid = 47362352265536
+dispatched thread 1 with tid = 47362362755392
+Thread 1 processing the array from 333334 to 666667
+dispatched thread 2 with tid = 47362373245248
+Thread 0 processing the array from 0 to 333333
+Thread 1 summation is 1499673
+Thread 2 processing the array from 666668 to 999999
+Thread 0 summation is 1501662
+Thread 2 summation is 1497599
+Overall sum = 4498934
+Check sum = 4498934</font></pre></big></td></tr>
+
+<tr>
+  <td bgcolor="#FFFFCC"><big>Here are the entries in <font color="#0000FF" face="Courier New, Courier, monospace">assgn3.log</font> for the run displayed above.</big></td></tr>
+
+<tr><td bgcolor="#FFFFCC"><big><pre><font color="#CC6600" face="Courier New, Courier, monospace">message number = 0, process id = 23168, time and date = 12:51:20 11/23/21
+ dispatched thread 0 with tid = 47362352265536
+message number = 1, process id = 23168, time and date = 12:51:20 11/23/21
+ dispatched thread 1 with tid = 47362362755392
+message number = 2, process id = 23168, time and date = 12:51:20 11/23/21
+ Thread 1 processing the array from 333334 to 666667
+message number = 3, process id = 23168, time and date = 12:51:20 11/23/21
+ dispatched thread 2 with tid = 47362373245248
+message number = 4, process id = 23168, time and date = 12:51:20 11/23/21
+ Thread 0 processing the array from 0 to 333333
+message number = 5, process id = 23168, time and date = 12:51:20 11/23/21
+ Thread 1 summation is 1499673
+message number = 6, process id = 23168, time and date = 12:51:20 11/23/21
+ Thread 2 processing the array from 666668 to 999999
+message number = 7, process id = 23168, time and date = 12:51:20 11/23/21
+ Thread 0 summation is 1501662
+message number = 8, process id = 23168, time and date = 12:51:20 11/23/21
+ Thread 2 summation is 1497599</font></pre></big></td></tr>
+</tbody></table>
+
+
+</body></html>

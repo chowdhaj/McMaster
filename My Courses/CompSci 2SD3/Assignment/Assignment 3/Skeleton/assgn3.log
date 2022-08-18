@@ -1,0 +1,18 @@
+message number = 0, process id = 15177, time and date = 16:03:08 03/28/22
+ dispatched thread 0 with tid = 140113971353344
+message number = 1, process id = 15177, time and date = 16:03:08 03/28/22
+ Thread 0 processing the array from 0 to 333333
+message number = 2, process id = 15177, time and date = 16:03:08 03/28/22
+ dispatched thread 1 with tid = 140113960863488
+message number = 3, process id = 15177, time and date = 16:03:08 03/28/22
+ Thread 1 processing the array from 333334 to 666667
+message number = 4, process id = 15177, time and date = 16:03:08 03/28/22
+ Thread 0 summation is 1502209
+message number = 5, process id = 15177, time and date = 16:03:08 03/28/22
+ Thread 2 processing the array from 666668 to 999999
+message number = 6, process id = 15177, time and date = 16:03:08 03/28/22
+ Thread 1 summation is 1500337
+message number = 7, process id = 15177, time and date = 16:03:08 03/28/22
+ dispatched thread 2 with tid = 140113950373632
+message number = 8, process id = 15177, time and date = 16:03:08 03/28/22
+ Thread 2 summation is 1500829

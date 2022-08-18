@@ -1,0 +1,297 @@
+
+<!-- saved from url=(0069)http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/entity.cgi -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style> a:hover { background-color: yellow; } </style>
+<title>CS 2SD3&nbsp; (2021/22, &amp;term) Assignment 2</title>
+</head>
+
+<body>
+
+<h1><img src="./Assignment2_files/logo.jpg" width="786" height="92" alt="logo.jpg (32213 bytes)"></h1>
+
+<h1>CS 2SD3 (2021/22, Term II) Assignment 2</h1>
+
+<table border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/entities.cgi" method="post">
+      <input type="hidden" name="snow" value="1807"><p><br>
+      <input type="submit" name="exec" value="Back To Assignments+Tests Menu">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/login/back.cgi" method="post">
+      <input type="hidden" name="snow" value="1807"><p><br>
+      <input type="submit" name="back" value="Back To Main Menu">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td height="26"><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/presubmit.cgi" method="post">
+      <input type="hidden" name="snow" value="1807"><input type="hidden" name="header" value="assgn,2,-,T03"><p><br>
+      <input type="submit" name="exec" value="Submissions">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/login/logout.cgi" method="post">
+      <input type="hidden" name="snow" value="1807"><p><br>
+      <input type="submit" value="Log Out"></p>
+    </form>
+    </td>
+  </tr>
+</tbody></table>
+
+<p><big><big>sample solution: <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/assgn2/assgn2.c"><font face="Courier New, Courier, monospace">assgn2.c</font></a></big></big></p>
+
+<form action="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/print_ms.cgi?assgn,2,-,T03" method="post">
+<input type="hidden" name="snow" value="1807"><p><br>
+<input type="submit" name="print_ms" value="View marking scheme"></p>
+</form>
+
+<p>&nbsp;</p>
+
+<table border="0" width="785">
+
+<tbody><tr><td><big><big><font color="#FF0000">Rules for assignments -- please read</font> <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/rules.html">here</a></big></big></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><p><big>In this assignment, there is a single deliverable, a C program named <font color="#0000FF" face="Courier New, Courier, monospace">assgn2.c</font>&nbsp;. The file <font color="#0000FF" face="Courier New, Courier, monospace">assgn2.c</font> can be submitted either via the course web site, or via the submission script <font color="#0000FF" face="Courier New, Courier, monospace">2sd3submit</font>&nbsp;. Instructions on how to create the submission script <font color="#0000FF" face="Courier New, Courier, monospace">2sd3submit</font> and how to use it can be found <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/2sd3submit_instructions.html">here</a>&nbsp;. For <font color="#0000FF" face="Courier New, Courier, monospace">2sd3submit</font> submission, please use <font color="#0000FF" face="Courier New, Courier, monospace">2sd3submit&nbsp;AAA&nbsp;assgn2&nbsp;assgn2.c</font> where <font color="#0000FF" face="Courier New, Courier, monospace">AAA</font> is your student number.</big></p></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr>
+  <td><big>Before you start working on this assignment, you may want to fetch some files using the bash script named <font color="#0000FF" face="Courier New, Courier, monospace">2sd3fetch</font>&nbsp;, see the instructions <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/entities/2sd3fetch_instructions.html">here</a>&nbsp;. In the following, <font color="#0000FF" face="Courier New, Courier, monospace">XXX</font> stands for your student number:
+      </big><ol>
+<li><big>If you do not have it yet, fetch <font color="#0000FF" face="Courier New, Courier, monospace">log.c</font> by <font color="#0000FF" face="Courier New, Courier, monospace">2sd3fetch&nbsp;XXX&nbsp;log.c</font></big></li>
+<li><big>If you do not have it yet, fetch <font color="#0000FF" face="Courier New, Courier, monospace">log.h</font> by <font color="#0000FF" face="Courier New, Courier, monospace">2sd3fetch&nbsp;XXX&nbsp;log.h</font></big></li>
+<li><big>Fetch <font color="#0000FF" face="Courier New, Courier, monospace">makefile</font> by <font color="#0000FF" face="Courier New, Courier, monospace">2sd3fetch&nbsp;XXX&nbsp;assgn2/makefile</font></big></li></ol></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><big><strong>Description of the C program</strong> <font color="#0000FF" face="Courier New, Courier, monospace">assgn2.c</font></big></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+  
+<tr><td><big><font color="#FF0000"><em>Since this is not a programming course, there are no partial marks or credits for having a correct header for a function or a correct variable etc. as you may be used to. The program will be tested solely on its performance, i.e. how well it performs the required tasks.</em></font></big></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr>
+  <td><big>Your task is to write a multithreaded C program using POSIX&nbsp; user threads. The program must be organized so that if a user wants to run your program with 8 <em><strong>personalities</strong></em>, the user will compile it with <font color="#0000FF" face="Courier New">make assgn2 level=8</font>&nbsp;, if the user wants 3 <em><strong>personalities</strong></em>, the compilation will be <font color="#0000FF" face="Courier New">make assgn2 level=3</font>&nbsp;. <font color="#FF0000">The permitted levels are 1 to 8.</font><br>
+The compilation will work for any level, it is during the execution when the level is checked, for instance:<br>
+<font color="#0000FF" face="Courier New">make assgn2 level=10</font><br>
+will trigger the compilation<br>
+<font color="#0000FF" face="Courier New">gcc -o assgn2 assgn2.c log.c -D_level=10 -D_multithread -lpthread</font><br>
+that will go through without a hitch, but when you try execute the program <font color="#0000FF" face="Courier New">assgn2</font>&nbsp;, you get an error message<br>
+<font color="#0000FF" face="Courier New">the program was compiled with a wrong level</font><br>
+<font color="#0000FF" face="Courier New">permitted levels are 1 .. 8</font><br>
+ and the program terminates right then.</big></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr>
+  <td><big>The value of the level is determined during the compilation by the value of the <font color="#0000FF" face="Courier New">_level</font> flag. Thus, in your program you use anywhere you need it  <font color="#0000FF" face="Courier New">_level</font> as if it were a varfiable; could be used even in the definition of the size of an array.</big></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+<tr>
+  <td><big>Each <em><strong>personality</strong></em> converses with the user and logs its conversation in a common log file whose name is <font color="#0000FF" face="Courier New">assgn2.log</font>&nbsp;. The conversation is simple, the <em><strong>personality</strong></em> displays the prompt, the user types in the response, so only the user is ``speaking". If the user's response starts with <font color="#0000FF" face="Courier New">quit</font> (case sensitive), the conversation is over, anything else is logged into the log and the thread continues. You have to use the <font color="#0000FF" face="Courier New">log.c</font> and <font color="#0000FF" face="Courier New">log.h</font> for this as they are thread-safe. Do not use the standard C file functions <font color="#0000FF" face="Courier New">fopen()</font>&nbsp;, <font color="#0000FF" face="Courier New">fprintf()</font>&nbsp;, and <font color="#0000FF" face="Courier New">fclose()</font>&nbsp;for processing the log.</big></td></tr>
+  
+  <tr><td>&nbsp;</td></tr>
+
+<tr><td><big>Each <em><strong>personality</strong></em> has a permanent name: <font color="#0000FF" face="Courier New, Courier, monospace">Person0</font>, <font color="#0000FF" face="Courier New, Courier, monospace">Person1</font>, <font color="#0000FF" face="Courier New, Courier, monospace">Person2</font> .... <font color="#0000FF" face="Courier New, Courier, monospace">Person7</font> and a permanent index (<font color="#0000FF" face="Courier New, Courier, monospace">Person0</font> has index <font color="#0000FF" face="Courier New, Courier, monospace">0</font>, <font color="#0000FF" face="Courier New, Courier, monospace">Person1</font> has index <font color="#0000FF" face="Courier New, Courier, monospace">1</font>, <font color="#0000FF" face="Courier New, Courier, monospace">Person2</font> has index <font color="#0000FF" face="Courier New, Courier, monospace">2</font> ...) Each <em><strong>personality</strong></em> has a variable <font color="#0000FF" face="Courier New, Courier, monospace">linecount</font> that is initialized to <font color="#0000FF" face="Courier New, Courier, monospace">0</font>&nbsp;.</big></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+<tr>
+  <td><big>Here is a list of all standard header files that have to be included:<br>
+<font color="#0000FF" face="Courier New, Courier, monospace">#include &lt;stdio.h&gt;</font><br>
+<font color="#0000FF" face="Courier New, Courier, monospace">#include &lt;stdlib.h&gt;</font><br>
+<font color="#0000FF" face="Courier New, Courier, monospace">#include &lt;unistd.h&gt;</font><br>
+<font color="#0000FF" face="Courier New, Courier, monospace">#include &lt;string.h&gt;</font><br>
+<font color="#0000FF" face="Courier New, Courier, monospace">#include &lt;errno.h&gt;</font><br>
+<font color="#0000FF" face="Courier New, Courier, monospace">#include &lt;fcntl.h&gt;</font><br>
+<font color="#0000FF" face="Courier New, Courier, monospace">#include &lt;pthread.h&gt;</font><br>
+<font color="#0000FF" face="Courier New, Courier, monospace">#include &lt;sys/types.h&gt;</font><br>
+<font color="#0000FF" face="Courier New, Courier, monospace">#include &lt;sys/stat.h&gt;</font><br>
+You also need to include the header file for the logging functions, <font color="#0000FF" face="Courier New, Courier, monospace">log.h</font>, so <font color="#0000FF" face="Courier New, Courier, monospace">log.h</font> and <font color="#0000FF" face="Courier New, Courier, monospace">log.c</font> must be present in the directory where you will be compiling <font color="#0000FF" face="Courier New, Courier, monospace">assgn2.c</font> and thus you need:<br>
+<font color="#0000FF" face="Courier New, Courier, monospace">#include "log.h"</font><br>
+</big></td></tr>
+ 
+<tr><td><big>The format of the prompt is given and you must adhere to it:</big><p></p></td></tr>
+
+<tr><td><big>
+<pre><font color="#0000FF" face="Courier New">[pid=4196528,tid=1590835520,index=0,name=Person0] Enter Message: </font></pre></big></td></tr>
+
+<tr><td><big>where <font color="#0000FF" face="Courier New">pid</font> is the actual process id, <font color="#0000FF" face="Courier New">tid</font> is the actual thread id, <font color="#0000FF" face="Courier New">index</font> is the index of the <font color="#0000FF" face="Courier New">Person</font>&nbsp;, and <font color="#0000FF" face="Courier New">name</font> is the name of the <font color="#0000FF" face="Courier New">Person</font></big></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><big>The high level structure of your program ought to be:</big><ol>
+
+<li><big>It defines the global variables required for the logging functions, ie.<br>
+<font color="#0000FF" face="Courier New">int logindex = 0;</font><br>
+<font color="#0000FF" face="Courier New">int* logi = &amp;logindex;</font><br>
+<font color="#0000FF" face="Courier New">// mutex for log, required by logging functions for thread-safe code</font><br>
+<font color="#0000FF" face="Courier New">pthread_mutex_t tlock = PTHREAD_MUTEX_INITIALIZER;</font></big></li>
+
+<li><big>It defines a global variable <font color="#0000FF" face="Courier New">int done=0;</font> that serves as the indicator when the processing is done</big></li>
+
+<li><big>It defines a <font color="#0000FF" face="Courier New">mutex</font> for <font color="#0000FF" face="Courier New">done</font> (<em>the mutex is needed as all threads read and write to </em><font color="#0000FF" face="Courier New">done</font>)</big></li>
+
+<li><big>It defines a structure to hold all relevant information for a <em><strong>personality</strong></em>: <font color="#0000FF" face="Courier New">index</font>&nbsp;, the thread id <font color="#0000FF" face="Courier New">tid</font>&nbsp;, <font color="#0000FF" face="Courier New">name</font> of the <em><strong>personality</strong></em>, <font color="#0000FF" face="Courier New">linecount</font>&nbsp;, and flag indicating when the <em><strong>personality</strong></em>'s processing is completed.</big></li>
+
+<li><big>It defines a table with as many entries as <em><strong>personalities</strong></em>, where each item is a structure defined just above.</big></li>
+
+<li><big>It first checks the <font color="#0000FF" face="Courier New">_level</font> and if it is not in the range 1..8, an error message is displayed and the program terminates.</big></li>
+
+<li><big>It opens the log with <font color="#0000FF" face="Courier New">create_log("assgn2.log");</font><br>
+<em>Note that there is no need to protect the log by a mutex as the </em><font color="#0000FF" face="Courier New">log.c</font><em> code is thread-safe; and that there is no need to open and close the log -- it is all automatic.</em></big></li>
+
+<li><big><strong>loop for</strong> <font color="#0000FF" face="Courier New">i = 0 .. _level-1</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;initialize the values on the table for for <font color="#0000FF" face="Courier New">Person_i</font><br>
+<strong>endloop</strong></big></li>
+
+<li><big><strong>do</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>loop for</strong> <font color="#0000FF" face="Courier New">i = 0 .. _level-1</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if <font color="#0000FF" face="Courier New">Person_i</font> not done yet, create a thread for it with <font color="#0000FF" face="Courier New">pthread_create()</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>include a test if </em><font color="#0000FF" face="Courier New">pthread_create()</font><em> worked, if not, display an error message and</em><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>terminate the program with </em><font color="#0000FF" face="Courier New">exit(1);</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>endloop</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>loop for</strong> <font color="#0000FF" face="Courier New">i = 0 .. _level-1</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if <font color="#0000FF" face="Courier New">Person_i</font> not done yet, join the thread with <font color="#0000FF" face="Courier New">pthread_join()</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>include a test if </em><font color="#0000FF" face="Courier New">pthread_join()</font><em> worked, if not, display an error message and</em><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>terminate the program with </em><font color="#0000FF" face="Courier New">exit(1);</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>endloop</strong><strong><br>
+while</strong> <font color="#0000FF" face="Courier New">! done</font><br>
+<em>Since </em><font color="#0000FF" face="Courier New">done</font><em> starts with value 0, the testing of its value must be at the bottom of the loop, not at the top of the loop</em></big></li>
+    
+<li><big>Display how many lines each conversation had by traversing the table and using the <font color="#0000FF" face="Courier New">linecount</font> for each <em><strong>personality</strong></em>.</big></li>
+</ol></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><big>Each thread does the following</big><ol>
+<li><big>Locks the <font color="#0000FF" face="Courier New">mutex</font> for the global variable <font color="#0000FF" face="Courier New">done</font></big></li>
+<li><big>If the <font color="#0000FF" face="Courier New">Person</font> is just starting, it increments <font color="#0000FF" face="Courier New">done</font> by <font color="#0000FF" face="Courier New">1</font></big></li>
+<li><big>Displays the prompt</big></li>
+<li><big>Gets the users response</big></li>
+<li><big>Unlocks the <font color="#0000FF" face="Courier New">mutex</font> for <font color="#0000FF" face="Courier New">done</font></big></li>
+<li><big>If the response started with <font color="#0000FF" face="Courier New">quit</font>, then</big><ul>
+    <li><big>locks the <font color="#0000FF" face="Courier New">mutex</font> for the global variable <font color="#0000FF" face="Courier New">done</font></big></li>
+    <li><big>decrements <font color="#0000FF" face="Courier New">done</font> by <font color="#0000FF" face="Courier New">1</font></big></li>
+    <li><big>unlocks the <font color="#0000FF" face="Courier New">mutex</font> for <font color="#0000FF" face="Courier New">done</font></big></li>
+    <li><big>displays and logs a message that the user quit</big></li>
+    <li><big>exits the thread, its return value is irrelevant</big></li></ul></li>
+<li><big>If the response did not start with <font color="#0000FF" face="Courier New">quit</font>, then</big><ul>
+    <li><big>increments by <font color="#0000FF" face="Courier New">1</font> the <font color="#0000FF" face="Courier New">linecount</font> for this conversation</big></li>
+    <li><big>writes the message consisting of the prompt and the response into the log (<em>for logging functions, you do not include the terminating </em><font color="#0000FF" face="Courier New">\n</font><em> to the message, however, if the message is a multiple-line, please follow any embedded </em><font color="#0000FF" face="Courier New">\n</font><em> with one space</em>)</big></li>
+    <li><big>exits the thread, its return value is irrelevant</big></li>
+</ul></li></ol></td></tr>
+
+<tr><td><big>Note that a <em><strong>personality</strong></em> and a thread are not the same things. It may happen that for each line of the conversation, a <em><strong>personality</strong></em> is given a different thread. However, through the threads, the conversations are <font color="#FF000">simultaneous</font></big></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr>
+  <td bgcolor="#FFFFCC"><big>A sample conversation with 3 <em><strong>personalities</strong></em><strong></strong></big></td></tr>
+
+<tr>
+  <td bgcolor="#FFFFCC"><big>First the compilation: <font color="#0000FF" face="Courier New">make assgn2 level=3</font></big></td></tr>
+
+<tr>
+  <td bgcolor="#FFFFCC"><big>Example of a conversation with the three <em><strong>personalities</strong></em> (the user entered data are in black)</big></td></tr>
+
+<tr><td bgcolor="#FFFFCC"><pre><font color="#CC9900" face="Courier New, Courier, monospace">There are 3 personalities: 
+Person0 
+Person1 
+Person2 
+
+[pid=4197120,tid=2625407296,index=0,name=Person0] Enter Message:
+<font color="#000000">Person0, I love you</font>
+[pid=4197120,tid=2635897152,index=1,name=Person1] Enter Message:
+<font color="#000000">Person1, I don't like you</font>
+[pid=4197120,tid=2646387008,index=2,name=Person2] Enter Message:
+<font color="#000000">Person2, I hate you</font>
+[pid=4197120,tid=2646387008,index=0,name=Person0] Enter Message:
+<font color="#000000">Keep talking :-)</font>
+[pid=4197120,tid=2635897152,index=1,name=Person1] Enter Message:
+<font color="#000000">Sent me a present!</font>
+[pid=4197120,tid=2625407296,index=2,name=Person2] Enter Message:
+<font color="#000000">Go home!</font>
+[pid=4197120,tid=2625407296,index=0,name=Person0] Enter Message:
+<font color="#000000">OK, I will quit</font>
+[pid=4197120,tid=2635897152,index=1,name=Person1] Enter Message:
+<font color="#000000">I am quitting</font>
+[pid=4197120,tid=2646387008,index=2,name=Person2] Enter Message:
+<font color="#000000">I repeat, I am quitting</font>
+[pid=4197120,tid=2646387008,index=0,name=Person0] Enter Message:
+<font color="#000000">quit</font>
+[pid=4197120,tid=2635897152,index=1,name=Person1] Enter Message:
+<font color="#000000">Why do you bother?</font>
+[pid=4197120,tid=2625407296,index=2,name=Person2] Enter Message:
+<font color="#000000">I told you to go home</font>
+[pid=4197120,tid=2625407296,index=1,name=Person1] Enter Message:
+<font color="#000000">quit</font>
+[pid=4197120,tid=2635897152,index=2,name=Person2] Enter Message:
+<font color="#000000">Why are you still here? Go home!</font>
+[pid=4197120,tid=2635897152,index=2,name=Person2] Enter Message:
+<font color="#000000">quit</font></font></pre></td></tr>
+
+<tr><td bgcolor="#FFFFCC"><big>Upon the termination of all threads, the program displays:</big></td></tr>
+
+<tr><td bgcolor="#FFFFCC"><big><pre><font color="#CC9900" face="Courier New, Courier, monospace">Person Person0 processed 3 lines
+Person Person1 processed 4 lines
+Person Person2 processed 5 lines</font></pre>
+and terminates.</big></td></tr>
+
+<tr><td bgcolor="#FFFFCC"><big>The entries in <font color="#0000FF" face="Courier New, Courier, monospace">assgn2.log</font></big></td></tr>
+
+<tr><td bgcolor="#FFFFCC">
+<pre><font color="#CC9900" face="Courier New, Courier, monospace">message number = 0, process id = 13291, time and date = 23:34:44 11/22/21
+ [pid=4197120,tid=2625407296,index=0,name=Person0] Enter Message:
+ Person0, I love you
+message number = 1, process id = 13291, time and date = 23:34:53 11/22/21
+ [pid=4197120,tid=2635897152,index=1,name=Person1] Enter Message:
+ Person1, I don't like you
+message number = 2, process id = 13291, time and date = 23:34:58 11/22/21
+ [pid=4197120,tid=2646387008,index=2,name=Person2] Enter Message:
+ Person2, I hate you
+message number = 3, process id = 13291, time and date = 23:35:07 11/22/21
+ [pid=4197120,tid=2646387008,index=0,name=Person0] Enter Message:
+ Keep talking :-)
+message number = 4, process id = 13291, time and date = 23:35:18 11/22/21
+ [pid=4197120,tid=2635897152,index=1,name=Person1] Enter Message:
+ Send me a present!
+message number = 5, process id = 13291, time and date = 23:35:23 11/22/21
+ [pid=4197120,tid=2625407296,index=2,name=Person2] Enter Message:
+ Go home!
+message number = 6, process id = 13291, time and date = 23:35:29 11/22/21
+ [pid=4197120,tid=2625407296,index=0,name=Person0] Enter Message:
+ OK, I will quit
+message number = 7, process id = 13291, time and date = 23:35:33 11/22/21
+ [pid=4197120,tid=2635897152,index=1,name=Person1] Enter Message:
+ I am quitting
+message number = 8, process id = 13291, time and date = 23:35:41 11/22/21
+ [pid=4197120,tid=2646387008,index=2,name=Person2] Enter Message:
+ I repeat, I am quitting
+message number = 9, process id = 13291, time and date = 23:35:44 11/22/21
+ [pid=4197120,tid=2646387008,index=0,name=Person0] Enter Message:
+ user quit
+message number = 10, process id = 13291, time and date = 23:35:55 11/22/21
+ [pid=4197120,tid=2635897152,index=1,name=Person1] Enter Message:
+ Why do you bother?
+message number = 11, process id = 13291, time and date = 23:36:04 11/22/21
+ [pid=4197120,tid=2625407296,index=2,name=Person2] Enter Message:
+ I told you to go home
+message number = 12, process id = 13291, time and date = 23:36:05 11/22/21
+ [pid=4197120,tid=2625407296,index=1,name=Person1] Enter Message:
+ user quit
+message number = 13, process id = 13291, time and date = 23:36:17 11/22/21
+ [pid=4197120,tid=2635897152,index=2,name=Person2] Enter Message:
+ Why are you still here? Go home!
+message number = 14, process id = 13291, time and date = 23:36:19 11/22/21
+ [pid=4197120,tid=2635897152,index=2,name=Person2] Enter Message:
+ user quit</font></pre></td></tr>
+
+</tbody></table>
+
+
+</body></html>
