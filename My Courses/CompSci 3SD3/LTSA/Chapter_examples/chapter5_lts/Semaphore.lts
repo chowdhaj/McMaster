@@ -1,0 +1,13 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+const Max = 3
+range Int = 0..Max
+
+SEMAPHORE(N=0) = SEMA[N],
+SEMA[v:Int]    = (up->SEMA[v+1]
+                 |when(v>0) down->SEMA[v-1]
+                 ),
+SEMA[Max+1]    = ERROR.

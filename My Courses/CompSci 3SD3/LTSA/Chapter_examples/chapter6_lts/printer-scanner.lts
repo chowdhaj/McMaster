@@ -1,0 +1,17 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+RESOURCE = (get -> put -> RESOURCE).
+
+P = (printer.get -> scanner.get -> copy 
+                 -> printer.put -> scanner.put -> P).
+
+Q = (scanner.get -> printer.get -> copy 
+                 -> printer.put -> scanner.put -> Q).
+
+||SYS = (p:P || q:Q 
+        || {p,q}::printer:RESOURCE 
+        || {p,q}::scanner:RESOURCE
+        ).

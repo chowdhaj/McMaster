@@ -1,0 +1,9 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+MAKER = (make->ready->MAKER).
+USER  = (ready->use->USER).
+
+||MAKER_USER = (MAKER || USER).

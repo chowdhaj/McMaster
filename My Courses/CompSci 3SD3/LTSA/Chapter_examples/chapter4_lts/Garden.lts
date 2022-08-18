@@ -1,0 +1,39 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+const N = 4
+range T = 0..N
+set VarAlpha = {value.{read[T],write[T]}}
+
+VAR      = VAR[0],
+VAR[u:T] = (read[u]   ->VAR[u] 
+           |write[v:T]->VAR[v]).
+
+TURNSTILE = (go    -> RUN),
+RUN       = (arrive-> INCREMENT
+            |end   -> TURNSTILE),
+INCREMENT = (value.read[x:T]
+            ->value.write[x+1]->RUN)
+            +VarAlpha.
+
+DISPLAY =(value.read[T]->DISPLAY)+{value.write[T]}.
+
+||GARDEN = (east:TURNSTILE || west:TURNSTILE || display:DISPLAY
+           || {east,west,display}::value:VAR)
+            /{go /{east,west}.go,
+              end/{east,west}.end}.
+
+TEST       = TEST[0],
+TEST[v:T]  = (when (v<N){east.arrive,west.arrive}->TEST[v+1] 
+             | end->CHECK[v]
+             ),
+CHECK[v:T] = (display.value.read[u:T] -> 
+               (when (u==v) right -> TEST[v]
+               |when (u!=v) wrong -> ERROR)
+             )+{display.VarAlpha}.
+
+menu RUN = {east.arrive,west.arrive,end,go,display.value.read[u:T]}
+
+||TESTGARDEN = (GARDEN || TEST).

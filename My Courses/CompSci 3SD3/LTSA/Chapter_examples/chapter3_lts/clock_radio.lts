@@ -1,0 +1,9 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+CLOCK = (tick->CLOCK).
+RADIO = (on->off->RADIO).
+
+||CLOCK_RADIO = (CLOCK || RADIO).

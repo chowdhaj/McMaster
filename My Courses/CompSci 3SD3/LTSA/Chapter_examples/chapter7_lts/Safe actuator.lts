@@ -1,0 +1,9 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+property SAFE_ACTUATOR 
+	= (command
+	   -> respond
+	   -> SAFE_ACTUATOR).

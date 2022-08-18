@@ -1,0 +1,10 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+DRINKS = (red ->coffee->DRINKS 
+         |blue->tea   ->DRINKS
+         ).
+
+

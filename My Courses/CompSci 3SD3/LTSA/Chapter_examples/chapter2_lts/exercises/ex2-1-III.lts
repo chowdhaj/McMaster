@@ -1,0 +1,19 @@
+/*
+GAME   = STATE0,
+STATE0 = ({one,two} -> STATE2 | three -> STATE1),
+STATE1 = (lose -> STATE0),
+STATE2 = (win  -> STATE0).
+*/
+
+/*
+GAME   = STATE0,
+STATE0 = ({one,two} -> (win  -> STATE0)
+         | three    -> (lose -> STATE0)
+         ).
+*/
+
+
+GAME = ({one,two} -> win  -> GAME
+       | three    -> lose -> GAME
+       ).
+

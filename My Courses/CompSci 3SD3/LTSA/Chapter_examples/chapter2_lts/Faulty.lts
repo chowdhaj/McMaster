@@ -1,0 +1,8 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+FAULTY = ({red,blue,green}-> FAULTY 
+         |yellow -> candy -> FAULTY
+         ).

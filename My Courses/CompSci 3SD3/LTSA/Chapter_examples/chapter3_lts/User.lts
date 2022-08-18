@@ -1,0 +1,8 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+USER = (acquire->use->release->USER)\{use}.
+
+//USER = (acquire->use->release->USER)@{acquire,release}.

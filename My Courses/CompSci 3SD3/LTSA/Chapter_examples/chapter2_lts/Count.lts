@@ -1,0 +1,9 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+COUNT (N=3)   = COUNT[0],
+COUNT[i:0..N] = (when(i<N) inc->COUNT[i+1]
+                |when(i>0) dec->COUNT[i-1]
+                ).

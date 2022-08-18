@@ -1,0 +1,11 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+const N = 4
+range T = 0..N
+
+DISPLAY_COUNTER = COUNTER[0],
+COUNTER[v:T] = (when (v<N) increment ->COUNTER[v+1]
+               |display[v]->COUNTER[v]).

@@ -1,0 +1,6 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+BUFF = (in[i:0..3]->out[i]-> BUFF).

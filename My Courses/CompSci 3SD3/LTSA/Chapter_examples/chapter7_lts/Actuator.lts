@@ -1,0 +1,10 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+ACTUATOR
+	=(command->ACTION),
+ACTION
+	=(respond->ACTUATOR 	 
+	 |command->ERROR).

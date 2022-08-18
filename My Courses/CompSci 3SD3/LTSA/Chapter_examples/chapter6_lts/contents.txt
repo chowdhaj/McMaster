@@ -1,0 +1,7 @@
+Move.lts
+printer-scanner.lts
+printer-scanner-timeout.lts
+printer-scanner-reorder.lts
+DiningPhilosophers.lts
+DeadlockFreePhilosophers.lts
+Maze.lts

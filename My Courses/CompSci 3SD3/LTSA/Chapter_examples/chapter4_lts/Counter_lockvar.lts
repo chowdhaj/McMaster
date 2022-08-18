@@ -1,0 +1,26 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+const N = 4
+range T = 0..N
+
+VAR = VAR[0],
+VAR[u:T] = (read[u]->VAR[u] 
+            |write[v:T]->VAR[v]).
+
+LOCK = (acquire->release->LOCK).
+
+INCREMENT = (acquire 
+            ->read[x:T]
+            -> (when (x<N) write[x+1]
+                ->increment->release->INCREMENT
+               )
+             )+{read[T],write[T]}.
+
+||COUNTER = (INCREMENT||LOCK||VAR) @{increment}.
+
+||SHAREDCOUNTER = ({a,b}:INCREMENT || {a,b}::(LOCK||VAR)) @ {{a,b}.increment}.
+
+||C = SHAREDCOUNTER/{increment/{a,b}.increment}.

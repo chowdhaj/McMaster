@@ -1,0 +1,6 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+ONESHOT = (once->STOP).

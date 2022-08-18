@@ -1,0 +1,11 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+COIN = 	(toss -> heads -> COIN
+        |toss -> tails -> COIN
+	    ).
+
+
+menu RUN = {toss}

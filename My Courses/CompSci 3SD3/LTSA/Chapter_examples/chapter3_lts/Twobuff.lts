@@ -1,0 +1,14 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+range T = 0..3
+BUFF = (in[i:T]->out[i]->BUFF).
+||TWOBUF = (a:BUFF||b:BUFF)
+	   /{in/a.in,
+	     a.out/b.in,
+	     out/b.out}
+	   @{in,out}.
+
+menu RUN = {in[T],out[T]}

@@ -1,0 +1,9 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+BILL = (play -> meet -> STOP).
+BEN  = (work -> meet -> STOP).
+
+||BILL_BEN = (BILL || BEN).

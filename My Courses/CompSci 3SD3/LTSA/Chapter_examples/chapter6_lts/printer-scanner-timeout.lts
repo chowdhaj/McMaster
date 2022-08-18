@@ -1,0 +1,23 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+RESOURCE = (get->put->RESOURCE).
+
+P          = (printer.get-> GETSCANNER),
+GETSCANNER = (scanner.get->copy->printer.put
+                               ->scanner.put->P
+             |timeout -> printer.put->P
+             ).
+Q          = (scanner.get-> GETPRINTER),
+GETPRINTER = (printer.get->copy->printer.put
+                               ->scanner.put->Q
+             |timeout -> scanner.put->Q
+             ).
+
+||SYS = (p:P || q:Q 
+        || {p,q}::printer:RESOURCE 
+        || {p,q}::scanner:RESOURCE).
+
+||ProgressCheck = SYS <<{{p,q}.timeout}.

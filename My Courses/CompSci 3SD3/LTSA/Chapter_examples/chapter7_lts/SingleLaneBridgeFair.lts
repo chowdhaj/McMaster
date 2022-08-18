@@ -1,0 +1,57 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+/* Fair Single Lane bridge
+*/
+
+const N = 3 // number of each type of car
+range T = 0..N // type of car count
+range ID= 1..N // car identities
+const True = 1
+const False = 0
+range B = False..True
+
+BRIDGE = BRIDGE[0][0][0][0][True],  //initially empty
+BRIDGE[nr:T][nb:T][wr:T][wb:T][bt:B] = 
+	(red[ID].request  -> BRIDGE[nr][nb][wr+1][wb][bt]
+	|when (nb==0 && (wb==0 || !bt)) 
+           red[ID].enter  -> BRIDGE[nr+1][nb][wr-1][wb][bt]
+        |red[ID].exit     -> BRIDGE[nr-1][nb][wr][wb][True]
+        |blue[ID].request->BRIDGE[nr][nb][wr][wb+1][bt]
+        |when (nr==0 && (wr==0 || bt)) 
+           blue[ID].enter -> BRIDGE[nr][nb+1][wr][wb-1][bt]
+        |blue[ID].exit    -> BRIDGE[nr][nb-1][wr][wb][False]
+	).
+
+CAR = (request->enter->exit->CAR).
+
+/* cars may not overtake each other */
+NOPASS1   = C[1],
+C[i:ID]   = ([i].enter -> C[i%N+1]).
+
+NOPASS2   = C[1],
+C[i:ID]   = ([i].exit -> C[i%N+1]).
+
+||CONVOY = ([ID]:CAR || NOPASS1 || NOPASS2).
+
+||SingleLaneBridge = (red:CONVOY||blue:CONVOY|| BRIDGE || ONEWAY ).
+
+property ONEWAY = (red[ID].enter -> EASTBOUND[1] 
+		  | blue.[ID].enter ->WESTBOUND[1]),
+EASTBOUND[i:ID] = (when(i<N) red[ID].enter -> EASTBOUND[i+1]
+                  |when(i==1)red[ID].exit  -> ONEWAY
+                  |when( i>1)red[ID].exit  -> EASTBOUND[i-1]
+                  ),
+WESTBOUND[i:ID] = (when(i<N) blue[ID].enter -> WESTBOUND[i+1]
+                  |when(i==1)blue[ID].exit  -> ONEWAY
+                  |when( i>1)blue[ID].exit  -> WESTBOUND[i-1]
+                  ).
+
+/* bridge becomes congested when we give less priority to exit that entry */
+
+||CongestedBridge = SingleLaneBridge >> {red[ID].exit,blue[ID].exit}.
+
+progress BLUECROSS = {blue[ID].enter}
+progress REDCROSS =  {red[ID].enter}

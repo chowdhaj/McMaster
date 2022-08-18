@@ -1,0 +1,17 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+MAZE(Start=8) = P[Start],
+P[0] = (north->STOP|east->P[1]),
+P[1] = (east ->P[2]|south->P[4]|west->P[0]),
+P[2] = (south->P[5]|west ->P[1]),
+P[3] = (east ->P[4]|south->P[6]),
+P[4] = (north->P[1]|west ->P[3]),
+P[5] = (north->P[2]|south->P[8]),
+P[6] = (north->P[3]),
+P[7] = (east ->P[8]),
+P[8] = (north->P[5]|west->P[7]).
+
+||GETOUT = MAZE(0).

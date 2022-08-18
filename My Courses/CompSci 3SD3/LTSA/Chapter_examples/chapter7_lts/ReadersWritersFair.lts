@@ -1,0 +1,54 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+/* Fair Readers and Writers
+*/
+
+const False = 0   const True  = 1
+range Bool  = False..True
+const Nread = 2           // Maximum readers
+const Nwrite= 2           // Maximum writers
+
+set Actions = {acquireRead,releaseRead,acquireWrite,releaseWrite,requestWrite}
+
+READER = (acquireRead->examine->releaseRead->READER)
+	  +Actions
+	  \{examine}.
+WRITER = (requestWrite->acquireWrite->modify->releaseWrite->WRITER)
+	  +Actions
+	  \{modify}.
+
+RW_LOCK = RW[0][False][0][False],
+RW[readers:0..Nread][writing:Bool][waitingW:0..Nwrite][readersturn:Bool] =
+    (when (!writing && (waitingW==0||readersturn)) 
+       acquireRead -> RW[readers+1][writing][waitingW][readersturn]
+    |releaseRead -> RW[readers-1][writing][waitingW][False]
+    |when (readers==0 && !writing) 
+       acquireWrite ->RW[readers][True][waitingW-1][readersturn]
+    |releaseWrite ->RW[readers][False][waitingW][True]
+    |requestWrite ->RW[readers][writing][waitingW+1][readersturn]
+    ).
+
+property SAFE_RW     = (acquireRead->READING[1] | acquireWrite->WRITING),
+READING[i:1..Nread] = (when(i<Nread) acquireRead -> READING[i+1]
+                      |when(i>1)  releaseRead  -> READING[i-1]
+                      |when(i==1) releaseRead -> SAFE_RW
+                      ),
+WRITING             = (releaseWrite -> SAFE_RW).
+
+||READWRITELOCK = (RW_LOCK || SAFE_RW).
+
+
+||READERS_WRITERS = (  reader[1..Nread] :READER 
+                    || writer[1..Nwrite]:WRITER 
+                    || {reader[1..Nread],writer[1..Nwrite]}::READWRITELOCK).
+
+||RW_PROGRESS = READERS_WRITERS 
+                >>{reader[1..Nread].releaseRead,
+                   writer[1..Nread].releaseWrite}.
+                                      
+
+progress WRITE = {writer[1..Nwrite].acquireWrite}
+progress READ = {reader[1..Nread].acquireRead}

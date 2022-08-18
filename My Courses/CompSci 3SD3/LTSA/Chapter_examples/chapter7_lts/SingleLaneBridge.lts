@@ -1,0 +1,50 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+/* Single Lane bridge
+Red cars go from west to east
+Blue cars go from east to west
+*/
+
+const N = 3 // number of each type of car
+range T = 0..N // type of car count
+range ID= 1..N // car identities
+
+BRIDGE = BRIDGE[0][0],  //initially empty
+BRIDGE[nr:T][nb:T] =    //nr is the red count, nb the blue count
+	(when (nb==0) 
+          red[ID].enter  -> BRIDGE[nr+1][nb]
+        |red[ID].exit    -> BRIDGE[nr-1][nb]
+        |when (nr==0) 
+          blue[ID].enter -> BRIDGE[nr][nb+1]
+        |blue[ID].exit   -> BRIDGE[nr][nb-1]
+	).
+
+CAR = (enter->exit->CAR).
+
+/* cars may not overtake each other */
+NOPASS1   = C[1],
+C[i:ID]   = ([i].enter -> C[i%N+1]).
+
+NOPASS2   = C[1],
+C[i:ID]   = ([i].exit -> C[i%N+1]).
+
+||CONVOY = ([ID]:CAR || NOPASS1 || NOPASS2).
+
+||CARS = (red:CONVOY || blue:CONVOY).
+
+||SingleLaneBridge = (CARS || BRIDGE || ONEWAY ).
+
+property ONEWAY = (red[ID].enter  -> RED[1] 
+		  |blue[ID].enter -> BLUE[1]
+		  ),
+RED[i:ID] = (red[ID].enter -> RED[i+1]
+            |when(i==1)red[ID].exit  -> ONEWAY
+            |when( i>1)red[ID].exit  -> RED[i-1]
+            ),
+BLUE[i:ID] = (blue[ID].enter -> BLUE[i+1]
+             |when(i==1)blue[ID].exit  -> ONEWAY
+             |when( i>1)blue[ID].exit  -> BLUE[i-1]
+             ).

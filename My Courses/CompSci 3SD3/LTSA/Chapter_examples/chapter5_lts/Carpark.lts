@@ -1,0 +1,15 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+CARPARKCONTROL(N=4) = SPACES[N],
+SPACES[i:0..N] = (when(i>0) arrive->SPACES[i-1]
+		 |when(i<N) depart->SPACES[i+1]
+		 ).
+
+ARRIVALS   = (arrive->ARRIVALS).
+DEPARTURES = (depart->DEPARTURES).
+
+||CARPARK = (ARRIVALS||CARPARKCONTROL(4)||DEPARTURES).
+

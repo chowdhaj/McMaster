@@ -1,0 +1,16 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+ROTATOR = PAUSED,
+PAUSED  = (run->RUN | pause->PAUSED
+          |interrupt->STOP),
+RUN     = (pause->PAUSED |{run,rotate}->RUN
+          |interrupt->STOP).
+
+||THREAD_DEMO = (a:ROTATOR || b:ROTATOR)
+                /{stop/{a,b}.interrupt}.
+
+MAIN = ({a.rotate,a.run,a.pause,stop,
+         b.rotate,b.run,b.pause}->MAIN).

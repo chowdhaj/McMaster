@@ -1,0 +1,11 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+const N = 1
+range T = 0..N
+range R = 0..2*N
+
+SUM        = (in[a:T][b:T]->TOTAL[a+b]),
+TOTAL[s:R] = (out[s]->SUM).

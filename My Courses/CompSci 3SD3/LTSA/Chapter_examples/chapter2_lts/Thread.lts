@@ -1,0 +1,18 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+THREAD       = CREATED,
+CREATED      = (start          ->RUNNING 
+               |stop           ->TERMINATED),
+RUNNING      = ({suspend,sleep}->NON_RUNNABLE  
+               |yield          ->RUNNABLE   
+               |{stop,end}     ->TERMINATED         
+               |run            ->RUNNING),
+RUNNABLE     = (suspend        ->NON_RUNNABLE 
+               |dispatch       ->RUNNING 
+               |stop           ->TERMINATED),
+NON_RUNNABLE = (resume         ->RUNNABLE    
+               |stop           ->TERMINATED),
+TERMINATED   = STOP.

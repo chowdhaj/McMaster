@@ -1,0 +1,9 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+SWITCH =  (on->off->SWITCH).
+||TWO_SWITCH = (a:SWITCH || b:SWITCH).
+
+||SWITCHES(N=3) = (forall[i:1..N] s[i]:SWITCH).

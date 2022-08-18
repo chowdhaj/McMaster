@@ -1,0 +1,9 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+RESOURCE = (acquire->release->RESOURCE).
+USER = (acquire->use->release->USER).
+
+||RESOURCE_SHARE = (a:USER || b:USER || {a,b}::RESOURCE).

@@ -1,0 +1,7 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+property POLITE 
+  = (knock->enter->POLITE).

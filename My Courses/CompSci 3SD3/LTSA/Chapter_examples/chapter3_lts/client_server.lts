@@ -1,0 +1,10 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+CLIENT = (call->wait->continue->CLIENT).
+SERVER = (request->service->reply->SERVER).
+
+||CLIENT_SERVER = (CLIENT || SERVER)
+                 /{call/request, reply/wait}.

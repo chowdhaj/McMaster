@@ -1,0 +1,11 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+NORMAL   = (work->play->NORMAL|sleep->play->NORMAL).
+
+||HIGH   = (NORMAL)<<{work}.
+
+||LOW    = (NORMAL)>>{work}.
+

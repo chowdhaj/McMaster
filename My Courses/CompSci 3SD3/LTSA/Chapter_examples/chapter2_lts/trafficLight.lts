@@ -1,0 +1,8 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+TRAFFICLIGHT = (red->orange->green
+	        ->orange->TRAFFICLIGHT
+	       ).

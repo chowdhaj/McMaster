@@ -1,0 +1,10 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+MAKE_A   = (makeA->ready->used->MAKE_A).
+MAKE_B   = (makeB->ready->used->MAKE_B).
+ASSEMBLE = (ready->assemble->used->ASSEMBLE).
+
+||FACTORY = (MAKE_A || MAKE_B || ASSEMBLE).

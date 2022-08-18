@@ -1,0 +1,10 @@
+
+
+STATE0 = (tick -> STATE1),
+STATE1 = (tick -> STATE2),
+STATE2 = (tick -> STATE3),
+STATE3 = (tick -> STATE4),
+STATE4 = STOP.
+
+FOURTTICK = STATE[0],
+STATE[i:0..4] = (when i<4 tick -> STATE[i+1]).

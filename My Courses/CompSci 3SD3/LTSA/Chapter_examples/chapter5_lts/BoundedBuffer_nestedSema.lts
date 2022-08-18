@@ -1,0 +1,25 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+const Max = 5
+range Int = 0..Max
+
+SEMAPHORE(I=0) = SEMA[I],
+SEMA[v:Int]    = (up->SEMA[v+1]
+                 |when(v>0) down->SEMA[v-1]
+		 ).
+
+BUFFER =  (put -> empty.down ->full.up ->BUFFER
+          |get -> full.down ->empty.up ->BUFFER
+          ).
+
+PRODUCER = (put -> PRODUCER).
+CONSUMER = (get -> CONSUMER).
+
+||BOUNDEDBUFFER = (PRODUCER|| BUFFER || CONSUMER
+                  ||empty:SEMAPHORE(5) 
+                  ||full:SEMAPHORE(0))
+		  @{put,get}.
+

@@ -1,0 +1,12 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+SERVERv2 = (accept.request
+            ->service->accept.reply->SERVERv2).
+CLIENTv2 = (call.request
+            ->call.reply->continue->CLIENTv2).
+
+||CLIENT_SERVERv2 = (CLIENTv2 || SERVERv2)
+                    /{call/accept}.
