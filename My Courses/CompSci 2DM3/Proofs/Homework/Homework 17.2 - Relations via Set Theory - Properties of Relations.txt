@@ -1,0 +1,283 @@
+Homework Notebook 17.2: Relations via Set Theory: Properties of Relations
+
+Theorem “`Id` is reflexive”: is-reflexive Id
+Proof:
+    is-reflexive Id
+  ≡⟨ “Definition of reflexivity” ⟩
+    ∀ x • x ⦗ Id ⦘ x
+  ≡⟨ Subproof:
+        For any `x`:
+            x ⦗ Id ⦘ x
+          ≡⟨ “Identity relation” ⟩
+            x = x  — This is 【 “Reflexivity of =” 】
+    ⟩
+    true
+
+Theorem “`Id` is reflexive”: is-reflexive Id
+Proof:
+  Using “Definition of reflexivity”:
+    Subproof for `∀ x • x ⦗ Id ⦘ x`:
+      For any `x`:
+          x ⦗ Id ⦘ x
+        ≡⟨ “Identity relation” ⟩
+          x = x  — This is “Reflexivity of =”
+
+Theorem “`Id` is reflexive”: is-reflexive Id
+Proof:
+  Using “Definition of reflexivity”:
+    Subproof:
+      For any `x`:
+          x ⦗ Id ⦘ x
+        ≡⟨ “Identity relation” ⟩
+          x = x  — This is “Reflexivity of =”
+
+Theorem “`Id` is reflexive”: is-reflexive Id
+Proof:
+  Using “Definition of reflexivity”:
+    For any `x`:
+        x ⦗ Id ⦘ x
+      ≡⟨ “Identity relation” ⟩
+        x = x  — This is “Reflexivity of =”
+
+Theorem “Reflexivity”:  is-reflexive R  ≡  Id ⊆ R
+Proof:
+    Id ⊆ R
+  ≡ ⟨ “Relation inclusion” ⟩
+    (∀ x • (∀ y • (x ⦗ Id ⦘ y ⇒ x ⦗ R ⦘ y)))
+  ≡ ⟨ “Trading for ∀” ⟩ 
+    (∀ x • (∀ y ❙ x ⦗ Id ⦘ y • x ⦗ R ⦘ y ))
+  ≡ ⟨ “Identity relation” ⟩
+    (∀ x • (∀ y ❙ (x = y) • x ⦗ R ⦘ y )) 
+  ≡ ⟨ “One-point rule for ∀” ⟩
+    (∀ x • (x ⦗ R ⦘ y)[y ≔ x] )
+  ≡ ⟨ Substitution ⟩
+    ∀ x • x ⦗ R ⦘ x
+  ≡ ⟨ “Definition of reflexivity” ⟩ 
+    is-reflexive R
+
+Theorem “Composition of reflexive relations”:
+  is-reflexive R ⇒ is-reflexive S ⇒ is-reflexive (R ⨾ S)
+Proof:
+  Assuming `is-reflexive R`:
+    Assuming `is-reflexive S`:
+      Using “Definition of reflexivity”:
+        For any `x`:
+            x ⦗ R ⨾ S ⦘ x
+          ≡ ⟨ “Relation composition” ⟩
+            ∃ z • x ⦗ R ⦘ z ∧ z ⦗ S ⦘ x
+          ⇐ ⟨ “∃-Introduction” ⟩
+            (x ⦗ R ⦘ z ∧ z ⦗ S ⦘ x)[z ≔ x]
+          ≡ ⟨ Substitution ⟩
+            (x ⦗ R ⦘ x ∧ x ⦗ S ⦘ x) 
+          ≡ ⟨ Assumption `is-reflexive R` with “Definition of reflexivity” ⟩ 
+            (true ∧ x ⦗ S ⦘ x) 
+          ≡ ⟨ Assumption `is-reflexive S` with “Definition of reflexivity” ⟩
+            true ∧ true 
+          ≡ ⟨ “Identity of ∧” ⟩
+            true  
+
+Theorem “Composition of reflexive relations”:
+  is-reflexive R ⇒ is-reflexive S ⇒ is-reflexive (R ⨾ S)
+Proof:
+  Assuming `is-reflexive R` and using with “Definition of reflexivity”:
+    Assuming `is-reflexive S` and using with “Definition of reflexivity”:
+      Using “Definition of reflexivity”: 
+        For any `x`:
+            x ⦗ R ⨾ S ⦘ x
+          ≡ ⟨ “Relation composition” ⟩
+            ∃ z • x ⦗ R ⦘ z ∧ z ⦗ S ⦘ x
+          ⇐ ⟨ “∃-Introduction” ⟩
+            (x ⦗ R ⦘ z ∧ z ⦗ S ⦘ x)[z ≔ x]
+          ≡ ⟨ Substitution ⟩
+            (x ⦗ R ⦘ x ∧ x ⦗ S ⦘ x) 
+          ≡ ⟨ Assumption `is-reflexive R` ⟩ 
+            (true ∧ x ⦗ S ⦘ x) 
+          ≡ ⟨ Assumption `is-reflexive S` ⟩ 
+            true ∧ true 
+          ≡ ⟨ “Identity of ∧” ⟩ 
+            true  
+
+Theorem “Converse of reflexive relations”:
+  is-reflexive R ⇒ is-reflexive (R ˘)
+Proof:
+    Assuming `is-reflexive R` and using with “Definition of reflexivity”:
+        Using “Definition of reflexivity”:
+            For any `x`:
+                x ⦗ R ˘ ⦘ x
+              ≡ ⟨ “Relation converse” ⟩
+                x ⦗ R ⦘ x 
+              ≡ ⟨ Assumption `is-reflexive R` ⟩ 
+                true
+
+Theorem “Converse reflects reflectivity”:
+  is-reflexive (R ˘) ⇒ is-reflexive R
+Proof:
+    Assuming `is-reflexive (R ˘)` and using with “Definition of reflexivity”:
+        Using “Definition of reflexivity”:
+            For any `x`:
+                x ⦗ R ⦘ x
+              ≡ ⟨ “Relation converse” ⟩
+                x ⦗ R ˘ ⦘ x
+              ≡ ⟨ Assumption `is-reflexive (R ˘)` ⟩
+                true  
+
+Theorem “Converse of transitive relations”:
+    is-transitive R ⇒ is-transitive (R ˘)
+Proof:
+    Assuming `is-transitive R` and using with “Definition of transitivity”:
+        Using “Definition of transitivity”:
+            For any `x`, `y`, `z`:
+                x ⦗ R ˘ ⦘ y ⦗ R ˘ ⦘ z  ⇒  x ⦗ R ˘ ⦘ z
+              ≡ ⟨ “Relation converse” ⟩
+                x ⦗ R ˘ ⦘ y ⦗ R ˘ ⦘ z  ⇒  z ⦗ R ⦘ x
+              ≡ ⟨ “Relation converse” ⟩
+                z ⦗ R ⦘ y ⦗ R ⦘ x  ⇒  z ⦗ R ⦘ x
+              ≡ ⟨ Assumption `is-transitive R` ⟩
+                true
+
+Theorem “Transitivity”:
+  is-transitive R   ≡   R ⨾ R ⊆ R
+Proof:
+    R ⨾ R ⊆ R
+  ≡ ⟨ “Relation inclusion” ⟩
+    ( ∀ x • ( ∀ y •  (x ⦗ R ⨾ R ⦘ y ⇒ x ⦗ R ⦘ y)  ) )
+  ≡ ⟨ “Relation composition” ⟩
+    ( ∀ x • ( ∀ y •  ( (∃ z • x ⦗ R ⦘ z ∧ z ⦗ R ⦘ y)  ⇒ x ⦗ R ⦘ y)  ) )
+  ≡ ⟨ “Definition of Implication” ⟩
+    ( ∀ x • ( ∀ y •  ( ¬ (∃ z • x ⦗ R ⦘ z ∧ z ⦗ R ⦘ y)  ∨  (x ⦗ R ⦘ y))  ) ) 
+  ≡ ⟨ “Generalised De Morgan” ⟩
+    ( ∀ x • ( ∀ y •  ( (∀ z • ¬ (x ⦗ R ⦘ z ∧ z ⦗ R ⦘ y))  ∨  (x ⦗ R ⦘ y))  ) ) 
+  ≡ ⟨ “Trading for ∃” ⟩
+    ( ∀ x • ( ∀ y •  ( (∀ z • ¬ (x ⦗ R ⦘ z ∧ z ⦗ R ⦘ y))  ∨  (x ⦗ R ⦘ y))  ) ) 
+  ≡ ⟨ “De Morgan” ⟩
+    ( ∀ x • ( ∀ y •  ( (∀ z • ¬ (x ⦗ R ⦘ z) ∨ ¬ (z ⦗ R ⦘ y))  ∨  (x ⦗ R ⦘ y))  ) )  
+  ≡ ⟨ “Trading for ∀” ⟩
+    ( ∀ x • ( ∀ y •  ( (∀ z ❙ (x ⦗ R ⦘ z) • ¬ (z ⦗ R ⦘ y))  ∨  (x ⦗ R ⦘ y))  ) )  
+  ≡ ⟨ “Symmetry of ∨” ⟩ 
+    ( ∀ x • ( ∀ y •  ( (x ⦗ R ⦘ y) ∨ (∀ z ❙ (x ⦗ R ⦘ z) • ¬ (z ⦗ R ⦘ y))  )  ) )  
+  ≡ ⟨ “Distributivity of ∨ over ∀” ⟩
+    ( ∀ x • ( ∀ y •  ( (∀ z ❙ (x ⦗ R ⦘ z) • (x ⦗ R ⦘ y) ∨ ¬ (z ⦗ R ⦘ y))  )  ) )  
+  ≡ ⟨ “Definition of Implication” ⟩
+    ( ∀ x • ( ∀ y •  ( (∀ z ❙ (x ⦗ R ⦘ z) • (z ⦗ R ⦘ y) ⇒ (x ⦗ R ⦘ y))  )  ) ) 
+  ≡ ⟨ “Trading for ∀” ⟩
+    ( ∀ x • ( ∀ y •  ( (∀ z ❙ (x ⦗ R ⦘ z) ∧ (z ⦗ R ⦘ y) • (x ⦗ R ⦘ y))  )  ) ) 
+  ≡ ⟨ “Reflexivity of =” ⟩
+    ( ∀ x • ( ∀ y •  ( (∀ z ❙ (x ⦗ R ⦘ z ⦗ R ⦘ y) • (x ⦗ R ⦘ y))  )  ) )  
+  ≡ ⟨ “Trading for ∀” ⟩
+    ( ∀ x • ( ∀ y •  ( (∀ z • (x ⦗ R ⦘ z ⦗ R ⦘ y) ⇒ (x ⦗ R ⦘ y))  )  ) )   
+  ≡⟨ “Interchange of dummies for ∀” ⟩
+    ∀ x • ∀ z • ∀ y • ((x ⦗ R ⦘ z ⦗ R ⦘ y)) ⇒  x ⦗ R ⦘ y
+  ≡⟨ “Definition of transitivity” ⟩
+    is-transitive R
+
+Theorem (R1): ∀ b : B • ∀ c : C •
+  (∀ a : A ❙ a ⦗ R ⦘ b • a ⦗ S ⦘ c)  ≡  b ⦗ ~ (R ˘ ⨾ ~ S) ⦘ c
+Proof:
+    For any `b`:
+        For any `c`:
+            (∀ a : A ❙ a ⦗ R ⦘ b • a ⦗ S ⦘ c)  ≡  b ⦗ ~ (R ˘ ⨾ ~ S) ⦘ c
+          ≡ ⟨ “Relation complement” ⟩
+            (∀ a : A ❙ a ⦗ R ⦘ b • a ⦗ S ⦘ c)  ≡  ¬ (b ⦗ (R ˘ ⨾ ~ S) ⦘ c)
+          ≡ ⟨ “Relation composition” ⟩
+            (∀ a : A ❙ a ⦗ R ⦘ b • a ⦗ S ⦘ c)  ≡  ¬ (∃ a • b ⦗ R ˘ ⦘ a ∧ a ⦗ ~ S ⦘ c)
+          ≡ ⟨ “Relation converse” ⟩
+            (∀ a : A ❙ a ⦗ R ⦘ b • a ⦗ S ⦘ c)  ≡  ¬ (∃ a • a ⦗ R ⦘ b ∧ a ⦗ ~ S ⦘ c) 
+          ≡ ⟨ “Relation complement” ⟩
+            (∀ a : A ❙ a ⦗ R ⦘ b • a ⦗ S ⦘ c)  ≡  ¬ (∃ a • a ⦗ R ⦘ b ∧ ¬ (a ⦗ S ⦘ c)) 
+          ≡ ⟨ “Generalised De Morgan” ⟩
+            (∀ a : A ❙ a ⦗ R ⦘ b • a ⦗ S ⦘ c)  ≡  (∀ a : A • ¬ (a ⦗ R ⦘ b ∧ ¬ (a ⦗ S ⦘ c)) )
+          ≡ ⟨ “De Morgan” ⟩
+            (∀ a : A ❙ a ⦗ R ⦘ b • a ⦗ S ⦘ c)  ≡  (∀ a : A • ¬ (a ⦗ R ⦘ b) ∨ ¬ ¬ (a ⦗ S ⦘ c)) 
+          ≡ ⟨ “Double negation” ⟩
+            (∀ a : A ❙ a ⦗ R ⦘ b • a ⦗ S ⦘ c)  ≡  (∀ a : A • ¬ (a ⦗ R ⦘ b) ∨ (a ⦗ S ⦘ c))  
+          ≡ ⟨ “Trading for ∀” ⟩
+            (∀ a : A ❙ a ⦗ R ⦘ b • a ⦗ S ⦘ c)  ≡  (∀ a : A ❙ (a ⦗ R ⦘ b) • (a ⦗ S ⦘ c))
+          ≡ ⟨ “Reflexivity of ≡” ⟩
+            true 
+
+Theorem (R2): R ⨾ ~ (R ˘ ⨾ ~ S) ⊆ S
+Proof:
+  Using “Relation inclusion”:
+    For any `a`, `c`:
+        (a ⦗ R ⨾ ~ (R ˘ ⨾ ~ S) ⦘ c ⇒ a ⦗ S ⦘ c)
+      ≡ ⟨ “Relation composition” ⟩
+        (∃ b • (a ⦗ R ⦘ b) ∧ (b ⦗ ~ (R ˘ ⨾ ~ S) ⦘ c))
+        ⇒ (a ⦗ S ⦘ c)
+      ≡ ⟨ “Relation complement” ⟩
+        (∃ b • (a ⦗ R ⦘ b) ∧ ¬ (b ⦗ (R ˘ ⨾ ~ S) ⦘ c))
+        ⇒ (a ⦗ S ⦘ c)
+      ≡ ⟨ “Relation composition” ⟩
+        (∃ b • (a ⦗ R ⦘ b) ∧ ¬ ( ∃ a • b ⦗ R ˘ ⦘ a ∧ a ⦗ ~ S ⦘ c ))
+        ⇒ (a ⦗ S ⦘ c)
+      ≡ ⟨ “Relation converse” ⟩
+        (∃ b • (a ⦗ R ⦘ b) ∧ ¬ ( ∃ a • a ⦗ R ⦘ b ∧ a ⦗ ~ S ⦘ c ))
+        ⇒ (a ⦗ S ⦘ c)
+      ≡ ⟨ “Relation complement” ⟩
+        (∃ b • (a ⦗ R ⦘ b) ∧ ¬ ( ∃ a • a ⦗ R ⦘ b ∧ ¬ (a ⦗ S ⦘ c) ))
+        ⇒ (a ⦗ S ⦘ c)
+      ≡ ⟨ “Reflexivity of =” ⟩
+        (∃ b • (a ⦗ R ⦘ b) ∧
+        ¬ ( ∃ a ❙ true • a ⦗ R ⦘ b ∧ ¬ (a ⦗ S ⦘ c) ))
+        ⇒ (a ⦗ S ⦘ c)
+      ≡ ⟨ “Definition of Implication” ⟩
+        ¬ (∃ b ❙ true • (a ⦗ R ⦘ b) ∧
+        ¬ ( ∃ a ❙ true • a ⦗ R ⦘ b ∧ ¬ (a ⦗ S ⦘ c) ))
+        ∨ (a ⦗ S ⦘ c)
+      ≡ ⟨ “Trading for ∃” ⟩
+        ¬ (∃ b ❙ true ∧ (a ⦗ R ⦘ b) •
+        ¬ ( ∃ a ❙ true • a ⦗ R ⦘ b ∧ ¬ (a ⦗ S ⦘ c) ))
+        ∨ (a ⦗ S ⦘ c)
+      ≡ ⟨ “Identity of ∧” ⟩
+        ¬ (∃ b ❙ (a ⦗ R ⦘ b) •
+        ¬ (∃ a ❙ true • a ⦗ R ⦘ b ∧ ¬ (a ⦗ S ⦘ c) ))
+        ∨ (a ⦗ S ⦘ c)
+      ≡ ⟨ “Symmetry of ∨” ⟩ 
+        (a ⦗ S ⦘ c) ∨
+            ¬ (∃ b ❙ (a ⦗ R ⦘ b) • ¬ (∃ a ❙ true • a ⦗ R ⦘ b ∧ ¬ (a ⦗ S ⦘ c) ))
+      ≡ ⟨ “Double negation” ⟩
+        ¬ ¬ (a ⦗ S ⦘ c) ∨
+            ¬ (∃ b ❙ (a ⦗ R ⦘ b) • ¬ (∃ a ❙ true • a ⦗ R ⦘ b ∧ ¬ (a ⦗ S ⦘ c) ))
+      ≡ ⟨ “De Morgan” ⟩
+        ¬ (¬ (a ⦗ S ⦘ c) ∧
+            (∃ b ❙ (a ⦗ R ⦘ b) • ¬ (∃ a ❙ true • a ⦗ R ⦘ b ∧ ¬ (a ⦗ S ⦘ c) )))
+      ≡ ⟨ “Distributivity of ∧ over ∃” ⟩
+        ¬ (∃ b ❙ (a ⦗ R ⦘ b) • (¬ (a ⦗ S ⦘ c) ∧ ¬ (∃ a • a ⦗ R ⦘ b ∧ ¬ (a ⦗ S ⦘ c) )))
+      ≡ ⟨ “Trading for ∃” ⟩  
+        ¬ (∃ b ❙ (a ⦗ R ⦘ b) • (¬ (a ⦗ S ⦘ c) ∧ ¬ (∃ a ❙ a ⦗ R ⦘ b • ¬ (a ⦗ S ⦘ c) )))
+      ≡ ⟨ “Generalised De Morgan” ⟩
+        (∀ b ❙ (a ⦗ R ⦘ b) • ¬ (¬ (a ⦗ S ⦘ c) ∧ (∀ a ❙ a ⦗ R ⦘ b • ¬ ¬ (a ⦗ S ⦘ c) )))
+      ≡ ⟨ “Double negation” ⟩ 
+        (∀ b ❙ (a ⦗ R ⦘ b) • ¬ (¬ (a ⦗ S ⦘ c) ∧ (∀ a ❙ a ⦗ R ⦘ b • (a ⦗ S ⦘ c) )))
+      ≡ ⟨ “De Morgan” ⟩
+        (∀ b ❙ (a ⦗ R ⦘ b) • (¬ ¬ (a ⦗ S ⦘ c) ∨ ¬ (∀ a ❙ a ⦗ R ⦘ b • (a ⦗ S ⦘ c) )))
+      ≡ ⟨ “Double negation” ⟩
+        (∀ b ❙ (a ⦗ R ⦘ b) • ((a ⦗ S ⦘ c) ∨ ¬ (∀ a ❙ a ⦗ R ⦘ b • (a ⦗ S ⦘ c) ))) 
+      ≡ ⟨ “Trading for ∀” ⟩ 
+        (∀ b • (a ⦗ R ⦘ b) ⇒ ((a ⦗ S ⦘ c) ∨ ¬ (∀ a ❙ a ⦗ R ⦘ b • (a ⦗ S ⦘ c) ))) 
+      ≡ ⟨ “Definition of Implication” ⟩
+        (∀ b • ¬ (a ⦗ R ⦘ b) ∨ ((a ⦗ S ⦘ c) ∨ ¬ (∀ a ❙ a ⦗ R ⦘ b • (a ⦗ S ⦘ c) ))) 
+      ≡ ⟨ “Trading for ∀” ⟩
+        (∀ b • ¬ (a ⦗ R ⦘ b) ∨ ((a ⦗ S ⦘ c) ∨ ¬ (∀ a • a ⦗ R ⦘ b ⇒ (a ⦗ S ⦘ c) ))) 
+      ≡ ⟨ “Definition of Implication” ⟩
+        (∀ b • ¬ (a ⦗ R ⦘ b) ∨ ((a ⦗ S ⦘ c) ∨ ¬ (∀ a • ¬ (a ⦗ R ⦘ b) ∨ (a ⦗ S ⦘ c) ))) 
+      ≡ ⟨ Subproof:
+            For any `b`:
+                ¬ (a ⦗ R ⦘ b) ∨ ((a ⦗ S ⦘ c) ∨ ¬ (∀ a • ¬ (a ⦗ R ⦘ b) ∨ (a ⦗ S ⦘ c) ))              
+              ≡ ⟨ “Generalised De Morgan” ⟩
+                ¬ (a ⦗ R ⦘ b) ∨ ((a ⦗ S ⦘ c) ∨ (∃ a • ¬ (¬ (a ⦗ R ⦘ b) ∨ (a ⦗ S ⦘ c) )))
+              ≡ ⟨ “De Morgan” ⟩
+                ¬ (a ⦗ R ⦘ b) ∨ ((a ⦗ S ⦘ c) ∨ (∃ a • ¬ ¬ (a ⦗ R ⦘ b) ∧ ¬ (a ⦗ S ⦘ c) ))
+              ≡ ⟨ “Double negation” ⟩
+                ¬ (a ⦗ R ⦘ b) ∨ ((a ⦗ S ⦘ c) ∨ (∃ a • (a ⦗ R ⦘ b) ∧ ¬ (a ⦗ S ⦘ c) ))
+              ⇐ ⟨ “Monotonicity of ∨” with “∃-Introduction” ⟩
+                ¬ (   a ⦗ R ⦘ b) ∨ ((a ⦗ S ⦘ c) ∨ ( (a ⦗ R ⦘ b) ∧ ¬ (a ⦗ S ⦘ c) )[a ≔ a]) 
+              ≡ ⟨ Substitution ⟩
+                ¬ (a ⦗ R ⦘ b) ∨ ((a ⦗ S ⦘ c) ∨ ( (a ⦗ R ⦘ b) ∧ ¬ (a ⦗ S ⦘ c) )   ) 
+              ≡ ⟨ “Absorption” ⟩
+                ¬ (a ⦗ R ⦘ b) ∨ ((a ⦗ S ⦘ c) ∨ (a ⦗ R ⦘ b))
+              ≡ ⟨ “Excluded middle” ⟩
+                true ∨ (a ⦗ S ⦘ c)
+              ≡ ⟨ “Zero of ∨” ⟩
+                true 
+        ⟩
+        true

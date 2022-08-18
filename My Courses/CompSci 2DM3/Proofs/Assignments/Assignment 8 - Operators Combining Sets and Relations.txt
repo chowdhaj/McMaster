@@ -1,0 +1,507 @@
+Assignment 8: Operators Combining Sets and Relations
+
+Theorem “Converse of ×”:  (A × B) ˘ = B × A
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `∀ x • ∀ y • x ⦗ B × A ⦘ y ≡ x ⦗ (A × B) ˘ ⦘ y`:
+            For any `x`, `y`:
+                By “Relation converse” and “Relationship via ×” and “Symmetry of ∧”
+
+Lemma “Definition of ⩤ via ◁”:   A ⩤ R  =  ~ A ◁ R
+Proof:
+    By “Definition of ⩤” and “Definition of ◁”
+
+Lemma “Definition of ⩥ via ▷”:   R ⩥ B  =  R ▷ ~ B
+Proof:
+    By “Definition of ⩥” and “Definition of ▷”
+
+Theorem “Distributivity of ◁ over relation intersection”:
+    A ◁ (R ∩ S) = (A ◁ R) ∩ (A ◁ S)
+Proof:
+    By “Definition of ◁” and “Idempotency of ∩” and “Definition of ◁”
+
+Theorem “Distributivity of ◁ over set intersection”:
+    (A ∩ B) ◁ R = (A ◁ R) ∩ (B ◁ R)
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `(∀ x • (∀ y • (x ⦗ (A ◁ R) ∩ (B ◁ R) ⦘ y ≡ x ⦗ (A ∩ B) ◁ R ⦘ y)))`:
+            For any `x`:
+                For any `y`:
+                    x ⦗ (A ◁ R) ∩ (B ◁ R) ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩
+                    x ⦗ (A ◁ R) ⦘ y ∧ x ⦗ (B ◁ R) ⦘ y 
+                  ≡ ⟨ “Definition of ◁” ⟩ 
+                    x ⦗ R ∩ (A × 𝐔) ⦘ y ∧ x ⦗ (B ◁ R) ⦘ y 
+                  ≡ ⟨ “Definition of ◁” ⟩ 
+                    x ⦗ R ∩ (A × 𝐔) ⦘ y ∧ x ⦗ R ∩ (B × 𝐔) ⦘ y 
+                  ≡ ⟨ “Relation intersection” ⟩ 
+                    x ⦗ R ⦘ y ∧ x ⦗ (A × 𝐔) ⦘ y ∧ x ⦗ R ⦘ y ∧ x ⦗ (B × 𝐔) ⦘ y
+                  ≡ ⟨ “Idempotency of ∧” ⟩ 
+                    x ⦗ (A × 𝐔) ⦘ y ∧ x ⦗ R ⦘ y ∧ x ⦗ (B × 𝐔) ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩
+                    x ⦗ R ⦘ y ∧ x ⦗ (B × 𝐔) ∩ (A × 𝐔) ⦘ y 
+                  ≡ ⟨ “Symmetry of ∩” ⟩
+                    x ⦗ R ⦘ y ∧ x ⦗ (A × 𝐔) ∩ (B × 𝐔) ⦘ y  
+                  ≡ ⟨ “Distributivity of × over ∩” ⟩
+                    x ⦗ R ⦘ y ∧ x ⦗ ((A ∩ B) × 𝐔) ⦘ y   
+                  ≡ ⟨ “Relation intersection” ⟩
+                    x ⦗ R ∩ ((A ∩ B) × 𝐔) ⦘ y   
+                  ≡ ⟨ “Definition of ◁” ⟩
+                    x ⦗ (A ∩ B) ◁ R ⦘ y
+                     
+Theorem “Distributivity of ◁ over relation union”:
+    A ◁ (R ∪ S) = (A ◁ R) ∪ (A ◁ S)
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `∀ x • ∀ y • x ⦗ (A ◁ R) ∪ (A ◁ S) ⦘ y ≡ x ⦗ A ◁ (R ∪ S) ⦘ y`:
+            For any `x`:
+                For any `y`:
+                    x ⦗ (A ◁ R) ∪ (A ◁ S) ⦘ y
+                  ≡ ⟨ “Relation union” ⟩ 
+                    x ⦗ (A ◁ R) ⦘ y ∨ x ⦗ (A ◁ S) ⦘ y
+                  ≡ ⟨ “Definition of ◁” ⟩
+                    x ⦗ (A ◁ R) ⦘ y ∨ x ⦗ (A × 𝐔) ∩ S ⦘ y
+                  ≡ ⟨ “Definition of ◁” ⟩
+                    x ⦗ (A × 𝐔) ∩ R ⦘ y ∨ x ⦗ (A × 𝐔) ∩ S ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩
+                    (x ⦗ (A × 𝐔) ⦘ y ∧ x ⦗ R ⦘ y)  ∨ x ⦗ (A × 𝐔) ∩ S ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩
+                    (x ⦗ (A × 𝐔) ⦘ y ∧ x ⦗ R ⦘ y)  ∨  (x ⦗ (A × 𝐔) ⦘ y ∧ x ⦗ S ⦘ y )
+                  ≡ ⟨ “Distributivity of ∧ over ∨” ⟩
+                    x ⦗ (A × 𝐔) ⦘ y ∧ (x ⦗ R ⦘ y  ∨  x ⦗ S ⦘ y )
+                  ≡ ⟨ “Relation union” ⟩
+                    x ⦗ (A × 𝐔) ⦘ y ∧ x ⦗ R ∪ S ⦘ y 
+                  ≡ ⟨ “Relation intersection” ⟩
+                    x ⦗ (R ∪ S) ∩ (A × 𝐔) ⦘ y 
+                  ≡ ⟨ “Definition of ◁” ⟩
+                    x ⦗ A ◁ (R ∪ S) ⦘ y
+
+Theorem “Distributivity of ◁ over set union”:
+    (A ∪ B) ◁ R = (A ◁ R) ∪ (B ◁ R)
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `∀ x • ∀ y • x ⦗ (A ◁ R) ∪ (B ◁ R) ⦘ y ≡ x ⦗ (A ∪ B) ◁ R ⦘ y`:
+            For any `x`:
+                For any `y`:
+                    x ⦗ (A ◁ R) ∪ (B ◁ R) ⦘ y
+                  ≡ ⟨ “Relation union” ⟩
+                    x ⦗ (A ◁ R) ⦘ y ∨ x ⦗ (B ◁ R) ⦘ y
+                  ≡ ⟨ “Definition of ◁” ⟩
+                    x ⦗ (A × 𝐔) ∩ R ⦘ y ∨ x ⦗ (B ◁ R) ⦘ y
+                  ≡ ⟨ “Definition of ◁” ⟩
+                    x ⦗ (A × 𝐔) ∩ R ⦘ y ∨ x ⦗ (B × 𝐔) ∩ R ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩
+                    (x ⦗ (A × 𝐔) ⦘ y ∧ x ⦗ R ⦘ y) ∨ x ⦗ (B × 𝐔) ∩ R ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩
+                      (x ⦗ (A × 𝐔) ⦘ y ∧ x ⦗ R ⦘ y) 
+                    ∨ (x ⦗ (B × 𝐔) ⦘ y ∧ x ⦗ R ⦘ y)
+                  ≡ ⟨ “Distributivity of ∧ over ∨” ⟩
+                    x ⦗ R ⦘ y ∧ (x ⦗ (B × 𝐔) ⦘ y ∨ x ⦗ (A × 𝐔) ⦘ y)
+                  ≡ ⟨ “Relation union” ⟩
+                    x ⦗ R ⦘ y ∧ x ⦗ (B × 𝐔) ∪ (A × 𝐔) ⦘ y
+                  ≡ ⟨ “Symmetry of ∪” ⟩
+                    x ⦗ R ⦘ y ∧ x ⦗ (A × 𝐔) ∪ (B × 𝐔) ⦘ y 
+                  ≡ ⟨ “Distributivity of × over ∪” ⟩
+                    x ⦗ R ⦘ y ∧ x ⦗ ((A ∪ B) × 𝐔) ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩
+                    x ⦗ R ∩ ((A ∪ B) × 𝐔) ⦘ y
+                  ≡ ⟨ “Definition of ◁” ⟩
+                     x ⦗ (A ∪ B) ◁ R ⦘ y
+
+Theorem “Definition of ▷ via ◁”:  R ▷ B  =  (B ◁ R ˘) ˘
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `∀ x • ∀ y • x ⦗ (B ◁ R ˘) ˘ ⦘ y ≡ x ⦗ R ▷ B ⦘ y`:
+            For any `x`:
+                For any `y`:
+                    x ⦗ (B ◁ R ˘) ˘ ⦘ y
+                  ≡ ⟨ “Relation converse” ⟩
+                    y ⦗ B ◁ R ˘ ⦘ x
+                  ≡ ⟨ “Definition of ◁” ⟩
+                    y ⦗ R ˘ ∩ (B × 𝐔) ⦘ x
+                  ≡ ⟨ “Relation intersection” ⟩
+                    y ⦗ R ˘ ⦘ x ∧ y ⦗ (B × 𝐔) ⦘ x
+                  ≡ ⟨ “Relationship via ×” ⟩
+                    y ⦗ R ˘ ⦘ x ∧ y ∈ B ∧ x ∈ 𝐔
+                  ≡ ⟨ “Relation converse” ⟩
+                    x ⦗ R ⦘ y ∧ y ∈ B ∧ x ∈ 𝐔
+                  ≡ ⟨ “Relationship via ×” ⟩
+                    x ⦗ R ⦘ y ∧ x ⦗ (𝐔 × B) ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩
+                    x ⦗ R ∩ (𝐔 × B) ⦘ y
+                  ≡ ⟨ “Definition of ▷” ⟩ 
+                    x ⦗ R ▷ B ⦘ y
+
+Theorem “Definition of ◁ via ▷”:  A ◁ R  =  (R ˘ ▷ A) ˘
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `∀ x • ∀ y • x ⦗ (R ˘ ▷ A) ˘ ⦘ y ≡ x ⦗ A ◁ R ⦘ y`:
+            For any `x`:
+                For any `y`:
+                    x ⦗ (R ˘ ▷ A) ˘ ⦘ y
+                  ≡ ⟨ “Relation converse” ⟩
+                    y ⦗ (R ˘ ▷ A) ⦘ x
+                  ≡ ⟨ “Definition of ▷” ⟩
+                    y ⦗ R ˘ ∩ (𝐔 × A) ⦘ x  
+                  ≡ ⟨ “Relation intersection” ⟩
+                    y ⦗ R ˘ ⦘ x ∧ y ⦗ (𝐔 × A) ⦘ x  
+                  ≡ ⟨ “Relation converse” ⟩ 
+                    x ⦗ R ⦘ y ∧ y ⦗ (𝐔 × A) ⦘ x  
+                  ≡ ⟨ “Relationship via ×” ⟩
+                    x ⦗ R ⦘ y ∧ y ∈ 𝐔 ∧ x ∈ A
+                  ≡ ⟨ “Relationship via ×” ⟩
+                    x ⦗ R ⦘ y ∧ x ⦗ (A × 𝐔) ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩
+                    x ⦗ R ∩ (A × 𝐔) ⦘ y
+                  ≡ ⟨ “Definition of ◁” ⟩ 
+                    x ⦗ A ◁ R ⦘ y 
+
+Theorem “Distributivity of ▷ over relation intersection”:
+    (R ∩ S) ▷ B = (R ▷ B) ∩ (S ▷ B)
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `∀ x • ∀ y • x ⦗ (R ▷ B) ∩ (S ▷ B) ⦘ y ≡ x ⦗ (R ∩ S) ▷ B ⦘ y`:
+            For any `x`:
+                For any `y`:
+                    x ⦗ (R ▷ B) ∩ (S ▷ B) ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩
+                    x ⦗ (R ▷ B) ⦘ y   ∧   x ⦗ (S ▷ B) ⦘ y
+                  ≡ ⟨ “Definition of ▷” ⟩
+                    x ⦗ R ∩ (𝐔 × B) ⦘ y   ∧   x ⦗ S ∩ (𝐔 × B) ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩
+                    x ⦗ R ⦘ y  ∧ x ⦗ (𝐔 × B) ⦘ y   ∧   x ⦗ S ⦘ y ∧ x ⦗ (𝐔 × B) ⦘ y
+                  ≡ ⟨ “Idempotency of ∧” ⟩
+                    x ⦗ R ⦘ y  ∧ x ⦗ (𝐔 × B) ⦘ y   ∧   x ⦗ S ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩
+                    x ⦗ R ∩ S ⦘ y  ∧  x ⦗ (𝐔 × B) ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩
+                    x ⦗ (R ∩ S) ∩ (𝐔 × B) ⦘ y 
+                  ≡ ⟨ “Definition of ▷” ⟩
+                    x ⦗ (R ∩ S) ▷ B ⦘ y 
+
+Theorem “Distributivity of ◁ over set intersection”:
+    R ▷ (B ∩ C) = (R ▷ B) ∩ (R ▷ C)
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `∀ x • ∀ y • x ⦗ (R ▷ B) ∩ (R ▷ C) ⦘ y ≡ x ⦗ R ▷ (B ∩ C) ⦘ y`:
+            For any `x`:
+                For any `y`:
+                    x ⦗ (R ▷ B) ∩ (R ▷ C) ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩
+                    x ⦗ (R ▷ B) ⦘ y ∧ x ⦗ (R ▷ C) ⦘ y
+                  ≡ ⟨ “Definition of ▷” ⟩
+                    x ⦗ R ∩ (𝐔 × B) ⦘ y ∧ x ⦗ R ∩ (𝐔 × C) ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩
+                    x ⦗ R ⦘ y ∧ x ⦗ (𝐔 × B) ⦘ y ∧ x ⦗ R ⦘ y ∧ x ⦗ (𝐔 × C) ⦘ y
+                  ≡ ⟨ “Idempotency of ∧” ⟩
+                    x ⦗ (𝐔 × B) ⦘ y ∧ x ⦗ R ⦘ y ∧ x ⦗ (𝐔 × C) ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩
+                    x ⦗ R ⦘ y ∧ x ⦗ (𝐔 × B) ∩ (𝐔 × C) ⦘ y
+                  ≡ ⟨ “Distributivity of × over ∩” ⟩ 
+                    x ⦗ R ⦘ y ∧ x ⦗ (𝐔 × (B ∩ C)) ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩
+                    x ⦗ R ∩ (𝐔 × (B ∩ C)) ⦘ y
+                  ≡ ⟨ “Definition of ▷” ⟩
+                    x ⦗ R ▷ (B ∩ C) ⦘ y 
+
+Theorem “Distributivity of ▷ over relation union”:
+    (R ∪ S) ▷ B = (R ▷ B) ∪ (S ▷ B)
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `∀ x • ∀ y • x ⦗ (R ▷ B) ∪ (S ▷ B) ⦘ y ≡ x ⦗ (R ∪ S) ▷ B ⦘ y`:
+            For any `x`:
+                For any `y`:
+                    x ⦗ (R ▷ B) ∪ (S ▷ B) ⦘ y
+                  ≡ ⟨ “Relation union” ⟩
+                    x ⦗ (R ▷ B) ⦘ y   ∨   x ⦗ (S ▷ B) ⦘ y
+                  ≡ ⟨ “Definition of ▷” ⟩
+                    x ⦗ R ∩ (𝐔 × B) ⦘ y   ∨   x ⦗ S ∩ (𝐔 × B) ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩ 
+                    (x ⦗ R ⦘ y ∧ x ⦗ (𝐔 × B) ⦘ y)   ∨   (x ⦗ S ⦘ y ∧ x ⦗ (𝐔 × B) ⦘ y)
+                  ≡ ⟨ “Distributivity of ∧ over ∨” ⟩
+                    x ⦗ (𝐔 × B) ⦘ y ∧ (x ⦗ R ⦘ y  ∨ x ⦗ S ⦘ y)
+                  ≡ ⟨ “Relation union” ⟩
+                    x ⦗ (𝐔 × B) ⦘ y ∧ x ⦗ R ∪ S ⦘ y 
+                  ≡ ⟨ “Relation intersection” ⟩
+                    x ⦗ (R ∪ S) ∩ (𝐔 × B) ⦘ y 
+                  ≡ ⟨ “Definition of ▷” ⟩
+                    x ⦗ (R ∪ S) ▷ B ⦘ y 
+
+Theorem “Distributivity of ◁ over set intersection”:
+    R ▷ (B ∪ C) = (R ▷ B) ∪ (R ▷ C)
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `∀ x • ∀ y • x ⦗ (R ▷ B) ∪ (R ▷ C) ⦘ y ≡ x ⦗ R ▷ (B ∪ C) ⦘ y`:
+            For any `x`:
+                For any `y`:
+                    x ⦗ (R ▷ B) ∪ (R ▷ C) ⦘ y
+                  ≡ ⟨ “Relation union” ⟩
+                    x ⦗ (R ▷ B) ⦘ y  ∨ x ⦗ (R ▷ C) ⦘ y
+                  ≡ ⟨ “Definition of ▷” ⟩
+                    x ⦗ R ∩ (𝐔 × B) ⦘ y  ∨ x ⦗ R ∩ (𝐔 × C) ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩
+                    (x ⦗ R ⦘ y ∧ x ⦗ (𝐔 × B) ⦘ y)   ∨  (x ⦗ R ⦘ y ∧ x ⦗ (𝐔 × C) ⦘ y)
+                  ≡ ⟨ “Distributivity of ∧ over ∨” ⟩
+                    x ⦗ R ⦘ y ∧ (x ⦗ (𝐔 × B) ⦘ y  ∨  x ⦗ (𝐔 × C) ⦘ y)
+                  ≡ ⟨ “Relation union” ⟩
+                    x ⦗ R ⦘ y ∧ (x ⦗ (𝐔 × B) ∪ (𝐔 × C) ⦘ y  )
+                  ≡ ⟨ “Distributivity of × over ∪” ⟩
+                    x ⦗ R ⦘ y ∧ (x ⦗ 𝐔 × (B ∪ C) ⦘ y  )
+                  ≡ ⟨ “Relation intersection” ⟩
+                    (x ⦗ R ∩ (𝐔 × (B ∪ C)) ⦘ y  )
+                  ≡ ⟨ “Definition of ▷” ⟩ 
+                    x ⦗ R ▷ (B ∪ C) ⦘ y 
+
+Theorem “Domain of ◁”: Dom (A ◁ R) = A ∩ Dom R
+Proof:
+    Using “Set extensionality”:
+        Subproof for `(∀ x • x ∈ Dom (A ◁ R) ≡ x ∈ (A ∩ Dom R))`:
+            For any `x`:
+                x ∈ (A ∩ Dom R)
+              ≡ ⟨ “Intersection” ⟩
+                x ∈ A ∧ x ∈ Dom R
+              ≡ ⟨ “Membership in `Dom`” ⟩
+                x ∈ A ∧ ∃ y • x ⦗ R ⦘ y
+              ≡ ⟨ “Universal set” and “Trading for ∃” ⟩
+                x ∈ A ∧ (∃ y ❙ x ⦗ R ⦘ y • y ∈ 𝐔)
+              ≡ ⟨ “Distributivity of ∧ over ∃” ⟩
+                (∃ y ❙ x ⦗ R ⦘ y • y ∈ 𝐔 ∧ x ∈ A)
+              ≡ ⟨ “Trading for ∃” ⟩
+                (∃ y • x ⦗ R ⦘ y ∧ y ∈ 𝐔 ∧ x ∈ A)
+              ≡ ⟨ “Relationship via ×” ⟩
+                (∃ y • x ⦗ R ⦘ y ∧ x ⦗ A × 𝐔 ⦘ y) 
+              ≡ ⟨ “Relation intersection” ⟩
+                (∃ y • x ⦗ R ∩ (A × 𝐔) ⦘ y) 
+              ≡ ⟨ “Definition of ◁” ⟩
+                (∃ y • x ⦗ A ◁ R ⦘ y)  
+              ≡ ⟨ “Membership in `Dom`” ⟩
+                x ∈ Dom (A ◁ R)  
+
+Theorem “Relationship via ◁” “Domain restriction”:
+    x ⦗ A ◁ R ⦘ y  ≡  x ∈ A ∧ x ⦗ R ⦘ y
+Proof:
+    x ∈ A ∧ x ⦗ R ⦘ y
+  ≡ ⟨ “Identity of ∧” ⟩
+    x ∈ A ∧ x ⦗ R ⦘ y ∧ true 
+  ≡ ⟨ “Universal set” ⟩ 
+    x ∈ A ∧ x ⦗ R ⦘ y ∧ y ∈ 𝐔
+  ≡ ⟨ “Symmetry of ∧” ⟩ 
+    x ⦗ R ⦘ y ∧ x ∈ A ∧ y ∈ 𝐔
+  ≡ ⟨ “Relationship via ×” ⟩
+    x ⦗ R ⦘ y ∧ x ⦗ A × 𝐔 ⦘ y
+  ≡ ⟨ “Relation intersection” ⟩
+    x ⦗ R ∩ (A × 𝐔) ⦘ y  
+  ≡ ⟨ “Definition of ◁” ⟩ 
+    x ⦗ A ◁ R ⦘ y
+
+Theorem “Relationship via ▷” “Range restriction”:
+    x ⦗ R ▷ B ⦘ y  ≡  x ⦗ R ⦘ y ∈ B
+Proof:
+    x ⦗ R ⦘ y ∈ B
+  ≡ ⟨ “Identity of ∧” ⟩
+    x ⦗ R ⦘ y ∈ B ∧ true
+  ≡ ⟨ “Universal set” ⟩
+    x ⦗ R ⦘ y ∈ B ∧ x ∈ 𝐔
+  ≡ ⟨ “Relationship via ×” ⟩
+    x ⦗ R ⦘ y ∧ x ⦗ 𝐔 × B ⦘ y 
+  ≡ ⟨ “Relation intersection” ⟩
+    x ⦗ R ∩ (𝐔 × B) ⦘ y 
+  ≡ ⟨ “Definition of ▷” ⟩
+    x ⦗ R ▷ B ⦘ y
+
+Theorem “Relationship via ⩤” “Domain antirestriction”:
+    x ⦗ A ⩤ R ⦘ y  ≡  ¬ (x ∈ A) ∧ x ⦗ R ⦘ y
+Proof:
+    ¬ (x ∈ A) ∧ x ⦗ R ⦘ y
+  ≡ ⟨ “Identity of ∧” ⟩
+    ¬ (x ∈ A) ∧ x ⦗ R ⦘ y ∧ true
+  ≡ ⟨ “Universal set” ⟩
+    ¬ (x ∈ A) ∧ x ⦗ R ⦘ y ∧ y ∈ 𝐔
+  ≡ ⟨ “Complement” ⟩
+    (x ∈ ~ A) ∧ x ⦗ R ⦘ y ∧ y ∈ 𝐔 
+  ≡ ⟨ “Symmetry of ∧” ⟩
+    x ⦗ R ⦘ y ∧ (x ∈ ~ A) ∧ y ∈ 𝐔 
+  ≡ ⟨ “Relationship via ×” ⟩
+    x ⦗ R ⦘ y ∧ x ⦗ (~ A × 𝐔) ⦘ y
+  ≡ ⟨ “Relation intersection” ⟩
+    x ⦗ R ∩ (~ A × 𝐔) ⦘ y
+  ≡ ⟨ “Definition of ⩤” ⟩
+    x ⦗ A ⩤ R ⦘ y
+
+Theorem “Relationship via ⩥” “Range antirestriction”:
+    x ⦗ R ⩥ B ⦘ y  ≡  x ⦗ R ⦘ y ∧ ¬ (y ∈ B)
+Proof:
+    x ⦗ R ⦘ y ∧ ¬ (y ∈ B)
+  ≡ ⟨ “Identity of ∧” ⟩
+    x ⦗ R ⦘ y ∧ ¬ (y ∈ B) ∧ true
+  ≡ ⟨ “Complement” ⟩ 
+    x ⦗ R ⦘ y ∧ (y ∈ ~ B) ∧ true
+  ≡ ⟨ “Universal set” ⟩ 
+    x ⦗ R ⦘ y ∧ (y ∈ ~ B) ∧ x ∈ 𝐔 
+  ≡ ⟨ “Relationship via ×” ⟩
+    x ⦗ R ⦘ y ∧ x ⦗ (𝐔 × ~ B) ⦘ y
+  ≡ ⟨ “Relation intersection” ⟩
+    x ⦗ R ∩ (𝐔 × ~ B) ⦘ y
+  ≡ ⟨ “Definition of ⩥”  ⟩
+    x ⦗ R ⩥ B ⦘ y
+
+Theorem “Domain restriction via ⨾”:
+    A ◁ R = 𝕀 A ⨾ R
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `∀ x • ∀ y • x ⦗ A ◁ R ⦘ y ≡ x ⦗ 𝕀 A ⨾ R ⦘ y`:
+            For any `x`:
+                For any `y`:
+                    x ⦗ 𝕀 A ⨾ R ⦘ y
+                  ≡ ⟨ “Relation composition” ⟩
+                    ∃ b • x ⦗ 𝕀 A ⦘ b ∧ b ⦗ R ⦘ y
+                  ≡ ⟨ “Relationship via 𝕀” ⟩
+                    ∃ b • x = b ∧ b ∈ A ∧ b ⦗ R ⦘ y
+                  ≡ ⟨ “Trading for ∃” ⟩
+                    ∃ b ❙ x = b • b ∈ A ∧ b ⦗ R ⦘ y
+                  ≡ ⟨ “One-point rule for ∃” ⟩
+                    (b ∈ A ∧ b ⦗ R ⦘ y)[b ≔ x]
+                  ≡ ⟨ Substitution ⟩
+                    (x ∈ A ∧ x ⦗ R ⦘ y)
+                  ≡ ⟨ “Identity of ∧” and “Symmetry of ∧” ⟩
+                    x ⦗ R ⦘ y ∧  x ∈ A ∧  true
+                  ≡ ⟨ “Universal set” ⟩
+                    x ⦗ R ⦘ y  ∧  x ∈ A  ∧  y ∈ 𝐔 
+                  ≡ ⟨ “Relationship via ×” ⟩
+                    x ⦗ R ⦘ y  ∧  x ⦗ A × 𝐔 ⦘ y
+                  ≡ ⟨ “Relation intersection” ⟩
+                    x ⦗ R ∩ (A × 𝐔) ⦘ y
+                  ≡ ⟨ “Definition of ◁” ⟩
+                    x ⦗ A ◁ R ⦘ y
+
+Theorem “Range restriction via ⨾”:
+    R ▷ B = R ⨾ 𝕀 B
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `∀ x • ∀ y • x ⦗ R ▷ B ⦘ y ≡ x ⦗ R ⨾ 𝕀 B ⦘ y`:
+            For any `x`:
+                For any `y`:
+                    x ⦗ R ▷ B ⦘ y ≡ x ⦗ R ⨾ 𝕀 B ⦘ y
+                  ≡⟨ “Definition of ▷”, “Relation composition” ⟩
+                    x ⦗ R ∩ (𝐔 × B) ⦘ y ≡ ∃ z • x ⦗ R ⦘ z ∧ z ⦗ 𝕀 B ⦘ y
+                  ≡⟨ “Relation intersection”, “Relationship via ×” ⟩
+                    x ⦗ R ⦘ y ∧ x ∈ 𝐔 ∧ y ∈ B ≡ ∃ z • x ⦗ R ⦘ z ∧ z ⦗ 𝕀 B ⦘ y 
+                  ≡⟨ “Universal set”, “Identity of ∧” ⟩
+                    x ⦗ R ⦘ y ∧ y ∈ B ≡ ∃ z • x ⦗ R ⦘ z ∧ z ⦗ 𝕀 B ⦘ y
+                  ≡⟨ “Trading for ∃” and “Relationship via 𝕀” ⟩
+                    x ⦗ R ⦘ y ∧ y ∈ B ≡ ∃ z ❙ z = y • (x ⦗ R ⦘ z ∧ y ∈ B)
+                  ≡⟨ “One-point rule for ∃” and Substitution, “Identity of ≡” ⟩ 
+                    true
+
+Theorem “Switching ▷ and ◁ in ⨾”:
+    (R ▷ B) ⨾ S  =  R ⨾ (B ◁ S)
+Proof:
+    By “Domain restriction via ⨾” and “Range restriction via ⨾”
+
+Theorem “Mutual associativity of ◁ with ⨾”:
+    (A ◁ R) ⨾ S  =  A ◁ (R ⨾ S)
+Proof:
+    By “Domain restriction via ⨾”
+
+Theorem “Mutual associativity of ⨾ with ▷”:
+    (R ⨾ S) ▷ C  =  R ⨾ (S ▷ C)
+Proof:
+    By “Range restriction via ⨾” 
+
+Theorem “Relational image”:  y ∈ R ⦇ A ⦈  ≡  (∃ x ❙ x ∈ A • x ⦗ R ⦘ y)
+Proof:
+    By “Trading for ∃” and “Relationship via ◁” and “Definition of ⦇_⦈” and “Membership in `Ran`”
+
+Lemma “Lemmas In Paris”: (x ∈ Dom S ⇒ ((¬ ( x ∈ Dom S) ∧ (x ⦗ R ⦘ y)) ∨ (x ⦗ S ⦘ y)  ≡ x ⦗ S ⦘ y)) 
+Proof:
+    Assuming `x ∈ Dom S`:
+        ((¬ ( x ∈ Dom S) ∧ (x ⦗ R ⦘ y)) ∨ (x ⦗ S ⦘ y)  ≡ x ⦗ S ⦘ y)
+      ≡ ⟨ Assumption `x ∈ Dom S` ⟩
+        ((¬ true ∧ (x ⦗ R ⦘ y)) ∨ (x ⦗ S ⦘ y)  ≡ x ⦗ S ⦘ y)
+      ≡ ⟨ “Definition of `false`” ⟩
+        ((false ∧ (x ⦗ R ⦘ y)) ∨ (x ⦗ S ⦘ y)  ≡ x ⦗ S ⦘ y)
+      ≡ ⟨ “Zero of ∧” ⟩ 
+        ((false ∨ (x ⦗ S ⦘ y))  ≡ x ⦗ S ⦘ y)
+      ≡ ⟨ “Identity of ∨” ⟩
+        (x ⦗ S ⦘ y)  ≡ x ⦗ S ⦘ y
+      ≡ ⟨ “Reflexivity of ≡” ⟩
+        true
+
+Lemma “Lemmas In A New Dress”: (x ⦗ S ⦘ y) ⇒ (x ⦗ R ⦘ y) ∨ (x ∈ Dom S)                                           
+Proof:
+    Assuming `(x ⦗ S ⦘ y)`:
+        (x ⦗ R ⦘ y) ∨ (x ∈ Dom S)
+      ≡ ⟨ “Membership in `Dom`” ⟩
+        (x ⦗ R ⦘ y) ∨ (∃ y • x ⦗ S ⦘ y)
+      ⇐ ⟨ “Monotonicity of ∨” with “∃-Introduction” ⟩ 
+        (x ⦗ R ⦘ y) ∨ (x ⦗ S ⦘ y)[y ≔ y]
+      ≡ ⟨ Substitution ⟩
+        (x ⦗ R ⦘ y) ∨ (x ⦗ S ⦘ y)
+      ≡ ⟨ Assumption `(x ⦗ S ⦘ y)` ⟩
+        (x ⦗ R ⦘ y) ∨ true
+      ≡ ⟨ “Zero of ∨” ⟩ 
+        true 
+
+Lemma “No Lemmas In The Wild”: (¬ (x ∈ Dom S) ⇒ ((¬ (x ∈ Dom S) ∧ x ⦗ R ⦘ y) ∨ x ⦗ S ⦘ y  ≡ x ⦗ R ⦘ y))
+Proof:
+    ¬ (x ∈ Dom S) ⇒ ((¬ (x ∈ Dom S) ∧ x ⦗ R ⦘ y) ∨ x ⦗ S ⦘ y  ≡ x ⦗ R ⦘ y)
+  ≡ ⟨ “Definition of Implication” ⟩
+    ¬ ¬ (x ∈ Dom S) ∨ ((¬ (x ∈ Dom S) ∧ x ⦗ R ⦘ y) ∨ x ⦗ S ⦘ y  ≡ x ⦗ R ⦘ y)
+  ≡ ⟨ “Double negation” ⟩
+    (x ∈ Dom S) ∨ (  (¬ (x ∈ Dom S) ∧ x ⦗ R ⦘ y) ∨ x ⦗ S ⦘ y  ≡ x ⦗ R ⦘ y)
+  ≡ ⟨ “Distributivity of ∨ over ≡” ⟩
+    (  (¬ (x ∈ Dom S) ∧ x ⦗ R ⦘ y) ∨ x ⦗ S ⦘ y ∨ (x ∈ Dom S)  ≡ x ⦗ R ⦘ y ∨ (x ∈ Dom S)  )
+  ≡ ⟨ “Symmetry of ∨” ⟩
+    (  (¬ (x ∈ Dom S) ∧ x ⦗ R ⦘ y) ∨ (x ∈ Dom S) ∨ x ⦗ S ⦘ y ≡ x ⦗ R ⦘ y ∨ (x ∈ Dom S)  )
+  ≡ ⟨ “Distributivity of ∨ over ∧” ⟩ 
+    (  (  ((¬ (x ∈ Dom S) ∨ (x ∈ Dom S)))  ∧   ((x ⦗ R ⦘ y) ∨ (x ∈ Dom S)) )
+                                                ∨ (x ⦗ S ⦘ y) 
+                                                      ≡ x ⦗ R ⦘ y ∨ (x ∈ Dom S)  )
+  ≡ ⟨ “Excluded middle” ⟩
+    (  (  (true)  ∧   ((x ⦗ R ⦘ y) ∨ (x ∈ Dom S)) )
+                                                ∨ (x ⦗ S ⦘ y) 
+                                                      ≡ x ⦗ R ⦘ y ∨ (x ∈ Dom S)  )                                            
+  ≡ ⟨ “Identity of ∧” ⟩
+    (x ⦗ R ⦘ y) ∨ (x ∈ Dom S) ∨ (x ⦗ S ⦘ y)  ≡ (x ⦗ R ⦘ y) ∨ (x ∈ Dom S)                                           
+  ≡ ⟨ “Symmetry of ∨” ⟩ 
+    (x ⦗ S ⦘ y) ∨ (x ⦗ R ⦘ y) ∨ (x ∈ Dom S)  ≡ (x ⦗ R ⦘ y) ∨ (x ∈ Dom S)                                           
+  ≡ ⟨ “Definition of Implication” ⟩
+    (x ⦗ S ⦘ y) ⇒ (x ⦗ R ⦘ y) ∨ (x ∈ Dom S)                                           
+  ≡ ⟨ “Lemmas In A New Dress” ⟩
+    true 
+
+Theorem “Relation override”:
+    x ⦗ R ⊕ S ⦘ y  ≡  if x ∈ Dom S then x ⦗ S ⦘ y else x ⦗ R ⦘ y fi
+Proof:
+    x ⦗ R ⊕ S ⦘ y  ≡  if x ∈ Dom S then x ⦗ S ⦘ y else x ⦗ R ⦘ y fi
+  ≡ ⟨ Substitution ⟩
+    (x ⦗ R ⊕ S ⦘ y  ≡ z)[z ≔ if x ∈ Dom S then x ⦗ S ⦘ y else x ⦗ R ⦘ y fi]
+  ≡ ⟨ “Definition of `if`” ⟩
+    (x ∈ Dom S ⇒ (x ⦗ R ⊕ S ⦘ y  ≡ z)[z ≔ x ⦗ S ⦘ y]) 
+      ∧ (¬ (x ∈ Dom S) ⇒ (x ⦗ R ⊕ S ⦘ y  ≡ z)[z ≔ x ⦗ R ⦘ y])
+  ≡ ⟨ Substitution ⟩
+    (x ∈ Dom S ⇒ (x ⦗ R ⊕ S ⦘ y  ≡ x ⦗ S ⦘ y)) 
+      ∧ (¬ (x ∈ Dom S) ⇒ (x ⦗ R ⊕ S ⦘ y  ≡ z)[z ≔ x ⦗ R ⦘ y])
+  ≡ ⟨ Substitution ⟩
+    (x ∈ Dom S ⇒ (x ⦗ R ⊕ S ⦘ y  ≡ x ⦗ S ⦘ y)) 
+      ∧ (¬ (x ∈ Dom S) ⇒ (x ⦗ R ⊕ S ⦘ y  ≡ x ⦗ R ⦘ y))
+  ≡ ⟨ “Definition of ⊕” ⟩
+    (x ∈ Dom S ⇒ (x ⦗ (Dom S ⩤ R) ∪ S ⦘ y  ≡ x ⦗ S ⦘ y)) 
+      ∧ (¬ (x ∈ Dom S) ⇒ (x ⦗ R ⊕ S ⦘ y  ≡ x ⦗ R ⦘ y))
+  ≡ ⟨ “Definition of ⊕” ⟩
+    (x ∈ Dom S ⇒ (x ⦗ (Dom S ⩤ R) ∪ S ⦘ y  ≡ x ⦗ S ⦘ y)) 
+      ∧ (¬ (x ∈ Dom S) ⇒ (x ⦗ (Dom S ⩤ R) ∪ S ⦘ y  ≡ x ⦗ R ⦘ y))
+  ≡ ⟨ “Relation union” ⟩ 
+    (x ∈ Dom S ⇒ (x ⦗ (Dom S ⩤ R) ⦘ y ∨ x ⦗ S ⦘ y  ≡ x ⦗ S ⦘ y)) 
+      ∧ (¬ (x ∈ Dom S) ⇒ (x ⦗ (Dom S ⩤ R) ∪ S ⦘ y  ≡ x ⦗ R ⦘ y))
+  ≡ ⟨ “Relation union” ⟩
+    (x ∈ Dom S ⇒ (x ⦗ (Dom S ⩤ R) ⦘ y ∨ x ⦗ S ⦘ y  ≡ x ⦗ S ⦘ y)) 
+      ∧ (¬ (x ∈ Dom S) ⇒ (x ⦗ (Dom S ⩤ R) ⦘ y  ∨ x ⦗ S ⦘ y  ≡ x ⦗ R ⦘ y))
+  ≡ ⟨ “Domain antirestriction” ⟩
+    (x ∈ Dom S ⇒ ((¬ ( x ∈ Dom S) ∧ (x ⦗ R ⦘ y)) ∨ (x ⦗ S ⦘ y)  ≡ x ⦗ S ⦘ y)) 
+      ∧ (¬ (x ∈ Dom S) ⇒ (x ⦗ (Dom S ⩤ R) ⦘ y  ∨ x ⦗ S ⦘ y  ≡ x ⦗ R ⦘ y))
+  ≡ ⟨ “Domain antirestriction” ⟩
+    (x ∈ Dom S ⇒ ((¬ ( x ∈ Dom S) ∧ (x ⦗ R ⦘ y)) ∨ (x ⦗ S ⦘ y)  ≡ x ⦗ S ⦘ y)) 
+      ∧ (¬ (x ∈ Dom S) ⇒ ((¬ (x ∈ Dom S) ∧ x ⦗ R ⦘ y) ∨ x ⦗ S ⦘ y  ≡ x ⦗ R ⦘ y))
+  ≡ ⟨ “Lemmas In Paris” and “No Lemmas In The Wild” and “Identity of ∧” ⟩
+    true

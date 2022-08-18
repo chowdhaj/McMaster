@@ -1,0 +1,165 @@
+Assignment Notebook 2.2: An Alternate Characterisation of Subtraction for the Theory of Integers
+
+Theorem “Self-cancellation of -”: a - a = 0
+Proof:
+    0 = a - a
+  ≡⟨ “Characterisation of -” with `a, b, x ≔ a, a, 0` ⟩
+    a = 0 + a
+  ≡⟨ “Left-identity of +” ⟩
+    a = a     — This is “Reflexivity of =”
+
+Theorem “Right-identity of -”: b - 0 = b
+Proof:
+    b - 0 = b
+  = ⟨ “Characterisation of -” ⟩
+     b = b + 0
+  = ⟨ “Right-identity of +” ⟩
+    b = b  
+  = ⟨ “Reflexivity of =” ⟩ 
+    true
+
+Theorem “Subtraction cancels addition”: (x + a) - a = x
+Proof:
+    (x + a) - a = x
+  = ⟨ “Characterisation of -” ⟩ 
+    (x + a) = x + a
+  = ⟨ “Reflexivity of =” ⟩
+    true
+
+Theorem “Addition cancels subtraction”: (a - b) + b = a
+Proof:
+    (a - b) + b = a
+  = ⟨ “Characterisation of -” ⟩ 
+    (a - b) = a - b
+  = ⟨ “Reflexivity of =” ⟩
+    true  
+
+Theorem “Mutual associativity of + and -”: a + (b - c) = (a + b) - c
+Proof:
+    a + (b - c) = (a + b) - c
+  = ⟨ “Characterisation of -” ⟩ 
+    a + b = (a + (b - c)) + c
+  = ⟨ “Associativity of +” ⟩
+    a + b = a + ((b - c) + c)
+  = ⟨ “Symmetry of +” ⟩
+    a + b = ((b - c) + c) + a
+  = ⟨ “Characterisation of -” ⟩ 
+    (b - c) + c = (a + b) - a
+  = ⟨ “Symmetry of +” ⟩
+    (b - c) + c = (b + a) - a
+  = ⟨ “Subtraction cancels addition” ⟩ 
+    (b - c) + c = b
+  = ⟨ “Addition cancels subtraction” ⟩ 
+    b = b
+  = ⟨ “Reflexivity of =” ⟩
+    true
+
+Theorem “Subtracting addition”: a - (b + c) = (a - b) - c
+Proof:
+    a - (b + c) = (a - b) - c
+  = ⟨ “Characterisation of -” ⟩
+    a - b = (a - (b + c)) + c
+  = ⟨ “Symmetry of +” ⟩
+     a - b = c + (a - (b + c))
+  = ⟨ “Mutual associativity of + and -” ⟩
+     a - b = (c + a) - (b + c)
+  = ⟨ “Characterisation of -” ⟩
+    c + a = (a - b) + (b + c)
+  = ⟨ “Symmetry of +” ⟩
+    c + a = (b + c) + (a - b)
+  = ⟨ “Symmetry of +” ⟩
+    c + a = (c + b) + (a - b)
+  = ⟨ “Associativity of +” ⟩ 
+    c + a = c + (b + (a - b))
+  = ⟨ “Symmetry of +” ⟩
+    c + a = c + ((a - b) + b) 
+  = ⟨ “Addition cancels subtraction” ⟩
+    c + a = c + a
+  = ⟨ “Reflexivity of =” ⟩
+    true 
+    
+Theorem “Subtracting subtraction”: a - (b - c) = (a - b) + c
+Proof:
+    a - (b - c) = (a - b) + c
+  = ⟨ “Characterisation of -” ⟩
+    a = ((a - b) + c) + (b - c)
+  = ⟨ “Associativity of +” ⟩
+    a = (a - b) + (c + (b - c))
+  = ⟨ “Symmetry of +” ⟩
+    a = (a - b) + ((b - c) + c)
+  = ⟨ “Addition cancels subtraction” ⟩
+    a = (a - b) + b
+  = ⟨ “Addition cancels subtraction” ⟩
+    a = a
+  = ⟨ “Reflexivity of =” ⟩
+    true  
+ 
+Theorem “Self-inverse of unary minus”: - (- a) = a
+Proof:
+    - (- a) = a
+  = ⟨ “Unary minus from subtraction” ⟩
+    0 - (- a) = a 
+  = ⟨ “Characterisation of -” ⟩ 
+    0 = a + (- a)
+  = ⟨ “Symmetry of +” ⟩ 
+    0 = (- a) + a
+  = ⟨ “Unary minus from subtraction” ⟩
+    0 = (0 - a) + a
+  = ⟨ “Addition cancels subtraction” ⟩
+    0 = 0
+  = ⟨ “Reflexivity of =” ⟩
+    true
+
+Theorem “Distributivity of unary minus over +”: - (a + b) = (- a) + (- b)
+Proof:
+    - (a + b) = (- a) + (- b)   
+  = ⟨ “Unary minus from subtraction” ⟩
+    0 - (a + b) = (- a) + (- b)
+  = ⟨ “Characterisation of -” ⟩
+    0 = ((- a) + (- b)) + (a + b)
+  = ⟨ “Symmetry of +” ⟩
+    0 = ((- a) + (- b)) + (b + a)
+  = ⟨ “Associativity of +” ⟩
+    0 = ((- a + - b) + b) + a
+  = ⟨ “Associativity of +” ⟩          
+    0 = ((- a + (- b + b))) + a
+  = ⟨ “Unary minus from subtraction” ⟩
+    0 = ((- a + ((0 - b) + b))) + a
+  = ⟨ “Addition cancels subtraction” ⟩
+    0 = (- a + 0) + a
+  = ⟨ “Right-identity of +” ⟩
+    0 = (- a) + a
+  = ⟨ “Unary minus from subtraction” ⟩ 
+    0 = (0 - a) + a
+  = ⟨ “Addition cancels subtraction” ⟩
+    0 = 0 
+  = ⟨ “Reflexivity of =” ⟩
+    true
+
+Theorem “Unary minus”: a + (- a) = 0
+Proof:
+    a + (- a) = 0
+  = ⟨ “Symmetry of +” ⟩
+    (- a) + a = 0
+  = ⟨ “Unary minus from subtraction” ⟩
+    (0 - a) + a = 0
+  = ⟨ “Addition cancels subtraction” ⟩ 
+    0 = 0
+  = ⟨ “Reflexivity of =” ⟩
+    true
+
+Theorem “Subtraction”: a - b = a + - b
+Proof:
+    a - b = a + - b
+  = ⟨ “Characterisation of -” ⟩
+    a = (a + - b) + b 
+  = ⟨ “Associativity of +” ⟩
+    a = a + (- b + b) 
+  = ⟨ “Unary minus from subtraction” ⟩
+    a = a + ((0 - b) + b) 
+  = ⟨ “Addition cancels subtraction” ⟩
+    a = a + 0
+  = ⟨ “Right-identity of +” ⟩ 
+    a = a
+  = ⟨ “Reflexivity of =” ⟩
+    true

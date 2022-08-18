@@ -1,0 +1,136 @@
+Homework 3: Correctness of Assignment Commands
+
+Lemma (1): x + y = 13   ⇒⁅ x := x + 7 ⁆   x + y = 20
+Proof:
+    x + y = 13
+  ≡⟨ “Cancellation of +” ⟩
+    x + y + 7 = 13 + 7
+  ≡⟨ Fact `20 = 13 + 7` ⟩
+    x + 7 + y = 20
+  ≡⟨ Substitution ⟩
+    (x + y = 20)[x ≔ x + 7]
+  ⇒⁅ x := x + 7 ⁆  ⟨ “Assignment” ⟩
+    x + y = 20
+
+Lemma (2): y = 0   ⇒⁅ y := x + y ⁆   y = x
+Proof:
+    y = 0
+  ≡ ⟨ “Cancellation of +” ⟩ 
+    x + y = x + 0
+  ≡ ⟨ “Additive identity” ⟩
+    x + y = x 
+  ≡ ⟨ Substitution ⟩
+    (y = x)[y ≔ x + y] 
+  ⇒⁅ y := x + y ⁆  ⟨ “Assignment” ⟩  
+    y = x
+
+Lemma (3): 0 = x   ⇒⁅ y := x + y ⁆   y = x + y
+Proof:
+    0 = x
+  ≡ ⟨ “Cancellation of +” ⟩ 
+    0 + y = x + y
+  ≡ ⟨ “Additive identity” ⟩
+    y = x + y 
+  ≡ ⟨ “Cancellation of +” ⟩ 
+    x + y = x + x + y
+  ≡ ⟨ Substitution ⟩
+    (y = x + y)[y ≔ x + y]
+  ⇒⁅ y := x + y ⁆ ⟨ “Assignment” ⟩ 
+    y = x + y 
+
+Fact: x = 5 ⇒⁅ y := x + 1 ⨾ x := y + y ⁆ x = 12
+Proof:
+    x = 5
+  ≡ ⟨ “Cancellation of +” ⟩ 
+    x + 1 = 5 + 1
+  ≡ ⟨ Fact `6 = 5 + 1` ⟩ 
+    x + 1 = 6
+  ≡ ⟨ Substitution ⟩ 
+    (y = 6)[y ≔ x + 1]
+  ⇒⁅ y := x + 1 ⁆  ⟨ “Assignment” ⟩
+    y = 6 
+  ≡ ⟨ “Cancellation of ·” with Fact `2 ≠ 0` ⟩ 
+    2 · y = 2 · 6
+  ≡ ⟨ Fact `12 = 2 · 6` ⟩
+    2 · y = 12
+  ≡ ⟨ Fact `2 = 1 + 1` ⟩ 
+    (1 + 1) · y = 12
+  ≡ ⟨ “Distributivity of · over +” ⟩ 
+    1 · y + 1 · y = 12
+  ≡ ⟨ “Multiplicative identity” ⟩ 
+    y + y = 12
+  ≡ ⟨ Substitution ⟩ 
+    (x = 12)[x ≔ y + y]
+  ⇒⁅ x := y + y ⁆ ⟨ “Assignment” ⟩  
+    x = 12
+
+Fact: x = 5 ⇒⁅ y := x + 1 ⨾ x := y + y ⁆ x = 12
+Proof:
+    x = 5
+  ≡⟨ “Cancellation of +” ⟩
+    x + 1 = 5 + 1
+  ≡⟨ Fact `5 + 1 = 6` ⟩
+    x + 1 = 6
+  ≡⟨ Substitution ⟩
+    (y = 6)[y ≔ x + 1]
+  ⇒⁅ y := x + 1 ⁆   ⟨ “Assignment” ⟩
+    y = 6
+  ≡⟨ “Cancellation of ·” with Fact `2 ≠ 0` ⟩
+    2 · y = 2 · 6
+  ≡⟨ Evaluation ⟩
+    (1 + 1) · y = 12
+  ≡⟨ “Distributivity of · over +” ⟩
+    1 · y + 1 · y = 12
+  ≡⟨ “Identity of ·” ⟩
+    y + y = 12
+  ≡⟨ Substitution ⟩
+    (x = 12)[x ≔ y + y]
+  ⇒⁅ x := y + y ⁆   ⟨ “Assignment” ⟩
+    x = 12
+
+Lemma “Loop body invariant 1”:
+        (s = x · x ∧ d = 2 · x + 1)
+      ⇒⁅ s := s + d ⨾ d := d + 2 ⨾ x := x + 1 ⁆
+        (s = x · x ∧ d = 2 · x + 1)
+Proof:
+      s = x · x ∧ d = (2 · x) + 1
+    ≡ ⟨ “Cancellation of +” ⟩ 
+      s + d = x · x + d ∧ d = (2 · x) + 1
+    ≡ ⟨ “Replacement in equality with addition” ⟩ 
+      s + d = x · x + (2 · x + 1) ∧ d = (2 · x) + 1
+    ≡ ⟨ “Associativity of +” ⟩ 
+      s + d = (x · x + (2 · x) + 1) ∧ d = (2 · x) + 1
+    ≡ ⟨ Evaluation ⟩ 
+      s + d = (x · x + ((1 + 1) · x) + 1) ∧ d = (2 · x) + 1
+    ≡ ⟨ “Distributivity of · over +” ⟩ 
+      s + d = (x · x + (1 · x + 1 · x) + 1) ∧ d = (2 · x) + 1
+    ≡ ⟨ “Associativity of +” ⟩ 
+      s + d = (((x · x + 1 · x) + 1 · x) + 1) ∧ d = (2 · x) + 1
+    ≡ ⟨ “Associativity of +” ⟩ 
+      s + d = (x · x + 1 · x) + (1 · x + 1) ∧ d = (2 · x) + 1
+    ≡ ⟨ “Symmetry of +” ⟩ 
+      s + d = (x · x + 1 · x) + (x · 1 + 1) ∧ d = (2 · x) + 1
+    ≡ ⟨ Evaluation ⟩ 
+      s + d = (x · x + 1 · x) + (x · 1 + 1 · 1) ∧ d = (2 · x) + 1
+    ≡ ⟨ “Distributivity of · over +” ⟩ 
+      s + d = ((x + 1) · x) + ((x + 1) · 1) ∧ d = (2 · x) + 1
+    ≡ ⟨ “Distributivity of · over +” ⟩ 
+      s + d = (x + 1) · (x + 1) ∧ d = (2 · x) + 1
+    ≡ ⟨ “Cancellation of +” ⟩ 
+      s + d = (x + 1) · (x + 1) ∧ (d + 2) = (2 · x) + 2 + 1
+    ≡ ⟨ Evaluation ⟩ 
+      s + d = (x + 1) · (x + 1) ∧ (d + 2) = (2 · x) + (2 · 1) + 1
+    ≡ ⟨ “Distributivity of · over +” ⟩ 
+      s + d = (x + 1) · (x + 1) ∧ (d + 2) = 2 · (x + 1) + 1      
+    ≡ ⟨ Substitution ⟩
+      (s = (x + 1) · (x + 1) ∧ (d + 2) = 2 · (x + 1) + 1)[s ≔ s + d]
+    ⇒⁅ s := s + d ⁆ ⟨ “Assignment” ⟩  
+      s = (x + 1) · (x + 1) ∧ (d + 2) = 2 · (x + 1) + 1
+    ≡ ⟨ Substitution ⟩
+      (s = (x + 1) · (x + 1) ∧ d = 2 · (x + 1) + 1)[d ≔ d + 2]
+    ⇒⁅ d := d + 2 ⁆ ⟨ “Assignment” ⟩ 
+      s = (x + 1) · (x + 1) ∧ d = 2 · (x + 1) + 1
+    ≡ ⟨ Substitution ⟩
+      (s = x · x ∧ d = 2 · x + 1)[x ≔ x + 1]
+    ⇒⁅ x := x + 1 ⁆ ⟨ “Assignment” ⟩ 
+      (s = x · x ∧ d = 2 · x + 1)

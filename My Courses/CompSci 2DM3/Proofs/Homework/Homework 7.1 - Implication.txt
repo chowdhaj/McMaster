@@ -1,0 +1,125 @@
+Homework Notebook 7.1: Implication
+
+Theorem (3.59): p ⇒ q ≡ ¬ p ∨ q
+Proof:
+    p ⇒ q
+  ≡ ⟨ (3.57) ⟩
+    p ∨ q  ≡  q
+  ≡ ⟨ “Symmetry of ∨” ⟩
+    q ∨ p ≡ q
+  ≡ ⟨ (3.32) ⟩
+    q ∨ ¬ p
+  ≡ ⟨ “Symmetry of ∨” ⟩
+    ¬ p ∨ q  
+
+Theorem (3.60): p ⇒ q  ≡  p ∧ q  ≡  p
+Proof:
+    p ⇒ q
+  ≡ ⟨ (3.57) ⟩
+    p ∨ q  ≡  q
+  ≡ ⟨ “Golden rule” ⟩
+    p ∧ q ≡ p
+
+Theorem (3.61) “Contrapositive”: p ⇒ q ≡ ¬ q ⇒ ¬ p
+Proof:
+    p ⇒ q
+  ≡ ⟨ (3.59) ⟩
+    ¬ p ∨ q
+  ≡ ⟨ “Golden rule” ⟩ 
+    ¬ p ∧ q ≡ ¬ p ≡ q
+  ≡ ⟨ (3.60) ⟩
+    ¬ p ⇒ q ≡ q 
+  ≡ ⟨ (3.57) ⟩
+    ¬ p ∨ q ≡ q ≡ q 
+  ≡ ⟨ (3.32) ⟩
+    ¬ p ∨ ¬ q ≡ ¬ p ≡ q ≡ q 
+  ≡ ⟨ “Reflexivity of ≡” ⟩ 
+    ¬ p ∨ ¬ q ≡ ¬ p ≡ true
+  ≡ ⟨ “Identity of ≡” ⟩
+    ¬ p ∨ ¬ q ≡ ¬ p
+  ≡ ⟨ “Symmetry of ∨” ⟩
+    ¬ q ∨ ¬ p ≡ ¬ p
+  ≡ ⟨ (3.57) ⟩
+    ¬ q ⇒ ¬ p
+      
+Theorem (H7.1a): p ⇒ q ≡ ¬ (p ∧ ¬ q)
+Proof:
+    p ⇒ q
+  ≡ ⟨ “Contrapositive” ⟩
+    ¬ q ⇒ ¬ p
+  ≡ ⟨ (3.59) ⟩
+    ¬ ¬ q ∨ ¬ p
+  ≡ ⟨ “Symmetry of ∨” ⟩
+    ¬ p ∨ ¬ ¬ q
+  ≡ ⟨ “De Morgan” ⟩
+    ¬ (p ∧ ¬ q)
+
+Theorem (3.65) “Shunting”: p ∧ q ⇒ r  ≡  p ⇒ (q ⇒ r)
+Proof:
+    (p ∧ q) ⇒ r   
+  ≡ ⟨ (3.59) ⟩ 
+    ¬ (p ∧ q) ∨ r
+  ≡ ⟨ “De Morgan” ⟩
+    ¬ p ∨ ¬ q ∨ r
+  ≡ ⟨ (3.59) ⟩
+    p ⇒ (q ⇒ r)
+
+Theorem “Right-distributivity of ⇒ over ∧”: p ⇒ (q ∧ r)  ≡  (p ⇒ q) ∧ (p ⇒ r)
+Proof:
+    p ⇒ (q ∧ r)
+  ≡ ⟨ (3.59) ⟩ 
+    ¬ p ∨ (q ∧ r)
+  ≡ ⟨ “Distributivity of ∨ over ∧” ⟩
+    (¬ p ∨ q) ∧ (¬ p ∨ r)
+  ≡ ⟨ (3.59) ⟩ 
+    (p ⇒ q) ∧ (p ⇒ r)
+
+Theorem (3.78) “Case analysis”: (p ⇒ r) ∧ (q ⇒ r)  ≡  (p ∨ q) ⇒ r
+Proof:
+    (p ⇒ r) ∧ (q ⇒ r)
+  ≡ ⟨ (3.59) ⟩ 
+    (¬ p ∨ r) ∧ (¬ q ∨ r)
+  ≡ ⟨ “Distributivity of ∨ over ∧” ⟩
+    (¬ p ∧ ¬ q) ∨ r
+  ≡ ⟨ “De Morgan” ⟩
+    ¬ (p ∨ q) ∨ r 
+  ≡ ⟨ (3.59) ⟩
+    (p ∨ q) ⇒ r 
+
+Calculation:
+    (p ∧ q) ⇒ r  ≡  (p ⇒ r) ∧ (q ⇒ r)
+  ≡ ⟨ (3.59) ⟩
+    ¬ (p ∧ q) ∨ r   ≡  (¬ p ∨ r) ∧ (¬ q ∨ r)
+  ≡ ⟨ “Distributivity of ∨ over ∧” ⟩ 
+    ¬ (p ∧ q) ∨ r  ≡ (¬ p ∧ ¬ q) ∨ r
+  ≡ ⟨ “De Morgan” ⟩
+    ¬ (p ∧ q) ∨ r  ≡ ¬ (p ∨ q) ∨ r 
+  ≡ ⟨ “De Morgan” ⟩
+    (¬ p ∨ ¬ q) ∨ r  ≡ (¬ p ∧ ¬ q) ∨ r  
+  
+Calculation:
+    ((p ∧ q) ⇒ r  ≡  (p ⇒ r) ∧ (q ⇒ r))[p, q, r ≔ true, false, false]
+  ≡ ⟨ Substitution ⟩
+    ((true ∧ false) ⇒ false  ≡  (true ⇒ false) ∧ (false ⇒ false))
+  ≡ ⟨ “Zero of ∧” ⟩
+    (false ⇒ false  ≡  (true ⇒ false) ∧ (false ⇒ false)) 
+  ≡ ⟨ (3.59) ⟩
+    (¬ false ∨ false ≡  (¬ true ∨ false) ∧ (¬ false ∨ false)) 
+  ≡ ⟨ “Negation of `false`” ⟩
+    (true ∨ false ≡  (¬ true ∨ false) ∧ (true ∨ false)) 
+  ≡ ⟨ “Definition of `false`” ⟩
+    (true ∨ false ≡  (false ∨ false) ∧ (true ∨ false))
+  ≡ ⟨ “Zero of ∨” ⟩
+    (true ≡  (false ∨ false) ∧ true) 
+  ≡ ⟨ “Identity of ∨” ⟩
+    true ≡  false ∧ true 
+  ≡ ⟨ “Zero of ∧” ⟩
+    true ≡ false 
+  ≡ ⟨ “Definition of `false`” ⟩
+    true ≡ ¬ true
+  ≡ ⟨ “Commutativity of ¬ with ≡” ⟩
+    ¬ (true ≡ true)
+  ≡ ⟨ “Reflexivity of ≡” ⟩ 
+    ¬ true
+  ≡ ⟨ “Definition of `false`” ⟩   
+    false

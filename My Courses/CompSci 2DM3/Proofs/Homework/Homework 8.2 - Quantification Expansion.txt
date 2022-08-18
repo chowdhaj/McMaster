@@ -1,0 +1,126 @@
+Homework Notebook 8.2: Quantification Expansion
+
+Calculation:
+    ∑ i : ℕ ❙ 1 ≤ i < 4 • i · i
+  =⟨ Quantification expansion ⟩
+      (i · i)[i ≔ 1]
+    + (i · i)[i ≔ 2]
+    + (i · i)[i ≔ 3]
+  =⟨ Substitution ⟩
+    1 · 1 + 2 · 2 + 3 · 3
+  =⟨ Evaluation ⟩
+    1 + 4 + 9
+  =⟨ Evaluation ⟩
+    14
+
+Calculation:
+    ∑ i : ℕ ❙ 1 ≤ i < 4 • i · i
+  = ⟨ Quantification expansion ⟩
+    (i · i)[i ≔ 1] +
+    (i · i)[i ≔ 2] +
+    (i · i)[i ≔ 3]
+  = ⟨ Substitution ⟩ 
+    (1 · 1) + 
+    (2 · 2) + 
+    (3 · 3)
+  = ⟨ Evaluation ⟩
+    1 + 4 + 9
+  = ⟨ Evaluation ⟩
+    14   
+
+Calculation:
+    ∑ i : ℕ ❙ 7 ≤ i < 10 • 2 · i
+  = ⟨ Quantification expansion ⟩
+    (2 · i)[i ≔ 7] +
+    (2 · i)[i ≔ 8] +
+    (2 · i)[i ≔ 9]
+  = ⟨ Substitution ⟩
+    (2 · 7) +
+    (2 · 8) +
+    (2 · 9)
+  = ⟨ Evaluation ⟩
+    14 + 16 + 18
+  = ⟨ Evaluation ⟩
+    48
+
+Calculation:
+    ∑ i, j : ℕ ❙ 3 ≤ i < 5 ∧ 4 ≤ j < 6 • i · j
+  = ⟨ Quantification expansion, substitution ⟩
+    (3 · 4) + (3 · 5) + (4 · 4) + (4 · 5)
+  = ⟨ Evaluation ⟩
+    12 + 15 + 16 + 20
+  = ⟨ Evaluation ⟩
+    63
+
+Calculation:
+    ∏ i : ℕ ❙ 1 ≤ i < 6 • i
+  = ⟨ Quantification expansion, substitution ⟩
+    1 · 2 · 3 · 4 · 5
+  = ⟨ Evaluation ⟩
+    2 · 3 · 20
+  = ⟨ Evaluation ⟩ 
+    6 · 20
+  = ⟨ Evaluation ⟩
+    120  
+
+Calculation:
+    ∑ i : ℕ ❙ 10 ≤ i ≤ 20 • (12 - i) + (i - 12)
+  = ⟨ Quantification expansion, substitution ⟩
+    ((12 - 10) + (10 - 12)) + 
+    ((12 - 11) + (11 - 12)) + 
+    ((12 - 12) + (12 - 12)) + 
+    ((12 - 13) + (13 - 12)) + 
+    ((12 - 14) + (14 - 12)) + 
+    ((12 - 15) + (15 - 12)) + 
+    ((12 - 16) + (16 - 12)) + 
+    ((12 - 17) + (17 - 12)) + 
+    ((12 - 18) + (18 - 12)) +
+    ((12 - 19) + (19 - 12)) +
+    ((12 - 20) + (20 - 12))
+  = ⟨ Evaluation ⟩
+    (2 + 0) + 
+    (1 + 0) + 
+    (0 + 0) + 
+    (0 + 1) + 
+    (0 + 2) + 
+    (0 + 3) + 
+    (0 + 4) + 
+    (0 + 5) + 
+    (0 + 6) +
+    (0 + 7) + 
+    (0 + 8)
+  = ⟨ Evaluation ⟩
+    39
+
+Calculation:
+    ∏ i : ℕ ❙ 3 ≤ i < 9 • i + (5 - i)
+  = ⟨ Quantification expansion ⟩
+    (i + (5 - i))[i ≔ 3] · 
+    (i + (5 - i))[i ≔ 4] · 
+    (i + (5 - i))[i ≔ 5] · 
+    (i + (5 - i))[i ≔ 6] · 
+    (i + (5 - i))[i ≔ 7] · 
+    (i + (5 - i))[i ≔ 8]
+  = ⟨ Substitution ⟩
+    (3 + (5 - 3)) · 
+    (4 + (5 - 4)) · 
+    (5 + (5 - 5)) · 
+    (6 + (5 - 6)) · 
+    (7 + (5 - 7)) · 
+    (8 + (5 - 8))
+  = ⟨ Evaluation ⟩
+    (3 + 2) · 
+    (4 + 1) · 
+    (5 + 0) · 
+    (6 + 0) · 
+    (7 + 0) · 
+    (8 + 0) 
+  = ⟨ Evaluation ⟩
+    5 · 5 · 5 · 6 · 7 · 8
+  = ⟨ Evaluation ⟩
+    42000
+  
+Calculation:
+    ∑ i : ℕ ❙ i ≤ 100 • i
+  = ⟨ Quantification expansion, substitution, Evaluation ⟩
+    5050

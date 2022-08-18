@@ -1,0 +1,91 @@
+Homework 9: Reversed Presentation for Correctness Reasoning
+
+Fact: x = 5 ⇒⁅ y := x + 1 ⨾ x := y + y ⁆ x = 12
+Proof:
+    x = 12
+  ⁅ x := y + y ⁆⇐   ⟨ “Assignment” with substitution ⟩
+    y + y = 12
+  ≡⟨ “Identity of ·” ⟩
+    1 · y + 1 · y = 12
+  ≡⟨ “Distributivity of · over +” ⟩
+    (1 + 1) · y = 12
+  ≡⟨ Evaluation ⟩
+    2 · y = 2 · 6
+  ≡⟨ “Cancellation of ·” with Fact `2 ≠ 0` ⟩
+    y = 6
+  ⁅ y := x + 1 ⁆⇐   ⟨ “Assignment” with substitution ⟩
+    x + 1 = 6
+  ≡⟨ Fact `5 + 1 = 6` ⟩
+    x + 1 = 5 + 1
+  ≡⟨ “Cancellation of +” ⟩
+    x = 5
+
+Lemma (4):  s = i · (i + 1)  ⇒⁅ i := i + 1 ⨾ s := s + i ⁆   s = i · i
+Proof:
+    s = i · i
+  ⁅ s := s + i ⁆⇐   ⟨ “Assignment” with substitution ⟩
+    s + i = i · i
+  ⁅ i := i + 1 ⁆⇐   ⟨ “Assignment” with substitution ⟩
+    s + (i + 1) = (i + 1) · (i + 1)
+  = ⟨ “Distributivity of · over +” ⟩
+    s + (i + 1) = (i · (i + 1)) + (1 · (i + 1))
+  = ⟨ “Distributivity of · over +” ⟩
+    s + (i + 1) = (i · i + i · 1) + (1 · (i + 1))
+  = ⟨ “Distributivity of · over +” ⟩
+    s + (i + 1) = (i · i + i · 1) + (1 · i + 1 · 1)
+  = ⟨ “Identity of ·” ⟩
+    s + (i + 1) = (i · i + i · 1) + (i + 1)
+  = ⟨ “Cancellation of +” ⟩
+    s + (i) = (i · i + i · 1) + (i)
+  = ⟨ “Cancellation of +” ⟩
+    s = (i · i + i · 1)
+  = ⟨ “Distributivity of · over +” ⟩
+    s = i · (i + 1)
+
+Lemma “Loop body invariant 2”:
+        r = i !
+      ⇒⁅ i := i + 1 ⨾ r := r · i ⁆
+        r = i !
+Proof:
+    r = i !
+  ⁅ r := r · i ⁆⇐   ⟨ “Assignment” with substitution ⟩
+    r · i = i !
+  ⁅ i := i + 1 ⁆⇐   ⟨ “Assignment” with substitution ⟩
+    r · (i + 1) = (i + 1) !
+  = ⟨ “Successor” ⟩
+    r · (i + 1) = (suc i) !
+  = ⟨ “Definition of ! for `suc`” ⟩
+    r · (i + 1) = (suc i) · i !
+  = ⟨ “Successor” ⟩
+    r · (suc i) = (suc i) · i !
+  = ⟨ “Cancellation of ·” with “Zero is not successor” ⟩
+    r = i !
+
+Lemma (5):     i ≠ 0  ∧  r · i ! = n !
+            ⇒  r · i · (pred i) ! = n !
+Proof:
+  Assuming `i ≠ 0`, `r · i ! = n !`:
+      (r · i) · (pred i) ! = n !     
+    = ⟨ Assumption `r · i ! = n !` ⟩
+      (r · i) · (pred i) ! = r · i !    
+    = ⟨ “Predecessor of non-zero” with Assumption `i ≠ 0` ⟩ 
+      (r · i) · (pred i) ! = r · (suc (pred i)) !
+    = ⟨ “Definition of ! for `suc`” ⟩
+      (r · i) · (pred i) ! = r · (suc (pred i)) · (pred i) !
+    = ⟨ “Predecessor of non-zero” with Assumption `i ≠ 0` ⟩
+       (r · i) · (pred i) ! = r · i · (pred i) !
+    = ⟨ “Reflexivity of =” ⟩
+      true 
+
+Lemma “Loop body invariant 3”:
+        i ≠ 0 ∧ r · i ! = n !
+      ⇒⁅ r := r · i ⨾ i := pred i ⁆
+        r · i ! = n !
+Proof:
+    r · i ! = n !
+  ⁅ i := pred i  ⁆⇐   ⟨ “Assignment” with substitution ⟩
+    r · (pred i) ! = n !
+  ⁅ r := r · i  ⁆⇐   ⟨ “Assignment” with substitution ⟩
+    r · i · (pred i) ! = n !
+  ⇐⟨ (5) ⟩ 
+    i ≠ 0  ∧  r · i ! = n !

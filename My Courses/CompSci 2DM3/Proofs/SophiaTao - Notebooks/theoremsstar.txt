@@ -1,0 +1,12 @@
+
+
+5.1
+Axiom (3.57) “Definition of ⇒”: p ⇒ q ≡ p ∨ q ≡ q
+Axiom (3.58) “Consequence” “Definition of ⇐”:
+Theorem (3.59) “Definition of ⇒”: p ⇒ q ≡ ¬ p ∨ q
+Theorem (3.60) “Definition of ⇒”: p ⇒ q ≡ p ∧ q ≡ p
+Theorem (3.61) “Contrapositive”: p ⇒ q ≡ ¬ q ⇒ ¬ p
+Theorem (3.62): p ⇒ (q ≡ r) ≡ p ∧ q ≡ p ∧ r
+Theorem (3.63): “Distributivity of ⇒ over ≡”
+Theorem (3.64): p ⇒ (q ⇒ r) ≡ (p ⇒ q) ⇒ (p ⇒ r)
+

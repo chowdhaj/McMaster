@@ -1,0 +1,73 @@
+Homework Notebook 11.2: Practice with Universal and Existential Quantification in the Setting of ℕ
+
+Theorem “Multiplying by 2”: 2 · x = x + x
+Proof:
+    2 · x
+  = ⟨ Fact `2 = 1 + 1` ⟩
+    (1 + 1) · x 
+  = ⟨ “Distributivity of · over +” and “Identity of ·” ⟩
+    x + x 
+
+Theorem “Multiplying by 3”: 3 · x = x + x + x
+Proof:
+    3 · x
+  = ⟨ Fact `3 = 2 + 1` ⟩ 
+    (2 + 1) · x
+  = ⟨ “Distributivity of · over +” and “Multiplying by 2” and “Identity of ·” ⟩
+    x + x + x 
+
+Theorem:
+    ∃ y : ℕ • ∀ x : ℕ • x · y = y
+Proof:
+    ∃ y : ℕ • ∀ x : ℕ • x · y = y
+  ⇐⟨ “∃-Introduction” ⟩
+    (∀ x : ℕ • x · y = y)[y ≔ 0]
+  ≡⟨ Substitution ⟩
+    ∀ x : ℕ • x · 0 = 0
+  ≡⟨ “Zero of ·” and “Reflexivity of =” ⟩
+    ∀ x : ℕ • true  — This is “True ∀ body”
+
+Theorem:
+    ∃ y : ℕ • ∀ x : ℕ • x · y = y
+Proof:
+    ∃ y : ℕ • ∀ x : ℕ • x · y = y
+  ⇐⟨ “∃-Introduction” ⟩
+    (∀ x : ℕ • x · y = y)[y ≔ 0]
+  ≡⟨ Substitution ⟩
+    ∀ x : ℕ • x · 0 = 0
+  ≡⟨ Subproof:
+      For any `x : ℕ`:
+        x · 0 = 0  — This is “Zero of ·” 
+    ⟩
+    true
+
+Theorem:
+    ∃ y : ℕ • ∀ x : ℕ • x · y = y
+Proof:
+      ∃ y : ℕ • ∀ x : ℕ • x · y = y
+    ⇐⟨ “∃-Introduction” ⟩
+      (∀ x : ℕ • x · y = y)[y ≔ 0]
+    ≡⟨ Substitution ⟩
+      ∀ x : ℕ • x · 0 = 0
+  Proof for this:
+    For any `x : ℕ`:
+      x · 0 = 0  — This is “Zero of ·”     
+
+Theorem “Unboundedness of ℕ”: ∀ n : ℕ • ∃ m : ℕ • n < m
+Proof:
+    ∀ n : ℕ • ∃ m : ℕ • n < m
+  ⇐⟨ “Monotonicity of ∀” with “∃-Introduction” ⟩
+    ∀ n : ℕ • (n < m)[m ≔ suc n]
+  ≡⟨ Substitution ⟩
+    ∀ n : ℕ • n < suc n
+  ≡⟨ “Less than successor” ⟩
+    ∀ n : ℕ • true        — This is “True ∀ body”
+
+Theorem “Unboundedness of ℕ”: ∀ n : ℕ • ∃ m : ℕ • n < m
+Proof:
+  For any `n : ℕ`:
+      ∃ m : ℕ • n < m
+    ⇐⟨ “∃-Introduction” ⟩
+      (n < m)[m ≔ suc n]
+    ≡⟨ Substitution ⟩
+      n < suc n      — This is “Less than successor”

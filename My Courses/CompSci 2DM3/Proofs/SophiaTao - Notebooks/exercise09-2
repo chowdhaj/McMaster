@@ -1,0 +1,237 @@
+Theorem “Cons is not empty”: x ◃ xs = 𝜖  ≡  false
+Proof:
+    false
+  ≡⟨ “Definition of `false`” ⟩
+    ¬ ( true )
+  ≡⟨ “Cons is not empty” ⟩
+    ¬ ( x ◃ xs ≠ 𝜖 )
+  ≡⟨ “Definition of ≠” , “Double negation” ⟩
+     ( x ◃ xs = 𝜖 )
+  
+ 
+Theorem (13.6) “Cons decomposition”:
+    xs = 𝜖  ∨  (∃ y • ∃ ys • xs = y ◃ ys)
+Proof:
+  By induction on `xs : Seq A`:
+    Base case:
+        𝜖 = 𝜖  ∨  (∃ y • ∃ ys • 𝜖 = y ◃ ys)
+       ≡⟨ “Reflexivity of =”, “Zero of ∨” ⟩
+        true 
+    Induction step:
+      For any `z`:
+          z ◃ xs = 𝜖 ∨ (∃ y • (∃ ys • z ◃ xs = y ◃ ys ) )
+        ⇐⟨ “Consequence”, “Weakening”⟩
+          (∃ y • ∃ ys • z ◃ xs = y ◃ ys)
+        ⇐⟨ “Consequence”, “∃-Introduction” ⟩
+          (∃ ys • z ◃ xs = y ◃ ys)[ y ≔ z ]
+        ≡⟨ Substitution ⟩
+          (∃ ys • z ◃ xs = z ◃ ys)
+        ⇐⟨ “Consequence”, “∃-Introduction” ⟩
+          ( z ◃ xs = z ◃ ys )[ ys ≔ xs]
+        ≡⟨ Substitution ⟩
+          ( z ◃ xs = z ◃ xs ) — This is “Reflexivity of =”
+         
+Theorem (13.14) “Snoc is not empty”: xs ▹ x ≠ 𝜖
+Proof:
+  By induction on `xs : Seq A`:
+    Base case:
+        𝜖 ▹ x ≠ 𝜖 
+      =⟨ “Definition of ▹ for 𝜖” ⟩
+        x ◃ 𝜖 ≠ 𝜖 
+      =⟨ “Cons is not empty” ⟩
+        true
+    Induction step:
+      For any `y : A`:
+          (y ◃ xs) ▹ x
+        ≡⟨ “Definition of ▹ for ◃” ⟩
+          y ◃ ( xs ▹ x )
+        ≠⟨ “Cons is not empty” ⟩
+          𝜖
+
+Theorem “Snoc is not empty”: xs ▹ x = 𝜖  ≡  false
+Proof:
+    xs ▹ x = 𝜖 
+  ≡⟨ “Double negation”, “Definition of ≠” ⟩
+    ¬ ( xs ▹ x ≠ 𝜖 )
+  ≡⟨ “Snoc is not empty” ⟩
+    ¬ ( true )
+  ≡⟨ “Definition of `false`” ⟩
+    false
+
+Theorem (13.16) “Membership in ▹”: x ∈ (ys ▹ z)  ≡  x ∈ ys ∨ x = z
+Proof:
+  By induction on `ys : Seq A`:
+    Base case:
+        x ∈ (𝜖 ▹ z)  ≡  x ∈ 𝜖 ∨ x = z
+      ≡⟨ “Membership in 𝜖”, “Identity of ∨” ⟩
+        x ∈ (𝜖 ▹ z)  ≡  x = z
+      ≡⟨ “Definition of ▹ for 𝜖” ⟩
+        x ∈ (z ◃ 𝜖)  ≡  x = z
+      ≡⟨ “Membership in ◃” ⟩
+        x = z ∨ x ∈ 𝜖 ≡ x = z
+      ≡⟨ “Membership in 𝜖”, “Identity of ∨” ⟩
+        x = z ≡ x = z — This is  “Reflexivity of ≡”
+    Induction step:
+      For any `y`:
+          x ∈ (y ◃ ys) ▹ z ≡ x ∈ y ◃ ys ∨ x = z
+        ≡⟨ “Definition of ▹ for ◃” ⟩
+          x ∈ y ◃ ( ys ▹ z ) ≡ x ∈ y ◃ ys ∨ x = z
+        ≡⟨ “Membership in ◃” ⟩
+          x = y ∨ x ∈ ( ys ▹ z ) ≡ x ∈ y ◃ ys ∨ x = z
+        ≡⟨ Induction hypothesis ⟩
+          x = y ∨ x ∈ ys ∨ x = z ≡ x ∈ y ◃ ys ∨ x = z
+        ≡⟨ “Membership in ◃” ⟩
+          x ∈ y ◃ ys ∨ x = z ≡ x ∈ y ◃ ys ∨ x = z — This is “Reflexivity of ≡”
+
+Theorem (13.19) “Right-identity of ⌢”: xs ⌢ 𝜖 = xs
+Proof:
+  By induction on `xs : Seq A`:
+    Base case: By “Definition of ⌢ for 𝜖”
+    Induction step:
+      For any `x : A`:
+          (x ◃ xs) ⌢ 𝜖
+        =⟨ “Definition of ⌢ for ◃” ⟩
+          x ◃ ( xs ⌢ 𝜖 )
+        =⟨ Induction hypothesis ⟩
+          x ◃ xs
+   
+Theorem (13.20) “Associativity of ⌢”: (xs ⌢ ys) ⌢ zs = xs ⌢ (ys ⌢ zs)
+Proof:
+  By induction on `xs : Seq A`:
+    Base case:
+        (𝜖 ⌢ ys) ⌢ zs = 𝜖 ⌢ (ys ⌢ zs)
+      =⟨ “Left-identity of ⌢”, “Right-identity of ⌢” ⟩
+         xs ⌢ zs = xs ⌢ zs — This is “Reflexivity of =”
+    Induction step:
+      For any `x`:
+          ((x ◃ xs) ⌢ ys) ⌢ zs = (x ◃ xs) ⌢ (ys ⌢ zs)
+        =⟨ “Mutual associativity of ◃ with ⌢” ⟩
+          x ◃ ( ( xs ⌢ ys) ⌢ zs ) = x ◃ (xs ⌢ ( ys ⌢ zs) )
+        =⟨ Induction hypothesis ⟩
+          x ◃ (xs ⌢ ( ys ⌢ zs) ) = x ◃ (xs ⌢ ( ys ⌢ zs) ) — This is “Reflexivity of =”
+      
+Theorem (13.21) “Membership in ⌢”: x ∈ ys ⌢ zs  ≡  x ∈ ys ∨ x ∈ zs
+Proof:
+  By induction on `ys : Seq A`:
+    Base case:
+        x ∈ 𝜖 ⌢ zs  ≡  x ∈ 𝜖 ∨ x ∈ zs
+      ≡⟨ “Left-identity of ⌢” , “Membership in 𝜖”, “Identity of ∨” ⟩
+        x ∈ zs  ≡  x ∈ zs — This is “Reflexivity of ≡”
+    Induction step:
+      For any `y : A`:
+          x ∈ (y ◃ ys) ⌢ zs ≡ x ∈ y ◃ ys ∨ x ∈ zs
+        ≡⟨ “Mutual associativity of ◃ with ⌢” ⟩
+          x ∈ y ◃ (ys ⌢ zs ) ≡ x ∈ y ◃ ys ∨ x ∈ zs
+        ≡⟨ “Membership in ◃” ⟩
+          x = y ∨ x ∈ ( ys ⌢ zs) ≡ x ∈ y ◃ ys ∨ x ∈ zs
+        ≡⟨ Induction hypothesis ⟩
+          x = y ∨ x ∈ ys ∨ x ∈ zs ≡ x ∈ y ◃ ys ∨ x ∈ zs
+        ≡⟨ “Membership in ◃” ⟩
+          x ∈ ( y ◃ ys ) ∨ x ∈ zs ≡ x ∈ y ◃ ys ∨ x ∈ zs — This is “Reflexivity of ≡”
+
+
+Theorem (13.23) “Empty concatenation”: xs ⌢ ys = 𝜖  ≡  xs = 𝜖 ∧ ys = 𝜖
+Proof:
+  By induction on `xs : Seq A`:
+    Base case:
+        𝜖 ⌢ ys = 𝜖 ≡ 𝜖 = 𝜖 ∧ ys = 𝜖
+      ≡⟨ “Left-identity of ⌢”, “Reflexivity of =” , “Identity of ∧” ⟩
+        ys = 𝜖 ≡ ys = 𝜖  — This is “Reflexivity of ≡”
+    Induction step:
+      For any `x : A`:
+          ( x ◃ xs ) ⌢ ys = 𝜖 ≡ ( x ◃ xs ) = 𝜖 ∧ ys = 𝜖
+        ≡⟨ “Mutual associativity of ◃ with ⌢” ⟩
+          x ◃ ( xs ⌢ ys ) = 𝜖 ≡ ( x ◃ xs ) = 𝜖 ∧ ys = 𝜖 
+        ≡⟨ “Cons is not empty”, “Zero of ∧” ⟩
+          false ≡ false — This is “Reflexivity of ≡”
+
+
+Theorem (13.30) “Reflexivity of ⊆”: xs ⊆ xs
+Proof:
+  By induction on `xs : Seq A`:
+    Base case: By “Empty subsequence”
+    Induction step:
+      For any `x : A`:
+          (x ◃ xs) ⊆ (x ◃ xs)
+        ≡⟨ “Subsequence anchored at head” ⟩
+           xs ⊆ xs
+        ≡⟨ Induction hypothesis ⟩
+           true
+      
+Theorem (13.31) “Cons ⊆-expands”: ys ⊆ x ◃ ys
+Proof:
+  By induction on `ys : Seq A`:
+    Base case: By “Empty subsequence”
+    Induction step:
+      For any `m : A`:
+        By cases: `m = x`, `¬( m = x)`
+          Completeness:
+              By “LEM”
+          Case `m = x`:
+              m ◃ ys ⊆ x ◃ (m ◃ ys)
+            =⟨ Assumption `m = x` ⟩
+              x ◃ ys ⊆ x ◃ x ◃ ys
+            =⟨ “Subsequence anchored at head” ⟩
+              ys ⊆ x ◃ ys
+            =⟨ Induction hypothesis ⟩
+              true  
+          Case `¬ ( m = x )`:
+              m ◃ ys ⊆ x ◃ (m ◃ ys)
+            =⟨ “Subsequence without head”  with Assumption `¬ ( m = x )` and “Definition of ≠”⟩
+              m ◃ ys ⊆ m ◃ ys
+            =⟨ “Reflexivity of ⊆” ⟩
+              true
+      
+    
+Theorem “Definition of `map` for ▹”: map f (xs ▹ x) = map f xs ▹ f x
+Proof:
+  By induction on `xs : Seq A`:
+    Base case:
+        map f ( 𝜖 ▹ x ) = map f 𝜖 ▹ f x
+      =⟨ “Definition of ▹ for 𝜖” ⟩
+        map f ( x ◃ 𝜖 ) = map f 𝜖 ▹ f x
+      =⟨ “Definition of `map` for ◃” ⟩
+        f x ◃ map f 𝜖 = map f 𝜖 ▹ f x
+      =⟨ “Definition of `map` for 𝜖”, “Definition of ▹ for 𝜖” ⟩
+        𝜖 ▹ f x = map f 𝜖 ▹ f x
+      =⟨ “Definition of `map` for 𝜖” ⟩
+        map f 𝜖 ▹ f x = map f 𝜖 ▹ f x — This is “Reflexivity of =”
+    Induction step:
+      For any `m`:
+          map f ((m ◃ xs) ▹ x)
+        =⟨ “Definition of ▹ for ◃” ⟩
+          map f ( m ◃ ( xs ▹ x ) )
+        =⟨ “Definition of `map` for ◃” ⟩
+          f m ◃ map f ( xs ▹ x )
+        =⟨ Induction hypothesis ⟩
+          f m ◃ (map f xs ▹ f x )
+        =⟨ “Definition of ▹ for ◃” ⟩
+          ( f m ◃ map f xs ) ▹ f x
+        =⟨ “Definition of `map` for ◃” ⟩
+          map f ( m ◃ xs ) ▹ f x
+        
+
+Theorem “Distributivity of `map` over ⌢”: map f (xs ⌢ ys) = map f xs ⌢ map f ys
+Proof:
+  By induction on `xs : Seq A`:
+    Base case:
+        map f ( 𝜖 ⌢ ys ) = map f 𝜖 ⌢ map f ys
+      =⟨ “Definition of `map` for 𝜖”, “Left-identity of ⌢” ⟩
+        map f ( ys ) = map f ys — This is “Reflexivity of =”
+    Induction step:
+      For any `m`:
+          (map f) ((m ◃ xs) ⌢ ys)
+        =⟨ “Definition of ⌢ for ◃” ⟩ 
+          (map f) (m ◃ xs ⌢ ys )
+        =⟨ “Definition of `map` for ◃” ⟩
+          f m ◃ map f ( xs ⌢ ys )
+        =⟨ Induction hypothesis ⟩
+          f m ◃  map f xs ⌢ map f ys
+        =⟨ “Definition of ⌢ for ◃” ⟩
+          ( f m ◃ map f xs ) ⌢ map f ys
+        =⟨ “Definition of `map` for ◃” ⟩
+          map f ( m ◃ xs ) ⌢ map f ys 
+
+      
+
+            

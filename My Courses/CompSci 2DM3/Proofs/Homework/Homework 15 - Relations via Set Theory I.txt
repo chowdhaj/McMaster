@@ -1,0 +1,298 @@
+Homework 15: Relations via Set Theory I
+
+Calculation:
+    a ⦗ R ⦘ b ⦗ S ⦘ c
+  ≡⟨ “Reflexivity of ≡” ⟩
+    a ⦗ R ⦘ b   ∧  b ⦗ S ⦘ c
+
+Theorem “Relation inclusion”:
+    R ⊆ S  ≡  (∀ x • ∀ y ❙ x ⦗ R ⦘ y  •  x ⦗ S ⦘ y)
+Proof: 
+    R ⊆ S 
+  = ⟨ “Relation inclusion” ⟩ 
+    (∀ x • ∀ y • x ⦗ R ⦘ y  ⇒  x ⦗ S ⦘ y)
+  = ⟨ “Trading for ∀” ⟩ 
+    (∀ x • ∀ y ❙ x ⦗ R ⦘ y  •  x ⦗ S ⦘ y)
+
+Theorem “Relation inclusion”:
+    R ⊆ S  ≡  (∀ x, y ❙ x ⦗ R ⦘ y  •  x ⦗ S ⦘ y)
+Proof:
+    R ⊆ S
+  = ⟨ “Relation inclusion” ⟩
+    (∀ x • ∀ y ❙ x ⦗ R ⦘ y  •  x ⦗ S ⦘ y) 
+  = ⟨ “Nesting for ∀” ⟩
+    (∀ x, y ❙ x ⦗ R ⦘ y  •  x ⦗ S ⦘ y)
+
+Theorem “Empty relation”: a ⦗ {} ⦘ b  ≡ false
+Proof:
+    a ⦗ {} ⦘ b
+  ≡ ⟨ “Infix relationship” ⟩  
+    ⟨ a , b ⟩ ∈ {}
+  ≡ ⟨ “Empty set” ⟩
+    false  
+
+Lemma “Singleton relation”:
+    a₁ ⦗ { ⟨ a₂ , b₂ ⟩ } ⦘ b₁  ≡  a₁ = a₂ ∧ b₁ = b₂
+Proof:
+    a₁ ⦗ { ⟨ a₂ , b₂ ⟩ } ⦘ b₁
+  ≡ ⟨ “Infix relationship” ⟩
+    ⟨ a₁ , b₁ ⟩ ∈ { ⟨ a₂ , b₂ ⟩ } 
+  ≡ ⟨ “Singleton set membership” ⟩
+    ⟨ a₁ , b₁ ⟩ = ⟨ a₂ , b₂ ⟩
+  ≡ ⟨ “Pair equality” ⟩
+    a₁ = a₂ ∧ b₁ = b₂
+
+Lemma “Singleton relation inclusion”:
+    { ⟨ a , b ⟩ } ⊆ R  ≡  a ⦗ R ⦘ b
+Proof:
+    { ⟨ a , b ⟩ } ⊆ R
+  ≡ ⟨ “Singleton set inclusion” ⟩
+    ⟨ a , b ⟩ ∈ R
+  ≡ ⟨ “Infix relationship” ⟩
+    a ⦗ R ⦘ b
+
+Theorem “Relation complement”: a ⦗ ~ R ⦘ b  ≡  ¬ (a ⦗ R ⦘ b)
+Proof:
+    a ⦗ ~ R ⦘ b
+  ≡ ⟨ “Infix relationship” ⟩
+    ⟨ a , b ⟩ ∈ ~ R
+  ≡ ⟨ “Complement” ⟩
+    ¬ (⟨ a , b ⟩ ∈ R)
+  ≡ ⟨ “Infix relationship” ⟩
+    ¬ ( a ⦗ R ⦘ b)
+
+Theorem “Relation union”:
+    a ⦗ R ∪ S ⦘ b  ≡  a ⦗ R ⦘ b  ∨  a ⦗ S ⦘ b
+Proof:
+    a ⦗ R ∪ S ⦘ b
+  ≡ ⟨ “Infix relationship” ⟩
+    ⟨ a , b ⟩ ∈ R ∪ S
+  ≡  ⟨ “Union” ⟩
+    ⟨ a , b ⟩ ∈ R  ∨ ⟨ a , b ⟩ ∈ S
+  ≡ ⟨ “Infix relationship” ⟩
+    a ⦗ R ⦘ b  ∨ a ⦗ S ⦘ b 
+
+Theorem “Relation intersection”: a ⦗ R ∩ S ⦘ b  ≡  a ⦗ R ⦘ b ∧ a ⦗ S ⦘ b
+Proof:
+    a ⦗ R ∩ S ⦘ b 
+  ≡ ⟨ “Infix relationship” ⟩
+    ⟨ a , b ⟩ ∈ R ∩ S
+  ≡ ⟨ “Intersection” ⟩
+    ⟨ a , b ⟩ ∈ R ∧ ⟨ a , b ⟩ ∈ S
+  ≡ ⟨ “Infix relationship” ⟩
+    a ⦗ R ⦘ b ∧ a ⦗ S ⦘ b   
+   
+Theorem “Relation difference”: a ⦗ R - S ⦘ b  ≡  a ⦗ R ⦘ b ∧ ¬ (a ⦗ S ⦘ b)
+Proof:
+    a ⦗ R - S ⦘ b
+  ≡ ⟨ “Infix relationship” ⟩
+    ⟨ a , b ⟩ ∈ R - S
+  ≡ ⟨ “Set difference” ⟩
+    ⟨ a , b ⟩ ∈ R ∧ ¬ (⟨ a , b ⟩ ∈ S)
+  ≡ ⟨ “Infix relationship” ⟩
+    a ⦗ R ⦘ b ∧ ¬ (a ⦗ S ⦘ b)
+
+Theorem “Relationship via 𝕀”: x ⦗ 𝕀 B ⦘ y  ≡  x = y ∈ B
+Proof:
+    x ⦗ 𝕀 B ⦘ y
+  ≡ ⟨ “Definition of 𝕀” ⟩
+    x ⦗ { x ❙ x ∈ B • ⟨ x , x ⟩ } ⦘ y 
+  ≡ ⟨ “Infix relationship” ⟩
+    ⟨ x , y ⟩ ∈ { x ❙ x ∈ B • ⟨ x , x ⟩ }
+  ≡ ⟨ “Reflexivity of ≡” ⟩
+    ⟨ x , y ⟩ ∈ { j ❙ j ∈ B • ⟨ j , j ⟩ }
+  ≡ ⟨ “Set membership” ⟩
+    (∃ j ❙ j ∈ B • ⟨ x , y ⟩ = ⟨ j , j ⟩)   
+  ≡ ⟨ “Pair equality” ⟩
+    (∃ j ❙ j ∈ B • x = j ∧ y = j)    
+  ≡ ⟨ “Trading for ∃” ⟩
+    (∃ j • j ∈ B ∧ (x = j ∧ y = j))
+  ≡ ⟨ “Trading for ∃” ⟩
+    (∃ j ❙ j = y • (x = j ∧ j ∈ B)) 
+  ≡ ⟨ “One-point rule for ∃” ⟩
+    (x = j ∧ j ∈ B)[j ≔ y] 
+  ≡ ⟨ Substitution ⟩
+    (x = y ∧ y ∈ B)
+  ≡ ⟨ “Reflexivity of =” ⟩
+    x = y ∈ B
+
+Theorem “Intersection of 𝕀 relations”: 𝕀 B ∩ 𝕀 C = 𝕀 (B ∩ C)
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `(∀ x • ∀ y • x ⦗ 𝕀 B ∩ 𝕀 C ⦘ y  ≡  x ⦗ 𝕀 (B ∩ C) ⦘ y)`: 
+            For any `x`, `y`:
+                x ⦗ 𝕀 B ∩ 𝕀 C ⦘ y
+              = ⟨ “Relation intersection” ⟩ 
+                x ⦗ 𝕀 B ⦘ y ∧ x ⦗ 𝕀 C ⦘ y
+              = ⟨ “Relationship via 𝕀” ⟩ 
+                (x = y ∧ y ∈ B) ∧ (x = y ∧ y ∈ C)
+              = ⟨ “Idempotency of ∧” ⟩
+                (x = y ∧ y ∈ B ∧ y ∈ C) 
+              = ⟨ “Intersection” ⟩
+                (x = y ∧ y ∈ B ∩ C) 
+              = ⟨ “Relationship via 𝕀” ⟩  
+                x ⦗ 𝕀 (B ∩ C) ⦘ y
+
+Theorem “Union of 𝕀 relations”: 𝕀 B ∪ 𝕀 C = 𝕀 (B ∪ C)
+Proof: 
+    Using “Relation extensionality”:
+        Subproof for `(∀ x • (∀ y • (x ⦗ 𝕀 B ∪ 𝕀 C ⦘ y ≡ x ⦗ 𝕀 (B ∪ C) ⦘ y)))`:
+            For any `x`, `y`:
+                x ⦗ 𝕀 B ∪ 𝕀 C ⦘ y
+              = ⟨ “Relation union” ⟩
+                x ⦗ 𝕀 B ⦘ y ∨ x ⦗ 𝕀 C ⦘ y
+              = ⟨ “Relationship via 𝕀” ⟩
+                x = y ∈ B ∨ x = y ∈ C
+              = ⟨ “Reflexivity of =” ⟩
+                (x = y ∧ y ∈ B) ∨ (x = y ∧ y ∈ C)
+              = ⟨ “Distributivity of ∧ over ∨” ⟩
+                (x = y) ∧ (y ∈ B ∨ y ∈ C)
+              = ⟨ “Union” ⟩
+                (x = y) ∧ (y ∈ B ∪ C) 
+              = ⟨ “Relationship via 𝕀” ⟩ 
+                x ⦗ 𝕀 (B ∪ C) ⦘ y
+
+Theorem “Difference of 𝕀 relations”: 𝕀 B - 𝕀 C = 𝕀 (B - C)
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `(∀ x • (∀ y • (x ⦗ 𝕀 B - 𝕀 C ⦘ y  ≡  x ⦗ 𝕀 (B - C) ⦘ y)))`:
+            For any `x`, `y`:
+                x ⦗ 𝕀 B - 𝕀 C ⦘ y
+              = ⟨ “Relation difference” ⟩
+                x ⦗ 𝕀 B ⦘ y ∧ ¬ (x ⦗ 𝕀 C ⦘ y)
+              = ⟨ “Relationship via 𝕀” ⟩ 
+                (x = y ∧ y ∈ B) ∧ ¬ (x = y ∧ y ∈ C)
+              = ⟨ “De Morgan” ⟩
+                (x = y ∈ B) ∧ (¬ (x = y) ∨ ¬ (y ∈ C))
+              = ⟨ “Distributivity of ∧ over ∨” ⟩
+                (  (x = y ∈ B) ∧ ¬ (x = y)  )    ∨    (  (x = y ∈ B) ∧ ¬ (y ∈ C)  )
+              = ⟨ “Reflexivity of =” ⟩
+                ((x = y ∧ y ∈ B) ∧ ¬ (x = y))    ∨    ((x = y ∧ y ∈ B) ∧ ¬ (y ∈ C)) 
+              = ⟨ “Contradiction” ⟩
+                ((false ∧ y ∈ B))   ∨    ((x = y ∧ y ∈ B) ∧ ¬ (y ∈ C))  
+              = ⟨ “Zero of ∧” ⟩
+                false ∨ ((x = y ∧ y ∈ B) ∧ ¬ (y ∈ C))  
+              = ⟨ “Identity of ∨” ⟩ 
+                (x = y ∧ y ∈ B) ∧ ¬ (y ∈ C)
+              = ⟨ “Set difference” ⟩
+                (x = y ∧ y ∈ B - C)
+              = ⟨ “Relationship via 𝕀” ⟩ 
+                x ⦗ 𝕀 (B - C) ⦘ y
+
+Theorem “Set complement as difference”: ~ B = 𝐔 - B
+Proof:
+    Using “Set extensionality”:
+        Subproof for `∀ x • x ∈ ~ B ≡ x ∈ (𝐔 - B)`:
+            For any `x`:
+                By “Complement”, “Identity of ∧”, “Universal set”, “Set difference”
+
+Theorem “Difference of 𝕀 relations”: 𝕀 (~ B) = 𝕀 𝐔 - 𝕀 B
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `(∀ x • (∀ y • (x ⦗ 𝕀 (~ B) ⦘ y  ≡  x ⦗ 𝕀 𝐔 - 𝕀 B ⦘ y)))`:
+            For any `x`, `y`:
+                By “Relationship via 𝕀” and “Set complement as difference” and “Difference of 𝕀 relations”
+
+Theorem “Intersection of 𝕀 and ×”: 𝕀 B ∩ (C × D) = 𝕀 (B ∩ C ∩ D)
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `(∀ x • ∀ y • x ⦗ 𝕀 B ∩ (C × D) ⦘ y  ≡  x ⦗ 𝕀 (B ∩ C ∩ D) ⦘ y)`:
+            For any `x`, `y`:
+                x ⦗ 𝕀 (B ∩ C ∩ D) ⦘ y
+              ≡ ⟨ “Relationship via 𝕀” ⟩
+                 x = y ∈ (B ∩ C ∩ D)
+              ≡ ⟨ “Reflexivity of =” ⟩
+                x = y ∧ y ∈ (B ∩ C ∩ D) 
+              ≡ ⟨ “Intersection” ⟩
+                x = y ∧ y ∈ B ∧ y ∈ (C ∩ D)  
+              ≡ ⟨ “Intersection” ⟩
+                x = y ∧ y ∈ B ∧ (y ∈ C) ∧ (y ∈ D)   
+              ≡ ⟨ Substitution ⟩
+                x = y ∧ (y ∈ B ∧ (j ∈ C) ∧ (y ∈ D))[j ≔ y]  
+              ≡ ⟨ “Replacement” ⟩
+                x = y ∧ (y ∈ B ∧ (j ∈ C) ∧ (y ∈ D))[j ≔ x]
+              ≡ ⟨ Substitution ⟩
+                x = y ∧ (y ∈ B ∧ (x ∈ C) ∧ (y ∈ D))
+              ≡ ⟨ “Membership in ×” ⟩
+                x = y ∧ (y ∈ B ∧ ⟨ x , y ⟩ ∈ C × D)
+              ≡ ⟨ “Definition of `_⦗_⦘_`” ⟩
+                x = y ∧ y ∈ B ∧ (x ⦗ C × D ⦘ y)
+              ≡ ⟨ “Relationship via 𝕀” ⟩
+                x ⦗ 𝕀 B ⦘ y ∧ (x ⦗ C × D ⦘ y)
+              ≡ ⟨ “Relation intersection” ⟩
+                x ⦗ 𝕀 B ∩ (C × D) ⦘ y
+
+Theorem “Difference of 𝕀 and ×”: 𝕀 B - (C × D) = 𝕀 (B - (C ∩ D))
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `(∀ x • ∀ y • x ⦗ 𝕀 B - (C × D) ⦘ y  ≡  x ⦗ 𝕀 (B - (C ∩ D)) ⦘ y)`:
+            For any `x`, `y`:
+                x ⦗ 𝕀 B - (C × D) ⦘ y  
+              ≡ ⟨ “Relation difference” ⟩ 
+                x ⦗ 𝕀 B ⦘ y ∧ ¬ (x ⦗ (C × D) ⦘ y)
+              ≡ ⟨ “Relationship via 𝕀” ⟩
+                x = y ∈ B ∧ ¬ (x ⦗ (C × D) ⦘ y)
+              ≡ ⟨ “Infix relationship” ⟩
+                x = y ∈ B ∧ ¬ ( ⟨ x , y ⟩ ∈ C × D )
+              ≡ ⟨ “Membership in ×” ⟩
+                x = y ∈ B ∧ ¬ (x ∈ C ∧ y ∈ D)
+              ≡ ⟨ “De Morgan” ⟩
+                x = y ∈ B ∧ (¬ (x ∈ C) ∨ ¬ (y ∈ D)) 
+              ≡ ⟨ “Complement” ⟩
+                x = y ∈ B ∧ ((x ∈ ~ C) ∨ (y ∈ ~ D))  
+              ≡ ⟨ “Distributivity of ∧ over ∨” ⟩
+                (x = y ∈ B ∧ x ∈ ~ C) ∨ (x = y ∈ B ∧ y ∈ ~ D) 
+              ≡ ⟨ “Reflexivity of =” ⟩
+                (x = y ∧ y ∈ B ∧ x ∈ ~ C) ∨ (x = y ∧ y ∈ B ∧ y ∈ ~ D)
+              ≡ ⟨ Substitution, “Replacement” ⟩
+                (x = y ∧ y ∈ B ∧ (j ∈ ~ C)[j ≔ y]) ∨ (x = y ∧ y ∈ B ∧ y ∈ ~ D)
+              ≡ ⟨ Substitution ⟩
+                (x = y ∧ y ∈ B ∧ (y ∈ ~ C)) ∨ (x = y ∧ y ∈ B ∧ y ∈ ~ D)  
+              ≡ ⟨ “Distributivity of ∧ over ∨” ⟩
+                x = y ∈ B ∧ ((y ∈ ~ C) ∨ (y ∈ ~ D))  
+              ≡ ⟨ “Complement” ⟩
+                x = y ∈ B ∧ (¬ (y ∈ C) ∨ ¬ (y ∈ D))  
+              ≡ ⟨ “De Morgan” ⟩
+                x = y ∈ B ∧ ¬ ((y ∈ C) ∧ (y ∈ D))  
+              ≡ ⟨ “Intersection” ⟩
+                x = y ∈ B ∧ ¬ (y ∈ C ∩ D)
+              ≡ ⟨ “Reflexivity of =” ⟩
+                x = y ∧ y ∈ B ∧ ¬ (y ∈ C ∩ D)
+              ≡ ⟨ “Set difference” ⟩
+                x = y ∧ y ∈ B - (C ∩ D)
+              ≡ ⟨ “Relationship via 𝕀” ⟩ 
+                x ⦗ 𝕀 (B - (C ∩ D)) ⦘ y
+
+Theorem “Relation Equivalence”: x ⦗ 𝕀 B ⦘ y  ⇒  x ⦗ 𝕀 C ⦘ y ≡ ((x = y ∈ B) ⇒ (x = y ∈ C))
+Proof:
+    By “Relationship via 𝕀” and “Reflexivity of ≡”
+
+Theorem “Isotonicity of 𝕀”:  B ⊆ C  ≡  𝕀 B ⊆ 𝕀 C
+Proof:
+    𝕀 B ⊆ 𝕀 C
+  ≡ ⟨ “Relation inclusion” ⟩
+    (∀ x • ∀ y • x ⦗ 𝕀 B ⦘ y  ⇒  x ⦗ 𝕀 C ⦘ y)
+  ≡ ⟨ “Relation Equivalence” ⟩ 
+    (∀ x • ∀ y • (x = y ∈ B) ⇒ (x = y ∈ C))
+  ≡ ⟨ “Reflexivity of =” ⟩ 
+    (∀ x • (∀ y ❙ true • (x = y ∧ y ∈ B) ⇒ (x = y ∧ y ∈ C)  ))
+  ≡ ⟨ “Trading for ∀” ⟩
+    (∀ x • (∀ y ❙ true ∧ (x = y ∧ y ∈ B) • (x = y ∧ y ∈ C)  ))
+  ≡ ⟨ “Identity of ∧” ⟩
+    (∀ x • (∀ y ❙ (x = y ∈ B) • (x = y ∧ y ∈ C)  )) 
+  ≡ ⟨ “Trading for ∀”, “Shunting” ⟩ 
+    (∀ x • (∀ y • (x = y ⇒ y ∈ B ⇒ x = y ∧ y ∈ C)  )) 
+  ≡ ⟨ “Trading for ∀” ⟩
+    (∀ x • (∀ y ❙ x = y • (y ∈ B ⇒ x = y ∧ y ∈ C)  ))   
+  ≡ ⟨ “One-point rule for ∀” ⟩
+    (∀ x • (y ∈ B ⇒ x = y ∧ y ∈ C)[y ≔ x])
+  ≡ ⟨ Substitution ⟩
+    (∀ x • (x ∈ B ⇒ (x = x ∈ C)))
+  ≡ ⟨ “Reflexivity of =” ⟩
+    (∀ e • (e ∈ B ⇒ (e = e ∈ C)))
+  ≡ ⟨ “Trading for ∀” ⟩
+    (∀ e ❙ e ∈ B • e = e ∧ e ∈ C)
+  ≡ ⟨ “Reflexivity of =” and “Identity of ∧” ⟩ 
+    (∀ e ❙ e ∈ B • e ∈ C)
+  ≡ ⟨ “Subset” ⟩
+    B ⊆ C

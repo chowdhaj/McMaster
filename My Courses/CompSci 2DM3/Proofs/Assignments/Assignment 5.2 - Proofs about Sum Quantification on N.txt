@@ -1,0 +1,97 @@
+Assignment Notebook 5.2: Proofs about Sum Quantification on ℕ
+
+Theorem “Some Lemma”: m < n ⇒ (m < i ≤ n ≡ suc m < i ≤ n ∨ i = suc m)
+Proof:
+    Assuming `m < n`:    
+        suc m < i ≤ n ∨ i = suc m
+      = ⟨ “Identity of ∧” ⟩
+        suc m < i ≤ n ∨ (i = suc m ∧ true)
+      = ⟨ Assumption `m < n` ⟩
+        suc m < i ≤ n ∨ (i = suc m ∧ m < n) 
+      = ⟨ “<-Isotonicity of successor” ⟩
+        suc m < i ≤ n ∨ (i = suc m ∧ suc m < suc n)  
+      = ⟨ Substitution ⟩
+        suc m < i ≤ n ∨ (i = suc m ∧ (f < suc n)[f ≔ suc m])
+      = ⟨ “Replacement” ⟩
+        suc m < i ≤ n ∨ (i = suc m ∧ (f < suc n)[f ≔ i])
+      = ⟨ Substitution ⟩
+        suc m < i ≤ n ∨ (i = suc m ∧ i < suc n)
+      = ⟨ “Definition of ≤ in terms of `suc` and <” ⟩ 
+        (suc m < i ∧ i ≤ n) ∨ (i = suc m ∧ i ≤ n)
+      = ⟨ “Distributivity of ∧ over ∨” ⟩
+        (i ≤ n) ∧ (suc m < i ∨ i = suc m)
+      = ⟨ “Definition of ≤ in terms of <” ⟩
+        (i ≤ n) ∧ (suc m ≤ i)
+      = ⟨ “Symmetry of ∧” ⟩
+        (suc m ≤ i) ∧ (i ≤ n)
+      = ⟨ “Definition of ≤ in terms of `suc` and <” ⟩ 
+        (suc m < suc i) ∧ (i ≤ n)
+      = ⟨ “<-Isotonicity of successor” ⟩
+        (m < i) ∧ (i ≤ n)
+      = ⟨ “Reflexivity of =” ⟩ 
+        m < i ≤ n
+
+Theorem “Split off term at bottom”: 
+    m < n ⇒ (∑ i ❙ m < i ≤ n • E) = 
+             (∑ i ❙ suc m < i ≤ n • E) + E[i ≔ suc m]
+Proof:
+    Assuming `m < n`: 
+        (∑ i ❙ suc m < i ≤ n • E) + E[i ≔ suc m]
+      = ⟨ “One-point rule for ∑” ⟩
+        (∑ i ❙ suc m < i ≤ n • E) + (∑ i ❙ i = suc m • E)
+      = ⟨ “Disjoint range split for ∑”
+            with subproof for `∀ i • (suc m < i ≤ n) ∧ (i = suc m) ≡ false`:
+                For any `i`:
+                    (suc m < i ≤ n) ∧ (i = suc m)
+                  ≡ ⟨ “Symmetry of ∧” ⟩ 
+                    (i = suc m) ∧ (suc m < i ≤ n)
+                  ≡ ⟨ Substitution ⟩
+                    (i = suc m) ∧ (j < i ≤ n)[j ≔ suc m] 
+                  ≡ ⟨ “Replacement” ⟩
+                    (i = suc m) ∧ (j < i ≤ n)[j ≔ i]
+                  ≡ ⟨ Substitution ⟩
+                    (i = suc m) ∧ (i < i ≤ n)   
+                  ≡ ⟨ “Reflexivity of =” ⟩
+                    (i = suc m) ∧ (i < i ∧ i ≤ n)     
+                  ≡ ⟨ “Irreflexivity of <” ⟩
+                    (i = suc m) ∧ (false ∧ i ≤ n)      
+                  ≡ ⟨ “Zero of ∧” ⟩
+                    (i = suc m) ∧ false
+                  ≡ ⟨ “Zero of ∧” ⟩      
+                    false
+        ⟩
+        (∑ i ❙ (suc m < i ≤ n) ∨ (i = suc m) • E)
+      = ⟨ “Some Lemma” with Assumption `m < n` ⟩ 
+        (∑ i ❙ m < i ≤ n • E) 
+
+Theorem “Sum powers of two”: suc (∑ i ❙ i < n • pow 2 i) = pow 2 n
+Proof:
+    By induction on `n : ℕ`:
+        Base case:
+            suc (∑ i ❙ i < 0 • pow 2 i) = pow 2 0
+          = ⟨ “Nothing is less than zero” ⟩ 
+            suc (∑ i ❙ false • pow 2 i) = pow 2 0
+          = ⟨ “Empty range for ∑” ⟩
+            suc 0 = pow 2 0
+          = ⟨ Fact `suc 0 = 1` ⟩
+            1 = pow 2 0
+          = ⟨ “Definition of `pow`” ⟩
+            1 = 1
+          = ⟨ “Reflexivity of =” ⟩
+            true  
+        Induction step:
+            suc (∑ i ❙ i < suc n • pow 2 i) = (pow 2) (suc n)
+          = ⟨ “Definition of `pow`” ⟩
+            suc (∑ i ❙ i < suc n • pow 2 i) =  2 · (pow 2 n)
+          = ⟨ “Split off term at top” ⟩
+            suc ((∑ i : ℕ ❙ i < n • pow 2 i) + (pow 2 i)[i ≔ n]) =  2 · (pow 2 n)
+          = ⟨ “Definition of + for `suc`” ⟩
+            suc (∑ i : ℕ ❙ i < n • pow 2 i) + (pow 2 i)[i ≔ n] =  2 · (pow 2 n)
+          = ⟨ Induction hypothesis ⟩
+            pow 2 n + (pow 2 i)[i ≔ n] =  2 · (pow 2 n)
+          = ⟨ Substitution ⟩
+            (pow 2 n) + (pow 2 n) =  2 · (pow 2 n)
+          = ⟨ “Multiplying by 2” ⟩
+            2 · (pow 2 n)  =  2 · (pow 2 n)
+          = ⟨ “Reflexivity of =” ⟩
+            true 

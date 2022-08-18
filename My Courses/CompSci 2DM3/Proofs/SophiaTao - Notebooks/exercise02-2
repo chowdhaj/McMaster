@@ -1,0 +1,306 @@
+2.2.6
+Theorem “Right-identity of +”: m + 0 = m
+Proof:
+  By induction on `m : ℕ`:
+    Base case:
+        0 + 0
+      =⟨ “Definition of + for 0” ⟩
+        0
+    Induction step:
+        S m + 0
+      =⟨ “Definition of + for `S`” ⟩
+        S (m + 0)
+      =⟨ Induction hypothesis ⟩
+        S m
+
+2.2.7
+Theorem “Adding the successor”: m + (S n) = S (m + n)
+Proof:
+  By induction on `m : ℕ`:
+    Base case:
+        0 + (S n)
+      =⟨ “Definition of + for 0” ⟩
+        S n
+      =⟨ “Definition of + for 0” ⟩
+        S (0 + n)
+    Induction step:
+        (S m) + (S n)
+      =⟨ “Definition of + for `S`” ⟩
+        S (m + (S n))
+      =⟨ Induction hypothesis ⟩
+        S (S (m + n))
+      =⟨ “Definition of + for `S`” ⟩
+        S ((S m) + n)
+2.2.8
+Theorem “Symmetry of +”: m + n = n + m
+Proof:
+  By induction on `m : ℕ`:
+    Base case:
+        0 + n = n + 0
+      =⟨ “Left-identity of +” ⟩
+        n = n + 0
+      =⟨ “Right-identity of +” ⟩
+        n = n
+      =⟨ “Reflexivity of =” ⟩
+        true
+    Induction step:
+        S m + n = n + S m
+      =⟨ “Addition of successor” ⟩
+        S (m + n) = n + S m
+      =⟨ “Adding the successor” ⟩
+        S (m + n) = S (n + m)
+      =⟨ Induction hypothesis ⟩
+        S (n + m) = S (n + m)
+      =⟨ “Reflexivity of =” ⟩
+        true
+2.2.9
+Theorem “Associativity of +”: (a + b) + c = a + (b + c)
+Proof:
+  By induction on `a : ℕ`:
+    Base case:
+        (0 + b) + c = 0 + (b + c)
+      =⟨ “Left-identity of +” ⟩
+        (b) + c = (b + c)
+      =⟨ “Reflexivity of =” ⟩
+         true
+    Induction step:
+        (S a + b) + c = S a + (b + c)
+      =⟨ “Addition of successor” ⟩
+        S (a + b + c) = S (a + (b + c))
+      =⟨ Induction hypothesis ⟩
+        S (a + (b + c)) = S (a + (b + c))  — This is “Reflexivity of =”
+2.2.17
+Theorem “Left-identity of ·”: 1 · n = n
+Proof:
+    1 · n = n
+  =⟨ “Definition of 1” ⟩
+    S 0 · n = n
+  =⟨ “Definition of ·” ⟩
+    n + 0 · n = n
+  =⟨ “Definition of ·” ⟩
+    n + 0 = n
+  =⟨ “Identity of +” ⟩
+    n = n — This is “Reflexivity of =”
+2.2.18
+Theorem “Right-zero of ·”: m · 0 = 0
+Proof:
+   By induction on `m : ℕ`:
+     Base case:
+         0 · 0
+       =⟨ “Definition of ·” ⟩
+         0
+     Induction step:
+         S m · 0
+       =⟨ “Definition of ·” ⟩
+         0 + m · 0
+       =⟨ Induction hypothesis ⟩
+         0 + 0
+       =⟨ “Identity of +” ⟩
+         0
+2.2.19
+Theorem “Multiplying the successor”: m · (S n) = m · n + m
+Proof:
+   By induction on `m : ℕ`:
+     Base case:
+         0 · (S n) = 0 · n + 0
+       =⟨ “Definition of ·” ⟩
+         0 = 0 + 0
+       =⟨ “Identity of +” ⟩
+         0 = 0 — This is “Reflexivity of =”
+     Induction step:
+         S m · (S n) = S m · n + S m
+       =⟨ “Definition of ·” ⟩
+         S n + m · S n = n + m · n + S m
+       =⟨ Induction hypothesis ⟩
+         S n + m · n + m = n + m · n + S m
+       =⟨ “Addition of successor” ⟩
+         S (n + m) + m · n = m · n + S (m + n) — This is “Reflexivity of =”
+2.2.20
+Theorem “Symmetry of ·”: m · n = n · m
+Proof:
+   By induction on `m : ℕ`:
+     Base case:
+         0 · n = n · 0
+       =⟨ “Definition of ·” ⟩
+         0 = n · 0
+       =⟨ “Right-zero of ·” ⟩
+         0 = 0 — This is “Reflexivity of =”
+     Induction step:
+         S m · n = n · S m
+       =⟨ “Definition of ·” ⟩
+         n + m · n = n · S m
+       =⟨ “Multiplying the successor” ⟩
+         n + m · n = n · m + n
+       =⟨ Induction hypothesis ⟩
+         n + n · m = n · m + n — This is “Reflexivity of =”
+2.2.24
+Theorem “Distributivity of · over +”: k · (m + n) = k · m + k · n
+Proof:
+   By induction on `k : ℕ`:
+     Base case `0 · (m + n) = 0 · m + 0 · n`:
+         0 · (m + n) = 0 · m + 0 · n
+       =⟨ “Zero of ·” ⟩
+         0 = 0 + 0
+       =⟨ “Identity of +” ⟩
+         0 = 0 — This is “Reflexivity of =”
+     Induction step:
+         S k · (m + n) = S k · m + S k · n
+       =⟨ “Definition of ·” ⟩
+         (m + n) + k · (m + n) = m + n +  k · m + k · n
+       =⟨ Induction hypothesis ⟩
+         (m + n) + k · m + k · n = m + n +  k · m + k · n — This is “Reflexivity of =”
+2.2.25
+Theorem “Associativity of ·”: (k · m) · n = k · (m · n)
+Proof:
+   By induction on `k : ℕ`:
+     Base case `(0 · m) · n = 0 · (m · n)`:
+         (0 · m) · n = 0 · (m · n)
+       =⟨ “Zero of ·” ⟩
+         0 = 0 — This is “Reflexivity of =”
+     Induction step:
+         (S k · m) · n = S k · (m · n)
+       =⟨ “Definition of ·” ⟩
+         (m + k · m) · n = (m · n) + k · (m · n)
+       =⟨ “Distributivity of · over +” ⟩
+         m · n + (k · m) · n = (m · n) + k · (m · n)
+       =⟨ Induction hypothesis ⟩
+         m · n + k · (m · n) = (m · n) + k · (m · n) — This is “Reflexivity of =”
+2.2.30
+Theorem “Right-identity of subtraction”: m - 0 = m
+Proof:
+  By induction on `m : ℕ`:
+    Base case:
+        0 - 0 = 0
+      =⟨ “Subtraction from zero” ⟩
+        0 = 0 — This is “Reflexivity of =”
+    Induction step:
+        S m - 0 = S m
+      =⟨ “Subtraction of zero from successor” ⟩
+        S m = S m — This is “Reflexivity of =”
+2.2.31
+Theorem “Self-cancellation of subtraction”: m - m = 0
+Proof:
+  By induction on `m : ℕ`:
+    Base case:
+        0 - 0 = 0
+      =⟨ “Subtraction from zero” ⟩
+        0 = 0 — This is “Reflexivity of =”
+    Induction step:
+        S m - S m = 0
+      =⟨ “Subtraction of successor from successor” ⟩
+        m - m = 0
+      =⟨ Induction hypothesis ⟩
+        0 = 0 — This is “Reflexivity of =”
+2.2.32
+Theorem “Subtraction after addition”: (m + n) - n = m
+Proof:
+  By induction on `m : ℕ`:
+    Base case:
+        (0 + n) - n = 0
+      =⟨ “Identity of +” ⟩
+        n - n = 0
+      =⟨ “Self-cancellation of subtraction” ⟩
+        0 = 0 — This is “Reflexivity of =”
+    Induction step `(S m + n) - n = S m`:
+      By induction on `n : ℕ`:
+        Base case:
+            (S m + 0) - 0 = S m
+          =⟨ “Identity of +” ⟩
+            S m - 0 = S m
+          =⟨ “Subtraction of zero from successor” ⟩
+            S m = S m — This is “Reflexivity of =”
+        Induction step:
+            (S m + S n) - S n = S m
+          =⟨ “Adding the successor” ⟩
+            S (S m + n) - S n = S m
+          =⟨ “Subtraction of successor from successor” ⟩
+            (S m + n - n) = S m
+          =⟨ Induction hypothesis `(S m + n) - n = S m` ⟩
+            S m = S m — This is “Reflexivity of =”
+2.2.33
+Theorem “Subtraction from multiplication with successor”: m · (S n) - m = m · n
+Proof:
+  By induction on `m : ℕ`:
+    Base case `0 · (S n) - 0 = 0 · n`:
+        0 · (S n) - 0 = 0 · n
+      =⟨ “Zero of ·” ⟩
+        0 - 0 = 0
+      =⟨ “Subtraction from zero” ⟩
+        0 = 0 — This is “Reflexivity of =”
+    Induction step `S m · (S n) - S m = S m · n`:
+        S m · (S n) - S m = S m · n
+      =⟨ “Definition of ·” ⟩
+        S m + n · S m - S m = S m · n
+      =⟨ “Subtraction after addition” ⟩
+        n · S m = S m · n — This is “Reflexivity of =”
+2.2.34
+Theorem “Subtraction of sum”: k - (m + n) = (k - m) - n
+Proof:
+  By induction on `k : ℕ`:
+    Base case `0 - (m + n) = (0 - m) - n`:
+        0 - (m + n) = (0 - m) - n
+      =⟨ “Subtraction from zero” ⟩
+        0 = 0 — This is “Reflexivity of =”
+    Induction step `S k - (m + n) = (S k - m) - n`:
+      By induction on `m : ℕ`:
+        Base case `S k - (0 + n) = (S k - 0) - n`:
+            S k - (0 + n) = (S k - 0) - n
+          =⟨ “Identity of +” ⟩
+            S k - (n) = (S k - 0) - n
+          =⟨ “Subtraction of zero from successor” ⟩
+            S k - (n) = (S k) - n — This is “Reflexivity of =”
+        Induction step `S k - (S m + n) = (S k - S m) - n`:
+            S k - (S m + n) = (S k - S m) - n
+          =⟨ “Addition of successor” ⟩
+            S k - (S (m + n)) = (S k - S m) - n
+          =⟨ “Subtraction of successor from successor” ⟩
+            k - (m + n) = (k - m) - n
+          =⟨ Induction hypothesis `k - (m + n) = (k - m) - n` ⟩
+            true
+
+2.2.35
+Theorem “Distributivity of · over subtraction”: k · (m - n) = k · m - k · n
+Proof:
+  By induction on `k : ℕ`:
+    Base case:
+        0 · (m - n) = 0 · m - 0 · n
+      =⟨ “Zero of ·” ⟩
+        0 = 0 - 0
+      =⟨ “Right-identity of subtraction” ⟩
+        0 = 0 — This is “Reflexivity of =”
+    Induction step `S k · (m - n) = S k · m - S k · n`:
+        S k · (m - n) = S k · m - S k · n
+      =⟨ “Definition of ·” ⟩
+       (m - n) + k · (m - n) = m + k · m - (n + k · n)
+      =⟨ Induction hypothesis ⟩
+       (m - n) + (k · m - k · n) = m + k · m - (n + k · n)
+2.2.36
+Theorem “Monus exchange”: m + (n - m) = n + (m - n)
+Proof:
+  By induction on `m : ℕ`:
+    Base case:
+        0 + (n - 0) = n + (0 - n)
+      =⟨ “Subtraction from zero” ⟩
+        0 + (n - 0) = n + (0)
+      =⟨ “Right-identity of subtraction” ⟩
+        0 + (n) = n + (0)
+      =⟨ “Identity of +” ⟩
+        (n) = n — This is “Reflexivity of =”
+    Induction step `S m + (n - S m) = n + (S m - n)`:
+      By induction on `n : ℕ`:
+        Base case `S m + (0 - S m) = 0 + (S m - 0)`:
+            S m + (0 - S m) = 0 + (S m - 0)
+          =⟨ “Subtraction from zero” ⟩
+            S m + (0) = 0 + (S m - 0)
+          =⟨ “Right-identity of subtraction” ⟩
+            S m + (0) = 0 + (S m)
+          =⟨ “Identity of +” ⟩
+            S m = S m — This is “Reflexivity of =”
+        Induction step `S m + (S n - S m) = S n + (S m - S n)`:
+            S m + (S n - S m) = S n + (S m - S n)
+          =⟨ “Subtraction of successor from successor” ⟩
+            S m + (n - m) = S n + (m - n)
+          =⟨ “Addition of successor” ⟩
+            S (m + (n - m)) = S (n + (m - n))
+          =⟨ Induction hypothesis `m + (n - m) = n + (m - n)` ⟩
+            S (n + (m - n)) = S (n + (m - n)) — This is “Reflexivity of =”

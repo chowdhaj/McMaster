@@ -1,0 +1,106 @@
+4.1.6
+Theorem (3.4): true
+Proof:
+    true
+  =⟨ “Identity of ≡” with `q ≔ true` ⟩
+    true ≡ true
+  =⟨ “Identity of ≡” with `q ≔ q` ⟩
+    true ≡ q ≡ q  — This is “Identity of ≡”
+
+4.1.8
+Theorem (3.5) “Reflexivity of ≡”: p ≡ p
+Proof:
+    p ≡ p
+  =⟨ “Identity of ≡” with `q ≔ p ≡ p` ⟩
+    true
+
+4.1.16
+Theorem (3.11) “¬ connection”: ¬ p ≡ q ≡ p ≡ ¬ q
+Proof:
+    ¬ p ≡ q
+  =⟨ “Distributivity of ¬ over ≡” ⟩
+    ¬(p ≡ q)
+  =⟨ “Distributivity of ¬ over ≡” ⟩
+    p ≡ ¬ q
+
+4.1.17
+Theorem (3.12) “Double negation”: ¬ ¬ p ≡ p
+Proof:
+    ¬ ¬ p ≡ p
+  =⟨ “Distributivity of ¬ over ≡” ⟩
+    ¬ (¬ p ≡ p)
+  =⟨ “Distributivity of ¬ over ≡” ⟩
+    ¬ p ≡ ¬ p — This is “Reflexivity of ≡”
+
+4.1.18
+Theorem (3.13) “Negation of `false`”: ¬ false ≡ true
+Proof:
+    ¬ false ≡ true
+  =⟨ “Distributivity of ¬ over ≡” ⟩
+    ¬ (false ≡ true)
+  =⟨ “Distributivity of ¬ over ≡” ⟩
+    false ≡ ¬ true
+  =⟨ “Definition of `false`” ⟩
+    false ≡ false — This is “Reflexivity of ≡”
+
+4.1.19
+Theorem (3.14): (p ≢ q) ≡ ¬ p ≡ q
+Proof:
+    (p ≢ q) ≡ ¬ p ≡ q
+  =⟨ “Definition of ≢” ⟩
+    ¬ (p ≡ q) ≡ ¬ p ≡ q
+  =⟨ “Distributivity of ¬ over ≡” ⟩
+    ¬ p ≡ q ≡ ¬ p ≡ q — This is “Reflexivity of ≡”
+
+4.1.20
+Theorem (3.15): ¬ p ≡ p ≡ false
+Proof:
+    ¬ p ≡ p ≡ false
+  =⟨ “Distributivity of ¬ over ≡” ⟩
+    ¬ ( p ≡ p ) ≡ false
+  =⟨ “Reflexivity of ≡” ⟩
+    ¬ ( true ) ≡ false — This is “Definition of `false`”
+
+4.1.22
+Theorem “Identity of ≢”: (p ≢ false) ≡ p
+Proof:
+    (p ≢ false) ≡ p
+  =⟨ “Definition of ≢” ⟩
+    ¬ (p ≡ false) ≡ p
+  =⟨ “Distributivity of ¬ over ≡” ⟩
+    ¬ p ≡ false ≡ p — This is (3.15)
+
+4.1.23
+Theorem (3.16) “Symmetry of ≢”: (p ≢ q) ≡ (q ≢ p)
+Proof:
+    (p ≢ q) ≡ (q ≢ p)
+  =⟨ “Definition of ≢” ⟩
+    ¬ (p ≡ q) ≡ ¬ (q ≡ p)
+  =⟨ “Distributivity of ¬ over ≡” ⟩
+    ¬ p ≡ q ≡ q ≡ ¬ p — This is “Reflexivity of ≡”
+
+4.1.25
+Theorem (3.17) “Associativity of ≢”: ((p ≢ q) ≢ r) ≡ (p ≢ (q ≢ r))
+Proof:
+    ((p ≢ q) ≢ r) ≡ (p ≢ (q ≢ r))
+  =⟨ (3.14) ⟩
+    ((p ≡ ¬ q) ≢ r) ≡ (p ≢ (¬ q ≡ r))
+  =⟨ “Definition of ≢” ⟩
+    ¬ ((p ≡ ¬ q) ≡ r) ≡ ¬ (p ≡ (¬ q ≡ r))
+  =⟨ “Distributivity of ¬ over ≡” ⟩
+    (p ≡ ¬ q) ≡ ¬ r ≡ p ≡ ¬ q ≡ ¬ r — This is “Reflexivity of ≡”
+
+4.1.27
+Theorem (3.18) “Mutual associativity of ≡ with ≢”: ((p ≢ q) ≡ r) ≡ (p ≢ (q ≡ r))
+Proof:
+    ((p ≢ q) ≡ r) ≡ (p ≢ (q ≡ r))
+  =⟨ (3.14) ⟩
+    (¬ p ≡ q ≡ r) ≡ ¬ p ≡ (q ≡ r) — This is “Reflexivity of ≡”
+
+4.1.29
+Theorem (3.19) “Mutual interchangeability of ≡ with ≢”: (p ≢ q ≡ r) ≡ (p ≡ q ≢ r)
+Proof:
+    (p ≢ q ≡ r) ≡ (p ≡ q ≢ r)
+  =⟨ (3.14) ⟩
+    (p ≡ ¬ q ≡ r) ≡ (p ≡ ¬ q ≡ r) — This is “Reflexivity of ≡”
+

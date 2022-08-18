@@ -1,0 +1,75 @@
+Assignment Notebook 4.2: Replacement
+
+Fact “A4.2a”: n = 2 ⇒ (6 - n · (n + 1)) · m = 0
+Proof:
+     n = 2 ⇒ (6 - n · (n + 1)) · m = 0
+   ≡ ⟨ Substitution ⟩
+      n = 2 ⇒ ((6 - z · (z + 1)) · m = 0)[z ≔ n]
+   ≡ ⟨ “Replacement” ⟩
+      n = 2 ⇒ ((6 - z · (z + 1)) · m = 0)[z ≔ 2]
+   ≡⟨ Substitution ⟩
+      (n = 2 ⇒ (6 - 2 · (2 + 1)) · m = 0)
+   ≡ ⟨ Fact `1 + 2 = 3` ⟩
+      (n = 2 ⇒ (6 - 2 · (3)) · m = 0)
+   ≡ ⟨ Fact `3 · 2 = 6` ⟩
+      (n = 2 ⇒ (6 - 6) · m = 0)
+   ≡ ⟨ Fact `6 - 6 = 0` ⟩
+      (n = 2 ⇒ 0 · m = 0)
+   ≡ ⟨ “Zero of ·” ⟩
+      (n = 2 ⇒ 0 = 0)
+   ≡ ⟨ “Reflexivity of =” ⟩
+      n = 2 ⇒ true
+   ≡ ⟨ “Right-zero of ⇒” ⟩
+      true
+
+Fact “A4.2b”:
+      k = 2 ∧ m = 3 ∧ n = k · k + m
+    ⇒ (j · n · n + 1 = (13 - m) · (k + m)  ⇒  j = 1)
+Proof:
+    k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ (j · n · n + 1 = (13 - m) · (k + m)  ⇒  j = 1)
+  = ⟨ Substitution ⟩
+    k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ ((j · z · z + 1 = (13 - m) · (k + m ) ⇒ j = 1))[z ≔ n] 
+  = ⟨ “Replacement” ⟩
+    k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ ((j · z · z + 1 = (13 - m) · (k + m ) ⇒ j = 1))[z ≔ k · k + m] 
+  = ⟨ Substitution ⟩
+    k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ ((j · (k · k + m) · (k · k + m) + 1 = (13 - m) · (k + m ) ⇒ j = 1))
+  = ⟨ Substitution ⟩
+     k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ (j · (k · k + y) · (k · k + y) + 1 = (13 - y) · (k + y)  ⇒  j = 1)[y ≔ m]
+  = ⟨ “Replacement” ⟩
+     k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ (j · (k · k + y) · (k · k + y) + 1 = (13 - y) · (k + y)  ⇒  j = 1)[y ≔ 3]
+  = ⟨ Substitution ⟩ 
+     k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ (j · (k · k + 3) · (k · k + 3) + 1 = (13 - 3) · (k + 3)  ⇒  j = 1)
+  = ⟨ Substitution ⟩
+     k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ (j · (x · x + 3) · (x · x + 3) + 1 = (13 - 3) · (x + 3)  ⇒  j = 1)[x ≔ k]
+  = ⟨ “Replacement” ⟩
+     k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ (j · (x · x + 3) · (x · x + 3) + 1 = (13 - 3) · (x + 3)  ⇒  j = 1)[x ≔ 2]     
+  = ⟨ Substitution ⟩
+     k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ (j · (2 · 2 + 3) · (2 · 2 + 3) + 1 = (13 - 3) · (2 + 3)  ⇒  j = 1)
+  = ⟨ Fact `2 · 2 = 4` ⟩
+     k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ (j · (4 + 3) · (2 · 2 + 3) + 1 = (13 - 3) · (2 + 3)  ⇒  j = 1)  
+  = ⟨ Fact `2 · 2 = 4` ⟩
+     k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ (j · (4 + 3) · (4 + 3) + 1 = (13 - 3) · (2 + 3)  ⇒  j = 1) 
+  = ⟨ Fact `3 + 4 = 7` ⟩
+     k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ (j · (7) · (4 + 3) + 1 = (13 - 3) · (2 + 3)  ⇒  j = 1) 
+  = ⟨ Fact `3 + 4 = 7` ⟩
+     k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ (j · (7) · (7) + 1 = (13 - 3) · (2 + 3)  ⇒  j = 1) 
+  = ⟨ Fact `7 · 7 = 49` ⟩
+     k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ (j · 49 + 1 = (13 - 3) · (2 + 3)  ⇒  j = 1) 
+  = ⟨ Fact `2 + 3 = 5` ⟩
+     k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ (j · 49 + 1 = (13 - 3) · (5)  ⇒  j = 1) 
+  = ⟨ Fact `13 - 3 = 10` ⟩
+     k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ (j · 49 + 1 = (10) · (5)  ⇒  j = 1) 
+  = ⟨ Fact `5 · 10 = 50` ⟩ 
+     k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ (j · 49 + 1 = 50  ⇒  j = 1)  
+  = ⟨ Fact `1 + 49 = 50` ⟩ 
+     k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ (j · 49 + 1 = 1 + 49  ⇒  j = 1)  
+  = ⟨ “Cancellation of +” ⟩
+     k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ (j · 49 = 49  ⇒  j = 1)  
+  = ⟨ “Identity of ·” ⟩
+     k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ (j · 49 = 49 · 1  ⇒  j = 1)   
+  = ⟨ “Cancellation of ·” with Fact `49 ≠ 0` ⟩
+     k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ (j = 1  ⇒  j = 1)      
+  = ⟨ “Reflexivity of ⇒” ⟩
+     k = 2 ∧ m = 3 ∧ n = k · k + m ⇒ true
+  = ⟨ “Right-zero of ⇒” ⟩
+     true 

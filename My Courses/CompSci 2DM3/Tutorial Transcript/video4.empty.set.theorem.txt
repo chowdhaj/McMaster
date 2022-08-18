@@ -1,0 +1,31 @@
+video4.empty.set.theorem.txt
+
+--------
+Synopsis
+--------
+
+- Explain the empty set theorem: 
+P U { } = P
+in a clear and concise manner.
+
+------
+Script
+------
+
+- The empty set theorem: P U { } = P
+- This theorem states that if we take ANY set and perform a union on it with the EMPTY set, we will always get back the original set. This holds true for ANY and ALL sets. Taking the union with an EMPTY set, always returns the original set. Side note: 'P' is abstract and represents ANY set. 
+- In the previous video I sort of said that you can think of union as adding two sets together and then removing the duplicates. While that is not the best way to think about it, it does help simplify the concept, and it will help in understanding this theorem. The empty set theorem is similar to another theorem: n + 0 = n
+- The Empty set is kind of like the number zero. No matter what number we add to zero, we always get the original number. For example:
+
+1,000,000 + 0 = 1,000,000
+3.14159 + 0 = 3.14159
+-1234 + 0 = -1234
+
+- The empty set behaves in a similar manner to 0 during the union of sets. For example:
+
+{Red, Blue, Green} U {} = {Red, Blue, Green}
+{1, 2, 3, 4} U {} = {1, 2, 3, 4}
+
+- NOTE: This is ONLY true for union. Do not think of the empty set as 0 for other operations. This is only true for Union. 
+
+{END}

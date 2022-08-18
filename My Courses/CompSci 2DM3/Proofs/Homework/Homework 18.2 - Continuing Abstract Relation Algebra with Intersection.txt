@@ -1,0 +1,191 @@
+Homework 18 Notebook 2: Continuing Abstract Relation Algebra with Intersection
+
+Theorem “Weakening for ∩”: Q ∩ R ⊆ Q  ∧  Q ∩ R ⊆ R
+Proof:
+    Q ∩ R ⊆ Q  ∧  Q ∩ R ⊆ R
+  ≡ ⟨ “Reflexivity of =” ⟩
+    (Q ∩ R) ⊆ Q  ∧  (Q ∩ R) ⊆ R 
+  ≡ ⟨ “Characterisation of ∩” ⟩
+    (Q ∩ R) ⊆ (Q ∩ R)
+  ≡ ⟨ “Reflexivity of ⊆” ⟩
+    true  
+
+Theorem “Symmetry of ∩”: Q ∩ R  ⊆  R ∩ Q
+Proof:
+    Q ∩ R  ⊆  R ∩ Q
+  ≡ ⟨ “Characterisation of ∩” ⟩
+    Q ∩ R ⊆ R ∧ Q ∩ R ⊆ Q
+  ≡ ⟨ “Symmetry of ∧” ⟩ 
+    Q ∩ R ⊆ Q ∧ Q ∩ R ⊆ R
+  ≡ ⟨ “Characterisation of ∩” ⟩
+    Q ∩ R ⊆ Q ∩ R
+  ≡ ⟨ “Reflexivity of ⊆” ⟩
+    true
+
+Corollary “Symmetry of ∩”: Q ∩ R  =  R ∩ Q
+Proof:
+    Q ∩ R  =  R ∩ Q
+  ≡ ⟨ “Mutual inclusion” ⟩
+    Q ∩ R ⊆ R ∩ Q ∧ R ∩ Q ⊆ Q ∩ R
+  ≡ ⟨ “Reflexivity of =” ⟩
+    (Q ∩ R   ⊆   R ∩ Q) ∧ (R ∩ Q   ⊆   Q ∩ R)
+  ≡ ⟨ “Symmetry of ∩” ⟩
+    true ∧ true
+  ≡ ⟨ “Identity of ∧” ⟩
+    true
+
+Theorem “Associativity of ∩”: (Q ∩ R) ∩ S  ⊆  Q ∩ (R ∩ S)
+Proof:
+    (Q ∩ R) ∩ S  ⊆  Q ∩ (R ∩ S)
+  ≡ ⟨ “Characterisation of ∩” ⟩
+    (Q ∩ R) ∩ S ⊆ Q ∧ (Q ∩ R) ∩ S ⊆ (R ∩ S)
+  ≡ ⟨ “Reflexivity of =” ⟩
+    ((Q ∩ R) ∩ S ⊆ Q) ∧ ((Q ∩ R) ∩ S ⊆ (R ∩ S)) 
+  ≡ ⟨ “Characterisation of ∩” ⟩
+    ((Q ∩ R) ∩ S ⊆ Q) ∧ ((Q ∩ R) ∩ S ⊆ R ∧ (Q ∩ R) ∩ S ⊆ S)
+  ≡ ⟨ “Weakening for ∩” ⟩ 
+    ((Q ∩ R) ∩ S ⊆ Q) ∧ ((Q ∩ R) ∩ S ⊆ R ∧ true)
+  ≡ ⟨ “Associativity of ∧” ⟩
+    (((Q ∩ R) ∩ S ⊆ Q) ∧ (Q ∩ R) ∩ S ⊆ R) ∧ true
+  ≡ ⟨ “Characterisation of ∩” ⟩
+    (Q ∩ R) ∩ S ⊆ Q ∩ R ∧ true
+  ≡ ⟨ “Weakening for ∩” ⟩
+    true ∧ true
+  ≡ ⟨ “Identity of ∧” ⟩  
+    true  
+
+Corollary “Associativity of ∩”: (Q ∩ R) ∩ S  =  Q ∩ (R ∩ S)
+Proof:
+    (Q ∩ R) ∩ S  =  Q ∩ (R ∩ S)
+  ≡ ⟨ “Mutual inclusion” ⟩ 
+    (Q ∩ R) ∩ S ⊆ Q ∩ (R ∩ S) ∧ Q ∩ (R ∩ S) ⊆ (Q ∩ R) ∩ S
+  ≡ ⟨ “Associativity of ∩” ⟩
+    true ∧ true
+  ≡ ⟨ “Identity of ∧” ⟩  
+    true
+
+Theorem “Idempotency of ∩”: R ∩ R = R
+Proof:
+    R ∩ R = R
+  ≡ ⟨ “Mutual inclusion” ⟩
+    (R ∩ R ⊆ R) ∧ (R ⊆ R ∩ R)
+  ≡ ⟨ “Weakening for ∩” ⟩
+    true ∧ (R ⊆ R ∩ R) 
+  ≡ ⟨ “Characterisation of ∩” ⟩
+    true ∧ (R ⊆ R ∧ R ⊆ R)
+  ≡ ⟨ “Reflexivity of ⊆” ⟩
+    true ∧ true ∧ true
+  ≡ ⟨ “Identity of ∧” ⟩     
+    true 
+
+Theorem “Monotonicity of ∩”: Q ⊆ R  ⇒  Q ∩ S ⊆ R ∩ S
+Proof:
+    Assuming `Q ⊆ R`:
+        Q ∩ S ⊆ R ∩ S
+      ≡ ⟨ “Characterisation of ∩” ⟩
+        Q ∩ S ⊆ R ∧ Q ∩ S ⊆ S
+      ≡ ⟨ “Weakening for ∩” ⟩ 
+        Q ∩ S ⊆ R ∧ true
+      ≡ ⟨ “Identity of ∧” ⟩
+        Q ∩ S ⊆ R 
+      ⇐ ⟨ “Transitivity of ⊆” ⟩
+        Q ∩ S ⊆ Q  ∧  Q ⊆ R
+      ≡ ⟨ “Weakening for ∩” ⟩ 
+        true ∧ Q ⊆ R
+      ≡ ⟨ Assumption `Q ⊆ R` ⟩ 
+        true ∧ true
+      ≡ ⟨ “Identity of ∧” ⟩
+        true
+
+Theorem “Inclusion via ∩”: Q ⊆ R  ≡  Q ∩ R = Q
+Proof:
+    Q ∩ R = Q
+  ≡ ⟨ “Mutual inclusion” ⟩
+    Q ∩ R ⊆ Q ∧ Q ⊆ Q ∩ R
+  ≡ ⟨ “Weakening for ∩” ⟩
+    true ∧ Q ⊆ Q ∩ R 
+  ≡ ⟨ “Identity of ∧” ⟩ 
+    Q ⊆ Q ∩ R 
+  ≡ ⟨ “Characterisation of ∩” ⟩ 
+    Q ⊆ Q ∧ Q ⊆ R
+  ≡ ⟨ “Reflexivity of ⊆” ⟩ 
+    true ∧ Q ⊆ R
+  ≡ ⟨ “Identity of ∧” ⟩ 
+    Q ⊆ R
+
+Theorem “Converse of ∩”:     (R ∩ S) ˘  ⊆  R ˘ ∩ S ˘
+Proof:
+    (R ∩ S) ˘  ⊆  R ˘ ∩ S ˘
+  ≡ ⟨ “Characterisation of ∩” ⟩
+    (R ∩ S) ˘ ⊆ R ˘ ∧ (R ∩ S) ˘ ⊆ S ˘
+  ≡ ⟨ “Isotonicity of ˘” ⟩
+    (R ∩ S) ⊆ R ∧ (R ∩ S) ⊆ S 
+  ≡ ⟨ “Characterisation of ∩” ⟩
+    (R ∩ S) ⊆ (R ∩ S)
+  ≡ ⟨ “Reflexivity of ⊆” ⟩ 
+    true 
+
+Theorem “Converse of ∩”:     (R ∩ S) ˘  =  R ˘ ∩ S ˘
+Proof:
+    (R ∩ S) ˘  =  R ˘ ∩ S ˘
+  ≡ ⟨ “Mutual inclusion” ⟩ 
+    ((R ∩ S) ˘  ⊆  R ˘ ∩ S ˘) ∧ (R ˘ ∩ S ˘ ⊆ (R ∩ S) ˘)
+  ≡ ⟨ “Converse of ∩” ⟩
+    true ∧ (R ˘ ∩ S ˘ ⊆ (R ∩ S) ˘)
+  ≡ ⟨ “Self-inverse of ˘” ⟩
+    true ∧ ((R ˘ ∩ S ˘) ˘ ˘ ⊆ (R ˘ ˘ ∩ S ˘ ˘) ˘)
+  ⇐ ⟨ “Monotonicity of ∧” with “Monotonicity of ˘” ⟩
+    true ∧ (R ˘ ∩ S ˘) ˘ ⊆ R ˘ ˘ ∩ S ˘ ˘
+  ≡ ⟨ “Converse of ∩” ⟩ 
+    true ∧ true 
+  ≡ ⟨ “Idempotency of ∧” ⟩
+    true 
+
+Theorem “Sub-distributivity of ⨾ over ∩”:
+    Q ⨾ (R ∩ S)  ⊆  Q ⨾ R  ∩  Q ⨾ S
+Proof:
+    Q ⨾ (R ∩ S)
+  =⟨ “Idempotency of ∩” ⟩
+    (Q ⨾ (R ∩ S)) ∩ (Q ⨾ (R ∩ S))
+  ⊆⟨ “Monotonicity of ∩” with “Monotonicity of ⨾” with “Weakening for ∩” ⟩
+    Q ⨾ R  ∩  (Q ⨾ (R ∩ S))
+  ⊆ ⟨ “Monotonicity of ∩” with “Monotonicity of ⨾” with “Weakening for ∩” ⟩
+    Q ⨾ R  ∩  Q ⨾ S
+
+Theorem “Antisymmetry of converse”:  is-antisymmetric R  ≡  is-antisymmetric (R ˘)
+Proof:
+    is-antisymmetric R  ≡  is-antisymmetric (R ˘)
+  ≡ ⟨ “Definition of antisymmetry” ⟩
+    (R ∩ R ˘ ⊆ Id) ≡ (R ˘ ∩ R ˘ ˘ ⊆ Id)
+  ≡ ⟨ “Symmetry of ∩” ⟩
+    (R ˘ ∩ R ⊆ Id) ≡ (R ˘ ∩ R ˘ ˘ ⊆ Id)
+  ≡ ⟨ “Self-inverse of ˘” ⟩
+    (R ˘ ∩ R ⊆ Id) ≡ (R ˘ ∩ R ⊆ Id)  
+  ≡ ⟨ “Reflexivity of ≡” ⟩
+    true
+
+Theorem “Symmetry of Transit”: is-transitive R ≡ is-transitive (R ˘)
+Proof:
+    is-transitive (R ˘)
+  ≡ ⟨ “Definition of transitivity” ⟩
+    R ˘ ⨾ R ˘ ⊆ R ˘
+  ≡ ⟨ “Converse of ⨾” ⟩ 
+    (R ⨾ R) ˘ ⊆ R ˘
+  ≡ ⟨ “Isotonicity of ˘” ⟩
+    R ⨾ R ⊆ R
+  ≡ ⟨ “Definition of transitivity” ⟩ 
+    is-transitive R
+
+Theorem “Converse of an order”:  is-order E  ≡  is-order (E ˘)
+Proof:
+    is-order E
+  ≡ ⟨ “Definition of ordering” ⟩
+    is-reflexive E ∧ is-antisymmetric E ∧ is-transitive E
+  ≡ ⟨ “Reflexivity of converse” ⟩
+    is-reflexive (E ˘) ∧ is-antisymmetric E ∧ is-transitive E
+  ≡ ⟨ “Antisymmetry of converse” ⟩
+    is-reflexive (E ˘) ∧ is-antisymmetric (E ˘) ∧ is-transitive E
+  ≡ ⟨ “Symmetry of Transit” ⟩
+    is-reflexive (E ˘) ∧ is-antisymmetric (E ˘) ∧ is-transitive (E ˘)
+  ≡ ⟨ “Definition of ordering” ⟩
+    is-order (E ˘) 

@@ -1,0 +1,237 @@
+Assignment Notebook 3.1: Conjunction
+
+Theorem (3.36) “Symmetry of ∧”: p ∧ q ≡ q ∧ p
+Proof:
+    p ∧ q
+  = ⟨ “Golden rule” ⟩
+    p ≡ q ≡ p ∨ q
+  = ⟨ “Symmetry of ≡” ⟩ 
+    q ≡ p ≡ p ∨ q
+  = ⟨ “Symmetry of ∨” ⟩
+    p ≡ q ≡ q ∨ p
+  = ⟨ “Golden rule” ⟩
+    q ∧ p
+
+Theorem (3.37) “Associativity of ∧”: (p ∧ q) ∧ r ≡ p ∧ (q ∧ r)
+Proof:
+    (p ∧ q) ∧ r
+  ≡ ⟨ “Golden rule” ⟩
+    (p ≡ q ≡ p ∨ q) ∧ r    
+  ≡ ⟨ “Golden rule” ⟩
+    (p ≡ q ≡ p ∨ q) ≡ r ≡ (p ≡ q ≡ p ∨ q) ∨ r
+  ≡ ⟨ “Distributivity of ∨ over ≡” ⟩
+    p ≡ q ≡ r ≡ p ∨ q ≡ (p ≡ q) ∨ r ≡ p ∨ q ∨ r
+  ≡ ⟨ “Distributivity of ∨ over ≡” ⟩
+    p ≡ q ≡ r ≡ p ∨ q ≡ p ∨ r ≡ q ∨ r ≡ p ∨ q ∨ r
+  ≡ ⟨ “Symmetry of ≡” ⟩
+    q ≡ r ≡ q ∨ r ≡ p ≡ r ∨ p ≡ p ∨ q ≡ q ∨ r ∨ p
+  ≡ ⟨ “Golden rule” ⟩
+    q ∧ r ≡ p ≡ r ∨ p ≡ p ∨ q ≡ q ∨ r ∨ p 
+  ≡ ⟨ “Distributivity of ∨ over ≡” ⟩
+    q ∧ r ≡ p ≡ p ∨ (q ≡ r) ≡ q ∨ r ∨ p
+  ≡ ⟨ “Distributivity of ∨ over ≡” ⟩
+    q ∧ r ≡ p ≡ p ∨ ((q ≡ r) ≡ q ∨ r)
+  ≡ ⟨ “Golden rule” ⟩
+    q ∧ r ≡ p ≡ p ∨ (q ∧ r) 
+  ≡ ⟨ “Golden rule” ⟩
+    p ∧ (q ∧ r)
+
+Theorem (3.38) “Idempotency of ∧”: p ∧ p ≡ p
+Proof:
+    p ∧ p ≡ p
+  ≡ ⟨ “Golden rule” ⟩
+    p ≡ p ∨ p
+  ≡ ⟨ “Idempotency of ∨” ⟩
+    p ≡ p
+  ≡ ⟨ “Identity of ≡” ⟩ 
+    true
+
+Theorem (3.39) “Identity of ∧”: p ∧ true ≡ p
+Proof:
+    p ∧ true ≡ p
+  ≡ ⟨ “Golden rule” ⟩
+    true ≡ p ∨ true
+  ≡ ⟨ “Identity of ≡” ⟩
+    p ∨ true
+  ≡ ⟨ “Right-zero of ∨” ⟩
+    true
+
+Theorem (3.40) “Zero of ∧”: p ∧ false ≡ false
+Proof:
+    p ∧ false ≡ false
+  ≡ ⟨ “Golden rule” ⟩
+    p ≡ p ∨ false
+  ≡ ⟨ (3.15) ⟩
+    p ≡ p ∨ (¬ p ≡ p)
+  ≡ ⟨ “Distributivity of ∨ over ≡” ⟩
+    p ≡ (p ∨ ¬ p) ≡ (p ∨ p)
+  ≡ ⟨ “Excluded middle” ⟩
+    p ≡ true ≡ (p ∨ p)
+  ≡ ⟨ “Idempotency of ∨” ⟩
+    p ≡ true ≡ p
+  ≡ ⟨ “Identity of ≡” ⟩
+    true
+
+Theorem (3.41) “Distributivity of ∧ over ∧”: p ∧ (q ∧ r) ≡ (p ∧ q) ∧ (p ∧ r)
+Proof:
+    p ∧ (q ∧ r) ≡ (p ∧ q) ∧ (p ∧ r)
+  ≡ ⟨ “Symmetry of ∧” ⟩
+    p ∧ (q ∧ r) ≡ (q ∧ p) ∧ (p ∧ r)
+  ≡ ⟨ “Associativity of ∧” ⟩
+    p ∧ (q ∧ r) ≡ (q ∧ p ∧ p) ∧ r
+  ≡ ⟨ “Idempotency of ∧” ⟩
+    p ∧ (q ∧ r) ≡ (q ∧ p) ∧ r
+  ≡ ⟨ “Symmetry of ∧” ⟩
+    p ∧ (q ∧ r) ≡ (p ∧ q) ∧ r
+  ≡ ⟨ “Associativity of ∧” ⟩
+    p ∧ (q ∧ r) ≡ p ∧ (q ∧ r)
+  ≡ ⟨ “Reflexivity of ≡” ⟩
+    true 
+  
+Theorem (3.42) “Contradiction”: p ∧ ¬ p ≡ false
+Proof:
+    p ∧ ¬ p
+  ≡ ⟨ “Golden rule” ⟩
+    p ≡ ¬ p ≡ p ∨ ¬ p
+  ≡ ⟨ (3.15) ⟩
+    false ≡ p ∨ ¬ p
+  ≡ ⟨ “Excluded middle” ⟩
+    false ≡ true
+  ≡ ⟨ “Identity of ≡” ⟩
+    false  
+
+Theorem (3.43) (3.43a) “Absorption”: p ∧ (p ∨ q) ≡ p
+Proof:
+    p ∧ (p ∨ q) ≡ p
+  ≡ ⟨ “Golden rule” ⟩
+    p ∨ q ≡ p ∨ (p ∨ q)
+  ≡ ⟨ “Associativity of ∨” ⟩
+    p ∨ q ≡ (p ∨ p) ∨ q
+  ≡ ⟨ “Idempotency of ∨” ⟩
+    p ∨ q ≡ p ∨ q
+  ≡ ⟨ “Reflexivity of ≡” ⟩
+    true    
+
+Theorem (3.43) (3.43b) “Absorption”: p ∨ (p ∧ q) ≡ p
+Proof:
+    p ∨ (p ∧ q) ≡ p
+  ≡ ⟨ “Golden rule” ⟩
+    p ∧ q ≡ p ∧ (p ∧ q)
+  ≡ ⟨ “Associativity of ∧” ⟩
+    p ∧ q ≡ (p ∧ p) ∧ q
+  ≡ ⟨ “Idempotency of ∧” ⟩
+    p ∧ q ≡ p ∧ q
+  ≡ ⟨ “Reflexivity of ≡” ⟩
+    true 
+       
+Theorem (3.44) (3.44a) “Absorption”: p ∧ (¬ p ∨ q) ≡ p ∧ q
+Proof:
+    p ∧ (¬ p ∨ q)
+  ≡ ⟨ “Golden rule” ⟩
+    p ≡ ¬ p ∨ q ≡ p ∨ (¬ p ∨ q)
+  ≡ ⟨ “Associativity of ∨” ⟩
+    p ≡ ¬ p ∨ q ≡ (p ∨ ¬ p) ∨ q
+  ≡ ⟨ “Excluded middle” ⟩
+    p ≡ ¬ p ∨ q ≡ true ∨ q 
+  ≡ ⟨ “Zero of ∨” ⟩
+    p ≡ ¬ p ∨ q ≡ true
+  ≡ ⟨ “Identity of ≡” ⟩
+    p ≡ ¬ p ∨ q
+  ≡ ⟨ “Symmetry of ∨” ⟩
+    p ≡ q ∨ ¬ p 
+  ≡ ⟨ (3.32) ⟩
+    p ≡ q ∨ p ≡ q
+  ≡ ⟨ “Symmetry of ≡” ⟩
+    q ∨ p ≡ p ≡ q
+  ≡ ⟨ “Symmetry of ∨” ⟩
+    p ∨ q ≡ p ≡ q
+  ≡ ⟨ “Golden rule” ⟩ 
+    p ∧ q
+        
+Theorem (3.48): p ∧ q ≡ p ∧ ¬ q ≡ ¬ p
+Proof:
+    p ∧ q ≡ p ∧ ¬ q
+  ≡ ⟨ “Golden rule” ⟩
+    (p ≡ q ≡ p ∨ q) ≡ (p ≡ ¬ q ≡ p ∨ ¬ q) 
+  ≡ ⟨ “Symmetry of ≡” ⟩
+    p ≡ p ≡ q ≡ ¬ q ≡ p ∨ q ≡ p ∨ ¬ q
+  ≡ ⟨ “Identity of ≡” ⟩
+    true ≡ q ≡ ¬ q ≡ p ∨ q ≡ p ∨ ¬ q 
+  ≡ ⟨ “Reflexivity of ≡” ⟩
+    q ≡ ¬ q ≡ p ∨ q ≡ p ∨ ¬ q 
+  ≡ ⟨ (3.15) ⟩ 
+    false ≡ p ∨ q ≡ p ∨ ¬ q  
+  ≡ ⟨ “Distributivity of ∨ over ≡” ⟩
+    false ≡ p ∨ (q ≡ ¬ q)
+  ≡ ⟨ (3.15) ⟩
+    false ≡ p ∨ false
+  ≡ ⟨ “Identity of ∨” ⟩ 
+    false ≡ p
+  ≡ ⟨ (3.15) ⟩
+    ¬ p  
+     
+Theorem (3.49) “Semi-distributivity of ∧ over ≡”: p ∧ (q ≡ r) ≡ p ∧ q ≡ p ∧ r ≡ p
+Proof:
+    p ∧ (q ≡ r) ≡ p
+  ≡ ⟨ “Golden rule” ⟩
+    q ≡ r ≡ p ∨ (q ≡ r)
+  ≡ ⟨ “Distributivity of ∨ over ≡” ⟩
+    q ≡ r ≡ p ∨ q ≡ p ∨ r
+  ≡ ⟨ “Symmetry of ≡” ⟩
+    (q ≡ p ∨ q) ≡ (r ≡ p ∨ r)
+  ≡ ⟨ “Golden rule” ⟩
+    p ∧ q ≡ p ∧ r
+
+Theorem (3.45) “Distributivity of ∨ over ∧”: p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r)
+Proof:
+    p ∨ (q ∧ r)
+  ≡ ⟨ “Golden rule” ⟩
+    p ∨ (q ∨ r ≡ q ≡ r)
+  ≡ ⟨ “Distributivity of ∨ over ≡” ⟩
+    p ∨ q ≡ p ∨ r ≡ p ∨ (q ∨ r)
+  ≡ ⟨ “Distributivity of ∨ over ∨” ⟩
+    p ∨ q ≡ p ∨ r ≡ (p ∨ q) ∨ (p ∨ r)
+  ≡ ⟨ “Golden rule” ⟩
+    (p ∨ q) ∧ (p ∨ r)    
+
+Theorem (3.46) “Distributivity of ∧ over ∨”: p ∧ (q ∨ r) ≡ (p ∧ q) ∨ (p ∧ r)
+Proof:
+    (p ∧ q) ∨ (p ∧ r)
+  ≡ ⟨ “Distributivity of ∨ over ∧” ⟩
+    ((p ∧ q) ∨ p) ∧ ((p ∧ q) ∨ r)
+  ≡ ⟨ (3.43b) ⟩
+    p ∧ ((p ∧ q) ∨ r)
+  ≡ ⟨ “Distributivity of ∨ over ∧” ⟩
+    p ∧ ((p ∨ r) ∧ (q ∨ r))
+  ≡ ⟨ “Associativity of ∧” ⟩
+    (p ∧ (p ∨ r)) ∧ (q ∨ r)
+  ≡ ⟨ “Absorption” ⟩
+    p ∧ (q ∨ r)
+
+Theorem (3.1.a): (p ∧ q) ∨ (p ∧ ¬ q) ≡ p
+Proof:
+    (p ∧ q) ∨ (p ∧ ¬ q)
+  ≡ ⟨ “Distributivity of ∨ over ∧” ⟩
+    ((p ∧ q) ∨ p) ∧ ((p ∧ q) ∨ ¬ q)
+  ≡ ⟨ (3.43b) ⟩
+    p ∧ ((p ∧ q) ∨ ¬ q)
+  ≡ ⟨ “Symmetry of ∨” ⟩
+    p ∧ (¬ q ∨ (p ∧ q))    
+  ≡ ⟨ “Distributivity of ∨ over ∧” ⟩
+    p ∧ ((¬ q ∨ p) ∧ (¬ q ∨ q))
+  ≡ ⟨ “LEM” ⟩
+    p ∧ ((¬ q ∨ p) ∧ true)
+  ≡ ⟨ “Identity of ∧” ⟩
+    p ∧ (¬ q ∨ p)
+  ≡ ⟨ (3.32) ⟩
+    p ∧ (p ∨ q ≡ p)
+  ≡ ⟨ “Semi-distributivity of ∧ over ≡” ⟩ 
+    (p ∧ (p ∨ q)) ≡ (p ∧ p) ≡ p
+  ≡ ⟨ “Idempotency of ∧” ⟩
+    (p ∧ (p ∨ q)) ≡ p ≡ p
+  ≡ ⟨ (3.43a) ⟩
+    p ≡ p ≡ p
+  ≡ ⟨ “Reflexivity of ≡” ⟩ 
+    p ≡ true
+  ≡ ⟨ “Reflexivity of ≡” ⟩
+    p

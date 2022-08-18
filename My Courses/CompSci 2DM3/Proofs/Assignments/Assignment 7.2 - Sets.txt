@@ -1,0 +1,128 @@
+Assignment Notebook 7.2: Sets
+
+Theorem “Absorption of ∩ by ∪”: S ∪ (S ∩ T) = S
+Proof:
+    Using “Set extensionality”:
+        Subproof for `(∀ e  •  e ∈ S ∪ (S ∩ T)  ≡  e ∈ S)`:
+            For any `e`:
+                e ∈ S ∪ (S ∩ T)  ≡  e ∈ S
+              ≡ ⟨ “Union” ⟩
+                e ∈ S ∨ e ∈ S ∩ T ≡ e ∈ S
+              ≡ ⟨ “Intersection” ⟩
+                e ∈ S ∨ (e ∈ S ∧ e ∈ T) ≡ e ∈ S 
+              ≡ ⟨ “Absorption” ⟩
+                e ∈ S ≡ e ∈ S
+              ≡ ⟨ “Reflexivity of ≡” ⟩
+                true
+
+Theorem (11.48): S ∩ T = {}  ≡  (∀ x • x ∈ S ⇒ ¬ (x ∈ T))
+Proof:
+    Using “Mutual implication”:
+        Subproof for `S ∩ T = {}  ⇒  (∀ x • x ∈ S ⇒ ¬ (x ∈ T))`:
+            Assuming `S ∩ T = {}`:
+                For any `x`:
+                    x ∈ S ⇒ ¬ (x ∈ T)
+                  ≡ ⟨ “Complement” ⟩
+                    x ∈ S ⇒ (x ∈ ~ T)
+                  ≡ ⟨ “Definition of Implication” ⟩
+                    ¬ (x ∈ S) ∨ (x ∈ ~ T) 
+                  ≡ ⟨ “Complement” ⟩
+                    ¬ (x ∈ S) ∨ ¬ (x ∈ T)  
+                  ≡ ⟨ “De Morgan” ⟩
+                    ¬ (x ∈ S ∧ x ∈ T) 
+                  ≡ ⟨ “Intersection” ⟩
+                    ¬ (x ∈ S ∩ T) 
+                  ≡ ⟨ Assumption `S ∩ T = {}` ⟩ 
+                    ¬ (x ∈ {}) 
+                  ≡ ⟨ “Empty set” and “Negation of `false`” ⟩
+                    true 
+        Subproof for `(∀ x • x ∈ S ⇒ ¬ (x ∈ T))  ⇒  S ∩ T = {}`:
+            Assuming `(∀ x • x ∈ S ⇒ ¬ (x ∈ T))`:
+                Using “Set extensionality”:
+                    Subproof for `(∀ x • x ∈ S ∩ T ≡ x ∈ {})`:
+                        For any `x`:
+                            x ∈ S ∩ T ≡ x ∈ {}
+                          ≡ ⟨ “Empty set” ⟩
+                            x ∈ S ∩ T ≡ false
+                          ≡ ⟨ (3.15) ⟩
+                            ¬ (x ∈ S ∩ T)
+                          ≡ ⟨ “Intersection” ⟩
+                            ¬ (x ∈ S ∧ x ∈ T)   
+                          ≡ ⟨ “Left-identity of ⇒” ⟩
+                            true ⇒  ¬ (x ∈ S ∧ x ∈ T)   
+                          ≡ ⟨ Assumption `(∀ x • x ∈ S ⇒ ¬ (x ∈ T))` ⟩
+                            (x ∈ S ⇒ ¬ (x ∈ T)) ⇒ ¬ (x ∈ S ∧ x ∈ T) 
+                          ≡ ⟨ “De Morgan” ⟩
+                            (x ∈ S ⇒ ¬ (x ∈ T)) ⇒ ¬ (x ∈ S) ∨ ¬ (x ∈ T)  
+                          ≡ ⟨ “Definition of Implication” ⟩ 
+                            (x ∈ S ⇒ ¬ (x ∈ T)) ⇒ ((x ∈ S) ⇒ ¬ (x ∈ T))
+                          ≡ ⟨ “Reflexivity of ⇒” ⟩
+                            true
+
+Theorem (11.69): (∃ x ❙ x ∈ S • ¬ (x ∈ T)) ⇒ S ≠ T
+Proof:
+    (∃ x ❙ x ∈ S • ¬ (x ∈ T)) ⇒ (S ≠ T) 
+  ≡ ⟨ “Definition of ≠” ⟩
+    (∃ x ❙ x ∈ S • ¬ (x ∈ T)) ⇒ ¬ (S = T)
+  ≡ ⟨ “Set extensionality” ⟩
+    (∃ x ❙ x ∈ S • ¬ (x ∈ T)) ⇒ ¬ (∀ x • x ∈ S ≡ x ∈ T) 
+  ≡ ⟨ “Reflexivity of ≡” ⟩
+    (∃ x ❙ x ∈ S • ¬ (x ∈ T)) ⇒ ¬ (∀ x ❙ true • x ∈ S ≡ x ∈ T) 
+  ≡ ⟨ “Generalised De Morgan” ⟩
+    (∃ x ❙ x ∈ S • ¬ (x ∈ T)) ⇒ (∃ x ❙ true • ¬ (x ∈ S ≡ x ∈ T))
+  ≡ ⟨ “Trading for ∃” ⟩
+    (∃ x • x ∈ S ∧ ¬(x ∈ T)) ⇒ (∃ x • true ∧ ¬ (x ∈ S ≡ x ∈ T))
+  ≡ ⟨ “Identity of ∧” ⟩
+    (∃ x • x ∈ S ∧ ¬(x ∈ T)) ⇒ (∃ x • ¬ (x ∈ S ≡ x ∈ T))
+  ⇐ ⟨ “Body monotonicity of ∃” ⟩
+    (∀ x ❙ true • (x ∈ S ∧ ¬ (x ∈ T)) ⇒ ¬ (x ∈ S ≡ x ∈ T))
+  ≡ ⟨ “Definition of Implication” ⟩
+    (∀ x ❙ true • ¬ (x ∈ S ∧ ¬ (x ∈ T)) ∨ ¬ (x ∈ S ≡ x ∈ T))
+  ≡ ⟨ “Commutativity of ¬ with ≡” ⟩
+    (∀ x ❙ true • ¬ (x ∈ S ∧ ¬ (x ∈ T)) ∨ (x ∈ S ≡ ¬ (x ∈ T))) 
+  ≡ ⟨ “De Morgan” and “Double negation” ⟩
+    (∀ x ❙ true • (¬ (x ∈ S) ∨ (x ∈ T)) ∨ (x ∈ S ≡ ¬ (x ∈ T)))  
+  ≡ ⟨ “Distributivity of ∨ over ≡” ⟩
+    (∀ x ❙ true • ((¬ (x ∈ S) ∨ (x ∈ T)) ∨ (x ∈ S)) 
+                ≡ ((¬ (x ∈ S) ∨ (x ∈ T)) ∨ ¬ (x ∈ T)))
+  ≡ ⟨ “LEM” ⟩ 
+    (∀ x ❙ true • (true ∨ (x ∈ T)) ≡ (¬ (x ∈ S) ∨ true))
+  ≡ ⟨ “Zero of ∨” ⟩
+    (∀ x ❙ true • true ≡ true)
+  ≡ ⟨ “Reflexivity of ≡” ⟩
+    (∀ x ❙ true • true)
+  ≡ ⟨ “True ∀ body” ⟩
+    true  
+
+Theorem “Indirect set equality from below”: S = T  ≡  (∀ Q • Q ⊆ S ≡ Q ⊆ T)
+Proof:
+    Using “Mutual implication”:
+        Subproof for `(S = T)  ⇒  (∀ Q • Q ⊆ S ≡ Q ⊆ T)`:
+            Assuming `(S = T)`:
+                For any `Q`:
+                    (Q ⊆ S ≡ Q ⊆ T)
+                  ≡ ⟨ Assumption `(S = T)` ⟩
+                    (Q ⊆ S ≡ Q ⊆ S)
+                  ≡ ⟨ “Reflexivity of ≡” ⟩
+                    true  
+        Subproof for `(∀ Q • Q ⊆ S ≡ Q ⊆ T) ⇒ (S = T) `:
+            Assuming `(∀ Q • Q ⊆ S ≡ Q ⊆ T)`:
+                (S = T)
+              ≡ ⟨ “Identity of ≡” ⟩
+                true ≡ (S = T)
+              ≡ ⟨ “Antisymmetry of ⊆” ⟩
+                S ⊆ T ⇒ (T ⊆ S ⇒ S = T) ≡ (S = T)
+              ≡ ⟨ Assumption `(∀ Q • Q ⊆ S ≡ Q ⊆ T)` ⟩
+                S ⊆ S ⇒ (T ⊆ S ⇒ S = T) ≡ (S = T)
+              ≡ ⟨ “Reflexivity of ⊆” ⟩
+                true ⇒ (T ⊆ S ⇒ S = T) ≡ (S = T)
+              ≡ ⟨ “Left-identity of ⇒” ⟩
+                (T ⊆ S ⇒ S = T) ≡ (S = T)
+              ≡ ⟨ Assumption `(∀ Q • Q ⊆ S ≡ Q ⊆ T)` ⟩
+                (T ⊆ T ⇒ S = T) ≡ (S = T)
+              ≡ ⟨ “Reflexivity of ⊆” ⟩
+                (true ⇒ S = T) ≡ (S = T) 
+              ≡ ⟨ “Left-identity of ⇒” ⟩
+                (S = T) ≡ (S = T) 
+              ≡ ⟨ “Reflexivity of ≡” ⟩
+                true 

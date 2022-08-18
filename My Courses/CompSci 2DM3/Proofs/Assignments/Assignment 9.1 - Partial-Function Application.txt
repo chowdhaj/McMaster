@@ -1,0 +1,99 @@
+Assignment Notebook 9.1: Partial-Function Application
+
+Theorem: is-univalent f ⇒ x ∈ Dom f ⇒ f ⦇ { x } ⦈ = { f @ x }
+Proof:
+    Assuming `is-univalent f`:
+        Assuming `x ∈ Dom f`:
+            Using “Set extensionality”:
+                Subproof for `∀ y • y ∈ (f ⦇ { x } ⦈) ≡ y ∈ ({ f @ x })`:
+                    For any `y`:
+                        y ∈ f ⦇ { x } ⦈
+                      ≡ ⟨ “Relational image” ⟩
+                        ∃ z ❙ z ∈ { x } • z ⦗ f ⦘ y
+                      ≡ ⟨ “Singleton set membership” ⟩
+                        ∃ z ❙ z = x • z ⦗ f ⦘ y
+                      ≡ ⟨ “One-point rule for ∃” ⟩
+                        (z ⦗ f ⦘ y)[z ≔ x]
+                      ≡ ⟨ Substitution ⟩ 
+                        x ⦗ f ⦘ y
+                      ≡ ⟨ “Partial-function application” with Assumption `is-univalent f` and Assumption `x ∈ Dom f` ⟩
+                        y = f @ x 
+                      ≡ ⟨ “Singleton set membership” ⟩ 
+                        y ∈ { f @ x }
+
+Theorem “Relationship with @”:
+  is-univalent f ⇒ x ∈ Dom f ⇒ x ⦗ f ⦘ (f @ x)
+Proof:
+    Assuming `is-univalent f`:
+        Assuming `x ∈ Dom f`:
+            x ⦗ f ⦘ (f @ x)
+          ≡ ⟨ “Partial-function application” with Assumption `is-univalent f` and Assumption `x ∈ Dom f` ⟩
+             (f @ x) = (f @ x)
+          ≡ ⟨ “Reflexivity of =” ⟩
+            true
+
+Lemma “Rob Stone Two Damn Phones, Babylons Can't Crack The Code”:
+      (∃ y • x ⦗ R ⦘ y ∧ (∃ z • y ⦗ S ⦘ z))
+        ≡
+      (∃ y • x ⦗ R ⦘ y ∧ (∃ z • y ⦗ S ⦘ z))   ∧   (∃ z • x ⦗ R ⦘ z)
+Proof:
+    Using “Mutual implication”:
+        Subproof for `(∃ y • x ⦗ R ⦘ y ∧ (∃ z • y ⦗ S ⦘ z)) ⇒ (∃ y • x ⦗ R ⦘ y ∧ (∃ z • y ⦗ S ⦘ z))   ∧   (∃ z • x ⦗ R ⦘ z)`:
+            Assuming `(∃ y • x ⦗ R ⦘ y ∧ (∃ z • y ⦗ S ⦘ z))`:
+                (∃ y • x ⦗ R ⦘ y ∧ (∃ z • y ⦗ S ⦘ z))   ∧   (∃ z • x ⦗ R ⦘ z)
+              ≡ ⟨ Assumption `(∃ y • x ⦗ R ⦘ y ∧ (∃ z • y ⦗ S ⦘ z))` ⟩
+                true ∧ (∃ z • x ⦗ R ⦘ z)
+              ≡ ⟨ “Identity of ∧” ⟩
+                (∃ z • x ⦗ R ⦘ z)
+              ⇐ ⟨ “Weakening” ⟩
+                (∃ z • x ⦗ R ⦘ z) ∧ (∃ z • y ⦗ S ⦘ z)
+              ≡ ⟨ “Distributivity of ∧ over ∃” ⟩
+                (∃ z • x ⦗ R ⦘ z ∧ (∃ z • y ⦗ S ⦘ z))
+              ≡ ⟨ ? ⟩ 
+                true
+        Subproof for `(∃ y • x ⦗ R ⦘ y ∧ (∃ z • y ⦗ S ⦘ z))   ∧   (∃ z • x ⦗ R ⦘ z) ⇒ (∃ y • x ⦗ R ⦘ y ∧ (∃ z • y ⦗ S ⦘ z))`:
+            Assuming `(∃ y • x ⦗ R ⦘ y ∧ (∃ z • y ⦗ S ⦘ z))   ∧   (∃ z • x ⦗ R ⦘ z)`:
+                (∃ y • x ⦗ R ⦘ y ∧ (∃ z • y ⦗ S ⦘ z))
+              ⇐ ⟨ “Weakening” ⟩
+                (∃ y • x ⦗ R ⦘ y ∧ (∃ z • y ⦗ S ⦘ z))   ∧   (∃ z • x ⦗ R ⦘ z)
+              ≡ ⟨ Assumption `(∃ y • x ⦗ R ⦘ y ∧ (∃ z • y ⦗ S ⦘ z))   ∧   (∃ z • x ⦗ R ⦘ z)` ⟩ 
+                true 
+
+Theorem “Membership in domain of ⨾”:
+    x ∈ Dom (R ⨾ S) ≡ x ∈ Dom R ∧ (∃ y ❙ x ⦗ R ⦘ y • y ∈ Dom S)
+Proof:
+    x ∈ Dom (R ⨾ S) 
+  ≡ ⟨ “Membership in `Dom`” ⟩
+    ∃ z • x ⦗ (R ⨾ S) ⦘ z
+  ≡ ⟨ “Relation composition” ⟩
+    ∃ z ❙ true • (∃ y ❙ true • x ⦗ R ⦘ y ∧ y ⦗ S ⦘ z )
+  ≡ ⟨ “Interchange of dummies for ∃” ⟩ 
+    ∃ y ❙ true • (∃ z ❙ true • x ⦗ R ⦘ y ∧ y ⦗ S ⦘ z )
+  ≡ ⟨ “Reflexivity of =” ⟩ 
+    ∃ y • (∃ z • x ⦗ R ⦘ y ∧ y ⦗ S ⦘ z )
+  ≡ ⟨ “Distributivity of ∧ over ∃” ⟩   
+    (∃ y • x ⦗ R ⦘ y ∧ (∃ z • y ⦗ S ⦘ z))
+
+  ≡ ⟨ ? ⟩ 
+    ?
+    
+  ≡ ⟨ “Trading for ∃” ⟩
+    (∃ y ❙ x ⦗ R ⦘ y • ∃ z • y ⦗ S ⦘ z)  ∧  (∃ z • x ⦗ R ⦘ z)
+  ≡ ⟨ “Membership in `Dom`” ⟩ 
+    x ∈ Dom R ∧ (∃ y ❙ x ⦗ R ⦘ y • y ∈ Dom S)
+
+Theorem “Partial-function application of ⨾”:
+    is-univalent f ⇒
+    is-univalent g ⇒
+    x ∈ Dom (f ⨾ g) ⇒ (f ⨾ g) @ x = g @ (f @ x)
+Proof:
+	?
+
+Theorem “Injectivity and @”:
+    is-univalent f ⇒
+    is-injective f ⇒
+    x₁ ∈ Dom f ⇒
+    x₂ ∈ Dom f ⇒
+    (f @ x₁ = f @ x₂ ≡ x₁ = x₂)
+Proof:
+	?

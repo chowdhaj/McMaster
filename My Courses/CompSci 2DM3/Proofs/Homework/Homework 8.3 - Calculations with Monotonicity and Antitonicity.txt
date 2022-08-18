@@ -1,0 +1,55 @@
+Homework Notebook 8.3: Calculations with Monotonicity and Antitonicity
+
+Calculation:
+    3 + r
+  <⟨ “<-Monotonicity of +” with Fact `3 < 5` ⟩
+    5 + r
+
+Calculation:
+    5 - 2
+  ≤⟨ “≤-Monotonicity of -” with Fact `5 ≤ 7` ⟩
+    7 - 2
+  ≤⟨ “≤-Antitonicity of -” with Fact `1 ≤ 2` ⟩
+    7 - 1
+
+Calculation:
+    15 - (3 + 4)
+  ≤⟨ “≤-Antitonicity of -” with
+     “≤-Monotonicity of +” with Fact `2 ≤ 3` ⟩
+    15 - (2 + 4)
+  =⟨ Fact `4 = 7 - 3` ⟩
+    15 - (2 + (7 - 3))
+  ≤⟨ “≤-Antitonicity of -” with
+     “≤-Monotonicity of +” with
+     “≤-Antitonicity of -” with Fact `3 ≤ 4` ⟩
+    15 - (2 + (7 - 4))
+
+Calculation:
+    5 + (u - 7)
+  ≤⟨ “≤-Monotonicity of +” with Fact `5 ≤ 6` ⟩
+    6 + (u - 7)
+  =⟨ “Mutual associativity of + and -” ⟩
+    (6 + u) - 7
+  ≤⟨ “≤-Antitonicity of -” with Fact `5 ≤ 7` ⟩
+    (6 + u) - 5
+  ≤⟨ “≤-Monotonicity of -” with “≤-Monotonicity of +” with Fact `6 ≤ 7` ⟩
+    (7 + u) - 5
+  =⟨ “Mutual associativity of + and -” ⟩
+    7 + (u - 5)
+  ≤⟨ “≤-Monotonicity of +” with “≤-Antitonicity of -” with Fact `4 ≤ 5` ⟩
+    7 + (u - 4)
+
+Calculation:
+    (a ≤ b  ≡  a · d ≤ b · d)[a, b, d ≔ 1, 2, -1]
+  ≡ ⟨ Substitution ⟩
+    (1 ≤ 2  ≡  1 · -1 ≤ 2 · -1)
+  ≡ ⟨ “Identity of ·” ⟩
+    (1 ≤ 2  ≡  -1 ≤ 2 · -1)
+  ≡ ⟨ Fact `2 · -1 = -2` ⟩
+    (1 ≤ 2  ≡  -1 ≤ -2)
+  ≡ ⟨ Fact `1 ≤ 2 ≡ true` ⟩ 
+    (true  ≡  -1 ≤ -2)
+  ≡ ⟨ Fact `-1 ≤ -2 ≡ false` ⟩ 
+    true ≡ false
+  ≡⟨ “Reflexivity of ≡” ⟩
+    false

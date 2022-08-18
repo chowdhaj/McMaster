@@ -1,0 +1,355 @@
+Theorem (11.7) (11.7s) “Simple Membership”:
+   e ∈ { x ❙ P }  ≡ P[x ≔ e]
+Proof:
+    e ∈ { x ❙ P }
+  ≡⟨ “Set Abbreviation” ⟩
+    e ∈ { x ❙ P • x }
+  ≡⟨ “Set membership” ⟩
+    ( ∃ x ❙ P • e = x )
+  ≡⟨ “Trading” ⟩
+    ( ∃ x ❙ e = x • P )
+  ≡⟨ “One-point rule” ⟩
+    P [x ≔ e]
+
+Theorem (11.7) (11.7x) “Simple Membership”:
+   x ∈ { x ❙ P }  ≡ P
+Proof:
+   x ∈ { x ❙ P }
+  ≡⟨ “Simple Membership” ⟩
+   P [ x ≔ x ]
+  ≡⟨ Substitution ⟩
+   P
+ 
+Theorem (11.7) (11.7∀) “Simple Membership”:
+   ∀ x • x ∈ { x ❙ P }  ≡ P
+Proof:
+  For any `x`:
+      x ∈ { x ❙ P }
+    ≡⟨ “Simple Membership” ⟩
+      P
+  
+Theorem (11.6) “Mathematical Formulation of Set Comprehension”:
+     {x ❙ P • E } = { y ❙ (∃ x ❙ P • y = E) }
+Proof:
+  Using “Extensionality”:
+    Subproof for `(∀ e • e ∈ {x ❙ P • E } ≡ e ∈ { y ❙ (∃ x ❙ P • y = E) })`:
+      For any `e`:
+          e ∈ { y ❙ (∃ x ❙ P • y = E) }
+        ≡⟨ “Simple Membership” ⟩
+           (∃ x ❙ P • y = E) [ y ≔ e ]
+        ≡⟨ Substitution ⟩ 
+           (∃ x ❙ P • e = E)
+        ≡⟨ “Set membership” ⟩   
+          e ∈ {x ❙ P • E }
+
+Theorem (11.9) “Simple set comprehension equality”:
+    {x ❙ Q} = {x ❙ R} ≡ (∀ x • Q ≡ R)
+Proof:
+    {x ❙ Q} = {x ❙ R}
+  ≡⟨ “Set Equality” ⟩
+    ∀ e • e ∈ { x ❙ Q }  ≡  e ∈ { x ❙ R } 
+  ≡⟨ “Simple Membership” ⟩
+    ∀ x • Q ≡ R
+
+Theorem (11.58) “Reflexivity of ⊆”: X ⊆ X
+Proof:
+  Using “Inclusion”:
+    Subproof for `∀ e ❙ e ∈ X • e ∈ X`:
+      For any `e` satisfying `e ∈ X`:
+          e ∈ X
+        ≡⟨ Assumption `e ∈ X` ⟩
+          true
+
+Theorem (11.59) “Transitivity of ⊆”: X ⊆ Y ⇒ Y ⊆ Z ⇒ X ⊆ Z
+Proof:
+  Assuming `X ⊆ Y`, `Y ⊆ Z`:
+    Using “Inclusion”:
+      Subproof for `(∀ e ❙ e ∈ X • e ∈ Z)`:
+        For any `e` satisfying `e ∈ X`:
+            true
+          ≡⟨ Assumption `e ∈ X` ⟩
+            e ∈ X
+          ⇒⟨ “Casting” with Assumption `X ⊆ Y` ⟩
+            e ∈ Y
+          ⇒⟨ “Casting” with Assumption `Y ⊆ Z` ⟩
+            e ∈ Z
+
+        
+Theorem (11.57) “Antisymmetry of ⊆”: X ⊆ Y ⇒ Y ⊆ X ⇒ X = Y
+Proof:
+  Assuming `X ⊆ Y`, `Y ⊆ X`:
+    Using “Set Equality”:
+      Subproof for `(∀ e  •  e ∈ X  ≡  e ∈ Y)`:
+        For any `e`: 
+            e ∈ X ≡ e ∈ Y
+          ≡⟨ “Mutual implication” ⟩
+            ( e ∈ X ⇒ e ∈ Y ) ∧  ( e ∈ Y ⇒ e ∈ X )
+          ≡⟨ “Casting” with Assumption `X ⊆ Y` ⟩
+            ( true ) ∧  ( e ∈ Y ⇒ e ∈ X )
+          ≡⟨ “Casting” with Assumption `Y ⊆ X` ⟩
+             true ∧ true 
+          ≡⟨ “Idempotency of ∧” ⟩ 
+             true
+    
+Theorem “Empty set”: {} = {x ❙ false}
+Proof: By “Reflexivity of =”
+
+Theorem “Empty set”: x ∈ {}  ≡  false
+Proof:
+    x ∈ {}
+  ≡⟨ “Empty set” ⟩
+    x ∈ { x ❙ false }
+  ≡⟨ “Simple Membership” ⟩
+    false
+
+       
+Theorem “Empty set is least” “Bottom set”: {} ⊆ X
+Proof:
+    {} ⊆ X
+  ≡⟨ “Inclusion” ⟩
+   (∀ e ❙ e ∈ {} • e ∈ X)
+  ≡⟨ “Empty set” ⟩
+   (∀ e ❙ false • e ∈ X)
+  ≡⟨ “Empty range” ⟩
+    true
+          
+Theorem “Universal set”: x ∈ 𝐔
+Proof: By “Universal set” and “Simple Membership”
+  
+Theorem “Universal set is greatest” “Top set”: X ⊆ 𝐔
+Proof:
+    X ⊆ 𝐔
+  ≡⟨ “Inclusion” ⟩
+    (∀ x ❙ x ∈ X • x ∈ 𝐔)
+  ≡⟨ “Universal set” , “Simple Membership” ⟩
+    (∀ x ❙ x ∈ X • true )
+  ≡⟨ “True ∀ body” ⟩
+     true
+
+Theorem (11.56) “Simple set comprehension inclusion”:
+  {x ❙ P} ⊆ {x ❙ Q}  ≡  (∀ x • P ⇒ Q)
+Proof:
+    {x ❙ P} ⊆ {x ❙ Q}
+  ≡⟨ “Inclusion” ⟩
+    ( ∀ x ❙ x ∈ { x ❙ P } • x ∈ { X ❙ Q } )
+  ≡⟨ “Simple Membership” ⟩
+    ( ∀ x ❙ P • Q )
+  ≡⟨ “Trading” ⟩
+    ∀ x • P ⇒ Q
+
+Theorem (11.19) “Self-inverse of complement”: ~ (~ S) = S
+Proof:
+  Using “Set Equality”:
+      Subproof for `∀ x • x ∈ ~ ~ S ≡ x ∈ S`:
+        For any `x`:
+            x ∈ ~ ~ S ≡ x ∈ S
+          ≡⟨ “Complement”, “Double negation” ⟩
+            ( x ∈ S ) ≡ x ∈ S — This is “Reflexivity of ≡”
+
+Theorem: ~ X ⊆ Y  ≡  ~ Y ⊆ X
+Proof:
+    ~ X ⊆ Y
+  ≡⟨ “Inclusion” ⟩
+    ( ∀ x ❙ x ∈ ~ X • x ∈ Y )
+  ≡⟨ “Complement” ⟩
+    ( ∀ x ❙ ¬ ( x ∈ X ) • x ∈ Y )
+  ≡⟨ “Trading” ⟩
+    ( ∀ x • ¬ ( x ∈ X ) ∧ x ∈ Y ≡ ¬ ( x ∈ X ) )
+  ≡⟨ “¬ connection” ⟩
+    ( ∀ x • ¬ ( ¬ ( x ∈ X ) ∧ x ∈ Y  ) ≡  ( x ∈ X ) )
+  ≡⟨ “De Morgan”, “Double negation” ⟩ 
+    ( ∀ x • ( x ∈ X ) ∨ ¬ ( x ∈ Y ) ≡  ( x ∈ X ) )
+  ≡⟨ “Golden rule” ⟩ 
+    ( ∀ x • ( x ∈ X ) ∧ ¬ ( x ∈ Y ) ≡ ¬ ( x ∈ Y ) )
+  ≡⟨ “Trading” ⟩
+   ( ∀ x ❙ ¬ ( x ∈ Y ) • ( x ∈ X ) )
+  ≡⟨ “Complement” ⟩
+    ( ∀ x ❙  x ∈ ~ Y • x ∈ X )
+  ≡⟨ “Inclusion” ⟩
+    ~ Y ⊆ X
+
+Theorem: X ⊆ ~ Y  ≡  Y ⊆ ~ X
+Proof:
+    X ⊆ ~ Y
+  ≡⟨ “Inclusion” ⟩
+   ( ∀ e ❙ e ∈ X • e ∈ ~ Y )
+  ≡⟨ “Complement” ⟩
+   ( ∀ e ❙ e ∈ X • ¬ ( e ∈ Y ) )
+  ≡⟨ “Trading” ⟩
+   ( ∀ e • e ∈ X ∧ ¬ ( e ∈ Y ) ≡ e ∈ X )
+  ≡⟨  “Double negation”, “De Morgan”, “¬ connection” ⟩
+   ( ∀ e • ( ¬ ( e ∈ X ) ∨ ( e ∈ Y ) ) ≡ ¬ ( e ∈ X ) )
+  ≡⟨ “Golden rule” ⟩
+   ( ∀ e • ( ¬ ( e ∈ X ) ∧ ( e ∈ Y ) ) ≡ ( e ∈ Y ) )
+  ≡⟨ “Trading”, “Complement” ⟩
+   ( ∀ e ❙ e ∈ Y • e ∈ ~ X )
+  ≡⟨ “Inclusion” ⟩
+   Y ⊆ ~ X
+  
+   
+Theorem (11.26) “Symmetry of ∪”: S ∪ T = T ∪ S
+Proof:
+  Using “Set Equality”:
+    Subproof for `∀ e • e ∈ ( S ∪ T ) ≡ e ∈ ( T ∪ S )`:
+      For any `e`:
+          e ∈ ( S ∪ T ) ≡ e ∈ ( T ∪ S )
+        ≡⟨ “Union” ⟩
+          e ∈ S ∨ e ∈ T ≡ e ∈ T ∨ e ∈ S — This is “Reflexivity of ≡”  
+ 
+    
+    
+Theorem (11.27) “Associativity of ∪”: S ∪ (T ∪ W) = (S ∪ T) ∪ W
+Proof:
+  Using “Set Equality”:
+    Subproof for `∀ e • e ∈ S ∪ (T ∪ W) ≡ e ∈ (S ∪ T) ∪ W`:
+      For any `e`: By “Union” and “Reflexivity of ≡”
+      
+
+Theorem (11.28) “Idempotency of ∪”: S ∪ S = S
+Proof:
+  Using “Set Equality”:
+    Subproof for `∀ e • e ∈ S ∪ S ≡ e ∈ S`:
+      For any `e`: By “Union” and “Idempotency of ∨” and “Reflexivity of ≡”
+
+Theorem (11.30) “Zero of ∪”: S ∪ 𝐔 = 𝐔
+Proof:
+  Using “Set Equality”:
+    Subproof for `∀ e • e ∈ S ∪ 𝐔 ≡ e ∈ 𝐔`:
+      For any `e`:
+          e ∈ S ∪ 𝐔
+        ≡⟨ “Union”, “Universal set” ⟩
+          e ∈ S ∨ true
+        ≡⟨ “Zero of ∨”, “Universal set” ⟩
+          e ∈ 𝐔
+     
+Theorem (11.30) “Identity of ∪”: S ∪ {} = S
+Proof:
+  Using “Set Equality”:
+    Subproof for `∀ e • e ∈ S ∪ {} ≡ e ∈ S`:
+      For any `e`:
+          e ∈ S ∪ {} 
+        ≡⟨ “Union” ⟩
+          e ∈ S ∨ e ∈ {}
+        ≡⟨ “Empty set”, “Identity of ∨” ⟩
+          e ∈ S
+        
+
+        
+Theorem (11.31) “Weakening of ∪”: S ⊆ S ∪ T
+Proof:
+  Using “Inclusion”:
+    Subproof for `(∀ e ❙ e ∈ S • e ∈ S ∪ T)`:
+      For any `e` satisfying `e ∈ S`:
+          e ∈ S ∪ T
+        ≡⟨ “Union” ⟩
+          e ∈ S ∨ e ∈ T
+        ≡⟨ Assumption `e ∈ S`, “Zero of ∨” ⟩
+          true
+
+
+Theorem (11.32) “LEM of ∪”: S ∪ ~ S = 𝐔
+Proof:
+  Using “Set Equality”:
+    Subproof for `∀ e • e ∈ S ∪ ~ S ≡ e ∈ 𝐔`:
+      For any `e`:
+          e ∈ S ∪ ~ S
+        ≡⟨ “Union” ⟩
+          e ∈ S ∨ e ∈ ~ S
+        ≡⟨ “Complement” ⟩
+          e ∈ S ∨ ¬ ( e ∈ S )
+        ≡⟨ “Double negation”, “De Morgan” ⟩
+          ¬ ( ¬ ( e ∈ S ) ∧ ( e ∈ S ) )
+        ≡⟨ “Contradiction”, “Negation of `false`” ⟩
+          true
+        ≡⟨ “Universal set” ⟩
+          e ∈ 𝐔
+    
+
+Theorem (11.33) “Symmetry of ∩”: S ∩ T = T ∩ S
+Proof:
+  Using “Set Equality”:
+    Subproof for `∀ x • x ∈ S ∩ T ≡ x ∈ T ∩ S`:
+      For any `x`:
+          x ∈ S ∩ T ≡ x ∈ T ∩ S
+        =⟨ “Intersection” ⟩
+          x ∈ S ∧ x ∈ T ≡ x ∈ T ∧ x ∈ S — This is “Reflexivity of ≡”
+
+Theorem (11.34) “Associativity of ∩”: S ∩ (T ∩ W) = (S ∩ T) ∩ W
+Proof:
+  Using “Set Equality”:
+    Subproof for `∀ x • x ∈ S ∩ ( T ∩ W ) ≡ x ∈ ( S ∩ T ) ∩ W`:
+      For any `x`: By “Intersection” and “Reflexivity of ≡”
+          
+
+
+Theorem (11.35) “Idempotency of ∩”: S ∩ S = S
+Proof:
+  Using “Set Equality”:
+    Subproof for `∀ x • x ∈ S ∩ S ≡ x ∈ S`:
+      For any `x`: By “Intersection”, “Idempotency of ∧” and “Reflexivity of ≡”
+
+
+
+Theorem (11.36) “Zero of ∩”: S ∩ {} = {}
+Proof:
+  Using “Set Equality”:
+    Subproof for `∀ x • x ∈ S ∩ {} ≡ x ∈ {}`:
+      For any `x`:
+          x ∈ S ∩ {} ≡ x ∈ {}
+        ≡⟨ “Intersection” ⟩
+          x ∈ S ∧ x ∈ {} ≡ x ∈ {}
+        ≡⟨ “Empty set”, “Zero of ∧” ⟩
+          false ≡ false — This is “Reflexivity of ≡”
+      
+
+Theorem (11.37) “Identity of ∩”: S ∩ 𝐔 = S
+Proof:
+  Using “Set Equality”:
+    Subproof for `∀ x • x ∈ S ∩ 𝐔 ≡ x ∈ S`:
+      For any `x`:
+          x ∈ S ∩ 𝐔 ≡ x ∈ S
+         ≡⟨ “Intersection”, “Universal set”, “Identity of ∧”, “Reflexivity of ≡” ⟩
+          true
+
+
+Theorem (11.38) “Weakening of ∩”: S ∩ T ⊆ S
+Proof:
+    S ∩ T ⊆ S
+  ≡⟨ “Inclusion” ⟩
+    ∀ x ❙ x ∈ S ∩ T • x ∈ S
+  ≡⟨ “Intersection” ⟩
+    ∀ x ❙ x ∈ S ∧ x ∈ T • x ∈ S
+  ≡⟨ “Symmetry of ∧” ⟩
+    ∀ x ❙ x ∈ T  ∧ x ∈ S • x ∈ S
+  ≡⟨ “Trading” ⟩
+    ∀ x ❙ x ∈ T • ( x ∈ S ⇒ x ∈ S )
+  ≡⟨ “Reflexivity of ⇒” ⟩
+    ∀ x ❙ x ∈ T • true
+  ≡⟨ “True ∀ body” ⟩
+    true 
+
+Theorem (11.39) “Contradiction of ∩”: S ∩ ~ S = {}
+Proof:
+  Using “Set Equality”:
+    Subproof for `∀ x • x ∈ S ∩ ~ S ≡ x ∈ {}`:
+      For any `x`:
+          x ∈ S ∩ ~ S ≡ x ∈ {}
+        ≡⟨ “Intersection”, “Empty set” ⟩
+          x ∈ S ∧ x ∈ ~ S ≡ false
+        ≡⟨ “Complement”, “Contradiction”, “Reflexivity of ≡” ⟩
+          true
+
+
+Theorem “Golden Rule”: S ∩ T = S  ≡  T = S ∪ T
+Proof:
+    S ∩ T = S
+  ≡⟨ “Set Equality” ⟩
+    ∀ x • x ∈ S ∩ T ≡ x ∈ S
+  ≡⟨ “Intersection” ⟩
+    ∀ x • x ∈ S ∧ x ∈ T ≡ x ∈ S
+  ≡⟨ “Golden rule” ⟩
+    ∀ x • x ∈ T ≡ x ∈ S ∨ x ∈ T
+  ≡⟨ “Union” ⟩
+    ∀ x • x ∈ T ≡ x ∈ S ∪ T
+  ≡⟨ “Set Equality” ⟩
+    T = S ∪ T

@@ -1,0 +1,169 @@
+Homework Notebook 13.2: Sets
+
+Theorem “Subset membership” “Casting”:
+    X ⊆ Y ⇒ x ∈ X ⇒ x ∈ Y
+Proof:
+    X ⊆ Y
+  ≡⟨ “Set inclusion” ⟩
+    ∀ z ❙ z ∈ X • z ∈ Y
+  ⇒⟨ “Instantiation” ⟩
+    (z ∈ X ⇒ z ∈ Y)[z ≔ x]
+  ≡⟨ Substitution ⟩
+    x ∈ X ⇒ x ∈ Y
+
+Theorem (11.59) “Transitivity of ⊆”: X ⊆ Y ⇒ Y ⊆ Z ⇒ X ⊆ Z
+Proof:
+  Assuming `X ⊆ Y`, `Y ⊆ Z`:
+    Using “Set inclusion”:
+      Subproof for `∀ e ❙ e ∈ X • e ∈ Z`:
+        For any `e` satisfying `e ∈ X`:
+            e ∈ X  — This is Assumption `e ∈ X`
+          ⇒⟨ “Casting” with Assumption `X ⊆ Y` ⟩
+            e ∈ Y
+          ⇒⟨ “Casting” with Assumption `Y ⊆ Z` ⟩
+            e ∈ Z
+
+Theorem (11.58) “Reflexivity of ⊆”: X ⊆ X
+Proof:
+  Using “Set inclusion”:
+    Subproof for `∀ e ❙ e ∈ X • e ∈ X`:
+      For any `e` satisfying `e ∈ X`:
+          e ∈ X — This is Assumption `e ∈ X`
+
+Theorem (11.57) “Antisymmetry of ⊆”: X ⊆ Y ⇒ Y ⊆ X ⇒ X = Y
+Proof:
+  Assuming `X ⊆ Y`, `Y ⊆ X`:
+    Using “Set extensionality”:
+      Subproof for `(∀ e • e ∈ X ≡ e ∈ Y)`: 
+        For any `e`:
+          Using “Mutual implication”:
+              Subproof for `e ∈ X ⇒ e ∈ Y`:
+                  e ∈ X ⇒ e ∈ Y
+                ⇐⟨ “Casting” ⟩
+                  X ⊆ Y
+                = ⟨ Assumption `X ⊆ Y` ⟩ 
+                  true
+              Subproof for `e ∈ Y ⇒ e ∈ X`:
+                  e ∈ Y ⇒ e ∈ X
+                ⇐⟨ “Casting” ⟩  
+                  Y ⊆ X
+                = ⟨ Assumption `Y ⊆ X` ⟩
+                  true
+
+Theorem (11.19) “Self-inverse of complement”: ~ (~ S) = S
+Proof:
+  Using “Set extensionality”:
+    Subproof for `(∀ e • e ∈ ~ (~ S) ≡ e ∈ S)`:
+      For any `e`:
+          By “Complement” and “Double negation”
+
+Theorem “Lower ~ connection for ⊆”:
+    ~ X ⊆ Y  ≡  ~ Y ⊆ X
+Proof:
+    ~ X ⊆ Y
+  ≡⟨ “Set inclusion” ⟩
+    (∀ e ❙ e ∈ ~ X • e ∈ Y)
+  ≡⟨ “Complement” ⟩
+    (∀ e ❙ ¬ (e ∈ X) • e ∈ Y)
+  ≡ ⟨ “Trading for ∀” ⟩
+    (∀ e • ¬ (e ∈ X) ⇒ e ∈ Y)
+  ≡ ⟨ “Contrapositive” ⟩
+    (∀ e • ¬ (e ∈ Y) ⇒  ¬ ¬ (e ∈ X))
+  ≡ ⟨ “Double negation” ⟩
+    (∀ e • ¬ (e ∈ Y) ⇒ (e ∈ X)) 
+  ≡ ⟨ “Trading for ∀” ⟩
+    (∀ e ❙ ¬ (e ∈ Y) • (e ∈ X)) 
+  ≡ ⟨ “Complement” ⟩
+    (∀ e ❙ (e ∈ ~ Y) • (e ∈ X))  
+  ≡ ⟨ “Set inclusion” ⟩
+    ~ Y ⊆ X 
+
+Theorem “Upper ~ connection for ⊆”:
+    X ⊆ ~ Y  ≡  Y ⊆ ~ X
+Proof:
+    X ⊆ ~ Y
+  ≡⟨ “Set inclusion” ⟩
+    (∀ e ❙ e ∈ X • e ∈ ~ Y)
+  ≡ ⟨ “Complement” ⟩
+    (∀ e ❙ (e ∈ X) • ¬ (e ∈ Y)) 
+  ≡ ⟨ “Trading for ∀” ⟩
+    (∀ e • ¬ (e ∈ X) ∨ ¬ (e ∈ Y))   
+  ≡ ⟨ “Trading for ∀” ⟩
+    (∀ e ❙ e ∈ Y • ¬ (e ∈ X))
+  ≡ ⟨ “Complement” ⟩ 
+    (∀ e ❙ (e ∈ Y) • (e ∈ ~ X))  
+  ≡ ⟨ “Set inclusion” ⟩ 
+    Y ⊆ ~ X
+
+Theorem (11.26) “Symmetry of ∪”: S ∪ T = T ∪ S
+Proof:
+  Using “Set extensionality”:
+    Subproof for `∀ e • e ∈ S ∪ T ≡ e ∈ T ∪ S`:
+      For any `e`:
+        By “Union” and “Symmetry of ∨”
+
+Theorem (11.27) “Associativity of ∪”: S ∪ (T ∪ W) = (S ∪ T) ∪ W
+Proof:
+  Using “Set extensionality”:
+    Subproof for `∀ e • e ∈ S ∪ (T ∪ W) ≡ e ∈ (S ∪ T) ∪ W`:
+      For any `e`:
+          By “Union”
+
+Theorem (11.28) “Idempotency of ∪”: S ∪ S = S
+Proof:
+  Using “Set extensionality”:
+    Subproof for `∀ e • e ∈ S ∪ S ≡ e ∈ S`:
+      For any `e`:
+        By “Union” and “Idempotency of ∨”
+
+Theorem (11.31) “Weakening of ∪”: S ⊆ S ∪ T
+Proof:
+  Using “Set inclusion”:
+    Subproof for `∀ e ❙ e ∈ S • e ∈ S ∪ T`:
+      For any `e` satisfying `e ∈ S`:
+          e ∈ S ∪ T
+        ≡ ⟨ “Union” ⟩
+          e ∈ S ∨ e ∈ T
+        ⇐ ⟨ “Weakening” ⟩
+          e ∈ S — This is Assumption `e ∈ S`
+
+Theorem (11.33) “Symmetry of ∩”: S ∩ T = T ∩ S
+Proof:
+  Using “Set extensionality”:
+    Subproof for `∀ e • e ∈ S ∩ T ≡ e ∈ T ∩ S`:
+      For any `e`:
+          By “Intersection” and “Symmetry of ∧”
+
+Theorem (11.34) “Associativity of ∩”: S ∩ (T ∩ W) = (S ∩ T) ∩ W
+Proof:
+  Using “Set extensionality”:
+    Subproof for `∀ e • e ∈ S ∩ (T ∩ W) ≡ e ∈ (S ∩ T) ∩ W`:
+      For any `e`:
+        By “Intersection”
+
+Theorem (11.38) “Weakening of ∩”: S ∩ T ⊆ S
+Proof:
+  Using “Set inclusion”:
+    Subproof for `∀ e ❙ e ∈ S ∩ T • e ∈ S`:
+      For any `e` satisfying `e ∈ S ∩ T`:
+          e ∈ S
+        ⇐ ⟨ “Weakening” ⟩
+          e ∈ S ∧ e ∈ T
+        ≡ ⟨ “Intersection” ⟩
+          e ∈ S ∩ T 
+        ≡ ⟨ Assumption `e ∈ S ∩ T` ⟩ 
+          true
+
+Theorem “Golden Rule”: S ∩ T = S  ≡  T = S ∪ T
+Proof:
+    S ∩ T = S
+  ≡ ⟨ “Set extensionality” ⟩
+    (∀ e • e ∈ S ∩ T ≡ e ∈ S)
+  ≡ ⟨ “Intersection” ⟩
+    (∀ e • e ∈ S ∧ e ∈ T ≡ e ∈ S) 
+  ≡ ⟨ “Golden rule” ⟩
+    (∀ e • e ∈ S ∨ e ∈ T ≡ e ∈ T)   
+  ≡ ⟨ “Union” ⟩
+    (∀ e • e ∈ S ∪ T ≡ e ∈ T)   
+  ≡ ⟨ “Set extensionality” ⟩ 
+    S ∪ T = T

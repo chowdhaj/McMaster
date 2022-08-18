@@ -1,0 +1,85 @@
+Assignment Notebook 3.2: Assignment Commands with Boolean Variables
+
+Theorem “Irreflexivity of ≢”: (p ≢ p) ≡ false
+Proof:
+    (p ≢ p)
+  ≡ ⟨ “Definition of ≢” ⟩
+    ¬ (p ≡ p) 
+  ≡ ⟨ “Reflexivity of ≡” ⟩
+    ¬ true
+  ≡ ⟨ “Definition of `false`” ⟩
+    false
+
+Lemma (1): x + y = 13   ⇒⁅ x := x + 7 ⁆   x + y = 20
+Proof:
+    x + y = 13
+  ≡⟨ “Cancellation of +” ⟩
+    x + y + 7 = 13 + 7
+  ≡⟨ Fact `20 = 13 + 7` ⟩
+    x + 7 + y = 20
+  ≡⟨ Substitution ⟩
+    (x + y = 20)[x ≔ x + 7]
+  ⇒⁅ x := x + 7 ⁆  ⟨ “Assignment” ⟩
+    x + y = 20
+
+Lemma (A3.2a): (p ≡ (q ≢ r)) ⇒⁅ q := (q ≢ r) ⁆  (p ≡ q)
+Proof:
+    (p ≡ (q ≢ r))
+  ≡ ⟨ Substitution ⟩ 
+    (p ≡ q)[q ≔ (q ≢ r)]
+  ⇒⁅ q := (q ≢ r) ⁆ ⟨ “Assignment” ⟩  
+    (p ≡ q)
+
+Lemma (A3.2b): (p ≡ q) ⇒⁅ q := (q ≢ r) ⁆  (p ≡ (q ≢ r))
+Proof:
+    (p ≡ q)
+  ≡ ⟨ “Identity of ≡” ⟩ 
+    (p ≡ (q ≡ true))
+  ≡ ⟨ “Negation of `false`” ⟩ 
+    (p ≡ (q ≡ ¬ false))
+  ≡ ⟨ “Commutativity of ¬ with ≡” ⟩ 
+    (p ≡ (¬ (q ≡ false)))
+  ≡ ⟨ “Definition of ≢” ⟩ 
+    (p ≡ (q ≢ false))
+  ≡ ⟨ “Definition of `false`” ⟩ 
+    (p ≡ (q ≢ (¬ true)))
+  ≡ ⟨ “Reflexivity of ≡” ⟩ 
+    (p ≡ (q ≢ (¬ (r ≡ r))))
+  ≡ ⟨ “Definition of ≢” ⟩ 
+    (p ≡ (q ≢ (r ≢ r)))
+  ≡ ⟨ “Associativity of ≢” ⟩ 
+    (p ≡ ((q ≢ r) ≢ r))
+  ≡ ⟨ Substitution ⟩  
+    (p ≡ (q ≢ r))[q ≔ (q ≢ r)]
+  ⇒⁅ q := (q ≢ r) ⁆ ⟨ “Assignment” ⟩ 
+    (p ≡ (q ≢ r))
+
+Lemma (A3.2c): (p ≡ r) ∧ ¬ q ⇒⁅ q := (q ≢ r) ⁆  (p ≡ r) ∧ (p ≡ q)
+Proof:
+    (p ≡ r) ∧ ¬ q
+  ≡ ⟨ “Identity of ≡” ⟩  
+    true ≡ (p ≡ r) ∧ ¬ q
+  ≡ ⟨ “Reflexivity of ≡” ⟩ 
+    ((p ≡ r) ≡ (p ≡ r)) ≡ (p ≡ r) ∧ ¬ q
+  ≡ ⟨ “Associativity of ≡” ⟩ 
+    (p ≡ r) ≡ ((p ≡ r) ≡ (p ≡ r) ∧ ¬ q)
+  ≡ ⟨ “Symmetry of ≡” ⟩ 
+    (p ≡ r) ≡ ((p ≡ r) ∧ ¬ q ≡ (p ≡ r))
+  ≡ ⟨ “Idempotency of ∧” ⟩ 
+    (p ≡ r) ∧ (p ≡ r) ≡ ((p ≡ r) ∧ ¬ q ≡ (p ≡ r))
+  ≡ ⟨ “Semi-distributivity of ∧ over ≡” ⟩ 
+    (p ≡ r) ∧ ((p ≡ r) ≡ ¬ q)
+  ≡ ⟨ “Associativity of ≡” ⟩ 
+    (p ≡ r) ∧ (p ≡ r ≡ ¬ q)
+  ≡ ⟨ “Semi-distributivity of ∧ over ≡” ⟩ 
+    (p ≡ r) ∧ (p ≡ r ≡ ¬ q)
+  ≡ ⟨ “Symmetry of ≡” ⟩ 
+    (p ≡ r) ∧ (p ≡ ¬ q ≡ r)
+  ≡ ⟨ “Commutativity of ¬ with ≡” ⟩ 
+    (p ≡ r) ∧ (p ≡ (¬ (q ≡ r)))
+  ≡ ⟨ “Definition of ≢” ⟩ 
+    (p ≡ r) ∧ (p ≡ (q ≢ r))
+  ≡ ⟨ Substitution ⟩
+    ((p ≡ r) ∧ (p ≡ q))[q ≔ (q ≢ r)]
+  ⇒⁅ q := (q ≢ r) ⁆  ⟨ “Assignment” ⟩
+    (p ≡ r) ∧ (p ≡ q)

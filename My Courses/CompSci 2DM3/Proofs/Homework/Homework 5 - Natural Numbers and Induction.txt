@@ -1,0 +1,119 @@
+Homework 5: Natural Numbers and Induction
+
+Theorem “Right-identity of +”: m + 0 = m
+Proof:
+  By induction on `m : ℕ`:
+    Base case:
+        0 + 0
+      =⟨ “Definition of + for 0” ⟩
+        0
+    Induction step:
+        suc m + 0
+      =⟨ “Definition of + for `suc`” ⟩
+        suc (m + 0)
+      =⟨ Induction hypothesis ⟩
+        suc m
+
+Theorem “Successor”: suc n = n + 1
+Proof:
+  By induction on `n : ℕ`:
+    Base case:
+        0 + 1
+      =⟨ “Left-identity of +” ⟩
+        1
+      =⟨ Fact `suc 0 = 1` ⟩
+        suc 0
+    Induction step:
+        suc n + 1
+      =⟨ “Definition of + for `suc`” ⟩
+        suc (n + 1)
+      =⟨ Induction hypothesis ⟩
+        suc suc n
+
+Theorem “Adding the successor”: m + (suc n) = suc (m + n)
+Proof:
+  By induction on `m : ℕ`:
+    Base case:
+        0 + (suc n)
+      =⟨ “Left-identity of +” ⟩
+        suc n
+      =⟨ “Definition of + for 0” ⟩
+        suc (0 + n)
+    Induction step:
+        (suc m) + (suc n)
+      =⟨ “Definition of + for `suc`”  ⟩
+        suc (m + (suc n))
+      =⟨ Induction hypothesis ⟩
+        suc (suc (m + n))
+      =⟨ “Definition of + for `suc`” ⟩
+        suc ((suc m) + n)
+
+Theorem “Symmetry of +”: m + n = n + m
+Proof:
+    By induction on `m : ℕ`:
+      Base case:
+          0 + n
+        = ⟨ “Left-identity of +” ⟩
+          n
+        = ⟨ “Right-identity of +” ⟩
+          n + 0  
+      Induction step:
+          (suc m) + n
+        = ⟨ “Definition of + for `suc`” ⟩
+          suc (m + n) 
+        = ⟨ Induction hypothesis ⟩ 
+          suc (n + m)
+        = ⟨ “Adding the successor” ⟩ 
+          n + suc m
+
+Theorem “Odd successor”: odd (suc n) ≡ even n
+Proof:
+    odd (suc n)
+  = ⟨ “Odd is not even” ⟩
+    ¬ (even (suc n)) 
+  = ⟨ “Even successor” ⟩
+    ¬ odd n
+  = ⟨ “Odd is not even” ⟩
+    ¬ ¬ (even n)
+  = ⟨ “Double negation” ⟩
+    even n
+
+Theorem “Even double”: even(n + n)
+Proof:
+    By induction on `n : ℕ`:
+      Base case:
+          even (0 + 0)
+        = ⟨ “Left-identity of +” ⟩
+          even 0 — This is “Zero is even”
+      Induction step:
+          even (suc n + suc n)
+        = ⟨ “Definition of + for `suc`” ⟩ 
+          even (suc (n + suc n))
+        = ⟨ “Even successor” ⟩
+          odd (n + suc n)
+        = ⟨ “Adding the successor” ⟩
+          odd (suc (n + n)) 
+        = ⟨ “Odd successor” ⟩ 
+          even (n + n) — This is Induction hypothesis
+
+Theorem “Odd”: odd (suc i + i)
+Proof:
+    By induction on `i : ℕ`:
+        Base case:
+            odd ((suc 0) + 0)
+          = ⟨ “Right-identity of +” ⟩
+            odd (suc 0)
+          = ⟨ “Odd successor” ⟩
+            even 0 — This is “Zero is even”   
+        Induction step:
+            odd (suc (suc i) + suc i)
+          = ⟨ “Definition of + for `suc`” ⟩
+            odd (suc (suc i + suc i))
+          = ⟨ “Odd successor” ⟩
+            even (suc i + suc i)
+          = ⟨ “Definition of + for `suc`” ⟩
+            even (suc (i + suc i))
+          = ⟨ “Even successor” ⟩
+            odd (i + suc i)
+          = ⟨ “Symmetry of +” ⟩
+            odd (suc i + i) — This is Induction hypothesis

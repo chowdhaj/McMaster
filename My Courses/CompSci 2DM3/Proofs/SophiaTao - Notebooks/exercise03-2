@@ -1,0 +1,134 @@
+---------------------
+3.2.5
+Theorem (15.9) “Zero of ·”: a · 0 = 0
+Proof:
+    a · 0 = 0
+  ≡⟨ “Cancellation of +” ⟩
+    a · a + a · 0 = a · a + 0
+  ≡⟨ “Distributivity of · over +” ⟩
+    a · (a + 0) = a · a + 0
+  ≡⟨ “Identity of +” ⟩
+    a · a = a · a     — This is “Reflexivity of =”
+    
+---------------------
+3.2.7
+Theorem (15.10a) “Unique identity of +”: a + z = a  ≡  z = 0
+Proof:
+    a + z = a 
+   =⟨ “Identity of +” ⟩
+    a + z = a + 0
+   =⟨ “Cancellation” ⟩
+    z = 0
+---------------------
+3.2.11
+Theorem (15.15) “Unique additive inverse”: x + a = 0  ≡  x = - a
+Proof:
+    x + a = 0
+   =⟨ “Unary minus” ⟩
+    x + a = a + - a
+   =⟨ “Cancellation” ⟩
+    x = - a
+---------------------
+3.2.12
+Theorem (15.16) “Injectivity of unary minus”: - a = - b  ≡  a = b
+Proof:
+    - a = - b
+   =⟨ “Cancellation” ⟩
+    - a + b = - b + b
+   =⟨ “Subtraction” ⟩
+    b + - a = b + - b
+   =⟨ “Unary minus” ⟩
+    b + - a = 0
+   =⟨ “Unary minus” ⟩
+    b + - a = a + - a
+   =⟨ “Cancellation” ⟩
+    b = a
+ ---------------------
+ 3.2.13
+ Theorem (15.18): - 0 = 0
+ Proof:
+    - 0 = 0
+   =⟨ “Identity of +” ⟩
+    0 + - 0 = 0
+   =⟨ “Unary minus” ⟩
+    0 + - 0 = 0 + - 0
+   =⟨ “Cancellation” ⟩
+    0 = 0 — This is “Reflexivity of =”
+ ---------------------
+ 3.2.14
+ Theorem (15.20): - a = (- 1) · a
+ Proof:
+    - a = (- 1) · a
+   =⟨ “Cancellation” ⟩
+    - a + a = (- 1) · a + a
+   =⟨ “Identity of ·” ⟩
+    - a + a = - 1 · a + 1 · a
+   =⟨ “Distributivity of · over +” ⟩
+    - a + a = a · (- 1 + 1)
+   =⟨ “Subtraction” ⟩
+    a + - a = a · (1 + - 1)
+   =⟨ “Unary minus” ⟩
+    0 = a · 0
+   =⟨ “Zero of ·” ⟩
+    0 = 0 — This is “Reflexivity of =”
+
+
+~*~*~*~ALTERNATE SOLUTIONS~*~*~*~*~*~*
+3.2.7
+Theorem (15.10a) “Unique identity of +”: a + z = a  ≡  z = 0
+Proof:
+    a + z = a  ≡  z = 0
+  ≡⟨ “Additive identity” ⟩
+    a + z = a + 0  ≡  z = 0
+  ≡⟨ “Cancellation of +” ⟩
+    true
+
+3.2.11
+Theorem (15.15) “Unique additive inverse”: x + a = 0  ≡  x = - a
+Proof:
+    x + a = 0  ≡  x = - a
+  ≡⟨ “Unary minus” ⟩
+    x + a = a + (- a)  ≡  x = - a
+  ≡⟨ “Symmetry of +” ⟩
+    a + x = a + (- a) ≡  x = - a
+  ≡⟨ “Cancellation of +” ⟩
+    true
+
+3.2.12
+Theorem (15.16) “Injectivity of unary minus”: - a = - b  ≡  a = b
+Proof:
+    - a = - b  ≡  a = b
+  ≡⟨ “Unique additive inverse” ⟩
+    - a + b = 0  ≡  a = b
+  ≡⟨ “Unary minus” ⟩
+    - a + b = a + - a  ≡  a = b
+  ≡⟨ “Cancellation of +” ⟩
+    true
+
+3.2.13
+Theorem (15.18): - 0 = 0
+Proof:
+    - 0 = 0
+  ≡⟨ “Additive identity” ⟩
+    0 + - 0 = 0
+  ≡⟨ “Unique additive inverse” ⟩
+    - 0 = - 0
+  ≡⟨ “Reflexivity of =” ⟩
+    true
+
+3.2.14
+Theorem (15.20): - a = (- 1) · a
+Proof:
+    - a = (- 1) · a
+  ≡⟨ “Cancellation of +” ⟩
+    a + - a = a + - 1 · a
+  ≡⟨ “Identity of ·” ⟩
+    a + - a = a · 1 + - 1 · a
+  ≡⟨ “Distributivity of · over +” ⟩
+    a + - a = a · (1 + - 1)
+  ≡⟨ “Unary minus” ⟩
+    0 = a · 0
+  ≡⟨ “Zero of ·” ⟩
+    0 = 0
+  ≡⟨ “Reflexivity of =” ⟩
+    true

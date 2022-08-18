@@ -1,0 +1,96 @@
+Lemma “Singleton set”:
+    x ∈ { y }  ≡  x = y
+Proof:
+    x ∈ { y }
+   =⟨ “Reflexivity of =” ⟩
+      x ∈ { x ❙ x = y }
+   =⟨ “Simple Membership” ⟩
+      x = y
+
+Lemma “Singleton set inclusion”:
+    { x } ⊆ S  ≡  x ∈ S
+Proof:
+    { x } ⊆ S
+  =⟨ “Inclusion” ⟩
+    ∀ z ❙ z ∈ { x } • z ∈ S
+  =⟨ “Singleton set” ⟩
+    ∀ z ❙ z = x • z ∈ S 
+  =⟨ “One-point rule for ∀” ⟩
+    (z ∈ S) [ z ≔ x ]
+  =⟨ Substitution ⟩
+    x ∈ S
+
+Theorem “Membership in ➩”:
+    x ∈ A ➩ B  ≡  x ∈ A ⇒ x ∈ B
+Proof:
+    x ∈ A ➩ B 
+  =⟨ “Singleton set inclusion” ⟩
+   { x } ⊆ A ➩ B
+  =⟨ “Characterisation of ➩” ⟩
+    { x } ∩ A ⊆ B
+  =⟨ “Inclusion” ⟩
+    ∀ z ❙ z ∈ { x } ∩ A • z ∈ B 
+  =⟨ “Intersection” ⟩
+    ∀ z ❙ z ∈ { x } ∧ z ∈ A • z ∈ B 
+  =⟨ “Trading”, “Singleton set” ⟩
+    ∀ z ❙ z = x • z ∈ A ⇒ z ∈ B 
+  =⟨ “One-point rule” ⟩
+    ( z ∈ A ⇒ z ∈ B )[ z ≔ x ]
+  =⟨ Substitution ⟩
+      x ∈ A ⇒ x ∈ B
+
+Theorem “Definition of ➩”:
+     A ➩ B  =  ~ A ∪ B
+Proof:
+  Using “Set Equality”:
+    Subproof for `∀ x • x ∈ A ➩ B ≡ x ∈ ~ A ∪ B`:
+      For any `x`:
+          x ∈ A ➩ B ≡ x ∈ ~ A ∪ B
+        ≡⟨ “Membership in ➩” ⟩
+          x ∈ A ⇒ x ∈ B ≡ x ∈ ~ A ∪ B
+        ≡⟨ “Definition of ⇒”, “Union”, “Complement” ⟩
+          ¬ ( x ∈ A ) ∨ x ∈ B ≡ ¬ (x ∈ A) ∨ x ∈ B — This is “Reflexivity of ≡”
+
+Theorem “Pseudocomplement of union”:
+    (A ∪ B) ➩ C  =  (A ➩ C) ∩ (B ➩ C)
+Proof:
+  Using “Set Equality”:
+    Subproof for `∀ x • x ∈ (A ∪ B) ➩ C ≡  x ∈ ( A ➩ C ) ∩ ( B ➩ C )`:
+      For any `x`:
+          x ∈ ( A ∪ B ) ➩ C ≡ x ∈ ( A ➩ C ) ∩ ( B ➩ C )
+        =⟨ “Membership in ➩” ⟩
+          x ∈ A ∪ B ⇒ x ∈ C ≡ x ∈ ( A ➩ C ) ∩ ( B ➩ C )
+        =⟨ “Union” ⟩
+          x ∈ A ∨ x ∈ B ⇒ x ∈ C ≡ x ∈ ( A ➩ C ) ∩ ( B ➩ C )
+        =⟨ “Definition of ⇒” ⟩
+          ¬ ( x ∈ A ∨ x ∈ B ) ∨ x ∈ C ≡ x ∈ ( A ➩ C ) ∩ ( B ➩ C )
+        =⟨ “De Morgan” ⟩
+          ( ¬ ( x ∈ A ) ∧ ¬ ( x ∈ B ) ) ∨ x ∈ C ≡ x ∈ ( A ➩ C ) ∩ ( B ➩ C )
+        =⟨ “Distributivity of ∨ over ∧” ⟩
+          ( ¬ ( x ∈ A ) ∨ x ∈ C ) ∧ ( ¬ ( x ∈ B ) ∨ x ∈ C ) ≡ x ∈ ( A ➩ C ) ∩ ( B ➩ C )
+        =⟨ “Definition of Implication” ⟩
+          ( x ∈ A ⇒ x ∈ C ) ∧ ( x ∈ B ⇒ x ∈ C ) ≡ x ∈ ( A ➩ C ) ∩ ( B ➩ C )
+        =⟨ “Membership in ➩”, “Intersection” ⟩
+          x ∈ ( A ➩ C ) ∩ ( B ➩ C ) ≡ x ∈ ( A ➩ C ) ∩ ( B ➩ C ) — This is “Reflexivity of ≡”
+
+Theorem “Monotonicity of ➩”:
+    B ⊆ C  ⇒  A ➩ B ⊆ A ➩ C
+Proof:
+  Assuming `B ⊆ C`:
+      A ➩ B ⊆ A ➩ C
+    =⟨ “Inclusion” ⟩
+     ∀ x ❙ x ∈ A ➩ B • x ∈ A ➩ C
+    =⟨ “Membership in ➩” ⟩
+     ∀ x ❙ x ∈ A ⇒ x ∈ B • x ∈ A ⇒ x ∈ C
+    =⟨ Subproof for `∀ x ❙ x ∈ A ⇒ x ∈ B • x ∈ A ⇒ x ∈ C`:
+        For any `x` satisfying `x ∈ A ⇒ x ∈ B`:
+              x ∈ A
+            ⇒⟨ Assumption `x ∈ A ⇒ x ∈ B`⟩
+              x ∈ B
+            ⇒⟨ “Casting” with Assumption `B ⊆ C` ⟩
+              x ∈ C 
+     ⟩
+          true
+      
+
+

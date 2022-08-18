@@ -1,0 +1,67 @@
+Assignment Notebook 7.1: Practice with Universal and Existential Quantification in the Setting of ℤ
+
+Theorem “Indirect ≤ from above”:
+    x ≤ y  ≡   (∀ z : ℤ • y ≤ z ⇒ x ≤ z)
+Proof:
+    Using “Mutual implication”:
+        Subproof for `x ≤ y  ⇒   (∀ z : ℤ • y ≤ z ⇒ x ≤ z)`:
+            Assuming `x ≤ y`:
+                For any `z`:
+                    y ≤ z ⇒ x ≤ z
+                  ⇐ ⟨ “Transitivity of ≤” ⟩
+                    x ≤ y 
+                  ≡ ⟨ Assumption `x ≤ y` ⟩
+                    true  
+        Subproof for `(∀ z : ℤ • y ≤ z ⇒ x ≤ z) ⇒ x ≤ y `:
+            Assuming `(∀ z : ℤ • y ≤ z ⇒ x ≤ z)`:
+                x ≤ y
+              ≡ ⟨ “Left-identity of ⇒” and “Reflexivity of ≤” ⟩ 
+                y ≤ y ⇒ x ≤ y
+              ≡ ⟨ Assumption `(∀ z : ℤ • y ≤ z ⇒ x ≤ z)` ⟩ 
+                true 
+
+Theorem “A7.1.1 no”: ¬ (∃ x : ℤ • ∀ y : ℤ • y + 2 < 3 · x )
+Proof:
+    ¬ (∃ x : ℤ • ∀ y : ℤ • y + 2 < 3 · x )
+  ≡ ⟨ “Generalised De Morgan” ⟩
+    (∀ x : ℤ • ¬ (∀ y : ℤ • y + 2 < 3 · x ))
+  ≡ ⟨ “Generalised De Morgan” ⟩ 
+    (∀ x : ℤ • (∃ y : ℤ • ¬ (y + 2 < 3 · x) ))
+  ≡ ⟨ Subproof: 
+        For any `x`:
+            (∃ y : ℤ • ¬ (y + 2 < 3 · x) )
+          ≡ ⟨ “Complement of <” with “Definition of ≢” and “Commutativity of ¬ with ≡” ⟩ 
+            (∃ y : ℤ • (y + 2 ≥ 3 · x) )
+          ⇐ ⟨ “∃-Introduction” ⟩
+            (y + 2 ≥ 3 · x)[y ≔ 3 · x + - 2]
+          ≡ ⟨ Substitution ⟩
+            (3 · x + (- 2 + 2) ≥ 3 · x)
+          ≡ ⟨ “Unary minus” ⟩ 
+            (3 · x + 0 ≥ 3 · x) 
+          ≡ ⟨ “Identity of +” ⟩ 
+            3 · x ≥ 3 · x
+          ≡ ⟨ “Reflexivity of ≤” ⟩              
+            true 
+  
+    ⟩ 
+    true
+
+Theorem “A7.1.2 yes”: (∀ x : ℤ • ∀ y : ℤ • ∃ z : ℤ • y + 2 · z ≤ z + 3 · x + 5)
+Proof:
+    For any `x`:
+        For any `y`:
+            ∃ z : ℤ • y + 2 · z ≤ z + 3 · x + 5
+          ⇐ ⟨ “∃-Introduction” ⟩
+            (y + 2 · z ≤ z + 3 · x + 5)[z ≔ 3 · x + 5 + - y]
+          ≡ ⟨ Substitution ⟩
+            (y + 2 · (3 · x + 5 + - y) ≤ (3 · x + 5 + - y) + 3 · x + 5)
+          ≡ ⟨ “Distributivity of · over +” ⟩
+            (y + (2 · 3 · x) + (2 · 5) + (2 · - y)) ≤ ((3 · x + 5 + - y) + 3 · x + 5)
+          ≡ ⟨ Evaluation ⟩ 
+            ((6 · x) + 10 + (2 · - y) + y) ≤ (3 · x + 3 · x + 10 + - y)
+          ≡ ⟨ “Distributivity of · over +” and Evaluation ⟩ 
+            ((6 · x) + 10 + (1 · - y) + (1 · - y) + y) ≤ (6 · x + 10 + - y)
+          ≡ ⟨ “Identity of ·” and “Unary minus” ⟩
+            ((6 · x) + 10 + (- y) + 0) ≤ (6 · x + 10 + - y)
+          ≡ ⟨ “Identity of +” and “Reflexivity of ≤” ⟩ 
+            true 

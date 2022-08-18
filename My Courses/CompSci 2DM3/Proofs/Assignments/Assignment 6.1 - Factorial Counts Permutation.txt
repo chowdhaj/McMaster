@@ -1,0 +1,118 @@
+Assignment Notebook 6.1: Factorial Counts Permutations
+
+Theorem “Factorial of one”: 1 ! = 1
+Proof:
+    1 !
+  = ⟨ Fact `1 = suc 0` ⟩
+    (suc 0) !
+  = ⟨ “Definition of ! for `suc`” ⟩
+    (suc 0) · 0 ! 
+  = ⟨ “Definition of ! for 0” ⟩
+    (suc 0) · 1
+  = ⟨ “Left-identity of ·” ⟩
+    suc 0  
+  = ⟨ Fact `suc 0 = 1` ⟩ 
+    1
+
+Theorem “nonzero factorial”: n ! ≠ 0
+Proof:
+    By induction on `n : ℕ`:
+        Base case:
+            0 ! ≠ 0
+          = ⟨ “Definition of ! for 0”  ⟩
+            1 ≠ 0
+          = ⟨ “Definition of ≠” ⟩
+            ¬ (1 = 0)
+          = ⟨ Fact `1 = 0 ≡ false` ⟩
+            ¬ false   
+          = ⟨ “Negation of `false`” ⟩
+            true 
+        Induction step:
+            (suc n) ! ≠ 0
+          = ⟨ “Definition of ! for `suc`” ⟩ 
+            suc n · n ! ≠ 0
+          = ⟨ “Definition of ≠” ⟩
+            ¬ (suc n · n ! = 0) 
+          = ⟨ “Zero product” ⟩ 
+            ¬ (suc n = 0 ∨ n ! = 0)
+          = ⟨ “Zero is not successor” ⟩ 
+            ¬ (false ∨ n ! = 0)
+          = ⟨ “Identity of ∨” ⟩
+            ¬ (n ! = 0)
+          = ⟨ “Definition of ≠” ⟩
+            n ! ≠ 0 — This is Induction hypothesis 
+
+Corollary “Cancellation of multiplication with factorial”:
+   a · k ! = b · k !  ≡  a = b
+Proof:
+    By induction on `k : ℕ`:
+        Base case:
+            a · 0 ! = b · 0 !  ≡  a = b
+          = ⟨ “Definition of ! for 0” ⟩
+            a · 1 = b · 1  ≡  a = b 
+          = ⟨ “Right-identity of ·” ⟩
+            a = b ≡ a = b
+          = ⟨ “Reflexivity of ≡” ⟩
+            true  
+        Induction step:
+            a · (suc k) ! = b · (suc k) !  ≡  a = b
+          = ⟨ “Definition of ! for `suc`” ⟩
+            a · (suc k) · k ! = b · (suc k) · k !  ≡  a = b 
+          = ⟨ “Cancellation of ·” with “Zero is not successor” ⟩
+            a · k ! = b · k !  ≡  a = b 
+          = ⟨ Induction hypothesis ⟩
+            true 
+
+Theorem “Correctness of !”: n ! = factorial n
+Proof:
+    By induction on `n : ℕ `:
+        Base case:
+            0 ! = factorial 0
+          = ⟨ “Definition of ! for 0” ⟩
+            1 = factorial 0 
+          = ⟨ “Definition of factorial” ⟩
+            1 = (∏ i : ℕ ❙ 0 < i ≤ 0 • i)
+          = ⟨ “Reflexivity of =” ⟩
+            1 = (∏ i : ℕ ❙ 0 < i ∧ i ≤ 0 • i)
+          = ⟨ “Zero is unique least element” ⟩
+            1 = (∏ i : ℕ ❙ 0 < i ∧ i = 0 • i)
+          = ⟨ Substitution ⟩
+            1 = (∏ i : ℕ ❙ (0 < j)[j ≔ i] ∧ i = 0 • i)
+          = ⟨ “Replacement”, Substitution ⟩
+            1 = (∏ i : ℕ ❙ (0 < 0) ∧ i = 0 • i) 
+          = ⟨ “Irreflexivity of <”, “Zero of ∧” ⟩ 
+            1 = (∏ i : ℕ ❙ false • i) 
+          = ⟨ “Empty range for ∏” ⟩
+            1 = 1
+          = ⟨ “Reflexivity of =” ⟩ 
+            true 
+        Induction step:
+            (suc n) ! = factorial (suc n)
+          = ⟨ “Definition of ! for `suc`”, “Definition of factorial” ⟩ 
+            (suc n) · n ! = (∏ i : ℕ ❙ 0 < i ≤ suc n • i)
+          = ⟨ “<-Isotonicity of successor” and “Isotonicity of successor” ⟩
+            (suc n) · n ! = (∏ i : ℕ ❙ suc 0 < suc i ≤ suc (suc n) • i) 
+          = ⟨ “Reflexivity of =” ⟩
+            (suc n) · n ! = (∏ i : ℕ ❙ suc 0 < suc i ∧ suc i ≤ suc (suc n) • i)  
+          = ⟨ “Definition of ≤ in terms of `S` and <” ⟩
+            (suc n) · n ! = (∏ i : ℕ ❙ suc 0 ≤ i ∧ suc i ≤ suc (suc n) • i)  
+          = ⟨ “Isotonicity of successor” ⟩
+            (suc n) · n ! = (∏ i : ℕ ❙ suc 0 ≤ i ∧ i ≤ (suc n) • i)   
+          = ⟨ “Reflexivity of =” ⟩
+            (suc n) · n ! = (∏ i : ℕ ❙ suc 0 ≤ i ≤ (suc n) • i) 
+          = ⟨ “Definition of ≤ in terms of `S` and <” ⟩ 
+            (suc n) · n ! = (∏ i : ℕ ❙ suc 0 ≤ i < (suc (suc n)) • i)
+          = ⟨ “Split off term at top” with “Isotonicity of successor” and “Zero is least element” ⟩ 
+            (suc n) · n ! = (∏ i : ℕ ❙ suc 0 ≤ i < suc n • i) · i [i ≔ suc n] 
+          = ⟨ Substitution ⟩
+            (suc n) · n ! = (∏ i : ℕ ❙ suc 0 ≤ i < suc n • i) · suc n
+          = ⟨ “Cancellation of ·” with “Zero is not successor” ⟩
+            n ! = (∏ i : ℕ ❙ suc 0 ≤ i < suc n • i)
+          = ⟨ “Reflexivity of =” ⟩
+            n ! = (∏ i : ℕ ❙ suc 0 ≤ i ∧ i < suc n • i)  
+          = ⟨ “Definition of ≤ in terms of `S` and <” and “<-Isotonicity of successor” ⟩
+            n ! = (∏ i : ℕ ❙ 0 < i ≤ n • i)  
+          = ⟨ “Definition of factorial” ⟩
+            n ! = factorial n
+          = ⟨ Induction hypothesis ⟩
+            true

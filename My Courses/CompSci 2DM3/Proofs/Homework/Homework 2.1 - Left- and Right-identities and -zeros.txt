@@ -1,0 +1,132 @@
+Homework Notebook 2.1: Left- and Right-identities and -zeros
+
+Calculation:
+    false ∨ false
+  ≡ ⟨ “Left-identity of ∨” ⟩
+    false
+
+Calculation:
+    false ∨ true
+  ≡ ⟨ “Left-identity of ∨” ⟩
+    true
+
+Calculation:
+    true ∨ false
+  ≡ ⟨ “Left-zero of ∨” ⟩
+    true
+
+Calculation:
+    true ∨ true
+  ≡ ⟨ “Left-zero of ∨” ⟩
+    true 
+
+Calculation:
+    false ∨ false
+  ≡ ⟨ “Right-identity of ∨” ⟩
+    false
+
+Calculation:
+    false ∨ true
+  ≡ ⟨ “Right-zero of ∨” ⟩
+    true
+
+Calculation:
+    true ∨ false
+  ≡ ⟨ “Right-identity of ∨” ⟩
+    true 
+
+Calculation:
+    true ∨ true
+  ≡ ⟨ “Right-zero of ∨” ⟩
+    true
+
+Calculation:
+    false ∧ false
+  ≡ ⟨ “Left-zero of ∧” ⟩
+    false 
+
+Calculation:
+    false ∧ true
+  ≡ ⟨ “Left-zero of ∧” ⟩
+    false 
+
+Calculation:
+    true ∧ false
+  ≡ ⟨ “Left-identity of ∧” ⟩
+    false 
+
+Calculation:
+    true ∧ true
+  ≡ ⟨ “Left-identity of ∧” ⟩ 
+    true
+
+Calculation:
+    false ∧ false
+  ≡ ⟨ “Right-zero of ∧” ⟩
+    false 
+
+Calculation:
+    false ∧ true
+  ≡ ⟨ “Right-identity of ∧” ⟩
+    false
+
+Calculation:
+    true ∧ false
+  ≡ ⟨ “Right-zero of ∧” ⟩ 
+    false
+
+Calculation:
+    true ∧ true
+  ≡ ⟨ “Right-identity of ∧” ⟩
+    true
+
+Calculation:
+    ¬ (p ∧ q) ∨ (¬ (p ∧ ¬ q) ∧ ¬ (¬ p ∧ q))
+  ≡ ⟨ “De Morgan” ⟩
+    ¬ (p ∧ q) ∨ (¬ (p ∧ ¬ q) ∧ (¬ ¬ p ∨ ¬ q))
+  ≡ ⟨ “Double negation” ⟩
+    ¬ (p ∧ q) ∨ (¬ (p ∧ ¬ q) ∧ (p ∨ ¬ q))
+  ≡ ⟨ “De Morgan” ⟩
+    ¬ (p ∧ q) ∨ ((¬ p ∨ ¬ ¬ q) ∧ (p ∨ ¬ q))
+  ≡ ⟨ “Double negation” ⟩
+    ¬ (p ∧ q) ∨ ((¬ p ∨ q) ∧ (p ∨ ¬ q))
+  ≡ ⟨ “De Morgan” ⟩
+    (¬ p ∨ ¬ q) ∨ ((¬ p ∨ q) ∧ (p ∨ ¬ q))
+  ≡ ⟨ “Right-distributivity of ∧ over ∨” ⟩
+    (¬ p ∨ ¬ q) ∨ ((¬ p ∨ q) ∧ p) ∨ ((¬ p ∨ q) ∧ ¬ q)
+  ≡ ⟨ “Left-distributivity of ∧ over ∨” ⟩
+    (¬ p ∨ ¬ q) 
+    ∨ (¬ p ∧ p) ∨ (q ∧ p)
+    ∨ (¬ p ∧ ¬ q) ∨ (q ∧ ¬ q)
+  ≡ ⟨ “Symmetry of ∧” ⟩ 
+    (¬ p ∨ ¬ q) 
+    ∨ (p ∧ ¬ p) ∨ (q ∧ p)
+    ∨ (¬ p ∧ ¬ q) ∨ (q ∧ ¬ q)
+  ≡ ⟨ “Contradiction” ⟩
+    (¬ p ∨ ¬ q) 
+    ∨ false ∨ (q ∧ p)
+    ∨ (¬ p ∧ ¬ q) ∨ (q ∧ ¬ q)
+  ≡ ⟨ “Contradiction” ⟩
+    (¬ p ∨ ¬ q) ∨ false ∨ (q ∧ p) ∨ (¬ p ∧ ¬ q) ∨ false
+  ≡ ⟨ “Symmetry of ∨” ⟩
+    (¬ p ∨ ¬ q) ∨ false ∨ (¬ p ∧ ¬ q) ∨ (q ∧ p) ∨ false
+  ≡ ⟨ “Symmetry of ∨” ⟩
+    (¬ p ∨ ¬ q) ∨ (¬ p ∧ ¬ q) ∨ false ∨ (q ∧ p) ∨ false
+  ≡ ⟨ “Symmetry of ∨” ⟩ 
+    (¬ p ∨ ¬ q) ∨ (¬ p ∧ ¬ q) ∨ (q ∧ p) ∨ false ∨ false
+  ≡ ⟨ “Right-identity of ∨” ⟩
+    (¬ p ∨ ¬ q) ∨ (¬ p ∧ ¬ q) ∨ (q ∧ p) ∨ false
+  ≡ ⟨ “De Morgan” ⟩
+    ¬ (p ∧ q) ∨ (¬ p ∧ ¬ q) ∨ (q ∧ p) ∨ false
+  ≡ ⟨ “Right-identity of ∨” ⟩
+    ¬ (p ∧ q) ∨ (¬ p ∧ ¬ q) ∨ (q ∧ p) 
+  ≡ ⟨ “Symmetry of ∨” ⟩
+    ¬ (p ∧ q) ∨ (q ∧ p) ∨ (¬ p ∧ ¬ q)
+  ≡ ⟨ “Symmetry of ∧” ⟩
+    ¬ (p ∧ q) ∨ (p ∧ q) ∨ (¬ p ∧ ¬ q)
+  ≡ ⟨ “Symmetry of ∨” ⟩
+    (p ∧ q) ∨ ¬ (p ∧ q) ∨ (¬ p ∧ ¬ q)
+  ≡ ⟨ “Excluded middle” ⟩ 
+    true ∨ (¬ p ∧ ¬ q)
+  ≡ ⟨ “Left-zero of ∨” ⟩
+    true 

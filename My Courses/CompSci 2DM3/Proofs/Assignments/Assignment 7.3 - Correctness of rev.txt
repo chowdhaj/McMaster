@@ -1,0 +1,184 @@
+Assignment Notebook 7.3: Correctness of `rev`
+
+Lemma (420): (ys ⌢ xs) ▹ x = ys ⌢ (xs ▹ x)
+Proof:
+    By induction on `ys : Seq A`:
+        Base case:
+            (𝜖 ⌢ xs) ▹ x = 𝜖 ⌢ (xs ▹ x)
+          = ⟨ “Left-identity of ⌢” ⟩
+            xs ▹ x = (xs ▹ x)
+          = ⟨ “Reflexivity of =” ⟩
+            true 
+        Induction step `∀ y : A • ((y ◃ ys) ⌢ xs) ▹ x = (y ◃ ys) ⌢ (xs ▹ x)`:
+            For any `y`:
+                ((y ◃ ys) ⌢ xs) ▹ x = (y ◃ ys) ⌢ (xs ▹ x)
+              = ⟨ “Definition of ⌢ for ◃” ⟩
+                ((y ◃ ys) ⌢ xs) ▹ x = (y ◃ (ys ⌢ (xs ▹ x)))
+              = ⟨ “Definition of ⌢ for ◃” ⟩
+                (y ◃ (ys ⌢ xs)) ▹ x = (y ◃ (ys ⌢ (xs ▹ x)))
+              = ⟨ “Definition of ▹ for ◃” ⟩
+                y ◃ ((ys ⌢ xs) ▹ x) = (y ◃ (ys ⌢ (xs ▹ x))) 
+              = ⟨ Induction hypothesis ⟩
+                y ◃ (ys ⌢ (xs ▹ x)) = y ◃ (ys ⌢ (xs ▹ x))
+              = ⟨ “Reflexivity of =” ⟩ 
+                true 
+
+Theorem “Reverse of ⌢”:
+   reverse (xs ⌢ ys) = reverse ys ⌢ reverse xs
+Proof:
+    By induction on `xs : Seq A`:
+        Base case:
+            reverse (𝜖 ⌢ ys) = reverse ys ⌢ reverse 𝜖
+          = ⟨ “Definition of ⌢ for 𝜖” ⟩
+            reverse ys = reverse ys ⌢ reverse 𝜖
+          = ⟨ “Definition of `reverse` for 𝜖” ⟩ 
+            reverse ys = reverse ys ⌢ 𝜖
+          = ⟨ “Right-identity of ⌢” ⟩ 
+            reverse ys = reverse ys
+          = ⟨ “Reflexivity of =” ⟩
+            true  
+        Induction step `∀ x : A • reverse ((x ◃ xs) ⌢ ys) = reverse ys ⌢ reverse (x ◃ xs)`:
+            For any `x`:
+                reverse ((x ◃ xs) ⌢ ys) = reverse ys ⌢ reverse (x ◃ xs)
+              = ⟨ “Mutual associativity of ◃ with ⌢” ⟩
+                reverse (x ◃ (xs ⌢ ys)) = reverse ys ⌢ reverse (x ◃ xs)
+              = ⟨ “Definition of `reverse` for ◃” ⟩
+                reverse (xs ⌢ ys) ▹ x = reverse ys ⌢ reverse (x ◃ xs) 
+              = ⟨ “Definition of `reverse` for ◃” ⟩
+                reverse (xs ⌢ ys) ▹ x = reverse ys ⌢ reverse xs ▹ x
+              = ⟨ Induction hypothesis ⟩
+                (reverse ys ⌢ reverse xs) ▹ x = reverse ys ⌢ (reverse xs ▹ x)
+              = ⟨ (420) ⟩  
+                true 
+
+Theorem “Non-empty-sequence extensionality”:
+    xs ≠ 𝜖 ⇒ xs = head xs ◃ tail xs
+Proof:
+    By induction on `xs : Seq A`:
+        Base case:
+            𝜖 ≠ 𝜖 ⇒ 𝜖 = head 𝜖 ◃ tail 𝜖 
+          = ⟨ “Irreflexivity of ≠” ⟩
+            false ⇒ 𝜖 = head 𝜖 ◃ tail 𝜖 
+          = ⟨ “ex falso quodlibet” ⟩
+            true
+        Induction step `∀ x : A • x ◃ xs ≠ 𝜖 ⇒ x ◃ xs = (head (x ◃ xs)) ◃ (tail (x ◃ xs))`:
+            For any `x`:
+                x ◃ xs ≠ 𝜖 ⇒ x ◃ xs = (head (x ◃ xs)) ◃ (tail (x ◃ xs))
+              = ⟨ “Definition of `head`” ⟩
+                x ◃ xs ≠ 𝜖 ⇒ x ◃ xs = x ◃ (tail (x ◃ xs)) 
+              = ⟨ “Definition of `tail`” ⟩
+                x ◃ xs ≠ 𝜖 ⇒ x ◃ xs = x ◃ xs
+              = ⟨ “Reflexivity of =” ⟩ 
+                x ◃ xs ≠ 𝜖 ⇒ true
+              = ⟨ “Right-zero of ⇒” ⟩ 
+                true
+
+Theorem “Initialisation for `rev`”:
+      true
+    ⇒⁅ xs := xs₀ ⨾ ys := 𝜖 ⁆
+      reverse xs ⌢ ys = reverse xs₀
+Proof:
+    reverse xs ⌢ ys = reverse xs₀
+  ⁅ ys := 𝜖 ⁆⇐ ⟨ “Assignment” with Substitution ⟩
+    reverse xs ⌢ 𝜖 = reverse xs₀  
+  = ⟨ “Right-identity of ⌢” ⟩
+    reverse xs = reverse xs₀   
+  ⁅ xs := xs₀ ⁆⇐ ⟨ “Assignment” with Substitution ⟩
+    reverse xs₀ = reverse xs₀
+  = ⟨ “Reflexivity of =” ⟩
+    true 
+     
+Lemma (69): (xs ⌢ (x ◃ ys)) = ((xs ▹ x) ⌢ ys)
+Proof:
+    By induction on `xs : Seq A`:
+        Base case:
+            (𝜖 ⌢ (x ◃ ys)) 
+          = ⟨ “Left-identity of ⌢” ⟩
+            (x ◃ ys)
+          = ⟨ “Left-identity of ⌢” ⟩ 
+            (x ◃ (𝜖 ⌢ ys))
+          = ⟨ “Definition of ⌢ for ◃” ⟩
+            ((x ◃ 𝜖) ⌢ ys) 
+          = ⟨ “Definition of ▹ for 𝜖” ⟩ 
+            ((𝜖 ▹ x) ⌢ ys)
+        Induction step:
+            For any `z`:
+                ((z ◃ xs) ▹ x) ⌢ ys = (z ◃ xs) ⌢ (x ◃ ys)
+              = ⟨ “Definition of ▹ for ◃” ⟩
+                (z ◃ (xs ▹ x)) ⌢ ys = ((z ◃ xs) ⌢ (x ◃ ys)) 
+              = ⟨ “Mutual associativity of ◃ with ⌢” ⟩
+                (z ◃ (xs ▹ x) ⌢ ys) = ((z ◃ xs) ⌢ (x ◃ ys)) 
+              = ⟨ Induction hypothesis ⟩
+                (z ◃ xs ⌢ (x ◃ ys)) = ((z ◃ xs) ⌢ (x ◃ ys)) 
+              = ⟨ “Mutual associativity of ◃ with ⌢” ⟩
+                ((z ◃ xs) ⌢ (x ◃ ys)) = ((z ◃ xs) ⌢ (x ◃ ys))  
+              = ⟨ “Reflexivity of =” ⟩
+                true 
+                 
+Theorem “Invariant for `rev`”:
+      xs ≠ 𝜖 ∧ reverse xs ⌢ ys = reverse xs₀
+    ⇒⁅ ys := head xs ◃ ys ⨾ xs := tail xs ⁆
+      reverse xs ⌢ ys = reverse xs₀
+Proof:
+    reverse xs ⌢ ys = reverse xs₀
+  ⁅ xs := tail xs ⁆⇐ ⟨ “Assignment” with substitution ⟩  
+    reverse (tail xs) ⌢ ys = reverse xs₀
+  ⁅ ys := head xs ◃ ys ⁆⇐ ⟨ “Assignment” with substitution ⟩ 
+    reverse (tail xs) ⌢ (head xs ◃ ys) = reverse xs₀
+  ≡ ⟨ (69) ⟩ 
+    ((reverse (tail xs) ▹ head xs) ⌢ ys = reverse xs₀)
+  ≡ ⟨ “Definition of `reverse` for ◃” ⟩ 
+    (reverse (head xs ◃ tail xs) ⌢ ys = reverse xs₀)
+  ⇐ ⟨ “Weakening” ⟩ 
+    (xs = head xs ◃ tail xs) ∧ (reverse (head xs ◃ tail xs) ⌢ ys = reverse xs₀)
+  ≡⟨ Substitution ⟩
+    (xs = head xs ◃ tail xs) ∧ (reverse (z) ⌢ ys = reverse xs₀)[z ≔ head xs ◃ tail xs]
+  ≡⟨ “Replacement” ⟩
+    (xs = head xs ◃ tail xs) ∧ (reverse (z) ⌢ ys = reverse xs₀)[z ≔ xs]
+  ≡⟨ Substitution ⟩ 
+    (xs = head xs ◃ tail xs) ∧ (reverse xs ⌢ ys = reverse xs₀)
+  ⇐ ⟨ “Monotonicity of ∧” with “Non-empty-sequence extensionality” ⟩
+    xs ≠ 𝜖 ∧ reverse xs ⌢ ys = reverse xs₀
+
+=== MIDTERM 2 QUESTION ===
+===       BELOW        ===
+
+Axiom “Definition of `sum` for ◃”: sum (x ◃ xs) = x + sum xs
+
+Theorem “Initialisation for `Sum`”:
+      true
+    ⇒⁅ xs := xs₀ ⨾ s := 0 ⁆
+      s + sum xs = sum xs₀
+Proof:
+    s + sum xs = sum xs₀
+  ⁅ s := 0 ⁆⇐ ⟨ “Assignment” with substitution ⟩
+    0 + sum xs = sum xs₀
+  ≡ ⟨ “Identity of +” ⟩
+    sum xs = sum xs₀
+  ⁅ xs := xs₀  ⁆⇐ ⟨ “Assignment” with substitution ⟩ 
+    sum xs₀ = sum xs₀
+  ≡ ⟨ “Reflexivity of =” ⟩
+    true 
+
+Theorem “Invariant for `Sum`”: 
+    xs ≠ 𝜖 ∧ s + sum xs = sum xs₀ 
+  ⇒⁅ (s := s + head xs ⨾ xs := tail xs) ⁆ 
+    s + sum xs = sum xs₀
+Proof:
+    s + sum xs = sum xs₀
+  ⁅ xs := tail xs ⁆⇐ ⟨ “Assignment” with Substitution ⟩
+    s + sum (tail xs) = sum xs₀
+  ⁅ s := s + head xs ⁆⇐ ⟨ “Assignment” with Substitution ⟩ 
+    s + head xs + sum (tail xs) = sum xs₀
+  ≡ ⟨ “Definition of `sum` for ◃” ⟩
+    (s + sum (head xs ◃ tail xs) = sum xs₀)
+  ⇐ ⟨ “Weakening” ⟩
+    (xs = head xs ◃ tail xs) ∧ (s + sum (head xs ◃ tail xs) = sum xs₀)
+  ≡ ⟨ Substitution ⟩
+    (xs = head xs ◃ tail xs) ∧ (s + sum z = sum xs₀)[z ≔ head xs ◃ tail xs] 
+  ≡ ⟨ “Replacement” ⟩
+    (xs = head xs ◃ tail xs) ∧ (s + sum z = sum xs₀)[z ≔ xs]
+  ≡ ⟨ Substitution ⟩ 
+    (xs = head xs ◃ tail xs) ∧ (s + sum xs = sum xs₀)
+  ⇐ ⟨ “Monotonicity of ∧” with “Non-empty-sequence extensionality” ⟩
+    xs ≠ 𝜖 ∧ s + sum xs = sum xs₀ 

@@ -1,0 +1,56 @@
+Homework 14: Pairs and Cartesian Products
+
+Theorem (14.4) “Membership in ×”:
+    ⟨ x , y ⟩ ∈ S × T  ≡  x ∈ S ∧ y ∈ T
+Proof:
+    ⟨ x , y ⟩ ∈ S × T
+  = ⟨ “Membership in ×” ⟩
+    fst ⟨ x , y ⟩ ∈ S ∧ snd ⟨ x , y ⟩ ∈ T
+  = ⟨ “Definition of `fst`” and “Definition of `snd`” ⟩
+    x ∈ S ∧ y ∈ T 
+
+Theorem “Pair extensionality”: p = ⟨ fst p , snd p ⟩
+Proof:
+    p = ⟨ fst p , snd p ⟩
+  = ⟨ “Pair equality” ⟩
+    fst p = fst ⟨ fst p , snd p ⟩ ∧ snd p = snd ⟨ fst p , snd p ⟩
+  = ⟨ “Definition of `fst`” and “Definition of `snd`” ⟩
+    fst p = fst p ∧ snd p = snd p
+  = ⟨ “Reflexivity of =” and “Identity of ∧” ⟩
+    true
+
+Theorem (14.5) “Membership in swapped ×”:
+    ⟨ x , y ⟩ ∈ S × T  ≡  ⟨ y , x ⟩ ∈ T × S
+Proof:
+    ⟨ x , y ⟩ ∈ S × T
+  = ⟨ “Membership in ×” ⟩
+    ⟨ y , x ⟩ ∈ T × S
+
+Theorem (14.6) “Empty factor in ×”:
+    S = {}  ⇒  S × T = {}
+Proof:
+  Assuming `S = {}`:
+    Using “Set extensionality”:
+      Subproof for `(∀ e • e ∈ S × T ≡ e ∈ {} )`:
+        For any `e`:
+            e ∈ S × T ≡ e ∈ {}
+          = ⟨ “Membership in ×” ⟩
+            (fst e ∈ S) ∧ (snd e ∈ T) ≡ e ∈ {}
+          = ⟨ Assumption `S = {}` ⟩ 
+            (fst e ∈ {}) ∧ (snd e ∈ T) ≡ e ∈ {}
+          = ⟨ “Empty set” ⟩ 
+            false ∧ (snd e ∈ T) ≡ false
+          = ⟨ “Zero of ∧” and “Reflexivity of ≡” ⟩
+            true 
+
+Theorem “fst after swap-×”: fst (swap-× p) = snd p
+Proof:
+    fst (swap-× p)
+  = ⟨ “Pair extensionality” and “Definition of `swap-×`” and “Definition of `fst`” ⟩
+    snd p
+  
+Theorem “snd after swap-×”: snd (swap-× p) = fst p
+Proof:
+    snd (swap-× p)
+  = ⟨ “Pair extensionality” and “Definition of `swap-×`” and “Definition of `snd`” ⟩
+    fst p

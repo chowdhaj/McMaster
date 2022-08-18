@@ -1,0 +1,11 @@
+
+p           q
+false => false \== true
+false => true \== true
+true => false \== false
+true => true \== true
+
+if (p):
+    return Q
+else
+    return true;

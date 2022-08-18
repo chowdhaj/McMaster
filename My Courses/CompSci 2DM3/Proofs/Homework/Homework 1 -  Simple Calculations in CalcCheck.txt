@@ -1,0 +1,88 @@
+Homework 1: Simple Calculations in CalcCheck
+
+Calculation:
+    7 · (8 - x) - (2 · (4 - 3 · x) - (x + 8))
+  =⟨ “Distributivity of · over -” ⟩
+    7 · (8 - x) - ((2 · 4 - 2 · 3 · x) - (x + 8))
+  =⟨ Fact `2 · 3 = 6` ⟩
+    7 · (8 - x) - ((2 · 4 - 6 · x) - (x + 8))
+  =⟨ “Subtraction of addition” ⟩
+    7 · (8 - x) - (2 · 4 - (6 · x + x + 8))
+  =⟨ Fact `2 · 4 = 8` ⟩
+    7 · (8 - x) - (8 - (6 · x + x + 8))
+  =⟨ “Multiplicative identity” ⟩
+    7 · (8 - x) - (8 - (6 · x + 1 · x + 8))
+  =⟨ “Distributivity of · over +” ⟩
+    7 · (8 - x) - (8 - ((6 + 1) · x + 8))
+  =⟨ Fact `6 + 1 = 7` ⟩
+    7 · (8 - x) - (8 - (7 · x + 8))
+  =⟨ “Symmetry of +” ⟩
+    7 · (8 - x) - (8 - (8 + 7 · x))
+  =⟨ “Subtraction of addition” ⟩
+    7 · (8 - x) - (8 - 8 - 7 · x)
+  =⟨ “Subtraction” ⟩
+    7 · (8 - x) - (8 + - 8 - 7 · x)
+  =⟨ “Unary minus” ⟩
+    7 · (8 - x) - (0 - 7 · x)
+  =⟨ “Subtraction” ⟩
+    7 · (8 - x) + - (0 + - (7 · x))
+  =⟨ “Additive identity” ⟩
+    7 · (8 - x) + - (- (7 · x))
+  =⟨ “Self-inverse of unary minus” ⟩
+    7 · (8 - x) + 7 · x
+  =⟨ “Distributivity of · over +” ⟩
+    7 · (8 - x + x)
+  =⟨ “Subtraction” ⟩
+    7 · (8 + - x + x)
+  =⟨ “Unary minus” ⟩
+    7 · (8 + 0)
+  =⟨ “Additive identity” ⟩
+    7 · 8
+  =⟨ Fact `7 · 8 = 56` ⟩
+    56
+
+Calculation:
+    2 · x + 2 = x + 7
+  ≡⟨ Fact `5 + 2 = 7` ⟩
+    2 · x + 2 = x + 5 + 2
+  ≡⟨ “Cancellation of +” ⟩
+    2 · x = x + 5
+  ≡⟨ Fact `1 + 1 = 2` ⟩
+    (1 + 1) · x = x + 5
+  ≡⟨ “Distributivity of · over +” ⟩
+    1 · x + 1 · x = x + 5
+  ≡⟨ “Multiplicative identity” ⟩
+    x + x = x + 5
+  ≡⟨ “Cancellation of +” ⟩
+    x = 5
+
+Calculation:
+    5 · (x - 2) = 4 · x + 7
+  ≡⟨ Fact `4 + 1 = 5` ⟩
+    (4 + 1) · (x - 2) = 4 · x + 7
+  ≡⟨ “Distributivity of · over +” ⟩
+    (4 · (x - 2)) + 1 · (x - 2) = 4 · x + 7
+  ≡⟨ “Distributivity of · over -” ⟩
+    (4 · x - 4 · 2) + 1 · (x - 2) = 4 · x + 7
+  ≡⟨ Fact `4 · 2 = 8` ⟩
+    (4 · x - 8) + 1 · (x - 2) = 4 · x + 7
+  ≡⟨ “Distributivity of · over -” ⟩
+    (4 · x - 8) + (1 · x - 1 · 2) = 4 · x + 7
+  ≡⟨ Fact `1 · 2 = 2` ⟩
+    (4 · x - 8) + (1 · x - 2) = 4 · x + 7
+  ≡⟨ “Identity of ·” ⟩
+    (4 · x - 8) + (x - 2) = 4 · x + 7
+  ≡⟨ “Subtraction” ⟩
+    (4 · x - 8) + (x + (- 2)) = 4 · x + 7
+  ≡⟨ “Symmetry of +” ⟩
+    (4 · x - 8) + ((- 2) + x) = 4 · x + 7
+  ≡⟨ “Subtraction” ⟩
+    (4 · x + (- 8)) + ((- 2) + x) = 4 · x + 7
+  ≡⟨ Fact `- 8 + (- 2) = - 10` ⟩
+    (4 · x + (- 10) + x) = 4 · x + 7
+  ≡⟨ “Cancellation of +” ⟩
+    x + (- 10) = 7
+  ≡⟨ Fact `17 + (- 10) = 7` ⟩
+    x + (- 10) = 17 + (- 10)
+  ≡⟨ “Cancellation of +” ⟩
+    x = 17

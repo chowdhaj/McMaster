@@ -1,0 +1,141 @@
+[ 3 ]
+Calculation:
+    (5 + 2 · x) · (6 - 3 · y)
+  =⟨ “Distributivity of · over -” ⟩
+    (5 + 2 · x) · 6 - (5 + 2 · x) · (3 · y)
+  =⟨ “Distributivity of · over +” ⟩
+    5 · 6  +  (2 · x) · 6  -  (5 · (3 · y) + (2 · x) · (3 · y))
+  =⟨ “Subtraction of addition” ⟩
+    5 · 6  +  (2 · x) · 6  -  5 · (3 · y)  -  (2 · x) · (3 · y)
+  =⟨ “Symmetry of ·” ⟩
+    5 · 6  +  (x · 2) · 6  -  5 · (3 · y)  -  (x · 2) · (3 · y)
+  =⟨ “Associativity of ·” ⟩
+    5 · 6  +  x · (2 · 6)  -  (5 · 3) · y  -  x · (2 · 3) · y
+  =⟨ “Symmetry of ·” ⟩
+    5 · 6  +  (2 · 6) · x  -  (5 · 3) · y  -  (2 · 3) · x · y
+  =⟨ Evaluation ⟩
+    30  +  12 · x  -  15 · y  -  6 · x · y
+This proves: Fact “Calculation 1”:
+  (5 + 2 · x) · (6 - 3 · y) = 30  +  12 · x  -  15 · y  -  6 · x · y
+
+[ 6 ]
+Calculation:
+    6 · (5 · x + 3)
+  =⟨ “Distributivity of · over +” ⟩
+    6 · 5 · x + 6 · 3
+  =⟨ Evaluation ⟩
+    30 · x + 18
+This proves: Fact “Calculation”:
+  6 · (5 · x + 3) = 30 · x + 18
+
+[ 7 ]
+Calculation:
+    (5 · x + 3) · (2 + y)
+  =⟨ “Distributivity of · over +” ⟩
+    (5 · x + 3) · 2 + (5 · x + 3) · y
+  =⟨ “Symmetry of ·” ⟩
+    2 · (5 · x + 3) + y · (5 · x + 3)
+  =⟨ “Distributivity of · over +” ⟩
+    2 · (5 · x) + 2 · 3 + y · (5 · x) + y · 3
+  =⟨ “Symmetry of +” ⟩
+    2 · (5 · x) + 2 · 3 + y · (x · 5) + 3 · y
+  =⟨ “Associativity of ·” ⟩
+    (2 · 5) · x + 2 · 3 + (y · x) · 5 + 3 · y
+  =⟨ “Symmetry of +” ⟩
+    (2 · 5) · x + 2 · 3 + 5 · (y · x) + 3 · y
+  =⟨ Evaluation ⟩
+    10 · x + 6 + 5 · (y · x) + 3 · y
+This proves: Fact “Calculation”:
+  (5 · x + 3) · (2 + y) = 10 · x + 6 + 5 · (y · x) + 3 · y
+
+[ 8 ]
+  Calculation:
+      (3 · x + 5) · (2 + x)
+    =⟨ “Distributivity of · over +” ⟩
+      (3 · x) · 2 + 5 · 2 + (3 · x) · x + 5 · x
+    =⟨ “Symmetry of ·” ⟩
+      (x · 3) · 2 + 5 · 2 + (3 · x) · x + 5 · x
+    =⟨ “Associativity of ·” ⟩
+      x · (3 · 2) + 5 · 2 + 3 · (x · x) + 5 · x
+    =⟨ “Symmetry of ·” ⟩
+      (3 · 2) · x + 5 · 2 + 3 · (x · x) + 5 · x
+    =⟨ “Symmetry of +” ⟩
+      3 · (x · x) + (3 · 2) · x + 5 · x + 5 · 2
+    =⟨ “Distributivity of · over +” ⟩
+      3 · (x · x) + (3 · 2 + 5) · x + 5 · 2
+    =⟨ Evaluation ⟩
+      3 · (x · x) + 11 · x + 10
+  This proves: Fact “Calculation”:
+    (3 · x + 5) · (2 + x) = 3 · (x · x) + 11 · x + 10
+
+[ 9 ]
+Calculation:
+    (5 · x - 3) · (3 · y - z)
+  =⟨ “Subtraction” ⟩
+    (5 · x + - 3) · (3 · y + - z)
+  =⟨ “Distributivity of · over +” ⟩
+    (5 · 3) · x · y + (- 3 · 3) · y + 5 · x · - z + (- 3) · (- z)
+  =⟨ Evaluation ⟩
+    15 · x · y + -9 · y + 5 · x · - z + -3 · - z
+This proves: Fact “Calculation”:
+  (5 · x - 3) · (3 · y - z) = 15 · x · y + -9 · y + 5 · x · - z + -3 · - z
+
+[ 10 ]
+Calculation:
+    (3 · x + 6) · (2 · x - 4)
+  =⟨ “Subtraction” ⟩
+    (3 · x + 6) · (2 · x + - 4)
+  =⟨ “Distributivity of · over +” ⟩
+     (3 · x + 6) · 2 · x + (3 · x + 6) · - 4
+  =⟨ “Distributivity of · over +” ⟩
+     3 · x · 2 · x + 6 · 2 · x + 3 · x · - 4 + 6 · - 4
+  =⟨ Evaluation ⟩
+     6 · x · x + 12 · x + - 12 · x + - 24
+  =⟨ “Distributivity of · over +” ⟩
+     6 · x · x + (12 + - 12) · x + - 24
+  =⟨ “Unary minus” ⟩
+     6 · x · x + (0) · x + - 24
+  =⟨ “Zero of ·” ⟩
+     6 · x · x + 0 + - 24
+  =⟨ “Identity of +” ⟩
+     6 · x · x + - 24
+This proves: Fact “Calculation”:
+  (3 · x + 6) · (2 · x - 4) = 6 · x · x + - 24
+
+[ 11 ]
+Calculation:
+    (3 · x + 5 · y) · (2 · x - y)
+  =⟨ “Subtraction” ⟩
+    (3 · x + 5 · y) · (2 · x + - y)
+  =⟨ “Distributivity” ⟩
+    (3 · x + 5 · y) · 2 · x + (3 · x + 5 · y) · - y
+  =⟨ “Distributivity” ⟩
+    3 · x · 2 · x + 5 · y · 2 · x + 3 · x · - y + 5 · y · - y
+  =⟨ Evaluation ⟩
+    6 · x · x + 10 · x · y + 3 · x · - y + 5 · y · - y
+  =⟨ “Distributivity” ⟩
+    6 · x · x + 10 · x · y + (3 · x + 5 · y) · - y
+  =⟨ “Identity of +” ⟩
+    6 · x · x + 10 · x · y + (3 · x + 5 · y) · (- y + 0)
+  =⟨ “Zero of ·” ⟩
+    6 · x · x + 10 · x · y + (3 · x + 5 · y) · (- y + 0 · y)
+  =⟨ “Unary minus” ⟩
+    6 · x · x + 10 · x · y + (3 · x + 5 · y) · (- y + (1 + - 1) · y)
+  =⟨ “Distributivity” ⟩
+    6 · x · x + 10 · x · y + (3 · x + 5 · y) · (- y + 1 · y + - 1 · y)
+  =⟨ “Identity of ·” ⟩
+    6 · x · x + 10 · x · y + (3 · x + 5 · y) · (- y + y + - 1 · y)
+  =⟨ “Unary minus” ⟩
+    6 · x · x + 10 · x · y + (3 · x + 5 · y) · (0 + - 1 · y)
+  =⟨ “Identity of +” ⟩
+    6 · x · x + 10 · x · y + (3 · x + 5 · y) · - 1 · y
+  =⟨ “Distributivity” ⟩
+    6 · x · x + 10 · x · y + 3 · x · - 1 · y + 5 · y · - 1 · y
+  =⟨ Evaluation ⟩
+    6 · x · x + 10 · x · y + - 3 · x · y + - 5 · y · y
+  =⟨ “Distributivity” ⟩
+    6 · x · x + (10 + - 3) · x · y + - 5 · y · y
+  =⟨ Evaluation ⟩
+    6 · x · x + 7 · x · y + - 5 · y · y
+This proves: Fact “Calculation”:
+  (3 · x + 5 · y) · (2 · x - y) = 6 · x · x + 7 · x · y + - 5 · y · y

@@ -1,0 +1,108 @@
+Homework 10: Substituting into Quantifications
+
+Calculation:
+    (x + y)[x, y ≔ 3, 4]
+  =⟨ Substitution ⟩
+    x[x, y ≔ 3, 4] + y[x, y ≔ 3, 4]
+  =⟨ Substitution ⟩
+    3 + 4
+
+Lemma “Substitution into +”: (D + E)[x ≔ F] = D[x ≔ F] + E[x ≔ F]
+Proof:
+    (D + E)[x ≔ F]
+  =⟨ Substitution ⟩
+    D[x ≔ F] + E[x ≔ F]
+
+Lemma “Boring substitution into +”: (D + E)[x ≔ F] = D + E
+Proof:
+    (D + E)[x ≔ F]
+  =⟨ Substitution ⟩
+    D + E
+
+Calculation:
+    (∑ i : ℕ ❙ i < k • m · i)[k ≔ 4]
+  =⟨ Substitution ⟩
+    ∑ i : ℕ ❙ (i < k)[k ≔ 4] • (m · i)[k ≔ 4]
+  =⟨ Substitution ⟩
+    ∑ i : ℕ ❙ i < 4 • m · i
+
+Calculation:
+    (∑ i : ℕ ❙ i < k • m · i)[k ≔ 4]
+  =⟨ Substitution ⟩
+    ∑ i : ℕ ❙ i < 4 • m · i
+
+Calculation:
+    (∑ i : ℕ ❙ i < k • m · i)[k ≔ 4]
+  = ⟨ Substitution ⟩
+    (∑ i : ℕ ❙ i < 4 • m · i)
+ 
+Calculation:
+    (∑ i : ℕ ❙ i < m • n · i)[m, n ≔ 3, 8]
+  = ⟨ Substitution ⟩
+    (∑ i : ℕ ❙ i < 3 • 8 · i) 
+
+Calculation:
+    (∑ i : ℕ ❙ i < j • k · i)[i, j, k ≔ 2, 5, 8]
+  = ⟨ Substitution ⟩
+    (∑ i : ℕ ❙ i < 5 • 8 · i)[i ≔ 2]
+  = ⟨ Substitution ⟩
+    (∑ i : ℕ ❙ i < 5 • 8 · i) 
+
+Calculation:
+    (∑ i : ℕ ❙ i < k • m · i)
+  =⟨ “Reflexivity of =” ⟩
+    (∑ j : ℕ ❙ j < k • m · j)
+
+Calculation:
+    (∑ i : ℕ ❙ i < k • (∑ j : ℕ ❙ j < i • m · j))
+  =⟨ “Reflexivity of =” ⟩
+    (∑ j : ℕ ❙ j < k • (∑ l : ℕ ❙ l < j • m · l))
+
+Calculation:
+    (∑ i : ℕ ❙ i < k • (∑ j : ℕ ❙ j < i • m · j))
+  =⟨ “Reflexivity of =” ⟩
+    (∑ i : ℕ ❙ i < k • (∑ k : ℕ ❙ k < i • m · k))
+  =⟨ “Reflexivity of =” ⟩
+    (∑ j : ℕ ❙ j < k • (∑ k : ℕ ❙ k < j • m · k))
+
+Calculation:
+    (∑ i : ℕ ❙ i < k • (∑ j : ℕ ❙ j < i • m · j))
+  =⟨ “Reflexivity of =” ⟩
+    (∑ j : ℕ ❙ j < k • (∑ k : ℕ ❙ k < j • m · k))
+
+Calculation:
+    (∑ i : ℕ ❙ i < k • m · i)[m ≔ 2 · i]
+  =⟨ “Reflexivity of =” ⟩
+    (∑ j : ℕ ❙ j < k • m · j)[m ≔ 2 · i]
+  =⟨ Substitution ⟩
+    (∑ j : ℕ ❙ j < k • 2 · i · j)
+
+Calculation:
+    (∑ i : ℕ ❙ i < k • m · i)[m ≔ i · j]
+  = ⟨ “Reflexivity of =” ⟩
+    (∑ l : ℕ ❙ l < k • m · l)[m ≔ i · j]
+  = ⟨ Substitution ⟩
+    (∑ l : ℕ ❙ l < k • (i · j) · l)
+
+Calculation:
+    (∑ i : ℕ ❙ i < k • (∑ j : ℕ ❙ j < i • m · j))[m ≔ j + k]
+  = ⟨ “Reflexivity of =” ⟩
+    (∑ i : ℕ ❙ i < k • (∑ l : ℕ ❙ l < i • m · l))[m ≔ j + k] 
+  = ⟨ Substitution ⟩
+    (∑ i : ℕ ❙ i < k • (∑ l : ℕ ❙ l < i • (j + k) · l))
+
+Calculation:
+    (∑ i : ℕ ❙ i < k • (∑ j : ℕ ❙ j < i • m · j))[k ≔ 2 · i]
+  = ⟨ “Reflexivity of =” ⟩
+    (∑ l : ℕ ❙ l < k • (∑ j : ℕ ❙ j < l • m · j))[k ≔ 2 · i]
+  = ⟨ Substitution ⟩
+    (∑ l : ℕ ❙ l < (2 · i) • (∑ j : ℕ ❙ j < l • m · j))
+
+Calculation:
+    (∑ i : ℕ ❙ i < k • (∑ j : ℕ ❙ j < i • m · j))[m ≔ i · j]
+  = ⟨ “Reflexivity of =” ⟩
+    (∑ l : ℕ ❙ l < k • (∑ j : ℕ ❙ j < l • m · j))[m ≔ i · j]
+  = ⟨ “Reflexivity of =” ⟩
+    (∑ l : ℕ ❙ l < k • (∑ y : ℕ ❙ y < l • m · y))[m ≔ i · j]  
+  = ⟨ Substitution ⟩
+    (∑ l : ℕ ❙ l < k • (∑ y : ℕ ❙ y < l • (i · j) · y))

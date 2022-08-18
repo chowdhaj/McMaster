@@ -1,0 +1,146 @@
+1.2.2
+Theorem (15.17) “Self-inverse of unary minus”:
+   - (- a) = a
+Proof:
+    - (- a)
+  =⟨ “Additive identity” ⟩
+    0 + - (- a)
+  =⟨ “Unary minus” ⟩
+    a + - a + - (- a)
+  =⟨ “Unary minus” ⟩
+    a + 0
+  =⟨ “Additive identity” ⟩
+    a
+1.2.3
+Theorem (15.18) “Fixpoint of unary minus”: - 0 = 0
+Proof:
+    - 0
+  =⟨ “Additive identity” ⟩
+    0 + - 0
+  =⟨ “Unary minus” ⟩
+    0 + - (0 + - 0)
+  =⟨ “Additive identity” ⟩
+    0 + - (- 0)
+  =⟨ “Self-inverse of unary minus” ⟩
+    0 + 0
+  =⟨ “Additive identity” ⟩
+    0
+1.2.4
+Theorem (15.20): - a = (- 1) · a
+Proof:
+    - a
+  =⟨ “Additive identity” ⟩
+    0 + - a
+  =⟨ “Zero of ·” ⟩
+    0 · a + - a
+  =⟨ “Unary minus” ⟩
+    (1 + - 1) · a + - a
+  =⟨ “Distributivity of · over +” ⟩
+    1 · a + - 1 · a + - a
+  =⟨ “Identity of ·” ⟩
+    a + - 1 · a + - a
+  =⟨ “Unary minus” ⟩
+    - 1 · a + 0
+  =⟨ “Additive identity” ⟩
+    - 1 · a
+1.2.5
+Theorem (15.19) “Distributivity of unary minus over +”:
+    -(a + b) = (- a) + (- b)
+Proof:
+    -(a + b)
+  =⟨ (15.20) ⟩
+    - 1 · (a + b)
+  =⟨ “Distributivity of · over +” ⟩
+    - 1 · a + - 1 · b
+  =⟨ (15.20) ⟩
+    - a + - b
+1.2.6
+Theorem (15.21): (- a) · b = a · (- b)
+Proof:
+    (- a) · b
+  =⟨ (15.20) ⟩
+    - 1 · a · b
+  =⟨ “Associativity of ·” ⟩
+    a · (- 1 · b)
+  =⟨ (15.20) ⟩
+    a · (- b)
+1.2.7
+Theorem (15.22): a · (- b) = - (a · b)
+Proof:
+    a · (- b)
+  =⟨ (15.20) ⟩
+    a · (- 1 · b)
+  =⟨ “Associativity of ·” ⟩
+    - 1 · a · b
+  =⟨ (15.20) ⟩
+    - ( a · b )
+1.2.8
+Theorem (15.23): (- a) · (- b) = a · b
+Proof:
+    (- a) · (- b)
+  =⟨ (15.20) ⟩
+    (- 1) · (a) · (- 1) · (b)
+  =⟨ (15.20) ⟩
+    (- (1 · - 1)) · (a) · (b)
+  =⟨ “Identity of ·” ⟩
+    (- ( - 1)) · (a) · (b)
+  =⟨ “Self-inverse of unary minus” ⟩
+    1 · (a) · (b)
+  =⟨ “Identity of ·” ⟩
+    (a) · (b)
+1.2.9
+Theorem (15.24) “Right-identity of -”: a - 0 = a
+Proof:
+    a - 0
+  =⟨ “Subtraction” ⟩
+    a + - 0
+  =⟨ “Fixpoint of unary minus” ⟩
+    a + 0
+  =⟨ “Identity of +” ⟩
+    a
+1.2.10
+Theorem (15.25): (a - b) + (c - d) = (a + c) - (b + d)
+Proof:
+    (a - b) + (c - d)
+  =⟨ “Subtraction” ⟩
+    (a + - b) + (c + - d)
+  =⟨ “Associativity of +” ⟩
+    (a + c + - b + - d)
+  =⟨ “Distributivity of unary minus over +” ⟩
+    (a + c) + - (b + d)
+  =⟨ “Subtraction” ⟩
+    (a + c) - (b + d)
+1.2.11
+Theorem (15.26): (a - b) - (c - d) = (a + d) - (b + c)
+Proof:
+    (a - b) - (c - d)
+  =⟨ “Subtraction” ⟩
+    (a + - b) + - (c + - d)
+  =⟨ “Distributivity of unary minus over +” ⟩
+    (a + - b) + - c + - (- d)
+  =⟨ “Self-inverse of unary minus” ⟩
+    (a + - b) + - c + d
+  =⟨ “Distributivity of unary minus over +” ⟩
+    (a + d) + - (b + c)
+  =⟨ “Subtraction” ⟩
+    (a + d) - (b + c)
+1.2.12
+Theorem (15.27): (a - b) · (c - d) = (a · c + b · d) - (a · d + b · c)
+Proof:
+    (a - b) · (c - d)
+  =⟨ “Subtraction” ⟩
+    (a + - b) · (c + - d)
+  =⟨ “Distributivity of · over +” ⟩
+    (a + - b) · c +( a + - b) · - d
+  =⟨ “Distributivity of · over +” ⟩
+    (a · c) + (- b) · c + a · - d + (- b) · - d
+  =⟨ (15.23) ⟩
+    (a · c) + (- b) · c + a · - d + b · d
+  =⟨ (15.20) ⟩
+    (a · c) + - 1 · b · c + a · d · - 1 + b · d
+  =⟨ “Distributivity of · over +” ⟩
+    (a · c) + - 1 · ( b · c + a · d ) + b · d
+  =⟨ (15.20) ⟩
+    (a · c) + - ( b · c + a · d ) + b · d
+  =⟨ “Subtraction” ⟩
+    (a · c) + b · d - ( b · c + a · d )

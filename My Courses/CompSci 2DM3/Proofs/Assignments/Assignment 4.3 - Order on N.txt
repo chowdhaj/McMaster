@@ -1,0 +1,133 @@
+Assignment Notebook 4.3: Order on ℕ
+
+Corollary “Identity of +”: 0 + a = a
+Proof: 
+    0 + a = a — This is “Definition of + for 0”
+
+Corollary “Identity of ·”: 1 · a = a
+Proof:
+    1 · a = a — This is “Left-identity of ·”
+
+Corollary “Zero of ·”: 0 · a = 0
+Proof: 
+    0 · a = 0 — This is “Right-zero of ·”
+
+Theorem “Predecessor of non-zero”: n ≠ 0 ⇒ suc (pred n) = n
+Proof:
+    By induction on `n : ℕ`:
+        Base case:
+            0 ≠ 0 ⇒ suc (pred 0) = 0
+          = ⟨ “Irreflexivity of ≠” ⟩
+            false ⇒ suc (pred 0) = 0
+          = ⟨ “ex falso quodlibet” ⟩
+            true  
+        Induction step:
+            suc n ≠ 0 ⇒ suc (pred (suc n)) = suc n
+          = ⟨ “Predecessor of successor” ⟩
+            suc n ≠ 0 ⇒ suc n = suc n
+          = ⟨ “Reflexivity of =” ⟩
+            suc n ≠ 0 ⇒ true
+          = ⟨ “Right-zero of ⇒” ⟩
+            true
+             
+Theorem “Isotonicity of +”: a + b ≤ a + c  ≡  b ≤ c
+Proof:
+    By induction on `a : ℕ`:
+        Base case:
+            0 + b ≤ 0 + c  ≡  b ≤ c
+          = ⟨ “Identity of +” ⟩
+            b ≤ 0 + c  ≡  b ≤ c 
+          = ⟨ “Identity of +” ⟩
+            b ≤ c  ≡  b ≤ c 
+          = ⟨ “Reflexivity of ≡” ⟩
+            true
+        Induction step: 
+            (suc a) + b ≤ (suc a) + c  ≡  b ≤ c
+          = ⟨ “Definition of + for `suc`” ⟩
+            suc (a + b) ≤ suc (a + c)  ≡  b ≤ c
+          = ⟨ “Isotonicity of successor” ⟩
+            a + b ≤ a + c  ≡  b ≤ c
+          = ⟨ Induction hypothesis ⟩
+            true
+
+Theorem “Monotonicity of +”: a ≤ b ⇒ c ≤ d ⇒ a + c ≤ b + d
+Proof:
+    a ≤ b ⇒ c ≤ d ⇒ a + c ≤ b + d
+  ≡ ⟨ “Isotonicity of +” ⟩
+    a + c ≤ b + c ⇒ c ≤ d ⇒ (a + c ≤ b + d)
+  ≡ ⟨ “Isotonicity of +” ⟩
+    a + c ≤ b + c ⇒ b + c ≤ b + d ⇒ (a + c ≤ b + d)
+  ≡ ⟨ “Transitivity of ≤” with `a, b, c ≔ (a + c), (b + c), (b + d)` ⟩
+    true 
+
+Theorem “Monotonicity of predecessor”: a ≤ b ⇒ pred a ≤ pred b
+Proof:
+    By induction on `a : ℕ`:
+        Base case:
+            0 ≤ b ⇒ pred 0 ≤ pred b
+          = ⟨ “Zero is least element” ⟩
+            true ⇒ pred 0 ≤ pred b
+          = ⟨ “Left-identity of ⇒” ⟩
+            pred 0 ≤ pred b
+          = ⟨ “Predecessor of zero” ⟩
+            0 ≤ pred b
+          = ⟨ “Zero is least element” ⟩ 
+            true
+        Induction step `(suc a) ≤ b ⇒ pred (suc a) ≤ pred b`:
+            By induction on `b : ℕ`:
+                Base case `(suc a) ≤ 0 ⇒ pred (suc a) ≤ pred 0`:
+                    (suc a) ≤ 0 ⇒ pred (suc a) ≤ pred 0
+                  = ⟨ “Successor is not at most zero” ⟩
+                    false ⇒ pred (suc a) ≤ pred 0                    
+                  = ⟨ “ex falso quodlibet” ⟩
+                    true 
+                Induction step `(suc a) ≤ (suc b) ⇒ pred (suc a) ≤ pred (suc b)`:
+                    (suc a) ≤ (suc b) ⇒ pred (suc a) ≤ pred (suc b)
+                  = ⟨ “Predecessor of successor” ⟩
+                    (suc a) ≤ (suc b) ⇒ a ≤ b         
+                  = ⟨ “Isotonicity of successor” ⟩
+                    a ≤ b ⇒ a ≤ b         
+                  = ⟨ “Reflexivity of ⇒” ⟩
+                    true 
+                               
+Theorem “Successor is non-decreasing”: a ≤ suc a
+Proof:
+    By induction on `a : ℕ`:
+        Base case:
+            0 ≤ suc 0
+          = ⟨ “Zero is least element” ⟩
+            true 
+        Induction step:
+            suc a ≤ suc (suc a)
+          = ⟨ “Isotonicity of successor” ⟩
+            a ≤ suc a
+          = ⟨ Induction hypothesis ⟩
+            true  
+
+Theorem “Subtraction is non-increasing”: a - b ≤ a
+Proof:
+    By induction on `b : ℕ`:
+        Base case:
+            a - 0 ≤ a
+          = ⟨ “Right-identity of subtraction” ⟩
+            a ≤ a 
+          = ⟨ “Reflexivity of ≤” ⟩
+            true 
+        Induction step `a - suc b ≤ a`:
+             By induction on `a : ℕ`:
+                Base case `0 - suc b ≤ 0`:
+                    0 - suc b ≤ 0
+                  = ⟨ “Zero is unique least element” ⟩
+                    0 - suc b = 0
+                  = ⟨ “Subtraction from zero” ⟩
+                    0 = 0 
+                  = ⟨ “Reflexivity of =” ⟩
+                    true
+                Induction step `suc a - suc b ≤ suc a`:
+                    suc a - suc b
+                  = ⟨ “Subtraction of successor from successor” ⟩
+                    a - b
+                  ≤ ⟨ Induction hypothesis `a - b ≤ a` ⟩
+                    a
+                  ≤ ⟨ “Successor is non-decreasing” ⟩
+                    suc a

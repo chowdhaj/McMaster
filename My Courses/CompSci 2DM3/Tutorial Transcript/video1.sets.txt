@@ -1,0 +1,42 @@
+video1.sets.txt
+
+--------
+Synopsis
+--------
+
+- In a clear and concise manner, explain what sets are. Do not explain too much; stick to the basics. Use examples that relate to real life. Give at least 2 examples that relate to real life before using a numeric example. 
+
+------
+Script
+------
+
+In this video, I'm going to introduce the concept of a set. Put simply, a set is a collection of objects. These objects are of the same type, and are unique. Here's an example:
+
+Let's assume we have a bag of colored marbles. In this bag, we have a red marble, a blue marble, and a green marble - 3 marbles in total and they are all different colors. This bag is a set because it only contains marbles, and each marble is of a different color. Everything in the bag is a marble, and each marble is unique. We can express this bag in the following manner:
+
+bagOfMarbles = {Red, Blue, Green}
+
+bagOfMarbles is the SET
+Red, Blue, and Green are the Marbles and members of the set
+
+Here are some more examples of sets:
+
+Clothing = {Hat, Shirt, Pants, Socks, Gloves}
+Food = {Bread, Cookie, Pizza, Burger, Pasta}
+
+Sets are used for more than just listing tasty food items. Sets are very useful in math. In fact, you could spend an entire lifetime learning set theory. Sets and numbers go together quite well - like fries and gravy. Take a look at the following set:
+
+wholeNumbers = {1, 2, 3, 4, 5, 6}
+
+This set contains whole numbers. No decimals, no irrationals, and no imaginary numbers. Side note, whole numbers are also called Natural numbers and are denoted by the symbol 'N'. This set only contains natural numbers, and each number is unique. If we had two 1's or three 2's, then this would no longer be a set. For example:
+
+notASet1 = {1, 1, 2, 3, 4}
+notASet2 = {1, 2, 2, 2, 3}
+
+Also, if we had decimals in our set of natural numbers, then it would not be a set. For example:
+
+notNaturalNumSet = {1, 2, 3.3, 4, 5, 7.1}
+
+Remember, the members of the set must be of the same type/property AND they must be unique.
+
+{END}

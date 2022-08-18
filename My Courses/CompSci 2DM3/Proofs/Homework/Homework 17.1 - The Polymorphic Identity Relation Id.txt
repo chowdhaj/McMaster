@@ -1,0 +1,62 @@
+Homework 17.1: The Polymorphic Identity Relation `Id`
+
+Theorem “Identity relation” “Relationship via `Id`”:
+    x ⦗ Id ⦘ y  ≡  x = y
+Proof:
+    x ⦗ Id ⦘ y  
+  = ⟨ “Definition of `Id` via 𝕀” ⟩
+    x ⦗ 𝕀 𝐔 ⦘ y  
+  = ⟨ “Relationship via 𝕀” ⟩
+    x = y ∧ y ∈ 𝐔
+  = ⟨ “Universal set” ⟩
+    x = y ∧ true
+  = ⟨ “Identity of ∧” ⟩ 
+    x = y
+
+Theorem “Converse of `Id`”: Id ˘        =  Id
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `(∀ x • (∀ y • x ⦗ Id ˘ ⦘ y ≡ x ⦗ Id ⦘ y ) )`:
+            For any `x`, `y`:
+                x ⦗ Id ˘ ⦘ y
+              ≡ ⟨ “Relation converse” ⟩
+                y ⦗ Id ⦘ x 
+              ≡ ⟨ “Identity relation” ⟩
+                y = x
+              ≡ ⟨ “Identity relation” ⟩
+                x ⦗ Id ⦘ y  
+
+Theorem “Left-identity of ⨾” “Identity of ⨾”:
+    Id ⨾ R = R
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `(∀ x • (∀ y • (x ⦗ Id ⨾ R ⦘ y ≡ x ⦗ R ⦘ y )))`:
+            For any `x`, `y`:
+                x ⦗ Id ⨾ R ⦘ y 
+              ≡ ⟨ “Relation composition” ⟩
+                ∃ z • x ⦗ Id ⦘ z ∧ z ⦗ R ⦘ y
+              ≡ ⟨ “Identity relation” ⟩
+                ∃ z • (z = x) ∧ (z ⦗ R ⦘ y)
+              ≡ ⟨ “Trading for ∃” ⟩
+                ∃ z ❙ (z = x) • (z ⦗ R ⦘ y) 
+              ≡ ⟨ “One-point rule for ∃” ⟩
+                (z ⦗ R ⦘ y)[z ≔ x]
+              ≡ ⟨ Substitution ⟩
+                (x ⦗ R ⦘ y)
+
+Theorem “Right-identity of ⨾” “Identity of ⨾”:
+    R ⨾ Id = R
+Proof:
+    Using “Relation extensionality”:
+        For any `x`, `y`:
+            x ⦗ R ⨾ Id ⦘ y  
+          ≡ ⟨ “Relation composition” ⟩
+            ∃ z • x ⦗ R ⦘ z ∧ z ⦗ Id ⦘ y
+          ≡ ⟨ “Identity relation” ⟩
+            ∃ z • (z = y) ∧ (x ⦗ R ⦘ z)
+          ≡ ⟨ “Trading for ∃” ⟩
+            ∃ z ❙ (z = y) • (x ⦗ R ⦘ z)
+          ≡ ⟨ “One-point rule for ∃” ⟩
+            (x ⦗ R ⦘ z)[z ≔ y]
+          ≡ ⟨ Substitution ⟩ 
+            x ⦗ R ⦘ y

@@ -1,0 +1,55 @@
+Assignment Notebook 1.2: Boolean Calculations
+
+Theorem “Contradiction”: ¬ p ∧ p ≡ false
+Proof:
+    ¬ p ∧ p
+  ≡ ⟨ “Symmetry of ∧” ⟩
+    p ∧ ¬ p
+  ≡ ⟨ “Contradiction” ⟩ 
+    false
+
+Theorem “Excluded middle”: ¬ p ∨ p ≡ true
+Proof:
+    ¬ p ∨ p
+  ≡ ⟨ “Symmetry of ∨” ⟩
+    p ∨ ¬ p
+  ≡ ⟨ “LEM” ⟩
+    true 
+
+Theorem (3.44b) “Absorption”: p ∨ (¬ p ∧ q) ≡ p ∨ q
+Proof:
+    p ∨ (¬ p ∧ q)
+  ≡ ⟨ “Distributivity of ∨ over ∧” ⟩
+    (p ∨ ¬ p) ∧ (p ∨ q)
+  ≡ ⟨ “Excluded middle” ⟩ 
+    true ∧ (p ∨ q)
+  ≡ ⟨ “Identity of ∧” ⟩
+    p ∨ q
+
+Theorem (3.44c) “Absorption”: ¬ p ∧ (p ∨ q) ≡ ¬ p ∧ q
+Proof:
+    ¬ p ∧ (p ∨ q)
+  ≡ ⟨ “Distributivity of ∧ over ∨” ⟩
+    (¬ p ∧ p) ∨ (¬ p ∧ q)
+  ≡ ⟨ “Symmetry of ∧” ⟩
+    (p ∧ ¬ p) ∨ (¬ p ∧ q)
+  ≡ ⟨ “Contradiction” ⟩ 
+    false ∨ (¬ p ∧ q)
+  ≡ ⟨ “Identity of ∨” ⟩ 
+     ¬ p ∧ q
+
+Theorem (3.43a) “Absorption”: p ∧ (p ∨ q) ≡ p
+Proof:
+    p ∧ (p ∨ q)
+  ≡ ⟨ “Distributivity of ∧ over ∨” ⟩
+    (p ∧ p) ∨ (p ∧ q)
+  ≡ ⟨ “Idempotency of ∧” ⟩
+    p ∨ (p ∧ q)
+  ≡ ⟨ “Identity of ∧” ⟩
+    (p ∧ true) ∨ (p ∧ q)
+  ≡ ⟨ “Distributivity of ∧ over ∨” ⟩ 
+    p ∧ (true ∨ q) 
+  ≡ ⟨ “Zero of ∨” ⟩
+    p ∧ true 
+  ≡ ⟨ “Identity of ∧” ⟩
+    p

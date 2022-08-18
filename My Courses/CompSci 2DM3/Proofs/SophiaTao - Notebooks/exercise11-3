@@ -1,0 +1,174 @@
+Theorem “Weakening for ∩”: Q ∩ R ⊆ Q  ∧  Q ∩ R ⊆ R
+Proof:
+    Q ∩ R ⊆ Q  ∧  Q ∩ R ⊆ R
+  ≡⟨ “Characterisation of ∩” ⟩
+    Q ∩ R ⊆ Q ∩ R — This is “Reflexivity of ⊆”
+  
+Corollary “Symmetry of ∩”: Q ∩ R = R ∩ Q
+Proof:
+    Q ∩ R = R ∩ Q
+  ≡⟨ “Mutual inclusion” ⟩
+    Q ∩ R ⊆ R ∩ Q ∧ R ∩ Q ⊆ Q ∩ R
+  ≡⟨ “Characterisation of ∩” ⟩
+    Q ∩ R ⊆ R ∧ Q ∩ R ⊆ Q ∧ R ∩ Q ⊆ Q ∧ R ∩ Q ⊆ R
+  ≡⟨ “Weakening for ∩”, “Identity of ∧” ⟩
+    true
+
+Theorem “Associativity of ∩”: (Q ∩ R) ∩ S ⊆ Q ∩ (R ∩ S)
+Proof:
+    (Q ∩ R) ∩ S ⊆ Q ∩ (R ∩ S)
+  ≡⟨ “Characterisation of ∩” ⟩
+    (Q ∩ R) ∩ S ⊆ Q ∧ (Q ∩ R) ∩ S ⊆ R ∧ (Q ∩ R) ∩ S ⊆ S
+  ≡⟨ “Weakening for ∩”, “Identity of ∧” ⟩
+    (Q ∩ R) ∩ S ⊆ Q ∧ (Q ∩ R) ∩ S ⊆ R
+  ≡⟨ “Characterisation of ∩”, “Weakening for ∩” ⟩
+    true
+
+Corollary “Associativity of ∩”: (Q ∩ R) ∩ S = Q ∩ (R ∩ S)
+Proof:
+  Using “Mutual inclusion”:
+    Subproof for `(Q ∩ R) ∩ S ⊆ Q ∩ (R ∩ S)`:
+        (Q ∩ R) ∩ S
+      ⊆⟨ “Associativity of ∩” ⟩
+        Q ∩ (R ∩ S)
+    Subproof for `Q ∩ (R ∩ S) ⊆ (Q ∩ R) ∩ S`:
+        Q ∩ (R ∩ S) ⊆ (Q ∩ R) ∩ S
+      ≡⟨ “Characterisation of ∩” ⟩
+        Q ∩ (R ∩ S) ⊆ Q ∧ Q ∩ (R ∩ S) ⊆ R ∧ Q ∩ (R ∩ S) ⊆ S
+      ≡⟨ “Weakening for ∩”, “Identity of ∧” ⟩
+        Q ∩ (R ∩ S) ⊆ R ∧ Q ∩ (R ∩ S) ⊆ S
+      ≡⟨ “Characterisation of ∩”, “Weakening for ∩” ⟩
+        true
+
+Theorem “Idempotency of ∩”: R ∩ R = R
+Proof:
+  Using “Mutual inclusion”:
+    Subproof for `R ∩ R ⊆ R`: By “Weakening for ∩”
+    Subproof for `R ⊆ R ∩ R`: By “Characterisation of ∩” and “Reflexivity of ⊆” and “Identity of ∧”
+
+        
+Theorem “Monotonicity of ∩”: Q ⊆ R  ⇒  Q ∩ S ⊆ R ∩ S
+Proof:
+  Assuming `Q ⊆ R`:
+      Q ∩ S ⊆ R ∩ S
+    ≡⟨ “Characterisation of ∩”, “Weakening for ∩”, “Identity of ∧” ⟩
+      Q ∩ S ⊆ R
+    ⇐⟨ “Consequence”, “Transitivity of ⊆” with “Weakening for ∩” ⟩
+      Q ⊆ R
+    ≡⟨ Assumption `Q ⊆ R` ⟩
+      true
+  
+Theorem “Sub-distributivity of ⨾ over ∩”: Q ⨾ (R ∩ S)  ⊆  Q ⨾ R  ∩  Q ⨾ S
+Proof:
+  Using “Characterisation of ∩”:
+    Subproof for `Q ⨾ (R ∩ S)  ⊆  Q ⨾ R `:
+          Q ⨾ (R ∩ S)  ⊆  Q ⨾ R 
+      ⇐⟨ “Consequence”, “Monotonicity of ⨾” ⟩
+          R ∩ S ⊆ R
+      ≡⟨ “Weakening for ∩” ⟩
+          true
+    Subproof for `Q ⨾ (R ∩ S)  ⊆  Q ⨾ S`:
+          Q ⨾ (R ∩ S)  ⊆  Q ⨾ S
+      ⇐⟨ “Consequence”, “Monotonicity of ⨾” ⟩
+           R ∩ S ⊆ S
+      ≡⟨ “Weakening for ∩” ⟩
+           true
+
+Theorem “Converse of ∩”:     (R ∩ S) ˘  ⊆  R ˘ ∩ S ˘
+Proof:
+  Using “Characterisation of ∩”:
+    Subproof for `( R ∩ S ) ˘ ⊆ R ˘`: By “Isotonicity of ˘” and “Weakening for ∩”
+    Subproof for `( R ∩ S ) ˘ ⊆ S ˘`: By “Isotonicity of ˘” and “Weakening for ∩”
+    
+
+Theorem “Converse of ∩”:     (R ∩ S) ˘  =  R ˘ ∩ S ˘
+Proof:
+  Using “Mutual inclusion”:
+    Subproof for `(R ∩ S) ˘  ⊆  R ˘ ∩ S ˘`: By “Converse of ∩”
+    Subproof for `R ˘ ∩ S ˘ ⊆ (R ∩ S) ˘`:
+        R ˘ ∩ S ˘ ⊆ (R ∩ S) ˘
+      ≡⟨ “Self-inverse of ˘” ⟩
+        ( R ˘ ∩ S ˘) ˘ ˘ ⊆ ( R ∩ S ) ˘
+      ⇐⟨ “Consequence”, “Monotonicity of ˘” ⟩
+        ( R ˘ ∩ S ˘ ) ˘ ⊆  R ∩ S 
+      ≡⟨ Subproof for `( R ˘ ∩ S ˘ ) ˘ ⊆  R ∩ S`:
+             Using “Characterisation of ∩”:
+               Subproof for `( R ˘ ∩ S ˘ ) ˘ ⊆  R`:
+                   ( R ˘ ∩ S ˘ ) ˘ ⊆  R
+                 ≡⟨ “Self-inverse of ˘” ⟩
+                   ( R ˘ ∩ S ˘ ) ˘ ⊆  R ˘ ˘
+                 ⇐⟨ “Consequence”, “Monotonicity of ˘”⟩
+                    R ˘ ∩ S ˘ ⊆ R ˘
+                 ≡⟨ “Weakening for ∩” ⟩
+                    true
+               Subproof for `( R ˘ ∩ S ˘ ) ˘ ⊆  S`:
+                    ( R ˘ ∩ S ˘ ) ˘ ⊆  S
+                 ≡⟨ “Self-inverse of ˘” ⟩
+                    ( R ˘ ∩ S ˘ ) ˘ ⊆  S ˘ ˘
+                 ⇐⟨ “Consequence”, “Monotonicity of ˘” ⟩
+                    R ˘ ∩ S ˘  ⊆ S ˘
+                 ≡⟨ “Weakening for ∩” ⟩
+                    true
+
+       ⟩
+                    true
+
+
+Theorem “Dedekind implies modal 1”:
+        (Q ⨾ R) ∩ S ⊆ (Q ∩ S ⨾ R ˘) ⨾ (R ∩ Q ˘ ⨾ S)
+    ⇒   (Q ⨾ R) ∩ S ⊆ (Q ∩ S ⨾ R ˘) ⨾ R
+Proof:
+  Assuming “D” `(Q ⨾ R) ∩ S ⊆ (Q ∩ S ⨾ R ˘) ⨾ (R ∩ Q ˘ ⨾ S)`:
+      (Q ⨾ R) ∩ S
+    ⊆⟨ Assumption “D” ⟩
+      (Q ∩ S ⨾ R ˘) ⨾ (R ∩ Q ˘ ⨾ S)
+    ⊆⟨ “Monotonicity of ⨾” with “Weakening for ∩”⟩
+       (Q ∩ S ⨾ R ˘) ⨾ R
+
+
+Theorem “Dedekind implies modal 2”:
+        (Q ⨾ R) ∩ S ⊆ (Q ∩ S ⨾ R ˘) ⨾ (R ∩ Q ˘ ⨾ S)
+    ⇒   (Q ⨾ R) ∩ S ⊆ Q            ⨾ (R ∩ Q ˘ ⨾ S)
+Proof:
+  Assuming “D” `(Q ⨾ R) ∩ S ⊆ (Q ∩ S ⨾ R ˘) ⨾ (R ∩ Q ˘ ⨾ S)`:
+      (Q ⨾ R) ∩ S
+    ⊆⟨ Assumption “D” ⟩
+      (Q ∩ S ⨾ R ˘) ⨾ (R ∩ Q ˘ ⨾ S)
+    ⊆⟨ “Monotonicity of ⨾” with “Weakening for ∩” ⟩
+      Q ⨾ (R ∩ Q ˘ ⨾ S)
+
+
+Theorem “Modal rule”:    (Q ⨾ R) ∩ S ⊆ (Q ∩ S ⨾ R ˘) ⨾ R
+Proof:
+    (Q ⨾ R) ∩ S 
+  ⊆⟨ “Dedekind rule” ⟩
+    (Q ∩ S ⨾ R ˘) ⨾ (R ∩ Q ˘ ⨾ S)
+  ⊆⟨ “Monotonicity of ⨾” with “Weakening for ∩” ⟩
+     (Q ∩ S ⨾ R ˘) ⨾ R
+   
+
+Theorem “Modal rule”:    (Q ⨾ R) ∩ S ⊆ Q ⨾ (R ∩ Q ˘ ⨾ S)
+Proof:
+    (Q ⨾ R) ∩ S
+  ⊆⟨ “Dedekind rule” ⟩
+    (Q ∩ S ⨾ R ˘) ⨾ (R ∩ Q ˘ ⨾ S)
+  ⊆⟨ “Monotonicity of ⨾” with “Weakening for ∩” ⟩
+     Q ⨾ (R ∩ Q ˘ ⨾ S)
+ 
+Theorem “Antisymmetry of converse”:  is-antisymmetric R  ≡  is-antisymmetric (R ˘)
+Proof:
+     is-antisymmetric R ≡ is-antisymmetric (R ˘)
+  ≡⟨ “Definition of antisymmetry” ⟩
+     R ∩ R ˘ ⊆ Id ≡ R ˘ ∩ R ˘ ˘ ⊆ Id
+  ≡⟨ “Self-inverse of ˘”, “Reflexivity of ≡” ⟩
+     true
+
+Theorem “Converse of an order”:  is-order E  ≡  is-order (E ˘)
+Proof:
+    is-order E
+  ≡⟨ “Definition of ordering” ⟩
+    is-reflexive E ∧ is-antisymmetric E ∧ is-transitive E
+  ≡⟨ “Antisymmetry of converse”, “Reflexivity of converse”, “Transitivity of converse”, “Definition of ordering”⟩
+    is-order (E ˘)
+   
+      

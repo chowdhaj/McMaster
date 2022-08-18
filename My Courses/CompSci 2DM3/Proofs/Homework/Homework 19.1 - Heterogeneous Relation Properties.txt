@@ -1,0 +1,183 @@
+Homework Notebook 19.1: Heterogeneous Relation Properties
+
+Theorem “Monotonicity of ∪”: A₁ ⊆ A₂ ⇒ (A₁ ∪ B) ⊆ (A₂ ∪ B)
+Proof:
+    Assuming `A₁ ⊆ A₂` and using with “Set inclusion”:
+        Using “Set inclusion”:
+            For any `x`:
+                x ∈ (A₁ ∪ B) ⇒ x ∈ (A₂ ∪ B)
+              ≡ ⟨ “Union” ⟩
+                x ∈ A₁ ∨ x ∈ B ⇒ x ∈ A₂ ∨ x ∈ B
+              ⇐ ⟨ “Monotonicity of ∨” ⟩
+                x ∈ A₁ ⇒ x ∈ A₂
+              ≡ ⟨ Assumption `A₁ ⊆ A₂` ⟩
+                true
+
+Theorem “Monotonicity of ∪”: A₁ ⊆ A₂ ⇒ B₁ ⊆ B₂ ⇒ (A₁ ∪ B₁) ⊆ (A₂ ∪ B₂)
+Proof:
+    Assuming `A₁ ⊆ A₂` and using with “Set inclusion”, `B₁ ⊆ B₂` and using with “Set inclusion”:
+        Using “Set inclusion”:
+            For any `x`:
+                x ∈ (A₁ ∪ B₁) ⇒ x ∈ (A₂ ∪ B₂)
+              ≡ ⟨ “Union” ⟩
+                x ∈ A₁ ∨ x ∈ B₁ ⇒ x ∈ A₂ ∨ x ∈ B₂
+              ⇐ ⟨ “Monotonicity of ∨” with Assumption `A₁ ⊆ A₂` ⟩
+                (x ∈ B₁ ⇒ x ∈ B₂)
+              ≡ ⟨ Assumption `B₁ ⊆ B₂` ⟩
+                true
+
+Theorem “Distributivity of ⨾ over ∪ to the left”
+        “Distributivity of ⨾ over ∪”:
+    (Q ∪ R) ⨾ S  =  Q ⨾ S  ∪  R ⨾ S
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `∀ x • ∀ y • x ⦗ (Q ∪ R) ⨾ S ⦘ y ≡ x ⦗ Q ⨾ S  ∪  R ⨾ S ⦘ y`:
+            For any `x`:
+                For any `y`:
+                    x ⦗ (Q ∪ R) ⨾ S ⦘ y
+                  ≡ ⟨ “Relation composition” and “Relation union” ⟩
+                    ∃ z • (x ⦗ Q ⦘ z ∨ x ⦗ R ⦘ z) ∧ z ⦗ S ⦘ y
+                  ≡ ⟨ “Distributivity of ∧ over ∨” ⟩
+                    ∃ z • (x ⦗ Q ⦘ z ∧ z ⦗ S ⦘ y) ∨ (x ⦗ R ⦘ z ∧ z ⦗ S ⦘ y)
+                  ≡ ⟨ “Distributivity of ∃ over ∨” ⟩
+                    (∃ z • x ⦗ Q ⦘ z ∧ z ⦗ S ⦘ y) ∨ (∃ z • x ⦗ R ⦘ z ∧ z ⦗ S ⦘ y)
+                  ≡ ⟨ “Relation composition” ⟩
+                    x ⦗ Q ⨾ S ⦘ y ∨ x ⦗ R ⨾ S ⦘ y
+                  ≡ ⟨ “Relation union” and “Reflexivity of ≡” ⟩
+                    x ⦗ (Q ⨾ S)  ∪  (R ⨾ S) ⦘ y
+
+Theorem “Univalence of composition”:
+     is-univalent R ⇒ is-univalent S ⇒ is-univalent (R ⨾ S)
+Proof:
+    Assuming `is-univalent R` and using with “Definition of univalence”, `is-univalent S` and using with “Definition of univalence”:
+        Using “Definition of univalence”:
+            (R ⨾ S) ˘ ⨾ (R ⨾ S) 
+          = ⟨ “Converse of ⨾” ⟩
+            ((S ˘) ⨾ (((R ˘) ⨾ R) ⨾ S))
+          ⊆ ⟨ “Monotonicity of ⨾” with “Monotonicity of ⨾” with Assumption `is-univalent R` ⟩
+            ((S ˘) ⨾ (Id ⨾ S)) 
+          ⊆ ⟨ “Identity of ⨾” and Assumption `is-univalent S` ⟩
+            Id
+
+Theorem “Univalence”:
+      is-univalent R
+   ≡  ∀ b₁ • ∀ b₂ • ∀ a • a ⦗ R ⦘ b₁ ∧ a ⦗ R ⦘ b₂ ⇒ b₁ = b₂
+Proof:
+    ∀ b₁ • ∀ b₂ • ∀ a • a ⦗ R ⦘ b₁ ∧ a ⦗ R ⦘ b₂ ⇒ b₁ = b₂
+  ≡ ⟨ “Reflexivity of ≡” ⟩ 
+    (∀ b₁ • (∀ b₂ • (∀ a • a ⦗ R ⦘ b₁ ∧ a ⦗ R ⦘ b₂ ⇒ b₁ = b₂)))
+  ≡ ⟨ “Witness” ⟩
+    (∀ b₁ • (∀ b₂ • (∃ a ❙ a ⦗ R ⦘ b₁ • a ⦗ R ⦘ b₂) ⇒ b₁ = b₂))
+  ≡ ⟨ “Relation converse” ⟩
+    (∀ b₁ • (∀ b₂ • (∃ a ❙ b₁ ⦗ R ˘ ⦘ a • a ⦗ R ⦘ b₂) ⇒ b₁ = b₂))
+  ≡ ⟨ “Trading for ∃” ⟩
+    (∀ b₁ • (∀ b₂ • (∃ a • b₁ ⦗ R ˘ ⦘ a ∧ a ⦗ R ⦘ b₂) ⇒ b₁ = b₂))
+  ≡ ⟨ “Relation composition” and “Identity relation” and “Reflexivity of ≡” ⟩
+    (∀ b₁ • (∀ b₂ • (b₁ ⦗ R ˘ ⨾ R ⦘ b₂) ⇒ b₁ ⦗ Id ⦘ b₂))
+  ≡ ⟨ “Relation inclusion” ⟩
+    R ˘ ⨾ R ⊆ Id
+  ≡ ⟨ “Definition of univalence” ⟩
+    is-univalent R
+
+Lemma “Lemmas In PaRis”: is-total R ≡ ( ∀ x • (∃ y • (x ⦗ R ⦘ y ) ) ) 
+Proof:
+    is-total R
+  ≡ ⟨ “Definition of totality” ⟩
+    Id ⊆ R ⨾ R ˘
+  ≡ ⟨ “Relation inclusion” ⟩
+    (∀ x • (∀ y • x ⦗ Id ⦘ y ⇒ x ⦗ R ⨾ R ˘ ⦘ y ) )
+  ≡ ⟨ “Identity relation” ⟩
+    (∀ x • (∀ y • x = y ⇒ x ⦗ R ⨾ R ˘ ⦘ y ) )
+  ≡ ⟨ “Trading for ∀” ⟩
+    (∀ x • (∀ y ❙ y = x • x ⦗ R ⨾ R ˘ ⦘ y ) )
+  ≡ ⟨ “One-point rule for ∀” ⟩
+    ( ∀ x • (x ⦗ R ⨾ R ˘ ⦘ y)[y ≔ x] )
+  ≡ ⟨ Substitution ⟩
+    ( ∀ x • (x ⦗ R ⨾ R ˘ ⦘ x) )
+  ≡ ⟨ “Relation composition” ⟩
+    ( ∀ x • (∃ y • (x ⦗ R ⦘ y  ∧  y ⦗ R ˘ ⦘ x) ) )
+  ≡ ⟨ “Relation converse” ⟩
+    ( ∀ x • (∃ y • (x ⦗ R ⦘ y  ∧  x ⦗ R ⦘ y) ) )
+  ≡ ⟨ “Idempotency of ∧” ⟩
+    ( ∀ x • (∃ y • (x ⦗ R ⦘ y ) ) ) 
+
+Theorem “Totality of union”:
+    is-total R ⇒ is-total S ⇒ is-total (R ∪ S)
+Proof:
+    Assuming `is-total R` and using with “Definition of totality”, `is-total S` and using with “Definition of totality”:
+        Using “Definition of totality”:
+            Id ⊆ (R ∪ S) ⨾ (R ∪ S) ˘
+          ≡ ⟨ “Relation inclusion” and “Trading for ∀” and “Identity relation” ⟩
+            (∀ x • (∀ y ❙ x = y • x ⦗ (R ∪ S) ⨾ (R ∪ S) ˘ ⦘ y))
+          ≡ ⟨ “One-point rule for ∀” ⟩
+            (∀ x • (x ⦗ (R ∪ S) ⨾ (R ∪ S) ˘ ⦘ y)[y ≔ x])
+          ≡ ⟨ Substitution ⟩
+            (∀ x • (x ⦗ (R ∪ S) ⨾ (R ∪ S) ˘ ⦘ x))
+          ≡ ⟨ “Relation composition” ⟩
+            (∀ x • (∃ y • x ⦗ (R ∪ S) ⦘ y ∧ y ⦗ (R ∪ S) ˘ ⦘ x   )  )
+          ≡ ⟨ “Relation converse” and “Idempotency of ∧” ⟩
+            (∀ x • (∃ y • x ⦗ (R ∪ S) ⦘ y )  )
+          ≡ ⟨ “Relation union” ⟩
+            (∀ x • (∃ y • x ⦗ R ⦘ y  ∨  x ⦗ S ⦘ y))
+          ⇐ ⟨ “Body monotonicity of ∀” with “Body weakening for ∃” ⟩ 
+            (∀ x • (∃ y • x ⦗ R ⦘ y ))
+          ≡ ⟨ “Lemmas In PaRis” ⟩ 
+            is-total R
+          ≡ ⟨ Assumption `is-total R` ⟩ 
+            true
+
+Theorem “Totality”: is-total R  ≡  ∀ a • ∃ b • a ⦗ R ⦘ b
+Proof:
+    is-total R
+  ≡ ⟨ “Definition of totality” and “Relation inclusion” and “Reflexivity of ≡” ⟩
+    (∀ a • (∀ b • a ⦗ Id ⦘ b ⇒ a ⦗ R ⨾ R ˘ ⦘ b))
+  ≡ ⟨ “Identity relation” ⟩
+    (∀ a • (∀ b • a = b ⇒ a ⦗ R ⨾ R ˘ ⦘ b))
+  ≡ ⟨ “Trading for ∀” ⟩
+    (∀ a • (∀ b ❙ a = b • a ⦗ R ⨾ R ˘ ⦘ b))
+  ≡ ⟨ “One-point rule for ∀” and Substitution ⟩
+    (∀ a • a ⦗ R ⨾ R ˘ ⦘ a)
+  ≡ ⟨ “Relation composition” and “Relation converse” and “Idempotency of ∧” ⟩
+    (∀ a • (∃ b • a ⦗ R ⦘ b))
+
+Theorem “Domain of total relations”: is-total R       ≡  𝐔 ⊆ Dom R
+Proof:
+     𝐔 ⊆ Dom R
+  ≡ ⟨ “Set inclusion” and “Universal set” and “Left-identity of ⇒” ⟩
+    ∀ x • x ∈ Dom R
+  ≡ ⟨ “Membership in `Dom`” and “Totality” ⟩
+    is-total R
+
+Theorem “Domain of total relations”:  is-total R  ≡  Dom R = 𝐔
+Proof:
+    Dom R = 𝐔
+  ≡ ⟨ “Set extensionality” and “Universal set” and “Identity of ≡” ⟩
+    ∀ x • x ∈ Dom R
+  ≡ ⟨ “Membership in `Dom`” and “Totality” ⟩
+    is-total R
+
+Theorem “Injectivity of converse”:
+    is-injective (R ˘) ≡  is-univalent R
+Proof:
+    By “Definition of injectivity” and “Self-inverse of ˘” and “Definition of univalence”
+
+Theorem “Univalence of converse”:
+    is-univalent (R ˘)  ≡  is-injective R
+Proof:
+    By “Definition of univalence” and “Self-inverse of ˘” and “Definition of injectivity”
+
+Theorem “Injectivity”:
+       is-injective R
+    ≡  ∀ a₁ • ∀ a₂ • ∀ b • a₁ ⦗ R ⦘ b ∧ a₂ ⦗ R ⦘ b ⇒ a₁ = a₂
+Proof:
+    By “Univalence of converse” and “Univalence” and “Relation converse”
+
+Theorem “Totality of converse”:
+    is-total (R ˘)  ≡  is-surjective R
+Proof:
+    By “Definition of totality” and “Self-inverse of ˘” and “Definition of surjectivity”
+
+Theorem “Surjectivity”:
+    is-surjective R  ≡  (∀ b • (∃ a • a ⦗ R ⦘ b))
+Proof:
+    By “Totality of converse” and “Totality” and “Relation converse” and “Interchange of quantifications”

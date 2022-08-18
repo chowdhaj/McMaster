@@ -1,0 +1,116 @@
+---------------------
+3.3.6
+Theorem “Monotony of predecessor”: a ≤ b ⇒ pred a ≤ pred b
+Proof:
+  By induction on `a : ℕ`:
+    Base case `0 ≤ b ⇒ pred 0 ≤ pred b`:
+        0 ≤ b ⇒ pred 0 ≤ pred b
+      =⟨ “Predecessor of zero” ⟩
+        0 ≤ b ⇒ 0 ≤ pred b
+      =⟨ “Zero is least element” ⟩
+        true ⇒ true
+      =⟨ “Reflexivity of ⇒” ⟩
+        true
+    Induction step:
+      By induction on `b : ℕ`:
+        Base case:
+            S a ≤ 0 ⇒ pred (S a) ≤ pred 0
+          =⟨ “Predecessor of zero” ⟩
+            S a ≤ 0 ⇒ pred (S a) ≤ 0
+          =⟨ “Successor is not at most zero” ⟩
+            false ⇒ pred (S a) ≤ 0
+          =⟨ “ex falso quodlibet” ⟩
+            true
+        Induction step `S a ≤ S b ⇒ pred (S a) ≤ pred (S b)`:
+            S a ≤ S b ⇒ pred (S a) ≤ pred (S b)
+          =⟨ “Predecessor of successor” ⟩
+            S a ≤ S b ⇒ a ≤ b
+          =⟨ “Isotony of successor” ⟩
+            a ≤ b ⇒ a ≤ b
+          =⟨ “Reflexivity of ⇒” ⟩
+            true
+---------------------
+3.3.7
+Theorem “Isotony of +”: a + b ≤ a + c  ≡  b ≤ c
+Proof:
+  By induction on `a : ℕ`:
+    Base case:
+        0 + b ≤ 0 + c  ≡  b ≤ c
+      =⟨ “Identity of +” ⟩
+        b ≤ c  ≡  b ≤ c
+      =⟨ “Reflexivity of ≡” ⟩
+        true
+    Induction step `S a + b ≤ S a + c  ≡  b ≤ c`:
+        S a + b ≤ S a + c  ≡  b ≤ c
+      =⟨ “Addition of successor” ⟩
+        S (a + b) ≤ S (a + c)  ≡  b ≤ c
+      =⟨ “Isotony of successor” ⟩
+        a + b ≤ a + c  ≡  b ≤ c
+      =⟨ Induction hypothesis `a + b ≤ a + c  ≡  b ≤ c` ⟩
+        true
+---------------------
+3.3.8
+Theorem “Antisymmetry of ≤”: a ≤ b ⇒ b ≤ a ⇒ a = b
+Proof:
+  By induction on `a : ℕ`:
+    Base case `0 ≤ b ⇒ b ≤ 0 ⇒ 0 = b`:
+        0 ≤ b ⇒ b ≤ 0 ⇒ 0 = b
+      =⟨ “Zero is unique least element” ⟩
+        0 ≤ b ⇒ b = 0 ⇒ 0 = b
+      =⟨ “Zero is least element” ⟩
+        true ⇒ b = 0 ⇒ 0 = b
+      =⟨ “Left-identity of ⇒” ⟩
+        b = 0 ⇒ 0 = b
+      =⟨ “Reflexivity of ⇒” ⟩
+        true
+    Induction step `S a ≤ b ⇒ b ≤ S a ⇒ S a = b`:
+      By induction on `b : ℕ`:
+        Base case `S a ≤ 0 ⇒ 0 ≤ S a ⇒ S a = 0`:
+            S a ≤ 0 ⇒ 0 ≤ S a ⇒ S a = 0
+          =⟨ “Successor is not at most zero” ⟩
+            false ⇒ 0 ≤ S a ⇒ S a = 0
+          =⟨ “ex falso quodlibet” ⟩
+            true
+        Induction step `S a ≤ S b ⇒ S b ≤ S a ⇒ S a = S b`:
+            S a ≤ S b ⇒ S b ≤ S a ⇒ S a = S b
+          =⟨ “Isotony of successor” ⟩
+            a ≤ b ⇒ b ≤ a ⇒ S a = S b
+          =⟨ “Cancellation of `S`” ⟩
+            a ≤ b ⇒ b ≤ a ⇒ a = b
+          =⟨ Induction hypothesis `a ≤ b ⇒ b ≤ a ⇒ a = b` ⟩
+            true
+---------------------
+3.3.9
+Theorem “Transitivity of ≤”: a ≤ b ⇒ b ≤ c ⇒ a ≤ c
+Proof:
+  By induction on `a : ℕ`:
+    Base case `0 ≤ b ⇒ b ≤ c ⇒ 0 ≤ c`:
+        0 ≤ b ⇒ b ≤ c ⇒ 0 ≤ c
+      =⟨ “Zero is least element” ⟩
+        0 ≤ b ⇒ b ≤ c ⇒ true
+      =⟨ “Right-zero of ⇒” ⟩
+        true
+    Induction step `S a ≤ b ⇒ b ≤ c ⇒ S a ≤ c`:
+      By induction on `b : ℕ`:
+        Base case `S a ≤ 0 ⇒ 0 ≤ c ⇒ S a ≤ c`:
+            S a ≤ 0 ⇒ 0 ≤ c ⇒ S a ≤ c
+          =⟨ “Successor is not at most zero” ⟩
+            false ⇒ 0 ≤ c ⇒ S a ≤ c
+          =⟨ “ex falso quodlibet” ⟩
+            true
+        Induction step `S a ≤ S b ⇒ S b ≤ c ⇒ S a ≤ c`:
+          By induction on `c : ℕ`:
+            Base case `S a ≤ S b ⇒ S b ≤ 0 ⇒ S a ≤ 0`:
+                S a ≤ S b ⇒ S b ≤ 0 ⇒ S a ≤ 0
+              =⟨ “Successor is not at most zero” ⟩
+                S a ≤ S b ⇒ false ⇒ S a ≤ 0
+              =⟨ “ex falso quodlibet” ⟩
+                S a ≤ S b ⇒ true
+              =⟨ “Right-zero of ⇒” ⟩
+                true
+            Induction step `S a ≤ S b ⇒ S b ≤ S c ⇒ S a ≤ S c`:
+                S a ≤ S b ⇒ S b ≤ S c ⇒ S a ≤ S c
+              =⟨ “Isotony of successor” ⟩
+                a ≤ b ⇒ b ≤ c ⇒ a ≤ c
+              =⟨ Induction hypothesis `a ≤ b ⇒ b ≤ c ⇒ a ≤ c` ⟩
+                true

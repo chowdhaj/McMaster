@@ -1,0 +1,30 @@
+5.2.5
+Theorem “Irreflexivity of ≠”: ¬ (x ≠ x)
+Proof:
+    ¬ (x ≠ x)
+  ≡⟨ “Definition of ≠” ⟩
+    ¬ ¬ (x = x)
+  ≡⟨ “Double negation” ⟩
+    x = x — This is “Reflexivity of =”
+5.2.6
+Theorem “Irreflexivity of ≠”: x ≠ x  ≡  false
+Proof:
+    x ≠ x  ≡  false
+  =⟨ “Definition of `false`” ⟩
+    x ≠ x  ≡  ¬ true
+  =⟨ “Distributivity of ¬ over ≡” ⟩
+    ¬ (x ≠ x) ≡ true
+  =⟨ “Irreflexivity of ≠” ⟩
+    true ≡ true — This is “Reflexivity of ≡”
+5.2.8
+Theorem “Symmetry of ≠”:  x ≠ y  ≡  y ≠ x
+Proof:
+    x ≠ y  ≡  y ≠ x
+  =⟨ “Definition of ≠” ⟩
+    ¬ (x = y)  ≡  ¬ (y = x)
+  =⟨ “Distributivity of ¬ over ≡” ⟩
+    ¬ ¬ ((x = y) ≡ (y = x))
+  =⟨ “Reflexivity of ≡” ⟩
+    ¬ ¬ (true)
+  =⟨ “Double negation” ⟩
+    true

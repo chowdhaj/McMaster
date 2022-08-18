@@ -1,0 +1,56 @@
+Homework Notebook 7.2: Leibniz as Axiom, Replacement
+
+Fact “H5a”: x = 3 ⇒ x + 2 = 5
+Proof:
+    x = 3 ⇒ x + 2 = 5
+  ≡⟨ Fact `5 = 3 + 2` ⟩
+    x = 3 ⇒ x + 2 = 3 + 2
+  ≡⟨ Substitution ⟩
+    x = 3 ⇒ (z + 2)[z ≔ x] = (z + 2)[z ≔ 3]
+  — This is (3.83) “Leibniz”
+
+Theorem (3.84) (3.84a) “Replacement”:
+    (e = f) ∧ E[z ≔ e]  ≡  (e = f) ∧ E[z ≔ f]
+Proof:
+    (e = f) ∧ E[z ≔ e] ≡ (e = f) ∧ E[z ≔ f]
+  ≡⟨ (3.62) ⟩
+    e = f ⇒ (E[z ≔ e] ≡ E[z ≔ f])
+  ≡⟨ “Definition of ≡” ⟩
+    e = f ⇒ E[z ≔ e] = E[z ≔ f] — This is “Leibniz”
+
+Fact “H5b”: (x = 3) ∧ (x + 1 = 4)  ≡  (x = 3)
+Proof:
+    (x = 3) ∧ (x + 1 = 4)
+  ≡⟨ Substitution ⟩
+    (x = 3) ∧ (z + 1 = 4)[z ≔ x]
+  ≡⟨ “Replacement” ⟩
+    (x = 3) ∧ (z + 1 = 4)[z ≔ 3]
+  ≡⟨ Substitution ⟩
+    (x = 3) ∧ (3 + 1 = 4)
+  ≡⟨ Fact `3 + 1 = 4` ⟩
+    (x = 3) ∧ true
+  ≡⟨ “Identity of ∧” ⟩
+    (x = 3)
+
+Lemma “Replacement in equality with addition”:
+    a = b + c ∧ c = d  ≡  a = b + d ∧ c = d
+Proof:
+    a = b + c ∧ c = d
+  ≡ ⟨ Substitution ⟩
+    (c = d) ∧ (a = b + d)[d ≔ c]
+  ≡ ⟨ “Replacement” ⟩
+    (c = d) ∧ (a = b + d)[d ≔ d] 
+  ≡ ⟨ Substitution ⟩ 
+    (c = d) ∧ (a = b + d)
+  ≡ ⟨ “Reflexivity of =” ⟩ 
+    a = b + d ∧ c = d 
+
+Lemma (H7.2a):
+     s     = x · x              ∧  d = 2 · x + 1
+  ≡  s + d = x · x + 2 · x + 1  ∧  d = 2 · x + 1
+Proof:
+    s = x · x ∧ d = 2 · x + 1
+  ≡⟨ “Cancellation of +” ⟩
+    s + d = x · x + d ∧ d = 2 · x + 1
+  ≡ ⟨ “Replacement in equality with addition” ⟩
+    s + d = x · x + 2 · x + 1 ∧ d = 2 · x + 1

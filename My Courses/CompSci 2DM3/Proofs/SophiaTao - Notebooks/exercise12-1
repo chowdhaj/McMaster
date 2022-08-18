@@ -1,0 +1,73 @@
+Lemma “Definition of mappings”:
+  is-mapping R     ≡  R ˘ ⨾ R ⊆ Id  ∧   Id ⊆ R ⨾ R ˘
+Proof:
+    is-mapping R 
+  ≡⟨ “Definition of mappings”, “Definition of totality”, “Definition of univalence” ⟩
+   R ˘ ⨾ R ⊆ Id ∧ Id ⊆ R ⨾ R ˘
+    
+Lemma “Definition of bijectivity”:
+   is-bijective R   ≡  R ⨾ R ˘ ⊆ Id  ∧  Id ⊆ R ˘ ⨾ R
+Proof: By “Definition of bijectivity”, “Definition of injectivity”, “Definition of surjectivity”
+
+Theorem “total in univalent”:
+   is-total R  ⇒  is-univalent S  ⇒  R ⊆ S  ⇒  S ⊆ R
+Proof:
+  Assuming `is-total R`, `is-univalent S`, `R ⊆ S`:
+      S
+    ≡⟨ “Identity of ⨾” ⟩
+      Id ⨾ S
+    ⊆⟨ “Monotonicity of ⨾” with “Definition of totality” with Assumption `is-total R` ⟩
+      ( R  ⨾ R ˘) ⨾ S
+    ⊆⟨ “Monotonicity of ⨾” with “Monotonicity of ⨾” with “Monotonicity of ˘” with Assumption `R ⊆ S`⟩
+       ( R  ⨾ S ˘ ) ⨾ S
+    ≡⟨ “Associativity of ⨾” ⟩
+       R ⨾ ( S ˘ ⨾ S ) 
+    ⊆⟨ “Monotonicity of ⨾” with “Definition of univalence” with Assumption `is-univalent S` ⟩
+       R ⨾ Id
+    ≡⟨ “Identity of ⨾” ⟩ 
+      R
+
+Theorem “total in univalent”:
+    is-total R  ⇒  is-univalent S  ⇒  R ⊆ S  ⇒  S = R
+Proof:
+  Assuming `is-total R`, `is-univalent S`, `R ⊆ S`:
+    Using “Mutual inclusion”:
+      Subproof for `R ⊆ S`:
+          R ⊆ S
+        ≡⟨ Assumption `R ⊆ S` ⟩
+          true
+      Subproof for `S ⊆ R`:
+          S ⊆ R
+        ≡⟨ “total in univalent” with Assumption `is-total R`, Assumption `is-univalent S`, Assumption `R ⊆ S` ⟩
+          true
+
+
+Theorem “Inverse of mapping”: is-mapping f ⇒ g is-inverse-of f ⇒ g = f ˘
+Proof:
+  Assuming `is-mapping f`, `g is-inverse-of f`:
+    Using “Mutual inclusion”:
+      Subproof for `g ⊆ f ˘`:
+          g
+        ≡⟨ “Identity of ⨾” ⟩
+          g ⨾ Id
+        ⊆⟨ “Monotonicity of ⨾” with Assumption `is-mapping f` with “Definition of mappings” ⟩
+          g ⨾ ( f  ⨾ f ˘ )
+        ≡⟨ “Associativity of ⨾” ⟩
+         ( g ⨾ f  ) ⨾ f ˘ 
+        ≡⟨ Assumption `g is-inverse-of f` with “Definition of inverse”⟩
+          Id ⨾ f ˘
+        ≡⟨ “Identity of ⨾” ⟩
+          f ˘
+      Subproof for `f ˘ ⊆ g`:
+          f ˘
+        ≡⟨ “Identity of ⨾” ⟩
+          f ˘ ⨾ Id
+        ≡⟨ Assumption `g is-inverse-of f` with “Definition of inverse” ⟩
+          f ˘ ⨾ ( f ⨾ g )
+        ≡⟨ “Associativity of ⨾” ⟩
+          (f ˘ ⨾  f ) ⨾ g 
+        ⊆⟨ “Monotonicity of ⨾” with Assumption `is-mapping f` with “Definition of mappings”   ⟩
+           Id ⨾ g 
+        ≡⟨ “Identity of ⨾” ⟩
+          g
+

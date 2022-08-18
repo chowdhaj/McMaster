@@ -1,0 +1,123 @@
+Homework 16: Relations via Set Theory II
+
+Theorem “Domain of union”: Dom (R ∪ S) = Dom R ∪ Dom S
+Proof:
+    Using “Set extensionality”:
+        Subproof for `(∀ x • x ∈ Dom (R ∪ S) ≡ x ∈ (Dom R ∪ Dom S) )`:
+            For any `x`:
+                x ∈ Dom (R ∪ S) 
+              ≡ ⟨ “Membership in `Dom`” ⟩
+                ∃ y • x ⦗ R ∪ S ⦘ y
+              ≡ ⟨ “Relation union” ⟩
+                ∃ y • (x ⦗ R ⦘ y) ∨ (x ⦗ S ⦘ y)
+              ≡ ⟨ “Distributivity of ∃ over ∨” ⟩ 
+                (∃ y ❙ true • (x ⦗ R ⦘ y) ) ∨ (∃ y ❙ true • (x ⦗ S ⦘ y) )
+              ≡ ⟨ “Reflexivity of =” ⟩
+                (∃ y • (x ⦗ R ⦘ y) ) ∨ (∃ y • (x ⦗ S ⦘ y) )
+              ≡ ⟨ “Membership in `Dom`” ⟩
+                (x ∈ Dom R) ∨ (x ∈ Dom S)
+              ≡ ⟨ “Union” ⟩   
+                x ∈ (Dom R ∪ Dom S)
+
+Theorem “Domain of intersection”: Dom (R ∩ S) ⊆ Dom R ∩ Dom S
+Proof:
+    Using “Set inclusion”:
+        Subproof for `(∀ e ❙ e ∈ (Dom (R ∩ S)) • e ∈ (Dom R ∩ Dom S))`:
+            For any `e` satisfying `e ∈ (Dom (R ∩ S))`:
+                e ∈ (Dom (R ∩ S)) — This is Assumption `e ∈ (Dom (R ∩ S))`
+              ≡ ⟨ “Membership in `Dom`” ⟩
+                ∃ y • e ⦗ (R ∩ S) ⦘ y
+              ≡ ⟨ “Relation intersection” ⟩ 
+                (∃ y • (e ⦗ R ⦘ y) ∧ (e ⦗ S ⦘ y))
+              ≡ ⟨ “Reflexivity of =” ⟩
+                (∃ y ❙ true • (e ⦗ R ⦘ y) ∧ (e ⦗ S ⦘ y))
+              ≡ ⟨ “Idempotency of ∧” ⟩ 
+                (∃ y ❙ true • (e ⦗ R ⦘ y) ∧ (e ⦗ S ⦘ y)) ∧ (∃ y ❙ true • (e ⦗ R ⦘ y) ∧ (e ⦗ S ⦘ y))
+              ⇒ ⟨ “Monotonicity of ∧” with “Body weakening for ∃” ⟩ 
+                (∃ y ❙ true • (e ⦗ R ⦘ y)) ∧ (∃ y ❙ true • (e ⦗ R ⦘ y) ∧ (e ⦗ S ⦘ y))
+              ⇒ ⟨ “Monotonicity of ∧” with “Body weakening for ∃” ⟩ 
+                (∃ y ❙ true • (e ⦗ R ⦘ y)) ∧ (∃ y ❙ true • (e ⦗ S ⦘ y))
+              ≡ ⟨ “Reflexivity of =” ⟩
+                (∃ y • (e ⦗ R ⦘ y)) ∧ (∃ y • (e ⦗ S ⦘ y)) 
+              ≡ ⟨ “Membership in `Dom`” ⟩
+                (e ∈ Dom R) ∧ (e ∈ Dom S)
+              ≡ ⟨ “Intersection” ⟩
+                e ∈ (Dom R ∩ Dom S)
+
+Theorem “Self-inverse of ˘”: R ˘ ˘      =  R
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `(∀ a • (∀ b • (a ⦗ R  ˘ ˘ ⦘ b ≡ a ⦗ R ⦘ b)))`:
+            For any `a`, `b`:
+                (a ⦗ R  ˘ ˘ ⦘ b)
+              ≡ ⟨ “Relation converse” ⟩ 
+                (a ⦗ R ⦘ b)
+
+Theorem “Monotonicity of ˘”: R ⊆ S      ⇒  R ˘ ⊆ S ˘
+Proof:
+    Assuming `R ⊆ S`:
+        Using “Relation inclusion”:
+            For any `b`, `a`:
+                b ⦗ R ˘ ⦘ a
+              ≡ ⟨ “Relation converse” ⟩
+                a ⦗ R ⦘ b  
+              ⇒ ⟨ Assumption `R ⊆ S` with “Relation inclusion” ⟩ 
+                a ⦗ S ⦘ b
+              ≡ ⟨ “Relation converse” ⟩  
+                b ⦗ S ˘ ⦘ a
+
+Theorem “Isotonicity of ˘”: R ⊆ S   ≡   R ˘ ⊆ S ˘
+Proof:
+    R ⊆ S
+  ≡ ⟨ “Relation inclusion” ⟩
+    (∀ x, y ❙ x ⦗ R ⦘ y • x ⦗ S ⦘ y )
+  ≡ ⟨ “Relation converse” ⟩
+    (∀ x, y ❙ y ⦗ R ˘ ⦘ x • y ⦗ S ˘ ⦘ x ) 
+  ≡ ⟨ “Dummy list permutation for ∀” ⟩
+    (∀ y, x ❙ y ⦗ R ˘ ⦘ x • y ⦗ S ˘ ⦘ x ) 
+  ≡ ⟨ “Relation inclusion” ⟩  
+    R ˘ ⊆ S ˘
+
+Theorem “Domain of converse”: Dom (R ˘) = Ran R
+Proof:
+    Using “Set extensionality”:
+        Subproof for `(∀ x • x ∈ Dom (R ˘) ≡ x ∈ Ran R)`:
+            For any `x`:
+                x ∈ Dom (R ˘) 
+              ≡ ⟨ “Membership in `Dom`” ⟩
+                ∃ y • x ⦗ R ˘ ⦘ y
+              ≡ ⟨ “Relation converse” ⟩
+                ∃ y • y ⦗ R ⦘ x
+              ≡ ⟨ “Membership in `Ran`” ⟩
+                x ∈ Ran R 
+
+Theorem “Converse of ∩”:     (R ∩ S) ˘  =  R ˘ ∩ S ˘
+Proof:
+    Using “Relation extensionality”:
+        Subproof for `(∀ x • (∀ y • x ⦗ (R ∩ S) ˘ ⦘ y ≡ x ⦗ R ˘ ∩ S ˘ ⦘ y ) )`:
+            For any `x`, `y`:
+                x ⦗ (R ∩ S) ˘ ⦘ y 
+              ≡ ⟨ “Relation converse” ⟩
+                y ⦗ (R ∩ S) ⦘ x 
+              ≡ ⟨ “Relation intersection” ⟩
+                (y ⦗ R ⦘ x) ∧ (y ⦗ S ⦘ x) 
+              ≡ ⟨ “Relation converse” ⟩
+                (x ⦗ R ˘ ⦘ y) ∧ (x ⦗ S ˘ ⦘ y) 
+              ≡ ⟨ “Relation intersection” ⟩ 
+                x ⦗ R ˘ ∩ S ˘ ⦘ y
+
+Theorem “Converse of ⨾”:    (R ⨾ S) ˘    =  S ˘ ⨾ R ˘
+Proof:
+    Using “Relation extensionality”:
+        For any `c`, `a`:
+            c ⦗ (R ⨾ S) ˘ ⦘ a
+          ≡ ⟨ “Relation converse” ⟩
+            a ⦗ (R ⨾ S) ⦘ c
+          ≡ ⟨ “Relation composition” ⟩
+            ∃ b • a ⦗ R ⦘ b ∧ b ⦗ S ⦘ c 
+          ≡ ⟨ “Relation converse” ⟩
+            ∃ b • b ⦗ R ˘ ⦘ a ∧ c ⦗ S ˘ ⦘ b 
+          ≡ ⟨ “Symmetry of ∧” ⟩
+            ∃ b • c ⦗ S ˘ ⦘ b ∧ b ⦗ R ˘ ⦘ a
+          ≡ ⟨ “Relation composition” ⟩ 
+            c ⦗ S ˘ ⨾ R ˘ ⦘ a

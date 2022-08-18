@@ -1,0 +1,45 @@
+Homework Notebook 2.2: Implication
+
+Calculation:
+    true ⇒ false
+  ≡ ⟨ “Left-identity of ⇒” ⟩
+    false 
+
+Calculation:
+    false ⇒ true
+  ≡ ⟨ “ex falso quodlibet” ⟩ 
+    true
+
+Calculation:
+    true ⇒ true
+  ≡ ⟨ “Left-identity of ⇒” ⟩
+    true      
+
+Calculation:
+    false ⇒ false
+  ≡ ⟨ “ex falso quodlibet” ⟩
+    true 
+
+Calculation:
+    false ⇒ false
+  ≡ ⟨ “Definition of ¬” ⟩ 
+    ¬ false
+  ≡ ⟨ “Negation of `false`” ⟩
+    true 
+
+Calculation:
+    false ⇒ true
+  ≡ ⟨ “Right-zero of ⇒” ⟩ 
+    true
+
+Calculation:
+    true ⇒ false
+  ≡ ⟨ “Definition of ¬” ⟩
+    ¬ true
+  ≡ ⟨ “Definition of `false`” ⟩
+    false  
+
+Calculation:
+    true ⇒ true
+  ≡ ⟨ “Right-zero of ⇒” ⟩
+    true 

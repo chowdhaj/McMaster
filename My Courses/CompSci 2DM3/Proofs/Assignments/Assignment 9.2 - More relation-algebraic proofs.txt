@@ -1,0 +1,140 @@
+Assignment Notebook 9.2: More Relation-algebraic Proofs
+
+Theorem “Modal rule”:    (Q ⨾ R) ∩ S ⊆ (Q ∩ S ⨾ R ˘) ⨾ R
+Proof:
+    (Q ⨾ R) ∩ S 
+  ⊆⟨ “Dedekind rule” ⟩
+    (Q ∩ S ⨾ R ˘) ⨾ (R ∩ Q ˘ ⨾ S)
+  ⊆⟨ “Monotonicity of ⨾” with “Weakening for ∩” ⟩
+     (Q ∩ S ⨾ R ˘) ⨾ R
+   
+Theorem “Modal rule”:    (Q ⨾ R) ∩ S ⊆ Q ⨾ (R ∩ Q ˘ ⨾ S)
+Proof:
+    (Q ⨾ R) ∩ S
+  ⊆⟨ “Dedekind rule” ⟩
+    (Q ∩ S ⨾ R ˘) ⨾ (R ∩ Q ˘ ⨾ S)
+  ⊆⟨ “Monotonicity of ⨾” with “Weakening for ∩” ⟩
+     Q ⨾ (R ∩ Q ˘ ⨾ S)
+
+Theorem “Hesitation”: R  ⊆  R ⨾ (R ˘ ⨾ R)
+Proof:
+    R 
+  = ⟨ “Identity of ⨾” ⟩
+    R ⨾ Id
+  = ⟨ “Idempotency of ∩” ⟩
+    (R ⨾ Id)  ∩  (R ⨾ Id)
+  ⊆ ⟨ “Modal rule” ⟩
+    R ⨾ (Id ∩ R ˘ ⨾ (R ⨾ Id)) 
+  = ⟨ “Identity of ⨾” ⟩
+    R ⨾ (Id ∩ (R ˘ ⨾ R)) 
+  = ⟨ “Symmetry of ∩” ⟩
+    R ⨾ ((R ˘ ⨾ R) ∩ Id) 
+  ⊆ ⟨ “Monotonicity of ⨾” with “Modal rule” ⟩
+    R ⨾ ( (R ˘ ∩ Id ⨾ R ˘) ⨾ R  )
+  = ⟨ “Identity of ⨾” ⟩
+    R ⨾ ( (R ˘ ∩ R ˘) ⨾ R  )
+  = ⟨ “Idempotency of ∩” ⟩  
+    R ⨾ (R ˘ ⨾ R)
+
+Theorem “LemmeGet”: Q ˘ ⊆ Q ⇒ Q ⨾ Q ⊆ Q  ⇒  (Q ⨾ R) ∩ Q = Q ⨾ (R ∩ Q) 
+Proof:
+    Assuming `Q ˘ ⊆ Q`:
+        Assuming `Q ⨾ Q ⊆ Q`:
+            (Q ⨾ R) ∩ Q 
+          ⊆ ⟨ “Modal rule” ⟩ 
+            Q ⨾ (R ∩ (Q ˘ ⨾ Q))
+          ⊆ ⟨ Monotonicity with Assumption `Q ˘ ⊆ Q` ⟩
+            Q ⨾ (R ∩ (Q ⨾ Q))
+          ⊆ ⟨ Monotonicity with Assumption `Q ⨾ Q ⊆ Q` ⟩
+            Q ⨾ (R ∩ Q)
+          ⊆ ⟨ “Sub-distributivity of ⨾ over ∩” ⟩
+            Q ⨾ R ∩ Q ⨾ Q
+          ⊆ ⟨ “Monotonicity of ∩” with Assumption `Q ⨾ Q ⊆ Q` ⟩
+            (Q ⨾ R) ∩ Q
+
+Theorem “PER factoring”:
+    is-symmetric Q ⇒ is-transitive Q ⇒  Q ⨾ R ∩ Q = Q ⨾ (R ∩ Q)
+Proof:
+    is-symmetric Q ⇒ is-transitive Q ⇒  Q ⨾ R ∩ Q = Q ⨾ (R ∩ Q)
+  = ⟨ “Definition of symmetry” ⟩
+    Q ˘ ⊆ Q  ⇒ is-transitive Q  ⇒  Q ⨾ R ∩ Q = Q ⨾ (R ∩ Q)
+  = ⟨ “Definition of transitivity” ⟩
+    Q ˘ ⊆ Q  ⇒  Q ⨾ Q ⊆ Q  ⇒  
+                              Q ⨾ R ∩ Q = Q ⨾ (R ∩ Q) 
+  = ⟨ “LemmeGet” ⟩ 
+    true
+
+
+Theorem “Reflexive implies total”:
+    is-reflexive R  ⇒  is-total R
+Proof:
+    Assuming `is-reflexive R` and using with “Definition of reflexivity”:
+        Using “Definition of totality”:
+            Id 
+          ⊆ ⟨ Assumption `is-reflexive R` ⟩
+            R
+          = ⟨ “Identity of ⨾” ⟩
+            R ⨾ Id
+          ⊆ ⟨ Monotonicity with Assumption `is-reflexive R` with “Reflexivity of converse” with “Definition of reflexivity” ⟩
+            R ⨾ R ˘
+
+
+Theorem “Idempotency from symmetric and transitive”:
+    is-symmetric R ⇒ is-transitive R ⇒ is-idempotent R
+Proof:
+    Assuming `is-symmetric R` and using with “Definition of symmetry”:
+        Assuming `is-transitive R` and using with “Definition of transitivity”:
+            Using “Definition of idempotency”:
+                Subproof for `R ⨾ R = R`:
+                    R ⨾ R
+                  ⊆ ⟨ Assumption `is-transitive R` ⟩
+                    R 
+                  ⊆ ⟨ “Hesitation” ⟩
+                    R ⨾ (R ˘ ⨾ R)
+                  ⊆ ⟨ Monotonicity with Assumption `is-symmetric R` ⟩
+                    R ⨾ R ⨾ R
+                  ⊆ ⟨ Monotonicity with Assumption `is-transitive R` ⟩
+                    R ⨾ R 
+
+
+Theorem “Right-distributivity of ⨾ with univalent over ∩”:
+    is-univalent F  ⇒  F ⨾ (R ∩ S) = F ⨾ R ∩ F ⨾ S
+Proof:
+    Assuming `is-univalent F` and using with “Definition of univalence”:
+        F ⨾ (R ∩ S) 
+      ⊆ ⟨ “Sub-distributivity of ⨾ over ∩” ⟩ 
+        (F ⨾ R) ∩ (F ⨾ S)
+      ⊆ ⟨ “Modal rule” ⟩
+        F ⨾ (R ∩ (F ˘ ⨾ (F ⨾ S)))
+      = ⟨ “Associativity of ⨾” ⟩
+        F ⨾ (R ∩ ((F ˘ ⨾ F) ⨾ S))
+      ⊆ ⟨ Monotonicity with Assumption `is-univalent F` ⟩
+        F ⨾ (R ∩ (Id ⨾ S))
+      = ⟨ “Identity of ⨾” ⟩
+        F ⨾ (R ∩ S)
+
+Theorem “Swapping mapping across ⊆”:
+    is-mapping F  ⇒  (R ⨾ F ⊆ S  ≡  R ⊆ S ⨾ F ˘)
+Proof:
+    Assuming `is-mapping F` and using with “Definition of mappings”:
+        Using “Mutual implication”:
+            Subproof for `R ⨾ F ⊆ S  ⇒  R ⊆ S ⨾ F ˘`:
+                Assuming `R ⨾ F ⊆ S`:
+                    R 
+                  = ⟨ “Identity of ⨾” ⟩
+                    R ⨾ Id
+                  ⊆ ⟨ Monotonicity with Assumption `is-mapping F` ⟩
+                    R ⨾ (F ⨾ F ˘)
+                  = ⟨ “Associativity of ⨾” ⟩
+                    (R ⨾ F) ⨾ F ˘
+                  ⊆ ⟨ Monotonicity with Assumption `R ⨾ F ⊆ S` ⟩ 
+                    S ⨾ F ˘
+            Subproof for `R ⊆ S ⨾ F ˘  ⇒  R ⨾ F ⊆ S`:
+                Assuming `R ⊆ S ⨾ F ˘`:
+                    R ⨾ F 
+                  ⊆ ⟨ Monotonicity with Assumption `R ⊆ S ⨾ F ˘` ⟩
+                    S ⨾ F ˘ ⨾ F
+                  ⊆ ⟨ Monotonicity with Assumption `is-mapping F` ⟩
+                    S ⨾ Id
+                  = ⟨ “Identity of ⨾” ⟩ 
+                    S

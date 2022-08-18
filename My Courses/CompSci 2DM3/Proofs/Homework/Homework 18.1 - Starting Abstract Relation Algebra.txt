@@ -1,0 +1,216 @@
+Homework 18 Notebook 1: Starting Abstract Relation Algebra
+
+Lemma “Reflexivity of ⊆”: R = S  ⇒  R ⊆ S
+Proof:
+    Assuming `R = S`:
+        R ⊆ S
+      ≡ ⟨ Assumption `R = S` ⟩
+        R ⊆ R
+      ≡ ⟨ “Reflexivity of ⊆” ⟩
+        true
+
+Theorem “Mutual inclusion”: R = S  ≡  R ⊆ S  ∧ S ⊆ R
+Proof:
+      Using “Mutual implication”:
+          Subproof for `R = S ⇒  R ⊆ S  ∧ S ⊆ R`:
+              Assuming `R = S`:
+                  R ⊆ S  ∧ S ⊆ R
+                ≡ ⟨ Assumption `R = S` ⟩
+                  R ⊆ R  ∧ S ⊆ S
+                ≡ ⟨ “Reflexivity of ⊆” ⟩
+                  true ∧ true
+                ≡ ⟨ “Identity of ∧” ⟩
+                  true 
+          Subproof for `R ⊆ S  ∧ S ⊆ R ⇒ R = S`:
+              Assuming `R ⊆ S  ∧ S ⊆ R`:
+                  R = S
+                ⇐ ⟨ “Antisymmetry of ⊆” with “Shunting” ⟩
+                  R ⊆ S  ∧  S ⊆ R
+                ≡ ⟨ Assumption `R ⊆ S  ∧ S ⊆ R` ⟩ 
+                  true
+
+Theorem “Indirect Relation Equality”
+        “Indirect Relation Equality from below”:
+    Q = R  ≡  (∀ S • S ⊆ Q  ≡  S ⊆ R)
+Proof:
+    Using “Mutual implication”:
+        Subproof for `Q = R  ⇒  (∀ S • S ⊆ Q  ≡  S ⊆ R)`:
+            Assuming `Q = R`:
+                For any `S`:
+                    S ⊆ Q  ≡  S ⊆ R
+                  ≡ ⟨ Assumption `Q = R` ⟩
+                    S ⊆ R  ≡  S ⊆ R
+                  ≡ ⟨ “Reflexivity of ≡” ⟩
+                    true  
+        Subproof for `(∀ S • S ⊆ Q  ≡  S ⊆ R) ⇒ Q = R`:
+            Assuming `(∀ S • S ⊆ Q  ≡  S ⊆ R)`:
+                Q = R
+              ≡ ⟨ “Left-identity of ⇒” ⟩ 
+                true ⇒ Q = R 
+              ≡ ⟨ “Antisymmetry of ⊆” ⟩
+                (R ⊆ Q  ⇒  (Q ⊆ R  ⇒  Q = R)) ⇒ Q = R 
+              ≡ ⟨ Assumption `(∀ S • S ⊆ Q  ≡  S ⊆ R)` ⟩
+                (R ⊆ R  ⇒  (Q ⊆ R  ⇒  Q = R)) ⇒ Q = R 
+              ≡ ⟨ “Reflexivity of ⊆” ⟩
+                (true  ⇒  (Q ⊆ R  ⇒  Q = R)) ⇒ Q = R 
+              ≡ ⟨ “Left-identity of ⇒” ⟩
+                (Q ⊆ R  ⇒  Q = R) ⇒ Q = R  
+              ≡ ⟨ Assumption `(∀ S • S ⊆ Q  ≡  S ⊆ R)` ⟩
+                (Q ⊆ Q  ⇒  Q = R) ⇒ Q = R  
+              ≡ ⟨ “Reflexivity of ⊆” ⟩
+                (true  ⇒  Q = R) ⇒ Q = R   
+              ≡ ⟨ “Left-identity of ⇒” ⟩
+                Q = R ⇒ Q = R   
+              ≡ ⟨ “Reflexivity of ⇒” ⟩ 
+                true 
+
+Theorem “Indirect Relation Inclusion”
+        “Indirect Relation Inclusion from above”:
+    Q ⊆ R  ≡  (∀ S • R ⊆ S  ⇒  Q ⊆ S)
+Proof:
+    Using “Mutual implication”:
+        Subproof for `Q ⊆ R  ⇒  (∀ S • R ⊆ S  ⇒  Q ⊆ S)`:
+            Assuming `Q ⊆ R`:
+                For any `S`:
+                    R ⊆ S  ⇒  Q ⊆ S
+                  ≡ ⟨ “Left-identity of ⇒” ⟩
+                    true ⇒ R ⊆ S  ⇒  Q ⊆ S
+                  ≡ ⟨ Assumption `Q ⊆ R` ⟩
+                    Q ⊆ R ⇒ R ⊆ S ⇒ Q ⊆ S
+                  ≡ ⟨ “Transitivity of ⊆” ⟩
+                    true 
+        Subproof for `(∀ S • R ⊆ S  ⇒  Q ⊆ S) ⇒  Q ⊆ R`:
+            Assuming `(∀ S • R ⊆ S  ⇒  Q ⊆ S)`:
+                Q ⊆ R
+              ≡ ⟨ “Left-identity of ⇒” ⟩
+                true ⇒ Q ⊆ R
+              ≡ ⟨ “Reflexivity of ⊆” ⟩
+                R ⊆ R ⇒ Q ⊆ R
+              ≡ ⟨ Assumption `(∀ S • R ⊆ S  ⇒  Q ⊆ S)` ⟩
+                true  
+
+Lemma “Cancellation of ˘”:
+    R ˘ = S ˘  ≡  R = S
+Proof:
+    Using “Mutual implication”:
+        Subproof for `R ˘ = S ˘  ⇒  R = S`:
+            Assuming `R ˘ = S ˘`:
+                R = S
+              ≡ ⟨ “Self-inverse of ˘” ⟩
+                R ˘ ˘ = S ˘ ˘
+              ≡ ⟨ Assumption `R ˘ = S ˘` ⟩
+                S ˘ ˘ = S ˘ ˘
+              ≡ ⟨ “Reflexivity of =” ⟩
+                true  
+        Subproof for `R = S  ⇒ R ˘ = S ˘`:
+            Assuming `R = S`:
+                R ˘ = S ˘
+              ≡ ⟨ Assumption `R = S` ⟩
+                S ˘ = S ˘
+              ≡ ⟨ “Reflexivity of =” ⟩
+                true 
+
+Theorem “Isotonicity of ˘”:  R ⊆ S  ≡  R ˘ ⊆ S ˘
+Proof:
+    Using “Mutual implication”:
+        Subproof for `R ⊆ S  ⇒  R ˘ ⊆ S ˘`:
+            R ⊆ S  ⇒  R ˘ ⊆ S ˘
+          ≡ ⟨ “Monotonicity of ˘” ⟩
+            true 
+        Subproof for `R ˘ ⊆ S ˘  ⇒  R ⊆ S`:
+            Assuming `R ˘ ⊆ S ˘`:
+                R ⊆ S
+              ≡ ⟨ “Left-identity of ⇒” ⟩
+                true ⇒ R ⊆ S
+              ≡ ⟨ Assumption `R ˘ ⊆ S ˘` ⟩ 
+                R ˘ ⊆ S ˘ ⇒ R ⊆ S
+              ≡ ⟨ “Self-inverse of ˘” ⟩
+                R ˘ ⊆ S ˘ ⇒ R ˘ ˘ ⊆ S ˘ ˘
+              ≡ ⟨ “Monotonicity of ˘” ⟩ 
+                true  
+
+Lemma “Definition of symmetry”:
+    is-symmetric R   ≡   R ˘ = R
+Proof:
+    Using “Mutual implication”:
+        Subproof for `is-symmetric R   ⇒   R ˘ = R`:
+            Assuming `is-symmetric R`:
+                R ˘ = R 
+              ⇐ ⟨ “Antisymmetry of ⊆” with Assumption `is-symmetric R` with “Definition of symmetry” ⟩
+                R ⊆ R ˘
+              ≡ ⟨ “Self-inverse of ˘” ⟩  
+                R ˘ ˘ ⊆ R ˘ ˘ ˘
+              ≡ ⟨ “Isotonicity of ˘” ⟩ 
+                R ˘ ⊆ R ˘ ˘
+              ≡ ⟨ “Self-inverse of ˘” ⟩ 
+                R ˘ ⊆ R
+              ≡ ⟨ Assumption `is-symmetric R` with “Definition of symmetry” ⟩
+                true 
+        Subproof for `R ˘ = R   ⇒   is-symmetric R`:
+            Assuming `R ˘ = R`:
+                is-symmetric R
+              ≡ ⟨ “Definition of symmetry” ⟩
+                R ˘ ⊆ R
+              ≡ ⟨ Assumption `R ˘ = R` ⟩
+                R ˘ ⊆ R ˘
+              ≡ ⟨ “Reflexivity of ⊆” ⟩
+                true
+
+Theorem “Reflexivity of converse”:
+    is-reflexive R ≡ is-reflexive (R ˘)
+Proof:
+    Using “Mutual implication”:
+        Subproof for `is-reflexive R ⇒ is-reflexive (R ˘)`:
+            Assuming `is-reflexive R`:
+                is-reflexive (R ˘)
+              ≡ ⟨ “Definition of reflexivity” ⟩
+                Id ⊆ R ˘
+              ≡ ⟨ “Converse of `Id`” ⟩
+                Id ˘ ⊆ R ˘
+              ⇐ ⟨ “Monotonicity of ˘” ⟩
+                Id ⊆ R
+              ≡ ⟨ Assumption `is-reflexive R` with “Definition of reflexivity” ⟩   
+                true 
+        Subproof for `is-reflexive (R ˘) ⇒ is-reflexive R`:
+            Assuming `is-reflexive (R ˘)`:
+                is-reflexive R
+              ≡ ⟨ “Definition of reflexivity” ⟩
+                Id ⊆ R
+              ≡ ⟨ “Self-inverse of ˘” ⟩
+                Id ˘ ˘ ⊆ R ˘ ˘
+              ≡ ⟨ “Converse of `Id`” ⟩
+                Id ˘ ⊆ R ˘ ˘
+              ⇐ ⟨ “Monotonicity of ˘” ⟩
+                Id ⊆ R ˘
+              ≡ ⟨ Assumption `is-reflexive (R ˘)` with “Definition of reflexivity” ⟩
+                true
+
+Theorem “Reflexivity of ⨾”:
+    is-reflexive R ⇒ is-reflexive S ⇒ is-reflexive (R ⨾ S)
+Proof:
+    is-reflexive R ⇒ is-reflexive S ⇒ is-reflexive (R ⨾ S)
+  ≡ ⟨ “Definition of reflexivity” and “Identity of ⨾” ⟩ 
+    Id ⊆ R ⇒ Id ⊆ S ⇒ Id ⨾ Id ⊆ (R ⨾ S)  — This is “Monotonicity of ⨾”
+
+Theorem “Symmetry of converse”:
+    is-symmetric R ≡ is-symmetric (R ˘)
+Proof:
+    Using “Mutual implication”:
+        Subproof for `is-symmetric R ⇒ is-symmetric (R ˘)`:
+            Assuming `is-symmetric R`:
+                is-symmetric (R ˘)
+              ≡ ⟨ “Definition of symmetry” ⟩
+                R ˘ ˘ ⊆ R ˘
+              ≡ ⟨ Assumption `is-symmetric R` with “Definition of symmetry” ⟩
+                true 
+        Subproof for `is-symmetric (R ˘) ⇒ is-symmetric R`:
+            Assuming `is-symmetric (R ˘)`:
+                is-symmetric R
+              ≡ ⟨ “Definition of symmetry” ⟩
+                R ˘ ⊆ R
+              ≡ ⟨ “Self-inverse of ˘” ⟩
+                R ˘ ˘ ˘ ⊆ R ˘ ˘
+              ⇐ ⟨ “Monotonicity of ˘” ⟩
+                R ˘ ˘ ⊆ R ˘ 
+              ≡ ⟨ Assumption `is-symmetric (R ˘)` with “Definition of symmetry” ⟩ 
+                true 

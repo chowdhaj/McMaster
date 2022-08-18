@@ -1,0 +1,170 @@
+Homework 6: Order on the Natural Numbers
+
+Theorem “Zero is not successor”: 0 ≠ suc n
+Proof:
+    0 ≠ suc n
+  ≡ ⟨ “Definition of ≠” ⟩
+    ¬ (0 = suc n)
+  ≡ ⟨ “Zero is not successor” ⟩
+    ¬ false
+  ≡ ⟨ “Negation of `false`” ⟩ 
+    true
+
+Theorem “Zero is not one”: 0 ≠ 1
+Proof:
+    0 ≠ 1
+  ≡ ⟨ Fact `suc 0 = 1` ⟩
+    0 ≠ suc 0
+  ≡ ⟨ “Definition of ≠” ⟩
+    ¬ (0 = suc 0)
+  ≡ ⟨ “Zero is not successor” ⟩ 
+    ¬ false
+  ≡ ⟨ “Negation of `false`” ⟩ 
+    true
+
+Theorem “Zero is not one”: 0 = 1  ≡  false
+Proof:
+    0 = 1
+  ≡ ⟨ Fact `suc 0 = 1` ⟩
+    0 = suc 0
+  ≡ ⟨ “Zero is not successor” ⟩
+    false
+
+Theorem “Cancellation of +”:
+    k + m = k + n  ≡  m = n
+Proof:
+  By induction on `k : ℕ`:
+    Base case:
+        0 + m = 0 + n
+      ≡⟨ “Left-identity of +” ⟩
+        m = n
+    Induction step:
+        suc k + m = suc k + n
+      ≡ ⟨ “Definition of + for `suc`” ⟩
+        suc (k + m) = suc (k + n)
+      ≡ ⟨ “Cancellation of `suc`” ⟩
+        k + m = k + n 
+      ≡ ⟨ Induction hypothesis ⟩ 
+        m = n
+
+Theorem “Zero sum”:
+    0 = a + b  ≡  0 = a  ∧  0 = b
+Proof:
+  By induction on `a : ℕ`:
+    Base case:
+        0 = 0 + b
+      ≡ ⟨ “Left-identity of +” ⟩
+        0 = b
+      ≡ ⟨ “Identity of ∧” ⟩
+        true ∧ 0 = b  
+      ≡ ⟨ “Reflexivity of =” ⟩ 
+        0 = 0  ∧  0 = b
+    Induction step:
+        0 = suc a + b
+      ≡ ⟨ “Definition of + for `suc`” ⟩
+        0 = suc (a + b)
+      ≡ ⟨ “Zero is not successor” ⟩
+        false
+      ≡ ⟨ “Zero of ∧” ⟩ 
+        false ∧ 0 = b
+      ≡ ⟨ “Zero is not successor” ⟩
+        0 = suc a ∧ 0 = b 
+
+Theorem “Zero is unique least element”:
+    a ≤ 0  ≡  a = 0
+Proof:
+  By induction on `a : ℕ`:
+    Base case:
+        0 ≤ 0 ≡ 0 = 0
+      ≡ ⟨ “Zero is least element” ⟩
+        true ≡ 0 = 0
+      ≡ ⟨ “Reflexivity of =” ⟩
+        true ≡ true
+      ≡ ⟨ “Identity of ≡” ⟩
+        true  
+    Induction step:
+        suc a ≤ 0 ≡ suc a = 0
+      ≡ ⟨ “Successor is not at most zero” ⟩
+        false ≡ suc a = 0
+      ≡ ⟨ “Zero is not successor” ⟩
+        false ≡ false
+      ≡ ⟨ “Identity of ≡” ⟩
+        true   
+
+Theorem “Reflexivity of ≤”: a ≤ a
+Proof:
+    By induction on `a : ℕ`:
+        Base case:
+            0 ≤ 0
+          = ⟨ “Zero is least element” ⟩
+            true 
+        Induction step:
+            suc a ≤ suc a
+          = ⟨ “Isotonicity of successor” ⟩
+            a ≤ a — This is Induction hypothesis
+
+Theorem “Antisymmetry of ≤”:
+    a ≤ b ⇒ b ≤ a ⇒ a = b
+Proof:
+  By induction on `a : ℕ`:
+    Base case `0 ≤ b ⇒ b ≤ 0 ⇒ 0 = b`:
+        0 ≤ b ⇒ b ≤ 0 ⇒ 0 = b
+      ≡ ⟨ “Zero is least element” ⟩
+        true ⇒ b ≤ 0 ⇒ 0 = b
+      ≡ ⟨ “Left-identity of ⇒” ⟩
+        b ≤ 0 ⇒ 0 = b
+      ≡ ⟨ “Zero is unique least element” ⟩
+        b = 0 ⇒ 0 = b 
+      ≡ ⟨ “Reflexivity of ⇒” ⟩
+        true 
+    Induction step `suc a ≤ b ⇒ b ≤ suc a ⇒ suc a = b`:
+      By induction on `b : ℕ`:
+        Base case `suc a ≤ 0 ⇒ 0 ≤ suc a ⇒ suc a = 0`:
+            suc a ≤ 0 ⇒ 0 ≤ suc a ⇒ suc a = 0
+          ≡⟨ “Successor is not at most zero” ⟩
+            false ⇒ 0 ≤ suc a ⇒ suc a = 0
+          ≡ ⟨ “ex falso quodlibet” ⟩
+            true 
+        Induction step `suc a ≤ suc b ⇒ suc b ≤ suc a ⇒ suc a = suc b`:
+            suc a ≤ suc b ⇒ suc b ≤ suc a ⇒ suc a = suc b
+          ≡ ⟨ “Isotonicity of successor” ⟩
+            a ≤ b ⇒ b ≤ a ⇒ suc a = suc b
+          ≡ ⟨ “Cancellation of `suc`” ⟩
+            a ≤ b ⇒ b ≤ a ⇒ a = b — This is Induction hypothesis `a ≤ b ⇒ b ≤ a ⇒ a = b`
+              
+Theorem “Transitivity of ≤”:
+    a ≤ b ⇒ b ≤ c ⇒ a ≤ c
+Proof:
+    By induction on `a : ℕ`:
+        Base case:
+            0 ≤ b ⇒ b ≤ c ⇒ 0 ≤ c
+          ≡ ⟨ “Zero is least element” ⟩
+            true ⇒ b ≤ c ⇒ 0 ≤ c
+          ≡ ⟨ “Left-identity of ⇒” ⟩
+            b ≤ c ⇒ 0 ≤ c
+          ≡ ⟨ “Zero is least element” ⟩
+            b ≤ c ⇒ true
+          ≡ ⟨ “Right-zero of ⇒” ⟩
+            true   
+        Induction step:
+            By induction on `b : ℕ`:
+                Base case:
+                    suc a ≤ 0 ⇒ 0 ≤ c ⇒ suc a ≤ c
+                  ≡ ⟨ “Successor is not at most zero” ⟩
+                    false ⇒ 0 ≤ c ⇒ suc a ≤ c
+                  ≡ ⟨ “ex falso quodlibet” ⟩
+                    true 
+                Induction step:
+                    By induction on `c : ℕ`:
+                        Base case:
+                            suc a ≤ suc b ⇒ suc b ≤ 0 ⇒ suc a ≤ 0
+                          ≡ ⟨ “Successor is not at most zero” ⟩
+                            suc a ≤ suc b ⇒ false ⇒ false
+                          ≡ ⟨ “Reflexivity of ⇒” ⟩
+                            suc a ≤ suc b ⇒ true
+                          ≡ ⟨ “Right-zero of ⇒” ⟩
+                            true 
+                        Induction step:
+                             suc a ≤ suc b ⇒ suc b ≤ suc c ⇒ suc a ≤ suc c
+                           ≡ ⟨ “Isotonicity of successor” ⟩ 
+                             a ≤ b ⇒ b ≤ c ⇒ a ≤ c — This is Induction hypothesis `a ≤ b ⇒ b ≤ c ⇒ a ≤ c`

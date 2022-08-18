@@ -1,0 +1,61 @@
+Homework Notebook 13.1: Conditional Commands
+
+Fact (H13.1a):  m ≤ n ⇒⁅ if m = n then n := suc n else skip fi ⁆ m < n
+Proof:
+    m < n
+  ⁅ if m = n then n := suc n else skip fi ⁆⇐ ⟨ Subproof:
+      Using “Conditional”:
+        Subproof:
+            m < n
+          ⁅ n := suc n ⁆⇐  ⟨ “Assignment” with substitution ⟩
+            m < suc n
+          = ⟨ “Definition of ≤ in terms of `suc` and <” ⟩
+            m ≤ n 
+          ⇐  ⟨ “Weakening” ⟩
+            m ≤ n ∧ m = n
+        Subproof:
+            m < n
+          ⁅ skip ⁆⇐  ⟨ “skip” ⟩
+            m < n
+          ⇐ ⟨ “Strengthening” ⟩
+            m < n ∧ ¬ (m = n)
+          = ⟨ “Absorption” ⟩ 
+            (m < n ∨ m = n) ∧ ¬ (m = n)
+          = ⟨ “Definition of ≤ in terms of <” ⟩  
+            m ≤ n ∧ ¬ (m = n)
+    ⟩
+    m ≤ n
+
+Fact (H13.1b):  true ⇒⁅ if even n then n := n + 2 else n := n + n fi ⁆ even n
+Proof:
+    even n
+  ⁅ if even n then n := n + 2 else n := n + n fi ⁆⇐ ⟨ Subproof:
+      Using “Conditional”:
+          Subproof:
+              even n
+            ⁅ n := n + 2 ⁆⇐ ⟨ “Assignment” with substitution ⟩
+              even (n + 2) 
+            = ⟨ “Even addition” ⟩
+              even n ≡ even 2 
+            = ⟨ Fact `suc (suc 0) = 2` ⟩
+              even n ≡ even (suc (suc 0))
+            = ⟨ “Even successor” ⟩
+              even n ≡ odd (suc 0)
+            = ⟨ “Odd successor” ⟩
+              even n ≡ even 0
+            = ⟨ “Zero is even” ⟩
+              even n ≡ true
+            = ⟨ “Identity of ≡” ⟩ 
+              even n
+            = ⟨ “Identity of ∧” ⟩ 
+              even n ∧ true
+          Subproof:
+              even n
+            ⁅ n := n + n ⁆⇐ ⟨ “Assignment” with substitution ⟩ 
+              even (n + n)
+            = ⟨ “Even double” ⟩
+              true
+            ⇐ ⟨ “Weakening” ⟩ 
+              true ∧ ¬ even n
+    ⟩ 
+    true 

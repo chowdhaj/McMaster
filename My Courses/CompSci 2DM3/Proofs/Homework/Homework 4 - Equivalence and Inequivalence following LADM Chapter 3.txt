@@ -1,0 +1,82 @@
+Homework 4: Equivalence and Inequivalence following LADM Chapter 3
+
+Calculation:
+    p ≡ p ≡ q ≡ q
+  ≡⟨ “Symmetry of ≡” with `p ≔ q ≡ q ≡ p ` ⟩
+    p ≡ p
+  ≡⟨ “Symmetry of ≡” with `p ≔ q ≡ q ≡ p ` ⟩
+    p ≡ q ≡ q ≡ p
+
+Theorem (3.4): true
+Proof:
+    true
+  ≡⟨ “Identity of ≡” ⟩
+    true ≡ true
+  ≡⟨ “Identity of ≡” ⟩
+    true ≡ q ≡ q  — This is “Identity of ≡” with `q ≔ q`
+
+Theorem (3.5) “Reflexivity of ≡”: p ≡ p
+Proof:
+    p ≡ p
+  ≡ ⟨ “Identity of ≡” ⟩
+    true
+
+Theorem (3.11) “¬ connection”: (¬ p ≡ q) ≡ (p ≡ ¬ q)
+Proof:
+    (¬ p ≡ q)
+  = ⟨ “Commutativity of ¬ with ≡” ⟩
+    ¬ (p ≡ q)
+  = ⟨ “Symmetry of ≡” ⟩
+    ¬ (q ≡ p)
+  = ⟨ “Commutativity of ¬ with ≡” ⟩
+    ¬ q ≡ p
+  = ⟨ “Symmetry of ≡” ⟩
+    p ≡ ¬ q 
+     
+Theorem (3.12) “Double negation”: ¬ ¬ p ≡ p
+Proof:
+    ¬ ¬ p ≡ p
+  = ⟨ “Commutativity of ¬ with ≡” ⟩
+    ¬ (¬ p ≡ p)
+  = ⟨ “¬ connection” ⟩
+    ¬ (p ≡ ¬ p)
+  = ⟨ “Commutativity of ¬ with ≡” ⟩
+    (¬ p ≡ ¬ p) — This is “Reflexivity of =”
+     
+Theorem (3.13) “Negation of `false`”: ¬ false ≡ true
+Proof:
+    ¬ false ≡ true
+  = ⟨ “¬ connection” ⟩
+    false ≡ ¬ true
+  = ⟨ “Definition of `false`” ⟩
+    ¬ true ≡ ¬ true — This is “Reflexivity of =”  
+
+Theorem (3.16) “Symmetry of ≢”: (p ≢ q) ≡ (q ≢ p)
+Proof:
+    (p ≢ q)
+  ≡ ⟨ “Definition of ≢” ⟩
+    ¬(p ≡ q)
+  ≡ ⟨ “Symmetry of ≡” ⟩
+    ¬ (q ≡ p)    
+  ≡ ⟨ “Definition of ≢” ⟩ 
+    (q ≢ p)
+
+Theorem (3.17) “Associativity of ≢”: ((p ≢ q) ≢ r) ≡ (p ≢ (q ≢ r))
+Proof:
+    (p ≢ q) ≢ r
+  ≡ ⟨ “Definition of ≢” ⟩
+    ¬ (p ≡ q) ≢ r
+  ≡ ⟨ “Definition of ≢” ⟩
+    ¬ (¬ (p ≡ q) ≡ r)
+  ≡ ⟨ “Commutativity of ¬ with ≡” ⟩
+    ¬ ((¬ p ≡ q) ≡ r)
+  ≡ ⟨ “Associativity of ≡” ⟩
+    ¬ (¬ p ≡ (q ≡ r))
+  ≡ ⟨ “Commutativity of ¬ with ≡” ⟩
+    ¬ ¬ p ≡ (q ≡ r)
+  ≡ ⟨ “¬ connection” ⟩
+    ¬ p ≡ ¬ (q ≡ r)
+  ≡ ⟨ “Commutativity of ¬ with ≡” ⟩
+    ¬ (p ≡ ¬ (q ≡ r)) 
+  ≡ ⟨ “Definition of ≢” ⟩
+    p ≢ (q ≢ r)

@@ -1,0 +1,20 @@
+video5.subset.theorem.txt
+
+explain the theorem: (R c S ^ S c R) == (R = S)
+if R is a subset of S and S is a subset of R, then 'R' and 'S' are equal; they are the same sets.
+
+this makes sense because both are subsets of each other, and that's only possible if they contain identical elements. 
+
+show at least 3 examples
+
+--------
+Synopsis
+--------
+
+- 
+
+------
+Script
+------
+
+- 

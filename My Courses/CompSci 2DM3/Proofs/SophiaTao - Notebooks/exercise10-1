@@ -1,0 +1,72 @@
+Theorem “Singletons are non-empty”: ∀ x • ∃ y • y ∈ {x}
+Proof:
+  For any `x`:
+      ∃ y • y ∈ {x}
+    ⇐⟨ “Consequence” and “∃-Introduction” ⟩
+      (y ∈ {x})[y ≔ x]
+    =⟨ Substitution ⟩
+      x ∈ {x}
+    =⟨ “Reflexivity of =” ⟩
+      x ∈ { z ❙ z = x }
+    =⟨ “Simple Membership” ⟩
+      (x = z)[z ≔ x]
+    =⟨ Substitution ⟩
+      x = x — This is “Reflexivity of =”
+
+Theorem “Refl”: ∀ a • ∃ b • {a} = {b}
+Proof:
+  For any `a`:
+      ∃ b • {a} = {b}
+    ⇐⟨ “Consequence” and “∃-Introduction” ⟩
+      ({a} = {b}) [b ≔ a]
+    =⟨ Substitution ⟩
+       {a} = {a}  — This is “Reflexivity of =”
+
+Theorem “Refl reloaded”: ∀ a • ∃ b • ∃ c • ∃ d • {a, b} = {c, d}
+Proof:
+  For any `a`:
+      ∃ b • ∃ c • ∃ d • {a, b} = {c, d}
+    ⇐⟨ “Consequence” and “∃-Introduction” ⟩
+      (∃ c • ∃ d • {a, b} = {c, d})[ b ≔ a ]
+    =⟨ Substitution ⟩
+      (∃ c • ∃ d • {a, a} = {c, d})
+    ⇐⟨ “Consequence” and “∃-Introduction” ⟩
+      ( ∃ d • {a, a} = {c, d})[ c≔ a ]
+    =⟨ Substitution ⟩ 
+      ( ∃ d • {a, a} = {a, d})
+    ⇐⟨ “Consequence” and “∃-Introduction” ⟩
+      ({a, a} = {a, d}) [ d ≔ a ]
+    =⟨ Substitution ⟩
+       {a, a} = {a , a} — This is “Reflexivity of =”
+
+Theorem “Refl interleaved”: ∀ a • ∃ c • ∀ d • ∃ b • {a, b} = {c, d}
+Proof:
+  For any `a`:
+      ∃ c • ∀ d • ∃ b • {a, b} = {c, d}
+    ⇐⟨ “Consequence” and “∃-Introduction” ⟩
+      (∀ d • ∃ b • {a, b} = {c, d})[ c ≔ a ]
+    =⟨ Substitution ⟩
+      (∀ d • ∃ b • {a, b} = {a, d})  
+    =⟨ Subproof for `∀ d • ∃ b • {a, b} = {a, d}`:
+        For any `d`:
+            ∃ b • {a, b} = {a, d}
+          ⇐⟨ “Consequence” and “∃-Introduction” ⟩
+            ( {a, b} = {a, d} ) [ b ≔ d ]
+          =⟨ Substitution ⟩
+              { a, d } = {a, d} — This is “Reflexivity of =”
+           
+     ⟩
+           true
+      
+Theorem “Solitude”: ∀ a : X • ∃ S : set X • ∀ b : X ❙ b ∈ S • b = a
+Proof:
+  For any `a`:
+      ∃ S : set X • ∀ b : X ❙ b ∈ S • b = a
+    ⇐⟨ “Consequence” and “∃-Introduction” ⟩
+      (∀ b : X ❙ b ∈ S • b = a) [S ≔ {}]
+    =⟨ Substitution ⟩
+      (∀ b : X ❙ b ∈ {} • b = a)
+    =⟨ “Empty set” ⟩
+       (∀ b : X ❙ false • b = a)
+    =⟨ “Empty range for ∀” ⟩
+       true

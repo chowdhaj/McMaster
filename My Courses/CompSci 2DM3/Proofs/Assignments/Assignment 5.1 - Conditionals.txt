@@ -1,0 +1,154 @@
+Assignment Notebook 5.1: Conditionals
+
+Theorem “if idempotency”: if b then x else x fi = x
+Proof:
+    if b then x else x fi = x
+  ≡ ⟨ Substitution ⟩
+    (x = z)[z ≔ if b then x else x fi]
+  ≡ ⟨ “Definition of `if`” ⟩
+    (b ⇒ (x = z)[z ≔ x]) ∧ (¬ b ⇒ (x = z)[z ≔ x])
+  ≡ ⟨ Substitution ⟩
+    (b ⇒ (x = x)) ∧ (¬ b ⇒ (x = x))
+  ≡ ⟨ “Reflexivity of =” ⟩
+    (b ⇒ true) ∧ (¬ b ⇒ true)
+  ≡ ⟨ “Right-zero of ⇒”, “Identity of ∧” ⟩
+    true
+
+Theorem “if swap”:
+     if   b then x else y fi
+   = if ¬ b then y else x fi
+Proof:
+    if b then x else y fi = if ¬ b then y else x fi
+  ≡ ⟨ Substitution ⟩
+    (if b then x else y fi = z)[z ≔ if ¬ b then y else x fi]
+  ≡ ⟨ “Definition of `if`” ⟩
+    (¬ b ⇒ (if b then x else y fi = z)[z ≔ y]) ∧ (¬ ¬ b ⇒ (if b then x else y fi = z)[z ≔ x])
+  ≡ ⟨ Substitution ⟩
+    (¬ b ⇒ (z = y)[z ≔ if b then x else y fi]) ∧ (¬ ¬ b ⇒ (z = x)[z ≔ if b then x else y fi])
+  ≡ ⟨ “Definition of `if`” ⟩
+    (¬ b ⇒ (b ⇒ (z = y)[z ≔ x]) ∧ (¬ b ⇒ (z = y)[z ≔ y])) ∧ (¬ ¬ b ⇒ ((b ⇒ (z = x)[z ≔ x]) ∧ (¬ b ⇒ (z = x)[z ≔ y])))
+  ≡ ⟨ Substitution ⟩
+    (¬ b ⇒ (b ⇒ (x = y)) ∧ (¬ b ⇒ (y = y))) ∧ (¬ ¬ b ⇒ ((b ⇒ (x = x)) ∧ (¬ b ⇒ (y = x))))
+  ≡ ⟨ “Reflexivity of =”, “Right-zero of ⇒”, “Identity of ∧” ⟩
+    (¬ b ⇒ (b ⇒ (x = y))) ∧ (¬ ¬ b ⇒ ((¬ b ⇒ (y = x))))
+  ≡ ⟨ “Double negation” ⟩
+    (¬ b ⇒ (b ⇒ (x = y))) ∧ (b ⇒ ((¬ b ⇒ (y = x))))
+  ≡ ⟨ “Self-distributivity of ⇒” ⟩
+    ((¬ b ⇒ b) ⇒ (¬ b ⇒ (x = y))) ∧ (b ⇒ ((¬ b ⇒ (y = x))))
+  ≡ ⟨ “Definition of ⇒” ⟩
+    ((¬ ¬ b ∨ b) ⇒ (¬ b ⇒ (x = y))) ∧ (b ⇒ ((¬ b ⇒ (y = x))))
+  ≡ ⟨ “Double negation” ⟩
+    ((b ∨ b) ⇒ (¬ b ⇒ (x = y))) ∧ (b ⇒ ((¬ b ⇒ (y = x))))
+  ≡ ⟨ “Idempotency of ∨”, “Idempotency of ∧” ⟩
+    ((b) ⇒ (¬ b ⇒ (x = y)))
+  ≡ ⟨ “Shunting” ⟩
+    ((b ∧ ¬ b) ⇒ (x = y))
+  ≡ ⟨ “Contradiction”, “ex falso quodlibet”⟩
+    true 
+
+Theorem “if then=true”: if R then true else P fi   ≡  R ∨ P
+Proof:
+    if R then true else P fi   ≡  R ∨ P
+  ≡ ⟨ Substitution ⟩
+    (z ≡  R ∨ P)[z ≔ if R then true else P fi]
+  ≡ ⟨ “Definition of `if`” ⟩
+    (R ⇒ (z ≡  R ∨ P)[z ≔ true]) ∧ (¬ R ⇒ (z ≡  R ∨ P)[z ≔ P])
+  ≡ ⟨ Substitution, “Identity of ≡” ⟩
+    (R ⇒ (R ∨ P)) ∧ (¬ R ⇒ (P ≡  R ∨ P))
+  ≡ ⟨ “Definition of ⇒” ⟩
+    (R ⇒ (R ∨ P)) ∧ (¬ ¬ R ∨ (P ≡  R ∨ P))
+  ≡ ⟨ “Double negation” ⟩
+    (R ⇒ (R ∨ P)) ∧ (R ∨ (P ≡  R ∨ P))
+  ≡ ⟨ “Distributivity of ∨ over ≡” ⟩
+    (R ⇒ (R ∨ P)) ∧ ((R ∨ P ≡  R ∨ R ∨ P))
+  ≡ ⟨ “Idempotency of ∨” ⟩
+    (R ⇒ (R ∨ P)) ∧ ((R ∨ P ≡  R ∨ P))
+  ≡ ⟨ “Reflexivity of ≡”, “Identity of ∧” ⟩
+    (R ⇒ (R ∨ P))
+  ≡ ⟨ “Definition of ⇒” ⟩ 
+    (¬ R ∨ (R ∨ P))
+  ≡ ⟨ “Excluded middle”, “Zero of ∨”  ⟩
+    true 
+ 
+Theorem “if else=false”: if R then P else false fi   ≡  R ∧ P
+Proof:
+    if R then P else false fi   ≡  R ∧ P
+  ≡⟨ Substitution ⟩
+    (z ≡  R ∧ P)[z ≔ if R then P else false fi]
+  ≡ ⟨ “Definition of `if`” ⟩
+    (R ⇒ (z ≡  R ∧ P)[z ≔ P]) ∧ (¬ R ⇒ (z ≡  R ∧ P)[z ≔ false])
+  ≡ ⟨ Substitution ⟩
+    (R ⇒ (P ≡  R ∧ P)) ∧ (¬ R ⇒ (false ≡  R ∧ P))
+  ≡ ⟨ “Definition of `false`” ⟩
+    (R ⇒ (P ≡  R ∧ P)) ∧ (¬ R ⇒ (¬ true ≡  R ∧ P))
+  ≡ ⟨ “Commutativity of ¬ with ≡” ⟩
+    (R ⇒ (P ≡  R ∧ P)) ∧ (¬ R ⇒ ¬ (true ≡  R ∧ P))
+  ≡ ⟨ “Identity of ≡”, “De Morgan” ⟩
+    (R ⇒ (P ≡  R ∧ P)) ∧ (¬ R ⇒ (¬ R ∨ ¬ P))
+  ≡ ⟨ “Definition of ⇒” ⟩
+    (¬ R ∨ (P ≡  R ∧ P)) ∧ (¬ ¬ R ∨ (¬ R ∨ ¬ P))
+  ≡ ⟨ “Double negation” ⟩ 
+    (¬ R ∨ (P ≡  R ∧ P)) ∧ (R ∨ (¬ R ∨ ¬ P))
+  ≡ ⟨ “Golden rule” ⟩
+    (¬ R ∨ (P ≡  (R ≡ P) ≡ (R ∨ P))) ∧ (R ∨ (¬ R ∨ ¬ P))
+  ≡ ⟨ “Distributivity of ∨ over ≡” ⟩
+    ((¬ R ∨ P ≡  (¬ R ∨ R ≡ ¬ R ∨ P) ≡ ¬ R ∨ (R ∨ P))) ∧ (R ∨ (¬ R ∨ ¬ P))
+  ≡ ⟨ “Excluded middle” ⟩
+    (¬ R ∨ P ≡  (true ≡ ¬ R ∨ P) ≡ true ∨ P) ∧ (true ∨ ¬ P)
+  ≡ ⟨ “Identity of ≡”, “Zero of ∨” ⟩
+    (¬ R ∨ P ≡  (¬ R ∨ P) ≡ true) ∧ true
+  ≡ ⟨ “Identity of ≡”, “Idempotency of ∧” ⟩
+    true 
+
+Theorem “`if` distributivity”:
+    E[z ≔ if b then x else y fi]
+  = if b then E[z ≔ x] else E[z ≔ y] fi
+Proof:
+    E[z ≔ if b then x else y fi] = if b then E[z ≔ x] else E[z ≔ y] fi
+  ≡ ⟨ Substitution ⟩ 
+    (E[z ≔ k] = if b then E[z ≔ x] else E[z ≔ y] fi)[k ≔ if b then x else y fi]
+  ≡ ⟨ “Definition of `if`” ⟩
+    (b ⇒ (E[z ≔ k] = if b then E[z ≔ x] else E[z ≔ y] fi)[k ≔ x]) 
+    ∧ (¬ b ⇒ (E[z ≔ k] = if b then E[z ≔ x] else E[z ≔ y] fi)[k ≔ y])
+  ≡ ⟨ Substitution ⟩
+    (b ⇒ ((E[z ≔ x] = r)[r ≔ if b then E[z ≔ x] else E[z ≔ y] fi])) 
+    ∧ (¬ b ⇒ ((E[z ≔ y] = q)[q ≔ if b then E[z ≔ x] else E[z ≔ y] fi]))
+  ≡ ⟨ “Definition of `if`” ⟩
+    (b ⇒ (b ⇒ (E[z ≔ x] = r)[r ≔ E[z ≔ x]]) ∧ (¬ b ⇒ (E[z ≔ x] = r)[r ≔ E[z ≔ y]])) 
+    ∧ (¬ b ⇒ ((b ⇒ (E[z ≔ y] = q)[q ≔ E[z ≔ x]]) ∧ (¬ b ⇒ (E[z ≔ y] = q)[q ≔ E[z ≔ y]])))
+  ≡ ⟨ Substitution, “Reflexivity of =” ⟩
+    (b ⇒ (b ⇒ (true)) ∧ (¬ b ⇒ (E[z ≔ x] = E[z ≔ y]))) ∧ (¬ b ⇒ ((b ⇒ (E[z ≔ y] = E[z ≔ x])) ∧ (¬ b ⇒ (true))))
+  ≡ ⟨ “Right-zero of ⇒”, “Identity of ∧” ⟩
+    (b ⇒ (¬ b ⇒ E[z ≔ x] = E[z ≔ y])) ∧ (¬ b ⇒ (b ⇒ E[z ≔ y] = E[z ≔ x])) 
+  ≡ ⟨ “Shunting” ⟩
+    ((b ∧ ¬ b) ⇒ (E[z ≔ x] = E[z ≔ y])) ∧ ((¬ b ∧ b) ⇒ (E[z ≔ y] = E[z ≔ x])) 
+  ≡ ⟨ “Contradiction” ⟩
+    ((false) ⇒ (E[z ≔ x] = E[z ≔ y])) ∧ ((false) ⇒ (E[z ≔ y] = E[z ≔ x])) 
+  ≡ ⟨ “ex falso quodlibet”, “Identity of ∧” ⟩
+    true
+
+Corollary “`if` distributivity”:
+   f if b then x else y fi = if b then f x else f y fi
+Proof:
+    f if b then x else y fi = if b then f x else f y fi
+  ≡ ⟨ Substitution ⟩
+    (f if b then x else y fi = a)[a ≔ if b then f x else f y fi]
+  ≡ ⟨ “Definition of `if`” ⟩
+    (b ⇒ (f if b then x else y fi = a)[a ≔ f x]) ∧ (¬ b ⇒ (f if b then x else y fi = a)[a ≔ f y])
+  ≡ ⟨ Substitution ⟩
+    (b ⇒ (f c = f x)[c ≔ if b then x else y fi]) ∧ (¬ b ⇒ (f c = f y)[ c ≔ if b then x else y fi])
+  ≡ ⟨ “Definition of `if`” ⟩
+    (b ⇒ ((b ⇒ (f c = f x)[c ≔ x]) ∧ (¬ b ⇒ (f c = f x)[c ≔ y]))) 
+    ∧ (¬ b ⇒ (b ⇒ ((f c = f y)[c ≔ x])) ∧ ((¬ b ⇒ (f c = f y)[c ≔ y])))
+  ≡ ⟨ Substitution ⟩
+    (b ⇒ ((b ⇒ (f x = f x)) ∧ (¬ b ⇒ (f y = f x)))) ∧ (¬ b ⇒ (b ⇒ ((f x = f y))) ∧ ((¬ b ⇒ (f y = f y))))
+  ≡ ⟨ “Reflexivity of =” ⟩
+    (b ⇒ ((b ⇒ (true)) ∧ (¬ b ⇒ (f y = f x)))) ∧ (¬ b ⇒ (b ⇒ ((f x = f y))) ∧ ((¬ b ⇒ (true))))
+  ≡ ⟨ “Right-zero of ⇒”, “Identity of ∧” ⟩
+    (b ⇒ ((¬ b ⇒ (f y = f x)))) ∧ (¬ b ⇒ (b ⇒ ((f x = f y))))
+  ≡ ⟨ “Shunting” ⟩
+    ((b ∧ ¬ b) ⇒ (f y = f x)) ∧ ((¬ b ∧ b) ⇒ ((f x = f y)))
+  ≡ ⟨ “Contradiction” ⟩
+    (false ⇒ (f y = f x)) ∧ (false ⇒ ((f x = f y)))
+  ≡ ⟨ “ex falso quodlibet”, “Identity of ∧” ⟩
+    true

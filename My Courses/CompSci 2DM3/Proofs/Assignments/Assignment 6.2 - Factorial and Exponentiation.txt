@@ -1,0 +1,112 @@
+Assignment Notebook 6.2: Factorial and Exponentiation
+
+Theorem “Monotonicity of ·”: b ≤ c ⇒ a · b ≤ a · c
+Proof:
+    Assuming `b ≤ c`:
+        By induction on `a : ℕ`:
+            Base case:
+                0 · b ≤ 0 · c
+              = ⟨ “Zero of ·” and “Reflexivity of ≤” ⟩
+                true 
+            Induction step:
+                suc a · b ≤ suc a · c
+              = ⟨ “Definition of · for `suc`” ⟩ 
+                a · b + b ≤ a · c + c
+              ⇐ ⟨ “Monotonicity of +” with Assumption `b ≤ c` ⟩ 
+                a · b ≤ a · c — This is Induction hypothesis
+
+Theorem “Well-definedness of `fact`”: fact n = n !
+Proof:
+    By induction on `n : ℕ`:
+        Base case:
+            fact 0 = 0 !
+          = ⟨ “Definition of ! for 0” ⟩
+            fact 0 = 1
+          = ⟨ “Definition of `fact`” ⟩ 
+            (if 0 = 0 then 1 else 0 · fact (pred 0) fi) = 1
+          = ⟨ “Reflexivity of =” ⟩
+            (if true then 1 else 0 · fact (pred 0) fi) = 1 
+          = ⟨ “if true” ⟩
+            1 = 1
+          = ⟨ “Reflexivity of =” ⟩
+            true  
+        Induction step:
+            fact (suc n) = (suc n) !
+          = ⟨ “Definition of `fact`” ⟩
+            (if suc n = 0 then 1 else (suc n) · fact (pred (suc n)) fi) = (suc n) !
+          = ⟨ “Zero is not successor” ⟩
+            (if false then 1 else (suc n) · fact (pred (suc n)) fi) = (suc n) ! 
+          = ⟨ “if false” ⟩ 
+            (suc n) · fact (pred (suc n)) = (suc n) ! 
+          = ⟨ “Predecessor of successor” ⟩
+            (suc n) · fact n = (suc n) !  
+          = ⟨ “Definition of ! for `suc`” ⟩
+            (suc n) · fact n = (suc n) · n !
+          = ⟨ “Cancellation of multiplication with successor” ⟩ 
+            fact n = n !
+          = ⟨ Induction hypothesis ⟩
+            true
+
+Theorem “Big Lemur”: a ≤ b ⇒ (c ≤ d ⇒ a · c ≤ b · d)
+Proof:
+    Assuming `a ≤ b`:
+        By induction on `c : ℕ`:
+            Base case:
+                0 ≤ d ⇒ a · 0 ≤ b · d
+              = ⟨ “Zero of ·” ⟩
+                0 ≤ d ⇒ 0 ≤ b · d 
+              = ⟨ “Zero is least element” and “Right-zero of ⇒” ⟩
+                true 
+            Induction step:
+                By induction on `d : ℕ`:
+                    Base case:
+                        suc c ≤ 0 ⇒ a · suc c ≤ b · 0
+                      = ⟨ “Zero of ·” ⟩
+                        suc c ≤ 0 ⇒ a · suc c ≤ 0
+                      = ⟨ “Successor is not at most zero” and “ex falso quodlibet” ⟩ 
+                        true
+                    Induction step:
+                        Assuming `suc c ≤ suc d`:
+                            a · suc c ≤ b · suc d
+                          = ⟨ “Definition of · for `suc`” ⟩
+                            a + a · c ≤ b · d + b
+                          ⇐ ⟨ “Monotonicity of +” with Assumption `a ≤ b` ⟩
+                            a · c ≤ b · d 
+                          = ⟨ “Left-identity of ⇒” ⟩
+                            true ⇒ a · c ≤ b · d 
+                          = ⟨ Assumption `suc c ≤ suc d` with “Isotonicity of successor” ⟩ 
+                            c ≤ d ⇒ a · c ≤ b · d 
+                          = ⟨ Induction hypothesis `c ≤ d ⇒ a · c ≤ b · d` ⟩
+                            true 
+
+Theorem “Small Lemur”: suc (suc 0) ≤ suc (suc n)
+Proof:
+    suc (suc 0) ≤ suc (suc n)
+  = ⟨ “Isotonicity of successor” ⟩
+    0 ≤ n
+  = ⟨ “Zero is least element” ⟩ 
+    true  
+
+Theorem “Factorial exceeds power”: 2 ** n ≤ (suc n) !
+Proof:
+    By induction on `n : ℕ`:
+        Base case:
+            2 ** 0 ≤ (suc 0) !
+          = ⟨ “Definition of ** for 0” and “Definition of ! for `suc`” ⟩ 
+            1 ≤ (suc 0) · 0 ! 
+          = ⟨ Fact `suc 0 = 1` and “Definition of ! for 0” ⟩ 
+            1 ≤ 1 · 1
+          = ⟨ “Identity of ·” and “Reflexivity of ≤” ⟩
+            true 
+        Induction step:
+            2 ** (suc n) ≤ (suc (suc n)) !
+          = ⟨ “Definition of ** for `suc`” ⟩
+            2 · 2 ** n ≤ (suc (suc n)) !
+          = ⟨ “Definition of ! for `suc`” ⟩
+            2 · 2 ** n ≤ (suc (suc n)) · (suc n) !
+          = ⟨ Fact `2 = suc (suc 0)` ⟩
+            suc (suc 0) · 2 ** n ≤ (suc n) ! · (suc (suc n)) 
+          ⇐ ⟨ “Big Lemur” with “Small Lemur” ⟩ 
+            2 ** n ≤ (suc n) !
+          = ⟨ Induction hypothesis ⟩
+            true 

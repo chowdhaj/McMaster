@@ -1,0 +1,132 @@
+Homework 12: Introduction to Sequences
+
+Theorem “Cons is not empty”: x ◃ xs = 𝜖  ≡  false
+Proof:
+    x ◃ xs = 𝜖  ≡  false
+  = ⟨ “Definition of `false`” ⟩  
+    x ◃ xs = 𝜖  ≡  ¬ true
+  = ⟨ “¬ connection” ⟩
+    ¬ (x ◃ xs = 𝜖)  ≡  true
+  = ⟨ “Definition of ≠” ⟩
+    x ◃ xs ≠ 𝜖  ≡  true
+  = ⟨ “Cons is not empty” ⟩ 
+    true ≡ true
+  = ⟨ “Reflexivity of ≡” ⟩
+    true 
+
+Fact (H12.1): (2 ◃ 5 ◃ 3 ◃ 𝜖) ▹ 7  = 2 ◃ 5 ◃ 3 ◃ 7 ◃ 𝜖
+Proof:
+    (2 ◃ 5 ◃ 3 ◃ 𝜖) ▹ 7
+  = ⟨ “Definition of ▹ for ◃” ⟩ 
+    2 ◃ ((5 ◃ 3 ◃ 𝜖) ▹ 7)
+  = ⟨ “Definition of ▹ for ◃” ⟩
+    2 ◃ 5 ◃ ((3 ◃ 𝜖) ▹ 7)
+  = ⟨ “Definition of ▹ for ◃” ⟩
+    2 ◃ 5 ◃ 3 ◃ (𝜖 ▹ 7) 
+  = ⟨ “Definition of ▹ for 𝜖” ⟩
+    2 ◃ 5 ◃ 3 ◃ 7 ◃ 𝜖  
+
+Theorem (13.14) “Snoc is not empty”:  xs ▹ x ≠ 𝜖
+Proof:
+  By induction on `xs : Seq A`:
+    Base case `𝜖 ▹ x ≠ 𝜖`:
+        𝜖 ▹ x ≠ 𝜖
+      = ⟨ “Definition of ▹ for 𝜖” ⟩
+        x ◃ 𝜖 ≠ 𝜖 
+      = ⟨ “Cons is not empty” ⟩
+        true 
+    Induction step `∀ y : A • (y ◃ xs) ▹ x ≠ 𝜖`:
+      For any `y : A`:
+          (y ◃ xs) ▹ x ≠ 𝜖
+        = ⟨ “Definition of ▹ for ◃” ⟩  
+          y ◃ (xs ▹ x) ≠ 𝜖
+        = ⟨ “Cons is not empty” ⟩
+          true 
+
+Theorem “Snoc is not empty”:  xs ▹ x = 𝜖  ≡  false
+Proof:
+    xs ▹ x = 𝜖  ≡  false
+  = ⟨ “Definition of `false`” ⟩
+    xs ▹ x = 𝜖  ≡  ¬ true
+  = ⟨ “¬ connection” ⟩
+    ¬ (xs ▹ x = 𝜖)  ≡ true
+  = ⟨ “Definition of ≠” ⟩
+    xs ▹ x ≠ 𝜖  ≡ true
+  = ⟨ “Snoc is not empty” ⟩
+    true ≡ true
+  = ⟨ “Identity of ≡” ⟩
+    true
+
+Fact (H12.2):  (2 ◃ 7 ◃ 5 ◃ 𝜖) ⌢ (1 ◃ 9 ◃ 𝜖) = 2 ◃ 7 ◃ 5 ◃ 1 ◃ 9 ◃ 𝜖
+Proof:
+    (2 ◃ 7 ◃ 5 ◃ 𝜖) ⌢ (1 ◃ 9 ◃ 𝜖)
+  = ⟨ “Definition of ⌢ for ◃” ⟩
+    2 ◃ 7 ◃ 5 ◃ ((𝜖) ⌢ (1 ◃ 9 ◃ 𝜖)) 
+  = ⟨ “Definition of ⌢ for 𝜖” ⟩ 
+    2 ◃ 7 ◃ 5 ◃ 1 ◃ 9 ◃ 𝜖
+
+Theorem (13.19) “Right-identity of ⌢”: xs ⌢ 𝜖 = xs
+Proof:
+    By induction on `xs : Seq A`:
+        Base case:
+            𝜖 ⌢ 𝜖
+          = ⟨ “Definition of ⌢ for 𝜖” ⟩
+            𝜖
+        Induction step `∀ y : A • (y ◃ xs) ⌢ 𝜖 = y ◃ xs`:
+            For any `y : A`:
+                (y ◃ xs) ⌢ 𝜖 = y ◃ xs
+              = ⟨ “Definition of ⌢ for ◃” ⟩
+                y ◃ (xs ⌢ 𝜖) = y ◃ xs
+              = ⟨ Induction hypothesis ⟩
+                y ◃ xs = y ◃ xs
+              = ⟨ “Reflexivity of =” ⟩
+                true  
+Theorem (13.20) “Associativity of ⌢”:
+    (xs ⌢ ys) ⌢ zs = xs ⌢ (ys ⌢ zs)
+Proof:
+    By induction on `xs : Seq A`:
+        Base case:
+            (𝜖 ⌢ ys) ⌢ zs = 𝜖 ⌢ (ys ⌢ zs)
+          = ⟨ “Left-identity of ⌢” ⟩
+            ys ⌢ zs = ys ⌢ zs
+          = ⟨ “Reflexivity of =” ⟩
+            true 
+        Induction step `∀ x : A • ((x ◃ xs) ⌢ ys) ⌢ zs = (x ◃ xs) ⌢ (ys ⌢ zs)`:
+            For any `x : A`:
+                ((x ◃ xs) ⌢ ys) ⌢ zs = (x ◃ xs) ⌢ (ys ⌢ zs)
+              = ⟨ “Definition of ⌢ for ◃” ⟩
+                (x ◃ (xs ⌢ ys)) ⌢ zs = x ◃ (xs ⌢ (ys ⌢ zs))
+              = ⟨ Induction hypothesis ⟩
+                (x ◃ (xs ⌢ ys)) ⌢ zs = x ◃ (xs ⌢ ys) ⌢ zs
+              = ⟨ “Definition of ⌢ for ◃” ⟩
+                (x ◃ (xs ⌢ ys)) ⌢ zs = (x ◃ (xs ⌢ ys)) ⌢ zs
+              = ⟨ “Reflexivity of =” ⟩
+                true 
+
+Theorem (13.23) “Empty concatenation”:
+    xs ⌢ ys = 𝜖  ≡  xs = 𝜖 ∧ ys = 𝜖
+Proof:
+    By induction on `xs : Seq A`: 
+        Base case:
+            𝜖 ⌢ ys = 𝜖  ≡  𝜖 = 𝜖 ∧ ys = 𝜖
+          = ⟨ “Left-identity of ⌢” ⟩
+            ys = 𝜖  ≡  𝜖 = 𝜖 ∧ ys = 𝜖 
+          = ⟨ “Reflexivity of =” ⟩
+            ys = 𝜖  ≡  true ∧ ys = 𝜖  
+          = ⟨ “Identity of ∧” ⟩
+            ys = 𝜖  ≡  ys = 𝜖   
+          = ⟨ “Reflexivity of ≡” ⟩
+            true 
+        Induction step `∀ x : A • (x ◃ xs) ⌢ ys = 𝜖  ≡  (x ◃ xs) = 𝜖 ∧ ys = 𝜖`:
+            For any `x : A`:
+                (x ◃ xs) ⌢ ys = 𝜖  ≡  (x ◃ xs) = 𝜖 ∧ ys = 𝜖
+              = ⟨ “Cons is not empty” ⟩
+                (x ◃ xs) ⌢ ys = 𝜖  ≡  false ∧ ys = 𝜖
+              = ⟨ “Zero of ∧” ⟩
+                (x ◃ xs) ⌢ ys = 𝜖  ≡  false 
+              = ⟨ “Definition of ⌢ for ◃” ⟩
+                x ◃ (xs ⌢ ys) = 𝜖 ≡ false
+              = ⟨ “Cons is not empty” ⟩
+                false ≡ false
+              = ⟨ “Reflexivity of ≡” ⟩
+                true

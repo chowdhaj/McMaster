@@ -1,0 +1,23 @@
+video3.why.sets.txt
+
+--------
+Synopsis
+--------
+
+- Explain why sets are useful in the real world and how, as a engineer or programmer, you might use them.
+
+------
+Script
+------
+
+- When you login to Facebook, Snapchat, Twitter, etc., everytime you click the Sign-In button, information is sent to their servers to check whether your username exists and if it does, it checks your password to make sure its correct. All this information is stored in a huge database. Databases are built using set theory. Think about it. 
+In a set, each element is unique. Similar to how you can't create a Facebook account using the same email address as your friend's.
+In a set, each element is of the same type. You can't create a Facebook account using your credit card number, you need to use an email (at least this is how it was 5 years ago).
+
+- Databases mimic sets. Each element is unique and of the same type. Because databases are sets, it is super easy to merge them into one. You can take the difference of the databases to see all the unique members. You can take the intersection to see which members are common in both databases. Here's a good example:
+
+- Let's assume that 5 years from now, Facebook buys Snapchat. Facebook, being the shady company that it is wants to get more people on its platform. Luckily, they have a trove of data lying around in the form of Snapchat's database. Facebook can take the difference of their database with Snapchat's database to see exactly who is not on their platform. And through aggressive marketing, they can easily target their new Snapchat audience and convince them to use Facebook in addition to Snapchat. This can also be used vice versa. They can target their Facebook audience that does NOT use snapchat, to start using snapchat. Their goal is to get you to use all of their platforms as much as possible. 
+
+- This is just one example of using databases in the real world. There are countless instances of how important databases are. Databases ensure that two people don't use the exact same information to sign up with a service. Databases can also be used to detect fraud. For instance: If you use your credit card on eBay under your own account, and then next week some random account starts using your credit card, eBay can detect that and block the purchase. 
+
+{END}

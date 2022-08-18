@@ -1,0 +1,49 @@
+Homework Notebook 19.2: Abstract Relation Algebra: More Union Material
+
+Theorem “Union of converses”:    R ˘ ∪ S ˘  ⊆  (R ∪ S) ˘
+Proof:
+    By “Characterisation of ∪” and “Isotonicity of ˘” and “Weakening for ∪”
+ 
+Theorem “Converse of ∪”:     (R ∪ S) ˘  =  R ˘ ∪ S ˘
+Proof:
+    Using “Indirect Relation Equality from above”:
+        For any `T`:
+            (R ∪ S) ˘ ⊆ T
+          ≡ ⟨ “Self-inverse of ˘” and “Isotonicity of ˘” and “Characterisation of ∪” ⟩
+            (R ⊆ T ˘) ∧ (S ⊆ T ˘)
+          ≡ ⟨ “Self-inverse of ˘” and “Isotonicity of ˘” and “Characterisation of ∪” ⟩
+            R ˘ ∪ S ˘ ⊆ T
+
+Theorem “Closure properties of `symClos`: Expanding”:
+   R ⊆ symClos R
+Proof:
+    By “Definition of `symClos`” and “Weakening for ∪”
+
+Theorem “Closure properties of `symClos`: Symmetry”:
+    is-symmetric (symClos R)
+Proof:
+    is-symmetric (symClos R)
+  ≡ ⟨ “Definition of symmetry” ⟩ 
+    symClos R = (symClos R) ˘
+  ≡ ⟨ “Definition of `symClos`” ⟩
+    R ∪ R ˘ = (R ∪ R ˘) ˘
+  ≡ ⟨ “Converse of ∪” ⟩
+    R ∪ R ˘ = R ˘ ∪ R ˘ ˘ 
+  ≡ ⟨ “Self-inverse of ˘” and “Symmetry of ∪” and “Reflexivity of =” ⟩ 
+    true
+
+Theorem “Closure properties of `symClos`: Minimality”:
+    R ⊆ S  ⇒  is-symmetric S  ⇒  symClos R ⊆ S
+Proof:
+    Assuming `R ⊆ S`, `is-symmetric S`:
+        symClos R ⊆ S
+      ≡ ⟨ “Definition of `symClos`” ⟩
+        R ∪ R ˘ ⊆ S
+      ≡ ⟨ “Characterisation of ∪” ⟩
+        R ⊆ S ∧ R ˘ ⊆ S 
+      ≡ ⟨ Assumption `R ⊆ S` ⟩
+        true ∧ R ˘ ⊆ S 
+      ≡ ⟨ “Self-inverse of ˘” and “Isotonicity of ˘” and “Identity of ∧” ⟩
+        R ⊆ S ˘
+      ≡ ⟨ “Definition of symmetry” with Assumption `is-symmetric S` ⟩
+        R ⊆ S — This is Assumption `R ⊆ S`

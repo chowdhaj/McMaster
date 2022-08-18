@@ -1,0 +1,105 @@
+Theorem “Alternative definition of `if`”
+        “`if` to ≢”:
+     P[z ≔ if b then x else y fi]
+  ≡  b ∧ P[z ≔ x]  ≢  ¬ b ∧ P[z ≔ y]
+Proof:
+     P[z ≔ if b then x else y fi] ≡  b ∧ P[z ≔ x]  ≢  ¬ b ∧ P[z ≔ y]
+  ≡⟨ “Definition of `if`” ⟩
+     (b ⇒ P[z ≔ x]) ∧ (¬ b ⇒ P[z ≔ y]) ≡ b ∧ P[z ≔ x]  ≢  ¬ b ∧ P[z ≔ y]
+  ≡⟨ “Definition of ≢”, “Distributivity of ¬ over ≡” ⟩
+     ¬ ((b ⇒ P[z ≔ x]) ∧ (¬ b ⇒ P[z ≔ y]) ≡ b ∧ P[z ≔ x]  ≡  ¬ b ∧ P[z ≔ y])
+  ≡⟨ “Golden rule” ⟩
+     ¬ ((b ⇒ P[z ≔ x]) ∨ (¬ b ⇒ P[z ≔ y]) ≡ b ⇒ P[z ≔ x] ≡ ¬ b ⇒ P[z ≔ y] ≡ b ∧ P[z ≔ x]  ≡  ¬ b ∧ P[z ≔ y])
+  ≡⟨ “Definition of Implication”, “Double negation” ⟩
+     ¬ ((¬ b ∨ P[z ≔ x]) ∨ (b ∨ P[z ≔ y]) ≡ b ⇒ P[z ≔ x] ≡ ¬ b ⇒ P[z ≔ y] ≡ b ∧ P[z ≔ x]  ≡  ¬ b ∧ P[z ≔ y])
+  ≡⟨ “Excluded Middle” ⟩
+     ¬ ((true ∨ P[z ≔ x] ∨ P[z ≔ y]) ≡ b ⇒ P[z ≔ x] ≡ ¬ b ⇒ P[z ≔ y] ≡ b ∧ P[z ≔ x]  ≡  ¬ b ∧ P[z ≔ y])
+  ≡⟨ “Zero of ∨” ⟩
+     ¬ (true ≡ b ⇒ P[z ≔ x] ≡ ¬ b ⇒ P[z ≔ y] ≡ b ∧ P[z ≔ x]  ≡  ¬ b ∧ P[z ≔ y])
+  ≡⟨ “Definition of Implication”, “Double negation” ⟩
+     ¬ (true ≡ ¬ b ∨ P[z ≔ x] ≡ b ∨ P[z ≔ y] ≡ b ∧ P[z ≔ x]  ≡  ¬ b ∧ P[z ≔ y])
+  ≡⟨ “Golden rule” ⟩
+     ¬ (true ≡ ¬ b ∨ P[z ≔ x] ≡ b ∨ P[z ≔ y] ≡ b ∨ P[z ≔ x] ≡ b ≡ P[z ≔ x] ≡  ¬ b ∧ P[z ≔ y])
+  ≡⟨ “Golden rule” ⟩
+     ¬ (true ≡ ¬ b ∨ P[z ≔ x] ≡ b ∨ P[z ≔ y] ≡ b ∨ P[z ≔ x] ≡ b ≡ P[z ≔ x] ≡  ¬ b ∨ P[z ≔ y] ≡ ¬ b ≡ P[z ≔ y])
+  ≡⟨ “Symmetry of ≡” ⟩
+     ¬ (true ≡ b ∨ P[z ≔ y] ≡ b ≡ P[z ≔ x] ≡  ¬ b ∨ P[z ≔ y] ≡ ¬ b ≡ P[z ≔ y] ≡ ¬ b ∨ P[z ≔ x] ≡ b ∨ P[z ≔ x] )
+  ≡⟨ (3.32) with `p, q ≔ P[z ≔ x], b` ⟩
+     ¬ (true ≡ b ∨ P[z ≔ y] ≡ b ≡ P[z ≔ x] ≡  ¬ b ∨ P[z ≔ y] ≡ ¬ b ≡ P[z ≔ y] ≡ P[z ≔ x])
+  ≡⟨ “Reflexivity of ≡” ⟩
+     ¬ (true ≡ b ∨ P[z ≔ y] ≡ b ≡  ¬ b ∨ P[z ≔ y] ≡ ¬ b ≡ P[z ≔ y])
+  ≡⟨ “Distributivity of ¬ over ≡” ⟩
+     ¬ ¬ (true ≡ b ∨ P[z ≔ y] ≡ b ≡  ¬ b ∨ P[z ≔ y] ≡ b ≡ P[z ≔ y])
+  ≡⟨ “Reflexivity of ≡”, “Double negation” ⟩
+     true ≡ b ∨ P[z ≔ y] ≡  ¬ b ∨ P[z ≔ y] ≡ P[z ≔ y]
+  ≡⟨ (3.32) with `p, q ≔ P[z ≔ y], b` ⟩
+     true ≡ true — This is “Reflexivity of ≡”
+
+
+Theorem “Alternative definition of `if`”
+        “`if` to ∨”:
+    P[z ≔ if b then x else y fi]
+  ≡ (b ∧ P[z ≔ x]) ∨ (¬ b ∧ P[z ≔ y])
+Proof:
+    P[z ≔ if b then x else y fi]
+  ≡⟨ “Definition of `if`” ⟩
+    (b ⇒ P[z ≔ x]) ∧ (¬ b ⇒ P[z ≔ y])
+  ≡⟨ “Definition of ⇒”⟩
+    (¬ b ∨ P[z ≔ x]) ∧ (¬ ¬ b ∨ P[z ≔ y])
+  ≡⟨ “Double negation” ⟩
+    (¬ b ∨ P[z ≔ x]) ∧ (b ∨ P[z ≔ y])
+  ≡⟨ “Distributivity of ∧ over ∨” ⟩
+    ((¬ b ∨ P[z ≔ x]) ∧ b) ∨  ((¬ b ∨ P[z ≔ x]) ∧ P[z ≔ y])
+  ≡⟨ “Absorption” ⟩
+    ((¬ b ∨ P[z ≔ x]) ∧ P[z ≔ y]) ∨ ((P[z ≔ x] ∧ b))
+  ≡⟨ “Absorption” ⟩
+    ((¬ b ∨ P[z ≔ x]) ∧ P[z ≔ y]) ∨ ((¬ b ∨ P[z ≔ x]) ∧ (P[z ≔ x] ∧ b))
+  ≡⟨ “Distributivity of ∧ over ∨” ⟩
+    (¬ b ∨ P[z ≔ x]) ∧ (P[z ≔ y] ∨ (P[z ≔ x] ∧ b))
+  ≡⟨ “Absorption” ⟩
+    (¬ b ∨ (P[z ≔ x] ∧ b)) ∧ (P[z ≔ y] ∨ (P[z ≔ x] ∧ b))
+  ≡⟨ “Distributivity of ∨ over ∧” ⟩
+    (P[z ≔ x] ∧ b) ∨  ((¬ b ∧ P[z ≔ y]))
+
+Theorem “Alternative definition of `if`”
+        “`if` to ≡”:
+     P[z ≔ if b then x else y fi]
+  ≡  b ⇒ P[z ≔ x]  ≡  ¬ b ⇒ P[z ≔ y]
+Proof:
+    P[z ≔ if b then x else y fi]
+  ≡⟨ “Alternative definition of `if`” ⟩
+    b ∧ P[z ≔ x]  ≢  ¬ b ∧ P[z ≔ y]
+  ≡⟨ “Definition of ≢” ⟩
+    ¬ (b ∧ P[z ≔ x]  ≡  ¬ b ∧ P[z ≔ y])
+  ≡⟨ “Identity of ≡” ⟩
+    ¬ (b ∧ P[z ≔ x]  ≡ b ≡ b ≡ ¬ b ∧ P[z ≔ y])
+  ≡⟨ “Distributivity of ¬ over ≡” ⟩
+    (b ∧ P[z ≔ x]  ≡ b ≡ ¬ b ≡ ¬ b ∧ P[z ≔ y])
+  ≡⟨ “Definition of ⇒” ⟩
+    (b ⇒ P[z ≔ x]  ≡ ¬ b ⇒ P[z ≔ y])
+
+Theorem “if true”: if true then x else y fi = x
+Proof:
+    if true then x else y fi
+  =⟨ Substitution ⟩
+    z[z ≔ if true then x else y fi]
+  =⟨ “Definition of `if`” ⟩
+    (true ⇒ z[z ≔ x]) ∧ (¬ true ⇒ z[z ≔ y])
+  =⟨ “Left-identity of ⇒” ⟩
+    z[z ≔ x] ∧ (¬ true ⇒ z[z ≔ y])
+  =⟨ “Definition of `false`”, “ex falso quodlibet” ⟩
+    z[z ≔ x] ∧ true
+  =⟨ “Identity of ∧”, Substitution ⟩
+    x
+
+Theorem “if false”: if false then x else y fi = y
+Proof:
+    if false then x else y fi
+  =⟨ Substitution ⟩
+    z[z ≔ if false then x else y fi]
+  =⟨ “Definition of `if`” ⟩
+    (false ⇒ z[z ≔ x]) ∧ (¬ false ⇒ z[z ≔ y])
+  =⟨ “ex falso quodlibet”, “Negation of `false`”, “Left-identity of ⇒” ⟩
+    true ∧ (z[z ≔ y])
+  =⟨ “Identity of ∧”, Substitution ⟩
+    y
