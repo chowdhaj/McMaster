@@ -1,0 +1,1263 @@
+<html>
+
+<head>
+<title>COMPSCI 2SD3 Concurrent Systems, Term II, 2021-22</title>
+</head>
+
+<body>
+
+<table width="1000" border="0">
+<tr><td align="center"><h1><big><big>USP Chapter 12 - Threads</big></big></h1></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><hr></td></tr>
+<tr><td>&nbsp;</td></tr>
+<!--
+<tr><td><big><big><big><big><font color="#00FF00">123456789012345678901234567890123456789012345678901234567890</font></big></big></big></big></td></tr>
+-->
+<tr><td align="center"><big><big><big><big><b>Overview: threads vs. processes (created with <tt>fork</tt>)</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><table border="1">
+<tbody>
+    <tr>
+      <td><big><big>Property</big></big></td>
+      <td><big><big>Processes created with <tt>fork</tt></big></big></td>
+      <td><big><big>Threads of a process</big></big></td>
+      <td><big><big>Ordinary function calls</big></big></td>
+    </tr>
+    <tr>
+      <td><big><big>variables</big></big></td>
+      <td><big><big>get copies of all variables</big></big></td>
+      <td><big><big>share global variables</big></big></td>
+      <td><big><big>share global variables</big></big></td>
+    </tr>
+    <tr>
+      <td><big><big>IDs</big></big></td>
+      <td><big><big>get new process IDs</big></big></td>
+      <td><big><big>share the same process ID but have unique thread ID</big></big></td>
+      <td><big><big>share the same process ID (and thread ID)</big></big></td>
+    </tr>
+    <tr>
+      <td><big><big>Communication</big></big></td>
+      <td><big><big>Must explicitly communicate, e.g.pipes<br>
+      or use small integer return value</big></big></td>
+      <td><big><big>May communicate with return value<br>
+      or shared variables<br>
+      if done carefully</big></big></td>
+      <td><big><big>May communicate with return value<br>
+      or shared variables<br>
+      (don't have to be careful)</big></big></td>
+    </tr>
+    <tr>
+      <td><big><big>Parallelism (one CPU)</big></big></td>
+      <td><big><big>Concurrent</big></big></td>
+      <td><big><big>Concurrent</big></big></td>
+      <td><big><big>Sequential</big></big></td>
+    </tr>
+    <tr>
+      <td><big><big>Parallelism (multiple CPUs)</big></big></td>
+      <td><big><big>May be executed simultaneously</big></big></td>
+      <td><big><big>Kernel threads may be executed simultaneously</big></big></td>
+      <td><big><big>Sequential</big></big></td>
+    </tr>
+</tbody>
+  </table></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Look at the programs <tt>getsizeschild</tt>, <tt>getsizesthread</tt> and <tt>getsizescall</tt>.
+</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>USP Chapter 12: POSIX Threads:</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Motivating problem: monitor multiple file descriptors:</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Methods you should know about:<ul>
+  <li>separate processes</li>
+  <li><tt>select</tt></li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Other methods:<ul>
+  <li><tt>poll</tt></li>
+  <li>nonblocking I/O</li>
+  <li>asynchronous I/O</li>
+  <li>threads</li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>A thread has its own program counter and stack, but shares a number of
+resources with its process and other threads of the process:<ul>
+  <li>address space: code and global variables</li>
+  <li>open files</li>
+  <li>semaphores</li>
+  <li>signals</li>
+  <li>timers</li>
+  <li>process ID</li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>When a new thread is created, it runs concurrently with the creating process.<br>
+When creating a thread, you indicate which function the thread should execute.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Consider a function <tt>processfd</tt> called as an ordinary function and as
+a created thread.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><img src="fig01.gif" style="width: 50vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big>Program that makes an ordinary call to
+<tt>processfd</tt> has a single thread of execution.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><img src="fig02.gif" style="width: 50vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big>Program that creates a new thread to
+execute <tt>processfd</tt> has two threads of execution.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><ul>
+<li>A function that is used as a thread must have a special format.</li>
+<li>It takes a single parameter of type pointer to void and returns a pointer to void.</li>
+<li>The parameter type allows any pointer to be passed.</li>
+<li>This can point to a structure, so in effect, the function can use any number of
+parameters.</li>
+<li>We will discuss the meaning of the return value later.</li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The <tt>processfd</tt> function used above might have prototype:<br>
+<tt>void *processfd(void *arg);</tt><br>
+Instead of passing the file descriptor to be monitored directly, we pass a pointer to it.<br>
+The function my access the parameter as follows:<br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int fd;</tt><br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fd = *((int *)arg);</tt><br>
+</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big>Creating a thread:</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><pre><big><big><big><big>   void *processfd(void *arg);
+
+   int error;
+   int fd;
+   pthread_t tid;
+
+   if (error = pthread_create(&amp;tid, NULL, processfd, &amp;fd))
+      fprintf(stderr, &quot;Failed to create thread: %s\n&quot;, 
+              strerror(error));
+</big></big></big></big></pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Look at Program 12.1, processfd.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Program 12.2, <tt>monitorfd.c</tt> is a function that creates threads to
+monitor an array of open file descriptors.<br>
+The function is passed an array of file descriptors and the size of the array.<br>
+For each file descriptor it creates a thread and then waits for all of the threads to
+complete.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<!-- <a name="20030904"></a> -->
+<tr><td align="center"><big><big><big><big><b>12.3 Thread Management</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center">
+<table border="1">
+<tbody>
+  <tr>
+    <td><big><big>POSIX function&nbsp;&nbsp;&nbsp;&nbsp;</big></big></td>
+    <td><big><big>description</big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>pthread_cancel</tt></big></big></td>
+    <td><big><big>terminate another thread</big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>pthread_create</tt></big></big></td>
+    <td><big><big>create a thread</big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>pthread_detach</tt></big></big></td>
+    <td><big><big>set thread to release resources</big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>pthread_equal</tt></big></big></td>
+    <td><big><big>test two thread IDs for equality</big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>pthread_exit</tt></big></big></td>
+    <td><big><big>exit a thread without exiting process&nbsp;&nbsp;&nbsp;</big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>pthread_kill</tt></big></big></td>
+    <td><big><big>send a signal to a thread</big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>pthread_join</tt></big></big></td>
+    <td><big><big>wait for a thread</big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>pthread_self</tt></big></big></td>
+    <td><big><big>find out own thread ID</big></big></td>
+  </tr>
+</tbody>
+</table>
+</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Most POSIX functions return 0 on success and a nonzero error code on failure.<br>
+They do not set <tt>errno</tt> but the value returned when an error occurs has the value
+that <tt>errno</tt> would have.<br>
+None of the POSIX thread functions ever return the error <tt>EINTR</tt>.<br>
+<font color="#999999">EINTR <i>error code is set if a signal occurred while the system call was in progress. No error actually occurred, it's just reported that way because the system isn't able to resume the system call automatically. This coding pattern simply retries the system call when this happens, to ignore the interrupt.</i></font></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Most of the pthread functions are declared in <tt>pthread.h</tt></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>12.3.1 The Thread ID</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Each thread has an id of type <tt>pthread_t</tt>.<br>
+On most systems this is just an integer (like a process ID) but it does not have to be.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>A thread can get its ID with <tt>pthread_self</tt> and IDs can be compared
+with <tt>pthread_equal</tt></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><pre><big><big><big><big>    pthread_t pthread_self(void);
+    int pthread_equal(thread_t t1, pthread_t t2);
+</big></big></big></big></pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>12.3.2 Creating a thread</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>A thread is created with <tt>pthread_create</tt></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><pre><big><big><big><big>   int pthread_create(pthread_t *restrict thread,
+                      const pthread_attr_t *restrict attr,
+                      void *(*start_routine)(void *), 
+                      void *restrict arg);
+</big></big></big></big></pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><ul>
+  <li>The creating process (or thread) must provide a location for storage of the
+    thread id.</li>
+  <li>We will discuss thread attributes later.<br>
+    For now, pass a null pointer to indicate the default attributes.</li>
+  <li>The third parameter is just the name of the function for the thread to run.</li>
+  <li>The last parameter is a pointer to the arguments.</li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>We saw an example in Program 12.2, <tt>monitorfd</tt>.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>12.3.3 Detaching and joining</b></big></big></big></big></td></tr>
+<tr><td><big><big><big><big><ul>
+  <li>A thread exits when its function returns.<br>
+    There are other ways for a thread to exit.</li>
+  <li>Just like with processes, some of the threads resources stay around until it
+    has been waited for or its process terminates.</li>
+  <li>You wait for a thread with <tt>pthread_join</tt>.</li>
+  <li>You can make a thread release its resources when it terminates by making it a
+    detached thread.</li>
+  <li>A detached thread cannot be joined.</li>
+  <li>One way to make a thread detached is with <tt>pthread_detach</tt><br>
+  <div align="center"><tt>int pthread_detach(pthread_t thread);</tt></div></li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Example 12.5 shows how to make a thread detached: </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><pre><big><big><big><big>   void *processfd(void *arg);
+
+   int error;
+   int fd
+   pthread_t tid;
+
+   if (error = pthread_create(&amp;tid, NULL, processfd, &amp;fd))
+      fprintf(stderr, &quot;Failed to create thread: %s\n&quot;, 
+              strerror(error));
+   else if (error = pthread_detach(tid))
+      fprintf(stderr, &quot;Failed to detach thread: %s\n&quot;, 
+              strerror(error));
+</big></big></big></big></pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Example 12.6 shows how a thread can detach itself: </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><pre><big><big><big><big>   void *detachfun(void *arg) {
+      int i = *((int *)(arg));
+      if (!pthread_detach(pthread_self())) 
+         return NULL;
+      fprintf(stderr, &quot;My argument is %d\n&quot;, i);
+      return NULL;
+   }
+</big></big></big></big></pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><ul>
+  <li>A thread can pass a value to another thread through its return value.</li>
+  <li>This is something like the return value that a parent gets from its child
+    through its exit status.</li>
+  <li>You are not restricted to a small integer as with processes.</li>
+  <li>The return value is a pointer to arbitrary data.</li>
+  <li>Since the threads all share an address space, this is simple to do.</li>
+  <li>However, you must take care. Examples later.</li>
+  <li>The <tt>pthread_join</tt> function suspends the calling function until a
+    specific thread has completed.</li>
+  <li>There is no way to join the first of several threads that have completed.</li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big><tt>int pthread_join(pthread_t thread, void **value_ptr);</tt></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Example 12.7 shows how you might do this:</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><pre><big><big><big><big>   int error;
+   int *exitcodep;
+   pthread_t tid;
+
+   if (error = pthread_join(tid, &amp;exitcodep))
+      fprintf(stderr, &quot;Failed to join thread: %s\n&quot;, 
+              strerror(error));
+   else
+      fprintf(stderr, &quot;The exit code was %d\n&quot;, 
+              *exitcodep);
+</big></big></big></big></pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big><b>12.3.4 Exiting and Cancellation</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>A process can terminate when:<ul>
+  <li>it calls <tt>exit</tt> directly</li>
+  <li>one of its threads calls <tt>exit</tt></li>
+  <li>it executes <tt>return</tt> from main</li>
+  <li>it receives a signal</li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>In any of these cases, all threads of the process terminate. </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>When a thread is done, it can call <tt>return</tt> from its main function
+(the one used by <tt>pthread_create</tt>) or it can call <tt>pthread_exit</tt> </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><pre><big><big><big><big>   void pthread_exit(void *value_ptr);
+</big></big></big></big></pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>One thread can request that another exit with <tt>pthread_cancel</tt></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><pre><big><big><big><big>   int pthread_cancel(pthread_t thread);
+</big></big></big></big></pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The <tt>pthread_cancel</tt> returns after making the request.<br>
+A successful return does not mean that the target thread has terminated or even that it
+eventually will terminate as a result of the request. </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>Stop here for now ...</b> </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The result of the request depends on the target thread's type and state.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The possible states are<ul>
+  <li><tt>PTHREAD_CANCEL_ENABLE</tt></li>
+  <li><tt>PTHREAD_CANCEL_DISABLE</tt></li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>This is similar to blocking and unblocking signals in that if it is in the
+disable state, it will receive the cancel request when it enters the enable state.<br>
+The default is <tt>PTHREAD_CANCEL_ENABLE</tt> </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>A thread can change its state with: </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big><tt>int pthread_setcancelstate(int state, int *oldstate);</tt></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Program 12.3, <tt>processfdcancel</tt>, goes into the disable state while it
+is executing <tt>docommand</tt>.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The possible cancellation types are<ul>
+  <li><tt>PTHREAD_CANCEL_ASYNCHRONOUS</tt>: act on requests at any time</li>
+  <li><tt>PTHREAD_CANCEL_DEFERRED</tt>: at on request only at cancellation points</li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Calls to certain blocking functions cause cancellation points.<br>
+You can set a cancellation point with <tt>pthread_testcancel</tt>.<br>
+You can set the cancellation type with <tt>pthread_setcanceltype</tt> </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><pre><big><big><big><big>   int pthread_setcanceltype(int type, int *oldtype);
+   void pthread_testcancel(void);
+</big></big></big></big></pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>12.3.5</b> Passing parameters and returning values<br>
+You can pass multiple parameters to a thread by passing a pointer, such as an array, to
+the thread when it is created. </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Care must be taken in receiving return values.<ul>
+  <li>The terminating thread passes a pointer to the joining thread.</li>
+  <li>They share the same address space.</li>
+  <li>The return value must exist after the thread terminates.</li>
+  <li>You cannot use an automatic variable in the thread for the return value.</li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Program 12.4, <tt>callcopymalloc</tt> creates a thread to copy a file.<ul>
+  <li>It opens the source and destination. </li>
+  <li>It passes the file descriptors in an array of two integers. </li>
+  <li>The thread is called <tt>copyfilemalloc</tt>. </li>
+  <li>The return value of the thread is a pointer to an int containing the number of
+    bytes copied. </li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Look at Program 12.4</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Where is the number of bytes copied stored?<br>
+It cannot be in an automatic variable in <tt>copyfilemalloc</tt>.<br>
+<tt>copyfilemalloc</tt> calls malloc to create space for the value.<br>
+The calling program must free this space if it is going to run for a long time. </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Look at Program 12.5, <tt>copyfilemalloc</tt> </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>An alternate is for the creating thread to allocate the space for the return
+value and tell the thread where this is (using the thread parameter). </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Program 12.6, <tt>callcopypass</tt> passes an array of 3 integers to the
+created thread.<br>
+The thread stores the return value in the last entry of the array. </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Look at Program 12.6 and Program 12.7, <tt>copyfilepass</tt> </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>We could have used an array of size 2. </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>When creating multiple threads that are to be joined, you must<ul>
+  <li>Store the thread IDs in different locations </li>
+  <li>Not reuse the location used for the parameter until you are sure the thread
+    has copied it. </li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Look at program 12.8, <tt>copymultiple</tt><ul>
+  <li>Takes two parameters that are strings, infile and outfile and an integer, n. </li>
+  <li>Will copy<br>
+    infile.1 to outfile.1<br>
+    infile.2 to outfile.2<br>
+    infile.3 to outfile.3<br>
+    etc., for a total of n files. </li>
+  <li>A thread is created for each file copy. </li>
+  <li>Uses the thread <tt>copyfilepass</tt> from Program 12.7. </li>
+  <li>Look at how this handles errors so that it does not wait for threads that were
+    not created. </li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Look at program 12.9, <tt>badparameters</tt>.<br>
+This program creates a number of threads, passing a pointer to the loop index as a
+parameter. </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Exercise 12.14: What can you return from this thread: </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><pre><big><big><big><big>void *whichexit(void *arg) {
+   int n;
+   int np1[1];
+   int *np2;
+   char s1[10];
+   char s2[] = &quot;I am done&quot;;
+   n = 3;
+   np1[0] = n;
+   np2 = (int *)malloc(sizeof(int));
+   *np2 = n;
+   strcpy(s1, &quot;Done&quot;);
+   return(NULL);
+} 
+</big></big></big></big></pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><ol>
+  <li><tt>n</tt> </li>
+  <li><tt>&amp;n</tt> </li>
+  <li><tt>(int *)n</tt> </li>
+  <li><tt>np1</tt> </li>
+  <li><tt>np2</tt> </li>
+  <li><tt>s1</tt> </li>
+  <li><tt>s2</tt> </li>
+  <li><tt>&quot;This works&quot;</tt> </li>
+  <li><tt>strerror(EINTR)</tt> </li>
+</ol></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big><b>Cancellation Points</b> </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big>POSIX functions that are always cancelation points.</big></big></big></big></td></tr>
+<tr><td align="center">
+<table border="1">
+<tbody>
+  <tr>
+    <td><big><big>accept</big></big></td>
+    <td><big><big>mq_timedsend</big></big></td>
+    <td><big><big>putpmsg</big></big></td>
+    <td><big><big>sigsuspend</big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>aio_suspend </big></big></td>
+    <td><big><big>msgrcv </big></big></td>
+    <td><big><big>pwrite </big></big></td>
+    <td><big><big>sigtimedwait </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>clock_nanosleep </big></big></td>
+    <td><big><big>msgsnd </big></big></td>
+    <td><big><big>read </big></big></td>
+    <td><big><big>sigwait </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>close </big></big></td>
+    <td><big><big>msync </big></big></td>
+    <td><big><big>readv </big></big></td>
+    <td><big><big>sigwaitinfo </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>connect </big></big></td>
+    <td><big><big>nanosleep </big></big></td>
+    <td><big><big>recv </big></big></td>
+    <td><big><big>sleep </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>creat </big></big></td>
+    <td><big><big>open </big></big></td>
+    <td><big><big>recvfrom </big></big></td>
+    <td><big><big>system </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fcntl<sup>*</sup></big></big></td>
+    <td><big><big>pause </big></big></td>
+    <td><big><big>recvmsg </big></big></td>
+    <td><big><big>tcdrain </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fsync </big></big></td>
+    <td><big><big>poll </big></big></td>
+    <td><big><big>select </big></big></td>
+    <td><big><big>usleep </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>getmsg </big></big></td>
+    <td><big><big>pread </big></big></td>
+    <td><big><big>sem_timedwait</big></big></td>
+    <td><big><big>wait </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>getpmsg </big></big></td>
+    <td><big><big>pthread_cond_timedwait</big></big></td>
+    <td><big><big>sem_wait </big></big></td>
+    <td><big><big>waitid </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>lockf </big></big></td>
+    <td><big><big>pthread_cond_wait </big></big></td>
+    <td><big><big>send </big></big></td>
+    <td><big><big>waitpid </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>mq_receive </big></big></td>
+    <td><big><big>pthread_join </big></big></td>
+    <td><big><big>sendmsg </big></big></td>
+    <td><big><big>write </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>mq_send </big></big></td>
+    <td><big><big>pthread_testcancel </big></big></td>
+    <td><big><big>sendto </big></big></td>
+    <td><big><big>writev </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>mq_timedreceive </big></big></td>
+    <td><big><big>putmsg </big></big></td>
+    <td><big><big>sigpause </big></big></td>
+    <td><big><big>&nbsp;</big></big></td>
+  </tr>
+</tbody>
+</table></td></tr>
+<tr><td align="center"><big><big><big><big>* <i>only when the command is</i> <tt>F_SETLKW</tt></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big>POSIX functions that may be cancellation points in some
+implementations.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center">
+<table border="1">
+<tbody>
+  <tr>
+    <td><big><big>catclose </big></big></td>
+    <td><big><big>ftell </big></big></td>
+    <td><big><big>getwc </big></big></td>
+    <td><big><big>pthread_rwlock_wrlock </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>catgets </big></big></td>
+    <td><big><big>ftello </big></big></td>
+    <td><big><big>getwchar </big></big></td>
+    <td><big><big>putc </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>catopen </big></big></td>
+    <td><big><big>ftw </big></big></td>
+    <td><big><big>getwd </big></big></td>
+    <td><big><big>putc_unlocked </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>closedir </big></big></td>
+    <td><big><big>fwprintf </big></big></td>
+    <td><big><big>glob </big></big></td>
+    <td><big><big>putchar </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>closelog </big></big></td>
+    <td><big><big>fwrite </big></big></td>
+    <td><big><big>iconv_close </big></big></td>
+    <td><big><big>putchar_unlocked </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>ctermid </big></big></td>
+    <td><big><big>fwscanf </big></big></td>
+    <td><big><big>iconv_open </big></big></td>
+    <td><big><big>puts </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>dbm_close </big></big></td>
+    <td><big><big>getc </big></big></td>
+    <td><big><big>ioctl </big></big></td>
+    <td><big><big>pututxline </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>dbm_delete </big></big></td>
+    <td><big><big>getc_unlocked </big></big></td>
+    <td><big><big>lseek </big></big></td>
+    <td><big><big>putwc </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>dbm_fetch </big></big></td>
+    <td><big><big>getchar </big></big></td>
+    <td><big><big>mkstemp </big></big></td>
+    <td><big><big>putwchar </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>dbm_nextkey </big></big></td>
+    <td><big><big>getchar_unlocked </big></big></td>
+    <td><big><big>nftw </big></big></td>
+    <td><big><big>readdir </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>dbm_open </big></big></td>
+    <td><big><big>getcwd </big></big></td>
+    <td><big><big>opendir </big></big></td>
+    <td><big><big>readdir_r </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>dbm_store </big></big></td>
+    <td><big><big>getdate </big></big></td>
+    <td><big><big>openlog </big></big></td>
+    <td><big><big>remove </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>dlclose </big></big></td>
+    <td><big><big>getgrent </big></big></td>
+    <td><big><big>pclose </big></big></td>
+    <td><big><big>rename </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>dlopen </big></big></td>
+    <td><big><big>getgrgid </big></big></td>
+    <td><big><big>perror </big></big></td>
+    <td><big><big>rewind </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>endgrent </big></big></td>
+    <td><big><big>getgrgid_r </big></big></td>
+    <td><big><big>popen </big></big></td>
+    <td><big><big>rewinddir </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>endhostent </big></big></td>
+    <td><big><big>getgrnam </big></big></td>
+    <td><big><big>posix_fadvise </big></big></td>
+    <td><big><big>scanf </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>endnetent </big></big></td>
+    <td><big><big>getgrnam_r </big></big></td>
+    <td><big><big>posix_fallocate </big></big></td>
+    <td><big><big>seekdir </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>endprotoent </big></big></td>
+    <td><big><big>gethostbyaddr </big></big></td>
+    <td><big><big>posix_madvise </big></big></td>
+    <td><big><big>semop </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>endpwent </big></big></td>
+    <td><big><big>gethostbyname </big></big></td>
+    <td><big><big>posix_spawn </big></big></td>
+    <td><big><big>setgrent </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>endservent </big></big></td>
+    <td><big><big>gethostent </big></big></td>
+    <td><big><big>posix_spawnp </big></big></td>
+    <td><big><big>sethostent </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>endutxent </big></big></td>
+    <td><big><big>gethostname </big></big></td>
+    <td><big><big>posix_trace_clear </big></big></td>
+    <td><big><big>setnetent </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fclose </big></big></td>
+    <td><big><big>getlogin </big></big></td>
+    <td><big><big>posix_trace_close </big></big></td>
+    <td><big><big>setprotoent </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fcntl<sup>*</sup> </big></big></td>
+    <td><big><big>getlogin_r </big></big></td>
+    <td><big><big>posix_trace_create </big></big></td>
+    <td><big><big>setpwent </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fflush </big></big></td>
+    <td><big><big>getnetbyaddr </big></big></td>
+    <td><big><big>posix_trace_create_withlog </big></big></td>
+    <td><big><big>setservent </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fgetc </big></big></td>
+    <td><big><big>getnetbyname </big></big></td>
+    <td><big><big>posix_trace_eventtypelist_getnext_id </big></big></td>
+    <td><big><big>setutxent </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fgetpos </big></big></td>
+    <td><big><big>getnetent </big></big></td>
+    <td><big><big>posix_trace_eventtypelist_rewind </big></big></td>
+    <td><big><big>strerror </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fgets </big></big></td>
+    <td><big><big>getprotobyname </big></big></td>
+    <td><big><big>posix_trace_flush </big></big></td>
+    <td><big><big>syslog </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fgetwc </big></big></td>
+    <td><big><big>getprotobynumber </big></big></td>
+    <td><big><big>posix_trace_get_attr </big></big></td>
+    <td><big><big>tmpfile </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fgetws </big></big></td>
+    <td><big><big>getprotoent </big></big></td>
+    <td><big><big>posix_trace_get_filter </big></big></td>
+    <td><big><big>tmpnam </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fopen </big></big></td>
+    <td><big><big>getpwent </big></big></td>
+    <td><big><big>posix_trace_get_status </big></big></td>
+    <td><big><big>ttyname </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fprintf </big></big></td>
+    <td><big><big>getpwnam </big></big></td>
+    <td><big><big>posix_trace_getnext_event </big></big></td>
+    <td><big><big>ttyname_r </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fputc </big></big></td>
+    <td><big><big>getpwnam_r </big></big></td>
+    <td><big><big>posix_trace_open </big></big></td>
+    <td><big><big>ungetc </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fputs </big></big></td>
+    <td><big><big>getpwuid </big></big></td>
+    <td><big><big>posix_trace_rewind </big></big></td>
+    <td><big><big>ungetwc </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fputwc </big></big></td>
+    <td><big><big>getpwuid_r </big></big></td>
+    <td><big><big>posix_trace_set_filter </big></big></td>
+    <td><big><big>unlink </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fputws </big></big></td>
+    <td><big><big>gets </big></big></td>
+    <td><big><big>posix_trace_shutdown </big></big></td>
+    <td><big><big>vfprintf </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fread </big></big></td>
+    <td><big><big>getservbyname </big></big></td>
+    <td><big><big>posix_trace_timedgetnext_event </big></big></td>
+    <td><big><big>vfwprintf </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>freopen </big></big></td>
+    <td><big><big>getservbyport </big></big></td>
+    <td><big><big>posix_typed_mem_open </big></big></td>
+    <td><big><big>vprintf </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fscanf </big></big></td>
+    <td><big><big>getservent </big></big></td>
+    <td><big><big>printf </big></big></td>
+    <td><big><big>vwprintf </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fseek </big></big></td>
+    <td><big><big>getutxent </big></big></td>
+    <td><big><big>pthread_rwlock_rdlock </big></big></td>
+    <td><big><big>wprintf </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fseeko </big></big></td>
+    <td><big><big>getutxid </big></big></td>
+    <td><big><big>pthread_rwlock_timedrdlock </big></big></td>
+    <td><big><big>wscanf </big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>fsetpos </big></big></td>
+    <td><big><big>getutxline </big></big></td>
+    <td><big><big>pthread_rwlock_timedwrlock </big></big></td>
+    <td><big><big>&nbsp;</big></big></td>
+  </tr>
+</tbody>
+</table></td></tr>
+<tr><td align="center"><big><big><big><big>* <i>for any value of the command argument</i></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>No other POSIX functions are allowed to introduce cancellation points</b> </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big><b>12.4 Thread Safety</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Almost all system functions and library functions are safe to use with
+threads.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The exceptions are given in the following table.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big>POSIX functions that are not required to be thread-safe.<br>
+</big></big></big></big></td></tr>
+<tr><td align="center"><table border="1">
+<tbody>
+  <tr>
+    <td><big><big><tt>asctime</tt></big></big></td>
+    <td><big><big><tt>fcvt</tt></big></big></td>
+    <td><big><big><tt>getpwnam</tt></big></big></td>
+    <td><big><big><tt>nl_langinfo</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>basename</tt></big></big></td>
+    <td><big><big><tt>ftw</tt></big></big></td>
+    <td><big><big><tt>getpwuid</tt></big></big></td>
+    <td><big><big><tt>ptsname</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>catgets</tt></big></big></td>
+    <td><big><big><tt>gcvt</tt></big></big></td>
+    <td><big><big><tt>getservbyname</tt></big></big></td>
+    <td><big><big><tt>putc_unlocked</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>crypt</tt></big></big></td>
+    <td><big><big><tt>getc_unlocked</tt></big></big></td>
+    <td><big><big><tt>getservbyport</tt></big></big></td>
+    <td><big><big><tt>putchar_unlocked</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>ctime</tt></big></big></td>
+    <td><big><big><tt>getchar_unlocked</tt></big></big></td>
+    <td><big><big><tt>getservent</tt></big></big></td>
+    <td><big><big><tt>putenv</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>dbm_clearerr</tt></big></big></td>
+    <td><big><big><tt>getdate</tt></big></big></td>
+    <td><big><big><tt>getutxent</tt></big></big></td>
+    <td><big><big><tt>pututxline</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>dbm_close</tt></big></big></td>
+    <td><big><big><tt>getenv</tt></big></big></td>
+    <td><big><big><tt>getutxid</tt></big></big></td>
+    <td><big><big><tt>rand</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>dbm_delete</tt></big></big></td>
+    <td><big><big><tt>getgrent</tt></big></big></td>
+    <td><big><big><tt>getutxline</tt></big></big></td>
+    <td><big><big><tt>readdir</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>dbm_error</tt></big></big></td>
+    <td><big><big><tt>getgrgid</tt></big></big></td>
+    <td><big><big><tt>gmtime</tt></big></big></td>
+    <td><big><big><tt>setenv</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>dbm_fetch</tt></big></big></td>
+    <td><big><big><tt>getgrnam</tt></big></big></td>
+    <td><big><big><tt>hcreate</tt></big></big></td>
+    <td><big><big><tt>setgrent</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>dbm_firstkey</tt></big></big></td>
+    <td><big><big><tt>gethostbyaddr</tt></big></big></td>
+    <td><big><big><tt>hdestroy</tt></big></big></td>
+    <td><big><big><tt>setkey</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>dbm_nextkey</tt></big></big></td>
+    <td><big><big><tt>gethostbyname</tt></big></big></td>
+    <td><big><big><tt>hsearch</tt></big></big></td>
+    <td><big><big><tt>setpwent</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>dbm_open</tt></big></big></td>
+    <td><big><big><tt>gethostent</tt></big></big></td>
+    <td><big><big><tt>inet_ntoa</tt></big></big></td>
+    <td><big><big><tt>setutxent</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>dbm_store</tt></big></big></td>
+    <td><big><big><tt>getlogin</tt></big></big></td>
+    <td><big><big><tt>l64a</tt></big></big></td>
+    <td><big><big><tt>strerror</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>dirname</tt></big></big></td>
+    <td><big><big><tt>getnetbyaddr</tt></big></big></td>
+    <td><big><big><tt>lgamma</tt></big></big></td>
+    <td><big><big><tt>strtok</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>dlerror</tt></big></big></td>
+    <td><big><big><tt>getnetbyname</tt></big></big></td>
+    <td><big><big><tt>lgammaf</tt></big></big></td>
+    <td><big><big><tt>ttyname</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>drand48</tt></big></big></td>
+    <td><big><big><tt>getnetent</tt></big></big></td>
+    <td><big><big><tt>lgammal</tt></big></big></td>
+    <td><big><big><tt>unsetenv</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>ecvt</tt></big></big></td>
+    <td><big><big><tt>getopt</tt></big></big></td>
+    <td><big><big><tt>localeconv</tt></big></big></td>
+    <td><big><big><tt>wcstombs</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>encrypt</tt></big></big></td>
+    <td><big><big><tt>getprotobyname</tt></big></big></td>
+    <td><big><big><tt>localtime</tt></big></big></td>
+    <td><big><big><tt>wctomb</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>endgrent</tt></big></big></td>
+    <td><big><big><tt>getprotobynumber</tt></big></big></td>
+    <td><big><big><tt>lrand48</tt></big></big></td>
+    <td><big><big>&nbsp;</big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>endpwent</tt></big></big></td>
+    <td><big><big><tt>getprotoent</tt></big></big></td>
+    <td><big><big><tt>mrand48</tt></big></big></td>
+    <td><big><big>&nbsp;</big></big></td>
+  </tr>
+  <tr>
+    <td><big><big><tt>endutxent</tt></big></big></td>
+    <td><big><big><tt>getpwent</tt></big></big></td>
+    <td><big><big><tt>nftw</tt></big></big></td>
+    <td><big><big>&nbsp;</big></big></td>
+  </tr>
+</tbody>
+</table></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big><b>12.5 User Threads and Kernel Threads</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>User-level threads run on top of an operating system.<ul>
+  <li>Threads are invisible to the kernel. </li>
+  <li>Link to a special library of system calls that prevent blocking </li>
+  <li>Have low overhead </li>
+  <li>CPU-bound threads can block other threads </li>
+  <li>Can only use one processor at a time. </li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Kernel-level threads are part of the OS.<ul>
+  <li>Kernel can schedule threads like it does processes. </li>
+  <li>Multiple threads of a process can run simultaneously on multiple CPUs. </li>
+  <li>Synchronization more efficient than for processes but less than for user-level
+    threads. </li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big>User-level threads.</big></big></big></big></td></tr>
+<tr><td align="center"><img src="fig03.gif" style="width: 40vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big>Kernel-level threads.</big></big></big></big></td></tr>
+<tr><td align="center"><img src="fig04.gif" style="width: 40vw"></td></tr>
+<tr><td><big><big><big><big>With a hybrid model, the threads of a process can share several kernel
+entities. </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big>A hybrid model.</big></big></big></big></td></tr>
+<tr><td align="center"><img src="fig05.gif" style="width:"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><ul>
+<li>POSIX threads can support any of these models.</li>
+<li>A thread has a <tt>contentionscope</tt> of <tt>PTHREAD_SCOPE_PROCESS</tt> or <tt>PTHREAD_SCOPE_SYSTEM</tt></li>
+<li>One or both can be supported on a given system.</li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>Thread Attributes</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Attributes behave like objects that can be created or destroyed.<ul>
+  <li>Create an attribute object (initialize it with default properties). </li>
+  <li>Modify the properties of the attribute object. </li>
+  <li>Create a thread using the attribute object. </li>
+  <li>The object can be changed or reused without affecting the thread. </li>
+  <li>The attribute object affects the thread only at the time of thread creation. </li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big>Settable properties of thread attributes.</big></big></big></big></td></tr>
+<tr><td align="center">
+<table border="1">
+<tbody>
+  <tr>
+    <td><big><big>property</big></big></td>
+    <td><big><big>function</big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>attribute objects</big></big></td>
+    <td><big><big><tt>pthread_attr_destroy</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>&nbsp;</big></big></td>
+    <td><big><big><tt>pthread_attr_init</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>state</big></big></td>
+    <td><big><big><tt>pthread_attr_getdetachstate</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>&nbsp;</big></big></td>
+    <td><big><big><tt>pthread_attr_setdetachstate</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>stack </big></big></td>
+    <td><big><big><tt>pthread_attr_getguardsize</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>&nbsp;</big></big></td>
+    <td><big><big><tt>pthread_attr_setguardsize</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>&nbsp;</big></big></td>
+    <td><big><big><tt>pthread_attr_getstack</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>&nbsp;</big></big></td>
+    <td><big><big><tt>pthread_attr_setstack</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>scheduling </big></big></td>
+    <td><big><big><tt>pthread_attr_getinheritsched</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>&nbsp;</big></big></td>
+    <td><big><big><tt>pthread_attr_setinheritsched</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>&nbsp;</big></big></td>
+    <td><big><big><tt>pthread_attr_getschedparam</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>&nbsp;</big></big></td>
+    <td><big><big><tt>pthread_attr_setschedparam</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>&nbsp;</big></big></td>
+    <td><big><big><tt>pthread_attr_getschedpolicy</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>&nbsp;</big></big></td>
+    <td><big><big><tt>pthread_attr_setschedpolicy</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>&nbsp;</big></big></td>
+    <td><big><big><tt>pthread_attr_getscope</tt></big></big></td>
+  </tr>
+  <tr>
+    <td><big><big>&nbsp;</big></big></td>
+    <td><big><big><tt>pthread_attr_setscope</tt></big></big></td>
+  </tr>
+</tbody>
+</table></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Initialize or destroy an attribute with:<ul>
+<li><tt>int pthread_attr_destroy(pthread_attr_t *attr);</tt></li>
+<li><tt>int pthread_attr_init(pthread_attr_t *attr);</tt></li></ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>The thread state</b><br>
+The state is either <tt>PTHREAD_CREATE_JOINABLE</tt> (the default) or <tt>PTHREAD_CREATE_DETACHED</tt>.
+</big></big></big></big></td></tr>
+<tr><td><pre><big><big><big><big>
+  int pthread_attr_getdetachstate(const pthread_attr_t *attr,
+                                  int *detachstate);
+  int pthread_attr_setdetachstate(pthread_attr_t *attr, 
+                                  int detachstate);
+</big></big></big></big></pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Example 12.15: create a detached thread:</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><pre><big><big><big><big>int error, fd;
+pthread_attr_t tattr;
+pthread_t tid;
+
+if (error = pthread_attr_init(&amp;tattr))
+   fprintf(stderr, &quot;Failed to create attribute object: %s\n&quot;,
+                    strerror(error));
+else if (error = pthread_attr_setdetachstate(&amp;tattr,
+                 PTHREAD_CREATE_DETACHED))
+   fprintf(stderr, 
+           &quot;Failed to set attribute state to detached: %s\n&quot;,
+           strerror(error));
+else if (error = pthread_create(&amp;tid, &amp;tattr, processfd, &amp;fd))
+   fprintf(stderr, 
+           &quot;Failed to create thread: %s\n&quot;, 
+           strerror(error));
+</big></big></big></big></pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>The thread stack</b><br>
+You can set a location and size for the thread stack. </big></big></big></big></td></tr>
+<tr><td><pre><big><big><big>
+int pthread_attr_getstack(const pthread_attr_t *restrict attr,
+                          void **restrict stackaddr, 
+                          size_t *restrict stacksize);
+int pthread_attr_setstack(pthread_attr_t *attr,
+                          void *stackaddr, 
+                          size_t stacksize);
+</big></big></big></pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Some systems allow you to set a guard for the stack so that an overflow into
+the guard area can generate a <tt>SIGSEGV</tt> signal.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><pre><big><big><big>
+int pthread_attr_getguardsize(const pthread_attr_t *restrict attr,
+                              size_t *restrict guardsize);
+int pthread_attr_setguardsize(pthread_attr_t *attr,
+                              size_t guardsize);
+</big></big></big></pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big><b>12.6.3 Thread scheduling</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The <tt>contentionscope</tt> can be <tt>PTHREAD_SCOPE_PROCESS</tt> or <tt>PTHREAD_SCOPE_SYSTEM</tt>.
+</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The scope determines whether the thread competes with other threads of the
+process or with other processes in the system. </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><pre><big><big><big>
+int pthread_attr_getscope(const pthread_attr_t *restrict attr,
+                          int *restrict contentionscope);
+int pthread_attr_setscope(pthread_attr_t *attr, int contentionscope);
+</big></big></big></pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Example 12.16: create a thread that contends with other processes </big></big></big></big></td></tr>
+<tr><td><pre><big><big><big>   int error;
+   int fd;
+   pthread_attr_t tattr;
+   pthread_t tid;
+
+   if (error = pthread_attr_init(&amp;tattr))
+      fprintf(stderr, &quot;Failed to create an attribute object:%s\n&quot;,
+              strerror(error));
+   else if (error = pthread_attr_setscope(&amp;tattr, PTHREAD_SCOPE_SYSTEM))
+      fprintf(stderr, &quot;Failed to set scope to system:%s\n&quot;,
+              strerror(error));
+   else if (error = pthread_create(&amp;tid, &amp;tattr, processfd, &amp;fd))
+      fprintf(stderr, &quot;Failed to create a thread:%s\n&quot;, strerror(error));
+</big></big></big></pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Inheritance of scheduling policy:<br>
+With <tt>PTHREAD_INHERIT_SCHED</tt> the scheduling attributes of the attribute object are
+ignored and the created thread has the same scheduling attributes of the creating thread.<br>
+With <tt>PTHREAD_EXPLICIT_SCHED</tt> the scheduling is taken from the attribute. </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><pre><big><big><big>  int pthread_attr_getinheritsched(const pthread_attr_t *restrict attr,
+                            int *restrict inheritsched);
+  int pthread_attr_setinheritsched(pthread_attr_t *attr,
+                            int inheritsched);
+</big></big></big></pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Scheduling parameters and policy. Typical scheduling policies are <tt>SCHED_FIFO</tt>,
+<tt>SCHED_RR&gt;</tt> and <tt>SCHED_OTHER</tt>.<br>
+What is supported is system dependent.<br>
+Each policy is modified by scheduling parameters stored in a <tt>struct sched_param</tt><br>
+This may contain a priority or a quantum value.<br>
+</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><pre><big><big><big>  int pthread_attr_getschedparam(const pthread_attr_t *restrict attr,
+                            struct sched_param *restrict param);
+  int pthread_attr_setschedparam(pthread_attr_t *restrict attr,
+                            const struct sched_param *restrict param);
+  int pthread_attr_getschedpolicy(const pthread_attr_t *restrict attr,
+                                 int *restrict policy);
+  int pthread_attr_setschedpolicy(pthread_attr_t *attr, int policy);
+</big></big></big></pre></td></tr>
+</table>
+</body>
+</html>

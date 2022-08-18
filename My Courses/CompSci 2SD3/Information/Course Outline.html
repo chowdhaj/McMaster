@@ -1,0 +1,336 @@
+
+<!-- saved from url=(0062)http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/outline.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>COMPSCI 2SD3&nbsp; Course Outline</title>
+</head>
+
+<body>
+
+<h1><img src="./Course Outline_files/logo.jpg" width="786" height="92" alt="logo.jpg (32659 bytes)"></h1>
+
+<h1>COMPSCI 2SD3&nbsp; Course Outline</h1>
+
+<p><big><strong><em>CONCURRENT SYSTEMS</em></strong><br>
+Term II, 2021 / 22</big></p>
+
+<p><a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3">Link to COMPSCI 2SD3 homepage
+(www.cas.mcmaster.ca/~franek/courses/cs2sd3)</a></p>
+
+<hr>
+
+<table border="0" width="801">
+<tbody><tr><td><font color="#FF0000"><strong><em>The instructor and the university
+  reserve the right to modify elements of the course during the term. The university may
+  change the dates and deadlines for any or all courses in extreme circumstances. If either
+  type of modification becomes necessary, reasonable notice and communication with the
+  students will be given with explanation and the opportunity to comment on changes. It is the 
+  responsibility of each student to check his/her McMaster email, the Avenue notices, and the 
+  course website daily during the term and to note any changes.</em></strong></font></td></tr>
+<tr><td><em><strong><font color="#FF0000">Please, see or download the following PDF file: 
+  <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/underpols.pdf">Undergraduate Course Management Policies</a></font></strong></em></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><font color="#660099"><strong><em>Due to covid restrictions, the lectures and tutorials are virtual over Teams. A switch
+  to in-class in-person learning can be expected before the course is completed. The students will be informed in due
+  time prior to the switch.</em></strong></font></big></td></tr>
+</tbody></table>
+
+<h3>Instructor:</h3>
+  <p>F. Franek, ITB-126<br>
+    <img src="./Course Outline_files/email_franek.jpg" style="width: vw55"><br>
+    extension: 23233<br>
+  office hours are variable and depend on the scheduling, so please,<br>
+  first check Prof. Franek's website where the current office hours
+  are posted at<br>
+  <a href="http://www.cas.mcmaster.ca/~franek/">http://www.cas.mcmaster.ca/~franek</a></p>
+
+<h3>Course Assistance (Teaching Assistants)</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./Course Outline_files/tas.jpg" style="width: vw80"></p>
+
+<h3>Student Course Evaluation</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The student course evaluation is conducted
+on-line in the period TBA.</p>
+
+<h3>Schedule</h3>
+
+<table border="1" width="843">
+  <tbody><tr>
+    <td width="150" align="center" style="background-color: rgb(192,192,192)"><strong>Lectures</strong></td>
+    <td width="109" align="center" style="background-color: rgb(192,192,192)"><strong>Day </strong></td>
+    <td width="121" align="center" style="background-color: rgb(192,192,192)"><strong>Time</strong></td>
+    <td width="128" align="center" style="background-color: rgb(192,192,192)"><strong>Location</strong></td>
+    <td width="301" align="center" style="background-color: rgb(192,192,192)"><strong>Comments</strong></td>
+  </tr>
+  <tr>
+    <td align="center">C01</td>
+    <td align="center">Mo, We, Th</td>
+    <td align="center">10:30 -11:20</td>
+    <td align="center">MDCL / 1105</td>
+    <td align="left">first class: January 10, 2022<br>
+      last class: April 11, 2022</td>
+  </tr>
+  <tr>
+    <td align="center" style="background-color: rgb(192,192,192)"><strong>Tutorials</strong></td>
+    <td align="center" style="background-color: rgb(192,192,192)"><strong>&nbsp;&nbsp; </strong></td>
+    <td align="center" style="background-color: rgb(192,192,192)"><strong>&nbsp;&nbsp; </strong></td>
+    <td align="center" style="background-color: rgb(192,192,192)"><strong>&nbsp;&nbsp; </strong></td>
+    <td align="center" style="background-color: rgb(192,192,192)"></td>
+  </tr>
+  <tr>
+    <td align="center">T01</td>
+    <td align="center">Mo</td>
+    <td align="center">11:30 - 13:20</td>
+    <td align="center"><p>T13 / 106</p></td>
+    <td>first tutorial: January 24, 2022<br>
+        last tutorial: April 11, 2022</td>
+  </tr>
+    <tr>
+    <td align="center">T02</td>
+    <td align="center">Mo</td>
+    <td align="center">11:30 - 13:20</td>
+    <td align="center">ITB / 139</td>
+    <td>first tutorial: January 24, 2022<br>
+      last tutorial: April 11, 2022</td>
+  </tr>
+    <tr>
+    <td align="center">T03</td>
+    <td align="center">Tu</td>
+    <td align="center">13:30 - 15:20</td>
+    <td align="center">JHE / A101</td>
+    <td>        first tutorial: January 25, 2022<br>
+      last tutorial: April 12, 2022</td>
+  </tr>
+    <tr>
+    <td align="center">T04</td>
+    <td align="center">Mo</td>
+    <td align="center">8:30 - 10:20</td>
+    <td align="center">T13 / 106</td>
+    <td>first tutorial: January 24, 2022<br>
+        last tutorial: April 11, 2022</td>
+  </tr>
+  <tr>
+    <td align="center" style="background-color: rgb(255,255,0)" height="3" colspan="5"></td>
+  </tr>
+  <tr>
+    <td align="center" style="background-color: rgb(192,192,192)"><strong>Midterm Test 1</strong></td>
+    <td align="center" style="background-color: rgb(192,192,192)">Th, Feb 17</td>
+    <td align="center" style="background-color: rgb(192,192,192)">10:30 - 11:30</td>
+    <td align="center" style="background-color: rgb(192,192,192)"><p>TBA</p></td>
+    <td align="left" style="background-color: rgb(192,192,192)">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center" style="background-color: rgb(255,255,0)" height="3" colspan="5" bgcolor="#FFFF00"></td>
+  </tr>
+  <tr>
+    <td align="center" style="background-color: rgb(192,192,192)"><strong>Midterm Test 2</strong></td>
+    <td align="center" style="background-color: rgb(192,192,192)">Th, Mar 17</td>
+    <td align="center" style="background-color: rgb(192,192,192)">10:30 - 11:30</td>
+    <td align="center" style="background-color: rgb(192,192,192)">TBA</td>
+    <td align="center" style="background-color: rgb(192,192,192)">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center" style="background-color: rgb(255,255,0)" height="8" colspan="5"></td>
+  </tr>
+  <tr>
+    <td align="center" style="background-color: rgb(192,192,192)"><strong>Final Exam</strong></td>
+    <td align="center" style="background-color: rgb(192,192,192)">TBA</td>
+    <td align="center" style="background-color: rgb(192,192,192)">TBA</td>
+    <td align="center" style="background-color: rgb(192,192,192)">TBA</td>
+    <td align="center" style="background-color: rgb(192,192,192)">&nbsp;</td>
+  </tr>
+</tbody></table>
+
+<br>
+<p><strong>No classes and tutorials </strong>during Midterm recess Feb 21- Feb 25</p>
+
+<h3>Calendar Description</h3>
+
+<table border="0" width="801">
+  <tbody><tr>
+    <td>Models of concurrency: process algebras, Petri nets, temporal logics and   model checking; concurrency as software structuring principle:   processes, threads, synchronization mechanisms, resource management and   sharing; deadlock, safety and liveness; design, verification and testing   of concurrent systems.</td>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Three lectures, one tutorial (two hours); second term</td>
+  </tr>
+  <tr>
+    <td><strong>Prerequisite(s):</strong><br>
+    COMPSCI 2C03, 2LC3 or 2DM3, 2ME3</td>
+  </tr>
+    <tr>
+    <td><strong>Co-requisite(s):</strong><br>
+      COMPSCI 2AC3</td>
+  </tr>
+  <tr>
+    <td><strong>Antirequisite(s):</strong><br>
+    COMPSCI 3SD3, SFWRENG 3BB4</td>
+  </tr>
+</tbody></table>
+
+<h3>Course Objectives</h3>
+
+<table border="0" width="801">
+  <tbody><tr>
+    <td>Processes, threads, concurrency; Synchronization mechanisms, resource
+    management and sharing; Objects and concurrency; Design, architecture and testing of
+    concurrent systems. The mission of this course is to give students an understanding of the
+    basic techniques of concurrent system design and to introduce students to the appropriate
+    modeling and analysis techniques. A mixture of theory and programming assignments in C
+    (UNIX) and GO. The students learn GO on their own, though several aspects of GO will be
+    discussed in the lectures.</td>
+  </tr>
+</tbody></table>
+
+<h3>Student Assessment (Grading)</h3>
+
+<p>Evaluation is based on four components: assignments, two term tests and the final
+  examination.<br>
+If an assignment is not handed in time without an adequate excuse, it is marked as 0. If a
+term<br>
+test is missed without an adequate excuse, it is marked as 0 as well.<br>
+<br>
+The final mark will normally be computed as follows:</p>
+
+<table border="1" width="603">
+  <tbody><tr>
+    <td width="131">4 Assignments</td>
+    <td width="349">the 3 best of the 4 assignments, weighted equally 8% each</td>
+    <td width="101"><p align="center">24 %</p></td>
+  </tr>
+  <tr>
+    <td width="131">Midterm test 1</td>
+    <td width="349" rowspan="2">the best of the 2 term tests</td>
+    <td width="101" rowspan="2"><p align="center">30 %</p></td>
+  </tr>
+  <tr>
+    <td width="131">Midterm test 2 </td>
+  </tr>
+  <tr>
+    <td width="131">Final Examination </td>
+    <td width="349">2  hour written examination, the date and location
+    determined&nbsp; by the Registrar's office, administered by the Registrar's office</td>
+    <td width="101"><p align="center">46 %</p></td>
+  </tr>
+</tbody></table>
+
+<p>If a student fails to obtain a non-zero mark in at least 3 assignments, the mark will
+be calculated<br>
+as follows:</p>
+
+<table border="1" width="607">
+  <tbody><tr>
+    <td width="131">Midterm test 1</td>
+    <td width="352" rowspan="2">the best of the 2 term tests</td>
+    <td width="102" rowspan="2"><p align="center">40 %</p></td>
+  </tr>
+  <tr>
+    <td width="131">Midterm test 2 </td>
+  </tr>
+  <tr>
+    <td width="131">Final Examination </td>
+    <td width="352"><p align="left">2 hour written examination, the date and
+    location determined&nbsp; by the Registrar's office, administered by the Registrar's
+    office</p></td>
+    <td width="102"><p align="center">60 %</p></td>
+  </tr>
+</tbody></table>
+
+<p>If a student fails to write both term tests yet obtains a non-zero mark in at least 3 assignemnts, an oral <br>
+  final examination at a date
+determined by the instructor will be given instead of the written one and it <br>
+will be worth 76% . The mark
+  will becomputed as follows:</p>
+
+<table border="1" width="602">
+  <tbody><tr>
+    <td width="131">4 Assignments</td>
+    <td width="358">the 3 best of the 4 assignments, weighted equally 8% each</td>
+    <td width="91"><p align="center">24 %</p></td>
+  </tr>
+  <tr>
+    <td width="131">Final Examination</td>
+    <td width="358"><p align="left">2 hour oral examination, individual, the date
+    and location determined by the instructor</p></td>
+    <td width="91"><p align="center">76 %</p></td>
+  </tr>
+</tbody></table>
+
+<p>If a student fails to write both term tests and fails to obtain a non-zero mark in at
+least 3 assignments,<br>
+the grade assigned is <em><strong>F</strong></em><strong></strong>
+
+
+</p>
+<h3>Resources</h3>
+
+<table border="0" width="801">
+  <tbody><tr>
+    <td>Recommended texts: <br>
+<ol>
+  <li><b>Unix Systems Programming: Communication, Concurrency, and Threads</b> by <em>Kay A.
+    Robbins</em>, <br>
+    and <em>Steven Robbins</em>, Prentice Hall 2003 (pdf file available, see slides)</li>
+  <li><b>The UNIX programming environment</b> by Kernigham and Pike, Prentice-Hall Software
+    Series, 1984</li>
+  <li><b>Principles of Parallel Programming</b> by Calvin Lin and Lawrence Snyder, Pearson
+    Education, 2009</li>
+</ol>
+  </td></tr>
+</tbody></table>
+
+<h3>About this course</h3>
+
+<table border="0" width="801">
+<tbody><tr><td><p>The course has three hours of lectures 
+and 2 hours of tutorials each week.
+</p><p><font color="#0000FF">For serious reasons (such as academic accommodation, or 
+      health issues (MSAF), or participation at an official hackathon out of town) the students may be allowed to</font></p>
+    
+    <ul>
+  <li><font color="#0000FF">submit an assignment late.</font></li>
+  <li><font color="#0000FF">or submit a make-up assignment instead if a sample solution had been already released</font></li></ul>
+<font color="#0000FF">Such action must be arranged with and approved by the instructor at least one week prior to the official deadline for the assignemnt.</font>
+    
+The electronic submission must be done via the course website. 
+      <ul>
+        <li>Cooperation among students <i>in the course is strongly encouraged </i>during the the tutorials, however the assignemnts and tests are to be individual effort -- the solution to the
+        problem <i>must be your own</i> to count; solutions designed with help of others (including the ones
+        copied from the internet, or other students, or provided by other means) will be treated as a case of academic dishonesty, see below.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
+ <tr>
+   <td>&nbsp;</td></tr>
+</tbody></table>
+
+<h3>Instructor Specific Information</h3>
+
+<table border="0" width="801">
+  <tbody><tr>
+    <td>Most of the communication and the course management is provided via the course
+    website. It is the responsibility of each student to check the website regularly and keep
+    informed about the course and possible changes. Some of the course website features are
+    only accessible to students with a valid course password. A valid password is created by
+    the student registered in the course via the course website.<br>
+    For all email comunication with the instructor and the TAs, the students must use their official mcmaster email account, emails from other accounts will be ignored.</td>
+  </tr>
+</tbody></table>
+
+<h3>University Advisory Statements</h3>
+
+<table border="0" width="801">
+  <tbody><tr><td>Please, see or download the following PDF file: <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2sd3/advstats.pdf">University Advisory Statements</a></td></tr>
+</tbody></table>
+
+<hr>
+
+<address>
+Last revision: Jan 12, 2022 
+</address>
+
+
+</body></html>

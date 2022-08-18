@@ -1,0 +1,402 @@
+<html>
+
+<head>
+<title>COMPSCI 2SD3 Concurrent Systems, Term II, 2021-22</title>
+</head>
+
+<body>
+<table width="1000" border="0">
+<tr><td align="center"><big><big><big><big>IPC patterns</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><hr></td></tr>
+<!--
+<tr><td><big><big><big><big><font color="#00FF00">123456789012345678901234567890123456789012345678901234567890</font></big></big></big></big></td></tr>
+-->
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Processes interact by competing for resources and cooperating in accomplishing a task.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><img src="pic46.jpg" style="width: 60vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Alice and Betty are in competition for the access to the same file.<br>
+Only order 1 and 4 will result in correct file! Order 3 and 5 will lose Betty's edits and
+orders 2 and 6 will lose Alice's edits.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center">
+<table border="1">
+  <tr>
+    <td align="center"><big><big><big><b>&nbsp;&nbsp;Order 1&nbsp;&nbsp;</b></big></big></big></td>
+    <td align="center"><big><big><big><b>&nbsp;&nbsp;Order 2&nbsp;&nbsp;</b></big></big></big></td>
+    <td align="center"><big><big><big><b>&nbsp;&nbsp;Order 3&nbsp;&nbsp;</b></big></big></big></td>
+  </tr>
+  <tr>
+    <td align="center"><big><big><big><b>edit-a</b><br>
+    <b>write-a</b><br>
+    <b><font color="red">edit-b</font></b><br>
+    <b><font color="red">write-b</font></b></big></big></big></td>
+    <td align="center"><p><big><big><big><b>edit-a</b><br>
+      <b><font color="red">edit-b</font></b></font><br>
+      <b>write-a</b><br>
+      <b><font color="red">write-b</font></b></big></big></big></p></td>
+    <td align="center"><big><big><big><b>edit-a</b><br>
+    <b><font color="red">edit-b</font></b><br>
+    <b><font color="red">write-b</font></b><br>
+    <b>write-a</b></big></big></big></td>
+  </tr>
+  <tr>
+    <td align="center"><big><big><big><b>&nbsp;&nbsp;Order 4&nbsp;&nbsp;</b></big></big></big></td>
+    <td align="center"><big><big><big><b>&nbsp;&nbsp;Order 5&nbsp;&nbsp;</b></big></big></big></td>
+    <td align="center"><big><big><big><b>&nbsp;&nbsp;Order 6&nbsp;&nbsp;</b></big></big></big></td>
+  </tr>
+  <tr>
+    <td align="center"><big><big><big><b><font color="red">edit-b</font></b><br>
+    <b><font color="red">write-b</font></b><br>
+    <b>edit-a</b><br>
+    <b>write-a</b></big></big></big></td>
+    <td align="center"><big><big><big><b><font color="red">edit-b</font></b><br>
+    <b>edit-a</b><br>
+    <b><font color="red">write-b</font></b><br>
+    <b>write-a</b></big></big></big></td>
+    <td align="center"><big><big><big><b><font color="red">edit-b</font></b><br>
+    <b>edit-a</b><br>
+    <b>write-a</b><br>
+    <b><font color="red">write-b</font></b></big></big></big></td>
+  </tr>
+</table></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td height="24"><big><big><big><big>This is a <i><b>mutual exclusion problem</b></i>. A sequence of actions
+that must be done at one time is called <i><b>critical section</b></i>.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>A possible solution make the read-edit-write into an uninterruptable
+operation (so-called transaction). But it is hard to implement - instead we have the processes to communicate.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><img src="pic47.jpg" style="width: 70vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>When the order of completion makes a difference, we call the situation <i><b>race condition</b></i> (a race between two
+processes who will finish first). Classical example: two processes read and update a shared variable.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><img src="pic48.jpg" style="width: 50vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Race condition timing chart - result will be incorrect!</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><img src="pic49.jpg" style="width: 50vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Using critical sections to exclude other processes - no race condition occurs.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;<img src="pic50.jpg" style="width=: 50vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><ul>
+<li><b><i>Atomic action</i></b>: an action that once it has
+begun execution, the entire execution is completed before any interrupt is handled.</li>
+<li>On most machines a single machine instruction is atomic.</li>
+<li>Any implementation of mutual exclusion requires an atomic action to <i>mark</i> the beginning and the end of the critical section.</li>
+<li>Note that the implementation through locking of some kind does not prevent access, it requires <i>voluntary cooperation</i> - <i>check
+the lock and if it is not open, do not access</i>! Some software systems running into race condition problems (DBMS) take the locking one step further - 
+the access is denied if the row (table, page, etc.) is locked.</li></ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big>IPC - SIGNALING</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><img src="visio1.gif" style="width: 40vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>In one-way signaling, the signal sender never waits for the signal from the receiver, it just sends the signal and goes on.<br>
+The nature of signals: from 1 bit signals (as in UNIX) to messages of arbitrary length.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big><b>IPC - RENDEZVOUS</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Sometimes two processes need to synchronize and do something exactly at the same time. It is solved through mutual 
+one-way signals:</big></big></big></big></td></tr>
+<tr><td align="center"><img src="visio2.jpg" style="width: 50vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big><b>MANY-PROCESS RENDEZVOUS</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="left"><img src="visio3.jpg" style="width: 60vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The problem with this approach is that the whole system depends on the coordinator process. Also, the whole 
+setup assumes that no process fails, which is unrealistic in distributed systems.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big><b>ABA problem</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>occurs during synchronization, when a location is read twice, has the same value for both reads, and &quot;value is the same&quot;
+is used to indicate <font color="#800080"><i>nothing has changed</i></font>.
+However, another thread can execute between the two reads and change the value, do other work, then change the value back, thus fooling 
+the first thread in to thinking <font color="#800080"><i>nothing has
+changed</i></font> even though the second thread did work that violates that assumption:</big></big></big></big></td></tr>
+<tr><td><big><big><big><big><ul>
+  <li>Thread T<sub>1</sub> reads value A from shared memory,</li>
+  <li>T<sub>1</sub> is preempted, allowing thread T<sub>2</sub> to run,</li>
+  <li>T<sub>1</sub> modifies the shared memory value A to value B and back to A before preemption,</li>
+  <li>T<sub>2</sub> begins execution again, sees that the shared memory value has not changed and continues.</li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Although T<sub>1</sub> can continue executing, it is possible that
+the behavior will not be correct due to the &quot;hidden&quot;
+modification in shared memory.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>A common case of the ABA problem is encountered when 
+implementing a lock-free data structure. If an item is removed from the list, deleted, and then a new item is allocated and added
+to the list, it is common for the allocated object to be at the same location as the deleted object due to optimization. A pointer to
+the new item is thus sometimes equal to a pointer to the old item which is an ABA problem.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The solution is expensive -- tagged reference -- indicating how often has the shared memory been
+modified (<i>Compare and swap</i>)</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big><b>Producer-consumer problem (bounded buffer problem)</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The problem describes two threads, the <i><b>producer</b></i>
+and the <i><b>consumer</b></i>, who share a common, fixed-size buffer used as a queue. The producer's job is to generate a piece of data, put it 
+into the buffer and start again. At the same time, the consumer is consuming the data (i.e., removing it from the buffer) one piece at a time. 
+The problem is to make sure that the producer won't try to add data into the buffer if it's full and
+that the consumer won't try to remove data from an empty buffer.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The solution for the producer is to either go to sleep or discard
+data if the buffer is full. The next time the consumer removes an item from the buffer, it notifies the producer, who starts to 
+fill the buffer again. In the same way, the consumer can go to sleep if it finds the buffer to
+be empty. The next time the producer puts data into the buffer, it wakes up the sleeping consumer. The solution can be reached by means of
+inter-thread communication, typically using semaphores. An inadequate solution (a lost wake up call) could result in a deadlock where both
+threads are waiting to be awakened.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>This can be implemented as a one-way message passing, but in a
+loop:</big></big></big></big></td></tr>
+<tr><td><big><big><big><big><font face="Courier New"><pre>while(1){
+   <font color="#0000FF">// produce message msg</font>
+   SendMsgTo(cqueu,msg);
+}</pre></font></big></big></big></big></td></tr>
+<tr><td><big><big><big><big><font face="Courier New"><pre>while(1){
+   ReceiveMsg(cqueu,msg);
+   <font color="#0000FF">//consume message msg</font>
+}</pre></font></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The messages are <i><b>buffered</b></i> by the
+operating system (queued, waiting for the rrecepient). This allows the producer to get ahead of the
+consumer. Useful when producer is <i>bursty</i> (uneven rate of producing the
+messages), while the consumer is <i>steady</i> (even rate of consuming) -
+example Process/Printer.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Not useful when producer produces messages much slower than consumer consumes them. 
+We can limit the number of buffers used by making producer to wait for a message from consumer that a buffer is empty:</big></big></big></big></td></tr>
+<tr><td><big><big><big><big><font face="Courier New"><pre><font color="#0000FF">//producer</font>
+#define BufferLimit 20
+buffer_queue 
+prod_queue
+while(1){
+   <font color="#0000FF">//wait if buffer_queue full</font>
+   WaitForEmpty(buffer_queue);
+   <font color="#0000FF">//produce a message</font>
+   SendMsgTo(prod_queue,msg);
+}</pre></font></big></big></big></big></td></tr>
+<tr><td><big><big><big><big><font face="Courier New, Courier, monospace"><pre><font color="#0000FF">//consumer</font>
+#define BufferLimit 20
+buffer_queue
+prod_queue
+<font color="#0000FF">//tell prod. there are BufferLimit empty buffers</font>
+for(i=0;i&lt;BufferLimit;i++)
+   SendMsgTo(buffer_queue,EmptyBuff);
+while(1) {
+   ReceiveMsg(prod_queue);<font color="#0000FF">//consume the message</font>
+   <font color="#0000FF">//tell producer another buffer is empty</font>
+   SendMsgTo(buffer_queue,EmptyBuf);
+}</pre></font></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><img src="visio5.jpg" style="width: 70vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big><b>Readers-writers problem</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>The first readers-writers problem (readers-preference)</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Suppose we have a shared memory area with the constraint that <i>no reader shall be kept waiting if the shared
+memory is currently opened for reading</i>. It is possible to protect the shared
+data behind a mutex, in which case no two threads can access the data at the 
+same time. However, this solution is suboptimal, because it is
+possible that a reader <i>R<sub>1</sub></i> might have the lock, and
+then another reader <i>R<sub>2</sub></i> requests access. It would be foolish for <i>R<sub>2</sub></i>
+to wait until <i>R<sub>1</sub></i> was done before starting its own read operation;
+instead, <i>R<sub>2</sub></i> should start right away.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The solution requires two mutexes: <tt><b>rmutex</b></tt> and <tt><b>wmutex</b></tt></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><b><font face="Courier New, Courier, monospace" color="#800080"><pre>          mutex rmutex=1,wmutex=1;
+          readcount=0;
+ 
+          writer() {
+             wait_lock(wmutex);
+             <font color="#0000FF">// Writing is done</font>
+             unlock(wmutex);
+          }
+ 
+          reader() {
+             wait_lock(rmutex);
+             readcount++;
+             if (readcount == 1)
+                wait_lock(wmutex);
+             unlock(rmutex);
+             <font color="#0000FF">// Do the Reading
+             // Critical Section Area</font>
+             wait_lock(rmutex);
+             readcount--;
+             if (readcount == 0)
+                unlock(wmutex);
+             unlock(rmutex);
+</pre></font></b></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Possible starvation of writers - another reader jumps in before the
+writer can lock it.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>The second readers-writers problem (writers-preference)</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Suppose we have a shared memory area with the constraint that
+<i>no writer, once added to the queue, shall be kept waiting longer than absolutely necessary</i>. In a solution for this problem, 
+<i>mutex</i><sub>1</sub> protects <i>readcount</i> variable, <i>mutex</i><sub>2</sub>
+protects the <i>writecount</i> variable, <i>rmutex</i> protects the reading operation, and the <i>wmutex</i>
+protects the writing operation. Possible starvation of readers!!</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>The third readers-writers problem</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The third readers-writers problem is sometimes proposed, which adds
+the constraint that <i>no thread shall be
+allowed to starve</i>; that is, the operation of obtaining a lock on the shared data will always terminate
+in a bounded amount of time.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big><b>Dining philosophers problem</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Five silent philosophers sit at a table. A fork is placed between
+each pair of adjacent philosophers. Each philosopher must alternately think and eat. However, a philosopher can only eat when he has both
+left and right forks. Each fork can be held by only one philosopher 
+and so a philosopher can use the fork only if it's not being used by 
+another philosopher. After he finishes eating, he needs to put
+down both forks so they become available to others. A philosopher can grab the fork on his right or the one on his left as they become available,
+but can't start eating before getting both of them. Eating is not limited 
+by the amount of food, i.e. assuming an infinite supply.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><img src="dining_philosophers.jpg" style="width: 50vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The problem is how to design a discipline of behavior (a concurrent algorithm) such that each philosopher won't starve; 
+i.e., can forever 
+continue to alternate between eating and thinking assuming that any philosopher cannot know when others may want to eat or think.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The problem was designed to illustrate the problem of avoiding <i><b>deadlock</b></i>.To
+see that designing a proper solution to this problem isn't obvious, consider the following proposal: instruct each
+philosopher to behave as follows:</big></big></big></big></td></tr>
+<tr><td><big><big><big><big><ul>
+  <li>think until the left fork is available; when it is, pick it up;</li>
+  <li>think until the right fork is available; when it is, pick it up;</li>
+  <li>when both forks are held, eat for a fixed amount of time;</li>
+  <li>then, put the right fork down;</li>
+  <li>then, put the left fork down;</li>
+  <li>repeat from the beginning.</li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>This attempt at a solution fails: it allows the system to reach a
+deadlock:<br>
+each philosopher has picked up the fork to the left, waiting for the
+fork to the right to be put down.</big></big></big></big></td></tr>
+<tr><td><big><big><big><big><b>Resource starvation</b> might also occur independently of deadlock if a 
+particular philosopher is unable to acquire both forks because of a 
+timing problem. Consider e.g. a rule that the philosophers put down 
+a fork after waiting ten minutes for the other fork to become
+available and wait a further ten minutes before making their next attempt. This scheme eliminates the possibility of 
+deadlock but still suffers from the following problem: if all five philosophers appear in the dining
+room at exactly the same time and each picks up the left fork at the
+same time the philosophers will wait ten minutes until they all put
+their forks down and then wait a further ten minutes before they all
+pick them up again.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The Dining philosophers problem arise often when multiple threads
+access sets of data that are being updated.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>Resource hierarchy</b> solution</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>This solution to the problem is the one originally proposed by
+Dijkstra. The forks will be numbered 1 through 5 and each philosopher will
+always pick up the lower-numbered fork first, and then the higher-numbered
+fork, from among the two forks he plans to use. The order in which each
+philosopher puts down the forks does not matter.<br> 
+Starvation is still possible: if four of the five philosophers simultaneously
+pick up their lower-numbered fork, only the highest numbered fork 
+will remain on the table, so the fifth philosopher will not be able to
+pick up any fork. Only one philosopher will have access to that
+highest-numbered fork, so he will be able to eat using two forks.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>While the resource hierarchy solution avoids deadlocks, it is not
+always practical, especially when the list of required resources is not
+completely known in advance.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>Arbitrator</b> solution</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Introducing an arbitrator, e.g., a waiter. In order to pick up the
+forks, a philosopher must ask permission of the waiter. The waiter gives
+permission to only one philosopher at a time until he has picked up both his
+forks. Putting down a fork is always allowed. The waiter can be implemented
+as a mutex. This approach can result in <i>reduced parallelism</i>: if a
+philosopher is eating and one of his neighbors is requesting the forks, all other
+philosophers must wait until this request has been fulfilled even if forks for them
+are still available.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>Audience</b> solution</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The philosophers represent an audience observing an event. All the
+philosophers are seated at a table, but one philosopher is facing away from the
+table. This set-up creates a race condition on only two forks, the fork to the left
+and the fork to the right of the philosopher sitting backwards. If philosopher 5 is
+sitting backwards (philosophers are counted clockwise); the fork to the left
+of philosopher 5 would also be to the left of philosopher 4, and the fork to the
+right of philosopher 5 would also be to the right of philosopher 1.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The possible outcomes are as follows:<ol>
+  <li>If philosopher 5 gets the left and right fork first: he is the first
+    to eat.</li>
+  <li>If philosopher 5 gets the left fork, but fails to get the right:
+    philosopher 1 is the first to eat.</li>
+  <li>If philosopher 5 fails to get the left fork: he does not grab the
+    right fork, allowing philosopher 1 to grab it and eat first.</li>
+</ol></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The end result is a eating pattern that goes clockwise, with only
+one philosopher eating at a time. This usage, although inefficient, prevents any
+chance of deadlock caused by a race condition, while also ensuring that no one philosopher
+eats more often than the others.</big></big></big></big></td></tr>
+</table>
+</body>
+</html>

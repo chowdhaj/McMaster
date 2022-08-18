@@ -1,0 +1,185 @@
+<html>
+<head>
+<title>COMPSCI 2SD3 Concurrent Systems, Term II, 2021-22</title>
+</head>
+<body>
+
+<table width="1100">
+<tr><td align="center"><h1><big>Process - the concept</big></h1></td></tr>
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><big><big><big><big>Process<ul>
+  <li>program - a sequence of instructions, a static object</li>
+  <li>process - a program in execution, a dynamic object</li>
+</ul></big></big></big></big></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big>Process hierarchy</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><img src="pic14.gif" style="width: 50vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+
+<tr><td align="center"><big><big><big><big>Process states:</big></big></big></big></td></tr>
+<tr><td><big><big><big><big><ul>
+  <li><em>running</em> - executed by the real processor</li>
+  <li><em>ready</em> - to be executed, but no free processor</li>
+  <li><em>blocked</em> - waiting for an event, cannot run even if there is
+    a free processor</li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><img src="pic17.gif" style="width: 50vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><em>process dispatching</em> = decide which process to run and resume
+its execution.</big></big></big></big></td></tr>
+
+<tr><td><big><big><big><big><em>timer interrupts</em> = the current process used up its time
+allocation, is saves the context (<em>half context-switch</em>, the other half is
+restoring the context, then we talk of <em>full context-switch</em>) of the current
+process and calls the dispatcher.</big></big></big></big></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><big><big><big><big><em>System stack</em> = not used by OS in the usual sense; OS itself
+does not run as a process.<br>
+<em>IPS</em> = <em>Initial Process Start</em> (do not confuse with <em>ISP=internet
+service provider</em>) = System initialization.</big></big></big></big></td></tr>
+<tr><td><big><big><big><big>OS creates IP internally, all other processes are created by IP and
+its descendants:</big></big></big></big></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><img src="pic18.gif" style="width: 50vw:"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><big><big><big><big>OS code does not run as a process, but rather it implements processes
+so user code can run as a process.</big></big></big></big></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big>Process switching:</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><img src="pic19.gif" style="width: 50vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+
+<tr><td align="center"><img src="pic20.gif" style="width: 40vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><img src="pic21.gif" style="width: 50vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+
+<tr><td align="center"><img src="pic22.gif" style="width: 50vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><big><big><big><big>control is moving between OS and the process. Control changes
+within OS or the process are <em>procedure calls</em>. Interrupts switch control from a
+user process to OS, <em>rti</em> switches control from OS to a user process.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><table width="1090" border="0">
+  <tr>
+    <td width="536"><big><big><big><strong><font face="Courier New, Courier, monospace">pid_t fork(void)</font></strong></big></big></big></td>
+    <td width="96"><a href="fork.txt"><big><big>info here</big></big></a></td>
+    <td width="436"><big><big>or  type <font color="#0000FF" face="Courier New, Courier, monospace">man -s 2 fork</font> on <em><strong>mills</strong></em></big></big></td>
+  </tr>
+</table></td></tr>
+
+<tr><td><table width="1090" border="0">
+  <tr>
+    <td width="536"><big><big><big><strong><font face="Courier New, Courier, monospace">void exit(int status)</font></strong></big></big></big></td>
+    <td width="96"><a href="exit.txt"><big><big>info here</big></big></a></td>
+    <td width="436"><big><big>or  type <font color="#0000FF" face="Courier New, Courier, monospace">man -s 2 exit</font></big></big></td>
+  </tr>
+</table></td></tr>
+
+<tr><td><table width="1090" border="0">
+  <tr>
+    <td width="536"><big><big><big><strong><font face="Courier New, Courier, monospace">void wait(int *stat_loc)</font></strong></big></big></big></td>
+    <td width="96"><a href="wait.txt"><big><big>info here</big></big></a></td>
+    <td width="436"><big><big>or  type <font color="#0000FF" face="Courier New, Courier, monospace">man -s 2 wait</font></big></big></td>
+  </tr>
+</table></td></tr>
+
+<tr><td><table width="1090" border="0">
+  <tr>
+    <td width="1090"><big><big><big><strong><font face="Courier New, Courier, monospace">pid_t waitpid(pid_t pid, int *stat_loc, int options)</font></strong></big></big></big></td></tr>
+<tr><td><table width="1090" border="0">
+    <tr>
+    <td width="536">&nbsp;</td>
+    <td width="96"><a href="waitpid.txt"><big><big>info here</big></big></a></td>
+    <td width="436"><big><big>or  type <font color="#0000FF" face="Courier New, Courier, monospace">man -s 2 waitpid</font></big></big></td>
+  </tr>
+</table></td></tr>
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><a href="ids.html"><big><big><big><big>see user and group id's of processes</big></big></big></big></a></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Passing arguments (and the environment) to processes in UNIX:</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><img src="pic13.gif" style="width: 40vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><table width="1090" border="0">
+  <tr>
+    <td width="1090"><big><big><big><strong><font face="Courier New, Courier, monospace">execv(const char *path, char *const argv[])</font></strong></big></big></big></td></tr>
+<tr><td><table width="1090" border="0">
+    <tr>
+    <td width="536">&nbsp;</td>
+    <td width="96"><a href="exec.txt"><big><big>info here</big></big></a></td>
+    <td width="436"><big><big>or  type <font color="#0000FF" face="Courier New, Courier, monospace">man -s 2 exec</font></big></big></td>
+  </tr>
+</table></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+
+<tr><td align="center"><big><h1><big>Inter Process Communication - IPC (details in Chapter 15)</big></h1></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>In UNIX we have<ul> 
+  <li><a href="signals.html">signals</a> (see 
+    <a href="signals.txt">signal.h</a>, <a href="signal.txt">signal</a>, 
+    <a href="kill.txt">kill</a>, 
+    <a href="sigaction.txt">sigaction</a>,
+    <a href="sigsend.txt">sigsend</a>,
+    <a href="alarm.txt">alarm</a>,
+    <a href="pause.txt">pause</a>,
+    <a href="sigprocmask.txt">sigprocmask</a>,
+    <a href="sigpending.txt">sigpending</a>,
+    <a href="sigsuspend.txt">sigsuspend</a>,
+    <a href="sleep.txt">sleep</a>,
+    <a href="wait.txt">wait</a>,
+    <a href="waitpid.txt">waitpid</a>,
+    <a href="sigsetjmp.txt">sigsetjmp</a>,
+    <a href="siglongjmp.txt">siglongjmp</a>)</li>
+    
+  <li>shared memory (see <a href="shmget.txt">shmget</a>, 
+    <a href="shmctl.txt">shmctl</a>, <a href="shmat.txt">shmat</a>, <a href="shmdt.txt">shmdt</a>,
+    <a href="ipcs.txt">ipcs</a>, <a href="ipcrm.txt">ipcrm</a>)</li>
+    
+  <li>message queues (see <a href="msgget.txt">msgget</a>, 
+    <a href="msgctl.txt">msgctl</a>, <a href="msgsnd.txt">msgsnd</a>, 
+    <a href="msgrcv.txt">msgrcv</a>)</li>
+  <li>pipes (<a href="pipe.txt">pipe</a>, 
+    <a href="popen.txt">popen</a>, <a href="pclose.txt">pclose</a>, 
+    <a href="mkfifo.txt">mkfifo</a>)</li>
+</ul></big></big></big></big></td></tr>
+</table>
+</body>
+</html>

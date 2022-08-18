@@ -1,0 +1,69 @@
+FAQ.txt
+
+=> How do I login to mills?
+Use the following command without quotes "ssh MACID.mills@mcmaster.ca".
+Then, enter your password. You do not have to use the CISCO VPN, but it
+is recommended.
+
+=> What happens to the process/stack if an exception occurs?
+Process terminates and stack is cleaned up. When the process goes away,
+the stack is also gone.
+
+Do these system calls work only Unix?
+=> Each operating system has its own system calls. A program made for
+Unix won't work on Windows
+
+What happens to a process' stack when it is interrupted?
+=> When a process is interrupted, its stack is preserved.
+
+How does the computer know the difference between ints, floats, etc.?
+=> You, the programmer, give it semantics. Consider the following bit
+pattern: ... 
+
+Are number of processes limited?
+=> Yes it is. Processes are limited by the physicality of computers,
+like memory. Potentially, you can have an unlimited number of
+procedures. Limited computer memory is the reason why floats are not
+precise and cause errors.
+
+What happens if the stack is filled?
+=> Stack overflow
+
+Calling a procedure is completely different from spawning a process
+
+User programs cannot influence the OS - unless it takes advantage of a
+bug in the OS
+
+What is the difference between procedure and system call?
+=> 
+
+What text editor can we use in mills?
+=> You can use anything you want. nano, vim, emacs, etc. The choice is
+yours. nano is easy to use but lacks certain functionalities. vim has
+a steep learning curve, but is very powerful. emacs is the hardest to
+learn, but most powerful. The choice is yours.
+
+Can processes send a kill signal to each other?
+=> Simple answer is yes, but it needs to be done carefully cuz we
+don't want processes killing each other nefariously
+
+Processes don't know who sent a signal
+=> 
+
+Can checking the mask can cause concurrency issues?
+=> 
+
+What is #define?
+Macro instruction, dont take any space. Its text replacement. This
+is better than using ints or functions. Its good for performance, and
+adds no overhead.
+
+=> In a signal mask, 1 is blocked and 0 is not blocked?
+Correct. Mask bits that are set on (i.e. 1) represent signals that are
+blocked.
+
+=> why are the pointer types in the arguments of sigprocmask qualified with restrict?
+
+=> So if a process has blocked a signal, the process cannot ever receive that signal until it is unblocked, right?
+
+=> could you give an example where we could use SIG_SETMASK

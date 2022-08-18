@@ -1,0 +1,641 @@
+<html>
+
+<head>
+<title>COMPSCI 2SD3 Concurrent Systems, Term II, 2021-22</title>
+</head>
+
+<body>
+
+<table width="1000" border="0">
+<tr><td align="center"><h1><big>USP Chapter 8 - Signals</big></h1></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><hr></td></tr>
+<tr><td>&nbsp;</td></tr>
+<!--
+<tr><td><big><big><big><big>123456789012345678901234567890123456789012345678901234567890</big></big></big></big></td></tr>
+-->
+<tr><td><big><big><big><big>A signal is a software notification to a process of an event.</big></big></big></big></td></tr>
+<tr><td><big><big><big><big>Terminology:<ul>
+  <li>A signal is <i>generated</i> when the event that causes the signal occurs.</li>
+  <li>A signal is <i>delivered</i> when the process takes action based on the signal.</li>
+  <li>The <i>lifetime</i> of a signal is the interval between its generation and delivery.</li>
+  <li>A signal that has been generated but not yet delivered is <i>pending</i>.</li>
+  <li>A process <i>catches</i> a signal if it executes a <i>signal handler</i> when the signal is delivered.</li>
+  <li>Alternatively, a process can <i>ignore</i> as signal when it is delivered, that is to take no action.</li>
+  <li>The function <tt>sigaction</tt> is used to specify what is to happen to a signal when it is delivered.</li>
+  <li>The <i>signal mask</i> determines the action to be taken when the signal is generated. It contains a list of signals to be <i>blocked</i>.</li>
+  <li>A <i>blocked</i> signal is not delivered to a process until it is unblocked.</li>
+  <li>The function <tt>sigprocmask</tt> is used to modify the signal mask.</li>
+  <li>Each signal has a <i>default action</i> which is usually to terminate the process.</li>
+</ul></big></big></big></big></td></tr>
+<tr><td><hr></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><table border="1">
+      <tr>
+        <td><big><big><big>Signal</big></big></big></td>
+        <td><big><big><big>Description</big></big></big></td>
+        <td><big><big><big>default action</big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGABRT</tt></big></big></big></td>
+        <td><big><big><big>process abort </big></big></big></td>
+        <td><big><big><big>implementation dependent</big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGALRM</tt></big></big></big></td>
+        <td><big><big><big>alarm clock </big></big></big></td>
+        <td><big><big><big>abnormal termination </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGBUS</tt></big></big></big></td>
+        <td><big><big><big>access undefined part of memory object </big></big></big></td>
+        <td><big><big><big>implementation dependent </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGCHLD</tt></big></big></big></td>
+        <td><big><big><big>child terminated, stopped or continued </big></big></big></td>
+        <td><big><big><big>ignore </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGCONT</tt></big></big></big></td>
+        <td><big><big><big>execution continued if stopped </big></big></big></td>
+        <td><big><big><big>continue </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGFPE</tt></big></big></big></td>
+        <td><big><big><big>error in arithmetic operation as in division by zero </big></big></big></td>
+        <td><big><big><big>implementation dependent </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGHUP</tt></big></big></big></td>
+        <td><big><big><big>hang-up (death) on controlling terminal (process) </big></big></big></td>
+        <td><big><big><big>abnormal termination </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGILL</tt></big></big></big></td>
+        <td><big><big><big>invalid hardware instruction </big></big></big></td>
+        <td><big><big><big>implementation dependent </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGINT</tt></big></big></big></td>
+        <td><big><big><big>interactive attention signal (usually ctrl-C) </big></big></big></td>
+        <td><big><big><big>abnormal termination </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGKILL</tt></big></big></big></td>
+        <td><big><big><big>terminated (cannot be caught or ignored) </big></big></big></td>
+        <td><big><big><big>abnormal termination </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGPIPE</tt></big></big></big></td>
+        <td><big><big><big>write on a pipe with no readers </big></big></big></td>
+        <td><big><big><big>abnormal termination </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGQUIT</tt></big></big></big></td>
+        <td><big><big><big>interactive termination: core dump (usually ctrl-|) </big></big></big></td>
+        <td><big><big><big>implementation dependent </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGSEGV</tt></big></big></big></td>
+        <td><big><big><big>invalid memory reference </big></big></big></td>
+        <td><big><big><big>implementation dependent </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGSTOP</tt></big></big></big></td>
+        <td><big><big><big>execution stopped (cannot be caught or ignored) </big></big></big></td>
+        <td><big><big><big>stop </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGTERM</tt></big></big></big></td>
+        <td><big><big><big>termination </big></big></big></td>
+        <td><big><big><big>abnormal termination </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGTSTP</tt></big></big></big></td>
+        <td><big><big><big>terminal stop </big></big></big></td>
+        <td><big><big><big>stop </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGTTIN</tt></big></big></big></td>
+        <td><big><big><big>background process attempting to read </big></big></big></td>
+        <td><big><big><big>stop </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGTTOU</tt></big></big></big></td>
+        <td><big><big><big>background process attempting to write </big></big></big></td>
+        <td><big><big><big>stop </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGURG</tt></big></big></big></td>
+        <td><big><big><big>high bandwidth data available at a socket </big></big></big></td>
+        <td><big><big><big>ignore </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGUSR1</tt></big></big></big></td>
+        <td><big><big><big>user-defined signal 1 </big></big></big></td>
+        <td><big><big><big>abnormal termination </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big><tt>SIGUSR2</tt></big></big></big></td>
+        <td><big><big><big>user-defined signal 2 </big></big></big></td>
+        <td><big><big><big>abnormal termination </big></big></big></td>
+      </tr>
+    </table>
+</td></tr>
+<tr><td align="center"><big><big><big><big>Table 8.1: The POSIX required signals.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><hr></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>You can send a signal to a process from the command line using <tt>kill</tt><br>
+    <tt>kill -l</tt> will list the signals the system understands<br>
+    <tt>kill [-signal] pid</tt> will send a signal to a process.<br>
+    The optional argument may be a name or a number.<br>
+    The default is <tt>SIGTERM</tt>.<br>
+    To unconditionally kill a process, use:<br>
+    &nbsp;&nbsp;&nbsp;<tt>kill -9 pid</tt> which is the same as<br>
+    &nbsp;&nbsp;&nbsp;<tt>kill -KILL pid</tt></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>From a program you can use the <tt>kill</tt> system call:</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><pre><big><big><big><big>#include &lt;sys/types.h&gt;
+#include &lt;signal.h&gt;
+int kill(pid_t pid, int sig);
+</big></big></big></big></pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Example 8.4: send <tt>SIGUSR1</tt> to process 3423:<pre>   if (kill(3423, SIGUSR1) == -1)
+     perror(&quot;Failed to send the SIGUSR1 signal&quot;);
+</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Example 8.5: a child kills its parent:<pre>   if (kill(getppid(), SIGTERM) == -1)
+     perror (&quot;Failed to kill parent&quot;);
+</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Example 8.6: a process sends a signal to itself:<pre>   if (raise(SIGUSR1) != 0)
+     perror(&quot;Failed to raise SIGUSR1&quot;);</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Example 8.7: kill an infinite loop after 10 seconds:<pre>   int main(void) {
+      alarm(10);
+      for ( ; ; ) ;
+   }</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><hr></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big><b>Signal Mask and Signal Sets</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>How do you deal with a set of signals?<br>
+    Originally, an <tt>int</tt> would hold a collection of bits, one per signal.<br>
+    Now, signal sets of type <tt>sigset_t</tt> are used.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Here are the routines for handling sets of signals.<br>
+    You should compare these to the way <tt>select</tt> handles sets of file descriptors.<pre>  #include &lt;signal.h&gt;
+  int sigemptyset(sigset_t *set);
+  int sigfillset(sigset_t *set);
+  int sigaddset(sigset_t *set, int signo);
+  int sigdelset(sigset_t *set, int signo);
+  int sigismember(const sigset_t *set, int signo);
+  </pre></big></big></big></big></td></tr>
+<tr><td><big><big><big><big><tt>sigemptyset</tt> initializes the set to contain no signals<br>
+    <tt>sigfillset</tt> puts all signals in the set<br>
+    <tt>sigaddset</tt> adds one signal to the set<br>
+    <tt>sigdelset</tt> removes one signal from the set<br>
+    <tt>sigismember</tt> tests to see if a signal is in the set</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The process signal mask is a set of signals that are blocked.</big></big></big></big></td></tr>
+<tr><td><big><big><big><big>A blocked signal remains pending after it is generated until the signal is unblocked.</big></big></big></big></td></tr>
+<tr><td><big><big><big><big>The process signal mask is modified with the <tt>sigprocmask</tt> system call.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><pre><big><big><big><big>   #include &lt;signal.h&gt;
+   int sigprocmask(int how, const sigset_t *restrict set,
+                   sigset_t *restrict oset);
+</big></big></big></big></pre></td></tr>
+<tr><td><big><big><big><big>The <tt>how</tt> can be <tt>SIG_BLOCK</tt> or <tt>SIG_UNBLOCK</tt> or <tt>SIG_SETMASK</tt><br>
+Either <tt>set</tt> or <tt>oset</tt> may be <tt>NULL</tt>.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Example 8.9: initialize a signal set:<pre>   if ((sigemptyset(&amp;twosigs) == -1) ||
+       (sigaddset(&amp;twosigs, SIGINT) == -1)  ||
+       (sigaddset(&amp;twosigs, SIGQUIT) == -1))
+     perror(&quot;Failed to set up signal mask&quot;);
+</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Example 8.10: add <tt>SIGINT</tt> to the set of blocked signals:<pre>   sigset_t newsigset;
+   if ((sigemptyset(&amp;newsigset) == -1) ||
+       (sigaddset(&amp;newsigset, SIGINT) == -1))
+      perror(&quot;Failed to initialize the signal set&quot;);
+   else if (sigprocmask(SIG_BLOCK, &amp;newsigset, NULL) == -1)
+      perror(&quot;Failed to block SIGINT&quot;);
+</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Program 8.1 on page 263 blocks and unblocks <tt>SIGINT</tt></big></big></big></big></td></tr>
+<tr><td><big><big><big><big>Program 8.2 on page 264 blocks a signal while creating two pipes. </big></big></big></big></td></tr>
+<tr><td><big><big><big><big>Program 8.3 on page 265 blocks all signals before a fork and exec. </big></big></big></big></td></tr>
+<tr><td><big><big><big><big>Program 8.4 on page 266 blocks some signals while getting a password. </big></big></big></big></td></tr>
+<tr><td><big><big><big><big>The process signal mask is inherited by the child process. </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><hr></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big><b>Catching and Ignoring Signals: <tt>sigaction</tt></b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><pre>   #include &lt;signal.h&gt;
+   int sigaction(int signo, const struct sigaction *act, 
+                 struct sigaction *oact);
+   struct sigaction {
+      <font color="#0000FF">/* SIG_DFL, SIG_IGN or pointer to function */</font>
+      void (*sa_handler)(int);
+      <font color="#0000FF">/* additional signals to be blocked during 
+      execution of handler */</font>
+      sigset_t sa_mask; 
+      <font color="#0000FF">/* special flags and options */</font>
+      int sa_flags;
+      <font color="#0000FF">/*realtime handler*/</font>
+      void(*sa_sigaction) (int, siginfo_t *, void *);    
+   };
+</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><hr></td></tr>
+<tr><td><big><big><big><big>Either <tt>act</tt> or <tt>oact</tt> may be <tt>NULL</tt>.<br>
+If the <tt>SA_SIGINFO</tt> flag of the <tt>sa_flags</tt> field is clear,
+<tt>sa_handler</tt> specifies the action to be taken.<br>
+<tt>void (*sa_handler)()</tt> means a pointer to a function that does not return value.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Example 8.15: ignore <tt>SIGINT</tt> if the default action is set:<pre>struct sigaction act;
+if (sigaction(SIGINT, NULL, &amp;act) == -1)
+   <font color="#0000FF">/* Find current SIGINT handler */</font>
+   perror(&quot;Failed to get old handler for SIGINT&quot;);
+else if (act.sa_handler == SIG_DFL) {
+   <font color="#0000FF">/* if SIGINT handler is default */</font>
+   act.sa_handler = SIG_IGN;         
+   <font color="#0000FF">/* set new SIGINT handler to ignore */</font>
+   if (sigaction(SIGINT, &amp;act, NULL) == -1)
+      perror(&quot;Failed to ignore SIGINT&quot;);
+}</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Example 8.16: set up a signal handler for <tt>SIGINT</tt>:<pre>   void catchctrlc(int signo) {
+      char handmsg[] = &quot;I found Ctrl-C\n&quot;;
+      int msglen = sizeof(handmsg);
+ 
+      write(STDERR_FILENO, handmsg, msglen);
+   }
+   ...
+   struct sigaction act;
+   act.sa_handler = catchctrlc;
+   act.sa_flags = 0;
+   if ((sigemptyset(&amp;act.sa_mask) == -1) ||
+       (sigaction(SIGINT, &amp;act, NULL) == -1))
+      perror(&quot;Failed to set SIGINT to handle Ctrl-C&quot;);
+</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Example 8.18: set the action of <tt>SIGINT</tt> to the default:<pre>   struct sigaction newact;
+   <font color="#0000FF">/* new handler set to default */</font>
+   newact.sa_handler = SIG_DFL;
+   <font color="#0000FF">/* no special options */</font>
+   newact.sa_flags = 0;         
+   if ((sigemptyset(&amp;newact.sa_mask) == -1) ||
+       (sigaction(SIGINT, &amp;newact, NULL) == -1))
+      perror(&quot;Failed to set SIGINT to the default action&quot;);
+</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Example 8.19: see if a signal is ignored:<pre>int testignored(int signo) {
+   struct sigaction act;
+   if ((sigaction(signo, NULL, &amp;act) == -1) || 
+       (act.sa_handler != SIG_IGN))
+      return 0;
+   return 1;
+}
+</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Program 8.5: A program that terminates gracefully on ctrl-C</big></big></big></big></td></tr>
+<tr><td><big><big><big><big>Program 8.6: A program to estimate the average value of sin(x)</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><hr></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big><b>Waiting for signals</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Old way: <tt>pause</tt><br>
+<pre>#include &lt;unistd.h&gt;
+int pause(void);</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Exercise 8.21: an incorrect way to wait for a signal:</big></big></big></big></td></tr>
+<tr><td><big><big><big><big><pre>   static volatile sig_atomic_t sigreceived = 0;
+   while(sigreceived == 0)
+       pause();</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Exercise 8.22: another incorrect way to wait for a signal:</big></big></big></big></td></tr>
+<tr><td><big><big><big><big><pre>   static volatile sig_atomic_t sigreceived = 0;
+   int signum;
+   sigset_t sigset;
+ 
+   sigemptyset(&amp;sigset);
+   sigaddset(&amp;sigset, signum);
+   sigprocmask(SIG_BLOCK, &amp;sigset, NULL);
+   while(sigreceived == 0)
+      pause();</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>What you need to do: <b>atomically</b> unblock the signal and suspend the process.</big></big></big></big></td></tr>
+<tr><td><big><big><big><big><pre>#include &lt;signal.h&gt;
+int sigsuspend(const sigset_t *sigmask);</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>It sets the signal mask to the one pointed to by <tt>sigmask</tt> and
+    suspends the process until a signal is received.<br>
+    When it returns the signal mask is restored to what it was before it was called. <br>
+    This function always returns -1. </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Example 8.25: a correct way to wait for a signal:<pre>static volatile sig_atomic_t sigreceived = 0;
+sigset_t maskblocked, maskold, maskunblocked;
+int signum = SIGUSR1;
+sigprocmask(SIG_SETMASK, NULL, &amp;maskblocked);
+sigprocmask(SIG_SETMASK, NULL, &amp;maskunblocked);
+sigaddset(&amp;maskblocked, signum);
+sigdelset(&amp;maskunblocked, signum);
+sigprocmask(SIG_BLOCK, &amp;maskblocked, &amp;maskold);
+while(sigreceived == 0)
+   sigsuspend(&amp;maskunblocked);
+sigprocmask(SIG_SETMASK, &amp;maskold, NULL);
+</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Program 8.7, simplesuspend, shows how to safely block on a specific signal.</big></big></big></big></td></tr>
+<tr><td><big><big><big><big>Program 8.8 shows how to use Program 8.7. </big></big></big></big></td></tr>
+<tr><td><big><big><big><big>Programs 8.9 and 8.10 implement a simple biff. </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>sigwait</b> provides an alternative way to wait for signals.<br>
+Idea:<ul>
+<li>Block all signals</li>
+<li>Put the signals you want to wait for in a <tt>sigset_t</tt></li>
+<li>call <tt>sigwait</tt></li>
+<li><tt>sigwait</tt> blocks the process until at least one of these signals is pending.</li>
+<li>It removes one of the pending signals and gives you the corresponding signal number in the second parameter.</li>
+<li>Do what you want: no signal handler needed.</li>
+<li>It returns 0 on success and -1 on error with <tt>errno</tt> set.</li>
+</ul><pre>  #include &lt;signal.h&gt;
+
+  int sigwait(const sigset_t *restrict sigmask, 
+              int *restrict signo);
+</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Look at Program 8.11 on page 283 that counts signals.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>Errors and async-signal safety</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Three issues in handling signals:<ol>
+<li>Certain blocking system calls will return -1 with <tt>errno</tt> set to <tt>EINTR</tt> if a signal is caught while the function is blocked.<br>
+See the man page to see of a system call can set <tt>errno</tt> to <tt>EINTR</tt>.<br>
+In this case you should usually restart the function since a real error has not occurred. The
+restart library handles this for many of the most important system calls.<br>
+Look at the functions in the restart library.</li>
+<li>Handling errors in signal handlers.<br>
+        If you use a function that can modify <tt>errno</tt> in a signal handler, you must make
+        sure that it does not interfere with error handling in the main part of the program.<br>
+        There is only one <tt>errno</tt> and it is used by both the main program and by the signal
+        handler.<br>
+        Solution: in the signal handler, save and restore <tt>errno</tt>.<pre>void myhandler(int signo) {
+      int esaved;
+      esaved = errno;
+      write(STDOUT_FILENO, &quot;Got a signal\n&quot;, 13);
+      errno = esaved;
+   }</pre></li>
+<li>Async-signal safety.<ul>
+          <li>Only certain system calls and library functions may be used safely in a
+            signal handler.</li>
+          <li>The <tt>strtok</tt> function is an example of a function that might have
+            a problem.</li>
+          <li>In fact, the POSIX standard only guarantees that a small number of
+            functions are <i>async-signal safe</i>, that is safe to use in a signal handler and the
+            main program.</li>
+          <li>Other functions may be async-signal safe in some implementations.</li>
+          <li>Almost none of the functions in the standard C library are on the list.</li>
+</ul></li></ol></big></big></big></big>
+    <div align="center"><center><table border="1">
+      <tr>
+        <td><big><big><big>_Exit </big></big></big></td>
+        <td><big><big><big>execve </big></big></big></td>
+        <td><big><big><big>lseek </big></big></big></td>
+        <td><big><big><big>sendto </big></big></big></td>
+        <td><big><big><big>stat </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>_exit </big></big></big></td>
+        <td><big><big><big>fchown </big></big></big></td>
+        <td><big><big><big>lstat </big></big></big></td>
+        <td><big><big><big>setgid </big></big></big></td>
+        <td><big><big><big>symlink </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>accept </big></big></big></td>
+        <td><big><big><big>fcntl </big></big></big></td>
+        <td><big><big><big>mkdir </big></big></big></td>
+        <td><big><big><big>setpgid </big></big></big></td>
+        <td><big><big><big>sysconf </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>access </big></big></big></td>
+        <td><big><big><big>fdatasync </big></big></big></td>
+        <td><big><big><big>mkfifo </big></big></big></td>
+        <td><big><big><big>setsid </big></big></big></td>
+        <td><big><big><big>tcdrain </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>aio_error </big></big></big></td>
+        <td><big><big><big>fork </big></big></big></td>
+        <td><big><big><big>open </big></big></big></td>
+        <td><big><big><big>setsockopt </big></big></big></td>
+        <td><big><big><big>tcflow </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>aio_return </big></big></big></td>
+        <td><big><big><big>fpathconf </big></big></big></td>
+        <td><big><big><big>pathconf </big></big></big></td>
+        <td><big><big><big>setuid </big></big></big></td>
+        <td><big><big><big>tcflush </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>aio_suspend </big></big></big></td>
+        <td><big><big><big>fstat </big></big></big></td>
+        <td><big><big><big>pause </big></big></big></td>
+        <td><big><big><big>shutdown </big></big></big></td>
+        <td><big><big><big>tcgetattr </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>alarm </big></big></big></td>
+        <td><big><big><big>fsync </big></big></big></td>
+        <td><big><big><big>pipe </big></big></big></td>
+        <td><big><big><big>sigaction </big></big></big></td>
+        <td><big><big><big>tcgetpgrp </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>bind </big></big></big></td>
+        <td><big><big><big>ftruncate </big></big></big></td>
+        <td><big><big><big>poll </big></big></big></td>
+        <td><big><big><big>sigaddset </big></big></big></td>
+        <td><big><big><big>tcsendbreak </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>cfgetispeed </big></big></big></td>
+        <td><big><big><big>getegid </big></big></big></td>
+        <td><big><big><big>posix_trace_event </big></big></big></td>
+        <td><big><big><big>sigdelset </big></big></big></td>
+        <td><big><big><big>tcsetattr </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>cfgetospeed </big></big></big></td>
+        <td><big><big><big>geteuid </big></big></big></td>
+        <td><big><big><big>pselect </big></big></big></td>
+        <td><big><big><big>sigemptyset </big></big></big></td>
+        <td><big><big><big>tcsetpgrp </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>cfsetispeed </big></big></big></td>
+        <td><big><big><big>getgid </big></big></big></td>
+        <td><big><big><big>raise </big></big></big></td>
+        <td><big><big><big>sigfillset </big></big></big></td>
+        <td><big><big><big>time </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>cfsetospeed </big></big></big></td>
+        <td><big><big><big>getgroups </big></big></big></td>
+        <td><big><big><big>read </big></big></big></td>
+        <td><big><big><big>sigismember </big></big></big></td>
+        <td><big><big><big>timer_getoverrun</big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>chdir </big></big></big></td>
+        <td><big><big><big>getpeername </big></big></big></td>
+        <td><big><big><big>readlink </big></big></big></td>
+        <td><big><big><big>signal </big></big></big></td>
+        <td><big><big><big>timer_gettime </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>chmod </big></big></big></td>
+        <td><big><big><big>getpgrp </big></big></big></td>
+        <td><big><big><big>recv </big></big></big></td>
+        <td><big><big><big>sigpause </big></big></big></td>
+        <td><big><big><big>timer_settime </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>chown </big></big></big></td>
+        <td><big><big><big>getpid </big></big></big></td>
+        <td><big><big><big>recvfrom </big></big></big></td>
+        <td><big><big><big>sigpending </big></big></big></td>
+        <td><big><big><big>times </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>clock_gettime </big></big></big></td>
+        <td><big><big><big>getppid </big></big></big></td>
+        <td><big><big><big>recvmsg </big></big></big></td>
+        <td><big><big><big>sigprocmask </big></big></big></td>
+        <td><big><big><big>umask </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>close </big></big></big></td>
+        <td><big><big><big>getsockname </big></big></big></td>
+        <td><big><big><big>rename </big></big></big></td>
+        <td><big><big><big>sigqueue </big></big></big></td>
+        <td><big><big><big>uname </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>connect </big></big></big></td>
+        <td><big><big><big>getsockopt </big></big></big></td>
+        <td><big><big><big>rmdir </big></big></big></td>
+        <td><big><big><big>sigset </big></big></big></td>
+        <td><big><big><big>unlink </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>creat </big></big></big></td>
+        <td><big><big><big>getuid </big></big></big></td>
+        <td><big><big><big>select </big></big></big></td>
+        <td><big><big><big>sigsuspend </big></big></big></td>
+        <td><big><big><big>utime </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>dup </big></big></big></td>
+        <td><big><big><big>kill </big></big></big></td>
+        <td><big><big><big>sem_post </big></big></big></td>
+        <td><big><big><big>sleep </big></big></big></td>
+        <td><big><big><big>wait </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>dup2 </big></big></big></td>
+        <td><big><big><big>link </big></big></big></td>
+        <td><big><big><big>send </big></big></big></td>
+        <td><big><big><big>socket </big></big></big></td>
+        <td><big><big><big>waitpid </big></big></big></td>
+      </tr>
+      <tr>
+        <td><big><big><big>execle </big></big></big></td>
+        <td><big><big><big>listen </big></big></big></td>
+        <td><big><big><big>sendmsg </big></big></big></td>
+        <td><big><big><big>socketpair </big></big></big></td>
+        <td><big><big><big>write </big></big></big></td>
+      </tr>
+    </table></center></div></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Functions that POSIX guarantees to be
+    async-signal safe.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>Realtime Signals: From Section 9.4</b><br>
+Recall the <tt>sigaction</tt> structure:<pre>   struct sigaction {
+      void (*sa_handler)(int);
+      sigset_t sa_mask;
+      int sa_flags;
+      void(*sa_sigaction) (int, siginfo_t *, void *); 
+   };</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>If the <tt>SA_SIGINFO</tt> flag of the <tt>sa_flags</tt> field is set, <tt>sa_sigaction</tt>
+    specifies the action to be taken.</big></big></big></big></td></tr>
+<tr><td><big><big><big><big>This defines a new type a signal handler that takes three parameters
+    instead of one.<br>
+    It also defines a new data type: <tt>siginfo_t</tt> which is a structure containing at
+    least the following:<pre>    int si_signo;            <font color="#0000FF">/* signal number */</font>
+    int si_code;             <font color="#0000FF">/* cause of the signal */</font>
+    union sigval si_value;   <font color="#0000FF">/* signal value */</font>
+</pre></big></big></big></big></td></tr>
+<tr><td><big><big><big><big>where the <tt>union sigval</tt> contains at least:<pre>    int sival_int;
+    void *sival_ptr;
+</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Signals set up with this type of signal handler are queued.<br>
+    The system call to send one of these signals is called <tt>sigqueue</tt> rather than <tt>kill</tt>:<pre>  #include &lt;signal.h&gt;
+  int sigqueue(pid_t pid, int signo,
+               const union sigval value);
+</pre></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>On some systems, only certain signals can be queued, those between <tt>SIGRTMIN</tt>
+    and <tt>SIGRTMAX</tt>.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Program 9.9, page 323 shows a program to send a queued signal to a
+    process. Note that there is no command line function similar to <tt>kill</tt>.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Program 9.10, page 324, gives an example program that can receive <tt>SIGUSR1</tt>
+signal.</big></big></big></big></td></tr>
+<!-- <tr><td bgcolor="#00CC33">&nbsp;</td></tr> -->
+</table>
+</body>
+</html>

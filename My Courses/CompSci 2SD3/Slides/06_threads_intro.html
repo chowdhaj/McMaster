@@ -1,0 +1,130 @@
+<html>
+
+<head>
+<title>COMPSCI 2SD3 Concurrent Systems, Term II, 2021-22</title>
+</head>
+
+<body>
+<table width="1000" border="0">
+<tr><td align="center"><h1><big>THREADS</big></h1></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><hr></td></tr>
+<tr><td>&nbsp;</td></tr>
+<!--
+<tr><td><big><big><big><big><font color="#00FF00">123456789012345678901234567890123456789012345678901234567890</font></big></big></big></big></td></tr>
+-->
+<tr>
+  <td><big><big><big><big>As we have seen, processes do not share memory. There
+are examples of multicore processor OS with the many processors (cores) sharing memory, so why the
+processes cannot? Such <b>lightweight processes</b> are possible and
+are often called <b>threads</b>.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><img src="pic1.jpg" style="width: 40vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The threads may execute the same code at the same
+time, but even if they do, it is not the same execution, just the same instructions in
+different context (with different registers and stack).</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Threads system calls:<ul>
+  <li><tt>int CreateThread(char* startAddr,char* stackBegin);</tt><br>
+   a new thread is created whose id is returned.</li>
+  <li><tt>void ExitThread(int returnCode);</tt><br>
+    causes this thread to make call to exit. If it is the last thread to exit in a process,
+    then the process exits.</li>
+  <li><tt>int WaitThread(int tid);</tt><br>
+   the threads will
+    wait until the thread with id <tt>tid</tt> exits. Returns the return code of thread <tt>tid</tt>.</li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Advantages of threads: more efficient than process<ul>
+  <li>cheaper to create and destroy (no need to allocate
+    or deallocate a new address space and other process resources - like open file descriptors
+    - see UNIX <a href="fork.txt">fork</a>).</li>
+  <li>context switching is faster (memory mapping does not
+    have to be set, memory and address translation caches do not have to be invalidated).</li>
+  <li>sharing memory between threads is simple.</li></ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The programmer must choose which parallelism to use,
+processes or threads.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Typical use of threads - spreadsheet:</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><img src="pic41.gif" style="width: 50vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><ul>
+<li><b>Advantages</b>: program more responsive - it will always
+accept input. If a thread is blocked, the rest of the program's threads are still active.<br>
+Use threads to do the waiting: if blocking I/O, use a
+thread to do I/O and the rest of execution can go on.<br>
+Use threads to replicate activities: client/server -
+the server can start a new thread for communication with a particular client.</li>
+<li><b>Disadvantages</b>: problems caused by parallelism (but
+easier to remedy than processes due to shared memory).</li></ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><i>User threads</i> = threads implemented on user
+level (without any assistance from the OS), it is a program with a little scheduler that
+switches between the threads. Much more efficient than lightweight processes (no need to
+switch to OS in between), but if a user thread blocks, the whole process blocks.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Most UNIX OS implement LWPs and/or user threads. Posix threads are
+hybrid.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><img src="pic42.gif" style="width: 50vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Not all code is <b>thread-safe</b>,
+i.e. does no longer work correctly if two or more threads are executing simultaneously.
+Program is <b>reentrant</b> if it is thread-safe.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Kernel-mode threads (processes)</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>An OS has system calls that might wait: e.g.
+<i>ReceiveMessage</i> (if no message in the queue, it waits until some message arrives),
+disk <i>Read</i> and <i>Write</i> must wait for the disk transfer to complete, etc.<br>
+One way to deal with it is to save the essentials of the system call
+and block the process, after the disk interrupt or message arrival the system call was
+completed and the process restarted. But such approach is both complex and ad-hoc
+(different from call to call). A more general way is to allow processes to run in system
+mode, inside the operating system. </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>When OS is entered via interrupt, the process gets a new stack in
+the address space of the OS and its registers are saved. Essentially, we are making a thread out of the
+process.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The <b>kernel</b> is the part of OS that implements
+the most basic functions of OS. The kernel always runs in system mode. Thus we call such
+processes <b>kernel-mode process</b> to indicate that they run in
+system mode. Since the kernel-mode process has a new stack, it can be considered a
+process, but since all kernel-mode processes
+run in the same address space (that of OS), so often we speak of <b>kernel
+threads</b>.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>When we implement kernel-mode processes, we may allow some
+processes to run only in kernel-mode, e.g. disk driver.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>Advantages of kernel-mode processes</b>:<ul>
+<li>waiting in OS is handled in a simple and
+general way (when virtual memory etc. added, ad-hoc waiting too
+complicated)</li>
+  <li>we are allowing interrupts in OS (states saved on the system stack,
+    so they do not interfere with each other)</li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>Disadvantage</b>: each process needs a kernel-mode stack in addition to
+the user mode stack = this translates to a lot of space.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>UNIX used kernel-mode processes from the beginning (easy to
+organize system), but modern versions of UNIX use just one kernel-stack for all processes
+and manage suspending of system calls as we had discussed.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Windows also use kernel-mode processes.</big></big></big></big></td></tr>
+</table>
+</body>
+</html>

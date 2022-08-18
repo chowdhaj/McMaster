@@ -1,0 +1,109 @@
+<html>
+
+<head>
+<title>COMPSCI 2SD3 Concurrent Systems, Term II, 2021-22</title>
+</head>
+
+<body>
+<table width="1000" border="0">
+<tr><td align="center"><big><big><big><big>Monitors</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><hr></td></tr>
+<!--
+<tr><td><big><big><big><big><font color="#00FF00">123456789012345678901234567890123456789012345678901234567890</font></big></big></big></big></td></tr>
+-->
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Monitors were developed in the 1970s to make it easier to avoid deadlocks.<ul>
+  <li>A monitor is a collection of procedures, variables, and data structures
+    grouped together.</li>
+  <li>Processes can call the monitor procedures but cannot access the internal data
+    structures.</li>
+  <li>Only one process at a time may be be <b>active</b> in a monitor.<br>
+    Active in a monitor means in ready queue or CPU with the program counter somewhere in a
+    monitor method.</li>
+  <li>A monitor is a language construct.<br>
+    Compare this with semaphores, which are usually an OS construct.</li>
+  <li>The compiler usually enforces mutual exclusion.</li>
+  <li>Condition variables allow for blocking and unblocking.<ul>
+      <li><tt>cv.wait()</tt> blocks a process.<br>
+        The process is said to be waiting for (or waiting on) the condition variable <tt>cv</tt>.</li>
+      <li><tt>cv.signal()</tt> (also called <tt>cv.notify</tt>) unblocks a process
+        waiting for the condition variable <tt>cv</tt>.<br>
+        When this occurs, we need to still require that only one process is active in the monitor.
+        This can be done in several ways:<ul>
+          <li>on some systems the old process leaves the monitor and the new one enters</li>
+          <li>on some systems the signal must be the last statement executed inside the
+            monitor.</li>
+          <li>on some systems the old process will block until the monitor is available
+            again.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>If a condition variable is signaled with nobody waiting, the signal is lost.<br>
+    Compare this with semaphores, in which a signal will allow a process that executes a wait
+    in the future to no block.</li>
+  <li>You should not think of a condition variable as a variable in the traditional
+    sense.<br>
+    It does not have a value.<br>
+    Think of it as an object in the OOP sense.<br>
+    It has two methods, <tt>wait</tt> and <tt>signal</tt> that manipulate the calling process.</li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><ig><b>An example: Dining Philosophers</b> revisited<ul>
+  <li>5 philosophers sit at a round table with 5 plates of rice and 5 forks.</li>
+  <li>2 forks are require to eat.</li>
+  <li>Each philosopher is in one of the states:<ul>
+      <li>Thinking</li>
+      <li>Hungry</li>
+      <li>Eating</li>
+    </ul>
+  </li>
+</ul></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><img src="dining_philosophers.jpg" style="width: 50vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big>Monitor Implementation</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>Monitors are implemented by using queues to keep track of the processes attempting to
+become active in the monitor.</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>To be active, a monitor must obtain a <b>lock</b> to allow it to execute the
+monitor code.<br>
+Processes that are blocked are put in a queue of processes waiting for an unblocking event
+to occur. <br>
+These are the queues that might be used:<ul>
+  <li><b>The entry queue</b> contains processes attempting to call a monitor
+    procedure from outside the monitor.<br>
+    Each monitor has one entry queue.</li>
+  <li><b>The signaller queue</b> contains processes processes that have executed a
+    notify operation.<br>
+    Each monitor has at most one signaller queue.<br>
+    In some implementations, a notify leaves the process active and no signaller queue is
+    needed.</li>
+  <li><b>The waiting queue</b> contains processes that have been awakened by a
+    notify operation.<br>
+    Each monitor has one waiting queue.</li>
+  <li><b>Condition variable queues</b> contain processes that have executed a
+    condition variable wait operation.<br>
+    There is one such queue for each condition variable.</li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The relative priorities of these queues determines the operation of the
+monitor implementation.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><img src="task.gif" style="width: 40vw"></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The queues associated with a monitor that does not have a
+signaller queue. The lock becomes available when the active process executes a wait or
+leaves the monitor.</big></big></big></big></td></tr>
+</table>
+</body>
+</html>

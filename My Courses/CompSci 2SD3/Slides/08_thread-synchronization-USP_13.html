@@ -1,0 +1,76 @@
+<html>
+
+<head>
+<title>COMPSCI 2SD3 Concurrent Systems, Term II, 2021-22</title>
+</head>
+
+<body>
+<table width="1000" border="0"><!--
+<tr><td><big><big><big><big><font color="#00FF00">123456789012345678901234567890123456789012345678901234567890</font></big></big></big></big></big></td></tr>
+-->
+<tr><td align="center"><h1><big>POSIX Mutexes</big></h1></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big><b>This material is taken from the first 8 pages of Chapter 13 of USP</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The POSIX thread library contains several synchronization constructs.</big></big></big></big></td></tr>
+<tr><td><big><big><big><big>The simplest of these is the <i><b>mutex lock</b></i> or <i><b>mutex</b></i> for short.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>A mutex is a special variable that can be either in the
+locked state or the unlocked state. <ul>
+  <li>If the mutex is locked, it has a distinguished thread that <i>holds</i>
+    or <i>own</i> the mutex.</li>
+  <li>If the mutex is unlocked, we say that the mutex is <i>free</i> or <i>available</i>.</li>
+  <li>The mutex also has a queue of threads that are waiting to hold the mutex.</li>
+  <li>POSIX does not require that this queue be accessed FIFO.</li>
+  <li>A mutex is meant to be held for only a short period of time.</li>
+  <li>It is usually used to protect access to a shared variable.<br>
+    The idea of its use:<br>
+    &nbsp;&nbsp;&nbsp; <i>lock the mutex</i><br>
+    &nbsp;&nbsp;&nbsp; <i>critical section -- do your stuff</i><br>
+    &nbsp;&nbsp;&nbsp; <i>unlock the mutex</i></li>
+  <li>Unlike a semaphore, a mutex does not have a value.</li>
+  <li>Only the owner of the mutex should unlock the mutex.</li>
+  <li>Do not lock a mutex that is already locked.</li>
+  <li>Do not unlock a mutex that is not already locked.</li>
+</ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td align="center"><big><big><big><big><b>Creating and initializing a mutex</b></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>We will only cover the simplest (and most often used) method of using
+POSIX mutexes.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>A mutex has type <tt>pthread_mutex_t</tt>. </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Since a mutex is meant to be used by multiple threads, it is usually
+declared to have static storage class.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>It can be defined inside a function using the static qualifier if it
+will only be used by that function or it can be defined at the top level.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>A mutex must be initialized before it is used.</big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>This can be done when the mutex is defined, as in: <br>
+<tt>pthread_mutex_t mymutex = PTHREAD_MUTEX_INITIALIZER;</tt></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>There are three functions that are used to manipulate a mutex:<ul>
+<li>int pthread_mutex_lock(pthread_mutex_t *mutex);</li>
+<li>int pthread_mutex_trylock(pthread_mutex_t *mutex);</li>
+<li>int pthread_mutex_unlock(pthread_mutex_t *mutex);</li></ul></big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Program 13.1 shows a counter object that can safely be used with
+threads. </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>Program 13.2 shows how to write a thread-safe version of a function that
+otherwise is not safe to be used with threads. </big></big></big></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><big><big><big>The function <tt>yield_thread</tt> can be used to cause a thread to
+sleep for a short time with a certain probability. </big></big></big></big></td></tr>
+</table>
+</body>
+</html>
