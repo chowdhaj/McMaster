@@ -1,0 +1,155 @@
+Quiz.4.IP.txt
+
+Question 1
+
+Consider the network shown in the figure consisting of 3 hosts (H1 --
+H3) and 4 routers (A, B, C, D). It is possible to have a forwarding
+table in router A, such that all traffic from H1 destined to host H3
+is forwarded through interface 3, while all traffic from H2 destined
+to host H3 is forwarded through interface 4. 
+
+    [ ] True
+    [X] False
+
+Feedback: It is not possible as IP routing is based on long-prefix
+          matching of the destination IP address/net.
+
+Question 2
+
+Consider you want to host a web server (port 80) on your home PC with
+a private address 192.168.0.5. Let the public IP allocated by your
+internet service provider be 200.23.32.144. In the NAT table, the WAN
+side IP address (in dot decimal representation) is ______ and the WAN
+side port number is ______. In the NAT table, the LAN side IP address
+(in dot decimal representation) is ______ and the LAN side port number
+is ______.
+
+    Answer: 200.23.32.144
+            80
+            192.168.0.5
+            80
+
+Question 3
+
+Consider an IP header 4500 0073 0000 4000 4011 XXXX c0a8 0001  c0a8
+00c7. Recall the checksum field in IP header is computed as one’s
+complement of one’s complement sum of the header’s 16-bit words. The
+Internet checksum field (in hex decimal) is, 0x ______. The TTL field
+is (in decimal) ______.
+
+    Answer: B861
+            64
+
+Question 4
+
+|----------------------------|----------------|
+| Prefix Match               | Link Interface |
+|----------------------------|----------------|
+| 11001000 00010111 00010    |              0 |
+| 11001000 00010111 00011000 |              1 |
+| 11001000 00010111 00011    |              2 |
+| OTHERWISE                  |              3 |
+|----------------------------|----------------|
+
+Consider the forward table entries as shown in the figure. The IP
+datagram with Dest address 200.23.25.124 will be forwarded to link
+interface.
+
+    [ ] 0
+    [ ] 1
+    [X] 2
+    [ ] 3
+
+Feedback: Match 21 Bits
+
+Question 5
+
+The longest common prefix of the address range: 
+11001000 00010111 10011001 00000000 through 
+11001000 00010111 10011111 11111111 is: ______ (in binary, no space).
+The subnet representation of the range (in the format of a.b.c.d/x) is
+given by ______. 
+
+    Answer: 110010000001011110011
+            200.23.152.0/21
+
+Question 6
+
+(A)-----(B)-----(C)
+         |
+         |
+         |------(D)-----(E)
+
+Consider the topology as shown in the figure (above) and the use of
+the RIP protocol. All the link costs are 1. In router C's routing
+table, the cost to destination A is ______ hops, and the next hop is
+router ______. Now, A goes down. The maximum time it takes for router
+B to detect A's failure is ______ seconds. 
+
+    Answer: 2
+            B
+            180
+
+Feedback: RIP advertisements are sent every 30 sec. If no
+          advertisement is received in 180 sec, the neighbor/link is
+          declared dead.
+
+Question 7
+
+|--------|----------------|-------------|-------------|-------------|
+| Event  | B              | C           | D           | E           |
+|        |------|---------|------|------|------|------|------|------|
+|        | Cost | NextHop | Cost |  NH  | Cost |  NH  | Cost |  NH  |
+|--------|------|---------|------|------|------|------|------|------|
+|        | 1    | A       | 2    | B    | 2    | B    | 3    | D    |
+|--------|------|---------|------|------|------|------|------|------|
+| Node A | INF  | A       | 2    | B    | 2    | B    | 3    | D    | 
+| Down   |      |         |      |      |      |      |      |      |
+|--------|------|---------|------|------|------|------|------|------|
+| C -> B | 3    | C       | 2    | B    | 2    | B    | 3    | D    |
+|--------|------|---------|------|------|------|------|------|------|
+| B -> D | (1)  | (2)     | (3)  | (4)  | (5)  | (6)  | (7)  | (8)  |
+|--------|------|---------|------|------|------|------|------|------|
+| D -> E | (9)  | (10)    | (11) | (12) | (13) | (14) | (15) | (16) |
+|--------|------|---------|------|------|------|------|------|------|
+| E -> D | (17) | (18)    | (19) | (20) | (21) | (22) | (23) | (24) |
+|--------|------|---------|------|------|------|------|------|------|
+Note: NH = NextHop
+
+Continue from the previous question. In the figure attached (above),
+we include a routing table. The columns are, respectively, the path
+costs and next hops from node B, C, D, E to reach A. The rows indicate
+events (a link failure or reception of route advertisement messages)
+and the resulting updated distance vectors to node A after the event.
+For example, event C-> B indicates the reception of a route
+advertisement message from node C to B at B. We have already provided
+row C->B. Upon the reception of the message from C the distance vector
+2 (to A), B will update its distance vector to A following Bellman's
+equation as min(infinity, 2 + 1) = 3 and the next hop to A is C. Since
+nodes C, D, E have yet received any route advertisement messages, the
+other entries in row C->B remain the same.
+
+Now, your job is to complete the rest of the table as the result of
+events in the first column (with a number or a letter). 
+
+Entry (05) is ______.
+Entry (06) is ______.
+Entry (15) is ______.
+Entry (16) is ______.
+Entry (21) is ______.
+Entry (22) is ______.
+
+    Answer: 4
+            B
+            5
+            D
+            4
+            B
+
+Question 8
+
+Internal routers in an autonomous system only need to run an intra-
+domain routing protocol to populate their forwarding table. 
+
+    [ ] True
+    [X] False

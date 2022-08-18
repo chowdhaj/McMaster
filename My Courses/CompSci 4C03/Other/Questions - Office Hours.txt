@@ -1,0 +1,393 @@
+4C03.Questions.txt
+
+- When ISPs connect to each other, do they pay a flat fee or this is
+  vary on usage? Cuz like, what if ‘A’ doesn’t wanna pay ‘D’ to
+  connect to ‘C’. So, ‘A’ pays ‘B’ less money to connect to ‘C’
+    => It is typically a fee, similar to what people pay for their
+       monthly internet. Remember, the relationship between higher
+       tier ISPs and lower tier ISPs is customer-provider. The second 
+       scenario is possible but unlikely to happen. Having a higher
+       tier ISP to connect the lower tiers is the ideal scenario.
+
+- So the internet doesn’t have a single point of failure, but multiple
+  points of failures. And these points are tier 1 ISPs
+    => There is no multiple point of failures. But if you can take
+       down a tier 1 ISP, then you can affect a lot of people’s
+       ability to connect to the internet. However, this is hard to
+       achieve.
+
+- When I connect to the global internet, what gives out my IP address.
+  Is it my router or my ISP? 
+    => Global IP address is set by the ISP, and local IP address is
+       set by the router
+
+- How do ISPs in different countries, across the ocean, connect to
+  each other? Satellite?
+    => Using satellite would be very slow. Countries across the ocean
+       are connected using cables. Some of these cables are 500,000
+       miles long and as thick as a football.
+
+- Can all the “hops” see what site I am connecting to?
+    => They can see the IP address that you are connecting to, which
+       does correspond to the site. However, they can’t see other
+       information like the content you request from the site.
+
+- What are the 3 asterisks in trace route (when no information is
+  given at all)? How can you bypass this? Does trace route have a
+  hidden mode?
+    => Two reasons for this:
+       1. It took too long for the server to reply/respond to the
+          request
+       2. Some servers do not respond to trace route requests; maybe
+          because that setting is turned off in the router
+
+- Are the latency numbers in trace route one way or round trip?
+    => It is a round trip; from your router to the server, and all the
+       way back
+
+- How is the integrity of the packet checked? CheckSum?
+    => There are two ways to check the integrity of a packet:
+        1. Checksum
+        2. Parity
+       Even though parity is faster, checksum is more robust; and it
+       is the standard of checking
+
+- Is there a scenario where you wouldn’t want to use the intermediate
+  layer?
+    => There are scenarios where you would want to strip away the
+       abstraction and connect the application layer directly with the
+       transmission media. This is similar to using a high level
+       language VS. a low level language. You have to ask yourself,
+       “Is the tradeoff worth it?”
+
+- If my OS is responsible for header information, can I modify it
+  before sending the datagram? (i.e. Spoof device information, IP,
+  etc. ?)
+    => The OS is not responsible for it, the browser is. And if you
+       make your own browser, you can send whatever information you
+       want. However, the local IP address is set by your router, and
+       the global IP address is set by your ISP
+
+- What layer in the TCP/IP protocol suite does P2P (torrents) fall
+  under?
+    => The Application Layer
+
+- When packets are encrypted, where is the key stored?
+    => The key is stored locally on your machine, and another key is
+       stored on corresponding server. Keys are not sent over the
+       internet, they are generated locally. More information is found
+       in key-cryptography videos
+
+- In HTTPS, what information or header is not encrypted?
+    => The only information not encrypted is source IP address and
+       destination IP address. Information like payload, URL, etc. is
+       encrypted. Although, sometimes they can see the domain name
+       when you are domain probing.
+
+- When I send a packet, does my router add any additional information
+  to it?
+    => No it does not. The router is only responsible for sending
+       packets to the next hop.
+
+- How do switches determine where the packet should be sent? I know
+  that they perform a lookup in a huge router table, but if the
+  internet is a network of network, then it would be ideal to have the
+  packet travel through the shortest path. How is the shortest path
+  determined?
+    => Through the routing table; it contains information about cost
+       to travel to other nodes
+
+- What is the maximum size of the packet for HTTPs? Why is it
+  specifically that number? How did they decide that it is the sweet
+  spot?
+    => The transport layer takes care of segmentation; breaking up
+       information into small packets. Transport layer protocols
+       decide the size of the packet. These sizes can be different for
+       each protocol. 
+
+- What does “opening up a port” mean? And why does it improve
+  performance/usage?
+    => Because it allows two applications to talk to each other. For
+       instance, an application on Machine ABC will only talk on port
+       number XYZ. So Machine 2 needs to be able to use that port; the
+       port needs to be opened up for the application on Machine 2
+
+- Can opening certain ports compromise the security of your device?
+    => Most likely not, but in some cases it might. Because the OS
+       allows traffic to that process, skipping the firewall, and
+       hitting the application. Security depends on how well the
+       application handles “bad” data, and how well it is pre-
+       processed. 
+
+- What does RFC stand for? And what is it?
+    => RFC is a collection of documents that contain information about
+    the specification of the protocols. For example, RFC 959 is the
+    specification for the FTP protocol. RFC stands for "Request For
+    Comments"
+
+- When I delete the cookies on my system, and I connect to the same
+  website, does it create new cookies with a new ID or does it figure
+  out that I’ve been here before and uses the old cookie ID?
+    => New cookies are created. Cookies also have a security token
+       associated to them. If the ID doesn’t match the token, then new
+       cookies are created. 
+
+- Can I have my own domain service? Like what if I wanted to own all
+  of *.zyzz
+    => It is possible but you’re gonna have to jump through a lot of
+       fiery hoops to make it happen. IMO, totally worth it!
+
+- How does DNS update so quickly? If I made a site, how fast would it
+  be on the DNS table?
+    => Because your website is managed by a local or authoritative
+       domain. There isn’t one big global DNS service that manages
+       everything. A new website might take a few extra seconds to
+       load, but once it is able to resolve the query, further
+       accesses to the site will be quick.
+
+- Does TCP factor in the bandwidth of both hosts when determining
+  speed?
+    => TCP looks at the network path when determining throughput
+
+- Why do some websites prevent users from accessing the website via IP
+  address? 
+    => Cloud-Flare control panel has a setting where you can change
+       how the IP address can be used by clients. For example: mask
+       the IP address so it cannot be directly accessed. And the DNS
+       probing mechanism does not allow access through IP address.
+
+- I still don’t understand how the DNS stuff ties into TCP/IP
+    => The DNS lookup is done before the TCP/IP stuff. Plus, the DNS
+       query is mostly done locally. But remember, it is done before
+       any connection is established or hands are shaken.
+
+- Who is paying for and maintaining the DNS servers? (Not referring to
+  the local DNS servers)
+  server
+    => Root DNS is part of the internet infrastructure, TLD are
+       maintained by their respective country’s
+       (i.e. Canada manages `.ca`)
+
+- Does HTTPS leak information via GET and POST when uploading a form?
+    => Nope, it is all encrypted!
+
+- Does the browser do some sort of DNS caching?
+    => Most browsers do have a (small) cache where DNS information is
+       cached. And there is a timeout associated with each query. 
+
+- Are DNS lookups encrypted?
+    => Depends on the DNS protocol. Usually they are not encrypted. 
+
+- In lecture you talked about performing a DDOS attack on DNS servers.
+  This takes the DNS server offline. Could you manipulate DNS servers
+  to resolve hostnames to a different IP address. For example: All 
+  “.com” queries resolve to “example.net”. This is not a MITM attack.
+    => Yes, this is possible, and it is called DNS poisoning. This
+       attack is primarily used for phishing. An attacker's goal is to
+       lead unsuspecting victims to a spoofed-site, where he can trick
+       you into giving up personal information (i.e. You think you are
+       logging into your Bank Account).
+
+- If UDP has no congestion avoidance mechanism, then can it be used
+  maliciously to congest a network?
+    => Yes, it can be used to maliciously congest the network.
+       However, it may not be as effective because it won’t take much
+       resources from the victim to dismiss them, because no 3 way
+       handshake is required. Making UDP traffic is easy for you, but
+       it’s also easy for the victim to ignore.
+
+- What is the difference between SYN flooding and Slow Loris attack?
+    => A SYN flooding attack blindly floods the the receiver’s buffer
+       with half-connections, preventing a legitimate client from
+       accessing the server. A Slow Loris attack is smarter, and
+       requires less resources to be executed. It sends just enough
+       traffic to keep the connection(s) alive, which wastes space in
+       the receiver’s buffer, and prevents other clients from
+       connecting. Both SYN flooding and Slow Loris are DOS attacks
+       that aim to prevent legitimate clients from accessing a server.
+       They achieve the same thing but in slightly different ways. 
+
+- How do you differentiate between mobile traffic, desktop traffic,
+  laptop, etc.? Is it because when a device connects to the internet,
+  it tells the network what device it is? Is it possible to hide this
+  or spoof this information?
+    => This information is typically determined using metadata. When
+       your device connects to a website/server, it sends additional
+       information about the device like browser name and version.
+       Based on information like this, it can determine what device
+       you are on. If your device has a gyroscope and accelerometer,
+       then there is a good-good chance that you are on a phone or
+       tablet. Also, this meta-data can be spoofed. 
+
+- How is location determined when I connect to the internet? Location
+  on a laptop, not a phone?
+    => Location on a laptop is determined via IP address. IP addresses
+       roughly correspond to location. For instance, your ISP will
+       designate all IP addresses that start with 67.XXX.XXX.XXX to
+       the Hamilton area. Thus, when you connect to a website, it will
+       see your IP address and be able to roughly estimate your
+       location. Also, if you and your neighbour share the same ISP,
+       then it is possible that you have a similar IP address. But if
+       you have different ISPs, then your IP address won’t be similar. 
+
+- On a different, but similar note, IP address is what Netflix uses to
+  determine your location, and serves you content based on the IP
+  address. It can tell what country you connect from based on the IP
+  address. This is why Canadians use VPNs to access American Netflix;
+  to change their Canadian IP to an American IP, which allows them to
+  access better and newer shows/movies.
+
+- Is location determined by IP address? Does that mean my neighbours
+  have a similar IP to mine? 
+    => Answered above. On a laptop, location is primarily determined
+       by the IP address. On a phone, it uses the GPS and/or the
+       cellular towers. Your neighbours IP address may be similar to
+       yours if you share the same ISP.
+
+- So if I am on a phone and connect to a different tower, does my IP
+  address change?
+    => Yes it does. When switching between towers, a process called
+       ‘handoff’ takes place. Switching between cellular towers is
+       like switching between routers; your home router and your
+       neighbour’s router. 
+
+- What software do tier 1 ISPs use to route packets
+    => ???
+
+- Where do cellular networks sit in the ISP hierarchy?
+    => ???
+
+- Would you say that the internet is fully decentralized? Or partially
+  decentralized?
+    => Somewhere in the middle of partially and fully decentralized.
+       Multiple big companies provide services. They have big data
+       centres all over the world. Orchestrating an attack will only
+       deny service to a small amount of people.
+
+- Are all these protocols, TCP IP, etc. open source?
+    => The specification is open source (RFC), but the implementation
+       depends on the software. For instance, in Linux TCP/IP is
+       implemented in the kernel. So you can audit the implementation
+       and take a look. On the other hand, in earlier versions of
+       Windows, the implementation of TCP/IP is closed source and you
+       cannot easily audit it.
+
+- Why does upload take longer than download?
+    => This is purposely done by the ISP to management bandwidth,
+       because more people download than upload. They can offer the
+       same speed for both upload and download. 
+
+- How does a VPN protect you from spying eyes? How does it mask your
+  IP, requests to DNS, etc?
+    => One thing to understand is that a VPN does not increase
+       security, but it may increase privacy based on your threat
+       model. If you want to mask your data from your ISP, then a VPN
+       is a decent solution. A VPN works by sending all traffic to an
+       intermediate network. This intermediate node takes care of
+       making requests, queries, etc. on your behalf, and sends the
+       result to you. Using a VPN protects your data from your ISP and
+       some Snoopers, but at the cost of trusting a 3rd party, that
+       you cannot (easily) verify. In short, a VPN transfers the
+       control from one company to another. 
+
+- Will the new versions of HTTP be backwards compatible?
+    => Mostly likely yes. 
+
+- How does the hosts file affect Wireshark?
+    => Wireshark is a monitor tool. It outputs whatever you connect
+       too. So if you try to connect to a website that doesn’t exist
+       or one that is restricted, it will not be able to capture its
+       packets, thus it won’t have any output
+
+- If I used a VPN, what would the Wireshark capture output look like?
+    => It would not change. When connecting to a website, with or
+       without a VPN, the destination IP address is unchanged
+
+- Does a VPN keep your data safe from your ISP and other parties that
+  wanna spy on you?
+    => Partially. A VPN may improve privacy, but not security.
+       Essentially, a VPN routes all traffic through a different
+       network. Assume host AB wants to connect to host BC. Without a
+       VPN, AB will connect to BC, directly. With a VPN, the traffic
+       flows like this:
+       AB —> VPN —> BC. All information is sent to a different network
+       before reaching the end-destination. The VPN takes care of
+       communicating and resolving queries. If your goal is mask your
+       data from your ISP or a Snoop-Dogg, then a VPN is a good
+       solution. Otherwise, you should think twice about handing over
+       this much control to a 3rd party that you don’t know. 
+
+- Is it possible for programs to sneak under the radar and prevent
+  wire shark from capturing its packets? (i.e. Program detects
+  Wireshark is running and does sneaky stuff)
+    => Most likely not, because Wireshark is very low level, at least
+      the capture library is.
+
+- Is Wireshark limited to internet? Can it do Bluetooth? How can I see
+  all the times Bluetooth sends out signals?
+    => Yes, it can do Bluetooth; you must specify that interface in
+       the menu. 
+
+- All of the data that Wireshark displays, can my ISP also see this?
+    => ISPs and other actors can only see source IP address and
+       destination IP address. Your ISP already has your WAN IP, and
+       when you connect to a website they can see the destination IP.
+       However, they cannot see anything else (i.e. payload, URL,
+       etc.)
+
+- In Wireshark, what is Neighbour Solicitation, Advertisement? What is
+  ARP?
+    => ???
+
+- How can I block all of the stuff from above? I want my device to
+  connect to whatever I tell it to or give it permission?
+    => ???
+
+- Why doesn’t Firefox work nicely with Wireshark?
+    => ???
+
+- Can Wireshark isolate packets from a specific application?
+    => No, it cannot. This is because Wireshark’s packet capturing
+       library is very low level. Application names/processes are
+       unknown to Wireshark and the capturing library. Since the
+       packet capturing library is very low level, an application
+       cannot hide its packets. 
+
+- What is the loop back interface?
+    => The loopback interface is a virtual network that is used to
+       test the communications infrastructure; diagnostics and
+       troubleshooting. It allows applications running on your machine
+       to connect to servers on the same machine.
+
+- How does the hosts file work? How is it able to Block certain
+  addresses?
+    => The hosts file does not “block” any address. What it does is
+       redirect the IP address. So, when you connect to a website, the
+       OS first checks the hosts file to see what IP address it should
+       connect too. If there isn’t any entry in the hosts file for
+       that website, then it performs a DNS lookup. If there is an
+       entry, then it will connect to the IP address specified.
+       For Example: 
+       127.0.0.1 www.website.com # Tells the OS to connect to 
+                                 # 127.0.0.1 for “website”
+
+- How to capture all data on a network and not just a single computer?
+    => There are many ways. For example: ARP-spoofing. Change the MAC
+       address of your machine to the router so all devices send
+       packets to your device instead of the router. Then you copy all
+       of the packets, send them to the router and proceed with
+       silently capturing all packets. You can also buy special
+       routers that do all of this for you. 
+
+- How does TOR work?
+    => ???
+
+- Explain what is MITM attack and how to do it?
+    => ???
+
+- What is Cloud-Flare? How does Cloud-Flare provide DDOS protection?
+    => ???
+
+- How does wireless communication work? Specifically, how do the waves
+  travel to the correct destination? i.e. Sending signals to the Moon
+    => ???

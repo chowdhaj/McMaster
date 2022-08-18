@@ -1,0 +1,129 @@
+Quiz.5.Data.Link.Layer.txt
+
+Question 1
+
+MAC addresses, also known as hardware addresses, are typically hard
+coded in network interface cards and cannot be changed through
+software means. 
+
+    [ ] True
+    [X] False
+
+Question 2
+
+Using CSMA/CD, there should be no collision in Ethernet.
+
+    [ ] True
+    [X] False
+
+Question 3
+
+                                (Switch)
+                               /    |   \ 
+                              /     |    \
+                             /      |     \
+                            /       |      \
+                           /        |       \
+                          /         |        \
+                         /          |         \
+                        /           |          \
+                     (Hub)        (Hub)       (Hub)
+                    /  |  \      /  |  \     /  |  \
+                   X   X   X    X   X   X   X   X   X
+
+Note: `X` = A Computer
+
+According to the figure above, the number of contention domain(s) is
+______, and the number of broadcast domain(s) is ______.
+
+    Answer: 3
+            1
+
+Question 4
+
+In WLANs, a single AP device may host multiple BSS with different
+SSIDs.
+
+    [X] True
+    [ ] False
+
+Feedback: A single AP device can host multiple virtual LANs with
+          different SSIDs. one such example is MacWiFi and eduroam on
+          campus. 
+
+Question 5
+
+Consider a 802.11 frame originated from a wireless host with address
+1, 2, 3 fields being A, B, C. Put A, B or C in the following blanks.
+The frame is originated from ______. The access point is ______. The
+MAC address of the router interface to which the AP is attached to is
+______.
+
+    Answer: B
+            A
+            C
+
+Feedback: Address 1 is the MAC address of wireless host or AP to
+          receive this frame.
+          Address 2 is the MAC address of wireless host or AP
+          transmitting this frame
+          Address 3 is the MAC address of router interface to which AP
+          is attached.
+
+Question 6
+
+Consider the example given in the lecture on the self-learning
+algorithm in Ethernet LAN (shown in the figure below). Suppose
+initially the switch table is empty. Which of the following link layer
+frames allow the switch to learn that host A is connected to interface
+1? Check all that apply. 
+
+    [ ] A frame from D to A. 
+    [X] A frame from A to B.
+    [X] A frame from A to D. 
+    [ ] A message from B to A. 
+
+Feedback: Switches can learn the interface a host is attached to via
+          messages originated from the host. 
+
+Question 7
+
+Distributed Coordination Function Inter-frame Spacing (DIFS) may be
+utilized before the transmission of which of the following frame types
+(check all that apply) in 802.11? 
+
+    [X] Data frames
+    [ ] ACK
+    [X] Association request frames
+    [ ] Poll response frames
+
+Feedback: If RTS/CTS is enabled, SIFS is used before RTS transmissions
+          as well. 
+
+Question 8
+
+Consider three WiFi devices A, B, C in a 802.11 WLAN. Both A and B
+have frames to send to C and can hear C's transmissions. Which of the
+following scenarios will result in collisions? Check all that apply.
+(Hint: DIFS = 2xslot_time + SIFS). 
+
+    [ ] A and B are hidden terminals to each other. At time t0, A just
+        successfully sent a frame to C and is waiting for an
+        acknowledge frame from C (A has no more frame to send); B has
+        a backoff timer of 1 and a frame to send to C. 
+    [ ] A and B can hear each other's transmissions. Both A and B have
+        frames to send to C. At time t0, A starts a backoff timer of 2
+        slots. B just arrives to the network.
+    [ ] A and B can hear each other's transmissions. At time t0, A
+        just successfully sent a frame to C and is waiting for an
+        acknowledge frame from C (A has no more frame to send); B has
+        a backoff timer of 1 and a frame to send to C. 
+    [X] A and B are hidden terminals to each other. At time t0, A
+        starts a backoff timer of 2 slots. B just arrives to the network. 
+
+Feedback: 1) B will wait for DIFS before its transmission. Since it
+             cannot hear A's transmissions, collisions will occur. 
+          2) B will sense the medium busy upon hearing A's
+             transmission. 
+          3) 4) acknowledgement from C defers by SIFS and does not
+                collide with B's transmissions. 

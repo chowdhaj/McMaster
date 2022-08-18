@@ -1,0 +1,76 @@
+VM.Mininet.Notes.txt
+
+- Introduction
+    - VM = Virtual Machine
+    - Mininet = Software
+
+- Security Lab Scenario
+    - Why do we need Mininet?
+        - Assume a security lab scenario where there is a client and victim 
+          server serving on ports corresponding to telnet, SSH, HTTP, etc.
+            - However, there is no encryption, and an attacker is sniffing and
+              conducting a "man in the middle" attack using Netwox
+                - Netwox is another software application that allows attackers
+                  to see communication taking place between client and server
+
+- Lab Environment
+    - A network of three nodes: Leg, Att, Vic
+        - i.e.
+              Att                  Leg                 Vic
+            10.0.0.1            10.0.0.2            10.0.0.3
+                |                   |                   |
+                |-------------------|-------------------|
+                |                                       |
+                |         Controller As a HUB           |
+                |                                       |
+                |---------------------------------------|
+            - This is a network framework
+            - The nodes are:
+                - Leg = Legitimate
+                - Att = Attacker
+                - Vic = Victim
+            - Each node has its own IP address, and they are connected to the HUB
+    - Since setting up 3 standalone machines and a hub for each node is exhausting
+      and expensive, Mininet is used to emulate the entire network
+
+- Mininet
+    - Mininet allows us to test our code before deploying it to the real world
+        - Mininet can emulate real networks
+    - Mininet creates a realistic virtual network, running real kernel, switch,
+      and application code on a single machine
+        - You do not need to buy a lot of devices to test your code on a network
+            - Buying individual devices costs a lot of money
+    - You can define your network architecture in Python using the Mininet package
+        - You will have to program it yourself
+    - Mininet is based on SDN
+        - SDN = Software Design Network
+    - The SDN controller in Mininet can configure the network switch in such a
+      way that it acts as a hub
+
+- Software Defined Network (SDN)
+    - SDN entails the decoupling of the control plane from the forwarding plane
+      and offloads its functions to a centralized controller
+    - SDN enabled nodes do not need to run control protocols among themselves
+      and instead rely upon the central controller
+    - "Controller defined" or "Centralized control" may be more appropriate
+    - A traditional network consists of forwarding devices with embedded control,
+      and middleboxes (i.e. Firewall)
+        - The control is distributed
+    - In a software software defined network, a software controller handles
+      forwarding devices with decoupled control
+
+- Demo
+    - Install Oracle VM Virtualbox
+    - Download the OS image, and use it to create a VM
+        - Refer to the PDF on Avenue
+        - The OS image is preconfigured, and the networks have already been setup
+    - The Mininet executable opens 5 windows:
+        - Mininet console
+            - The console controls everything
+        - Wireshark
+        - 3 users: victim, attacker, legitimate user
+    - The command `netstate -a` checks the state of the network
+        - i.e. What services are running
+    - The `netwox` command runs the software Netwox
+    - The `ifconfig` command tests the network
+        - Returns the IP address

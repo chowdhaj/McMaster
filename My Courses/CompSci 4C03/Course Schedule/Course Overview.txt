@@ -1,0 +1,43 @@
+Winter 2021 Computer Networks & Security (COMP SCI/SFWR ENG 4C03) 
+
+Instructor: Rong Zheng
+
+Email: rzheng@mcmaster.ca
+
+Location (lectures & tutorials): 
+Zoom (Meeting ID: 988 6215 2627 Passcode: 585777)
+
+Piazza: 
+https://piazza.com/mcmaster.ca/winter2021/compscisfwreng4c03/home
+
+Textbook: 
+James F. Kurose, Keith W. Ross, "Computer Networking: A Top-Down
+Approach Featuring the Internet", 8th ed. Pearson Education 
+
+Synopsis:
+Computer networking is a rapidly advancing field. The Internet is
+already an integral part of society. It is important for computer
+scientists and computer engineers to be familiar with the fundamentals
+as well as practices of computer networking. This graduate course will
+emphasize on the algorithms, protocols and performance evaluation of
+the Internet. Topics include TCP/IP protocol stack, routing,
+congestion control, wireless networks and selected materials in
+network security. 
+
+Grading:
+Online quizzes (~5): 25% (typically due in one week)
+6 Assignments: 40% total
+Final: 35%
+3% bonus for students who answer the most questions and/or ask the
+most GOOD questions on piazza
+
+MSAF policy: 
+Missing assignments with MSAF approvals will be countedtoward the
+total grade of assignments of the SAME category. 
+
+Late submission policy:
+A deduction of 10% of the maximum mark available from the actual mark
+achieved by the student shall be imposed upon expiry of the deadline;
+a further deduction of 5% of the maximum mark available from the
+actual mark achieved by the student shall then be imposed on each of
+the next subsequent days;

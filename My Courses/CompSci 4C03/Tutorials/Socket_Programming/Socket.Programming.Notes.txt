@@ -1,0 +1,103 @@
+Socket.Programming.Notes.txt
+
+- Outline
+    - Socket Programming
+        - Basic steps
+        - Example of a simple web server
+    - Demonstration of the 2nd assignment
+        - A peer-to-peer file share client
+            - Demo of the effect
+            - Analysis
+            - Skeleton code
+
+- Basic Steps
+    - For the server side you need to:
+        1. Create a socket
+        2. Bind the socket to a specific port
+        3. Listen
+        4. Accept incoming requests for connections
+        5. Recieve data through the socket, after the connection is setup
+    - For the client side you need to:
+        1. Create a client socket
+        2. Connect to the server
+        3. Use a socket to send and recieve data
+        4. Close the socket after finishing the sessions
+
+- Simple Echo Server Example
+    - Taken from the official Python socket programming guide
+    - Sends all data back to the client
+    - i.e.
+        #!/usr/bin/env/ python3
+
+        import socket
+
+        HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
+        PORT = 65432
+
+        with socket.socke(socke.AF_INET, socket.SOCK_STREAM) as s:
+            s.bind((HOST, PORT))
+            s.listen()
+            conn, addr = s.accept()
+            with conn:
+                print('Connected by', addr)
+                while True:
+                    data = conn.recv(1024)
+                    if not data:
+                        break
+                    conn.sendall(data)
+
+- Notes
+    - socket.send(bytes[, flags])
+        - Sends some number of bytes that is specified by you
+        - You need to make sure that all data is sent to the other side
+    - socket.sendall(bytes[, flags])
+        - Sends all data to the other side until an error happens
+        - More convenient, and takes care of complexity
+    - More details on Socket API:
+        https://docs.python.org/3/library/socket.html
+
+- Simple Web Server Example
+    - The HTTP protocol is an application layer protocol
+        - HTTP does not care about the low level communication
+    - In the HTTP protocol the client makes a request, and the server sends
+      back a response
+        - Both communications contain information such as language, connection
+          type, content, length, size, date, etc.
+
+- Demonstration Of A2
+    - The assignment is about P2P file sharing
+    - Similar to MacDrive and DropBox
+    - The job of the Tracker is to:
+        - Store live peers
+            - IP, and Port #
+            - Store metadata for files on live peers
+
+- Analysis & Tips
+    - The tracker stores metadata about which file is stored in which server
+      and port using messages
+        - Messages are sent to the tracker when the client connects to the
+          server  
+            - The message format is specific and well defined
+    - The client requests a full list of all files from the tracker
+        - If it's missing a file, it will request the file from the 
+          corresponding peer
+            - This is done through messages between the client and tracker
+    - Peers send a keep alive message to the tracker
+        - This tells the tracker if a peer is online or offline
+            - After some time, the tracker will remove the corresponding
+              metadata file information
+
+- Summary
+    - Peer-to-Peer Thread Steps
+        1. Bind and listen to file serving port
+        2. Connection request from peer creates a new thread
+        3. Accept connection request from peer A
+        4. Send requested file to peer A
+        5. Close socket
+    - Peer-to-Tracker Steps
+        1. Connect to TrackerIP and TrackerPort
+        2. Send Init message to tracker
+        3. Recieve files and peer information
+        4.1. If there are new files then request from corresponding peers
+        4.2. If no new files than start a timer (heartbeat)
+        5. Send keep alive message to Tracker every X seconds

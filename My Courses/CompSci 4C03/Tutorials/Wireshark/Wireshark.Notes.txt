@@ -1,0 +1,61 @@
+Wireshark.Notes.txt
+
+- What Is Wireshark?
+    - Wireshark is a network packet/protocol analyzer
+        - A network packet analyzer will try to capture network packets and displays 
+          the packet's data in a detailed manner
+    - Wireshark is the best open source packet analyzer available for Unix and
+      Windows
+
+- Purposes
+    - Network administrators use Wireshark to troubleshoot network problems
+    - Network security engineers use Wireshark to examine security problems
+    - Developers use Wireshark to debug protocol implementations
+    - Students use Wireshark to learn the internals of network protocols
+        - i.e. Protocols like HTTP, TCP, UDP, Etc.
+    - Note: Wireshark is not an instrusion detection system
+        - Wireshark does not manipulate packets on the network
+            - Instead, it will passively capture them
+
+- How It Works
+    - Wireshark monitors the activity of the network card at the operating system
+      level
+        - It will have a copy of each packet transmitted by the network card
+            - This requires root privilegies on macOS and Linux
+
+- User Interfaces
+    - With Wireshark, you can monitor multiple interfaces or different types of network
+      connections
+        - i.e. Wireless, Wired, Etc.
+    - At the top is the toolbar
+        - You can start monitoring or start capturing
+    - Below the toolbar is a list of packets
+    - The middle window contains headers and structural information for the selected
+      packets 
+    - The bottom window contains binary or hex numbers with specific information
+
+- Live Demo
+    - Active interfaces will have network activity, causing fluctuations
+    - The Loopback interface is used for testing TCP/IP programming tasks
+        - It is a virtual interface designed for testing purposes of local addresses
+            - The Loopback interface does not connect to the global internet
+    - The search filter helps you isolate communication with specific servers
+        - i.e. ip.src == 130.113.68.10 || ip.dst = 130.113.68.10
+               src is the source IP address
+               dst is the destination IP address
+    - The binary stream window might contain some english text, but for the most part
+      it is unreadable by humans
+    - ACK is an acknowledgement packet
+
+- Some Tips
+    - Select the correct network interface
+        - Usually the network with the most activity is the one you want to inspect
+    - If Wireshark isn't capturing anything, try a different browser, clear cache, or
+      load up the browser in private mode
+        - Refreshing the page may not always work
+    - Carefully use the filter to select important packets
+        - Do not type 'HTTP' to observe the HTTP protocol
+            - It is better to specify the target and source destination
+                - i.e. ip.src == 130.113.68.10 || ip.dst = 130.113.68.10
+        - Check out the manual:
+          https://www.wireshark.org/docs/wsug_html_chunked/

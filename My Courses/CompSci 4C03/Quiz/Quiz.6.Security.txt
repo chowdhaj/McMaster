@@ -1,0 +1,86 @@
+Quiz.6.Security.txt
+
+Question 1
+
+With 802.11i, device authentication should occur before the
+association with an AP
+
+    [ ] True
+    [X] False
+
+Question 2
+
+Which of the following mechanisms can be used to derive a shared
+secret key between Alice and Bob?
+
+    [ ] Through out-of-band channel such as verbal communication,
+        mail, etc. 
+    [ ] Alice can first use public key crypto and CA to authenticate
+        Bob, and then generate a secret key encrypted with Bob’s
+        public key and send to Bob
+    [ ] Diffie-Hellman
+    [X] All above
+
+Question 3
+
+ARP poisoning attacks happen when an attacker responds to ARP request
+message with an IP address other than the true one. 
+
+    [ ] True
+    [X] False
+
+Question 4
+
+Which of the following mechanisms can mitigate replay attacks? 
+
+    [X] Sequence number in ESP header
+    [X] SNone and ANone in the 4-way handshakes for pre-shared key
+        authentication. 
+    [X] Random initial sequence number in TCP SYC segment. 
+    [X] Application firewall
+
+Question 5
+
+|--------|-----------|-----------|-------|-------|-------|------|----|
+| Action | Source    | Dest.     | Pro-  | Src.  | Dest. | Flag | Ch |
+|        | Address   | Address   | tocol | Port  | Port  | Bit  | Co |
+|--------|-----------|-----------|-------|-------|-------|------|----|
+| Allow  | 222.22/16 | Outside   |  TCP  | >1023 |       | Any  |    |
+|        |           | of        |       |       |       |      |    |
+|        |           | 222.22/16 |       |       |       |      |    |
+|--------|-----------|-----------|-------|-------|-------|------|----|
+| Allow  | Outside   | 222.22/16 |  TCP  | 80    | >1023 | ACK  | X  | 
+|        | of        |           |       |       |       |      |    |
+|        | 222.22/16 |           |       |       |       |      |    |
+|--------|-----------|-----------|-------|-------|-------|------|----|
+| Allow  | 222.22/16 | Outside   |  UDP  | >1023 | 53    | N/A  |    |
+|        |           | of        |       |       |       |      |    |
+|        |           | 222.22/16 |       |       |       |      |    |
+|--------|-----------|-----------|-------|-------|-------|------|----|
+| Allow  | Outside   | 222.22/16 |  UDP  | 53    | >1023 | N/A  | X  | 
+|        | of        |           |       |       |       |      |    |
+|        | 222.22/16 |           |       |       |       |      |    |
+|--------|-----------|-----------|-------|-------|-------|------|----|
+| Deny   | All       | All       | All   | All   | All   | All  |    |
+|--------|-----------|-----------|-------|-------|-------|------|----|
+
+Consider the firewall access control list discussed in the lecture.
+Answer the following questions
+
+1. The firewall is a (stateful or stateless) ______ firewall. 
+
+2. Can you host a web server listening to port 80 on a host in the
+   subnet 222.22/16 behind the firewall to serve requests from
+   computers outside the subnet? (yes or no) ______. 
+
+3. Can you successfully ssh to a remote server from a host on the
+   subnet 222.22/16? (yes or no) ______. 
+
+    Answer: stateful
+            no
+            no
+         
+Feedback: The firewall rules track the status of a connection. The
+          firewall only allows DNS requests/responses and access to
+          remote web servers. The last rule applies for all other
+          traffic. 

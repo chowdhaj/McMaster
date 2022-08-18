@@ -1,0 +1,150 @@
+Quiz.1.Internet.Architecture.txt
+
+Question 1
+
+To develop any application program, one has to utilize some existing
+application layer protocol. 
+
+    [ ] True
+    [X] False
+
+Feedback: One can build applications using socket interfaces or even
+          raw IP sockets
+
+Question 2
+
+Consider a path consisting of three nodes: A, B, C in a packet
+switched network. The transmission speed of link (A,B) is s1 bps, and
+the transmission speed of link (B,C) is s2 bps. The propagation delay
+of each of these two links is d seconds. The packet size is p bits.
+Node A sends two packets back-to-back at times t1 and t2,
+respectively, to node B. That is, t2 = t1 + p/s1. 
+
+i. Assume no initial queuing delay. The last bit of the first packet
+   is received at node B at time _______.
+
+    [ ] t2 + d + p/s1
+    [ ] t1 + d + 2*p/s1 
+    [ ] t1 + d
+    [X] t1 + d + p/s1
+
+Feedback: Transmission time = p/s1 and the propagation delay is d. 
+
+Question 3
+
+ii. The last bit of the second packet is received at node B at 
+    time _______.
+
+    [ ] t1 + d + p/s1
+    [ ] t1 + d
+    [ ] t2 + p/s1
+    [X] t1 + d + 2*p/s1
+
+Feedback: The 2nd packet is received at node B at:
+          t2 + d + p/s1 = t1 + p/s1 + d + p/s1
+
+Question 4
+
+What is the condition that the 1st packet on node B has been delivered
+to node C before the arrival of the 2nd packet ont node B? (In other 
+words, the 2nd packet does not experience any queueing delay on node 
+B) 
+
+    [ ] s1 = s2
+    [X] s1 <= s2
+    [ ] s1 > s2
+
+Feedback: From ii) we know that the 2nd packet arrives at:
+          t1 + d + 2*p/s1. 
+          So we want to have:
+          t1 + d + 2*p/s1 >= t1 + d + p/s1 + p/s2 -> p/s1 >= p/s2 -> 
+                                                       s1 <= s2. 
+          In fact this result is intuitive. The effect that (B, C) has
+          a higher rate than (A, B) can be thought as a thinner pipe
+          feeds water to a fatter pipe; or one lane road feeds traffic
+          to a two-lane road. There would not be any build-up. 
+
+Question 5
+
+Assume the speed of light is 3x108 in optical fiber. In the movie 
+“The Martian”, Houston is to send a message of 50000 bytes to Mark on
+Mars over a radio link at speed 5Kbps. Let Mars & Earth be at the 
+orbital distance of 138 million km apart. Ignoring queuing and 
+processing delay, it takes ______ seconds (integer) for the message
+to reach Mark from Houston. 
+
+    Answer: 540 Seconds
+
+Feedback: 50000 * 8 / 5000 + 138 * 10^9 / 3x10^8 = 540s
+
+Question 6 
+
+Consider two ISPs A and B. Peering between them means data can be sent
+back and forth between their respective customer networks without
+charge. This arrangement is fair as the amount of data going from ISP
+A to ISP B is always the same as the amount from ISP B to ISP A. 
+
+    [ ] True
+    [X] False
+
+Feedback: This is not true. consider an example where ISP A hosts a
+          lot of servers while ISP B hosts only clients. There is
+          typically more data from ISP A to ISP B than from ISP B to
+          ISP A. 
+
+Question 7
+
+Consider the following output from trace route:
+
+traceroute to www.thespec.com (13.33.160.52), 30 hops max, 60 byte
+                                                              packets
+
+ 1  vlan490-router.net.mcmaster.ca (130.113.68.5)  1.068 ms  1.163 ms  
+                                                   1.361 ms
+
+ 2  itb-svi-core.net.mcmaster.ca (172.26.20.190)  8.563 ms  8.575 ms 
+                                                  8.549 ms
+
+ 3  campus-border.net.mcmaster.ca (130.113.69.4)  49.174 ms  49.210 ms
+                                                  49.135 ms
+
+ 4  66.97.23.21 (66.97.23.21)  10.141 ms  10.300 ms  10.317 ms
+
+ 5  66.97.16.141 (66.97.16.141)  11.608 ms  11.866 ms  12.004 ms
+
+ 6  amazon-a.ip4.torontointernetxchange.net (206.108.35.36)  3.140 ms  
+                                                             3.250 ms  
+                                                             3.244 ms
+
+ 7  52.93.3.36 (52.93.3.36)  3.717 ms 52.93.3.132 (52.93.3.132)  
+                             12.935 ms 52.93.3.20 (52.93.3.20)  
+                             12.581 ms
+
+ 8  150.222.79.109 (150.222.79.109)  12.275 ms 
+    150.222.79.15 (150.222.79.15)    3.550 ms 
+    150.222.79.11 (150.222.79.11)    12.113 ms
+
+ 9  * * *
+
+10  server-13-33-160-52.yto50.r.cloudfront.net (13.33.160.52)  
+    11.542 ms  11.961 ms  11.736 ms
+
+Answer the following questions: 
+The IP address of the first hop gateway router (in dot decimal
+representation) is: ______. 
+The average response time (between sending the probes and received the
+response) to the 2nd hop router is ______ (ms) (use 3 digits after
+decimal point, e.g, X.XXX). 
+Judging from the domain name of the server in the last row of the
+printout, Hamilton Spectator is most likely hosted by 
+a) Google cloud, b) Microsoft Azure cloud, and c) Amazon web services 
+(Enter a, b, c in the blank) ______.
+
+    Answers: 130.113.68.5
+             8.562
+             C
+
+Feedback: In the trace route example, the first column indicates the #
+          of hops, the second column corresponds the IP or hostname of
+          the respective router, the 3rd - 5th columns are the round
+          trip time to the respective routers measured in ms. 

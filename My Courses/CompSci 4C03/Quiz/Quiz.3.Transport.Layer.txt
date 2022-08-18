@@ -1,0 +1,153 @@
+Quiz.3.Transport.Layer.txt
+
+Question 1
+
+UDP and TCP use 16-bit 1's complement of 1's complement sum in
+computing Internet checksums. Consider the following data:
+4510 003c 1c46 4501 4006 b1e6 ac10 0a63
+The checksum is given by 0x______.
+
+    Answer: B10B
+
+Feedback: 0x4510 + 0x003c + 0x1c46 + 4501 + 0x4006 + 0xb1e6 + 0xac10 +
+          0x0a63 = 0x24EF2
+
+          Add the carrier: 0x24EF2 + 0x2 = 0x4EF4
+          The 1's complement of 0x49e3 is B10B
+          B10B = 0xFFFF - 0x49e3
+
+Question 2
+
+Imagine that we develop a congestion control mechanism based on
+Multiplicative Increase and Multiplicative Decrease, namely, if
+congestion occurs, all senders will cut back sending rate by half or
+otherwise double the sending rate every RTT. Which of the following
+properties is/are true for this mechanism? Check all that apply. 
+
+    [ ] Fair
+    [ ] Efficient
+    [ ] Converging to equilibrium quickly
+    [X] None above
+
+Feedback: This mechanism would lead to oscillation for sending rate.
+          For instance, with bottleneck BW 8, the senders start from
+          2, 4 respectively. Their sending rates would be 
+
+          1RTT 4, 8
+          2RTT 2, 4
+          3RTT 4, 8
+          ...
+
+          Therefore, this scheme is not efficient, fair or
+          converging.
+
+Question 3
+
+Consider transferring an enormous file of L bytes from Host A to Host
+B. Assume MSS = 255 bytes. The minimum value of L equals ______ (in 
+decimal numbers) when the sequence number in TCP header for this
+connection is repeated again.
+HINT: An SYN segment with InitialSeqNumber counts as one byte. So the
+next data segment after SYNC starts from InitialSeqNumber + 1.
+
+    Answer: 4294967295
+
+Question 4
+
+In absence of options, the size of TCP header is of length ______
+bytes. 
+
+    Answer: 20
+
+Feedback: (32 x 5) / 8 = 20
+
+Question 5
+
+Let the sequence number field of a 450-byte segment be 2000. Then, the
+acknowledge number of TCP ACK to this segment is ______. The sequence
+number of the next segment from the sender is______.
+
+    Answer: 2450
+            2450
+
+Feedback: TCP ACKS the next byte expected. 
+
+Question 6
+
+Consider a TCP Reno connection with CWND = 5MSS. It is not limited by
+the receiver window size. Consider the first two segments are lost but
+subsequent segments and all ACK segments are reliably delivered. Will
+fast retransmit and fast recovery be triggered in this case?
+
+
+    [X] Yes
+    [ ] No
+
+Feedback: 3 duplicated ACKs will be received. Therefore, fast re-
+          transmit and fast recovery will be triggered.
+
+Question 7
+
+SampleRTT = 11ms, EstimateRTT = 9ms, DevRTT = 1ms, alpha = 0.125, 
+beta = 0.25. 
+
+The next EstimateRTT is ______ ms. The next DevRTT is ______ ms (Do
+not round. Give exact values). The TimeoutInterval is ______ ms. (Do 
+not round. Give exact values).
+
+    Answer: 9.25
+            1.1875
+            14
+
+Feedback: EstimatedRTT = 9*0.875 + 11*0.125 = 9.25ms
+          DevRTT = 0.75*1 + 0.25*(11 - 9.25) = 1.1875ms
+
+          TimeoutInterval = EstimatedRTT + 4 * DevRTT
+                          = 9.25 + (4 * 1.1874)
+                          = 9.25 + 4.75
+                          = 14ms
+
+Question 8
+
+We define a round as one RTT time. Consider a TCP Reno sender with
+initial CWND = 1MSS and assume the RWND is infinite. Suppose the
+initial ss_thresh = 16MSS. Assume no packet losses. At the end of
+round 1 or the beginning of round 2, CWND = 2MSS. The sender enters
+congestion avoidance phase at the beginning of round ______. Assume no
+packet losses, the CWND at the end of round 6 is ______ MSS. Assume
+two packets are lost at the beginning of round 6. Immediately after
+the detection of packet losses, CWND equals ______ MSS and
+ss_threshold equals ______ MSS.
+
+    Answer: 5
+            18
+            8.5
+            8.5
+
+Feedback: |---------------|----------|-------------|
+          | Round/CWND At | No Loss  | 2-Loss      |
+          | Beginning Of  |          | (Round 6)   |
+          | Round (MSS)   |          |             |
+          |---------------|----------|-------------|
+          | 1             | 1        | 1           |
+          | 2             | 2        | 2           |
+          | 3             | 4        | 4           |
+          | 4             | 8        | 8           |
+          | 5             | 16       | 16          |
+          | 6             | 17       | 17          |
+          | 7             | 18       | 8.5         |
+          | 8             | 19       | 9.5         |
+          |---------------|----------|-------------|
+
+Question 9
+
+The 3rd step is needed in the 3-way handshake in TCP connection
+establishment because (select all that apply)
+
+    [X] A TCP client (active open) needs to confirm the initial
+        sequential number used by the TCP server (passive open)
+    [ ] It is needed in case that the first SYN from the TCP client
+        (active open) is lost
+    [X] It is needed to acknowledge the passive open of the connection
+        by the server.  
+    [ ] Two-way handshake is sufficient. 

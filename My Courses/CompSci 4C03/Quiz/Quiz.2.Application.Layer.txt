@@ -1,0 +1,109 @@
+Quiz.2.Application.Layer.txt
+
+Question 1
+
+Using persistent HTTP with pipeline typically downloads web pages that
+contain multiple objects faster than persistent HTTP without pipeline
+since a browser can request the next object before the previous object
+has been received completely. 
+
+    [X] True
+    [ ] False
+
+Feedback: This is evident when the RTT is larger than the file down-
+          loading time. 
+
+Question 2
+
+Consider a portion of the output from “dig www.theglobeandmail.com”
+
+flags: qr rd ra; QUERY: 1, ANSWER: 4, AUTHORITY: 0, ADDITIONAL: 1
+
+...
+
+www.theglobeandmail.com. 59 IN (1) CNAME  51744.edgekey.net.
+
+51744.edgekey.net. 14222 IN CNAME (2) e12235.j.akamaiedge.net.
+
+e12235.j.akamaiedge.net. 19 IN A 104.123.196.147
+
+e12235.j.akamaiedge.net. 19 IN A 104.123.196.114
+
+Field (1) indicates ________
+
+    [ ] IP address ofwww.theglobeandmail.com
+    [ ] alias domain name of www.theglobeandmail.coma
+    [ ] IP address of the authoritive DNS server for theglobeandmail
+    [X] the type of the RR
+
+Question 3
+
+Field (2) indicates ________
+    
+    [ ] time to live
+    [ ] IP address of the authoritive DNS server for theglobeandmail
+    [X] alias domain name ofwww.theglobeandmail.com
+    [ ] IP address ofwww.theglobeandmail.com
+
+Question 4
+
+What is the IP address of www.theglobeandmail.com
+
+    [X] 104.123.196.147
+    [ ] 104.123.196.106
+    [ ] Both above
+    [ ] None above
+
+Feedback: e12235.j.akamaiedge.net. 19 IN A 104.123.196.147
+          e12235.j.akamaiedge.net. 19 IN A 104.123.196.114
+          Only (1) is correct
+
+Question 5
+
+The DNS reply was provided by an authoritative DNS server for 
+theglobeandmail.com
+
+    [ ] True
+    [X] False
+
+Feedback: From "flags" field or AUTHORITY: 0, we can tell that this
+          reply is not from an authoritative DNS server. 
+
+          One can also observe from the aliases that globeandmail's
+          web service is in fact hosted by akama, a content 
+          distribution network provider. 
+
+Question 6
+
+Which of the following application(s) requires high reliability and is
+likely to be highly time sensitive? Check all that apply. 
+
+    [ ] Bulk file downloading
+    [X] Sending commands to a drone to adjust poses in flight
+    [ ] Video conferencing
+    [ ] Collecting sensor data that monitors thermal conditions in a
+        data center. 
+
+Feedback: Both latency and reliability are important for this
+          application; it is not mission critical. Loss & latency
+          tolerant.
+
+Question 7
+
+In recursive DNS queries, a local DNS server will query a root DNS
+server, TLD server, and authoritative DNS server  in turn for domain
+name resolution on behalf of a host. 
+
+    [ ] True
+    [X] False
+
+Question 8
+
+In socket programming, a UDP server is blocked in bind() until an
+incoming datagram arrives from a UDP sender
+
+    [ ] True
+    [X] False
+
+Feedback: `bind()` only binds a UDP socket to a port. It returns with
+           a success if the port is available. 
