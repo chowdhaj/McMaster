@@ -1,0 +1,19 @@
+    
+    Memory Allocation
+    For Integer Array
+
+    |----------|
+    |    13    | arr[3]
+    |----------|
+    |    12    | arr[2]
+    |----------|
+    |    11    | arr[1]
+    |----------|
+    |    10    | arr[0] (AKA `arr`)
+    |----------|
+
+    Length of `arr` = 4
+
+    Size (in bytes) of `arr`:
+        = 4 elements * 4 bytes
+        = 16 bytes

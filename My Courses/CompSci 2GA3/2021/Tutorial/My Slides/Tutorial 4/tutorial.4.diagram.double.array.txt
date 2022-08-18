@@ -1,0 +1,19 @@
+    
+    Memory Allocation
+    For Double Array
+
+    |--------------|
+    |     14.4     | arr[3]
+    |--------------|
+    |     13.3     | arr[2]
+    |--------------|
+    |     12.2     | arr[1]
+    |--------------|
+    |     11.1     | arr[0] (AKA `arr`)
+    |--------------|
+
+    Length of `arr` = 4
+
+    Size (in bytes) of `arr`:
+        = 4 elements * 8 bytes
+        = 32 bytes

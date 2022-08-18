@@ -1,0 +1,355 @@
+tutorial.1.template.filled.txt
+
+==========
+QUESTION 1
+==========
+Consider three different processors P1, P2, and P3 executing the same instruction set. P1 has a 3 GHz clock rate and a CPI of 1.5. P2 has a 2.5 GHz clock rate and a CPI of 1.0. P3 has a 4.0 GHz clock rate and has a CPI of 2.2.
+
+a. Which processor has the highest performance expressed in instructions per second?
+
+b. If the processors each execute a program in 10 seconds, find the number of cycles and the number of instructions.
+
+c. We are trying to reduce the execution time by 30%, but this leads to an increase of 20% in the CPI. What clock rate should we have to get this time reduction?
+
+------
+PART A
+------
+
+To calculate which processor has the highest performance, we need to divide the CPI by Clock Rate. Clock Rate measures "speed", and CPI is about efficiency vis a vis clock cycles per instruction.
+
+Performance of P1 = (ClockRate) / CPI = (???)
+Performance of P2 = (ClockRate) / CPI = (???)
+Performance of P3 = (ClockRate) / CPI = (???)
+
+Note: The answer provided is: Instructions Per Second
+
+------
+PART B
+------
+
+To calculate the number of cycles executed by a processor, we need to multiply the time (???) with the clock rate (in MHz) of the processor
+
+Number Of Cycles For P1 = (ClockRate) × Time = (???)
+Number Of Cycles For P2 = (ClockRate) × Time = (???)
+Number Of Cycles For P3 = (ClockRate) × Time = (???)
+
+
+To calculate the number of instructions executed by a processor, we need to divide the number of cycles executed by the CPI (clocks per instruction). Note: CPI is about efficiency.
+
+Number Of Instructions For P1 = ((NumberOfCycles) ÷ CPI) = (???) = (???)
+Number Of Instructions For P2 = ((NumberOfCycles) ÷ CPI) = (???) = (???)
+Number Of Instructions For P3 = ((NumberOfCycles) ÷ CPI) = (???) = (???)
+
+------
+PART C
+------
+
+We know that the old execution time is (???) seconds. A reduction of (???)% means that the new execution time needs to be (???) seconds. This new execution time will be used for all processors.
+
+Increasing the CPI by ??? means that: CPI_new = CPI_old x (???)
+
+P1_CPI_new = CPI x (IncreaseInCPI) = (???)
+P2_CPI_new = CPI x (IncreaseInCPI) = (???)
+P3_CPI_new = CPI x (IncreaseInCPI) = (???)
+
+Now, we can use the following formula to calculate the Clock Rate:
+f = ((Number of Instructions) × CPI) ÷ (Execution Time)
+
+So, we get:
+
+f(P1) = (NumberOfInstructions x NewCPI) ÷ (NewCPUTime) = (???) MHz = (???) GHz
+f(P2) = (NumberOfInstructions x NewCPI) ÷ (NewCPUTime) = (???) MHz = (???) GHz
+f(P3) = (NumberOfInstructions x NewCPI) ÷ (NewCPUTime) = (???) MHz = (???) GHz
+
+==========
+QUESTION 2
+==========
+Compilers can have a profound impact on the performance of an application. Assume that for a program, compiler A results in a dynamic instruction count of 1.0E9 and has an execution time of 1.1 s, while compiler B results in a dynamic instruction count of 1.2E9 and an execution time of 1.5 s.
+
+a. Find the average CPI for each program given that the processor has a clock cycle time of 1 ns.
+
+b. Assume the compiled programs run on two different processors. If the execution times on the two processors are the same, how much faster is the clock rate of the processor running compiler A’s code versus the clock rate of the processor running compiler B’s code?
+
+c. A new compiler is developed that uses only 6.0E8 instructions and has an average CPI of 1.1. What is the speedup of using this new compiler versus using compiler A or B on the original processor?
+
+------
+PART A
+------
+
+First of all, we need to calculate the Clock Rate of the processor. We can do so with the following formula: Clock Cycle Time = 1 / Clock Rate
+
+Rearranging for Clock Rate gives us:
+Clock Rate = 1 / Clock Cycle Time
+
+We know that Clock Cycle Time is: (???) ns
+
+Clock Rate = 1 / ((???) ns)
+Clock Rate = (???) GHz
+Clock Rate = ((???) x 10^9) MHz
+
+Now, we can calculate the CPI of each compiler via:
+CPI = (ExecutionTime x Clock Rate) / Number of Instructions
+
+First, we will do Compiler_A:
+CPI (Compiler_A) = (ExecutionTime x (ClockRate)) / (NumberOfInstructions)
+CPI (Compiler_A) = (???)
+
+Now, we will do Compiler_B:
+CPI (Compiler_A) = (ExecutionTime x (ClockRate)) / (NumberOfInstructions)
+CPI (Compiler_B) = (???)
+
+------
+PART B
+------
+
+To calculate the speed-up via clock rate, we will use the following formula:
+(Clock Rate) = (CPI × (Number Of Instructions)) ÷ (Execution Time)
+
+In essence, we are trying to find the following:
+(Clock Rate Of P1 Running Compiler_A) / (Clock Rate Of P2 Running Compiler_B)
+
+After substituting the formula from above, we get:
+
+(CPI × (Number Of Instructions)) ÷ (Execution Time)   # P1:Compiler_A
+---------------------------------------------------      (Dividing)
+(CPI × (Number Of Instructions)) ÷ (Execution Time)   # P2:Compiler_B
+
+Since the execution times are the same, we can cancel it to get:
+
+   (CPI × (Number Of Instructions))
+=  --------------------------------
+   (CPI × (Number Of Instructions))
+
+After substituting values, we get:
+
+  (???)
+= ---------------------
+  (???)
+
+
+  (???)
+= ------------
+  (???)
+
+= ((???) / (???))
+
+= ???
+(If we take the inverse, we get: (???))
+
+In conclusion, the clock rate of the processor running CompilerB is (???) faster than the other processor
+
+------
+PART C
+------
+
+We are given the instruction count, CPI, and we know that the clock rate is the same because all compilers are running on the original processor. Hence, we need to find the speed-up via execution time
+
+We will use the following formula:
+(Execution Time) = (CPI × (Number Of Instructions)) ÷ (Clock Rate)
+
+Since the clock rate is the same, we can cancel it out:
+(Execution Time) = (CPI × (Number Of Instructions))
+
+First, we will calculate the speed up for Compiler_NEW vs Compiler_A
+
+(CPI × (Number Of Instructions))     # P1:Compiler_NEW
+--------------------------------        (Dividing)
+(CPI × (Number Of Instructions))     # P1:Compiler_A
+
+
+  (???)
+= --------------------
+  (???)
+
+
+  (???)
+= ------------
+  (???)
+
+
+= (???)
+
+= (???) ^ (-1) = (???)
+
+This means that Compiler_NEW (???) times faster than Compiler_A
+
+
+Now, we will calculate the speed up for Compiler_NEW VS. Compiler_B:
+
+(CPI × (Number Of Instructions))     # P1:Compiler_NEW
+--------------------------------        (Dividing)
+(CPI × (Number Of Instructions))     # P1:Compiler_B
+
+
+  (???)
+= --------------------
+  (???)
+
+
+  (???)
+= ------------
+  (???)
+
+
+= (???)
+
+= (???) ^ (-1) = (???)
+
+This means that Compiler_NEW is (???) times faster than Compiler_B
+
+==========
+QUESTION 3
+==========
+The results of the SPEC CPU2006 bzip2 benchmark running on an AMD Barcelona has an instruction count of 2.389E12, an execution time of 750 s, and a reference time of 9650 s.
+
+1.12.1 Find the CPI if the clock cycle time is 0.333 ns.
+
+1.12.2 Find the SPEC ratio.
+
+1.12.3 Find the increase in CPU time if the number of instructions of the benchmark is increased by 10% without affecting the CPI.
+
+1.12.4 Find the increase in CPU time if the number of instructions of the benchmark is increased by 10% and the CPI is increased by 5%.
+
+1.12.5 Find the change in the SPEC ratio for this change.
+
+1.12.6 Suppose that we are developing a new version of the AMD Barcelona processor with a 4 GHz clock rate. We have added some additional instructions to the instruction set in such a way that the number of instructions has been reduced by 15%. The execution time is reduced to 700 s and the new SPECratio is 13.7. Find the new CPI.
+
+1.12.7 This CPI value is larger than obtained in 1.12.1 as the clock rate was increased from 3 GHz to 4 GHz. Determine whether the increase in the CPI is similar to that of the clock rate. If they are dissimilar, why?
+
+1.12.8 By how much has the CPU time been reduced?
+
+1.12.9 For a second benchmark, libquantum, assume an execution time of 960 s, CPI of 1.61, and clock rate of 3 GHz. If the execution time is reduced by an additional 10% without affecting the CPI and with a clock rate of 4 GHz, determine the number of instructions.
+
+1.12.10 Determine the clock rate required to give a further 10% reduction in CPU time while maintaining the number of instructions and with the CPI unchanged.
+
+------
+1.12.1
+------
+
+First we will calculate the clock rate:
+Clock Rate = (1 ÷ CycleTime)
+Clock Rate = (1 ÷ CycleTime)
+Clock Rate = (???) GHz
+Clock Rate = (???) x 10^9 MHz
+
+Now, we can calculate the CPI:
+CPI = Clock Rate × (CPU Time ÷ Instruction Count)
+CPI = (???)      × ((???) ÷    (???))
+CPI = (???)
+
+Therefore, the CPI, if the clock cycle time is (???) ns, is: (???)
+
+------
+1.12.2
+------
+
+The SPEC ratio can be calculated via the following formula:
+SPEC_ratio = (Reference Time / Execution Time)
+SPEC_ratio = ((???)          / (???))
+SPEC_ratio = (???)
+
+The SPEC ratio is: (???)
+
+------
+1.12.3
+------
+
+Since the only change is the numberOfInstructions, we can conclude that the change in CPU time is equal to the change in numberOfInstructions. Since numberOfInstructions increases by (???)%, then CPU time will also increase by (???)%.
+
+------
+1.12.4
+------
+
+To calculate CPU time, we will use the following formula:
+(CPU Time) = ((CPI × Instruction Count) ÷ Clock Rate)
+
+We know that:
+- Instruction count is increased by 10%
+- CPI is increased by 5%
+
+The new equation is:
+(CPU Time) = (((1.05 * CPI) × (1.1 * Instruction Count)) ÷ Clock Rate)
+
+Therefore, CPU time increases by a factor of:
+1.05 x 1.1 = 1.155
+
+------
+1.12.5
+------
+
+The formula for the SPEC_ratio is:
+SPEC_ratio = (ReferenceTime / CPUtime)
+
+SPEC_ratio(after) / SPEC_ratio(before) = CPU_time (before) / CPU_time (after) = (???) / (???) = (???)
+
+100 - (???) = (???)%
+
+Thus, we can conclude that the SPEC_ratio decreased by (???)%
+
+------
+1.12.6
+------
+
+Clock Rate: (???) GHz = (???) MHz
+CPU time: (???) s
+Instruction count: ((Decrease) × (InstructionCount)) = (NewInstructionCount)
+
+We can use the following formula to calculate CPI:
+CPI = ((Clock Rate × CPU Time) ÷ Instruction Count)
+CPI = ((ClockRate) × CPUtime) ÷ (InstructionCount)
+CPI = (???)
+
+Therefore, the CPI of the new version of the AMD Barcelona processor is: (???)
+
+------
+1.12.7
+------
+
+Clock Rate Ratio:
+4 GHz / 3 GHz = (???)
+
+CPI Ratio:
+1.37 / 0.94 = (???)
+
+We can see that the 2 ratios are different because, although the number of instructions has been reduced by 15%, the CPU time has been reduced by a lower percentage.
+
+------
+1.12.8
+------
+
+The old CPU time is: (???) s
+The new CPU time is: (???) s
+
+Dividing old by new gives:
+Ratio = (???) / (???)
+Ratio = (???)
+
+100 - (???) = (???)%
+
+We can conclude that the CPU time reduction is (???)%
+
+------
+1.12.9
+------
+
+We know that:
+CPU Time = (Decrease) x (CPUtime) = (???)
+Clock Rate = (???) GHz = (???) MHz
+CPI = (???)
+
+We will use the following formula to calculate InstructionCount:
+
+(InstructionCount) = ((CPU_Time × ClockRate) ÷ CPI)
+(InstructionCount) = (((???)    × (???))     ÷ (???))
+(InstructionCount) = (???)
+
+-------
+1.12.10
+-------
+
+(Clock Rate) = ((Instruction Count ÷ CPU Time) × CPI)
+(Clock Rate) = (((???)             ÷ (???))    × (???))
+(Clock Rate) = (???) MHz
+(Clock Rate) ~ ((???) GHz)
+
+Therefore, we need a clock rate of about (???) GHz to achieve a (???)% reduction in CPU time (or execution time), without affecting the number of instructions or CPI

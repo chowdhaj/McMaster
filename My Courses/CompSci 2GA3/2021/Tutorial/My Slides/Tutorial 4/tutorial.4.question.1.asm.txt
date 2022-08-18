@@ -1,0 +1,38 @@
+
+# # # # # # #
+# Variables #
+# # # # # # #
+
+.data
+
+MemArray:                    // Array of 100 words (integers)
+    .word     0              // Position = 0
+    .word     1              // Position = 1
+    .word     2              // Position = 2
+    .word     3              // Position = 3
+    .word     4              // Position = 4
+
+           …                 // Intermediate elements
+
+    .word     96             // Position = 96
+    .word     97             // Position = 97
+    .word     98             // Position = 98
+    .word     99             // Position = 99
+
+
+# # # # # # # # # # # # # # # 
+# Instructions (Functions)  #
+# # # # # # # # # # # # # # # 
+
+.text
+
+    addi x6, x0, 0   
+    addi x5, x0, 0   
+    addi x29, x0, 100
+
+LOOP:                        
+    lw x7 0(x10)             
+    add x5, x5, x7           
+    addi x10, x10, 4         
+    addi x6, x6, 1           
+    blt x6, x29, LOOP        
