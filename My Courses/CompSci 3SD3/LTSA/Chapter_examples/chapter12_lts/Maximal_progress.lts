@@ -1,0 +1,21 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+// Maximal progress check demonstration
+
+PROG = (start -> LOOP | tick -> PROG),
+LOOP = (compute -> LOOP |tick -> LOOP
+       ).
+
+||CHECK = PROG>>{tick}.
+
+progress TIME = {tick}
+
+
+PROG2 = (start -> LOOP | tick -> PROG2),
+LOOP =  (compute -> LOOP |tick -> LOOP
+        |end -> tick -> PROG2).
+
+||CHECK2 = PROG2>>{tick}.

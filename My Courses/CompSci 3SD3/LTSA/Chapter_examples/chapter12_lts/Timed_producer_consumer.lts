@@ -1,0 +1,26 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+/* Timed Producer-Consumer
+*/
+
+CONSUMER(Tc=3) =
+  (item -> DELAY[1] | tick -> CONSUMER),
+DELAY[t:1..Tc] = 
+  (when(t==Tc) tick -> CONSUMER
+  |when(t<Tc)  tick -> DELAY[t+1]
+  ).
+
+PRODUCER(Tp=3) = 
+  (item -> DELAY[1]),
+DELAY[t:1..Tp] = 
+  (when(t==Tp) tick -> PRODUCER
+  |when(t<Tp)  tick -> DELAY[t+1]
+  ).
+
+
+||SAME   = (PRODUCER(2) || CONSUMER(2)).
+||SLOWER = (PRODUCER(3) || CONSUMER(2)).
+||FASTER = (PRODUCER(2) || CONSUMER(3)).

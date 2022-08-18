@@ -1,0 +1,14 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+range M = 0..4
+
+SEND(E=3) = (chan[3] -> STOP).
+
+RECEIVE = (chan[v:M]->received[v]->RECEIVE).
+
+||SYS = (SEND || RECEIVE).
+
+

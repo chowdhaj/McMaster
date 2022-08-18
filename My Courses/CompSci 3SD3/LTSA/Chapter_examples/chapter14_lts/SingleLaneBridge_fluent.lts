@@ -1,0 +1,62 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+/* Single Lane bridge
+Red cars go from west to east
+Blue cars go from east to west
+*/
+
+const N = 2 // number of each type of car
+range T = 0..N // type of car count
+range ID= 1..N // car identities
+
+BRIDGE = BRIDGE[0][0],  //initially empty
+BRIDGE[nr:T][nb:T] =    //nr is the red count, nb the blue count
+	(when (nb==0) 
+          red[ID].enter  -> BRIDGE[nr+1][nb]
+        |red[ID].exit    -> BRIDGE[nr-1][nb]
+        |when (nr==0) 
+          blue[ID].enter -> BRIDGE[nr][nb+1]
+        |blue[ID].exit   -> BRIDGE[nr][nb-1]
+	).
+
+CAR = (enter->exit->CAR).
+
+/* cars may not overtake each other */
+NOPASS1   = C[1],
+C[i:ID]   = ([i].enter -> C[i%N+1]).
+
+NOPASS2   = C[1],
+C[i:ID]   = ([i].exit -> C[i%N+1]).
+
+||CONVOY = ([ID]:CAR || NOPASS1 || NOPASS2).
+
+||CARS = (red:CONVOY || blue:CONVOY).
+
+||SingleLaneBridge = (CARS || BRIDGE ).
+
+/* bridge becomes congested when we give less priority to exit that entry */
+||CongestedBridge = SingleLaneBridge >> {red[ID].exit,blue[ID].exit}.
+
+fluent RED[i:ID]  = <red[i].enter, red[i].exit>
+fluent BLUE[i:ID] = <blue[i].enter, blue[i].exit>
+
+assert ONEWAY  = []!(exists[i:ID] RED[i] && exists[j:ID] BLUE[j])
+assert ONEWAY_ = []!(RED[ID] && BLUE[ID])
+
+assert FIRSTRED = <>red[1].enter
+
+assert REDCROSS  = []<>red[ID].enter
+assert BLUECROSS = []<>blue[ID].enter
+assert CROSS     = (REDCROSS && BLUECROSS)
+
+assert STRONGRED =  forall[i:ID] []<>red[i].enter
+
+assert REDEXIT = [](red[1].enter -> <>red[1].exit)
+
+
+
+
+

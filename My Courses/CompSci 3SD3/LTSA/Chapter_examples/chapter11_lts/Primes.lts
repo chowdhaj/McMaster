@@ -1,0 +1,48 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+/* Primes Sieve of Eratosthenes
+*/
+
+const MAX = 9
+range NUM = 2..MAX
+set S = {[NUM],eos}
+
+GEN        = GEN[2],
+GEN[x:NUM] = (out.put[x] -> 
+              	if  x<MAX then 
+		   GEN[x+1]
+              	else 
+		   (out.put.eos->end->GEN)
+             ).
+
+FILTER      = (in.get[p:NUM]->prime[p]->FILTER[p] 
+              |in.get.eos->ENDFILTER
+              ),
+FILTER[p:NUM] = (in.get[x:NUM] ->
+                   if x%p!=0 then 
+             	      (out.put[x]->FILTER[p]) 
+                   else 
+                      FILTER[p]
+                |in.get.eos->ENDFILTER
+                ),
+ENDFILTER   = (out.put.eos->end->FILTER).
+
+PIPE = (put[x:S]->get[x]->PIPE).
+
+||PRIMES(N=4) = (gen:GEN || pipe[0..N-1]:PIPE || filter[0..N-1]:FILTER)
+                /{ pipe[0]/gen.out,
+                   pipe[i:0..N-1]/filter[i].in,
+                   pipe[i:1..N-1]/filter[i-1].out,
+                   end/{filter[0..N-1].end,gen.end}
+                 }@{filter[0..N-1].prime,end}.
+ 
+
+||PRIMESUNBUF(N=4) = (gen:GEN || filter[0..N-1]:FILTER)
+              /{ pipe[0]/gen.out.put,
+                 pipe[i:0..N-1]/filter[i].in.get,
+                 pipe[i:1..N-1]/filter[i-1].out.put,
+                 end/{filter[0..N-1].end,gen.end}
+               }@{filter[0..N-1].prime,end}.

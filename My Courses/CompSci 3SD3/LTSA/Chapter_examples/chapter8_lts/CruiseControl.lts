@@ -1,0 +1,78 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+// Cruise Control System
+
+set Sensors = {engineOn,engineOff,on,off,
+               resume,brake,accelerator} 
+set Engine  = {engineOn,engineOff} 
+set Prompts = {clearSpeed,recordSpeed,
+               enableControl,disableControl} 
+
+SENSORSCAN = ({Sensors} -> SENSORSCAN).
+
+INPUTSPEED = (engineOn -> CHECKSPEED),
+CHECKSPEED = (speed -> CHECKSPEED
+             |engineOff -> INPUTSPEED 
+             ).
+
+THROTTLE =(setThrottle -> zoom -> THROTTLE).
+
+SPEEDCONTROL = DISABLED,
+DISABLED =({speed,clearSpeed,recordSpeed}->DISABLED
+          | enableControl -> ENABLED 
+          ), 
+ENABLED = ( speed -> setThrottle -> ENABLED 
+          |{recordSpeed,enableControl} -> ENABLED
+          | disableControl -> DISABLED
+          ).
+
+set DisableActions = {off,brake,accelerator}
+
+CRUISECONTROLLER = INACTIVE,
+INACTIVE =(engineOn -> clearSpeed -> ACTIVE
+		  |DisableActions -> INACTIVE
+		  ),
+ACTIVE   =(engineOff -> INACTIVE
+          |on->recordSpeed->enableControl->CRUISING
+		  |DisableActions -> ACTIVE
+          ),
+CRUISING =(engineOff -> INACTIVE
+          |DisableActions->disableControl->STANDBY
+          |on->recordSpeed->enableControl->CRUISING
+          ),
+STANDBY  =(engineOff -> INACTIVE
+          |resume -> enableControl -> CRUISING
+          |on->recordSpeed->enableControl->CRUISING
+		  |DisableActions -> STANDBY
+          ).
+
+property CRUISESAFETY = 
+	({DisableActions,disableControl} -> CRUISESAFETY
+	|{on,resume} -> SAFETYCHECK
+	),
+SAFETYCHECK =
+	({on,resume} -> SAFETYCHECK
+	|DisableActions -> SAFETYACTION
+	|disableControl -> CRUISESAFETY
+	), 
+SAFETYACTION =(disableControl->CRUISESAFETY).
+
+
+||CONTROL =
+     (CRUISECONTROLLER||SPEEDCONTROL ||CRUISESAFETY
+	 ).
+
+||CONTROLMINIMIZED =
+     (CRUISECONTROLLER||SPEEDCONTROL
+	 )@ {Sensors,speed}.
+
+||CRUISECONTROLSYSTEM = 
+     (CONTROL||SENSORSCAN||INPUTSPEED||THROTTLE).
+
+||CRUISEMINIMIZED = (CRUISECONTROLSYSTEM) 
+                    @ {Sensors,speed}.
+
+menu RUN = {Sensors,Engine,speed}

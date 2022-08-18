@@ -1,0 +1,26 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+// Asynchronous message passing model
+//(turn off "Display warning messages")
+
+range M = 0..9
+set S = {[M],[M][M]}
+PORT            = (send[x:M]->PORT[x]),
+PORT[v:M]       = (send[x:M]->PORT[x][v]   |receive[v]->PORT),
+PORT[s:S][v:M]  = (send[x:M]->PORT[x][s][v]|receive[v]->PORT[s]).
+
+ASENDER = ASENDER[0],
+ASENDER[e:M] = (port.send[e]->ASENDER[(e+1)%10]).
+
+ARECEIVER = (port.receive[v:M]->ARECEIVER).
+
+||AsyncMsg = (s[1..2]:ASENDER || ARECEIVER||port:PORT)
+             /{s[1..2].port.send/port.send}.
+
+||Abstract = AsyncMsg
+             /{s[1..2].port.send/s[1..2].port.send[M], 
+               port.receive/port.receive[M]
+              }.

@@ -1,0 +1,13 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+range M = 0..9
+
+SENDER = SENDER[0],
+SENDER[e:M] = (chan.send[e]->SENDER[(e+1)%10]).
+
+RECEIVER = (chan.receive[v:M]->next ->RECEIVER).
+
+||SyncMsg = (SENDER || RECEIVER)/{chan/chan.{send,receive}}.

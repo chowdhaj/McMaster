@@ -1,0 +1,28 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+/* Modeling timeouts
+*/
+
+TIMEOUT(D=1) 
+  = (setTO          -> TIMEOUT[0] 
+    |{tick,resetTO} -> TIMEOUT
+    ),
+TIMEOUT[t:0..D] 
+  = (when (t<D) tick    -> TIMEOUT[t+1]
+    |when (t==D)timeout -> TIMEOUT
+    |resetTO            -> TIMEOUT
+    ).
+
+RECEIVE = (start -> setTO -> WAIT),
+WAIT    = (timeout -> RECEIVE
+          |receive -> resetTO -> RECEIVE
+          ).
+
+||RECEIVER(D=2) = (RECEIVE || TIMEOUT(D))
+               >>{receive,tick,timeout,start}
+               @{receive,tick,timeout,start}.
+
+menu RUN = {receive,tick}

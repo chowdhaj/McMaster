@@ -1,0 +1,28 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+// Asynchronous message passing port 
+//(turn off "Display warning messages")
+
+range M = 0..9 
+set   S = {[M],[M][M]}
+
+
+PORT            //empty state, only send permitted
+  = (send[x:M]->PORT[x]),  
+PORT[h:M]       //one message queued to port   
+  = (send[x:M]->PORT[x][h] 
+    |receive[h]->PORT
+    ),   
+PORT[t:S][h:M]  //two or more  messages queued to port 
+   = (send[x:M]->PORT[x][t][h]
+     |receive[h]->PORT[t]
+     ).
+
+||SYS = PORT.
+
+// minimise to see result of abstracting from data values
+
+||APORT = PORT/{send/send[M],receive/receive[M]}.

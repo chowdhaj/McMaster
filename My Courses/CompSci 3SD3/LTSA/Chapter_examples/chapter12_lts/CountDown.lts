@@ -1,0 +1,13 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+/* simple count down timer
+*/
+
+COUNTDOWN (N=3)   = COUNTDOWN[N],
+COUNTDOWN[i:0..N] = 
+  (when(i>0)  tick -> COUNTDOWN[i-1]
+  |when(i==0) beep -> STOP
+  ).

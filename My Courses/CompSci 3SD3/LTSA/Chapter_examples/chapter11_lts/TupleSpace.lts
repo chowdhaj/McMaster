@@ -1,0 +1,25 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+const False = 0
+const True  = 1
+range Bool = False..True
+
+const N          = 2                  //Maximum Number of tuple copies
+set   Tuples     = {any}
+set   TupleAlpha = {{in,out,rd,rdp[Bool],inp[Bool]}.Tuples}
+
+
+TUPLE(T='any) = TUPLE[0],
+TUPLE[i:0..N] 
+  = (out[T]                   -> TUPLE[i+1]
+    |when (i>0) in[T]         -> TUPLE[i-1]
+    |when (i>0) inp[True][T]  -> TUPLE[i-1]
+    |when (i==0)inp[False][T] -> TUPLE[i]
+    |when (i>0) rd[T]         -> TUPLE[i]
+    |rdp[i>0][T]              -> TUPLE[i]
+    ).
+
+||TUPLESPACE = forall [t:Tuples] TUPLE(t).

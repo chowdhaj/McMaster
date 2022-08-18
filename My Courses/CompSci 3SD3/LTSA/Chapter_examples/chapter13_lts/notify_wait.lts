@@ -1,0 +1,33 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+
+const Nthread  = 3       //cardinality of Threads
+set   Threads  = {a,b,c} //set of thread indentifiers
+
+ELEMENT  
+  = (wait -> BLOCKED | unblockAll -> ELEMENT),
+BLOCKED  
+  = ({unblock,unblockAll} -> UNBLOCK),
+UNBLOCK  
+  = (endwait -> ELEMENT).
+
+minimal
+CONTROL = EMPTY,
+EMPTY   = (wait -> WAIT[1] 
+          |{notifyAll,notify} -> EMPTY
+          ),
+WAIT[i:1..Nthread] 
+        = (when (i<Nthread) wait -> WAIT[i+1]
+          |notifyAll -> unblockAll -> EMPTY
+          |notify -> unblock -> 
+           if (i==1) then EMPTY else WAIT[i-1]
+          ).
+
+set SyncOps = {notify,notifyAll,wait}
+
+||WAITSET 
+      = (Threads:ELEMENT || Threads::CONTROL)
+        /{unblockAll/Threads.unblockAll}.

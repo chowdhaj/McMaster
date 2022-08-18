@@ -1,0 +1,60 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+// Announcer-Listener Model - Box Mover Game
+
+set Listener = {a,b,c,d}
+set Pattern  = {pat1,pat2}
+
+REGISTER = IDLE,
+IDLE = (register[p:Pattern] -> MATCH[p]
+       |announce[Pattern]   -> IDLE
+       ),
+MATCH[p:Pattern] = 
+       (announce[a:Pattern] ->
+          if (a==p) then
+             (event[a] -> MATCH[p]|deregister -> IDLE)
+          else
+             MATCH[p]
+       |deregister -> IDLE
+       ).
+ 
+||EVENTMANAGER = (Listener:REGISTER)
+                 /{announce/Listener.announce}.
+
+
+ANNOUNCER = (announce[Pattern] -> ANNOUNCER).
+
+BOXMOVER(P='pattern) = 
+  (register[P] -> LISTENING),
+LISTENING = 
+  (compute->  // compute and display position
+     (timeout  -> LISTENING            // no mouse event
+     |event[P] -> timeout -> LISTENING // miss
+     |event[P] -> deregister -> STOP   // hit
+     )
+  )+{register[Pattern]}.
+
+||ANNOUNCER_LISTENER
+           = ( a:BOXMOVER('pat1) 
+             ||b:BOXMOVER('pat2)
+             ||c:BOXMOVER('pat1)
+             ||d:BOXMOVER('pat2)
+             ||EVENTMANAGER
+             ||ANNOUNCER
+             ||Listener:SAFE).
+
+progress ANNOUNCE[p:Pattern] = {announce[p]}
+
+property 
+  SAFE           = (register[p:Pattern] -> SAFE[p]),
+  SAFE[p:Pattern]= (event[p] -> SAFE[p] 
+                   | deregister -> SAFE
+                   ).
+
+menu TEST ={announce[Pattern], Listener.compute, Listener.timeout}
+
+
+

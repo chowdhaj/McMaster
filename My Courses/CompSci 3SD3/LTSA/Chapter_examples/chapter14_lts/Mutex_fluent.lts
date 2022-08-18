@@ -1,0 +1,25 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+const N = 2
+range Int = 0..N
+
+SEMAPHORE(I=0) = SEMA[I],
+SEMA[v:Int]    = (up->SEMA[v+1]
+                 |when(v>0) down->SEMA[v-1]
+                 ).
+
+LOOP = (mutex.down->enter->exit->mutex.up->LOOP).
+
+||SEMADEMO = (p[1..N]:LOOP 
+             || {p[1..N]}::mutex:SEMAPHORE(2)).
+
+fluent CRITICAL[i:1..N] = <p[i].enter, p[i].exit> 
+
+assert MUTEX = []!(CRITICAL[1] && CRITICAL[2])
+
+assert MUTEX_N = []!(exists [i:1..N-1] (CRITICAL[i] && CRITICAL[i+1..N] ))
+
+

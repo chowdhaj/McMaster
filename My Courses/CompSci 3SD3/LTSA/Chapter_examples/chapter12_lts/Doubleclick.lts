@@ -1,0 +1,19 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+/* Double click recognition model
+*/
+
+DOUBLECLICK(D=3) = 
+  (tick -> DOUBLECLICK 
+  |click -> PERIOD[1]
+  ),
+PERIOD[t:1..D] = 
+  (when (t==D) tick -> DOUBLECLICK
+  |when (t<D)  tick -> PERIOD[t+1]
+  |click -> doubleclick -> DOUBLECLICK
+  ).
+
+menu RUN = {tick,click}

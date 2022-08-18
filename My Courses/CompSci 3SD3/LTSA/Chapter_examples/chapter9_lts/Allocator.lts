@@ -1,0 +1,17 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+const N=2     //maximum #golf balls
+range B=0..N  //available range
+
+ALLOCATOR  = BALL[N],
+BALL[b:B]  = (when (b>0) get[i:1..b] -> BALL[b-i]
+             |put[j:1..N]            -> BALL[b+j]
+             ).
+
+range R=1..N  //request range
+
+PLAYER      = (need[b:R]->PLAYER[b]),
+PLAYER[b:R] = (get[b]->put[b]->PLAYER[b]).

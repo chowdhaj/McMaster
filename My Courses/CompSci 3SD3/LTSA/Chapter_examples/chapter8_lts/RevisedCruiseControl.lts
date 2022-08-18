@@ -1,0 +1,83 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+// Revised Cruise Control System
+
+set Sensors = {engineOn,engineOff,on,off,
+               resume,brake,accelerator} 
+set Engine  = {engineOn,engineOff} 
+set Prompts = {clearSpeed,recordSpeed,
+               enableControl,disableControl} 
+
+SENSORSCAN = ({Sensors} -> SENSORSCAN).
+
+INPUTSPEED = (engineOn -> CHECKSPEED),
+CHECKSPEED = (speed -> CHECKSPEED
+             |engineOff -> INPUTSPEED 
+             ).
+
+THROTTLE =(setThrottle -> zoom -> THROTTLE).
+
+SPEEDCONTROL = DISABLED,
+DISABLED =({speed,clearSpeed,recordSpeed}->DISABLED
+          | enableControl -> ENABLED 
+          ), 
+ENABLED = ( speed -> setThrottle -> ENABLED 
+          |{recordSpeed,enableControl} -> ENABLED
+          | disableControl -> DISABLED
+          ).
+
+set DisableActions = {off,brake,accelerator}
+
+CRUISECONTROLLER = INACTIVE,
+INACTIVE =(engineOn -> clearSpeed -> ACTIVE
+		  |DisableActions -> INACTIVE
+		  ),
+ACTIVE   =(engineOff -> INACTIVE
+          |on->recordSpeed->enableControl->CRUISING
+		  |DisableActions -> ACTIVE
+          ),
+CRUISING =(engineOff -> disableControl -> INACTIVE
+          |DisableActions->disableControl->STANDBY
+          |on->recordSpeed->enableControl->CRUISING
+          ),
+STANDBY  =(engineOff -> INACTIVE
+          |resume -> enableControl -> CRUISING
+          |on->recordSpeed->enableControl->CRUISING
+		  |DisableActions -> STANDBY
+          ).
+
+property IMPROVEDSAFETY = 
+	({DisableActions,disableControl,
+				engineOff} -> IMPROVEDSAFETY
+	|{on,resume} -> SAFETYCHECK
+	),
+SAFETYCHECK =
+	({on,resume} -> SAFETYCHECK
+	|{DisableActions, engineOff} -> SAFETYACTION
+	|disableControl -> IMPROVEDSAFETY
+	), 
+SAFETYACTION =(disableControl->IMPROVEDSAFETY).
+
+
+||CONTROL =
+     (CRUISECONTROLLER||SPEEDCONTROL||IMPROVEDSAFETY
+	 )@ {Sensors,speed,setThrottle}.
+
+||CONTROLMINIMIZED =
+     (CRUISECONTROLLER||SPEEDCONTROL
+	 )@ {Sensors,speed}.
+
+||CRUISECONTROLSYSTEM = 
+     (CONTROL||SENSORSCAN||INPUTSPEED||THROTTLE).
+
+||CRUISEMINIMIZED = (CRUISECONTROLSYSTEM) 
+                    @ {Sensors,speed}.
+
+||SENSORSHIGH = CRUISECONTROLSYSTEM << {Sensors}.
+||SENSORSLOW = CRUISECONTROLSYSTEM >> {Sensors}.
+||SPEEDHIGH = CRUISECONTROLSYSTEM << {speed}.
+||SPEEDLOW = CRUISECONTROLSYSTEM >> {speed}.
+

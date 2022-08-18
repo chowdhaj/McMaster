@@ -1,0 +1,42 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+//Golfclub - Fair Golfball Allocator
+
+const N=5     //maximum #golf balls
+range B=0..N  //available range
+
+const TM = 5
+range T  = 1..TM
+
+TICKET    = NEXT[1],
+NEXT[t:T] = (ticket[t]->NEXT[t%TM+1]).
+
+ALLOCATOR  = BALL[N][1],
+BALL[b:B][t:T]  = (when (b>0) get[i:1..b][t]-> BALL[b-i][t%TM+1]
+	          |put[j:1..N] -> BALL[b+j][t]
+		  ).
+
+range R=1..N  //request range
+
+PLAYER      = (need[b:R]->PLAYER[b]),
+PLAYER[b:R] = (ticket[t:T]->get[b][t]->put[b]->PLAYER[b]).
+
+set Experts = {alice,bob,chris}
+set Novices = {dave,eve}
+set Players = {Experts,Novices}
+
+HANDICAP= ({Novices.{need[4]},Experts.need[1]}->HANDICAP)
+          +{Players.need[R]}.
+
+||GOLFCLUB = (Players:PLAYER 
+	     || Players::(ALLOCATOR||TICKET) 
+	     || HANDICAP
+	     ).
+
+progress NOVICE = {Novices.get[R][T]}
+progress EXPERT = {Experts.get[R][T]}
+
+||ProgressCheck = GOLFCLUB >>{Players.put[R]}.

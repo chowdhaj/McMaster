@@ -1,0 +1,132 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+/***  Space Invaders  ***
+*/
+
+const MAX = 4
+range D   = 0..MAX
+set   Coord = {[D][D],undef}  //[x][y]
+set   Sprite = {north,south,west,east,rest,action,create[D][D]}
+
+SPRITE = 
+  (create[x:D][y:D] -> SPRITE[x][y]
+  |tick -> SPRITE
+  |pos.undef -> SPRITE
+  ),
+SPRITE[x:D][y:D] = 
+  (pos[x][y] -> SPRITE[x][y]
+  |tick ->
+   (north -> if y>0   then SPRITE[x][y-1] else SPRITEEND
+   |south -> if y<MAX then SPRITE[x][y+1] else SPRITEEND
+   |west  -> if x>0   then SPRITE[x-1][y] else SPRITEEND
+   |east  -> if x<MAX then SPRITE[x+1][y] else SPRITEEND
+   |{rest,action[x][y]} -> SPRITE[x][y]
+   )
+  ),
+SPRITEEND   = (end -> SPRITE).
+
+/*** an ALIEN is an alien-constrained SPRITE */
+
+ALIEN_CONSTRAINT = 
+  (create[D][0] -> MOVE),
+MOVE = 
+  (south -> MOVE  | end -> ALIEN_CONSTRAINT)
+    +Sprite.
+
+||ALIEN = (SPRITE || ALIEN_CONSTRAINT).
+
+/*** a SPACESHIP is an spaceship-constrained SPRITE */
+
+SPACESHIP_CONSTRAINT = 
+   (create[MAX/2][MAX] -> MOVE[MAX/2]),
+MOVE[x:D] =
+   ( when (x>0)   west  -> MOVE[x-1]
+   | when (x<MAX) east  -> MOVE[x+1]
+   | rest -> MOVE[x]
+   | action[x][MAX] -> MOVE[x]
+   ) + Sprite.
+
+||SPACESHIP  = (SPRITE ||SPACESHIP_CONSTRAINT).
+
+/*** a MISSILE is an missile-constrained SPRITE */
+
+MISSILE_CONSTRAINT = 
+   (create[D][MAX] -> MOVE),
+MOVE =
+  (north -> MOVE | end -> MISSILE_CONSTRAINT)
+  + Sprite.
+
+||MISSILE = (SPRITE || MISSILE_CONSTRAINT).
+
+/*** Collision detection */
+
+COLLIDE(A='a,B='b) = 
+  (tick -> [A].pos[p1:Coord] -> [B].pos[p2:Coord] 
+   -> if (p1==p2 && p1!='undef && p2!='undef) then
+         ([A][B].explode -> COLLIDE)
+      else
+         COLLIDE
+  ).
+
+/*** Space Invaders Game 
+  single alien, single missils, single spaceship
+ */
+
+||SPACE_INVADERS = 
+   ( alien:ALIEN 
+   || spaceship:SPACESHIP 
+   || missile:MISSILE 
+   || COLLIDE('alien,'spaceship) 
+   || COLLIDE('missile,'alien))
+   /{spaceship.action/missile.create,
+     tick/{alien,spaceship,missile}.tick}
+   >>{tick}.
+
+
+progress TIME = {tick}
+progress SHOOT_ALIEN= {missile.alien.explode}
+progress ALIEN_SHIP = {alien.spaceship.explode}
+
+menu RUN = {spaceship.{east,west,rest,action[D][MAX]}}
+
+property ALIEN_HIT = STOP + {missile.alien.explode}.
+property SHIP_HIT  = STOP + {alien.spaceship.explode}.
+
+/* Although the following definitions are correct,
+   they require a lot of storage to check since LTSA
+   must first build the LTS for SPACE_INVADERS
+
+||FIND_ALIEN_HIT = (SPACE_INVADERS || ALIEN_HIT).
+||FIND_SHIP_HIT  = (SPACE_INVADERS || SHIP_HIT).
+
+The following definitions are equivalent but require
+less storage:
+*/
+
+||FIND_ALIEN_HIT  = 
+   (  ALIEN_HIT
+   || alien:ALIEN 
+   || spaceship:SPACESHIP 
+   || missile:MISSILE 
+   || COLLIDE('alien,'spaceship) 
+   || COLLIDE('missile,'alien))
+   /{spaceship.action/missile.create,
+     tick/{alien,spaceship,missile}.tick}
+   >>{tick}.
+
+||FIND_SHIP_HIT  = 
+   (  SHIP_HIT
+   || alien:ALIEN 
+   || spaceship:SPACESHIP 
+   || missile:MISSILE 
+   || COLLIDE('alien,'spaceship) 
+   || COLLIDE('missile,'alien))
+   /{spaceship.action/missile.create,
+     tick/{alien,spaceship,missile}.tick}
+   >>{tick}.
+
+
+

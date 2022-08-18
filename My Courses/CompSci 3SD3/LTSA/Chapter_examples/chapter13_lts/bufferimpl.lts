@@ -1,0 +1,151 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+
+
+// Bounded - Buffer Program Verification Model
+
+const Nprod = 2              // #producers
+const Ncons = 2              // #consumers
+set   Prod = {prod[1..Nprod]}  // producer threads
+set   Cons = {cons[1..Ncons]}  // consumer threads
+const Size = 1               // number of buffer slots
+
+/*
+* definition of wait/notify mechanism
+*/
+
+const Nthread  = Nprod + Ncons       //cardinality of Threads
+set   Threads  = {Prod,Cons} //set of thread indentifiers
+
+ELEMENT  
+  = (wait -> BLOCKED | unblockAll -> ELEMENT),
+BLOCKED  
+  = ({unblock,unblockAll} -> UNBLOCK),
+UNBLOCK  
+  = (endwait -> ELEMENT).
+
+minimal
+CONTROL = EMPTY,
+EMPTY   = (wait -> WAIT[1] 
+          |{notifyAll,notify} -> EMPTY
+          ),
+WAIT[i:1..Nthread] 
+        = (when (i<Nthread) wait -> WAIT[i+1]
+          |notifyAll -> unblockAll -> EMPTY
+          |notify -> unblock -> 
+           if (i==1) then EMPTY else WAIT[i-1]
+          ).
+
+set SyncOps = {notify,notifyAll,wait}
+
+||WAITSET 
+      = (Threads:ELEMENT || Threads::CONTROL)
+        /{unblockAll/Threads.unblockAll}.
+
+/*
+* monitor lock
+*/
+set LockOps = {acquire,release}
+LOCK = (acquire -> release ->LOCK).
+
+/*
+* WAIT operation must release lock
+*/
+
+WAIT = (wait ->release ->endwait ->acquire ->END).
+
+/*
+* safety property to ensure lock is held when notify,notifyAll
+* or wait is invoked
+*/
+
+property SAFEMON 
+   = ([a:Threads].acquire -> HELDBY[a]),
+HELDBY[a:Threads] 
+   = ([a].{notify,notifyAll,wait} -> HELDBY[a]
+     |[a].release -> SAFEMON
+     ).
+
+
+/*
+* integer variable
+*/
+const Imax = Size
+range Int  = 0..Imax
+set   VarAlpha = {read[Int],write[Int],inc,dec}
+
+VAR(Init=0)= VAR[Init],
+VAR[v:Int] = (read[v]     ->VAR[v]     //  v
+             |inc         ->VAR[v+1]   //  ++v
+             |dec         ->VAR[v-1]   //  - -v
+             |write[c:Int]->VAR[c]     //  v = c
+             ).
+
+set BufferAlpha = {count.VarAlpha, LockOps, SyncOps}
+ 
+||BUFFERMON   = ( Threads::LOCK || WAITSET ||SAFEMON
+                ||Threads::(count:VAR(0))
+                ).
+
+/* 
+*  put method 
+*/
+PUT 					    
+  = (acquire -> WHILE),       
+WHILE     
+  = (count.read[v:Int] ->    // while (count == size) wait();
+     if v==Size then WAIT;WHILE else CONTINUE
+    ),
+CONTINUE
+  = (put                    // buf[in] = o; in=(in+1)%size;
+     -> count.inc           // ++count;
+     -> notify             // notify() should be notifyAll()
+     -> release
+     -> END
+    ) + BufferAlpha.
+
+/* 
+*  get method
+*/
+GET                          
+  = (acquire -> WHILE), 
+WHILE     
+  = (count.read[v:Int] ->           // while (count == 0 ) wait()
+      if v==0 then WAIT;WHILE else CONTINUE
+    ),
+CONTINUE      
+  = (get                           // Object[o] = buf[out]; buf[out] = null;
+     -> count.dec                  // --count;
+     -> notify                  // notify() should be notifyAll()
+     -> release
+     -> END                    
+    ) + BufferAlpha.
+
+minimal PRODUCER = PUT;PRODUCER.
+
+minimal CONSUMER = GET;CONSUMER.
+
+||ProdCons = (Prod:PRODUCER || Cons:CONSUMER || BUFFERMON).
+
+minimal ||Eqivalent = ProdCons @ {Prod.put,Cons.get}.
+
+menu RUN = {Prod.put,Cons.get}
+
+property
+BUFFER = COUNT[0],
+COUNT[i:0..Size]
+      = (when (i<Size) put->COUNT[i+1]
+        |when (i>0)    get->COUNT[i-1]
+        )/{Prod.put/put,Cons.get/get}.
+
+||ProdConsSafety = (ProdCons || BUFFER).
+
+progress PUT[i:1..Nprod] = {prod[i].put}
+progress GET[i:1..Ncons] = {cons[i].get}
+
+
+
+

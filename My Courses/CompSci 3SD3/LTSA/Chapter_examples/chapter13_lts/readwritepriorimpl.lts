@@ -1,0 +1,178 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+
+const Nread  = 2                   // #readers
+const Nwrite = 2				   // #writers
+set   Read   = {reader[1..Nread]}  // reader threads
+set   Write  = {writer[1..Nwrite]} // writer threads
+
+const Nthread =  Nread + Nwrite
+set   Threads = {Read,Write}
+
+range Int   = 0..Nread
+const False = 0 
+const True  = 1
+range Bool  = False..True
+
+/*
+* definition of wait/notify mechanism
+*/
+ELEMENT  = (wait -> {unblock,unblockAll} -> endwait -> ELEMENT  
+           |unblockAll -> ELEMENT  
+           ).
+
+CONTROL = EMPTY,
+EMPTY   = (wait -> WAIT[1] 
+          |{notifyAll,notify} -> EMPTY
+          ),
+WAIT[i:1..Nthread] 
+       = (when i<Nthread wait -> WAIT[i+1]
+         |notifyAll -> unblockAll -> EMPTY
+         |notify -> unblock -> 
+            if (i==1) then EMPTY else WAIT[i-1]
+         ).
+
+set SyncOps = {notify,notifyAll,wait}
+
+||WAITSET = (Threads:ELEMENT || Threads::CONTROL)
+            /{unblockAll/Threads.unblockAll}.
+
+/*
+* monitor lock
+*/
+set LockOps = {acquire,release}
+LOCK = (acquire -> release ->LOCK).
+
+WAIT = (wait -> release -> endwait -> acquire -> END).
+
+/*
+* safety property to ensure lock is held when notify,notifyAll
+* or wait is invoked
+*/
+
+property SAFEMON 
+   = ([a:Threads].acquire -> HELDBY[a]),
+HELDBY[a:Threads] 
+   = ([a].{notify,notifyAll,wait} -> HELDBY[a]
+     |[a].release -> SAFEMON
+     ).
+
+
+set VarAlpha = {read[Int],write[Int],inc,dec}
+
+VAR      = VAR[0],
+VAR[u:Int] = (read[u]     ->VAR[u]
+             |inc         ->VAR[u+1]
+             |dec         ->VAR[u-1] 
+             |write[v:Int]->VAR[v]
+             ).
+
+set BoolAlpha = {read[Bool],write[Bool]}
+
+BOOLVAR         = BOOLVAR[False],
+BOOLVAR[u:Bool] = (read[u]   ->BOOLVAR[u] 
+                  |write[v:Bool]->BOOLVAR[v]).
+
+set ReadWriteAlpha = 
+   {{readers,waitingW}.VarAlpha, writing.BoolAlpha, 
+    LockOps, SyncOps,
+    acquireRead,acquireWrite,releaseRead,releaseWrite
+   }
+
+||RWPRIORMON = ( Threads::LOCK || WAITSET ||SAFEMON
+               ||Threads::( readers:VAR
+                          ||writing:BOOLVAR
+                          ||waitingW:VAR
+                          )
+               ).
+/* 
+* acquireRead() method 
+*/
+ACQUIREREAD                
+  = (acquire -> WHILE),       
+WHILE                   // while (writing || waitingW>0) wait();
+  = (writing.read[v:Bool] -> waitingW.read[u:Int] ->
+     if (v || u>0) then WAIT;WHILE else CONTINUE
+     ),
+CONTINUE     
+  = (acquireRead 
+     -> readers.inc            // ++readers
+     -> release -> END
+     ) + ReadWriteAlpha.
+/*
+* releaseRead() method
+*/
+RELEASEREAD                  // inlined releaseRead method
+  = (acquire -> releaseRead 
+    -> readers.dec             //  --readers;
+    -> readers.read[v:Int] ->  //  if (readers==0) notify();
+       if (v==0) then (notify -> CONTINUE) else CONTINUE
+     ),
+CONTINUE
+  = (release -> END) + ReadWriteAlpha.
+
+
+/*
+* acquireWrite() method
+*/
+ACQUIREWRITE           
+  = (acquire -> waitingW.inc -> WHILE),  
+WHILE               // while (readers>0 || writing) wait();
+  = (writing.read[b:Bool] -> readers.read[v:Int]->
+     if (v>0 || b) then WAIT;WHILE else CONTINUE
+     ),
+CONTINUE
+  = (acquireWrite 
+     -> waitingW.dec          // --waitingW;
+     -> writing.write[True]   // writing = true;
+     -> release -> END
+    )+ ReadWriteAlpha.
+
+/*
+* releaseWrite() method
+*/
+RELEASEWRITE                  
+   = (acquire -> releaseWrite 
+     -> writing.write[False]  // writing = false;
+     -> notifyAll             // notifyAll();
+     -> release-> END
+     ) + ReadWriteAlpha.
+
+minimal
+  READER  = (acquireRead.call -> ACQUIREREAD;READING),
+  READING = (releaseRead.call -> RELEASEREAD;READER).
+
+minimal
+  WRITER  = (acquireWrite.call -> ACQUIREWRITE;WRITING),
+  WRITING = (releaseWrite.call -> RELEASEWRITE;WRITER).
+
+||RWSYS = (Read:READER || Write:WRITER 
+          || RWPRIORMON 
+          ||Threads::SAFE_RW
+          ).
+
+property SAFE_RW    
+  = (acquireRead->READING[1] | acquireWrite->WRITING),
+READING[i:1..Nread] 
+  = (acquireRead -> READING[i+1]
+    |when(i>1)  releaseRead  -> READING[i-1]
+    |when(i==1) releaseRead -> SAFE_RW
+    ),
+WRITING             
+  = (releaseWrite -> SAFE_RW).
+
+menu RUN = {Read.{acquireRead.call,releaseRead.call},
+            Write.{acquireWrite.call,releaseWrite.call}
+           }
+
+progress WRITE[i:1..Nwrite] = writer[i].acquireWrite
+progress READ[i:1..Nread] = reader[i].acquireRead
+
+/* progress test system */
+
+||RWPROGTEST = RWSYS >> {Read.releaseRead.call, Write.releaseWrite.call}.
+
+

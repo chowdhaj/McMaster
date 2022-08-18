@@ -1,0 +1,32 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+//asynchronous message passing port
+//(turn off "Display warning messages")
+
+set M = {replyA,replyB} 
+set S = {[M],[M][M]}
+
+PORT            //empty state, only send permitted
+  = (send[x:M]->PORT[x]),  
+PORT[h:M]       //one message queued to port   
+  = (send[x:M]->PORT[x][h] 
+    |receive[h]->PORT
+    ), 
+PORT[t:S][h:M]  //two or more  messages queued to port 
+   = (send[x:M]->PORT[x][t][h]
+     |receive[h]->PORT[t]
+     ).
+
+||ENTRY = PORT/{call/send, accept/receive}.
+
+CLIENT(CH='reply) = (entry.call[CH]->[CH]->CLIENT).
+
+SERVER = (entry.accept[ch:M]->[ch]->SERVER).
+
+||EntryDemo = (CLIENT('replyA)||CLIENT('replyB)
+               || entry:ENTRY || SERVER  ).
+
+

@@ -1,0 +1,100 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+/* A Ring Database - a fully distributed solution
+
+(based on Roscoe - The Theory and Practice of Concurrency)
+
+Each node in a ring can locally update its copy of the database.
+Updates are circulated round the ring to update other node copies.
+
+In the case of clashes due to two simultaneous updates by different 
+nodes, node i has priority over node j if  i<j. Simultaneity is 
+recognised by a node receiving an update while still having an 
+outstanding update.
+
+Updates are passed round the ring in the form 
+	[i][u] where i=originator, x=update value
+
+*** Channels are used to prevent DEADLOCK when all simultaneously perform 
+	local updates.
+*** When all nodes are locally quiescent (quiet), the databases should be consistent 
+*/
+
+const N     = 3		// number of nodes
+range Nodes = 1..N
+set Value   = {red, green, blue}
+
+set S       = {[Nodes][Value]}
+PIPE        = (put[x:S] -> get[x] -> PIPE).
+
+const False = 0
+const True  = 1
+range Bool  = False..True
+
+minimal
+NODE(I=0) 
+  = NODE['null][False],
+NODE[v:{null,Value}][update:Bool]  
+  = (when (!update) local[u:Value]     //local update
+    -> if (u!=v) then 
+          (change[u] -> put[I][u] -> NODE[u][True]) 
+       else 
+          NODE[v][False]
+   |get[j:Nodes][u:Value]             //update [j][u]
+    -> if (!update) then
+          CHANGE(j,u);NODE[u][False]
+       else if  (I==j) then 
+          (passive -> NODE[v][False]) // complete up[date
+       else if (I>j) then 
+          CHANGE(j,u);NODE[u][False]
+       else
+        NODE[v][update]               // discard
+	).
+
+CHANGE(J=0,U='null) 
+  = (change[U] -> put[J][U] -> passive ->END).
+
+
+||DATABASE_RING
+   = (node[i:Nodes]:NODE(i) || pipe[Nodes]:PIPE)
+     /{forall[i:Nodes] {
+         node[i].put/pipe[i%N+1].put,
+         node[i].get/pipe[i].get}
+      }.
+
+ONE_UPDATE = (node[Nodes].local[Value] -> ENDED),
+ENDED      = (ended -> ENDED).
+
+||DATABASE_RING_ONE = (DATABASE_RING || ONE_UPDATE).
+
+
+// node is PASSIVE if it has signalled passive and not signalled change
+fluent 
+  PASSIVE[i:Nodes] = <node[i].passive, node[i].change[Value]>
+
+// system is QUIESCENT if all nodes are PASSIVE
+assert QUIESCENT = forall[i:Nodes] PASSIVE[i]
+
+// VALUE[i][c] for a node i and color c is true if node has changed to that color and becomes
+// false when some other color is changed to
+fluent 
+  VALUE[i:Nodes][c:Value] = <node[i].change[c],node[i].change[{Value\{[c]}}]>
+
+// state is consistent if all  nodes have the same value
+assert CONSISTENT 
+     = exists[c:Value] forall[i:Nodes] VALUE[i][c]
+
+// safe if the system is consistent when quiescent
+assert SAFE = [](QUIESCENT -> CONSISTENT)
+
+// live if quiescence is reachable
+assert LIVE = []<>QUIESCENT
+
+assert WITNESS_LIVE = !LIVE
+
+assert WITNESS_SAFE = <>(QUIESCENT && !CONSISTENT)
+
+
+

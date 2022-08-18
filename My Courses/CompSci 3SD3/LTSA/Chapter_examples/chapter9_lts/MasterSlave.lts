@@ -1,0 +1,11 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+SLAVE = (start->rotate->join->SLAVE).
+
+MASTER = (slave.start->rotate->slave.join->rotate->MASTER).
+
+||MASTER_SLAVE = (MASTER || slave:SLAVE).
+

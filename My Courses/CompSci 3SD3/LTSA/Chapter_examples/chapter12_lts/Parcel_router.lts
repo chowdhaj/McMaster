@@ -1,0 +1,93 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+/* Parcel Router
+*/
+
+range Dest = 0..3 	//Destinations
+set Parcel = {parcel[Dest]}
+range Dir  = 0..1 	//Direction 0 = left, 1 = right
+
+/*** CHUTE */
+
+CHUTE(T=2) = 
+  (enter[p:Parcel] -> DROP[p][0] 
+  |tick            -> CHUTE
+  ),
+DROP[p:Parcel][i:0..T] = 
+  (when (i<T)  tick     -> DROP[p][i+1]
+  |when (i==T) leave[p] -> CHUTE
+  ).
+
+||CHUTES = (first:CHUTE(1) || second:CHUTE(2))
+           /{second.enter/first.leave,
+             tick/{first,second}.tick}.
+
+
+/*** SENSORCONTROLLER */
+
+SENSORCONTROLLER(Level=0)
+   = (sense.parcel[d:Dest] 
+      -> setSwitch[(d>>Level)&1]->SENSORCONTROLLER).
+
+
+/*** SWITCH */
+
+SWITCH(T=1)   = SWITCH[0],
+SWITCH[s:Dir] = 
+  (setSwitch[x:Dir] -> SWITCH[x]
+  |enter[p:Parcel]  -> SWITCH[s][p][0]
+  |tick             -> SWITCH[s]
+  ),
+SWITCH[s:Dir][p:Parcel][i:0..T] = 
+  (setSwitch[Dir]         -> SWITCH[s][p][i]   //ignore command
+  |when (i<T) tick        -> SWITCH[s][p][i+1]
+  |when (i==T)leave[s][p] -> SWITCH[s]
+  ).
+
+
+/*** STAGE */
+minimal
+||STAGE(L=0) = 
+   ( a:CHUTE || b:CHUTE || g:SWITCH || s:SENSORCONTROLLER(L))
+   /{ enter/a.enter,   b.enter/{s.sense,a.leave},
+      g.enter/b.leave, s.setSwitch/g.setSwitch,
+      left/g.leave[0], right/g.leave[1],
+      tick/{a,b,g}.tick
+    } >>{enter,left,right,tick} @{enter,left,right,tick}.
+
+
+/*** GEN */
+
+GEN(T=3) = 
+  (enter[Parcel] -> DELAY[1] | tick -> GEN),
+DELAY[t:1..T] = 
+  (tick -> if (t<T) then DELAY[t+1] else GEN).
+
+
+/*** PARCEL_ROUTER */
+
+||PARCEL_ROUTER(T=3) = 
+  (top:STAGE(1) || left:STAGE(0)|| right:STAGE(0) 
+  || GEN(T) || forall[d:0..3] BIN(d)
+  )/{ enter/top.enter, 
+      top.left/left.enter, top.right/right.enter,
+      dest[0]/left.left,  dest[1]/left.right,
+      dest[2]/right.left, dest[3]/right.right,
+      tick/{top,left,right}.tick
+    }>>{tick}@{enter,dest,tick}.
+
+
+/*** BIN */
+
+property 
+  BIN(D=0) = (dest[D].parcel[D] -> BIN)
+             +{dest[D][Parcel]}.
+
+menu TEST = {enter[Parcel],tick}
+
+progress TIME = {tick}
+
+                 

@@ -1,0 +1,24 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+// Asynchronous message passing port 
+
+range M = 0..9 
+
+BUFFER = (send[x:M] -> (receive[x] -> BUFFER
+                       |overflow->ERROR)).
+
+minimal
+||RPORT(N=1) =if N==1 then
+                BUFFER
+             else
+                (BUFFER/{middle/receive}||RPORT(N-1)/{middle/send})
+             @{send,receive,overflow}.
+
+||PORT(N=3) = RPORT(N)/{send[M]/overflow}.
+
+// minimise to see result of abstracting from data values
+
+||APORT = PORT/{send/send[M],receive/receive[M]}.

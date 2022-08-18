@@ -1,0 +1,19 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+/* Jitter - periodic output at any time in an interval
+*/
+
+JITTER(Max=2) = 
+  (start -> JITTER[1] | tick -> JITTER),
+JITTER[t:1..Max] =
+  (output -> FINISH[t]
+  |when (t<Max)  tick   -> JITTER[t+1]
+  |when (t==Max) output -> FINISH[t]
+  ),
+FINISH[t:1..Max] =
+  (when (t<Max)  tick -> FINISH[t+1]
+  |when (t==Max) tick -> JITTER
+  ).

@@ -1,0 +1,57 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+// Announcer-Listener Model
+
+set Listener = {a,b,c,d}
+set Pattern  = {pat1,pat2}
+
+REGISTER = IDLE,
+IDLE = (register[p:Pattern] -> MATCH[p]
+       |announce[Pattern]   -> IDLE
+       ),
+MATCH[p:Pattern] = 
+       (announce[a:Pattern] ->
+          if (a==p) then
+             (event[a] -> MATCH[p]|deregister -> IDLE)
+          else
+             MATCH[p]
+       |deregister -> IDLE
+       ).
+ 
+||EVENTMANAGER = (Listener:REGISTER)
+                 /{announce/Listener.announce}.
+
+ANNOUNCER = (announce[Pattern] -> ANNOUNCER).
+
+LISTENER(P='pattern) = 
+  (register[P] -> LISTENING),
+LISTENING = 
+  (compute  -> LISTENING
+  |event[P] -> LISTENING
+  |event[P] -> deregister -> STOP
+  )+{register[Pattern]}.
+
+||ANNOUNCER_LISTENER
+           = ( a:LISTENER('pat1) 
+             ||b:LISTENER('pat2)
+             ||c:LISTENER('pat1)
+             ||d:LISTENER('pat2)
+             ||EVENTMANAGER
+             ||ANNOUNCER
+             ||Listener:SAFE).
+
+progress ANNOUNCE[p:Pattern] = {announce[p]}
+
+property 
+  SAFE           = (register[p:Pattern] -> SAFE[p]),
+  SAFE[p:Pattern]= (event[p] -> SAFE[p] 
+                   | deregister -> SAFE
+                   ).
+
+menu TEST ={announce[Pattern], Listener.compute}
+
+
+

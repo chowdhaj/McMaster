@@ -1,0 +1,73 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+/* Primes Sieve of Eratosthenes
+  Abstract version - abstracting from values
+ (set the option "Minimize during composition")
+*/
+
+
+const N = 4     //compute first N primes
+const MAX = 9
+range NUM = 2..MAX
+set S = {[NUM],eos}
+
+GEN      = GEN[2],
+GEN[x:NUM] = (out.put[x] -> 
+              if x<MAX then 
+                 GEN[x+1]
+              else
+                 (out.put.eos->end->GEN)
+           ).
+
+FILTER      = (in.get[p:NUM]->prime[p]->FILTER[p] 
+              |in.get.eos->ENDFILTER
+              ),
+FILTER[p:NUM] = (in.get[x:NUM] ->
+                if x%p!=0 then 
+                    (out.put[x]->FILTER[p]) 
+                 else 
+                     FILTER[p]
+              |in.get.eos->ENDFILTER
+              ),
+ENDFILTER   = (out.put.eos->end->FILTER).
+
+PIPE = (put[x:S]->get[x]->PIPE).
+
+||AGEN = GEN/{out.put/out.put[NUM]}.
+
+||AFILTER = FILTER/{out.put/out.put[NUM],
+                      in.get/in.get.[NUM],
+                      prime/prime[NUM]
+                     }.
+||APIPE = PIPE/{put/put[NUM],get/get[NUM]}.
+
+||MPIPE(B=2) = if B==1 then
+		 APIPE
+	       else
+		 (APIPE/{mid/get} || MPIPE(B-1)/{mid/put})
+	       @{put,get}.
+
+||APRIMES(N=4,B=3) = 
+   (gen:AGEN || PRIMEP(N)
+   || pipe[0..N-1]:MPIPE(B) 
+   || filter[0..N-1]:AFILTER)
+   /{ pipe[0]/gen.out,
+      pipe[i:0..N-1]/filter[i].in,
+      pipe[i:1..N-1]/filter[i-1].out,
+      end/{filter[0..N-1].end,gen.end}
+    }.
+
+progress END = {end}
+
+property PRIMEP(N=4) = PRIMEP[0],
+PRIMEP[i:0..N]     = (when (i<N) filter[i].prime->PRIMEP[i+1]
+                     |end -> PRIMEP
+                     ).
+ 
+
+
+
+

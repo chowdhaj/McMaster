@@ -1,0 +1,86 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+//Golfclub - Fair Golfball Allocator
+
+const False = 0
+const True  = 1
+range Bool  = 0..1
+
+const N  =  5     //maximum #golf balls
+const Bd =  2     // bound on overtaking
+range B  =  0..N  //available range
+
+const TM = 5 + Bd
+range T  = 1..TM
+
+ELEMENT(Id=0) = IN[False],
+IN[b:Bool]  = ( add[Id]         -> IN[True] 
+              | remove[Id]      -> IN[False]
+              | contains[Id][b] -> IN[b]
+              ).
+
+property 
+  ONEADD(Id=0) = (add[Id]->remove[Id]->ONEADD).
+
+||SET = (forall[i:T] (ELEMENT(i) || ONEADD(i))).
+
+
+TICKET    = TURN[1],
+TURN[t:T] = (ticket[t]->TURN[t%TM+1]).
+
+ALLOCATOR  = BALL[N][1][0],
+BALL[b:B][next:T][ot:0..Bd] 
+           = (when (b>0 && ot<Bd) get[i:1..b][turn:T] ->
+                if (turn!=next) then
+                   (add[turn] -> BALL[b-i][next][ot+1])
+                else 
+                   WHILE[b-i][next%TM+1][ot]
+              |when (b>0 && ot==Bd) get[i:1..b][next] -> WHILE[b-i][next%TM+1][ot]
+	          |put[j:1..N] -> BALL[b+j][next][ot]
+		     ),
+WHILE[b:B][next:T][ot:0..Bd]
+           = (contains[next][yes:Bool] ->
+               if (yes) then
+                  (remove[next] -> WHILE[b][next%TM+1][ot-1])
+               else
+                  BALL[b][next][ot]
+              )+{add[T],remove[T]}.
+
+range R=1..N  //request range
+
+PLAYER      = (need[b:R]->PLAYER[b]),
+PLAYER[b:R] = (ticket[turn:T]->get[b][turn]-> put[b]->PLAYER[b]).
+
+set Experts = {alice,bob,chris}
+set Novices = {dave,eve}
+set Players = {Experts,Novices}
+
+HANDICAP= ({Novices.{need[4]},Experts.need[1]}->HANDICAP)
+          +{Players.need[R]}.
+
+//not a correct property
+property BOUNDED(P='player) 
+   = ([P].ticket[t:T] -> OVERTAKEN[t][0] 
+     | Players.get[R][T] -> BOUNDED
+     ),
+OVERTAKEN[t:T][o:0..Bd]
+   = ([P].get[R][t] -> BOUNDED
+     |{Players\{[P]}}.get[R][s:T] ->
+        if (s<t || s>(t+Bd)) then OVERTAKEN[t][o] else OVERTAKEN[t][o+1]
+     ).
+
+||GOLFCLUB = (Players:PLAYER 
+	         || ALLOCATOR||TICKET||SET 
+	         || HANDICAP
+             || forall [p:Players] BOUNDED(p)
+	         )/ {Players.get/get, Players.put/put, Players.ticket/ticket}.
+
+menu RUN = {Players.{ticket[T], get[R][T], put[R]}}
+
+progress NOVICE = {Novices.get[R][T]}
+progress EXPERT = {Experts.get[R][T]}
+
+||ProgressCheck = GOLFCLUB >>{Players.put[R]}.

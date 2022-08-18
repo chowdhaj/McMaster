@@ -1,0 +1,14 @@
+/** Concurrency: State Models and Java Programs
+ *             Jeff Magee and Jeff Kramer
+ *  
+ */
+
+/* Output in an interval
+*/
+
+OUTPUT(Min=1,Max=3) = 
+  (start -> OUTPUT[1] | tick -> OUTPUT),
+OUTPUT[t:1..Max] =
+  (when (t>Min && t<=Max) output -> OUTPUT
+  |when (t<Max)           tick   -> OUTPUT[t+1]
+  ).
