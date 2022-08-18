@@ -1,0 +1,44 @@
+﻿Script started on Fri 24 Mar 2017 07:19:48 PM MDT
+]0;oscreader@OSC: ~/Dropbox/OSC/inodesoscreader@OSC:~/Dropbox/OSC/inodes$ exitgcc -o lab12a12b13a lab12a12b13a.c
+]0;oscreader@OSC: ~/Dropbox/OSC/inodesoscreader@OSC:~/Dropbox/OSC/inodes$ gcc -o lab12a12b13a lab12a12b13a.cexit[Kgcc -o lab12a12b13a lab12a12b13a.cexit[Kscript test.scr./lab12 file1.txt > output.txtclear[Kscript output.txtclear[Kscript[2Pexit./lab12a12b13a file1.txtexit[K./lab12a12b13a file1.txt
+
+
+File attributes for the File: 'file1.txt'
+-------------------------------------------------
+Inode: 400740
+Size (in bytes): 15
+Blocks: 16
+File Permissions: -rw-r--r--
+Uid: 1000
+Time of last access: Fri Mar 24 18:52:30 2017
+Time of last data modification: Fri Mar 24 18:52:30 2017
+Last Status Change time: Fri Mar 24 18:52:30 2017
+]0;oscreader@OSC: ~/Dropbox/OSC/inodesoscreader@OSC:~/Dropbox/OSC/inodes$ ./lab12a12b13a file1.txtgcc -o lab12a12b13a lab12a12b13a.cexit[Kgcc -o lab12a12b13a lab12a12b13a.cexit[Kscript test.scr./lab12 file1.txt > output.txtclear[Kscript output.txtclear[Kscript[2Pexit./lab12a12b13a file1.txtexit[Kstat file1.txt[10@./lab12a12b13a[C[C[C[C[C[C[C[C[C[C[5Pchmod 664[C[C[C[C[C[C[C[C[C[C[5@./lab12a12b13a[C[C[C[C[C[C[C[C[C[Cexit[K./lab12a12b13a file1.txt[5Pchmod 664[C[C[C[C[C[C[C[C[C[C
+]0;oscreader@OSC: ~/Dropbox/OSC/inodesoscreader@OSC:~/Dropbox/OSC/inodes$ chmod 664 file1.txt[5@./lab12a12b13a[C[C[C[C[C[C[C[C[C[C
+
+
+File attributes for the File: 'file1.txt'
+-------------------------------------------------
+Inode: 400740
+Size (in bytes): 15
+Blocks: 16
+File Permissions: -rw-rw-r--
+Uid: 1000
+Time of last access: Fri Mar 24 18:52:30 2017
+Time of last data modification: Fri Mar 24 18:52:30 2017
+Last Status Change time: Fri Mar 24 19:20:47 2017
+
+]0;oscreader@OSC: ~/Dropbox/OSC/inodesoscreader@OSC:~/Dropbox/OSC/inodes$ stat file1.txt
+  File: ‘file1.txt’
+  Size: 15        	Blocks: 16         IO Block: 4096   regular file
+Device: 801h/2049d	Inode: 400740      Links: 1
+Access: (0664/-rw-rw-r--)  Uid: ( 1000/oscreader)   Gid: ( 1000/oscreader)
+Access: 2017-03-24 18:52:30.776000000 -0600
+Modify: 2017-03-24 18:52:30.628000000 -0600
+Change: 2017-03-24 19:20:47.452000000 -0600
+ Birth: -
+
+]0;oscreader@OSC: ~/Dropbox/OSC/inodesoscreader@OSC:~/Dropbox/OSC/inodes$ exit
+exit
+
+Script done on Fri 24 Mar 2017 07:21:32 PM MDT
