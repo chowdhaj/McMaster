@@ -1,0 +1,228 @@
+Physics 2G03 - Variables & Types
+
+- Variable Types
+    - In mathematics we have the following types of variables:
+        - Integer
+            - 1, 2, 3, etc.
+        - Real
+            - 2.34, 3.14, etc.
+        - Complex
+            - 0.5 + 0.833i
+        - Text
+            - "abc", "def", etc.
+        - Logical
+            - true, false
+    - In C++, the variables above are represented as:
+        - Integer
+            - int, short, long
+                - i.e. 1, 2, 3, 4, etc.
+        - Real
+            - float, double
+                - i.e. 2.34, 3.14, 5.2356234, etc.
+        - Complex
+            - complex, complex<float>, complex<double>
+                - i.e. -0.5 + 0.833 i, 4.2 + 6.33 i
+        - Text
+            - char, string
+                - i.e. 'a', 'b', "abc", "def"
+            - A 'string' is a special type; it's an array of 'char'
+                - 'string' is only in C++, not C
+        - Logical
+            - int, bool
+                - i.e. true, false, 0, 1
+            - 'bool' stands for Boolean
+            - 0 is false, and any non-zero value is true
+                - This is bools work for C
+
+- Size Of Types
+    - Computer memory is made out of bytes
+          TYPE               BYTES
+        - bool             ->  1
+        - char             ->  1
+        - short            ->  2
+        - int              ->  4
+        - float            ->  4
+        - double           ->  8
+        - complex<double>  ->  16
+            - This is basically two doubles; hence 16 bytes
+        - Note: These values can vary based on the compiler and computer architecture you are on
+
+- Initialization
+    - When you declare a variable, you can immediately initialize it with a value
+        - i.e.
+            int a = 1;
+            float x = 1.33333;
+            char greet[] = "hello";
+            bool answer = false;
+        - If you don't initialize a variable, then the value assigned will be a junk value
+            - For some compilers this is a 0, and for others it is leftover data in memory
+
+- Constants
+    - Once initialized, constants are variables that are never ever changed
+        - Use the keyword 'const' to indicate that the variable is constant
+            - i.e.
+                const float pi = 3.14159
+                const int fingers = 10;
+        - Trying to change a constant value will result in a compiler error
+    - Constants must be initialized when they are declared
+
+- Number Representation
+    - Computers use ram to store numbers/variables
+        - Irrational numbers like 'pi' cannot be accurately stored on a finite number of bytes
+        - Computers are limited in their ability to store and represent integers or real numbers
+    - Computers use discrete binary representation
+        - A byte has 8 bits
+            - Implies 256 possible values
+                - 2^8 = 256
+        - At most, 256^b values can be represented by data using 'b' bytes of storage
+            - i.e.
+                1 byte  = 256 possible values
+                2 bytes = 65,536 
+                4 bytes = 4,294,967,296
+
+- Integer Representation
+    - A single byte has 8 bits
+        - i.e. 00000010 Binary = Decimal Integer 2
+    - If the first bit is 1, then the number is negative
+        - i.e. 11111110 Binary = Decimal Integer -2
+            - Note: This representation is known as 2's complement
+            - Note: In a signed integer, the first bit is called the 'sign bit'
+                - This is because the first bit indicates the 'sign' (+/-) of the number
+    - Unsigned numbers only represent positive values
+        - An unsigned short goes from 0 to 255
+            - A signed short goes from -128 to 127
+    - Signed numbers
+        - 1 byte  -> -128 to 127
+            - i.e. char
+        - 2 bytes -> -32768 to 32767
+            - i.e. short
+        - 4 bytes -> -2147483648 to 2147483647
+            - This is the typical int
+    - Unsigned numbers
+        - 1 byte  -> 0 to 255
+            - unsigned char
+        - 2 bytes -> 0 to 65536
+            - unsigned short
+        - 4 bytes -> 0 to 4294967295
+            - unsigned int
+    - Using unsigned variables in C/C++
+        - unsigned int x;
+        - unsigned short y;
+
+- Storage
+    - On computers, the normal definition of Kilo, Mega, and Giga are tweaked
+        - i.e.
+            2^10 = 1024          ~ 1000 Kilo
+            2^20 = 1,048,576     ~ 1,000,000 Mega
+            2^30 = 1,073,741,824 ~ 1,000,000,000 Giga
+    - There is no consistent usage
+        - RAM is typically 1024 = KB
+        - Disk is typicall 1000 = KB
+
+- Floating Point Representation
+    - Scientific notation is a good way to represent a finite number of digits of precision and the magnitude of a real number
+        - i.e. 2.1x10^2 = 210
+    - Not every real number can be precisely represented
+        - i.e. surds like sqrt(2), sqrt(3), pi, etc.
+    - This is useful for very large or very small numbers
+        - However, some bits have been devoted to the exponent at the expense of details
+            - Hence, this is not useful for representing integers
+    - The ability to change the decimal point using exponents is where the term "floating point" comes from
+    - Floating point representation is an International standard
+        - All CPUs operate on floating points according to the standard
+            - A fixed number of bits are allocated to represent the exponent and mantissa (M,E)
+                - The IEEE standard for single precision devotes:
+                    - 1 bit to the sign
+                        - This represents +/-
+                    - 23 bits to the mantissa (M)
+                        - Gives a precision of about 7 decimal digits
+                    - 8 bits to the exponent (E)
+                        - Gives a range from 10^-38 to 10^37
+                    - Note: 1 + 23 + 8 = 32 bits
+                - The IEEE standard for double precision devotes:
+                    - 1 bit for the sign
+                        - 0 = Positive
+                        - 1 = Negative
+                    - 52 bits for the mantissa (M)
+                        - Precision = 15 decimal digits
+                    - 11 bits for the exponent (E)
+                        - Range: 10^-308 to 10^308
+                    - Note: 1 + 52 + 11 = 64 bits
+
+- Nasty Numbers
+    - CPUs reserve some bit combinations to represent expressions that are too large
+        - i.e. 
+            inf  -> Infinity
+                - i.e. 1.0/0.0 = inf
+            -inf -> Negative Infinity
+                - i.e. -1.0/0/0 = -inf
+            nan  -> Not a number
+                - i.e. 0/0 = nan
+    - It is good practice to detect these values
+    - By default, most compilers do not stop when these nasty numbers are encountered
+    - C/C++ does not upgrade variable types
+        - i.e. If an int gets too large, it won't be converted into a double
+
+- Floating Point Exceptions
+    - FPEs are so important that they are usually done at the hardware level
+        - CPUs have a switch that tell it what to do when it finds 'nasty numbers'
+            - This is very useful for scientific programming applications
+        - On 'phys-ugrad' you can force programs that generate nasty numbers to crash using the `-ltrapfpe` flag
+            - i.e. c++ nasty.cpp -ltrapfpe -o Nasty
+                - This generates a 'Floating Point Exception' when a nasty number is produced
+                    - This is a runtime exception, detected by the CPU, and NOT the compiler
+            - `-ltrapfpe` uses special functions in the header 'fenv.h'
+                - A version of this exists in every operating system because it's a property of the CPU itself
+
+- Overflow & Underflow
+    - Converting from binary to decimal representation creates digits that mean nothing
+        - Only the first 7 digits of the number mean anything
+    - The biggest number available is 2^127
+        - Which is approximately 3x10^38
+    - Values cannot get smaller than 10^-38
+        - Programs cannot directly detect these errors
+            - This is known as Underflow
+        - Although, some compilers can go lower than 10^-38
+    - By default, Underflows don't crash the program
+        - Instead, the variable is quietly set to zero
+
+- Extended Precision
+    - Intel chips offer greater precision, built-in to the CPU
+        - Uses 80 bits / 10 bytes
+            - Can store values up to 10^4931
+                - Stores it in 128 bits (16 bytes)
+            - Saving to double (64-bit) loses precision
+                - This is how different compilers can give different answers
+    - Some languages can offer even higher precision than what the CPU can handle
+        - i.e. Maple, Mathematica, etc.
+            - The precision is done by the software and runs 10-100x slower
+    - Precision Limits
+        - Largest int
+            - INT_MAX
+                - Found in: #include <cfloat>
+        - Largest float
+            - FLT_MAX
+                - Found in: #include <climits>
+    - Precision
+        - Even though C/C++ will print out lots of decimal places, in practice they are only meaningful up to a point
+            - For 'floats' (4 bytes), only the first 7 decimal places are meaningful
+            - For 'doubles' (8 bytes), only the the first 15 decimal places are meaningful
+    - Numerical Accuracy
+        - Loss of precision is also called round off error
+        - ints can only represent numbers up to 2 billion
+            - Anything past this and both the precision and original number are lost
+                - Adding 1 to 2 billion yields -2 billion
+                    - Integers do not go to infinity if they get too big
+                        - Instead, they wrap around
+    - C Style Printing
+        - You can format numbers using `printf`
+            - i.e. printf(" %25.20lf + %25.20lf = %25.20lf\n",x,y,z);
+                - The `%25.20lf` means:
+                    %  -> Replace this field with a variable
+                    25 -> 25 digits before the decimal
+                    .  -> Decimal
+                    20 -> 20 digits after the decimal
+                    lf -> long float 
+    - The Arian 5 rocket is a real life example of integer overflow
+        - The rocket's speed exceeded what an integer could handle
+            - This caused the speed to wrap around and turn negative

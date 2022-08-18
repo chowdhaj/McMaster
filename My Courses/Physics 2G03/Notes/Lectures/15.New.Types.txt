@@ -1,0 +1,227 @@
+Physics 2G03 - New Types & Objects
+
+- Motivation For New Types
+    - Data can be grouped/compounded together
+        - If certain data is made up of multiple individual parts, it is convenient 
+          to manipulate the entire data set as a unit, rather than changing each
+          individual part
+            - i.e.
+                // Assume 'v1' and 'v2' are vector types
+                v1 = v2; // Very convenient
+                v1x = v2x; v2y = v2y; // Cumbersome and tedious
+    - Program is cleaner and more consistent
+        - Using a vector data type for positions ensures that code is consistent and
+          easier to read and maintain
+    - Create abstract data types
+        - Makes it easier to manage data and operate on it
+            - The programmer does not need to know how the data is handled or stored
+                - Leads to Object Oriented Programming
+
+- Making A New Type
+    - New types are built from existing types
+        - Existing types, ints, doubles, floats, etc., are grouped together
+    - Types need to be declared just like functions
+    - By default, only the assignment ( = ) operator works
+        - Everything else (i.e. Add, subtract, etc.) is undefined
+            - These need to be defined by you, the programmer
+            - The standard types in the new types work same as before
+    - Most modern languages support new types
+        - i.e. C/C++, Fortran 90, etc.
+            - Object oriented concepts are key to most modern programming languages
+    - Newtypes are often called Objects OR Classes
+
+- Structures
+    - The original way of making new types in C were Structures
+        - This requires using the 'struct' keyword 
+            - i.e. struct vector { float x, y; };
+                   // This is a 2D vector type
+                   // 'struct' is a keyword, for the compiler
+                   // 'vector' is the name of the 'struct'
+                   // 'float x, y' are the two standard types that make
+                   //  up the 'vector' type
+                - This must be declared at the top of the file
+                    - Any code below it can use the 'struct'
+                        - Good practice is to put 'structs' in a header and then
+                          declare them at the top
+    - Components of the struct can be accessed by: struct_name.component
+        - i.e. 
+            struct vector v1;
+            v1.x = 1 + 2.0;
+            v1.y = 1.57 * 1.21;
+            // 'v1.x' and 'v1.y' are just like any other float variable
+            //  and function like normal floats
+    - New types can only use the assignment ( = ) operator
+        - This copies the data from one type to the other
+            - i.e.
+                struct vector v, w;
+                w = v; // Copies all component data from 'v' to 'w'
+        - Other (standard) operators will not work and need to be defined
+            - i.e.
+                struct vector c, j;
+                c = 2 * j; // This is meaningless and will not work
+                           // The compiler does now know how to do: int * vector
+    - Once a 'struct' type has been defined, you do not need to use the 'struct' keyword 
+      to reference it
+        - i.e.
+            struct vector { float x, y; };         // Vector type definition
+            struct circle { float x, y, radius; }; // Circle type definition
+            vector v;                              // Declaring vector 'v'
+            circle mycircle;                       // Declaring circle 'mycircle'
+        - Only applicable for C++
+            - For C, you must use 'typedef'
+                - i.e. typedef struct name { // variables };
+                - 'typedef' also works for C++
+    - 'structs' with the same content are not equivalent
+        - Even if the internal components are the same, the compiler does not
+          consider the two 'structs' to be identical
+            - i.e.
+                // 'vectors' and 'coor2d' are completely different to the compiler
+                struct vectors { float x, y; };
+                struct coord2d { float x, y; };
+        - Good practice when working with 'structs' is to define them in a header file
+            - This separates 'structs' and avoids confusion
+    - When you define structures, you can include any type you want
+        - i.e.
+            struct planet { double mass; float x, y, z; }; 
+            struct person { string name; int age; float height; };
+    - A benefit of 'structs' is creating hierarchies of data
+        - i.e.
+            struct person { string name; int age; float height; };
+            struct employee : person { string title; float salary; };
+        - The 'employee struct' extends the 'person struct'
+            - The 'person struct' contains 3 pieces of information
+            - The 'employee struct' contains 3+2 pieces of information
+        - A 'employee' can be treated and casted to 'person'
+            - This strips away the extra material and accesses the basic data
+- Classes
+    - The benefit of using C++ is using classes in tandem with object oriented
+      programming
+        - Classes are similar to 'structs'
+            - Both are user defined types
+        - C++ 'structs' are more functional than 'structs' in C
+    - Classes force programmers to adopt object oriented programming
+    - Classes introduce the idea of public and private data and code
+        - Private data and code cannot be directly accessed by the user
+            - i.e.
+                class person { public: 
+                    string name;
+                    int age;
+                    float height; 
+                };
+                class employee : public person { public:
+                    string title;
+                    float salary;
+                }
+                // The word 'public' is added to make the data visible
+                // and directly accessible
+            - The 'employee' class inherits the properties of the 'person' class
+                - 'person' is the base, and 'employee' is a subclass of 'person'
+                - 'employee' may be treated as a 'person' using a cast
+                    - This strips away the extra material and accesses the basic data
+    - Setters and Getters are functions whose sole purpose is to set and get hidden
+      data inside classes 
+        - Setters prevent outside users from changing data without checking if it is
+          being done correctly or following conventions
+            - This helps preserve the integrity of the class and makes sure that
+              the data and class are used correctly
+    - In C++, classes and structs are 99% equivalent
+        - The difference is that classes make their contents private by default
+            - This forces the programmer to create Getters and Setters in order to
+              read and write the data, respectively
+            - This is known as Data Hiding or Encapsulation
+                - Private data is a key idea in object oriented programming and
+                  creating abstract data types
+                    - However, it is inefficient for scientific computing
+                - Hiding data can be advantageous for complicated data types
+                    - Useful for hiding complex information from the user
+
+- Functions & Structs
+    - A key advantage to using objects and new data types via structs is keeping
+      function argument lists short and simple 
+        - i.e. 
+            addperson(string name, int age, float height);
+            // VS.
+            struct person { string name; int age; float height; };
+            // The struct is much cleaner and easier to maintain
+    - A second key advantage is minimizing changes when new variables are required
+        - All you have to do is change the header file and new changes are implemented 
+          throughout the entire program
+    - With structures, you can return multiple values in one go
+
+- Operator Overloading
+    - Object oriented languages like C++ offer convenient features to re-define what
+      standard operators like plus ( + ), and minus ( - ) do
+        - For instance, instead of creating a function to add two vectors together,
+          you can simply use the plus ( + ) operator like you would on any normal number
+            - i.e.
+                vector_C = add_vector(vector_A, vector_B);
+                // Can be replaced with:
+                // vector_C = vector_A + vector_B;
+            - This makes it easier to perform operations on newtypes
+                - However, you need to write every single possible case and instance
+                  of the newtype
+        - The function prototype for defining a newtype:
+            operator+ (vector, vector);
+
+- Standard Objects
+    - C++ provides lots of standard objects, which can be accessed using certain header files
+        - i.e.
+            #include <string>
+            #include <iostream>
+    - You can avoid writing 'std::' all the time by writing "using namespace std;" at the
+      top of the file
+        - i.e.
+            #include <iostream>
+            using namespace std;
+            // This tells the compiler you want it to assume any standard name is ok to
+            // use without having 'std::' in front of it
+    - Standard C-out is a special object which has overloaded an operator represented
+      by two less than signs 
+        - When combined with other types, this results in printing the value of the
+          variable on the right hand side to the terminal
+            - You need separate functions to overload the combination of C-out with
+              any type
+                - One to print an integer, another for a float/double, etc.
+        - C-out can be combined with other operators to do things like set private
+          internal data about formats to use
+            - i.e.
+                std::cout << std::setprecision(20);
+    - New types do not work with 'std::cout'
+        - New types need to have their own print functions defined, before 
+          'std::cout' can work with them
+            - i.e.
+                vector v;
+                std::cout << "The vector is" << v << std::endl;
+                // Compiler does not know what to do because the combination of
+                // 'cout' and 'vector' is not defined
+
+- String
+    - The standard string class is an excellent example of an abstract data type
+        - It has lots of overloaded operators
+            - i.e. 
+                Plus      ( + ) --> Combines two strings
+                Less than ( < ) --> Compare two strings
+        - The C language does not have a string class, instead it uses the character
+          type to achieve the same result
+    - The user (you) do not know how the string class works
+        - This is abstraction and allows the string class to do unique things like
+          ask for more storage when more characters are added to it
+
+- Complex
+    - The complex class is another useful template class 
+        - This is a special kind of object, based on the idea of a template
+            - This means that it can build multiple classes based on the different
+              types that are given to it
+                - i.e. Complex number class built using floats, doubles, etc.
+        - The complex class has standard operators defined for it
+            - It also has functions that can operate on the class' data
+    - Note: There is no data hiding going on in the complex class
+
+- Vector
+    - The standard template library has a vector type
+        - i.e.
+            #include <vector>
+        - However, this is not for vector algebra
+            - Instead, it is a special kind of variable length list
+    - If you include this standard library vector type, it will conflict with 
+      your custom vector type

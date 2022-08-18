@@ -1,0 +1,107 @@
+Physics 2G03 - Scope
+
+- Introduction
+    - Scope is about where you can access and use a variable, function, or other data
+      type defined by the user
+    - Scope refers to where something is known to the code/compiler
+        - This is the region within your program where a variable or function is
+          defined and the surrounding code can access it
+            - Since Header files are defined at the top of a file, all code in the
+              file knows about it
+            - Variables defined inside a brace are only available to code below it and
+              within the brace
+    - Global variables are available to the entire program, and any function that occur
+      after it in the file 
+    - Local variables only exist within a block of code
+        - i.e. A variable declared within a loop will cease to exit once the loop 
+               has been completed, and the compiler will get rid of it
+
+- Variables
+    - The use of global variables is considered bad practice and lazy programming
+        - This is because global variables provide a sneaky backdoor way to pass
+          around data to other files and functions
+            - Somebody reading this code will not be able to decipher how the data
+              changes over time
+        - Good programming practice is to use explicit arguments to send data
+    - Local variables are removed once the block of code has been executed
+        - In general, variables no longer exist outside their scope
+            - The memory they used is recycled and their data is lost
+        - This is useful because you can reuse a variable name after the block of
+          code has been executed
+    - Standard practice is to define variables where you need them
+        - Typically, inside functions
+            - This makes code easier to read and maintain
+        - In old C, defining was done at the top (required)
+        - In modern C/C++, you can mix code and definitions inside a function
+            - This means that you can declare variables partway through a function
+
+- Scope Of Functions
+    - C/C++ treats functions a lot like variables
+        - In essence, functions are a piece of memory that contains code
+    - Standard practice is to define all functions at the top of a file with
+      declarations/prototypes and header files
+        - The code for a function can be in a different file
+            - During the linking stage, the compiler finds the code in a different file
+              and places it into the main file
+    - Header files go at the top of af ile because they will be available in the
+      rest of the file
+    - Functions can declare other functions
+        - This is legal C/C++ code but uncommon programming practice
+
+- Declaration
+    - A declaration is a prototype and outlines the summary of the function for 
+      the compiler
+        - It only shows what it returns and the kinds of arguments it expects
+            - i.e.
+                int FunctionX(int, int);
+                // FunctionX takes in 2 integers and returns an integer
+                // You can include names for the argument(s)
+                int FunctionX(int a, int b); 
+                // The compiler is fine with both versions
+    - Declarations can appear in many different files; there is no limit because they 
+      do not contain actual code
+        - The compiler adds the code during the linking stage
+            - The actual code must be included in one, and only one, of the files
+
+- Functions & Return Values
+    - When a function is used, the compiler replaces the function name with its
+      return value in that expression
+        - i.e.
+            // Consider the following function
+            int myFunction(int x) {
+                return x*x; 
+            }
+            // Then, when we use it:
+            y = myFunction(x) + 2;
+            // The compiler replaces the above line to:
+            y = x*x + 2;
+        - The compiler does this because it decides that this way is more efficient,
+          and jumping between code blocks, in this case, is not efficient
+    - Functions can have many different kinds of return values
+        - You can return standard types such as: ints, floats, etc.
+        - You can also return new types that you created, such as structures and classes
+        - A void function returns nothing and does not require a return statement
+            - Once the block of code finishes, the program returns to the original
+              piece of code that called it, and not pass a return value
+                - i.e.  
+                    // This is a void function
+                    void printGreet(String greeting) {
+                        std::cout << greeting << "\n";
+                    }
+                    // Calling the void function in 'main'
+                    int main() {
+                        printGreet("Hello World");
+                        return 0;
+                    }
+        - Passing the wrong type to a function will cause the compiler to return
+          errors and the code will not compile
+
+- Objects
+    - Objects such as structures and classes have scope
+        - When using objects, the convention is to put them at the top in every single 
+          file that uses them
+            - The prototypes should be identical wherever they are used
+    - Defining prototypes inside a header file and then including it in every subsequent
+      source file is best practice
+        - This is because you can easily change the definition for the prototype,
+          and the resulting code should work or require minor modifications

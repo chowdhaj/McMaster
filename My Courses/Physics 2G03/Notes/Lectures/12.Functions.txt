@@ -1,0 +1,129 @@
+Physics 2G03 - Functions
+
+- Functions
+    - Every programming language has a slightly different name for 'Functions'
+        - i.e. Procedures, Subprograms, Subroutines, Methods, etc.
+            - These terms refer to a set of instructions that can be called independently
+              from anywhere in a program, multiple times
+        - Machine code calls them subroutines
+        - C/C++ calls them functions
+    - Math functions are an example of pre-existing functions
+        - i.e. sqrt, sin, cos, etc.
+            - 'sqrt' would be used as: y=sqrt(x);
+            - Must be declared/imported before being used
+                - i.e.
+                    #include <cmath>  // C++ Header Style
+                    #include <math.h> // C/C++ Header Style
+        - Almost every programming language has them
+    - Creating your own function
+        - C/C++ differentiate functions from variables, declarations, etc. with brackets/braces
+            - i.e.
+                - Variable Declaration
+                    int Z;
+                        - The absence of brackets tells the compiler that this is a variable
+                           declaration
+                - Function Prototype/Declaration
+                    int Z();
+                        - Brackets and a semi-colon after the 'Z' indicate that this is a 
+                          function declaration/prototype
+                            - A function declaration tells the compiler what the function looks
+                              like from the outside, but nothing about its inside
+                - Function Definition
+                    int Z() { //code }
+                        - If round brackets are followed by braces instead of a semi-colon,
+                          then the compiler knows that its a complete function
+                            - The compiler knows how the function is used, and exactly what
+                              it does
+        - The compiler always starts at the top of a file when compiling
+            - Functions need to be defined/declared before the 'main' function
+                - Otherwise, the program will not compile
+        - Declaring/Prototyping functions before 'main' is best practice
+            - The remaining code for the function can be anywhere else as long as its specified
+        - Header files contain declarations
+            - The '#include' statement literally copies code from the header file into the
+              program's source code file
+    - A function is a self contained block of code
+        - It needs to know what information it will be provided (arguments), and what 
+          information it will give back (return value)
+            - Argument(s) are values passed in with specified types
+                - This is the only data that the function uses
+            - Return value(s) is data of a specified type that is returned to the caller
+                - This is the primary way to return information
+                    - Another way is to modify arguments' data
+        - Functions do not know anything about other functions or variables
+            - They are self contained
+                - Function 'A' knows nothing about the variables declared in Function 'B'
+                    - This is known as scope
+                        - The scope of a variable name is only in the block of code it is 
+                          declared in
+    - Function layout
+        - The following is a template of a function; how it looks
+            typeR function_name(type1 arg1, type2 arg2, ..., typeN argN) {
+                typeA localA;
+                typeB localB;
+                typeR returnval;
+                // code
+                // do something
+                return returnval;
+            }
+        - The arguments in a function only exist in the function
+            - These values are sent in from outside when the function is called
+        - The type of the return value must be the same as the type of the function
+        - The variables declared inside a function are local
+            - These values are not sent anywhere else, and are thrown away when the function ends
+        - Once a function finishes, all information pertaining to it is destroyed
+            - Only the return value is kept
+        - Variables inside of a function have nothing to do anywhere else
+            - Compiling with `-Wall` can detect these errors
+    - Functions do not have to return anything
+        - These are called 'void' functions
+            - i.e.
+                int printHello() {
+                    std::cout "Hello There!";
+                }
+    - Functions can have no arguments
+        - i.e.
+            int greatAnswer() {
+                return 42;
+            }
+    - Pass By Value
+        - In C/C++ function arguments result in temporary new variables
+            - The arguments are copied pieces of information
+                - They do not change the value of the original variable
+                    - This is called 'Pass-By-Value'
+            - This is quite safe because it does not change the original values
+    - Pass By Reference
+        - C++ can reference the original values using the memory location of the variable(s)
+            - This allows you to change the original variable, instead of creating a copy
+                - i.e. myfunc(int &x, float &r) { //code }
+                    - This is known as 'Pass-By-Reference'
+                - An ampersand ( & ) is used to denote that you want the variable to be
+                  referenced, and not copied
+                    - i.e.
+                        void by_reference(int &x) { // '&x' denotes the memory location of 'x'
+                            x = 3;
+                        }
+                        int main() {
+                            int x = 0;
+                            by_reference(x);
+                        }
+        - C does not have a reference type
+            - Instead, it uses pointers to do the same thing
+                - i.e. myfunc(int *x, float *r) { //code }
+                    - The asterisk declares a pointer to the variable of that type
+                        - Pointers point to the memory location of the variable
+                    - This works with C++, as well as C
+                        - However, C++ references are easier and safer to use than pointers
+                    - When accessing the value of a pointer, you must deference it first
+                        - i.e. 
+                            void by_pointer(int *px) {
+                                *px = 3;
+                            }
+                    - An ampersand ( & ) is used to pass memory locations of variables
+                        - i.e.
+                            int main() {
+                                int x = 10;
+                                by_pointer(&x); // '&x' passes the memory location of 'x'
+                            }
+        - Reference types are an easy way to change a lot of variables 
+            - However, they can be dangerous because they change the original values

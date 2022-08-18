@@ -1,0 +1,120 @@
+Physics 2G03 - If, While, & For Loops
+
+- Program Flow
+    - Programming is about algorithms
+        - This is how complicated tasks are completed
+    - Usually, a program flows linearly from start to finish
+        - However, there can be branching or repitition/Loop
+            - Branching allows code to take a different path based on a condition
+                - The conditions are based on logical expressions
+                    - They are usually binary
+            - Looping allows code to be repeated until a condition is met
+
+- The 'if' Statement
+    - 'if' statements conditionally execute code if a logical expression is true
+        - Only one block of code is executed, the other is ignored
+    - Example:
+        if (expression) { // some_code }
+    - 'if' statements are good for checking bad inputs
+        - i.e. Return 1 if the value is bad
+    - Each 'if' statement is independent
+        - Two 'if' statements in their own independent blocks will not affect each other
+    - 'if' statements can be used to call functions
+        - i.e.
+            if (is_raining == true) { leave_car_outside(); }
+    - Related expressions can be grouped together using the 'if-else' statement
+        - i.e.
+            if (expression1) { actions1; }
+            else if (expression2 ) { actions2; }
+            else if (expression3 ) { actions3; }
+            else { default action; }
+        - Only one of the actions in the 'if-else' statements is executed
+        - The 'else' statement covers all other expressions not covered by the other expressions
+    - 'if' statements can be nested
+        - An 'if' statement can contain multiple 'if' statements inside of it
+            - You can nest as many 'if' statements as you want
+        - i.e.
+            if (expression1) {
+                if (expression2) {
+                    action2;
+                } else {
+                    fail2;
+                }
+            }
+        - Each subsequent nested 'if' block should be indented by 4 spaces
+            - Just like the example above
+
+- Logical Expressions
+    - The comparison operator is a logical operator
+        - i.e. '<', '<=', '>', '>='
+            - The result of these operators end in a boolean value; true or false
+    - Boolean values like 'true' and 'false' can be expressions as well
+    - Logical expressions can be combined to create complicated expressions
+        - This allows you to test two things at once, and recieve a value of 'true' or 'false'
+            - These logical operators are:
+                && --> AND
+                    - Both conditions have to be true
+                || --> OR
+                    - Only one OR both conditions have to be true
+                !  --> NOT
+                    - Flips the expression
+                        - i.e. true becomes false, and vice versa
+            - i.e.
+                if ((a == b) && (b == c)) { // then a is equal to c };
+                if ((a < b) and (b < c)) { // then a is less than c };
+                    - In C++, you can write 'and' instead of '&&'
+    - Functions can return 'true' or 'false' operators
+
+- Loops
+    - Loops allow us to repeat code over and over again until a condition is met
+        - Many algorithms reply on repeated iterations to acheive a result
+        - There are two main styles of loops:
+            1. Fixed
+                - The loop repeats a fixed number of times
+                    - i.e. Listing the two times table
+            2. Variable
+                - The loop iterates until a tolerance or convergence criterion is met
+                    - i.e. Calculating 'pi' to 6 figures using a series
+    - 'while'
+        - A 'while' statement is one of the simplest ways to create a loop
+            - i.e.
+                while (expression) {
+                    action_1;
+                    action_2;
+                    action_3;
+                }        
+    - The 'break' statement leaves the current loop
+        - It exits the block of code pertaining to the loop and continues just after the closing brace
+    - 'for'
+        - The 'for' loop is kind of a condensed loop
+            - It sets up the initial value, condition, and increment in one line
+                - i.e. 
+                    for (initial; condition; change) { // loop this code }
+                - This makes the code easier to read
+            - The 'initial' statements are optional 
+                - It only occurs ONCE and BEFORE the loop starts
+            - The 'condition' is an expression
+                - It must be 'true' or else the loop will immediately end
+            - The 'change' statement is executed at the end, after the code within the loop's braces is finished, and before the condition is checked again
+    - 'while' loops and 'for' loops produce the same program when compiled
+        - However, a 'while' loop takes more lines to do the same thing
+    - Increment operator:
+        i = i + 1
+        OR
+        i+=1
+        OR
+        i++
+    - Decrement operator:
+        i = i - 1
+        OR
+        i-=1
+        OR
+        i--
+    - In C++, you can declare a variable inside the 'initial' part of a 'for' loop
+        - i.e.
+            for (int i = 0; i <= 10; i++) {
+                // code
+            }
+        - This does not work for C
+            - C++ only
+            

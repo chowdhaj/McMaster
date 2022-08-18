@@ -1,0 +1,534 @@
+Physics 2G03 - Formatted Input/Output
+
+- Introduction
+    - Formatting input and output is primarily printing things to the screen or 
+    reading things from the terminal
+        - Similar things can be done with files
+
+- Formatting I/O
+    - Standard 'cout' is an object that represents a way of creating output 
+      to the terminal
+        - This makes it easy to send values to the terminal without thinking 
+          about formatting
+            - i.e. Integers and floats can be sent to the terminal using the
+                   same object, std::cout. Also, it takes care of formatting
+            - i.e Floating point numbers are converted into decimal numbers
+
+- Stream Output
+    - There are multiple forms of output that go to the terminal
+        - i.e.
+            - std::cout
+                - Standard C Out is an 'ostream' object that prints regular 
+                  output to the terminal
+                    - i.e. When nothing has gone wrong
+            - std::cerr
+                - Standard C Error is a special 'ostream' object that avoids
+                  redirection 
+                    - i.e. Error messages do not get redirected by the greater
+                      than sign ( > ). It will print the error message directly
+                      to the terminal
+                        - i.e.
+                            $ ./test_program > output.txt
+                            Error Code: 1234
+                - You can force all output, including errors, to a text file
+                  using the greater than and ampersand symbol ( >& )
+                    - i.e. ./test_program >& output_all.txt
+        - You can define your own stream objects to direct output to other 
+          places, like files
+            - i.e. 
+                ofstream file; // Create custom stream object
+                file.open("output.txt"); // Redirect output to this file
+                file << "Hi there, " << name << "\n"; // Prints 'name' to the file
+            - You can use any formatting on any stream including output to files
+
+- Formatting
+    - Streams like 'cout' have defaults for how they format text/information
+        - You can change the defaults using functions in 'iomanip'
+            - But first, you must import 'iomanip'
+                - i.e. #include <iomanip> // Formatting library
+            - 'iomanip' is combined with standard 'cout' to change the way 
+              text and information is formatted
+                - i.e. std::cout << format_function() << thing_to_format;
+            - Examples of functions in 'iomanip'
+                - setw()
+                    - The default format for a single digit integer is one
+                      character wide
+                    - The 'setw' function combines with 'cout' to change the
+                      character width of the next thing it displays
+                        - i.e. cout << setw(4) << 6 << setw(10) << 2.34;
+                               //    6       2.34
+                               // 1234 1234567890 // Shows spacing
+                        - i.e. cout << setw(10) << 3.14159 << "\n";
+                               //    3.14159
+                               // 1234567890
+                    - Note: 'setw()' only applies to the next item, after
+                             that, defaults apply
+                - setprecision()
+                    - By default, 'cout' will show a fixed number of decimal places
+                        - The default precision is 6 digits
+                    - The 'setprecision' function changes the total number of
+                      digits to display
+                        - i.e. cout << setprecision(4) << 3.141592; 
+                               // 3.142
+                               // Only 4 digis in total are displayed
+                               // 'setprecision()' follows rounding rules
+                        - i.e. cout << setprecision(10) << 3.14159 << "\n";
+                               // 3.14159 
+                               // Displays all digits
+                        - Note: 'setprecision()' is permanent. In other words, it
+                                 does not reset to the default value after being
+                                 used once. This is because 'setprecision()' is an
+                                 object and once its state is changed, it is persistent
+                    - You can also call functions to set the precision
+                        - i.e. 
+                            std::cout.precision(3);
+                            cout << 3.14159 << "\n";   // Outputs 3.14
+                            cout << 12.345678 << "\n"; // Outputs 12.3
+                            // Note: 'setprecision()' follows conventional rounding rules
+                - setw() VS. setprecision()
+                    - Sometimes you can have a conflict between width and precision
+                        - This is because 'setprecision()' wants to use a certain
+                          number of digits, however, the given width may not be
+                          enough to show that
+                            - In this case, 'setprecision()' wins, and it will
+                              expand the width until it can show the precision
+                              that is asked for
+
+- Namespace
+    - When using 'iostream', 'iomanip', etc. functions, you need to add 'std::' 
+      to the beginning of each function
+        - i.e. std::cout << std::setprecision(10) << 3.14159 << "\n";
+            - Adding 'std::' every time is laborious
+                - Using 'namespace' removes this hassle
+                    - i.e. 
+                        #include <iostream>
+                        #include <iomanip>
+
+                        using namespace std; // 'namespace'
+
+                        int main() {
+
+                            cout << 3.14159 << "\n";
+                            cout << setw(10) << 3.14159 << "\n";
+                            cout << setprecision(3) << 3.14159 << "\n";
+
+                            return 0; 
+                        }
+    - When using 'namespace', the compiler assumes that any word that it hasn't
+      seen before, it should check 'namespace' to see if it is defined in there
+        - This applies to everything in the standard set
+    - There are some downsides to using 'namespaces'
+        - i.e.
+            - 'namespaces' are a backdoor route to get access to global variables
+                - Global variables are dangerous because they are available everywhere
+                    - They should be used sparingly
+                - 'cout' is a global variable
+            - Using 'namespace std' makes a very large number of functions and
+              objects available to your program
+                - This can conflict with your variables and functions
+                    - However, this issue can be avoided by using explicit 'namespaces'
+                        - i.e. using std::cout; 
+                            - This makes it clear where 'cout' comes from
+                        - i.e. using std::cout, using std::setw, using std::setprecision;
+                            - You can declare multiple explicit 'namespaces'
+
+- Exponential Notation
+    - By default, 'cout' uses floating point decimal notation
+        - This is a number with a decimal point
+            - However, this is not useful for very large or small numbers
+                - i.e. 10^20 OR 10^-20
+                    - In this case, the preferred representation method is 
+                      scientific/exponential notation
+        - You can tell 'cout' to always use fixed (non-exponential) or scientific notation
+            - In fixed and scientific notation, 'setprecision()' sets the number of
+              digits after the decimal place, and not the total number of digits
+    - Default VS. Fixed VS. Scientific
+        - i.e.
+            // Modify these values to experiment
+            double a = 3.1415926534;
+            double b = 2006.0;
+            double c = 1.0e-10;
+
+            std::cout.precision(5);
+
+            std::cout << "Default Notation:\n";
+            std::cout << a << "\n" << b << "\n" << c << "\n" << std::endl;
+            // Default Notation:
+            // 3.14159
+            // 2006
+            // 1e-010
+
+            std::cout << "Fixed Notation:\n" << std::fixed;
+            std::cout << a << "\n" << b << "\n" << c << "\n" << std::endl;
+            // Fixed Notation:
+            // 3.14159
+            // 2006.00000
+            // 0.00000
+
+            std::cout << "Scientific Notation:\n" << std::scientific;
+            std::cout << a << "\n" << b << "\n" << c << "\n" << std::endl;
+            // Scientific Notation:
+            // 3.14159e+000
+            // 2.00600e+003
+            // 1.00000e-010
+
+- Objects
+    - 'cout', 'cin', and 'cerr' are stream objects
+        - All of them are global object variables
+            - 'cout' and 'cerr' are output streams
+                - i.e. std::ostream cout; std::ostream cerr;
+            - 'cin' is an input stream
+                - i.e. std::istream cin;
+        - There is one copy of each object in a program; just like variables
+            - So, when you change 'cout' anywhere in your program, you are changing 
+              the one copy of 'cout'
+                - This affects the entire program and not a subset
+                    - i.e. Changing 'setprecision()' makes it persistent across the
+                           entire program, and not a small portion of it
+                - This can cause confusion if you regularly format output
+        - On the other hand, stream objects for files are completely independent
+            - Changing precision for one file stream object will not affect the 
+              other file stream objects
+
+- Old School Output
+    - In C, the 'printf' function is used to print text to the terminal
+        - Both C and C++ support the 'printf' function
+            - 'printf' is defined in 'stdio.h'
+        - i.e.
+            // Hello World program, in C/C++, using 'printf'
+            
+            #include <stdio.h>
+
+            int main() {
+                // 'printf' is a function and "Hello World!\n" is an argument
+                printf("Hello World!\n");
+                return 0;
+            }
+    - 'printf' is easier for formatting
+        - Syntax: printf("format_some_string", var1, var2, var3, ...);
+            - The first argument is a string of text that includes everything you
+              want to print, with indicators on where variables should go
+            - The second argument is a list of variables that you want printed
+                - 'printf' is a special function because the number of arguments
+                   can vary
+        - Since 'printf' is a function and not an object, it does not store any states
+            - The format is reset everytime you call 'printf'
+        - For every variable or expression, you include a special character indicating
+          how to print it
+            - i.e.
+                Character | Type
+                -------------------------------
+                %d        | Decimal Integer
+                %i        | Decimal Integer
+                %f        | Float (Real Number)
+                %e        | Scientific Notation
+                %c        | Character
+                %s        | String
+                %p        | Pointer
+            - The percent ( % ) by itself indicates the default formatting
+                - You can insert numbers after the percent ( % ) to set exactly the 
+                  format you want 
+                    - You can immediately set the precision and width for each number
+                        - i.e.
+                            - %nd   // The number is 'n' integers wide
+                            - %n.pf // The float is 'n' wide, and has 'p' decimal digits
+                            - %10s  // A string that is 10 characters wide
+                        - i.e. 
+                            printf("Output: %4.2f", 3.14159); // Output: 3.14
+                            printf("Output:\n%9d", 60);
+                            // Output:
+                            //        60
+                            // Adds 7 spaces to 2 digits, totalling 9 spaces
+                            printf("Output:\n%10f", 500.123456789);
+                            // Output:
+                            // 500.123456
+                            // Does not exceed 10 spaces
+                    - You can indicate the precision of the decimal places after the
+                      decimal point
+                        - i.e.
+                            printf("Output: %.3f", 3.1415926535897);
+                            // Output: 3.142
+                            // This keeps 3 decimal places after the point
+                            // Note: The last decimal point is rounded up
+                        - i.e.
+                            printf("Output:\n%10.4f", 3.1415926535897);
+                            // Output:
+                            //     3.1416
+                            // 1234561234 // The width is 10, with 4 decimal places
+        - 'printf' has a huge number of formatting options, like advanced formatting
+            - i.e.
+                Character | Type
+                ----------------------
+                %ld       | Long Integer
+                %0nd      | Integer With 'n' Width and 0's As Spaces
+                %x        | Hexadecimal
+                %o        | Octal
+                %+e       | Scientific Notation With Sign
+                %g        | Most Compact Form Of %f or %e
+                %*d       | Uses First Value To Specify Width
+                %%        | Write A Percent Sign
+                You can find more at: www.cplusplus.com/reference/cstdio/printf
+            - Examples of advanced formatting
+                - Printing floats with %g
+                    - i.e.
+                        for (int i = 0; i < 10; i++) {
+                            printf("%g\n", pow(10,i));
+                        }
+                        // Output:
+                        // 1
+                        // 10
+                        // 100
+                        // 1000
+                        // 10000
+                        // 100000
+                        // 1e+06
+                        // 1e+07
+                        // 1e+08
+                        // 1e+09
+                    - Small integers that are less than a million are printed as regular
+                      floats with just digits
+                    - Large integers that are greater than a million are represented using
+                      exponential notation 
+    - When formatting text, 'printf' is better than 'iostream'
+        - However, there is nothing wrong with using both in a single program
+    - Compared to 'cout', 'printf' is a lot more compact, takes up less space, and
+      is easier to use when formatting is important
+        - However, if formatting does not matter, then 'cout' is straightforward to use
+
+- Variants On 'printf'
+    - There are lots of variants on 'printf'
+        - 'fprintf'
+            - Prints to a file, rather than standard output
+                - i.e. int fprintf(FILE * stream, char * format, ...);
+                    - The first argument is the file to send output to
+                        - i.e. FILE * stream
+                    - The second argument is the formatted text string
+                        - i.e. char * format
+                    - The subsequent arguments are inserted into the text string
+                      based on the formats
+            - The stream can be predefined
+                - 'stdio'
+                    - The terminal; just like 'printf'
+                - 'stderr'
+                    - An error message to the terminal
+                - A file
+        - 'sprintf'
+            - Prints to a character array or a string
+                - i.e. int sprintf(char * str, char * format, ...);
+                    - The first argument is the character array to be written to
+                        - i.e. char * str
+                    - The second argument represents an array of characters
+                        - i.e. char * format
+                    - The subsequent arguments define how the second argument should
+                      be formatted
+            - Note: Character arrays have a finite size
+                - Writing more characters than an array can handle is dangerous
+                    - 'sprintf' is dangerous because it does not make sure that the 
+                       string is big enough to take all the information being sent
+                        - Instead of 'sprintf', use 'snprintf'
+        - 'snprintf'
+            - Works the same way as 'sprintf', but it controls the size of the text 
+              you create
+                - Instead of accidently changing memory, 'snprintf' throws away the
+                  extra characters
+                    - i.e. int snprintf(char * str, int size, char * format, ...); 
+                        - The first argument is the character array to be written to
+                            - i.e. char * str
+                        - The second argument is the size of the array to be written to
+                            - i.e. int size
+                        - The third argument represents an array of characters
+                            - i.e. char * format
+                        - The subsequent arguments define how the third argument
+                          should be formatted
+
+- Null Character
+    - In C/C++, a null character is used to indicate the end of a string or 
+      character array
+        - The null character is: \0
+            - This is automatically appended to mark the end of a string or char array
+        - When you specify a character array of size 15, only 14 regular characters
+          can appear 
+            - The 15th character is used to store the null character
+                - In general, you should make your character arrays one bigger than
+                  the size you actually want
+
+- Making Filenames
+    - Using 'snprintf' you can create distinct filenames
+        - For instance, if you have a filename, and a bunch of outputs that need to
+          be numbered from 1 to 12, you can embed the numbering into the filename
+          using 'snprintf'
+            - i.e.
+                char filename[200]; // Creates a character array of size 200
+                int iOut = 12;      // Number of file
+                snprintf(filename, sizeof(filename), "Output.%.5i", iOut);
+                // 'filename' is the character array to be written to
+                // 'sizeof' specifies the size of 'filename'
+                // '%.5i' pads the number to a width of 5 with 0's 
+                printf("%s\n", filename)
+                // Outputs: Output.00012
+        - Example application: Output files
+            // This function makes a unique filename depending on the value of 'i_step'
+            // And then it writes 'n_data' bytes of data from 'big_data' to it
+            void write_output(int i_step, char * big_data, int n_data) {
+                char filename[256];
+                sprintf(filename, "output.%05i", i_step);
+                ofstream outputfile;
+                outputfile.open(filename);
+                outputfile.write(big_data, n_data);
+                outputfile.close();
+            }
+
+- C++ Strings
+    - There are various issues with C Style strings that are using character arrays
+        - The primary issue is that they don't know how big they are, and can 
+          accidentally go past the end and overwrite memory that you shouldn't
+            - To address this issue, C++ came up with an object string called
+              the standard string 
+                - The standard string is 'std::string'
+                - The standard string is an object, and has several functions
+                  defined on it
+                    - i.e. The 'size()' function
+                        - string.size() // Returns the size as an int
+                        - The size function will also make the size of the string
+                          bigger when it needs to, without user intervention
+                    - i.e. The 'c_str()' function
+                        - Returns a pointer to a regular list of characters or a
+                          character array 
+    - It is possible to set up a string stream
+        - This is a stream that writes things to a regular C++ string object
+            - i.e.
+                #include <string>   // std::string
+                #include <iostream> // std::cout
+                #include <sstream>  // std::stringstream
+
+                int main() {
+                    std::stringstream ss;     // Create 'stringstream' called 'ss'
+                    ss << "Example string: " << 42 << 1e-3; // Send things to stream
+                    std::string s = ss.str(); // 'ss.str()' returns the string made
+                    std::cout << s << "\n";   // Prints 's' to terminal
+                    return 0; 
+                }
+                // You can continue to add strings to 'ss'
+
+- C++ Stream Input
+    - 'cin' is the stream input that interprets user input
+        - 'cin' translates everything up to the next whitespace
+            - Whitespace can be space, tab, or newline
+        - 'cin' tries to interpret the input as the type you ask for 
+            - i.e. 
+                int a;
+                std::cin >> a;
+                // Whatever you type is interpreted (attempted) as an integer
+        - 'cin' is very literal
+            - If it doesn't see something it can interpret as an integer, it tends
+              to ignore it
+                - This includes things like decimals, letters, or anything else that
+                  does not match the expected type
+                    - i.e.
+                        int a; float b;
+                        std::cin >> a >> b;
+                        std::cout << "a = " << a << ", " << "b = " << b << std::endl;
+                        // If input is: 3.76 5
+                        // Output is: a = 3, b = 0.76
+                        /*
+                         * This occurs because C++ stops reading after the 3, and stores
+                         * it into 'a'. Then, it reads the 0.76 and stores it into 'b'.
+                         * The 5 is discarded/lost.
+                         */
+            - Giving 'cin' something impossible to interpret causes it to break
+                - When this happens, 'cin' is in a failed state and cannot be used
+                    - i.e.
+                        int a; float b;
+                        std::cin >> a >> b;
+                        std::cout << "a = " << a << ", " << "b = " << b << std::endl;
+                        // Input: hello
+                        // Output: a = junk, b = junk
+                        // 'cin' is in a failed state
+                - When 'cin' is in a failed state, you can ask it using 'cin.fail()'
+                    - This is a way to check if your input was read correctly
+                        - i.e.
+                            #include <iostream>
+                            int main () {
+                                int a, b;
+                                std::cout << "Input two integers\n";
+                                std::cin >> a >> b;
+                                // Checks if 'cin' is in a failed state
+                                if (std::cin.fail()) {
+                                    std::cout << "Input is bad!\n";
+                                    return -1;
+                                }
+                                return 0;
+                            }
+                    - 'cin' needs to be cleared after entering a failed/bad state
+                        - i.e.
+                            #include <iostream>
+                            int main() {
+                                int a, b;
+                                std::cout << "Input two integers\n";
+                                for(;;) {
+                                    std::cin >> a >> b;
+                                    // Checks if 'cin' is in a failed state
+                                    if (std::cin.fail()) {
+                                        // Clears the stream
+                                        std::cin.clear(); 
+                                        // Ignores any remaining data
+                                        std::cin.ignore(INT_MAX,'\n'); 
+                                        std::cout << "Input was bad try again.";
+                                    }
+                                }
+                                return 0;
+                            }
+
+- Old School Input
+    - In C (and C++), 'scanf' is used to read text
+        - 'scanf' is similar to 'printf' but reads values instead
+        - To read values, you need memory locations you can store things in
+            - i.e.  
+                int a, b;
+                scanf("%d %d \n", &a, &b);
+                // &a is the memory address of 'a'
+                // &b is the memory address of 'b'
+        - 'scanf' is clunkier than 'cin' and has similar pitfalls
+        - 'scanf' returns how many values were sucessfully read
+            - i.e.
+                // 'scanf' has 3 arguments; the text string and two additional variables
+                int n_read = scanf("%d %d\n", &a, &b);
+                /* 
+                 * If 'scanf' correctly reads 'a' and 'b', then the return 
+                 * value is 2, and anything less indicates an error
+                 */
+                if (n_read < 2) {
+                    printf("Read failed!\n");
+                }
+            - There is no state for 'scanf' and 'printf'
+                - If it fails, it does not become unusable
+
+- Variants On 'scanf'
+    - 'fscanf'
+        - Reads from a file or a stream
+            - i.e. int fscanf(FILE * stream, char * format, ...);
+                - The first argument is the file or stream to read from
+                    - i.e. FILE * stream
+                - The second argument is the formatted text string
+                    - i.e. char * format
+        - The stream can be predefined
+            - 'stdin'
+                - The terminal; just like 'scanf'
+            - A file
+    - 'sscanf'
+        - Reads from a string or character array
+            - i.e. int sscanf(char * str, char * format, ...);
+                - The first argument is a string or character array to read from
+                    - i.e. char * str
+                - The second argument is the formatted text string
+                    - i.e. char * format
+
+- Parsing
+    - The pitfalls of 'cin' and 'scanf' indicate a general problem called parsing
+        - Parsing is interpreting text
+            - It is essential to computer science and programming languages
+                - The job of a compiler is to parse source code, make sense 
+                  of it and translate it into binary code
+                - The command line (shell) parses commands as you type them
+                - Natural language parsing is a major research area in AI
+                    - i.e. Turing test

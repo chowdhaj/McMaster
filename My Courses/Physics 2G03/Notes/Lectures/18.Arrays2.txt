@@ -1,0 +1,282 @@
+Physics 2G03 - Arrays: Functions & Pointers
+
+- Array Types & Declarations
+    - Arrays can be of any type that a scalar variable can be
+        - i.e. Array of integers, floats, doubles, etc.
+        - You can also create arrays of structs and classes
+            - i.e.
+                // This defines a point structure
+                struct point {
+                    float x, y;
+                };
+                // This is a single point
+                point Q; 
+                // This is an array of points
+                point P[100]; // Stores 100 points
+                // Each point in the 'P' array has its own 'x' and 'y' values
+                P[0].x = 0.0;
+                P[0].y = 2.0;
+                P[1].x = 10.0;
+                P[1].y = 2.0;
+    - Arrays are declared in a similar manner as their scalar version
+        - However, the only difference is that square brackets are used to specify
+          the size of the array, during declaration
+            - After declaration, square brackets are used to manipulate indices
+
+- Memory
+    - Arrays are essentially a big block of memory
+        - Instead of allocating one block of memory for a scalar type, arrays allocate
+          a large block of memory for multiple scalar types
+        - The code keeps track of the start of an array using a pointer
+            - i.e. 
+                float a[4];
+                // 'a' is a pointer to the start of the array
+                // 'a' points to the index a[0]
+            - Individual elements in the array are found by offsets from the starting point
+                - The offset is the size of the type of the array
+                    - i.e. For an integer array, the offset is 4 because the size of an
+                           integer is 4
+                    - This is partly why arrays in C/C++ start at 0, because the first 
+                      element is 0 offsets from the beginning
+            - Pointers are long integers describing a place in memory
+                - Typically, they are 8 bytes long
+                - Compilers always store memory locations as integers
+    - Every variable is stored in memory
+        - Thus, each variable has a address in memory
+            - This can be accessed by putting an ampersand in front of the variable
+                - i.e.
+                    float b;
+                    &b // Refers to the address of 'b' - where 'b' is stored
+                    &b // This points to a float in memory
+                - i.e.
+                    float a[1];
+                    // 'a' is a pointer to the float
+                    *a // This is the contents of pointer 'a'
+                    *a // Returns the real number in the memory address
+                    // *a is equivalent of a[0] - they can both be used as a float
+    - The Ampersand ( & ) operator refers to the address of a variable
+        - It turns a variable into a pointer
+            - Pointers are addresses in memory
+                - i.e. 
+                    float x; 
+                    &x // This is a pointer to memory, just like an array
+                    (&x)[0] // Returns the value of the float at the memory address
+                    (&x)[1] // Returns the value in the memory address after the float 'x'
+                    // This is a memory error, but it does not warn you
+            - The ampersand operator can only be used on variables
+                - Attempting to use the operator on arbitrary expressions or values will
+                  result in a compile time error
+    - The Asterisk/Star ( * ) operator refers to the contents of a pointer
+        - The star operator turns pointers into regular variables
+            - i.e. If 'name' is a pointer, or an array, then *name is equivalent to name[0]
+            - i.e. 
+                float y[2]; // An array of two floats
+                *y = 2.0;   // This is the same as y[0]
+                y[0] = 2.0; // Same as above
+        - The star ( * ) operator undoes the ampersand ( & ) operator
+            - They are like the inverse of each other
+                - i.e.
+                    float x;          // A scalar float
+                    float y[2];       // An array of two floats
+                    x = 0.1;          // Assigns 0.1 to 'x'
+                    *(&x) = 0.01;     // Same as above, it assigns 0.1 to 'x'
+                    // The star ( * ) undoes the ampersand ( & )
+                    y[0] = 2.0;       // Assigns 2.0 to the 1st index in 'y'
+                    *(&(y[0])) = 2.0; // Same as above, it assigns 2.0 to the 1st index in 'y'
+                    // The star ( * ) undoes the ampersand ( & )
+                    &(*(y[1])) = 6.3; // Not legal because this is trying to assign a scalar
+                                      // value to a pointer/memory address
+                    // y[1] is a float, not a pointer, and the star operator is being used
+                    // to deference a float. This is illegal because can pointers can be
+                    // deferenced
+    - Pointers are useful because they let you directly change variables and give you direct
+      access to data
+        - This is very useful in functions
+            - Regular function arguments are only copies of variables
+                - i.e. Pass by value VS. Pass by reference
+        - Note: Passing by value is considered to be safer than pass by reference
+
+- References
+    - References are not in C, only in C++
+    - References give direct access to memory for arguments to functions
+        - i.e.
+            void FunctionByReference(float &b) {
+                // b is a reference
+                b = 100; 
+                // Now b = 100, so A = 100
+            }
+            int main() {
+                float A;
+                A = 2;
+                // Right now, A = 2
+                FunctionByReference(A);
+                // Here: A = 100
+                return 0;
+            }
+            /*
+            - By using 'float &b' as the argument, the function gets a memory location as
+            if it were a pointer
+            - When using references, you need to be careful and realize that it will
+            change the original value
+             */
+    - You can make function arguments read-only by using the 'const' keyword
+        - i.e.
+            void FunctionByConstReference(const float &b) {
+                // b is a reference
+                b = 100; // Illegal - cannot change a constant variable
+            }
+            // The function has direct access to the variable, but it cannot change the
+            // value it holds, it can only read it
+    - References are considered safer than pointers because they must point to a valid
+      memory containing a variable of the kind declared
+        - References help avoid some of the mistakes that come with illegal memory access
+    - In C++, you can pass variables/data in three ways
+        - 1. Pass By Value
+            - The value of the variable is passed to the function
+                - The value passed can be manipulated in any way in the sub-function,
+                  but it only exists in that function and is destroyed at the end of the
+                  sub-function, unless returned to the calling function
+            - i.e.
+                void FunctionByValue(float b) {
+                    b = 100;
+                }
+        - 2. Pass By Pointer
+            - The memory address of the variable is passed to another function
+            - The original value of the variable is directly accessible by the
+              other function
+            - i.e.
+                void FunctionByPointer(float *P_int) {
+                    *P_int = 100;
+                }
+        - 3. Function By Reference
+            - Passes a reference to the original memory of the variable
+            - Changing the value of the referenced variable changs the original value
+            - i.e.
+                void FunctionByReference(float &b) {
+                    b = 100;
+                }
+
+- Arrays & Functions
+    - When you make an array an argument to a function, you are sending the memory
+      location of the first element
+        - Essentially, this is a pointer to the data
+            - In turn, the function has access to the full array because it can use
+              pointer arithmetic to access all the other elements of the array
+        - Using arrays is identical to using pointers because the functions get
+          direct access to the memory addresses of the array
+    - When you pass an array to a function, you can use:
+        - 1. float name[]
+            - i.e.
+                void some_function_1(float b[], int n) {
+                    // code
+                }
+                // You don't have to specify the size of the array in the arguments
+                // The main thing you need to pass is a pointer to the array
+                int main() {
+                    float A[100];
+                    some_function_1(A, 100);
+                    return 0;
+                }
+                // Remember: 'A' is a pointer to the array
+        - 2. float *name
+            - i.e. 
+                void some_function_2(float *b, int n) {
+                    // code
+                }
+                int main() {
+                    float A[100];
+                    some_function_2(A, 100);
+                    return 0;
+                }
+                // Remember: 'A' is a pointer to the array
+        - Note: The first technique is the preferred way because it is very clear and
+                the reader understands that an array pointer is being passed as an argument
+    - The 'const' keyword can be used to prevent manipulation of arrays and keep them
+      as read-only
+        - i.e.
+            void print_array(const float b[], int n) {
+                // code
+            }
+            int main() {
+                float A[100];
+                print_array(A, 100);
+                return 0;
+            }
+        - This prevents other functions from modifying data that you rely on being constant
+            - This is good practice from a security aspect
+
+- Arrays In Memory
+    - Arrays are handled as a big piece of memory
+        - The code keeps track of where it starts in memory using the named pointer
+            - It finds individual elements in the array using offsets from the starting point
+                - This is pointer arithmetic
+                    - You start at the original location and add offsets to find the others
+            - This is how the machine code does it in practice
+                - It does not know what locations are valid
+                    - It just counts from the start of the pointer 
+            - NOTE: You need to verify valid memory addresses yourself. The compiler will not
+                    check for you
+    - In practice, arrays are just pointers
+        - An array, 'X', is a pointer to the start of an array containing data
+            - X[0] is the first value of the array
+            - X[1] is the second value of the array
+                - X+1 is the pointer to X[1]
+
+- Pointer Arithmetic
+    - When you add to a pointer, it moves it forward to the next thing of that type in memory
+        - In a float array, if you:
+            - Add 1 to the start, it will move 4 bytes ahead to the 2nd float
+            - Add 2 to the start, it will move 8 bytes ahead to the 3rd float
+            - NOTE: The standard type float is 4 bytes
+    - A pointer is a long integer of some kind indicating a place in memory where the program
+      stores something
+        - If you had an integer array of size 4, starting at location 10,000 in memory, then
+          it would end at 10,012
+            - i.e.
+                a+0 | 10,000 | a[0]
+                a+1 | 10,004 | a[1]
+                a+2 | 10,008 | a[2]
+                a+3 | 10,012 | a[3]
+
+- Higher Dimensional Arrays
+    - In C/C++, arrays can be arrays of anything, including arrays
+        - This is useful for simulating multi-dimensional arrays, like a matrix
+            - i.e.
+                float arr[10][10];
+                // 'arr' contains 10 arrays of size 10
+                // 10 x 10 = 100 elements in 'arr'
+                arr[0][0] = 0; // This is the very first element in 'arr'
+                arr[0][1] = 1; // This is the second element in the first array
+                /*
+                 * arr[0][0] is a float
+                 * arr[0] is a pointer to a float array, which is just a pointer
+                 * arr is a pointer to a pointer to a float; a memory location where a memory
+                 *   location where a memory location is stored that has a float in it
+                 */
+    - Higher dimensional arrays are also known as multi-dimensional arrays
+
+- Storage
+    - Arrays are given space sequentially, usually, in the order declared
+    - As far as the CPU is concerned, it is all just bytes in memory
+        - And, as long as there is enough memory to store the array, the CPU is not concerned
+    - In C/C++, the rightmost index steps through the memory the fastest
+    - Computers do not store everything in fast memory all the time
+        - They copy memory from RAM to fast memory, cache, all the time
+            - Cache memory is the fastest memory in a computer
+                - The CPU can access cache memory extremely quickly
+            - In cache memory, things that are very close to each other in RAM are stored next
+              to each other
+                - This allows the data to be access very quickly
+    - The innermost loop should go over the RIGHTMOST subscript where possible
+        - i.e.
+            // If you have the following array:
+            int arr[2][3]; // Rightmost subscript is 3
+            // Then, the correct way to iterate through it is:
+            for(int m = 0; m < 2; m++) {
+                for (int n = 0; n < 3; n++) {
+                    // code
+                }
+            }
+            // First we iterate through the first array, then each sub-array
+            // This is why the first for-loop iterates 2 times, and the 
+            // second for-loop iterates 3 times. The rightmost subscript is 3

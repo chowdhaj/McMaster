@@ -1,0 +1,531 @@
+Physics 2G03 - File Input/Output
+
+- Introduction
+    - This lecture is about input and output with files, directly from programming
+      languages
+
+- File I/O
+    - Handling files is critical to modern science because you produce terabytes
+      and petabytes of data
+        - i.e. Experiments in Genomics, Supercolliders, Astronomy, Health, Etc.
+        - i.e. Simulations: Climate Models, Astrophysics, Fluid Dynamics, Physics, 
+               Molecular Dynamics, Etc.
+
+- Data Formats
+    - There are two main formats data can be in:
+        - 1. Human Readable
+            - This data is plaintext
+                - It is also called ASCII
+                    - ASCII = American Standard Code For Information Interchange
+                - i.e. Plaintext is what 'std::cout' makes
+                    - Most of plaintext data is characters, numbers, punctuation, etc.
+        - 2. Binary/Raw Data
+            - This is the same format found in computer memory
+                - i.e. RAM
+                    - This form of data is more efficient
+
+- Text Files
+    - The standard way of making plain text files is using the stream
+        - i.e. #include <iostream>
+            - This gives us access to 'cout' and 'cin' for terminals
+                - 'cout' and 'cin' can also be used to read and write from files
+        - In C (and C++), 'scanf' and 'printf' are used to write and read from files
+
+- Sample 'cout' Program
+    - i.e.
+        /* 
+         * This program generates 10 pseudo random numbers and
+         * prints them to the terminal
+         */
+        #include <iostream>
+        #include <stdlib.h>
+
+        int main() {
+
+            int i;
+            const int n_size = 10;
+
+            std::cout << n_size << "\n"; // Write size of data
+
+            // Write data (pseudo-random numbers)
+            for(i = 0; i < n_size; i++) {
+                // Print numbers to terminal
+                std::cout << float(rand())/RAND_MAX << "\n";
+            }
+
+            return 0;
+        }
+
+- Sample 'cin' Program
+    - i.e.
+        /*
+         * This program reads in 'n' numbers and prints the 
+         * last input value. The first number inputted indicates
+         * the size of the array
+         */
+        #include <iostream>
+
+        int main() {
+
+            int i, n;
+
+            // Note: No white space like "\n" or " " for reading!
+            std::cin >> n;  // Read size
+
+            float input_data[n]; // Dynamically allocate array
+
+            for(i = 0; i < n; i++){
+                std::cin >> input_data[i];
+            }
+
+            std::cout << "Input complete. Last value read in was: " 
+                      << input_data[n-1] << "\n";
+
+            return 0;
+        }
+
+- Working With Files Using 'fstream'
+    - 'cin' and 'cout' are not flexible
+        - They require the presence of a terminal to be functional
+            - 'cout' is hardwired to print to the terminal
+            - 'cin' is hardwired to accept typed text in the terminal
+    - In general, you want to be able to open and close files independently; without
+      needing a terminal
+        - 'fstream' extends 'iostream' to use files as well as terminals as a source
+           of data
+            - 'fstream' needs to be included before it can be used
+                - i.e. #include <fstream>
+                    - Note: When using 'fstream', you must include 'iostream' as well
+            - 'fstream' allows you to create your own objects
+                - i.e.
+                    ofstream output_file; // A stream object for output
+                    ifstream input_file;  // A stream object for input
+        - An 'ofstream' object is a direct replacement in most code for 'std::cout'
+            - However, there is a minor difference between 'ofstream' and 'std::cout'
+                - 'ofstream' requires you to open the file first
+            - 'ofstream' can be used to create many files at once
+        - An 'ifstream' object is a direct replacement for 'std::cin'
+            - However, just like 'ofstream', you must open the file first, and 
+              the file must exist
+
+- Sample 'fstream' Code
+    - 'ofstream' : Writing to a file(s) 
+        - i.e.
+            /*
+             * This program generates 10 random floats and 
+             * then writes to 'output.data'. It can run without
+             * a terminal
+             */
+            #include <iostream>
+            #include <fstream>
+            #include <stdlib.h>
+
+            int main() {
+
+                int i;
+                const int n = 10;
+
+                std::ofstream output_file;       // Create stream object
+                output_file.open("output.data"); // Open 'output.data' file
+                output_file << n << "\n";        // Write size of data
+
+                // Write data (pseudo-random numbers)
+                for(i = 0; i < n; i++) {
+                    output_file << float(rand())/RAND_MAX << "\n";
+                }
+
+                // Close the stream/file
+                output_file.close()
+                /*
+                 * Closing the file/stream is important because the OS
+                 * might not clean up and make sure that all the data
+                 * is safely written; closing the stream guarantees this
+                 */
+
+                return 0;
+            }
+    - 'ifstream' : Reading from a file(s)
+        - i.e.
+            /*
+             * This program reads 'n' floats from a text file, stores
+             * them into an array, and then prints the last read value.
+             * It can run without a terminal
+             */
+            #include <iostream>
+            #include <fstream>
+
+            int main() {
+
+                int i, n;
+
+                std::ifstream input_file;        // Create 'ifstream' object
+                input_file.open("output.data");  // Open file 'output.data'
+                // Note: No white space like "\n" or " " for reading
+                input_file >> n;                 // Read size
+                float input_data[n];             // Dynamically allocate array
+
+                for(i = 0; i < n; i++) {
+                    input_file >> input_data[i]; // Read and store data
+                }
+
+                input_file.close();              // Close 'ifstream'
+                std::cout << "Input complete. Last value read is: " 
+                          << input_data[n-1] << "\n";
+
+                return 0;
+            }
+
+- 'fstream' Basic Functions
+    - 'fstream' objects have extra functions to test if things worked correctly
+        - For instance, when you are trying to read a file, it may not be present because:
+            - The file may not be in the current directory you are in
+            - You mistyped the file name
+            - The file was deleted
+            - The file is not readable, by you, due to insufficient permissions
+            - Etc.
+        - It is always a good idea to test if the file was opened correctly
+            - This can be done using the 'is_open()' function
+                - i.e.
+                    /*
+                     * This function returns true if a specified file is
+                     * attempted to be opened by 'ifstream'
+                     */
+                    #include <iostream>
+                    #include <fstream>
+
+                    int main() {
+
+                        // Create 'ifstream' object
+                        std::ifstream my_file("example.txt"); 
+
+                        // Check if file was successfully opened
+                        if (my_file.is_open()) {
+                            // code
+                        } else {
+                            // File failed to open
+                            std::cout << "Unable to open file!" << std::endl;
+                            return 1;
+                        }
+
+                        return 0;
+                    }
+        - Other functions in 'fstream'
+            - i.e.
+                Function     | Description
+                ----------------------------
+                open("file") | Open a file
+                close()      | Closes the file
+                is_open()    | Checks if the file is open
+                bad()        | Checks if something went wrong
+                fail()       | Checks if it failed to read/write
+                eof()        | Is the pointer at end of the file?
+                good()       | Is it okay to keep reading/writing?
+            - The last five functions return a true or false, thus we can test the current 
+              status of the file
+
+- Example Problem
+    - A common problem when dealing with files is running out of disk space or the file
+      transfer did not complete 
+        - When this happens, the file is incomplete, but the header does not report it
+            - Thus, it is good practice to test if your data was transferred correctly
+                - One way you can test this is by reading all the values that were written
+                  to the output file and comparing the actual number of data values to the
+                  expected number of data values; which is the size
+            - i.e.
+                /*
+                 * This a sample code snippet that checks the validity of data
+                 * If something is wrong with the data, it outputs the last
+                 *   good data value, indicating where the file may have
+                 *   gone wrong
+                 */
+                input_file >> n;     // Read size
+                float input_data[n]; // Dynamically allocate array
+
+                for(i = 0; i < n; i++) {
+                    input_file >> input_data[i]; // Read data
+                    if (input_file.fail()) {     // Check if file failed to open
+                        std::cout << "Read incomplete at line: " << i << "\n";
+                        if (i > 0) { 
+                            std::cout << "Last good data value: " 
+                                      << input_data[i-1] << "\n";
+                        }
+                        return 1;
+                    }
+                }
+                input_file.close(); // Close the stream
+
+- Files Recap
+    - You can open as many files as you want, at once
+        - i.e. When running a large simulation, it's quite common to open one file per
+               output, if you're doing lots of steps
+        - i.e. When dealing with big data, it's normal to have different files for
+               different kinds of data; position data, velocity data, gas data, star
+               data, etc.
+    - You can control how files are used in your program
+    - You can control how the system responds if files do or do not exist
+
+- Options For 'fstream'
+    - When you open a file, you can specify the mode
+        - The mode indicates what you intend to do with the file
+            - i.e. Specify what to do if the file exists, expectations about data,
+                   how data should be formatted, etc.
+    - Some mode options
+        Mode             | Description
+        -----------------------------------
+        std::ios::in     | Read data in from the file
+        std::ios::out    | Write data out to the file
+        std::ios::binary | Open in binary mode
+        std::ios::ate    | Set initial position to be at end of file
+        std::ios::app    | Append data to end of file
+        std::ios::trunc  | File should be truncated; if the file already exists,
+                           open it, but delete everything currently inside
+    - Using mode options
+        - If you are logging data about a simulation, you don't want the log file to be
+          deleted just because you ran more simulations
+            - The ideal case is to open the file and append new data to it, while keeping
+              the old data intact
+                - This can be achieved with 'std::ios::app'
+                    - i.e. 
+                        std::ofstream my_file;
+                        my_file.open("some_file.dat", std::ios::app);
+            - Note: The default behaviour for opening files for output is to delete the
+                    current contents of the file
+
+- General 'fstream'
+    - 'fstream' is a general version of a file stream
+        - An 'fstream' lets you do multiple things to the same file, like input and output
+            - When using 'fstream' you must specify a mode, which indicates what you
+              expect to do
+                - i.e.
+                    fstream my_file;
+                    my_file.open("some_file.dat", std::ios::in);
+        - 'ifstream' automatically assumes input; reading a file
+        - 'ofstream' automatically assumes output; writing a file
+            - 'ifstream' and 'ofstream' are specific sub-types of 'fstream'
+
+- Binary Output
+    - Writing text is only useful if a human will read it
+        - It takes computers more work to convert a raw number into characters that are
+          readable by a human
+            - i.e. A four byte number in memory can be quite large when converted into
+                   a human-readable number
+            - i.e. A floating point number needs to be converted and must show
+                   exponentials, signs, etc.
+    - It is more efficient to directly write the contents of memory to a file, instead of
+      converting the data into a human-readable format
+        - The files generated are exactly the size they occupy in computer memory
+            - The data/numbers are exact and precisely represent what is stored in memory
+                - This is quick and efficient
+    - Sample Binary Data Program
+        - i.e.
+            #include <iostream>
+            #include <fstream>
+            #include <stdlib.h>
+
+            int main() {
+
+                int i;
+                const int n = 10;
+
+                // Create 'ofstream' object
+                std::ofstream output_file;
+
+                // Open file 'output.bin' and set mode as binary
+                output_file.open("output.bin", std::ios::binary);
+
+                // Write 'n' (size) to file 
+                output_file.write((char *) &n, sizeof(n));
+
+                // Write data (pseudo-random numbers)
+                for(i = 0; i < n; i++) {
+                    // Data is generated one at a time, and written to the file
+                    float data = float(rand()) / RAND_MAX;
+                    output_file.write((char *) &data, sizeof(data));
+                    // 4 characters, per float, are written to the file
+                }
+
+                // Close the file
+                output_file.close();
+
+                return 0;
+            } 
+
+- Working With Binary
+    - When working with binary, do not use stream operators; ( << ) and ( >> )
+        - Stream operators convert variables into text 
+    - When working with binary, you need to directly read and write memory from or
+      to a file
+        - i.e. output_file.open("output.bin", std::ios::binary);
+    - When writing directly from memory into a file, you must indicate the memory address,
+      and the number of bytes to be written
+        - i.e. output_file.write((char *) var, sizeof(var));
+            - (char *) var
+                - This is the memory address of the variable 'var'
+            - sizeof(var)
+                - This indicates the size of 'var' and how many bytes need to be written
+                  from the memory address
+    - Note:
+        - C/C++ char variables are equivalent to bytes
+        - The 'fstream' read/write objects want a memory location and how many bytes 
+          to read/write
+    - Examples:
+        - Writing integers from memory to a file
+            - i.e.
+                int n_data = 42;
+                output_file.write((char *) &n_data, sizeof(n_data));
+            - Note: 
+                - (char *) &n_data
+                    - Tells the compiler to treat the address of 'n_data' as a pointer 
+                      to raw bytes. This does not change the address
+                - sizeof(n_data) 
+                    - Calculates how many bytes are in an int (Answer: 4)
+                        - You could also write: sizeof(int)
+        - Writing a float array to a file
+            - i.e.
+                float arr[100];
+                output_file.write((char *) arr, 100 * sizeof(arr[0]));
+            - Note: 
+                - (char *) arr tells the compiler to treat the array as a pointer to raw bytes
+                    - An ampersand before 'arr' is not needed because arrays are already
+                      pointers to memory
+                - 100 * sizeof(arr[0])
+                    - Calculates how many bytes are needed to store the entire float
+                        - Since there are 100 values, and all of them are floats, you need
+                          100 * size of a float to store the data
+                            - The size of a float is 4 bytes; so you need 400 bytes in total
+                    - You could also do: 100 * sizeof(float)
+        - Reading a float array from a binary file into memory
+            - i.e.
+                float arr[100];
+                output_file.read((char *) arr, 100 * sizeof(a[0]));
+            - Note:
+                - (char *) arr 
+                    - Converts the array into a pointer to raw bytes
+                - 100 * sizeof(a[0])
+                    - Calculates the size of 'arr' by multiplying the size of a float,
+                      4 bytes, by the number of elements 'arr' can hold
+                        - The size of 'arr' in memory is 400 bytes
+        - C/C++ lets you decide the array size at the last second and then read it
+          into memory
+            - This lets you load files that you don't know the size of into memory
+                - i.e.
+                    float a[n];
+                    output_file.read((char *) a, n * sizeof(a[0]));
+                    // This lets you write (4 * n) bytes directly from a file into memory
+                - This form is compact and does not require you to loop through a file
+                  and iterate over all elements to load them into memory
+    - Raw binary files are smaller than (raw) text files
+        - Binary data contains exactly what is in memory, and is more precise than (raw)
+          text data
+    - Using octal dump (`od` - a Unix command), you can view the contents of binary files
+        - To read integers, the command is: od -i file.bin
+            - This command treats every 4 bytes as integers and displays them in human-
+              readable form
+        - To read floats, the command is: od -f file.bin
+            - This command treats every 4 bytes as floats and displays them in human-
+              readable form
+
+- Binary Read
+    - Using the read function on an 'fstream' object returns an int that represents a bool
+        - If the result is true, then the read finished correctly
+        - If the result is false, then there is a problem
+    - The function 'gcount()' tells you how much data was successfully read in bytes
+        - You can calculate how many elements were read correctly by dividing 'gcount()'
+          by the size of the array
+    - i.e.
+        /*
+         * This code snippet reads data from a file into memory,
+         * checks if the file was read correctly, and then calculates
+         * where the read may have gone wrong, if it did. Then, it
+         * will print the result to the terminal. 
+         * This is checked using the function: 'gcount()'
+         */
+        input_file.read((char *) &n, sizeof(n));    // Read size
+        std::cout << n << " data values to read\n"; // Print size
+
+        // Dynamically allocate array
+        float input_data[n];
+
+        // If read is not successful (i.e. File is partially corrupted)
+        if (!input_file.read((char *) input_data, n * sizeof(input_data[0]))) {
+            // Print where the read failed
+            std::cout << "Read Unsuccessful!\nOnly Read: " 
+                      << input_file.gcount() 
+                      << " bytes\n";
+            // Calculate where things went wrong
+            int n_read = input_file.gcount() / sizeof(input_data[0]);
+            if (n_read > 0) {
+                std::cout << "Last good data value " << input_data[n_read - 1] << "\n";
+            }
+            return 1;
+        }
+        input_file.close(); // Close the file/stream
+
+- Testing For Success
+    - Both 'read()' and 'write()' can fail for various reasons
+        - A 'read()' can fail if the file isn't as big as expected
+        - A 'write()' can fail if you run out of disk space
+    - Both 'read()' and 'write()' return 0 (false) if there is a problem, and true if
+      the operation is a success
+        - i.e. 
+            if (my_file.read((char *) file_name, n * sizeof(file_name[0]))) { 
+                // success! 
+            }
+    - The 'gcount()' function can be used to see how much of the file was read
+        - i.e. std::cout << my_file.gcount() << " bytes read";
+
+- Endian
+    - When we write numbers, there are conventions on how we write them, and how they
+      must be read
+        - i.e. The number '100' means one hundred. This is because mathematical convention
+               is to read numbers from left to right. If the convention was to read numbers
+               from right to left, then one hundred would be written as '001'
+    - Files consist of bytes
+        - Bytes are fundamental units in a file
+            - Therefore, when you write more than one byte, we need a convention that
+              states how the numbers should be read
+                - i.e. Do you write the big bytes first or the little ones?
+                    - This is the idea of Big Endian and Little Endian
+    - The terminology, Endian, is based on a novel by Jonathan Swift, which is making fun
+      of politics
+        - Do you start with the big end or the middle end of your boiled egg?
+            - This is what led to the description of Endian for computers
+                - Big Endian: Starts with the big bytes first
+                - Little Endian: Starts with the smallest bytes first
+    - Endian Example
+        - The decimal number 3 can be represented as 0011 in binary
+            - In Big Endian, this binary number is written as:
+
+                |---------------|   In Big Endian, the most important
+                | 0 | 0 | 1 | 1 |   bytes have zeros in them, because
+                |---------------|   they come first
+                  1   2   3   4
+
+            - In Little Endian, this binary number is written as:
+
+                |---------------|   In Little Endian, the least
+                | 1 | 1 | 0 | 0 |   important byte comes first, and
+                |---------------|   the big bytes come last
+                  1   2   3   4
+
+            - To summarize, Big Endian and Little Endian are mirrors of each other
+                - If a number in Big Endian is 54321, then the same number is 12345 in
+                  Little Endian
+                - To convert from Big Endian to Little Endian, or vice versa, you switch
+                  the side you read from 
+    - Some compilers have flags, so you can choose how the file will be written
+        - You can use 'octal dump' to specify how you want a file to be looked at
+            - i.e. od -t u1 filename.bin
+                - You can use this command to figure out what Endian your computer is
+    - Computers create incompatible binary files because chip makers don't agree on
+      using the same Endian convention
+        - Big Endian was the choice of Apple, Sun, and the Internet Standard
+            - Note: Current Macbooks use Intel chips, but the new ones will use Apple chips
+        - Little Endian was the choice of HP, Intel, and AMD
+        - Note: It is ironic that the vast majority of chips, today, use Little Endian,
+                but the Internet Standard uses Big Endian. This means that everything
+                sent over the internet is first converted from Little Endian to Big Endian,
+                and then converted back at the other end (i.e. Server). The conversion is 
+                done via the 'xdr library'
+        - Note: Most chips today are dual-endian, and you can specify which one to 
+                use at boot

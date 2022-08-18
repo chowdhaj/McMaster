@@ -1,0 +1,392 @@
+Physics 2G03 - Programming With Unix Reference
+
+Note: Anything in [square brackets] is an (arbitrary) option or argument
+      Anything in `back ticks` is an (arbitrary) command
+
+(1) Basic Unix
+
+    - man [command] 
+        - Get manual pages for [command]
+    - apropos [text]
+        - Search short description of all man pages for [text]
+
+(2) Editors
+
+    - emacs, xemacs
+    - gedit, mousepad
+    - gvim, vim, vi
+
+(3) User & Machine Info
+
+    - ssh [username@MachineName]
+        - Secure login to remote machine
+    - whomai
+        - Returns username
+    - hostname
+        - Returns server name
+    - who
+        - Returns other users that are logged on
+    - passwd
+        - Change current user password
+    - exit
+        - Exit from shell/terminal
+    - ping [machineName]
+        - Is [machineName] connected to the internet
+    - date
+        - Display current time on server/machine
+
+(4) Shells: Entering Commands With TC Shell (tcsh)
+
+    - .cshrc
+        - Script that runs when a new shell is started
+    - .login
+        - Script that runs when user logs in
+    - source [file]
+        - Run commands in [file]
+    - set
+        - List shell internal variables (i.e. prompt, history, version, etc.)
+    - set [var]=[value]
+        - Set [var] equal to [value]
+            - The [var]iables can be found using the `set` command; these are the only variables you can change using `set`
+    - set prompt=[text]
+        - Set shell prompt
+            - The [text] entered is of a special format with forward slashes
+    - set ignoreeof
+        - Does not log you out if you press [CTRL + D]
+    - set noclobber
+        - Prevents redirection from overwriting a file
+            - ls > existingFile.txt (This won't work)
+    - limit, unlimit
+        - List or change personal limits on files and programs
+    - env
+        - Print your environment variables (i.e. PATH, SHELL, etc.)
+    - setenv [var] [value]
+        - Set environment variable [var] equal to [value]
+    - alias
+        - List and set command aliases (shorthand for commands)
+    - unalias
+        - Remove a command alias
+    - which [command]
+        - Show program file (or alias) associated with [command]
+    - whereis [program]
+        - List executable program location, source and manual page for [program]
+            - Similar to `which` but more informative
+
+(5) Command Line Editing & History
+
+    - CTRL + A   :: Go to beginning of line
+    - CTRL + E   :: Go to end of line
+    - CTRL + K   :: Delete to end of line
+    - CTRL + D   :: Delete character OR List possible completions if at end-of-line
+    - CTRL + C   :: Abort command input line and start new empty line
+    - TAB        :: Complete command or file based on what has been typed
+    - `history`  :: Show history of commands entered
+    - `!1`       :: Rerun command number 1 from history
+    - `!text`    :: Rerun last command starting with [text]
+    - ARROW_UP   :: Get previous command from history
+    - ARROW_DOWN :: Get next command from history (or blank line if at end)
+
+(6) Running Programs Interactively
+
+    - `command` 
+        - Run a `command`
+    - `command` & 
+        - Run a `command` in the background
+    - CTRL + S 
+        - Suspend output to/input from terminal
+    - CTRL + Q
+        - Resume output to/input from terminal
+    - CTRL + Z
+        - Suspend a program in the foreground (Gives you back the command prompt)
+    - CTRL + C
+        - Kill program in the foreground (Gives you back the command prompt)
+    - CTRL + D
+        - End Of File (EOF); Logs you out if there is nothing on the prompt
+    - `jobs`
+        - List jobs running with current (associated) terminal
+    - kill %1
+        - Kill program listed as number 1 from `jobs`
+    - fg %2
+        - Bring program listed as number 2 from `jobs` to foreground
+    - bg %2
+        - Run program listed as number 3 from `jobs` in the background
+    - `ps`
+        - List processes running in the terminal session
+    - `top`
+        - Interactive tool to look at all running programs
+            - Press 'q' to quit
+
+(7) Redirecting Input & Output
+    
+    - `command1` ; `command2`
+        - Run `command1` then run `command2`
+    - `command` < [inFile]
+        - Run `command` and take input from the file [inFile]
+    - `command` > [outFile]
+        - Run `command` and output results to the file [outFile]
+            - If file exists, overwrite it
+    - `command` >> [outFile]
+        - Run `command` and APPEND output to end of [outFile]
+            - If file does not exist, then create it
+    - `command1` | `command2`
+        - Run `command1` and use its output as input for `command2`
+
+(8) Files
+
+    - Any command that manipulates files can be given wildcards as 
+    arguments instead of specific names. The pattern matching is done by tcsh. 
+
+    ?          :: Match any single character
+    *          :: Match any zero or more characters
+    [abc]      :: Match any of the characters inside the square brackets
+    [a-d]      :: Match any character in the range
+    {abc,defg} :: Match any substring in the list (i.e. abc or defg)
+
+(9) Directories
+    
+    ~/    -> User's home directory
+    ./    -> Current directory
+    ../   -> Previous directory 
+    ../.. -> Two directories up (before)
+
+(10) File Manipulation Utilities
+
+    - ls
+        - List files in current directory
+    - ls [file]
+        - List [file], if it exists (useful with wildcard expressions)
+    - ls [dirName]
+        -  List all files in the directory [dirName]
+    - pwd
+        - Print current directory (pwd = present working directory)
+    - cd [dirName]
+        - Change to [dirName] directory
+    - mkdir [newDir]
+        - Make a new directory called [newDir]
+    - rmdir [emptyDir]
+        - Delete empty directory called [emptyDir]
+    - cp [file1] [file2]
+        - Copy [file1] to [file2]
+            - [file2] is a new file that is created
+    - cp [file1] [file2] [fileN] [someDir]
+        - Copy [file1] to [fileN] into the directory [someDir]
+    - scp [file1] [username@phys-ugrad.mcmaster.ca]:
+        - Secure (remote) copy to phys-ugrad.mcmaster.ca
+    - sftp
+        - Secure (remote) file transfer utility
+    - mv [file1] [file2]
+        - Move [file1] to [file2]
+            - Renames the file
+    - rm [file]
+        - Deletes the file, [file]
+    - find
+        - Find files matching a description
+    - locate [text]
+        - Find files with names containing [text]
+    - chown, chmod, chgrp
+        - Commmands to modify file status/attributes
+    - df, du
+        - Show how much space is used on a disk `df` or in files `du`
+    - gzip, gunzip
+        - Compress or uncompress file utilities
+    - tar 
+        - File archive utility
+
+(11) Text File Utilities
+
+    .      :: The dot matches any single character except newline (\n)
+    *      :: The asterisk matches zero or more instances of a single character
+    [abc]  :: Match any of the characters inside the square brackets
+    [a-d]  :: Match any character in the enclosed range
+    [^exp] :: Match any character not in the following expression
+              (i.e. [^a-zA-Z] -> Any occurrence of a non-alphabetic character)
+    ^abc   :: The regular expression must start at the beginning of the line
+    abc$   :: The regular expression must end at the end of the line
+    \      :: Treat the next character literally. This is normally used to escape 
+              the meaning of special characters such as '.' (dot) and 
+              '*' (asterisk). This character is known as the 'escape key'
+    {n,m}  :: Match the regular expression preceding the curly brackets a minimum 
+              number of 'n' times and a maximum of 'm' times (0 through 255 are 
+              allowed for 'n' and 'm'). The curly brackets should be thought of as 
+              single operators. 
+    <abc>  :: Saves the enclosed pattern in a buffer. Up to nine pattersn can be 
+              saved for each line. You can reference these latter with the \n 
+              character set. The brackets should be thought of as single operators.
+    \n     :: Where 'n' is between 1 and 9, this matches the 'nth' expression 
+              previously saved for this line. Expressions are numbered starting from 
+              the left. The '\n' should be thought of as a single operator.
+
+(12) Text Utilities
+
+    - cat [file]  :: Show contents of [file] all at once 
+    - more [file] :: Show contents of [file] one page at a time
+    - less [file] :: Same as `more` but has more features
+                     ENTER moves forward one line
+                     SPACE goes forward one page
+                     CTRL+B goes back one page
+                     /text is for searching and 'n' is to find next match
+                     Q is for quit 
+    - head [file] :: Show first 10 lines
+        - head -20 [file] 
+            - Shows first 20 lines of [file]
+    - tail [file] :: Shows last 10 lines
+        - tail -30 [file]
+            - Shows last 30 lines of [file]
+
+    - grep [exp] [file]    :: Look for instances of [exp] in [file]
+    - diff [file1] [file2] :: Look for differences between [file1] and [file2]
+    - sort [file]          :: Sort contents of [file] and output result to terminal
+    - wc [file]            :: Count lines, words, and characters in a file
+
+(13) Compiling C++ & C Programs
+
+    - A C source file conventionally ends in '.c' and included files end in '.h'
+        - Included files are added to a '.c' program at compile time
+    - C++ source files usually end in '.cpp'
+        - C++ files can also end in '.cxx' and '.cc'
+        - Included files are '.h' or '.hpp'
+            - '.hh' and '.H' are allowed but not recommended
+
+    - The default C++ compiler on phys-ugrad is the GNU C++ Compiler, accessed directly as `g++` or `c++`
+    - C programs can be compiled with 'cc' or 'gcc'
+
+    - Linking and compiling can be done in one command, but it is better to separate it into two steps. Using a makefile is even better
+    - Linking files and creating executables can be done using the `-lm` option
+    - Modern versions of `g++` automatically link files
+
+Compiler:
+
+    c++ [options] [file1] [file2] [fileN]
+        - General usage for GNU C++ Compiler
+    c++ -help
+        - List all options that `c++` can take
+    c++ [sourceFile.cpp] -o [programName]
+        - Compiles the source code file [sourceFile.cpp] and produces an executable
+        program called [programName]
+    -c
+        - This flag compiles the source code file to an object file, rather than an executable
+    -O2, -O3
+        - More aggressive optimization options
+    -g
+        - Option to include debugging symbols
+    -I [path]
+        - Look in directory [path] for included files
+
+Linking:
+
+    c++ [sourceFile.o] -o [programName]
+        - Link object file [sourceFile.o] and produces an executable called [programName]
+    -l [libName]
+        - Link in library called [libName]
+    -L [libPath]
+        - Look in directory [libPath] for libraries
+
+Debuggers:
+
+    gdb [progamName]
+        - Run GNU Debugger on [programName]
+
+(14) Make
+
+    - The `make` command is a utility that builds a program by compiling and linking the necessary files into an executable. 
+    - It relies on a Makefile to describe which files are needed to compile a program. 
+    - The make utility determines which files have changed and recompiles only those files that are affected by the changed files. 
+    - Makefiles help organize a project that contains many source code files.
+
+    - To use make:
+        `make`
+            - Compile and link the default target program
+        `make` [target]
+            - Make a specific target
+        `make clean`
+            - Clean/delete unnecessary files
+
+    - Indentation should always be done with TAB, and not spaces. Spaces do not work.
+    - If a line must be continued it should be ended with a \ and then continued
+    - A macro is like a variable where the NAME is a shorthand notation for a block of text used several times
+        - Changing the macro updates the reference for the whole Makefile
+
+    - Dependencies are lists of files that are used to make the Target
+    - Actions are the commands that create the Target
+
+    Macros with special meanings:
+        $* -> Filename of target without suffix (i.e. code from code.cpp)
+        $@ -> Target name
+        #  -> Comment line; all text following the # is ignored
+
+    - Example of Makefile syntax:
+        _____________________________________________
+        |                                           |
+        |   NAME=value                              |
+        |                                           |
+        |   Target1: dependency1a dependency 1b ... |
+        |   <TAB>   Action1a                        |
+        |           Action1b                        |
+        |                                           |
+        |   Target2: dependency2                    |
+        |           Action2                         |
+        |___________________________________________|
+
+    - The top of the Makefile contains Macros like [NAME]=[value]
+        - Macros need to be initialized once and can be used anywhere in the Makefile
+        - The benefit is that you can change the Macro at the top and the change will be reflected everywhere
+    - Target1/Target2 is something that needs to be made and everything after the colon (:) is needed to create it
+    - Action1a and Action1b create Target1
+    - Action2 creates Target2
+
+    - Example of a basic Makefile:
+        ______________________________________________
+        |                                            |
+        |   # Basic Makefile to make program ctest   |
+        |                                            |
+        |   ctest: code1.o code2.o                   |
+        |        c++ code1.o code2.o -o ctest        |
+        |                                            |
+        |   code1.o: code1.cpp                       |
+        |       c++ -c code1.cpp                     |
+        |                                            |
+        |   code2.o: code2.cpp                       |
+        |       c++ -c code2.cpp                     |
+        |                                            |
+        |____________________________________________|
+
+    - 'ctest' is a target that needs to be created
+        - Relies on 'code1.o' and 'code2.o'; these are the dependencies
+        - The line below is the action that will create 'ctest'
+    - 'code1.o' is another target that needs to be created
+        - Relies on 'code1.cpp' to be created
+        - The line 'c++ -c code1.cpp' is the action that will create 'code1.o'
+
+(5) Debugging
+
+    - When a program crashes it does not give much information on why it crashed
+    - A debugger is an effective way to find out more about why a program crashed, including the exact place the program crashed, what functions have been called to get there and the value of any variable in the program
+        - This is more efficient than adding lots of print statements
+    - To use the debugger, compile your program with '-g'
+        - This allows the debugger to link variable names and line numbers in your source code to values and locations in the program at run-time
+    - Start the debugger:
+        gdb [programName]
+
+    Debugger Commands:
+
+        q         :: Quit the debugger
+        help      :: Get help on topics (i.e. help where)
+        r, run    :: Start the program
+        CTRL + C  :: Stop the program
+
+        break [file.cpp:line] :: When the program runs, stop at [line] number 
+        break [functionName]  :: When the program runs, stop at 
+                                 function [functionName]
+        cont      :: Continue the program
+        next      :: Run the next line only; for a call, go to functions 
+                     and come-back
+        step      :: Run the next line only; for a call, go into the function 
+                     and run the first line
+        where     :: Print a list of functions called to get to where
+                     the program stopped
+        up        :: Go back one call to the previous function
+        down      :: Go forward one call
+
+        p, print [var] :: Print the value of variable with name [var]
+                          You can only print variables in the current function
+                          You can use up/down to look at earlier functions

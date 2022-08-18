@@ -1,0 +1,113 @@
+Physics 2G03 - Introduction
+
+- Instructor: James Wadsley
+	- Email: wadsley@mcmaster.ca
+	- Room: ABB 352
+
+- TAs:
+	- James Lambert
+	- Anton Borissov
+	- Hector Robinson
+	- Josef Rucksa
+	- Rishita Gudapati
+
+- Contact: 
+	- Microsoft Teams: Physics 2G03
+		- Channel: Class Chat
+	- For personal issues, contact the prof
+	- For homework, contact the TAs
+		- phys2g03.mcmaster@gmail.com
+	- For server issues, contact Anton
+		- borissoa@mcmaster.ca
+
+- Everything (slides, videos, homework, etc.) is on avenue
+
+- Course books (suggestions)
+	- C++ for Engineers and Scientists By Gary J. Bronson
+		- Good for traditional procedural programming
+	- The C++ Primer By Lipman
+		- Covers modern C++ features and object oriented programming
+		- Good for long term reference
+	- Programming in C By Stephen G. Kochan
+		- Good book for C; only covers basic C++
+		- For absolute beginners
+		- Focuses on the key parts of C/C++
+
+- Online reference: https://en.cppreference.com/w/
+
+- Why Take PHYS-2G03?
+	- Unix and programming are essential skills for research
+	- We want to know how computers work, not just use them
+	- Understanding computation helps us know how to be efficient, and understand unexpected results
+	- Learn how to efficiently do mathematics with a computer
+	- Computer modelling has become extremely popular in all fields
+
+- Assessment
+	- Homework/Assignments :: 50%
+	- Individual Project   :: 30%
+	- Regular Quizzes      :: 20%
+
+- Final Project
+	- Each student writes a program in C++ that demonstrates a numerical solution of a research problem
+	- Talk to TAs and prof for assistance and guidance
+	- Due date: End of course (December 2020)
+	- Demonstrate project to TA and classmate
+
+- Course Structure
+	- Strong focus on fundamental programming skills
+	- Classes are held through Microsoft Teams on the following days:
+		- Monday @ 12:30pm
+		- Tuesday @ 1:30pm
+		- Thursday @ 12:30pm
+	- Lectures are recorded in advance and posted on avenue
+	- Class time is for help and other activities
+	- Monday @ 10:30am is a simple help session (Not required)
+
+- Course Outline
+	- First 3-4 Weeks: Server, Unix, Algorithms, Hardware, Compiling, Debugging
+	- Next 4-5 Weeks: Variables, Programs, Functions, Program Flow, Arrays, I/O, Files
+	- Final 4 Weeks: Program Development, Object Oriented Programming, C vs. C++, Fortran, Shell Scripts, Graphics, Parallel Programming
+
+	- Avenue contains lectures, handouts, homework, quizzes, etc.
+	- Homework handouts contain information about content
+
+- Good Programming
+	- Informative names
+	- Use existing libraries
+	- Avoid repetition
+	- Reuse code through modularization
+	- Use comments
+	- Formatting and white spacing
+
+- Program should be clear and easy to read for everyone. The result should be obvious to any programmer
+- There is no ideal programming language for all applications
+- Good programming principles are independent of the language you are using
+
+- When choosing a programming language, consider the following:
+	- Compatability :: Can existing code work with or alongside it?
+	- Portability   :: Can the language be used on other systems?  
+	- Readability   :: Is the language easy to read?
+	- Efficiency    :: How fast is it for the task?
+
+- Compiled languages are faster than other types of languages
+
+- C++ is C with added features. C was developed by Dennis Ritchie to write Unix OS in 1972
+
+- Scientific computing is focused on efficiently calculating answers
+	- Essential to know how programs are executed by computers
+	- Compiled languages translate directly into efficient code
+		- Scripts and high level languages don't; Java, Python, etc.
+	- A good programmer uses both. Scripting langauges are good for plotting graphs, and compiled languages are good for crunching numbers
+
+- Programming Language Characteristics
+	- C      :: Fast, powerful, dynamic memory management, developed to write Unix
+	- C++    :: Superset of C, designed to encourage OOP
+	- Java   :: Slow, portable, and similar to C/C++
+	- Fortan :: Fast, clean, lacks modern features, great for math operations like weather simulations. Continues to get developed
+
+- C/C++ are the most popular languages used today
+- C is easy to learn and helps you directly understand how computers work
+- Hardware is programmed in C
+- C++ has modern OOP features
+- Popular languages are based on C/C++ (i.e. Java, C#, PHP, etc.)
+	- The skills you learn in C/C++ are transferrable to other languages

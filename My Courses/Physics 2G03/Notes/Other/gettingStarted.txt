@@ -1,0 +1,38 @@
+Physics 2G03 - Getting Started
+
+- Instructor: James Wadsley
+    - Email: wadsley@mcmaster.ca
+    - Extension: 27106
+    - Room: ABB 102
+- TAs: James, Anton, Hector, Josef, Rishita
+    - Email: phys2g03.mcmaster@gmail.com
+
+- Login to: phys-ugrad@mcmaster.ca
+    - This is a unix machine
+    - Admin: Anton Borissov
+        - Email: borissoa@mcmaster.ca
+- VPN to access computer: 
+https://uts.mcmaster.ca/services/computers-printers-and-software/virtual-private-networking-students/
+
+- A terminal allows you to connect to the server
+    - It is a window that looks like an editor
+    - Interprets commands as you type them
+- X-server allows you to pop up new windows
+
+- SSH allows you to connect to a new computer and run commands
+    - If you're on a windows machine, install MobaxTerm
+    - If you're on a mac, install XQuartz
+
+- Connect to the server with the following command:
+ssh -XY macid@phys-ugrad@mcmaster.ca
+- The temporary password is: 2g03
+
+- Programs that can pop-up new windows under unix are often prefaced with an 'x'. For example:
+    - xterm &
+    - xeyes &
+    - gedit fileName &
+    - xemacs fileName &
+
+- Use SCP and STFP to copy files between your machine and the server. For example:
+scp localFile macid@phys-ugrad@mcmaster.ca: remoteFile
+- Transferring files from unix to windows can cause issues because of the different text file formats

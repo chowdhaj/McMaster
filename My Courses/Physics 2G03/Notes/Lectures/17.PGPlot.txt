@@ -1,0 +1,86 @@
+Physics 2G03 - PGPlot
+
+- Plotting Data
+    - There are two approaches to plotting data
+        - 1. Generate a file and use a separate package on the file to generate plots/graphs
+             i.e. Python, MatPlotLib, etc.
+        - 2. Call graphics reoutines directly using a library of routines and generate
+             plots on the fly
+
+- PGPlot
+    - PGPlot is a library of routines callable from C/C++ and Fortran
+        - PGPlot was originally made for Fortran and then ported to C/C++
+    - PGPlot produces very nice graphs, contour plots, surface plots, and other graphics
+    - PGPlot has to be downloaded and installed from the website; it's freeware
+        - Environment variables need to be setup after installing
+    - PGPlot allows you to output to the screen or a file
+        - i.e. /XWINDOW, /GIF, /CPS
+            - /XWINDOW opens a pop up screen with the plot
+                - /XW is shorthand for /XWINDOW
+            - /GIF creates an GIF image and saves it to storage
+            - /CPS creates a postscript image
+    - PGPlot is a non-standard library
+        - This means that the linker has to be told where to find the routines
+            - i.e.
+                c++ -o ploty ploty.o -ltrapfe -lpgplot -lcpgplot -lX11
+
+- Routines
+    - Add prototypes for PGPlot functions
+        #include "cpgplot.h"
+    - Open a plot window (XWindow)
+        cpgopen("/XWINDOW")
+    - Setup plot axes
+        cpgenv(0., 2*M_PI, -1., 1., 0, 1);
+            - 1st and 2nd arguments are MIN and MAX for X-axis
+            - 3rd and 4th arguments are MIN and MAX for Y-axis
+            - 5th argument: Use the same scaling on axes
+                - 0 = No || 1 = Yes
+            - 6th argument: Draw box plus axes (Axis styling)
+                - 0 = No || 1 = Yes
+    - Label axes
+        cpglab("x", "y", "y = cos(x)");
+            - 1st and 2nd argument are labels for the X and Y axis, respectively
+            - 3rd argument is the title of the plot
+                - This appears above the plot
+    - Change plot color to blue (color = 4)
+        cpgsci(4);
+            - Changes plot color
+                - 0 = White
+                - 1 = Black
+                - 2 = Red
+                - 3 = Green
+                - 4 = Blue
+                - Etc.
+    - Plot two arrays x and y as a curve
+        cpgline(nintervals + 1, x, y);
+            - 1st argument: Number of points to plot
+                - (nintervals + 1) is the number of points to plot
+                    - This is an int
+            - 2nd and 3rd arguments: 'X' and 'Y' arrays to plot
+                - 'X' and 'Y' must be FLOAT arrays, NOT double
+    - Plot two arrays, 'X' and 'Y', as points
+        cpgpt(n, x, y, sym)
+            - 1st Argument: Number of points
+                - This is an int
+            - 2nd and 3rd arguments: 'X' and 'Y' arrays to plot
+                - 'X' and 'Y' must be FLOAT arrays, NOT double
+            - 4th argument: Symbol to use (Argument must be an int)
+                - 0 = Box
+                - 1 = Dot
+                - 2 = Plus: ( + )
+                - 3 = Star ( * )
+                - 4 = Circle
+    - Pause and then close plot window
+        cpgclos();
+
+- Documentation
+    - The full documentation for PGPlot is at:
+      http://www.astro.caltech.edu/~tjp/pgplot/cbinding.html
+    - The difference between PGPlot for Fortran and C/C++ is adding a 'c' to the
+      beginning of every function
+        - i.e. If a function in Fortran is pgline(n, x, y), then the C/C++
+               equivalent is: cpgline(n, x, y)
+    - Some functions in PGPlot require passing by reference and not value
+        - i.e. pgcurs(x, y, ch); // Returns where the cursor is
+            - In C++, you need to add an ampersand to pass by reference
+                - i.e. cpgcurs(&x, &y, &ch);

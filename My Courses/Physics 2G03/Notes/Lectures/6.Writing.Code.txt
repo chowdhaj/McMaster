@@ -1,0 +1,54 @@
+Physics 2G03 - Writing A Simple Program
+
+- Programming
+    - The crucial steps to programming are:
+        1. Designing
+            i. State the problem
+            ii. Analyze the problem
+                - Break it down into simple steps
+                    - Add details such as:
+                        - What data needs to be available?
+                        - How does the data get processed?
+                        - What (new) data comes out?
+        2. Testing
+            - This is an on-going process
+        3. Writing
+            - Strongly dependent on the programming language used
+
+- Sample Problem
+    - Problem: Write a program to add two integers together and print the answer
+               The user supplies both integers, 'a', and 'b'
+    - Analyze the problem:  
+        1. Read the integers (input)
+            - Can use 'std::cin'; found in 'iostream'
+        2. Calculate the sum of the integers
+            - Performed by the CPU 
+        3. Report the answer (output)
+            - Can use 'std::cout'; found in 'iostream'
+        - This is a top-down structure
+    - Write and test the code
+        - Testing is an on-going process and may require you to rewrite code
+
+- IO
+    - In order to input/output to/from terminal, import:
+        #include <iostream>
+    - 'cout' is able to work out what variables expect from their type 
+        - int   -> integer
+        - float ->  float
+            - integers, floats, and strings are standard types
+    - 'cin' is also able to work out what variables expect from their type
+        - Waits for the hit of a 'return' key before interpreting inputted value(s)
+        - 'cin' does not indicate that it's waiting for input
+            - This must be specified by the programmer
+
+- Program
+    - C/C++ are strongly typed languages
+        - You need to indicate the type of variable you want to use
+            - This lets the compiler know what to expect from it
+    - It is good practice to return an int to the operating system at the end of the program
+        - Return 0 for success or another value if it failed
+        - The compiler won't throw an error if you don't have a return statement for the 'main' function
+    - Makefiles are used to compile large programs with many files
+        - A benefit to using 'make' is that it will only compile files that have been modified
+            - It can tell if the program needs to be re-compiled or not
+            

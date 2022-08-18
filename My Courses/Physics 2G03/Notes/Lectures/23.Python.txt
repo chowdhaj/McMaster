@@ -1,0 +1,247 @@
+Physics 2G03 - Python
+
+- Introduction To Python
+    - The goal of this lecture is to introduce Python using C++ analogies
+    - Python is a powerful tool that is easy to use
+        - Good for creating plots, graphs, charts, etc.
+
+- Why Python?
+    - Python is easy to read and write code in
+        - Low level tasks are handled automatically
+            - i.e. Memory allocation, type casting, etc.
+    - Huge catalogue of extensive libraries to solve a diverse range of problems
+        - i.e. NumPy, SciPy, NetKet, TensorFlow, MatPlotLib, Etc.
+            - TensorFlow is a machine learning library
+            - NetKet is a library for variational physics problems
+            - SciPy has lots of scientific computing tools 
+    - Python is becoming ubiquitous in scientific computing for data processing, plotting,
+      analysis, etc. 
+        - Python is used all the time by big banks and credit card companies for data science
+
+- Difference Between C++ & Python
+    - Python is interpreted, and C++ is compiled
+        - In C++, code is written in a text file, the G++ or C++ compiler turns the source code
+          into machine code, and the computer runs the machine code
+            - This process is efficient because machine code is easily read by the computer
+        - Python is interpreted; there is no compilation
+            - Python code is fed into an interpreter, and the interpreter reads it, line-by-line
+                - Each line is executed in order, until it finishes, encounters an error, or
+                  some condition is met
+        - Interpreted code is slower than compiled code
+            - However, with interpreted code, you don't have to wait for the compiler to find
+              your mistakes
+                - This makes debugging in Python easier
+                    - Python's interpreter tells you exactly what line caused an exception
+        - C++ can have compile time errors and runtime errors
+            - In Python, these are both the same
+    - Python is dynamically typed, and C++ is statically typed
+        - In Python, the types of variables can be guessed by the interpreter
+        - In C++, you must declare the type of the variable before it can be initialized
+            - i.e.
+                int a = 1;
+                double b = 2.0;
+    - Python is white-space sensitive, and C++ relies on brackets and semi-colons
+        - In C++, it doesn't matter how space your code
+            - The curly braces indicate if code is in a function, loop, or if-statement
+            - Semi-colons indicate the end of a line
+        - In Python, white-space matters a lot, because the indents indicate if code is inside
+          a for-loop or if-statement
+
+- Comparing Code (C++ VS. Python)
+    - Defining Variables
+        - C++
+            - i.e.
+                int main() {
+
+                    int a = 1;                       // An Integer
+                    float b = 2.5;                   // A Float
+                    char greeting[] = "Hello World"; // A String
+
+                    return 0;
+                }
+            - Each variable must have its type explicitly declared
+            - Comments are done with double forward slashes ( // )
+            - All code must be inside a function
+        - Python
+            - i.e.
+                a = 1                    # An Integer 
+                b = 2.5                  # A Float
+                greeting = "Hello World" # A String
+            - In Python, you don't need a main function 
+            - You can specify the type of variables in Python, but you don't need to
+                - i.e.
+                    int a = 1
+                    float b = 2.5
+            - Comments are done with a hashtag ( # )
+    - Arrays
+        - C++
+            - i.e.
+                int main() {
+                    int arr[5] = {1, 2, 3, 10, 12};
+                    return 0;
+                }
+            - An array is just a pointer to the first element in the array
+            - The size must be specified during declaration/initialization
+        - Python
+            - i.e.
+                arr = [1, 2, 3, 10, 12]
+            - The type of the array does not matter
+            - You don't need to tell Python how long the array is
+            - The Python interpreter figures out the type and size of the array during runtime
+            - Python arrays are called lists
+                - But the functionality is more-or-less the same
+            - Python arrays can do more than C++ arrays
+    - Printing Arrays
+        - C++
+            - i.e.
+                #include <iostream>
+                using namespace std;
+                int main() {
+                    int arr[5] = {1, 2, 3, 10, 12};
+                    cout << arr[2] << endl; // Print the number 3
+                    return 0;
+                }
+        - Python
+            - i.e.
+                arr = [1, 2, 3, 10, 12]
+                print(arr[2])
+            - Indexing arrays in Python is identical to C++
+                - Arrays start at 0
+            - The built in 'print()' function in Python can print arrays
+    - Lists
+        - C++
+            - Lists in C++ are found in the standard template library
+                - i.e. std::vector
+                - Lists cannot be directly printed using 'cout'
+                    - They must be iterated and each element is printed one at a time
+        - Python
+            - i.e.
+                colours = ["red", "blue", "green"] # Create list of colors
+                colours.append("purple")           # Uses append function to add "purple" to list
+                lessColours = colours[1:]          # Divides the list from the 2nd element to last
+                # lessColours is: ["blue", "green", "purple"]
+                print(colours)
+            - In Python, Lists are built-in
+            - There are several functions available that operate on lists
+                - i.e. append, [:], etc.
+            - Printing lists is very easy in Python
+                - The 'print()' function in Python can print just about any standard data type
+    - For Loops
+        - C++
+            - i.e.
+                #include <iostream>
+                using namespace std;
+                int main() {
+                    for(int i = 1; i < 11; i++) {
+                        cout << i << endl;
+                    }
+                }
+            - The For-Loop contains the initialization, condition, and increment, at the beginning
+        - Python
+            - i.e.
+                for i in range(1,11):
+                    print(i, '\n')
+                # The 'i' is the iterator variable
+            - i.e.
+                colours = ["red", "blue", "green", "purple"]
+                for color in colours:
+                    print(colour, '\n')
+                # Iterates over the 'colours' list and prints each element in it
+                # 'color' is the iterative variable
+            - For Loops are much more flexible in Python
+            - The whitespace is used to indicate code that belongs to a for loop
+                - There are no curly braces 
+                - Whitespace is crucial in Python
+            - A colon marks the end of a loop or if-statement
+            - The 'range(x,y)' function in python returns the range from 'x' to 'y - 1' 
+            - The incrementation in a for-loop can be changed by adding a 3rd argument to the
+              range function
+                - i.e. 
+                    # The following loop increments by 2 each time
+                    for i in range(1, 11, 2):
+                        print(i, '\n')
+            - In the 'print()' function, each thing you want to print can be separated by a comma
+                - i.e. print(i, '\n')
+    - While Loops
+        - C++
+            - i.e.
+                // This code snippet uses a while-loop to print numbers from 1 to 10
+                #include <iostream>
+                using namespace std;
+                int main() {
+                    int n = 1;
+                    while(n < 6) {
+                        cout << n << endl;
+                        n += 1;
+                    }
+                    return 0;
+                }
+        - Python
+            - i.e.
+                n = 1
+                while n < 6:
+                    print(n)
+                    n += 1
+            - A colon marks the end of the 'while' loop and marks the beginning of its code
+    - If-Else Statements
+        - C++
+            - i.e.
+                // If-Else Program
+                int main() {
+                    bool switch = true;
+                    if(switch) {
+                        switch = false;
+                    } else {
+                        switch = true;
+                    }
+                    return 0;
+                }
+        - Python
+            - i.e.
+                switch = True
+                if switch:
+                    switch = False
+                else:
+                    switch = True
+            - Notice the whitespace; whitespace is very important
+                - Indentation tells the interpreter what code belongs to the if-else statement
+                - A colon at the end of if-else marks the start of the if-else block
+
+- Python Nuances
+    - Default mode of division in python is like normal division
+        - i.e. print(4 / 5) # Outputs 0.8
+    - Using double forward slashes ( // ) for division treats both numbers as ints
+        - In turn, this rounds the result down; or it just gets rid of the decimal
+            - i.e. print(4 // 5) # Outputs 0
+        - This is similar to default division in C++
+    - The whitespacing in Python needs to be consistent
+        - i.e. Always indent using the same number of spaces
+            - The interpreter will determine this number
+    - Libraries can be imported with a "nickname"
+        - i.e.
+            import numpy as np
+            import matplotlib.pyplot as plt
+
+- Sample Python Code
+    - Prime Number Checker
+        - i.e.
+            n = eval(input("Give me an integer: "))
+
+            for i in range(2, (n // 2) + 1):
+                if (n % i) == 0:
+                    print(n, " isn't prime")
+                    exit()
+            print(n, "is prime")
+    - Even Number
+        - i.e.
+            lowerInteger = eval(input("Give me an integer: "))
+            upperInteger = eval(input("Give me a bigger integer: "))
+
+            if upperInteger < lowerInteger:
+                print("Please read more carefully next time." '\n')
+                exit()
+
+            for i in range(lowerInteger, upperInteger):
+                if (i % 2) == 0:
+                    print(i)
+                    

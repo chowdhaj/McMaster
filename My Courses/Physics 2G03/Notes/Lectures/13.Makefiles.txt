@@ -1,0 +1,82 @@
+Physics 2G03 - Makefiles
+
+- Compiling & Linking
+    - The default name for a newly linked runnable program/exectuable is 'a.out'
+    - Compiling and linking in stages is advantageous
+        - This process can be automated with `make`
+
+- Makefile
+    - Rules
+        - The `make` program looks for a Makefile
+            - A Makefile contains text that outlines rules for creating a program
+                - The program can be created as many times as you want
+            - The Makefile needs to be in the same directory as the source files
+                - `make` can automatically compile and link in different steps
+    - Structure of a makefile:
+        __________________________________
+        |                                 |
+        | Things_To_Make: Things_It_Needs |
+        | <TAB>   How_To_Make_It          |
+        |_________________________________|
+        - Note: There must a <TAB> 
+            - Spaces are wrong and will cause problems
+
+        - Example of a makefile:
+            ___________________________
+            |                          |
+            | hello: hello.o           |
+            |    c++ hello.o -o hello  | 
+            | hello.o: hello.cpp       |
+            |    c++ -c hello.cpp      |
+            |__________________________|
+            - Note:
+                - If 'hello.cpp' changes or 'hello.o' doesn't exist, make will compile to create 'hello.o'
+                - If 'hello.o' changes or 'hello' doesn't exist, make will link to create 'hello'
+        - `make` is smart enough to detect changes in files and re-make them
+            - This can save lots of time and resources when building a large program
+    - Making A Makefile
+        - The Makefile must be in the same directory as the source files
+        - When making a Makefile, a good strategy is to copy and edit an existing one
+            - Change names to accomdate new program
+        - All dependencies need to be listed in a Makefile
+            - Every file, source or object, required to make the target file
+        - If `make` cannot locate a file it needs to create something, it will search the rest 
+          of the file for a rule to make the dependency
+    - `make` is like a simple programming language used to create files from other files
+        - It supports variables that can be used to store file names, flags, etc.
+            - i.e. 
+                CFLAGS = -O3
+                #CFLAGS = -g -O0
+                OBJECTS = file1.o file2.o
+            - A hash ( # ) comments out the line
+                - Similar to how a double backslash ( // ) comments out code in C/C++
+            - Variables are useful for creating different types of programs
+                - For instance, you can effortlessly switch between creating a fast program and 
+                  a debugging program, based on your needs
+                    - When creating a program, you can toggle the debug variables
+                        - When compiling a program for real world use, you can toggle the 
+                          optimization flags
+                    - Toggling variables does not change the source files
+                        - It only changes the makefile
+                            - Thus, you will need to `touch` the file(s)
+                                - i.e. touch *.cpp
+                        - However, if you make the Makefile a dependency, then you won't 
+                          need to `touch` any file
+                            - i.e.
+                                __________________________________________________
+                                |                                                 |
+                                | testvector: testvector.o vector.o               |
+                                |     c++ testvector.o vector.o -o testvector     |
+                                | vector.o vector.cpp vector.h Makefile           |
+                                |     c++ vector.cpp -c                           |
+                                | testvector.o: testvector.cpp vector.h Makefile  |
+                                |     c++ testvector.cpp -c                       |
+                                |_________________________________________________|
+
+            - Variable names are referenced using the following format
+                $(VARIABLE_NAME)
+                $(CLFAGS)
+                $(OBJECTS)
+            - Using variable names in rules looks like:
+                program_name: $(SOURCE_FILES)
+                    c++ $(CFLAG) $(OBJECT_FILES) -o prog

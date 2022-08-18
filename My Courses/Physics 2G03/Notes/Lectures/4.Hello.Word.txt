@@ -1,0 +1,79 @@
+Physics 2G03 - Compiling Hello World
+
+- A Basic Program
+    - The program `printf` prints whatever text you give it, straight back to the terminal
+        - i.e. printf 'Hello World\n'
+            - Note: You have to put apostrophes to include the <newline> (\n)
+        - `printf` lives in '/usr/bin/printf'
+            - The program is about 50kB
+            - Attempting to read `printf` with `cat` outputs binary machine code that appears to be garbage characters
+                - This is because `printf` is a compile program that runs directly on the CPU
+    - Compilers take a human readable source code in normal text and convert it into machine code
+        - i.e. Converting C++ source code into machine code
+            - Humans can read and understand C++ source code; the CPU cannot
+            - The CPU can read and execute machine code; humans cannot
+
+- The C++ Compiler
+    - Given source code, the C++ compiler can produce a runnable program in one step
+        - i.e. c++ myprog.cpp -o myprog
+            - 'myprog.cpp' is a text file containing C++ source code
+            - 'myprog' is a new runnable program, containing machine code, made by the compiler
+            - The `-o` flag means output and indicates that the next word is the program's name
+                - If the `-o` flag is not specified, the default program name is 'a.out'
+                    - i.e. c++ myprog.cpp
+    - The `c++` program takes in c++ source code and returns runnable machine code
+
+- Basic C++ Source File
+    - Boiler plate code assists the compiler, telling it what to do
+    - The output stream, standard c-out (std::cout) represents the terminal
+    - The '<<' tells the compiler to combine the following text with the terminal and make it print
+
+- Create The Hello Program 
+    - Compilers are very picky
+        - A small typo will not compile the source code to machine code
+    - The command `ls` places an asterisk after executable programs
+        - This indicates that they can be run
+
+- The C++ Compiler
+    - Compilers do two jobs
+        - 1. Compiling
+            - Takes source code, and converts it into machine code
+            - The `-c` flag tells the compiler to just compile
+                - This produces an object file
+                    - Object files are not runnable/executable
+                        - i.e. hello.o
+                        - i.e. myprog.o
+        - 2. Linking 
+            - Takes source code, and all other necessary components to create a runnable program 
+                - The necessary component(s) is extra code, like libraries
+                - Linking adds extra code into the original program
+                    - The extra code allows the program to talk with the operating system
+                    - Thus, the size of the executable gets bigger
+                        - i.e. The 'hello.cpp' does not print anything, it relies on external code to print to 'stdout'
+            - Linking can turn an object file into an executable program
+    - The `top` command is an interactive way to display and update sorted information about processes
+        - It shows things like max memory, current memory, etc.
+
+- Anatomy Of Program
+
+    - The source code for 'hello.cpp' is explained below:
+
+    #include <iostream> ------------------> HEADER DEFINES STD::COUT
+
+    int main() { -------------------------> MAIN FUNCTION
+        
+        std::cout << "Hello World!\n"; ---> OUTPUT TEXT TO 'STDOUT'
+
+        return 0; ------------------------> RETURNS TO THE OPERATING SYSTEM
+    }
+
+    - The bulk of the source code is enclosed inside curly brackets
+        - All code inside the curly brackets belong to the 'main' function
+    - The header tells the compiler where to find things not explicity defined in the program
+    - Every program needs a 'main' function
+        - This tells the operating system where to start
+    - The 'return 0;' statement returns to the operating system
+        - It can also indicate that the program ran without errors
+    - C++ is a super-set of C
+        - C was originally designed to write Unix commands like `ls`
+            - This is why C/C++ programs contain a 'main' function, a return status, command line arguments, etc.

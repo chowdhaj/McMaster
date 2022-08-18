@@ -1,0 +1,88 @@
+Physics 2G03 - Connecting To PhysGrad
+
+- The following VPN is required:
+https://uts.mcmaster.ca/services/computers-printers-and-software/virtual-private-networking-students/
+- A VPN tricks the server into thinking that you're connecting from campus WiFi
+
+- When you login using SSH, unix defaults to a text interface
+- You type commands into the terminal and execute them
+
+- The command `ls` shows all files in the current directory
+- You can also see files in other directories. For example:
+ls /home/2G03
+- A directory is a folder that contains files. /2G03 is a directory containing files relevant to this course
+- Unix separates directories with a forward slash: /
+
+- On a unix system you can run many programs simultaneously by entering commands in the terminal
+- There are many commands to do a variety of things; look at files, users, processes, etc.
+    - whoami :: Returns effective user ID
+    - hostname :: Returns network information
+
+- The shell is the program that looks at your commands and works out what to do
+- This class will use the tcsh shell
+- There are many different types of shells. (i.e. Bash, ZSH, CSH, KSH, etc.)
+
+- Create a new terminal by typing: xterm &
+- When programming, it is useful to have a terminal for compiling and running, and another terminal for editing
+
+- Unix commands typically have a generic structure: 
+commandName [options] [arguments]
+- Here are some examples with the `ls` command
+    - ls
+        - The command is `ls` and there are no options or arguments
+    - ls -a
+        - The option is `-a` and there are no arguments
+    - ls -a /home/2G03
+        - The option is `-a` and the argument is `/home/2G03`
+
+- You can find more information about commands with manual pages, also referred to as `man` pages. For example: man ls
+
+- tcsh has a simple set of regular expressions for matching files
+    - ls
+        - Lists everything in the directory
+    - ls *.pdf
+        - Everything ending in '.pdf' 
+    - ls ?G03
+        - Everything starting with any one character and ending in G03
+    - ls HW[123]
+        - Anything matching HW1, HW2, and HW3
+    - ls [a-z]*
+        - Anything that starts with a lowercase letter
+
+- More commands:
+    - ls :: Lists files
+    - mv :: Move or rename files
+    - cp :: Copy files
+    - rm :: Delete files
+- Note: There are two styles for cp, mv
+    - cp file1 file2
+        - Copies a single file
+    - cp file1 file2 ... fileN /directory
+        - Copy all files from file1 to fileN into /directory
+
+- Unix has special directories
+    ~/     -> Home directory
+    ~bob/  -> Bob's home directory
+    ./     -> Current directory
+    ../    -> The directory above this one
+
+- Directory commands:
+    - pwd   :: Print current directory
+    - cd    :: Change to new directory
+    - mkdir :: Make new directory
+    - rmdir :: Remove EMPTY directory
+
+- Text file utilities and commands:
+    - gedit   :: Text editor similar to notepad
+    - xemacs  :: Emacs editor (very powerful)
+    - more    :: Look at a file, one page at a time
+        - more fileName
+    - less    :: Similar to `more`, but smarter
+        - less fileName
+    - head    :: Look at top 10 lines
+        - head fileName
+    - tail -n :: Look at last n number of lines
+        - tail -5 fileName
+
+- The best way to learn is to practice!
+- Learn by doing, trying, and repeating!

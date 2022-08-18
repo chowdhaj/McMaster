@@ -1,0 +1,137 @@
+Physics 2G03 - Using Unix/Linux (Part 2)
+
+- File commands
+	- ls :: List files	
+	- mv :: Move or rename files
+	- cp :: Copy files
+	- rm :: Delete files
+- Two styles for `cp` and `mv`
+	- cp file1 file2 
+		- Copy single file
+	- cp file1 file2 ... fileN directory
+		- Copy file1 to fileN into /directory
+
+- Create a file with the `touch` command
+	- touch fileName
+
+- An asterisk (*) is used for pattern matching
+	- ls *file
+		- Lists all files and directories that end in 'file'
+	- The asterisk is a wildcard and matches any character
+
+- tcsh has a simple set of regular expressions for matching files
+	- ls
+		- Lists everything; every file and folder
+	- ls *.pdf
+		- Lists anything ending in '.pdf'
+	- ls ?G03
+		- Lists items starting with any character and ending in G03
+			- i.e. 2G03, 3G03, 4G03, AG03, BG03, etc.
+	- ls HW[123]
+		- Matches HW1, HW2, and HW3
+	- ls [a-z]*
+		- Lists anything starting with a lowercase letter
+			- [a-z] is a range
+
+- Wildcard Summary
+	- ?           :: Matches any one character
+	- *           :: Zero or more characters are matched
+	- [abc]       :: Matches any one character in the list
+	- [a-d]       :: Any character in the range is matched
+	- {.cpp, .o}  :: Matches one of the comma separated sets
+		- ls *.{cpp, o}
+			- Lists all files ending in '.cpp' or '.o'
+
+- Special Directories
+    ~/     -> Home directory
+    ~bob/  -> Bob's home directory
+    ./     -> Current directory
+    ../    -> Directory before current directory
+- If the current directory is 'bob' then the directory before it is 'home'
+	./  is 'bob'
+	../ is 'home'
+
+- In Unix, directories are special files, and have their own set of commands
+	- pwd   :: Current directory
+	- cd    :: Change directory
+	- mkdir :: Make new directory
+	- rmdir :: Remove EMPTY directory
+
+- When you list directories with `ls`, they end in a forward slash ( / )
+
+- Text file utilities:
+	- gedit   :: Similar to windows notepad
+	- micro   :: Terminal editor like nano
+	- xemacs  :: Emacs editor (very powerful)
+	- more    :: Shows contents of a file, one page at a time
+	- less    :: Similar to `more`, but smarter
+	- head    :: Look at top 10 lines of a file
+	- tail -n :: Look at last n lines of a file
+
+- Searching text files
+	- `grep` is used to look for specific words, names, etc. in files from the command line
+		- grep main test.cpp
+			- Searches for the word 'main' in the 'test.cpp' file
+		- grep main /home/2G03/hello/*
+			- Searches for the word 'main' in every file in the 'hello' directory
+	- `grep` is useful for finding programs with a particular function or variable
+	- `grep` has a different regular expression set for matching text
+		- Wildcards work differently with `grep`
+
+- Jobs
+	- `jobs` is a built in command and is used to look at commands that are still running
+	- `jobs` is more user friendly and makes it easier to track processes
+	- You can kill commands
+		- kill %n
+			- Where n is the job number
+	- You can kill any program by hitting [CTRL + c] on the keyboard
+	- [CTRL + z] suspends the program and stops it from getting CPU time
+		- You can background programs
+			- bg %n 
+				- Where n is the job number
+		- You can also foreground programs
+			- fg %n
+
+- Job management
+	- jobs    :: List jobs associated with terminal
+	- fg %n   :: Put job 'n' in foreground
+	- bg %n   :: Put job 'n' in background
+	- kill %n :: Kill job 'n'
+	- CTRL+c  :: Force quit a program
+	- CTRL+z  :: Suspend a program
+	- CTRL+s  :: Pause a program 
+	- CTRL+q  :: Continue a program (unpause)
+	- CTRL+d  :: End of file (EOF); logs you off if nothing else is on the prompt
+
+- Working in a shell involves a lot of typing
+	- Shortcuts are used to cut down on repetitive typing
+		- Up & Down arrow keys cycle through previous commands
+		- Wildcards are used to group items
+		- `history` lists old commands 
+			- !3  :: Runs the 3rd command in history
+			- !hi :: Runs last command starting with 'hi'
+		- TAB completion is used to complete command and filenames
+			- Very useful for long filenames
+			- Fills out as much as it can before there's a conflict with similar names
+	- [CTRL + a] goes to the start of the line
+	- [CTRL + e] goes to end of line
+	- You can copy and paste text in the terminal
+
+- Redirection
+	- Puts output from a program into a file
+		- ls /home/2G03 > junk.txt
+			- The output of the command ls /home/2G03 is inside the file 'junk.txt'
+
+- Pipes
+	- Used to make programs work together
+	- Output from first program is fed to the second program
+		- ls /bin/* | more
+		- ps | more
+
+- Redirection operators
+	command < file      :: Take input from file
+	command > file      :: Put output into file (overwrites existing file)
+	command >> file     :: Put output at END of file OR
+	                       Creates new file if it doesn't exist
+	command1 | command2 :: Pipe output from command1 into command2
+	

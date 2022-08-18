@@ -1,0 +1,95 @@
+Physics 2G03 - Using Unix/Linux (Part 1)
+
+- Linux is a form of Unix used on phys-ugrad@mcmaster.ca
+
+- Unix was designed in the 1970s as a multi-user operating system
+- The design of Unix is to associate everything with a file
+- The design philosophy of Unix is to use small utility programs together
+
+- Logging into a Unix system gives you a command prompt; the contents of a terminal window
+- The command `passwd` changes your login password
+
+- The command `ls` shows files inside folders
+- Typing `ls` by itself shows files inside the folder you are currently in
+- `ls` can accept arguments and yield different outcomes
+	- Can specify other directories. (i.e. ls /directory/folder)
+- Unix uses a forward slash to indicate directories
+	- Windows uses a backward slash
+- `ls /` shows the full file system starting at root
+- The home directory contains user files
+
+- Unix directories
+	/bin  :: Core programs
+	/sbin :: System programs
+	/usr  :: User programs
+	/home :: User home directories
+
+	/dev  :: Devices (i.e. Mouse, disk, etc.)
+	/etc  :: System configuration files
+	/var  :: Contains logs, emails, printing
+	/proc :: List of all programs running on the system
+
+- On Unix you can run many programs at the same time by entering them at the terminal
+- There are commands to look at files, users, processes, etc.
+- Some commands return basic information like your username, hostname, and other users currently on the system
+	- whoami   :: Username
+	- hostname :: Name of the computer
+	- who      :: List of other users online
+	- more     :: Look at contents of a file
+	- top      :: List of programs currently running
+	- More (i.e. gedit, xemacs, xterm, xeyes)
+
+- The shell is a program that looks at the commands and works out what to run
+- This course uses tcsh
+- The shell program interprets commands as you type them
+
+- You can configure how tcsh operates by modifying the `.cshrc` file in your home directory
+	- more ~/.cshrc
+	- The ~ symbol is a shortcut for your home directory
+
+- The `set` command allows you to modify how the shell behaves
+- `alias` is used to create command shortcuts
+	- alias x xterm
+		- Create shortcut
+	- unalias x
+		- Remove shortcut
+
+- Create new terminal window by typing `xterm &`
+	- It's good to have multiple terminal windows; one for compiling, one for editing, and one for testing
+
+- Unix commands have a generic structure: command [options] [arguments]
+	- For example:
+		ls
+		ls -a
+		ls -a /home/2G03
+	- `-a` is an option
+	- /home/2G03 is an argument
+
+- Manual pages provide more information on commands, options, and what arguments it expects
+	- man ls
+	- man cd
+	- man man
+- Manual pages can be browse by scrolling or tapping the space key
+- Manual pages can be searched by typing a / followed by a word
+	- Press 'n' to go to the next word
+- Press 'q' to quit and exit the manual pages
+
+- A prompt typically ends in a dollar sign ( $ )
+
+- The `echo` command returns whatever text you give it
+
+- The `which` command tells you if there is a command built in to tcsh or if there is an executable program
+	- which ls
+	- which man
+	- which cd
+	- which which
+	- which echo
+
+- Every time a new program is started, you can see it listed as a process
+	- `ps` lists processes associated with your current terminal
+- Programs running on the shell have a PID (Process ID Number)
+- Most things in Unix are very efficient, and `ps` will list their time used as 0 seconds
+- `ps -u someUser` shows all processes that belong to someUser
+
+- Putting an ampersand (&) at the end of the command tells Unix to not wait for the program to finish; so you get your command prompt back
+	- xterm &

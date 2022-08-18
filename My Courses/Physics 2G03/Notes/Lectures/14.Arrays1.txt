@@ -1,0 +1,110 @@
+Physics 2G03 - Arrays
+
+- Introduction
+    - It is not practical to store large data in thousands or millions of 
+      individual variables with different names
+        - Arrays were developed for this purpose
+            - Arrays help with indexing lots of numbers in a big set
+
+- Scalars Vs. Arrays
+    - A regular variable is also referred to as a scalar variable
+        - Similar to how a mathematical scalar has just one value
+    - An array is a set of values associated with a single name
+        - Similar to a vector, matrix, or tensor in mathematics
+        - In C/C++, arrays are indicated using square brackets after the name
+            - i.e. a[1], b[2], c[3], etc.
+                - Some languages use round brackets () to declare arrays
+                - In C/C++, a function has round brackets, and an array has square brackets
+
+- Referencing Arrays
+    - Arrays have a large set of potential values associated with it
+        - Each value is referenced using a single name and index
+            - Index refers to the desired value within the list
+                - In C/C++ the first index is 0
+                    - This is true for Java, Python, etc.
+                    - Languages like Fortran and Mathematica start indexing arrays at 1
+
+- Square Brackets
+    - The value in the square brackets, [ ], has two meanings, depending on context
+        - When an array is first declared, the value in the brackets represents the
+          size of the array; the number of things to store
+            - This should be a well defined single integer
+            - This tells the compiler to set aside a continuous block of memory big
+              enough to store that many things
+                - i.e. int a[10];
+                    - The size of the array is 10, and can store 10 integers
+                        - Occupies 40 bytes, assuming each 'int' is 4 bytes
+        - In all other cases, the value in the brackets refers to the element index
+            - i.e. a[0] = 5
+                - Sets the first element in 'a' to 5
+            - i.e. a[9] = 1
+                - Sets the 10th element in 'a' to 9
+                    - Note: This is the 10th element and not 9th because counting starts at 0
+
+- Legal Index Values
+    - If the size of the array is 10, then only indices 0 to 9 are allowed 
+        - i.e. a[1] = 5;
+            - Sets the 2nd element to 5
+        - i.e. a[9] = 17;
+            - Sets the 10th element to 17
+        - i.e. a[-1] = 2;
+            - Sets the value BEFORE the array to 2
+                - This is illegal memory access
+        - i.e. a[10] = 2;
+            - Sets the value AFTER the array to 2
+                - This is illegal memory access
+    - Note: The compiler will not warn you about illegally accessing index 
+            values beyond the size of the array
+        - Implementing this feature would be a waste because it would take a lot of time for the
+          compiler to count every array index and make sure its legal
+        - Even though accessing memory like this is illegal, the compiler will 
+          not warn you about it
+            - The value(s) will be quietly changed
+
+- Index Problems
+    - Arrays do not check if they have enough storage for a given task
+        - They do not check if the index is valid
+            - i.e. 
+                int a[10]; // Define an array of integers, of size 10 
+                a[-1] = 2; // Illegal memory access (Out of bounds)
+                // C++ does not check the index's validity
+        - The programmer must keep track of all these things
+            - These types of memory error bugs are hard to track
+    - Smart pointers were created to alleviate these problems and have built-in checks
+        - Smart pointers are aware of the total size and check bounds
+            - i.e. `std::string s;`
+                - This is an array of characters
+                    - But it knows how long it is, and can make itself longer, if needed
+    - In general, C++ objects do not bound check because it is slower
+        - If speed does not matter, then it is good to check
+
+- Initialization
+    - A set of values inside braces is a constant array that can be used for initializing
+      an array in one-go
+        - i.e. int a[4] = {1, 2, 3, 4};
+            - The size can be left out, and the compiler will count all elements
+                - i.e. float b[] = {1.1, 1.2, 1.3};
+                    - The size of array 'b' is 3
+    - Traditionally, constant variables were used to declare the size of arrays
+        - This made it easier to change the size of the array, at any time
+            i.e.
+                const int N = 100; // Constant value of 100
+                int data[N]; // Size of array is 100
+        - Changeable sizes are allowed in modern C/C++
+            - The size of arrays can be set after the program is executed
+            - When the function ends the array is deleted, just like any other variable
+                - This is useful when you do not know the size of the data, ahead of time
+                    - i.e. Pictures (PNGs)
+                        - Pictures contain the size of the image in the header file
+                            - This information can be used to set the size of the array
+                              when the program is running
+
+- Arrays & Loops
+    - Arrays are often modified and used with loops to count through indices
+    - Arrays are good for handling datasets
+        - The dataset is loaded into an array which is stored in memory
+    - The size of an integer array can be calculated using the 'sizeof' function
+        - i.e. 
+            int list = {1,2,3,4,5,6,7};
+            int n = sizeof(list)/sizeof(int);
+            // The size of the 'list' is divided by the size of the 'int' datatype

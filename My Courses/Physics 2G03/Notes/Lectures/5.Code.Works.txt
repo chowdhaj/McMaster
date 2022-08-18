@@ -1,0 +1,116 @@
+Physics 2G03 - How Code Works
+
+- Anatomy of C++ Code
+    - The start of a C++ program is (typically) headers
+        - Headers are mainly for the compiler
+            - They declare things that the compiler is not aware of
+                - i.e. #include <iostream>
+                    - This is for input and output, like 'std::cout'
+                        - 'std::cout' is the standard place for output to appear
+    - Lines at the top that begin with a hashtag ( # ) are pre-processor directives
+        - Essentially, they edit in material for the compiler
+    - The 'main' function contains (starting) code
+        - The code defines how the 'main' function works
+        - All code for 'main' is located inside the curly brackets
+        - All programs have to have a main function
+            - This is where the program starts when it gets executed
+    - C++ is an extension of C
+        - `printf` is used to print in C
+            - It also works in C++
+    - Each line must end in either a semi-colon or a curly bracket
+    - The end of a program (usually) has a 'return' statement
+        - This gives a value back to the caller 
+            - i.e. The function calling it OR the operating system
+        - The 'main' function return an 'int' value
+            - This is used to indicate if the program worked successfully or not
+                - 0 == Success
+                    - And anything else is a fail
+            - However, 'main()' is a special function, and if a value is not returned, then the compiler won't throw an error
+
+- What Is A Computer?
+    - A computer is something that predictably processes data based on a set of instructions
+        - i.e. Calculate: 5 + 10
+    - Computers have an internal state where they can store information
+        - Without this, they wouldn't be as useful
+            - Internal state is needed to store answers like the calculation above
+    - All computer programs can be reduced to simple mathematical processes 
+        - i.e. Add, subtract, divide, multiply, etc. and assign/store variables
+    - The RAM stores data in the storage unit
+        - i.e. The value of 'x' from a previous calculation
+    - A control unit decides which state the program is in and what should be done next
+        - The instruction pointer indicates where the computer is currently at
+            - The instruction pointer executes instructions in order
+    - The Aritmetic Logic Unit (ALU) performs addition and other tasks
+        - i.e. Calculate: 5 + 10
+
+- Debugging
+    - Debugging is figuring out why code is not working or producing an unexpected result
+    - 'Print debugging' is one strategy to troubleshoot non-working code
+    - Tools such as debuggers allow you to run code and stop it at any point to query what's going on
+
+- Key To Programming
+    - Computers only do what they are instructed to do
+        - They only execute instructions they are given, and in the order they are given
+    - You can use 'std::cout' to figure out what the program is doing at a specific step
+    - Programming is mostly about converting instructions into a high-level language
+        - Programming in one language makes it easier to program in other languages
+            - Since all source code gets converted into machine language, most programming languages have similar features
+    - The key to programming is knowing what set of instructions will solve the problem at hand
+    - In programming, the equals symbol ( = ) means assignment -- not test for equality
+        - i.e. The variable on the left is given the value of the expression on the right
+
+- Programming Langauges
+    - Since most languages have similar features, they produce very similar machine code
+        - The similar features between programming languages are given different names
+    - Common features among programming languages:  
+        1. Variables
+        2. Math Operations
+        3. Tests: Logical Operators
+        4. Branching: Ways to choose what to do next
+            - i.e. If Statements
+        5. Loops: Repeat a block of code
+        6. I/O: Ways to print results or read in data
+        7. Functions: Ways to run code elsewhere and get information back
+    - All programming languages use letters to represent variables
+        - Variables are used to store values
+            - Types of variables:
+                - Integers
+                    - i.e. n=2, j=5, k=-1
+                - Real numbers
+                    - i.e. x=2.67, mass=3.55x10^-10
+                - Strings
+                    - i.e. greet = "hello"
+                - Logical Results
+                    - i.e. answer = true
+                - Indexed arrays of values
+                    - i.e. a[1]=1, a[2]=4
+
+- Common Features
+    - Math operations in programming languages are just like algebra:
+        - In computing, x=y, implies that 'x' takes the value of 'y', and 'y' is unchanged
+            - Thus, all operators like: +, -, etc. must be on the right hand side
+                - i.e. x=1+y (GOOD)
+                - i.e. x-1=y (BAD)
+        - Integers have their own version of division
+            - i.e. n = 4/5 = 0
+            - i.e. j = 6/5 = 1
+                - If you start off with an integer, the compiler will make sure you end up with an integer
+        - Real numbers work exactly how they do in the real world
+            - i.e. x = 2.67+3.55 = 6.22
+            - i.e. y = 6/5 = 1.2
+        - Operations like multiply, divide, add, and subtract work exactly how one would expect
+        - Math functions such as cos, sin, sqrt, etc. are available for use
+    - Tests ask a question and get a result of true or false back
+        - i.e. Does 'a' equal 'b'?
+    - Branching allows code to move to a different part of the program and continue from there
+        - i.e. If the day is Friday, then go to the club
+    - Loops provide a way to repeat code
+        - The task is done over and over again until the condition is met
+            - i.e. Iterate through a list of students to modify their grades
+    - Input/Output allows us to:    
+        - Get values from other users or files with data
+        - Print out values from variables to the terminal or a separate file
+    - Functions are used to call code outside the current code and then come back
+        - Functions are also known as methods, procedures, subroutines, etc.
+        - A function may require arguments/data when called, and it may send data back after finishing
+            - i.e. The 'main' function returns an int (i.e. 0) upon completion

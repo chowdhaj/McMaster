@@ -1,0 +1,206 @@
+Physics 2G03 - Algorithms & Order Sorting
+
+- Problems & Algorithms
+    - When a solution has several steps it is called an algorithm
+        - An algorithm clearly states the way to solve a problem
+        - An algorithm doesn't have to be the fastest or smartest way to solve a problem
+            - In programming, people tend to choose algorithms that are easy to program and
+              guaranteed to finish
+        - The key to all programming is breaking down a complex problem into simpler parts
+          that are manageable
+            - Each part is solved using an algorithm or multiple algorithms
+
+- Pseudo-Code
+    - Pseudo code is a general description of the algorithm
+        - It describes the algorithm in logical steps
+    - Pseudo code is written out in the way you would program it
+    - Pseudo code is not specific to any one language, and reflects the common features of
+      programming languages
+
+- Mathematical Algorithms
+    - Some problems can be solved in closed form, via a formula
+        - i.e. A quadratic equation
+            - This is a very simple kind of algorithm, but it is very efficient
+    - Other mathematical problems require multiple steps to solve
+        - i.e.
+            - Long Division
+            - Estimating PI
+            - Calculating Gravity
+            - Sorting Numbers
+        - This is what programmers usually refer to as Algorithms
+
+- Order Of Algorithms
+    - The order/complexity of an algorithm is determined by the leading/largest term 
+      that controls the cost for implementing the algorithm
+        - The cost is measured in computer time
+            - This metric helps us compare the efficiency of algorithms and allows us to
+              select the faster/more efficient algorithm
+        - When stating order, the multiplicative constant is ignored
+            - i.e. Order N is written as O(N)
+            - Iterating through a list, once, is O(N), because the list is traversed once
+            - An algorithm with a double nested loop has an order of O(N^2)
+                - Pronounced as: Order 'N' Squared
+            - Good recursive algorithms tend to be logarithmic
+                - i.e. O(log2N)
+                    - Bad recursive algorithms use up a lot of stack memory
+                        - i.e. Fibonacci algorithm implemented recursively
+                            - A recursive fibonacci algorithm generates 2 function calls 
+                              every time it is called
+                                - This results in an order of O(2^N)
+                                    - This is extremely inefficient and uses a lot of memory 
+                                      and CPU time
+
+- Overall Order
+    - Complex algorithms have several parts
+        - i.e. One part might be O(N^2) and another could be O(N)
+            - The most expensive part of an algorithm will cause it to slow down the system
+                - This is the leading term and increases the fastest with 'N'
+    - Repeatedly applying an algorithm increases the overall order
+        - i.e. Applying an O(N) algorithm N/2 times results in an O(N^2) algorithm
+        - i.e. Applying an O(log2 N) algorithm 3N times results in an O(N log2 N) algorithm
+
+- Worst Case Scenario
+    - Some algorithms may have a worst case scenario that is incredibly slow
+        - i.e. Most of the time, the algorithm's order is O(N), but for certain special cases
+               it may be O(N^2). This makes the algorithm a poor choice
+
+- Fastest Algorithm
+    - It is important to choose an algorithm appropriate to the size of the problem
+    - The order does not tell the full story; the constant is also important
+        - If your computation doesn't involve doing a large number of things, then using
+          a simple algorithm is the best option
+            - i.e. (10 N^2) is better than (1000 (N log2 N)), if N is less than 1000
+                   Plus, the (10 N^2) algorithm is easier to program than the latter
+    - An algorithm's order is important because scientific computing applications are either
+      limited by memory or computer time
+        - Efficient algorithms are preferred because they allow researchers to do large and
+          realistic solutions
+
+- Sorting
+    - Sorting is very useful for managing data
+        - We use sorting in our everyday life
+            - i.e. Groceries, mail, dictionaries, etc.
+        - Sorting is very useful because it is easier to find objects in a sorted list
+        - Sorting is the basis for building a tree data structure
+            - Trees are very useful data structures for managing data, finding nearby objects,
+              and doing calculations
+
+- Order Of Sorting Algorithms
+    - Sorting relies on comparison operations
+        - i.e. Is 'a' less than 'b', and where should it be in the list
+    - Sorting algorithms are evaluated by counting the total number of comparisons required
+      to sort N number of items
+
+- Sorting Algorithms Overview
+    - O(N^2)
+        - i.e. Insertion, Bubble, Shell, etc.
+    - O(N log2 N)
+        - i.e. Heap, Merge, Quicksort
+    - O(N)
+        - Bucket
+
+- Insertion Sort
+    - This is the kind of sorting you do by hand
+        - i.e. Inserting a new item in a list of sorted items
+    - The order of Insertion Sort is: O(N^2)
+        - With N items to sort, your list grows by 1 every time an item is inserted
+        - On average, you have to check half the current list to find the right place
+            - Worst Case: (N (N + 1) / 2) Comparisons
+            - Typical Work: (N (N + 1) / 4) Comparisons
+
+- Bubble Sort
+    - Bubble sort uses exchanges to sort
+        - It only compares neighbouring pairs of numbers to see if they should be exchanged
+            - If no neighbouring pairs are exchanged, then the list is ordered
+    - Bubble sort is not efficient; the order is: O(N^2)
+        - The order is same as Insertion Sort, but Bubble Sort tends to have a larger constant
+            - Bubble Sort is slower than Insertion Sort
+        - Bubble Sort is most inefficient for random data
+            - However, if the data is already sorted, then a single pass is sufficient and 
+              the order becomes O(N)
+                - This is a special property of BubbleSort
+
+- QuickSort
+    - First proposed by Tony Hoare in 1962
+    - Quicksort uses a divide and conquer strategy
+        - The unsorted data is partitioned into two lists, where all elements in list one are 
+          less than all elements in list two
+            - This requires one loop and performs N number of compares
+            - Then, the sub-lists are sorted in a similar manner
+                - Doing the two sub-lists also requires N/2 * 2 = N
+            - Assuming a fairly even partitioning, you only have to do the partition (log2 N)
+              times to end up with a completely sorted list
+                - i.e. A list with 16 objects can only be divided 4 times
+                - i.e. A list with 128 objects can only be divided 7 times
+                - i.e. 1000 objects can only be divided about 10 times
+            - The process ends when everything is divided into subgroups/partitions of size 1 
+                - This occurs after (log2 N) steps
+    - Quicksort works really well on totally random data
+        - With random data, the order is: O(N log2 N) with a small constant
+        - In the worst case, the partition fails and puts only one element in sub-list 1, and
+          all other elements, N-1, into sub-list 2
+            - The order of the worst case is: O(N^2)
+                - The algorithm creates many partitions
+            - The worst case only occurs for certain types of ordered data
+                - However, this special case is easy to check and the algorithm can be tweaked
+                  so it does not do badly on this
+
+- Heapsort & Mergesort
+    - Any sorting algorithm based on partitioning will result in an order of O(N log2 N)
+        - Heapsort & Mergesort are similar to Quicksort, and also result in an order 
+          of O(N log2 N)
+            - Although, they are slightly slower than Quicksort, on average
+    - Mergesort is suited for Parallel programming; on a super computer
+        - This is because the individual pieces are done completely independently
+    - Heapsort is suited for dynamic data structures like queues
+        - Used to manage data where the ordering changes and you have to do some kind of
+          processing based on the ordering
+
+- Limits On Sorting
+    - Theoretically, the best you can do via comparisons is: O(N log2 N)
+        - There are more efficient sorting algorithms that do not involve comparisons
+    - Generally, The worst case is O(N^2)
+        - However, comparison based sorting can guarantee a worst case of O(N log2 N)
+    - If the data is already sorted, then Bubble Sort has an order of O(N)
+
+- Bucket Sort
+    - If data is fairly evenly distributed, the order can be O(N)
+        - i.e. Mail arriving at a post office building can be quickly sorted by the first
+               letter of the sender's surname
+            - Then, the last step is to sort the contents of each bucket, or pidgeon hole, to
+              get a complete sorted list
+    - Bucket sort works best for evenly distributed data
+        - The worst case for Bucket sort can be worse than O(N log2 N)
+            - This is true if the data is highly correlated
+                - i.e. If the vast amount of numbers lie in a specific region/range
+
+- Scientific Computing
+    - Sorting is very relevant to scientific computing because most physical interactions are
+      short range, or only strong when things are close to each other
+        - In general, you can get accurate outcomes only interacting with a subset of objects
+            - This is achieved by pre-sorting the objects in space, and then only testing the
+              objects that are close/nearby
+                - The cost for sorting is O(N log2 N), and the cost for testing relevant
+                  interactions is either O(N) or O(N log2 N), depending on the simulation
+        - A naive approach to this is to test all possible interactions
+            - This results in an order of O(N^2)
+
+- Hidden Costs With Objects
+    - An important part to Object Oriented Programming (OOP) is abstract data types (ADT)
+        - Abstract data types do not specify how they store data 
+            - i.e. std::vector and python list objects 
+                - You don't know how expensive it is to add data to a vector type, or how
+                  expensive it is to retrieve data from a list in python
+                    - If implemented badly, this can be Order N Squared
+                    - This matters a lot for big data sets and can dramatically slow down
+                      your computations
+                        - But for small data sets, this does not matter and ADTs are
+                          preferred because they make programming much easier and quicker
+
+- Built In Functions
+    - C/C++, Python, Java, etc. have standard functions for sorting and other actions
+        - These standard functions always use clever, or near optimal, algorithms
+            - The order of these standard functions is always O(N log2 N)
+                - i.e. Quicksort
+        - In C++, the sorting algorithm is 'std::sort'
+        - In C, the sorting algorithm is 'qsort'

@@ -1,0 +1,448 @@
+Physics 2G03 - Object Oriented Programming
+
+- Modular Program Design
+    - Individual pieces of code should be independent
+        - This makes them reusable, maintainable, and replaceable
+    - It is important to understand how data is exchanged in independent code
+        - This is a modular program design
+    - 80% of software engineering is agreeing on interfaces
+        - i.e. How to keep code distinct, how to make code work well with other pieces
+               of code, what are the arguments to functions, and what functions do
+    - Even though the main goal is modular programming, there are certain ways to
+      achieve this goal
+        - Traditional (or procedural) programming emphasizes functions to perform
+          specific tasks
+            - Data and functions are kept independent
+        - Object Oriented Programming (OOP) merges/links data and functions together
+            - They are combined in a single object or abstract data type (ADT)
+                - The programmer does not know about the details of the ADT, because
+                  its implementation is hidden away inside an object
+             - OOP emphasizes designing and creating objects/classes as the basis
+              of a program
+                - Classes and objects are the building blocks of ADTs
+
+- Abstract Data Type (ADT) 
+    - Data should be easy to store, access, understand, and easy to use
+    - In OOP, you do not need to know how data is exactly stored, but how to access and
+      use the data
+        - This is the definition of an ADT
+            - Theoretically, this should help create modular code that is reusable 
+
+- New Data Types
+    - Refer to lecture "PHYS2G03_Newtypes" for more information
+    - A struct in C/C++ is a compound data type
+        - It has internal values of many different types, combined into one
+            - i.e. A 'vector3d' type might have three components to it: 'x', 'y', and 'z', 
+                   and they can be set independently
+            - i.e.
+                struct vector3d { float x, y, z; }; 
+                vector3d a;
+                a.x = 1;
+                a.y = 2;
+                a.z = 0.5;
+                /* The individual values for the struct 'a' are 
+                 *   accessed using the dot operator.
+                 * The names after the dot have to match the names
+                 *   in the struct's definition of 'a'.
+                 */
+        - Example of a struct 'vector3d' type
+            i.e.
+                #include <cmath>
+                #include "vector.h"
+
+                // Dot product of two vectors
+                float dot(vector a, vector b) {
+                    return ((a.x * b.x) + (a.y * b.y) + (a.z * b.z));
+                }
+
+                // Magnitude of a vector
+                float magnitude(vector a) {
+                    return sqrt(dot(a,a));
+                }
+
+                // Cross product of two vectors
+                vector cross(vector a, vector b) {
+                    vector c;
+                    c.x = (a.y * b.z) - (a.z * b.y);
+                    c.y = (a.z * b.x) - (a.x * b.z);
+                    c.z = (a.x * b.y) - (a.y * b.x);
+                    return c; 
+                }
+                /*
+                 * None of these functions have persistent data; all of 
+                 *   them expect data to be provided. Once this data has
+                 *   been processed, new data is returned and the old data
+                 *   is gone forever.
+                 * This style of programming is procedural.
+                 */
+    - In C++, classes can be used instead of structs to define new data types
+        - However, in a class, by default, the data is private/hidden
+            - i.e.
+                class vector 3d { float x, y, z; };
+                vector3d a;
+                // You cannot get direct access to 'x', 'y' and 'z', because they are private
+                // a.x = 1; a.y = 2; a.z = 0.5; // This does not work
+        - Classes can contain data, functions/methods, and operators to work on their data
+            - i.e.
+                y = a.x;          // Access raw data
+                r = a.magnitude() // Calculates the size of vector
+                c = a + b;        // The plus operator defined for adding two vectors
+        - Example of a 'vector3d' class
+            - i.e.
+                #include <cmath>
+                class vector3d {
+                public:
+                    float x, y, z;
+
+                    // Constructor with no arguments
+                    vector3d() {
+                        x = 0; y = 0; z = 0;
+                    }
+
+                    // Constructor that initializes object with values
+                    vector3d(float x1, float y1, float z1) {
+                        x = x1; y = y1; z = z1;
+                    }
+
+                    // Magnitude of the vector
+                    float magnitude() {
+                        return sqrt((x * x) + (y * y) + (z * z));
+                    }
+
+                    // Add two vectors
+                    vector3d operator+ (const vector3d &vec) {
+                        vector3d ret;
+                        ret.x = x + vec.x;
+                        ret.y = y + vec.y;
+                        ret.z = z + vec.z;
+                        return ret;
+                    }
+
+                    // Dot product of two vectors
+                    float dot (vector3d vec) {
+                        return ((x * vec.x) + (y * vec.y) + (z * vec.z)); 
+                    }
+
+                    // Cross product of two vectors
+                    vector3d cross (vector3d vec) {
+                        vector3d ret;
+                        ret.x = (y * vec.z) - (z * vec.y);
+                        ret.y = (z * vec.x) - (x * vec.z);
+                        ret.z = (x * vec.y) - (y * vec.x);
+                        return ret;
+                    }
+                };
+                /*
+                 * In contrast to structs, in a class functions are defined as well
+                 * The components 'x', 'y', and 'z' are made public; by default they
+                 *   are private
+                 * The functions 'vector3d()' are the constructors for the class 
+                 * The purpose of the constructor method is to build the object
+                 * There can be multiple constructors, as long as the arguments are
+                 *   different and unique
+                 * The functions in a class can directly access the class' data, thus
+                 *   eliminating the need to pass arguments
+                 * A class can do all the operations a struct can
+                 * A well written class can lead to streamlined and easy to read code
+                 */
+            - Using the 'vector3d' class:
+                - i.e.
+                    #include "vector3d.h"
+                    int main() {
+                        vector3d v1, v2, v3;
+                        std::cout << "The dot product is " << v1.dot(v2) << "\n";
+
+                        std::cout << "The angle is " << 
+                          180/M_PI * acos(v1.dot(v2) / v1.magnitude() / v2.magnitude()) <<
+                          " degrees\n";
+
+                        v3 = v1.cross(v2);
+                        std::cout << "The cross product is " 
+                                  << v3.x << " " 
+                                  << v3.y << " " 
+                                  << v3.z << "\n";
+
+                        v3 = v1 + v2;
+                        std::cout << "The sum is " 
+                                  << v3.x << " " 
+                                  << v3.y << " " 
+                                  << v3.z << "\n";
+                    };
+        - In C++, Classes can be set as public or private (the internal data)
+            - The outside users may not need to fiddle around with the raw data, especially
+              if it is complicated, and altering it can cause problems
+            - In software engineering, the internal data is hidden by default
+                - This is why C++ makes classes private/hidden by default
+            - In scientific computing, it is much more efficient to have direct access
+              to data
+                - This also applies when coding for GPUs
+            - If you want classes to be public, you must explicitly declare it
+                - Note: 'structs' in C++ are public by default
+        - Classes and 'structs' are very similar and can do the same things
+
+- Data Hiding
+    - Data hiding prevents the user from knowing how the data is stored, and prevents
+      them from altering the internal components
+    - Structs are very important for data hiding because the only time you can change the
+      contents easily of an object is when you first make it
+
+- Modular Program Design
+    - The purpose of OOP is to help code be independent, and make it easier to understand
+      how data is exchanged between interfaces
+        - This keeps the code clean because outside users cannot mess with the data
+        - Making everything private prevents bad data access 
+            - This forces people to use the object/class in the way you intended
+    - Note: A lot of problems in current operating systems (i.e. Windows) have come about
+            because people have direct access to data inside objects, and use them it in
+            ways it was never intended
+
+- Procedural VS. OOP
+    - In procedural programming you create data types, like structures, and then you think
+      about the functions and how to use them
+        - Data is sent to the functions as arguments 
+        - Data is always accessible to everyone or anyone who has access to the pointer or
+          any variable that is associated with the data 
+    - In OOP, you create objects/classes which are the basis of your program 
+        - Methods that manipulate data are linked to the data itself
+        - Data is stored in the class/object, and so are methods
+        - Raw data is hidden from users and may not be allowed to be modified
+
+- Objects
+    - Objects have an internal state
+        - This is because they contain data, and functions that act upon the data
+        - The idea of an internal state works naturally with objects
+    - Objects have variables associated with them
+        - You can continually change the data in an object by calling functions on it
+            - These changes will be permanent
+    - Objects can take data in and put data out
+
+- Procedural Example In C++
+    - i.e.
+        int main() {
+
+            // Unsorted float array with 3 elements
+            float a[3] = {3,1,2};
+
+            // This sorting function is defined elsewhere
+            quicksort(a,3);
+            // 'a' is now sorted
+
+            // Iterates through 'a' and prints it to the terminal
+            for(int i = 0; i < 3; i++) {
+                // We can directly access the data in 'a' using 'a[i]'
+                std::cout << a[i] << " ";
+            }
+
+            std::cout << "\n";
+
+            return 0;
+        }
+        /*
+         * Throughout the entire program, we can directly access the data
+         *   in 'a' using 'a[i]'
+         * When we call the sort function, it directly changes the data in
+         *   memory and rearranges the values
+         */
+
+- Object Oriented Example In C++
+    - i.e.
+        /*
+         * This example uses the original version of the standard 
+         *   template library list object
+         */
+        int main() {
+
+            // Float is in angle brackets to specify type of list
+            std::list<float> a; // List object
+
+            // Insert items into the list
+            a.push_back(3);
+            a.push_back(1);
+            a.push_back(2);
+            /*
+             * Remember: We don't know how these are stored in memory
+             *           And, at no point do we have access to them
+             */
+             
+            // Invoke 'sort()' method on 'a'
+            a.sort();
+            // 'a' is now sorted
+
+            /* 
+             * An iterator is used to move through the data
+             * This is because we don't know how the data is stored and 
+             *   how to iterate it
+             */ 
+            for (std::list<float>::iterator
+                i = a.begin(); i != a.end(); i++) {
+                    std::cout << *i << " ";
+                }
+            /*
+             * 'a.begin()' is the start of the list
+             * 'a.end()' is the end of the list
+             * 'i' is a pointer to the internal data in this object
+             * We don't know how this data is stored, but we can iterate
+             *  through it from beginning to end
+             */
+
+            std::cout << "\n";
+
+            return 0;
+        }
+    - i.e.
+        /*
+         * This example uses the new standard library list (C++ 11 or greater)
+         * The new standard library automates a lot of stuff when creating
+         *   or manipulating a list. For instance, items can be initialized
+         *   when a list is declared, using constructors.
+         */
+        int main() {
+
+            // List is declared and initialized in one line
+            std::list<float> a({3,1,2});
+            // The items 3, 1, 2 are added in the same line
+
+            // We don't know how 'sort()' handles the data
+            a.sort(); 
+            // 'a' is now sorted
+
+            /* 
+             * The 'auto' keyword is used to iterate through the list
+             * 'auto' recognizes that you want to move through the list 'a'
+            for(auto &i : a) {
+                // 'i' represents an element in the list 'a'
+                std::cout << i << " ";
+            }
+
+            std::cout << "\n";
+
+            return 0;
+        }
+        /*
+         * Even though this code is clean, we don't know anything 
+         *   about how it works, how it looks like, how the 'sort()'
+         *   function handles the internal data, how 'auto' iterates
+         *   through the list, etc. 
+         */
+
+- Python List example
+    - i.e.
+        # Creates a 3-element list
+        a = [3,1,2] 
+        # Sorts the list 'a'
+        a.sort()    
+        # a is now sorted
+        # Prints the list 'a'
+        print(a)    
+    - Lists in Python are very similar to a modern C++ standard template library list
+        - Lists in Python are objects and they have functions
+    - Python is smart enough to know how to print objects, like lists
+    - Since Python is an OOP, we don't know how lists are stored internally 
+    - In Python, any variable initialized with square brackets ( [] ) is a list object
+
+- Python List VS. C++11 List
+    - Both languages use fairly similar code under the hood for standard objects like lists
+    - In C++, lists must be declared explicitly
+        - i.e. std::list<float> 
+            - This is something machine code understands and can process efficiently
+    - Python is designed to be a flexible language
+        - It is not strongly typed
+            - i.e. Does not require you to tell the compiler what the type of the variable is
+        - The types of variables can be modified at will
+            - Thus, Python is slower than C++
+    - In Python, the 'numpy' package is designed to make crunching numbers more efficient
+
+- C++ Standard Template Library
+    - Developers don't want to change the C++ standard to add new features
+        - Instead, they have Standard Template Library (STL), where they put all new
+          objects they invent 
+            - These objects are very similar to objects in other languages
+                - i.e. The STL contains a list type; it builds lists of things out of known
+                       C++ types, like floats, ints, etc. 
+                - i.e. std::list<float> a;
+
+- Standard Containers
+    - The types in the STL that contain data are called Standard Containers
+        - i.e.
+            - std::array
+                - This gives you a fixed size array
+                - Contains functions like: size, begin, end
+                - Individual elements can be accessed using square brackets
+                    - Note: This is an operator overloading approach. We don't know how
+                            this is stored, but still get access to the data using operators
+            - std::list
+                - This is a variable length list
+                    - It's like an array but can make itself larger when it needs to
+                        - Data can be added at the end of the list
+                - Has functions like: insert, push_back, size, begin, end
+            - std::vector
+                - This is a dynamic list; similar to a re-sizeable array
+                    - It is easily extensible; the length can be easily expanded
+                        - However, inserting data in the middle or resizing is slow
+                - Note: This is not a mathematical vector
+
+- Linked List
+    - A linked list is a bunch of data that knows what comes after itself through a pointer,
+      or something similar, to the next element
+        - In a linked list, inserting and removing data is easy
+            - This is computationally expensive to do with an array
+    - i.e.
+        data_1
+        pointer_1  -->  data_2
+                        pointer_2  -->  data_3
+                                        pointer_3  -->  data_4
+                                                        pointer_4
+
+- Associative Containers
+    - The associative idea says that you can access data inside a container using a key, 
+      rather than an index
+        - i.e.
+            - std::set (C++)
+                - This is a Standard Set in C++
+                    - It is a set of solid unique keys
+                    - You can find, add, and remove anything from the set in O(log N) time,
+                      where 'N' is number of keys in the set
+                        - This makes it similar to a tree
+            - std::map (C++)
+                - This is a set of key and data pairs
+                    - For every key, there is a piece of arbitrary data attached to it
+                - When defining a 'map' object, you need to specify the type of each part
+                    - i.e. 
+                        std::map<char,int> var_name;
+                        var_name['a'] = 10;
+                        var_name['b'] = 30;
+                        // char is the key
+                        // int is the data associated to a key
+                    - This is very similar to a dictionary in Python
+                        - i.e. a = { 'a' : 10, 'b' : 30 }
+                - In the compiler, 'std::map' is incorporated using red-black balanced trees
+                    - This is very similar to sorting and has an O(log N) time
+
+- Binary Tree
+    - A binary tree has two options for every node
+    - The tree starts at the root node
+        - The root node embraces all the data
+    - In a balanced tree, the data is evenly split on both sides, left and right
+        - This keeps the tree balanced and efficient
+            - Accessing this tree is very quick because it has a minimum depth
+
+- Standard Container Adapters
+    - Another standard type is the priority queue
+        - std::priority_queue
+            - This is prioritized data with size that varies
+            - This type is useful when you need to retrieve something based on priority
+                - i.e. A dataset based on time 
+                    - i.e. Colliding particles in a simulation, where particle collisions 
+                           are prioritized based on time
+            - Contains methods such as: [], size, begin, end, insert, push, pop
+                - pop: Gets the biggest element
+                - push: Adds a new element
+            - Under the hood, a tree type data structure is used to make sure things are
+              stored in the correct order
+
+- Conclusion
+    - Developing programs that are reusable and maintainable is very valuable
+    - Default/standard libraries do a very good job in terms of both storage and speed
+        - However, some tasks with certain kinds of objects may be slow 
+            - If your code gets slow, you may need to learn how these objects are stored
+              and how they are manipulated

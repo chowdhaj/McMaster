@@ -1,0 +1,119 @@
+Physics 2G03 - C++ Language Rules
+
+- Overview
+    - C++ is based on C
+        - Most of the functions are identical or very similar
+        - The syntax is very similar
+    - C++ was invented by Bjarne Stroustrup
+    - C++ was standardized in 1997
+    - C was invented to code Unix
+        - Invented in 1970
+        - Standardized in 1989
+    - All languages have formal rules for what constitutes as legal code
+        - The compiler checks to make sure that code follows these formal rules
+            - Not following rules results in a syntax error
+    - Reserved keywords are part of the language and cannot be used for a variable or function name
+        - i.e. 'float', 'false', 'try', 'switch', 'break', etc.
+    - '#include' is not a reserved word
+        - Instead, it is a compiler pre-processor directive
+
+- Rules
+    - The syntax of C and C++ is very similar
+        - C/C++ are case sensitive
+            - i.e. 'abc' is separate from 'ABC'
+        - C/C++ do not care about whitespace
+            - There can be any number of spaces, tabs, or lines before or between keywords, operators, and variable names
+                - However, you cannot put spaces in variable/function names
+                    - i.e. 'int aero plane = 4' is not allowed
+        - C/C++ expect every statement to end with a semi-colon ( ; )
+            - Semi-colons are used by the compiler to differentiate statements
+    - Comments are used to provide information about source code
+        - Comments are placed by adding two forward slashes ( // )
+            - i.e. // This is a comment
+                - Anything after a comment is ignored by the compiler
+        - Comments are also used to hide (bad) code from the compiler
+            - You can comment out lots of code like this:
+                /* 
+                    int main() {
+                        int a = 1;
+                        int b = 2;
+                    }
+                 */
+        - The comments at the very top of a source code file are not comments
+            - They are compiler directives 
+        - Comments can be added after code
+            - i.e. int a = 1; // Creates an integer
+    - Variables are words that represent values
+        - A variable should start with a letter, and may contain numbers and underscores
+            - Remember: Case matters in C/C++
+                - i.e. 'Half_Life' is not the same as 'Half_life' or 'half_life'
+            - Variable names cannot be:
+                - Reserve words 
+                    - i.e. 'float'
+                - Existing function names
+                    - i.e. 'main'
+                - Header names
+                    - i.e. 'cout', 'iostream'
+        - C/C++ are statically typed 
+            - Variables must have declared types
+                - This tells the compiler how to store the variables, based on the type
+                    - An 'int' will always be an 'int' and cannot be converted into a 'string'
+                        - Assigning a 'string' value to an 'int' variable results in an error
+            - Standard types:   
+                - Integers: int, long, short
+                - Real Numbers: float, double
+                - Logical: bool
+                - Text: char, string
+            - The different types for integers and real numbers allow a trade-off between precision and speed/memory use
+        - You can even make your own types
+    - Static types makes it easier for the compiler
+        - Plus, the code is generally much faster
+    - Scripting languages are often dynamically typed
+        - This slows the program down, but provides flexibility and makes it easier to program
+            - i.e. Python
+    - Constants are special values that cannot be changed
+        - Can be strings or numbers
+        - Once the value is set, it cannot be modified
+        - Example:
+            const float pi = 3.14159
+    - Operators are used to do math, assign variables, perform comparative checks, etc.
+        - Math: 
+            Plus     --> +
+            Minus    --> -
+            Multiply --> *
+            Divide   --> /
+        - Assignment:
+            Assign   --> =
+        - Comparison: 
+            Equals                   --> ==
+            Greater Than             --> >
+            Less Than                --> <
+            Greater Than Or Equal To --> >=
+            Less Than Or Equal To    --> <=
+        - In C++, you can invent new operators
+            - i.e. '<<' in 'iostream'
+                - Created by Stroustrup to print to 'stdout'
+        - Operators operate on operands
+            - Operands are the variables or constants on either side
+            - Operators generally produce new values of the same type
+                - i.e. 1 + 1 = 2 (int + int = int)
+                - i.e. 1 + 1.0 = 2.0 (int + double = double)
+                    - When different types are operated on, the type of the answer is 'higher' of the two
+        - Expression is when multiple variables are combined with operators
+            - i.e. a+b
+            - i.e. a+b+2
+            - i.e. (a < b)
+                - This is a logical expression and produces a 'true' or 'false' value
+    - Code between braces is called a 'block'
+        - Blocks are used to associate code with different constructs
+            - i.e. function, loop, branch, etc.
+                - function example:
+                    int main() { // some code }
+                - loop example:
+                    while (true) { // do something }
+                - branch example:
+                    if (a == b) { // print x }
+        - C/C++ use 'while' and 'for' statements to do loops
+            - A loop is a block of code that continues to execute when a condition is true
+                - Programs can be stuck in infinite loops
+                - 'breaks' are used to exit loops

@@ -1,0 +1,303 @@
+Physics 2G03 - Types & Operators
+
+- Operators
+    - C++ has a large number of operators
+        - View them all at: http://www.cplusplus.com/doc/tutorial/operators
+    - A large part of the C/C++ standard library is operators
+        - Operators do tasks that other languages do with functions
+    - Object oriented programming languages provide mechanisms to make new operators
+        - i.e. C++, Objective-C, Fortran90, etc.
+
+- Operations On Integers
+    - Negation
+        - Symbol: ( - )
+        - i.e. a = -b;
+    - Addition
+        - Symbol: ( + )
+        - i.e. a = 2 + b;
+    - Subtraction
+        - Symbol ( - )
+        - i.e. a = 1 - a;
+    - Multiplication
+        - Symbol ( * )
+        - i.e. a = 2 * b;
+    - Divison
+        - Symbol ( / )
+        - i.e. b = 2/3;
+                 = 0
+    - Addition, Subtraction, Multiplication, and Division are binary Operators
+        - There are two arguments on each side of the operator
+    - By default, most compilers will give you a result of the same type as what you put in
+        - i.e. Adding two integers will output an integer
+        - i.e. Dividing two floats will give a float
+
+- Operations On Reals
+    - Negation       ( - )
+        - i.e. a = -b;
+    - Addition       ( + )
+        - i.e. a = 2.0 + b;
+    - Subtraction    ( - )
+        - i.e. a = 1.1 - a;
+    - Multiplication ( * )
+        - i.e. a = 2.8 * b;
+    - Division       ( / ) 
+        - i.e. a = 2.0 / 3.0;
+                 = 0.666667
+        - Notice how dividing two reals yields a real and a proper value for 2/3
+    - When dividing numbers, make sure that one of the numbers is a real number
+
+- Precedence
+    - Some operators have priority over others
+        - In order:
+            - (Negation)
+            *, / (Multiply / Divide)
+            +, - (Add / Subtract)
+    - Precedences are defined by the IEEE standard
+        - All languages have the same precedences
+    - Tip: Add brackets to make precedence more clear
+        - Brackets don't affect performance
+
+- Compound Operations
+    - C/C++ provide shorthand operations
+        - i.e. Incrementing and decrementing variables
+            - i.e. Instead of writing `a = a  + 1;`, you can write `a++;`
+                - '++' is a unary operator and can be used on either side
+                    - i.e. `a++;` is pretty much the same as `++a;`
+            - i.e. `a = a - 1;` can be replaced with `a--;` or `--a;`
+        - The increment and decrement operators work differently based on where the symbols are
+            - i.e.
+                a = 1; b = a++; // a = 2, b = 1
+                a = 1; b = ++a; // a = 2, b = 2
+            - For the first one, the value of 'a' is assigned to 'b' and then it is incremented
+            - For the second one, the value of 'a' is incremented and then assigned to 'b'
+        - Compound operations have multiple effects
+            - This allows an expression to have a value and a side effect
+                - i.e. a = 1; b = (a += 2) + 3; // gives b = 5
+                    - Code like this is extremely hard to interpret and can have dangerous side-effects
+                        - Note: The length of the program has nothing to do with its performance
+    - The major operators also have shorthand notation
+        - Addition
+            - i.e. `a = a + b;` --> `a += b;`
+        - Subtraction
+            - i.e. `a = a - 2;` --> `a -= 2;`
+        - Multiplication
+            - i.e. `a = a * b;` --> `a *= b;`
+        - Division
+            - i.e. `a = a / b;` --> `a /= b;`
+    - Shorthand operators are strictly for convienence, and do not affect speed/performance
+        - The machine code for both shorthand and non-shorthand operations are identical
+
+- Complex Numbers
+    - Complex numbers are equivalent to two real numbers
+    - C++ offers complex numbers
+        - i.e. #include <complex>
+    - C offers complex numbers too
+        - i.e. #include <complex.h>
+            - Note: The C++ version is different from the C version; it's better
+    - When declaring complex numbers, you must specify the type to represent the real number
+        - i.e.
+            complex<float> z;
+            complex<double> zz;
+        - A type declared with '<>' in it, where you can build it from other types
+            - This is called 'template'
+                - It's a very powerful concept not present in many languages
+    - Operations On Complex Numbers
+        - Negation
+            - i.e. a = -b;
+        - Addition
+            - i.e. a = c + b;
+        - Subtraction
+            - i.e. a = b - a;
+        - Multiplication By Real Numbers
+            - i.e. a = 2.8f * b;
+                - Must specify 'f' to indicate that 2.8 is a float, not a double
+                    - This forces the compiler to treat 2.8 as a float
+                    - Complex float times float was defined by the authors, but complex float times double was not
+        - Multiplication By Complex Number
+            - i.e. a = c * b;
+                - Both 'c' and 'b' are complex numbers
+        - Assignment
+            - i.e. a = complex<float> (1,2);
+                - '1' is the real part
+                - '2' is the imaginary part
+    - Useful functions for Complex Numbers
+        - abs(z)
+            - Magnitude of a complex number
+                - sqrt(x^2 + y^2)
+        - z.real()
+            - Real part ('x')
+        - z.imag()
+            - Imaginary part ('y')
+        - conj(z)
+            - Complex conjugate: (x, -y)
+        - Note: C++ uses object oriented programming concept 'Polymorphism' for the 'abs' function
+            - The 'abs' function can operate on complex numbers and regular numbers
+                - You don't need two different functions, as you would in other languages
+            - Complex numbers in C++ are not just a type, but also a class with associated functions in it like 'real' and 'imag'
+
+- Text
+    - Characters
+        - C/C++ have a special type called 'char' or character
+            - This is a single byte used to represent an ASCII character like 'a'
+            - You can also treat 'char' as small integers
+        - C provides a ton of functions to manipulate characters, especially arrays/lists of 'chars'
+            - Import: #include <string.h>
+        - The easiest way to define an array of characters is:
+            char a[] = "A string of text";  
+                - The compiler will count how long it is and make sure there is enough space to store it
+                - This works in both C and C++
+    - Strings
+        - C++, not C, offers a 'string' type
+            - Import: #include <string>
+                - With this, you can straight up define a string
+                    - i.e. string b = "wow. so easy";
+                - 'string' is not just a type but also a class with functions
+                    - Just like 'complex'
+            - The 'string' type has operators defined for it
+                - Join strings together
+                    d = b + c;
+                - Output strings to 'stdout'
+                    std::cout << d;
+                - Compare strings
+                    if (b > c) { // code }
+            - The C equivalent of these operators are
+                - strcat()
+                    - Join two strings together
+                - printf()
+                    - Output to 'stdout'
+                - strcmp()
+                    - Compare two strings
+
+- Logical Types
+    - In early versions of C, integers were used as logical types
+        - 0 == false
+        - Anything else == true
+    - In C++, the 'bool' type was introduced
+        - The 'bool' type is 1 byte
+            - 0 == false
+            - 1 == true
+        - This helps make the code more clear, and removes ambiguity
+    - C/C++ do not print 'true' or 'false' for the bool type
+        - 1 is printed for 'true'
+        - 0 is printed for 'false'
+
+- Logical Operators
+    - Takes two regular types and produces a logical type; a bool
+        - i.e. float > float == bool
+        - i.e. int > int == bool
+    - More logical operators
+        >  -- Greater than
+        >= -- Greater than or equal to
+        <  -- Less than
+        <= -- Less than or equal to
+        == -- Equals 
+              ^(Not to be confused with a single '=', which means assignment)
+        != -- Not equals
+    - Operating on boolean types
+        - Logical AND ( && )
+            - Both values must be true for the result to be true
+            - i.e.
+                (a && b)
+                    - Both 'a' and 'b' must be true for the
+                (a and b)
+                    - Same as above
+                    - C++ only
+        - Logical OR  ( || )
+            - Only one of the values has to be true for the result to be true
+            - i.e. 
+                (a || b)
+                    - For the result to be true:
+                        - 'a' is true and 'b' is false
+                        - 'b' is true and 'a' is false
+                        - Both 'a' and 'b' true
+                (a or b)
+                    - Same as above
+                    - C++ only
+        - Exclusive OR ( ^ )
+            - Only one value has to be true for the result to be true, not both
+            - i.e.
+                (a ^ b)
+                    - For the result to be true:
+                        - 'a' is true and 'b' is false
+                        - 'b' is true and 'a' is false
+                    - If both 'a' and 'b' are true, then the result is false
+                (a xor b)
+                    - Same as above
+                    - C++ only
+        - Logical NOT ( ! )
+            - Unary operator that flips the value of the bool
+                - i.e.
+                    'true' becomes 'false'
+                        - i.e. ! true == false
+                    'false' becomes 'true'
+                        - i.e. ! false == true
+        - Note: C only has '&&', not 'and'
+                C only has '||', not 'or'
+        - In order for C to use the bool type, it needs to import: 
+            #include <stdbool.h>
+
+- Bitwise Operators
+    - Bitwise AND ( & )
+        - Performs the 'and' operator on the bits in binary numbers
+            - i.e. 10010101 & 10110001 == 10010001
+    - Bitwise OR ( | )
+        - Performs the 'or' operator on bits
+            - i.e. 1011 | 1100 == 1111
+    - Bitwise Exclusive OR ( ^ )
+        - Performs the 'xor' operator on bits
+            - i.e. 1011 ^ 1101 == 0110
+    - Bitwise NOT ( ~ )
+        - Flips the bits
+            - i.e. ! 0110 == 1001
+    - Bitwise SHIFT
+        - Shift Left  ( << )
+            - i.e. 
+                13 << 2 == 52
+                    - Multiply 13 by 2, twice
+                1101 << 2 == 110100 
+                    - Add two zeros to the right side
+        - Shift Right ( >> )
+            - i.e. 1101 >> 2 == 11
+                - Information is lost when shifting to the right
+
+- Mixed Expressions
+    - C/C++ converts expressions when two or more types are interacting
+        - Typically, it converts to the more complicated type
+            - The complicated type is one that can hold a wider range of values
+                - i.e. 'int' + 'float' = 'float'
+        - Conversions take place at the last second
+            - i.e.
+                float x;
+                x = 1/2; // x = 0.0
+                // Even though 'x' is a float, since 1/2 happens at the last second, the result is an integer
+                // Then, 0 is converted into a float, 0.0
+            - If you want real numbers, then put a decimal point
+                - i.e.
+                    float x = 1.0/2; // 'x' = 0.5
+
+- Casting
+    - In the example above, C/C++ was implicitly converting/casting integers to floats
+    - You can explicitly tell C/C++ to convert from integers to floats
+        - i.e.
+            float x;
+            x = float(1)/float(2); // x = 0.5 // C++ style cast 
+        - i.e. 
+            float x = ((float) 1) / (float) 2); // C style of casting 
+            // This casting style works on C++ as well
+    - Casting/conversion happens before everything else
+    - When casting from a bigger type to a smaller type the decimal values get removed  
+        - Everything after the decimal point is deleted
+            - There is no rounding
+                - i.e. 
+                    int i = 1.6;       // i = 1
+                    int j = int(1.6);  // j = 1
+                    int k = int(-3.4); // k = -3
+            - The rounding always goes towards zero
+                - It's kind of like the 'floor' function in math
+                    - i.e.
+                        2.6  -> 2
+                        2.9  -> 2
+                        -1.4 -> 1
+                        -1.7 -> 1
+                        0.2  -> 0
+                        0.8  -> 0

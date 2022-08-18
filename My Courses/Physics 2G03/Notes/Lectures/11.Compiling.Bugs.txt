@@ -1,0 +1,172 @@
+Physics 2G03 - Compiling & Bugs
+
+- Compiler Usage
+    - The `c++` or `g++` compiler can compile or link
+        - The following command will only compile: c++ file.cpp -c
+            - This creates an object file called: file.o
+        - Providing object files converts them to executables
+            - i.e. c++ file1.o file2.o -o FileExec
+                - Combines 'file1.o' and 'file2.o' to create the executable 'FileExec'
+        - You can compile and link in one step
+            - i.e. c++ file1.cpp file2.cpp -o FileExec
+                - Compiles and links 'file1.cpp' and 'file2.cpp', and creates an executable called 'FileExec'
+                - The compiling and linking are done in individual steps, but this is not shown
+            - Compiling and linking should be done in separate steps
+                - Especially in a Makefile
+                    - `Make` is a general purpose tool and works with any language/compiler
+                        - The user supplies rules and `Make` carries out the tasks and expects new things to be created
+                        - 'Make' can detect that files have been changed
+                            - It will re-make the changed files
+                            - It will also search the rest of the makefile for rules on making other files
+                        - Must use <TABS> and not <SPACES>
+                - Small programs built for testing can be compiled and linked in one step
+                    - But large programs/projects should be compiled and linked in two steps using a makefile
+    - C-Flags
+        - Compilers have many options
+            - i.e.
+                -c      :: Tells GCC to compile and create object file(s)
+                -Wall   :: Warns about suspicious code that the compiler does not consider to be
+                           an error, but may lead to incorrect code and unintended side effects
+                -O0     :: Do not optimize code. By default the compiler will try to optimize code
+                           using the best CPU instructions available. Optimizing code can cause 
+                           the compiler to change code in unintended ways
+                -O2     :: Default optimization. Optimization level is mild
+                -O3     :: Aggressive optimization and will change code to boost performance
+                -g      :: Tells the compiler to include debugging information. The compiler 
+                           remembers the name of the source files, which helps in figuring out
+                           where incorrect code lies
+                -I<dir> :: Tells the compiler to search a specific directory for header files
+    - Linker Flags
+        - Link options are mostly about where to find things or what program name to make
+            - i.e.
+                -o name    :: The executable file is called 'name'
+                -L<dir>    :: Search the 'dir' directory for libraries. Useful for including
+                              non-standard C code like image manipulation
+                -l library :: Include this library
+                    - i.e. If you wanted to include an extra math library, you would:
+                        c++ -o ploty ploty.o -lcpgplot -lpgplot -lX11
+
+- Bugs
+    - The phrase 'bugs in code' originates from the early days of computing when computers were 
+      the size of a truck and made up of mechanical relays/switches
+        - One day, a computer wasn't outputting correct answers because a moth was stuck in one
+          of the relays
+    - Types Of Bugs
+        - Syntax Errors
+            - This is the simplest kind of error
+            - The compiler catches all syntax errors and reports the line it occurs on
+                - Syntax errors are typically thrown when there's a typo 
+                    - This is similar to spelling mistakes when writing an essay
+            - When fixing syntax errors, always start at the top
+        - Logic Errors
+            - Occurs when the code is syntactically correct but in the wrong order; semantically incorrect
+                - The compiler cannot find logic errors
+        - Linking Errors
+            - During the linking stage the compiler tries to find definitions of everything
+                - These definitions include, but are not limited to:
+                    - Functions
+                    - Libraries
+                    - Headers
+                    - Etc.
+            - Link errors typically say: "undefined referenced to..."
+                - This means that it could not find the file/library/etc. 
+                - The linker program is called 'ld' 
+                    - It performs the linking and error checking
+                - C++ linkers are more strict than C linkers  
+        - Runtime Errors
+            - Math errors are runtime errors
+                - i.e. Floating point exceptions
+                    - i.e. Infinite and not-a-number values
+                        - 'inf' and 'nan' numbers can be checked
+                            std::isfinite(a) -> Checks if number is not 'inf' or '-inf'
+                            std::isNaN(a)    -> Checks if number is not-a-number
+                - Normally, software and hardware are programmed to ignore math errors
+                    - This is the IEEE standard behaviour for compilers
+                        - However, these settings can be changed
+                            - i.e. In Fortran, compile with `ifort -fpe0`
+                - Every operating system has standard functions that can turn on floating point exception
+                    - Under linux, floating point exceptions can be enabled with:
+                        #include <fenv.h>
+                        feenableexcept(FE_INVALID | FE_DIVBYZERO | FE_OVERFLOW)    
+        - Memory Errors
+            - Occurs when the code/program tries to access the wrong memory or data
+                - i.e. Memory that does not belong to your process/program
+            - Changing something in the memory that belongs to the program, that you didn't intend to
+                - i.e. Tried to set one variable, but accidentally set another one
+            - Typical causes:
+                - Incorrect modification/indexing of an array
+                    - i.e. A[-1] = 0.0
+                        - Note: The compiler does not check for this by default. This is discovered
+                                at runtime. By default, the program does not check if an index is valid
+                - Incorrect call to functions
+                    - i.e. Too many arguments  
+            - If you accidentally change memory allocated to your program, the compiler/CPU won't detect it
+            - Attempting to change memories very far away from your proram may result in a 
+              SEGMENTATION FAULT error
+                - A 'seg fault' occurs when you try to change memory not controlled by your program
+                    - It could indicate that your program has been changing its own memory
+            - Memory errors are very hard to detect
+                - The compiler does not detect memory errors
+                - The operating system can detect it
+
+    - Syntax errors are why variables must be declared
+        - Declaring variables introduces variables to the compiler
+            - This way, it can differentiate between right and wrong variables
+                - This is similar to having a class list and taking attendence. With a class list you can
+                  tell who is present, absent, and anyone else that does not belong
+    - The compiler always starts at the top of the source code file and works down, line-by-line, when
+      checking/compiling code
+        - This is why non-main functions need to be placed above the 'main' function
+    - Many error messages can be caused by missing out on a single semi-colon
+        - Always focus on the first bug message
+    - You can find a list of C++ headers at: cppreference.com
+        - A lot of functions are not included in C++, by default
+            - You need 'include' statements to import them 
+    - Compile time problems are easy to debug
+        - Logic errors are much harder to correct because the program acts in an unexpected manner
+            - The compiler (usually) does not catch logic errors
+    - The `-Wall` flag is used to give useful warnings about code
+        - The compiler applies standard rules to detect if the code looks strange and dangerous
+        - Does not prevent compilation, but generates warning messages
+    - Print debugging is useful in figuring out what went wrong
+        - This is when you print the value of variables to 'stdout' and compare their actual
+          values to their expected values
+            - i.e. A function needs to return the square root of a number, but only works on
+                   perfect squares, and fails for everything else
+
+- Debugger
+    - A debugger is a program that runs with your program and keeps track of where you are in it 
+      and can help you keep track of variables and other useful tasks
+    - The GNU debugger is called GDB
+    - To use gdb, type 'gdb' followed by the name of the program/executable you want to debug
+        - i.e. gdb ProgramName
+        - i.e. gdb matrixSolver
+    - Using gdb
+        - Type 'r' to start gdb
+            - Once started, gdb keeps track of where the program is
+                - When it runs into an exception, it tells you the file and line number it
+                  occurs it, and it prints out the exact line
+    - All large computational science groups use debuggers and real time floating point error catching
+    - gdb can detect memory errors like SEGMENTATION FAULT
+    - Note: In order to properly use gdb, you must compile the program with the `-g` flag
+
+- Symbols
+    - Symbols is the programming name for all the labels the program uses to describe code
+        - i.e. Variable names, function names, etc.
+    - The compiler and runtime system do not care about symbols/names
+        - Thus, they are stripped out by default
+    - The `-g` flag retains symbols and names when compiling the program
+        - i.e. c++ -g program_name.cpp -c
+            - Without the `-g` flag, gdb does not show helpful information about where the problem is
+
+- Errors & Optimization
+    - Based on optimization flags, the compiler may remove code that it thinks is pointless
+        - i.e. Variables
+            - Over aggressive code optimization can create problems
+    - Optimization can be turned off
+        - This ensures that your compiled program has complete information, including all variables
+            - i.e.
+                c++ -O0 program_name -c
+                    - No optimization
+                c++ -O0 -g program_name -c
+                    - No optimization and include debug info
