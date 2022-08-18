@@ -1,0 +1,153 @@
+body, td,
+.main {
+	font-family: verdana, arial, sans-serif;
+	font-size: 14px;
+	color: #000000;
+	margin:0px;
+}
+
+a {
+	color:#305FA0;
+}
+
+.header {
+	font-weight: bold;
+	font-family: helvetica condensed; helvetica; arial;
+	font-size: 20px;
+	color: #305FA0;
+}
+
+.medText {
+	font-size: 20px;
+	font-weight: bold;
+	color: #660033;
+}
+
+td.navHeader{
+	font-family: arial, helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #660033;
+	text-align:right;
+}
+
+td.navItem {
+	font-weight: bold;
+	color: #305FA0;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align:right;
+	border-right:1px solid #305FA0;
+}
+
+td.navSubItem {
+	font-weight:normal;
+	color: #660033;
+	font-size:11px;
+	text-align:right;
+}
+
+td.navSubItem a {
+	text-decoration:none;
+}
+
+td.navSubItem a:hover {
+	text-decoration:underline;
+}
+
+
+
+td.navSubItemSel {
+	font-weight:normal;
+	color: #660033;
+	font-size:11px;
+	text-align:right;
+}
+td.navSubItemSel a {
+	font-weight:bold;
+	text-decoration:none;
+}
+
+
+.searchContent,
+.resultTitle,
+.jobDetailTitle { color: #660033; }
+
+.subPageIntro {
+	font-family: arial, helvetica, sans-serif;
+	font-size: 12px;
+	color: #660033;
+}
+
+.searchResult { 
+	font-size: 10px; 
+	color: #660033;
+}
+
+.jobResult {
+	font-weight: bold;
+	color: #666666;
+}
+
+.breadcrumb {
+	font-size: 10px;
+	font-weight: bold;
+	color: #660033;
+}
+
+.resultDescription,
+.courseDetailTitle{
+	font-weight: bold;
+	color: #660033;
+}
+
+.newsSubhead { font-size: 14px; }
+
+.main  { font-weight: normal }
+
+.medText_small  {
+	font-family: arial, helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #660033;
+} 
+
+.seasonalContent  { 
+	font-weight: bold;
+	color: #663399;
+ }
+
+a.hiddenlink {
+	color:black;
+	text-decoration:underline;
+}
+
+a.hiddenlink:hover {
+	color:red;
+	text-decoration:underline;
+	font-weight:bold;
+}
+
+div.div_blue{
+        width:100%;
+        padding:5px;
+	background-color:#E1F0FE; 
+	color:305FA0
+}
+div.div_white{
+        width:100%;
+        padding:5px;
+	background-color:#EBF6FF; 
+	color:305FA0
+}
+
+div.div_line{
+	font-weight:bold;
+	font-size:16px;
+	border-bottom:1px dashed #305FA0;
+}
+/* "classes for everything" */
+/* a netscape fix concept. */
+
+.borderless {
+	border:none;
+}

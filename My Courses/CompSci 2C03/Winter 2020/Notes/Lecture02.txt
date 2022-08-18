@@ -1,0 +1,59 @@
+Lecture02.txt
+
+January 8th, 2020
+
+- Everything in memory is either an array or a list
+
+- Successor is very important as it points to the next element
+
+- Data Structure (DS) ≈ Abstract Data Type (ADT) ≈ Application Programming Interface (API)
+
+- API has more parameters than ADT
+
+- Removing is not supported in a multi-set
+
+- There is no order in a multi-set
+
+- Last element in a linked list is Null. For example:
+
+|------|--/|
+|  XYZ | / |
+|------|/--| 
+
+XYZ = Arbitrary data
+
+- A linked list has two parts to it. Part 1 stores the data and part 2 points to the next node which stores data and the address of the next node
+
+- When creating a new node, the pointer is set to null
+
+- The Head of a list is the first element
+
+- An item/data can be added at the beginning or end of a linked list OR in the middle. However, adding in the middle is harder and requires more work. Adding at the beginning or end is easier
+
+- Memory Leak ≈ Use After Free (UAF)
+
+- Memory leak is when you remove/clear the pointer but not the data
+
+- There are double linked lists where there is a pointer to the previous node and a pointer to the next node
+
+- In a circular linked list, the last node points to the first node
+
+- Compilers represent lists as arrays
+
+- Lists can be used to represented large-large numbers
+
+- The Key stores the pointer to the real value/data
+
+- Null ≡ Nil
+
+- The Stack DS follows a LIFO model; Last In, First Out
+
+- The Queue DS follows a FIFO model; First In, First Out
+
+- In a stack:
+	- Add = Push = Insert new item onto stack
+	- Remove = Pop = Delete/remove first item on stack and return value/data
+
+- In a queue:
+	- Add = Enqueue
+	- Remove = Dequeue
