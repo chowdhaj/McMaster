@@ -1,0 +1,169 @@
+Physics 2G03 – Homework 2
+
+1.1 - The main() function
+
+    int main() {
+        
+        return 0;
+    }
+
+    When removing the semi-colon after return, the error I get is:
+
+    marcantony.cpp: In function ‘int main()’:
+    marcantony.cpp:13:1: error: expected ‘;’ before ‘}’ token
+     }
+     ^
+
+1.2 - Including Input and Output
+
+    #include <iostream>
+
+    int main() {
+        
+        return 0;
+    }
+
+1.3 - Writing to the terminal
+
+    #include <iostream>
+
+    int main() {
+
+        std::cout << "Friends, Romans, countrymen, lend me your ears\n";
+
+        return 0;
+    }
+
+    MODIFIED CODE:
+
+        #include <iostream>
+
+        using namespace std;
+
+        int main() {
+
+            cout << "Friends, Romans, countrymen, lend me your ears\n";
+
+            return 0;
+        }
+
+
+    After removing the using namespace declaration, the error I get is:
+
+    marcantony.cpp: In function ‘int main()’:
+    marcantony.cpp:5:5: error: ‘cout’ was not declared in this scope
+         cout << "Friends, Romans, countrymen, lend me your ears\n";
+         ^
+    marcantony.cpp:5:5: note: suggested alternative:
+    In file included from marcantony.cpp:1:0:
+    /usr/include/c++/4.8.2/iostream:61:18: note:   ‘std::cout’
+       extern ostream cout;  /// Linked to standard output
+
+2 - Variables
+
+    int main() {
+
+        int a = 5; // an integer
+        double pi = 3.14; // a real number
+
+        return 0;
+    }
+
+
+    After removing the int specifier, the error I get is:
+
+    sum.cpp: In function ‘int main()’:
+    sum.cpp:4:5: error: ‘a’ was not declared in this scope
+         a = 5; // an integer
+         ^
+
+    #include <iostream>
+    #include <string>
+
+    using namespace std;
+
+    int main() {
+        
+        // a string of letters
+        string greeting = "Friends, Romans, countrymen, lend me your ears!!\n";
+        cout << greeting;
+        
+        return 0;
+    }
+
+3 - Reading from the terminal
+
+    #include <iostream>
+
+    using namespace std;
+
+    int main() {
+
+        int a, b;
+
+        cout << "Please give me two integers.\n";
+        cin >> a;
+        cin >> b;
+
+        cout << "Your sum is: " << '\t' << a+b << endl;
+
+        return 0;
+    }
+
+    If the user tries to input the numbers 1.3 and 3.6, the program stops at the first input, skips the second, and the final output is: 
+        
+        Your sum is:    1
+
+Exercises
+
+    1. 
+
+        #include <iostream>
+        #include <string>
+
+        using namespace std;
+
+        int main() {
+
+            int a, b, c;
+
+            string prompt = "Please give me ";
+
+            cout << '\n' << prompt << "an integer: ";
+            cin >> a;
+
+            cout << prompt << "a second integer: ";
+            cin >> b;
+
+            cout << prompt << "another integer: ";
+            cin >> c;
+
+            cout << "\nThe sum is: " << (a + b + c) << endl;
+            cout << "The product is: " << (a * b * c) << '\n' << endl;
+
+            return 0;
+        }
+
+    2. 
+
+        #include <iostream>
+        #include <string>
+
+        using namespace std; 
+
+        int main() {
+
+            string word_1, word_2, concat = "", prompt = "Please give me a";
+
+            cout << "\n" << prompt << " word: ";
+            cin >> word_1;
+
+            cout << prompt << "nother word: ";
+            cin >> word_2;
+
+            concat = word_1 + word_2;
+            cout << "\n" << concat << "\n";
+            //cout << "\nYou said '" << concat << "'\n" << endl;
+
+            return 0;
+        }

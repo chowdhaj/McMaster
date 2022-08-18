@@ -1,0 +1,36 @@
+Project Proposal Requirements
+
+Typical Proposal Format:
+    - Describe a system you wish to model
+    - Write down the equations or describe the system mathematically
+        - Identify an ODE that can model the system
+    - Discuss how you'll solve the mathematical model on a computer
+    - What will you look for when testing the model?
+    - References
+    - Proposal should be one page
+
+    - My idea: Hopfield Network With Hebbian Learning
+
+-x-x-x-x-x-x-x-x-x-x-x-x-
+
+Project Proposal Outline
+
+What Is The Problem?
+    => Describe a system you wish to model
+    => What is the model?
+
+Description Of The Model
+    => Describe the problem mathematically
+    => List some (mathematical) equations
+
+The Solution
+    => How will you solve the mathematical model on a computer?
+
+Testing
+    => How will you test the model for accuracy and if it behaves correctly?
+
+References
+
+    - https://www.tutorialspoint.com/artificial_neural_network/artificial_neural_network_hopfield.htm
+    - https://en.wikipedia.org/wiki/MNIST_database
+    - http://yann.lecun.com/exdb/mnist/

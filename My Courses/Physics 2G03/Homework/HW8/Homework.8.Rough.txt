@@ -1,0 +1,46 @@
+Physics 2G03 - Homework 8
+
+1.1 
+
+    P1 = (x1, y1)
+    P2 = (x2, y2)
+
+    y = mx + c
+
+    m = (y2 - y1) / (x2 - x1)
+    c = y - mx
+
+1.2 
+
+    Please see file: "interp.cpp"
+
+1.3
+
+    Please see file: "testinterp.cpp"
+
+1.4
+
+    Please see file: "interp.cpp"
+
+1.5
+
+    Yes, there is a faster way to find the right index, if and only if the x_i values are uniformly spaced and the spacing between them is known. In this case, the best solution would be to use the slope; the 'm' from 'y = mx + b'.
+
+    Alternatively, you could also subtract 'x' from the first 'x_i' value and then divide the result by the spacing to get the right index. If the number is a float, then round up or down accordingly. 
+
+1.6
+
+    Please see file: "testinterp.cpp"
+
+    Output from "testinterp.cpp" is:
+
+        Y-Intercept Is: 15.0625
+        Y-Intercept Is: 15.0625
+        Y-Intercept Is: 20.6275
+        Y-Intercept Is: 6.7375
+
+1.7
+
+    Please see file: "lookuptable.cpp"
+
+    Partial output values are above in Question #1.6

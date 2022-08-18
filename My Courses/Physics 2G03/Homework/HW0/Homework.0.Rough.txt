@@ -1,0 +1,155 @@
+Physics 2G03 - Homework 0
+
+(1) Where Am I?
+
+The `pwd` command outputs:
+/1/home/chowdhaj
+
+This is the current directory I am in.
+Also, it tells me the full path of the
+current directory, starting from the 
+home directory.
+
+(2) What Does A Command Do Again?
+
+N/A
+
+(3) Creating A Directory
+
+N/A
+
+(4) What Do I Have?
+
+The `ls` command outputs:
+hw0/
+
+(5) Moving Around
+
+After changing directory to 'hw0' and
+confirming with `pwd`, the command outputs:
+/1/home/chowdhaj/HOMEWORK/hw0
+
+(6) Files VS. Directories
+
+After creating the file 'example.txt', the
+command `ls` outputs:
+example.txt  HW0.txt
+
+(7) Home Again
+
+After running the command `ls HOMEWORK/hw0`,
+the output is:
+example.txt  HW0.txt
+
+(8) Copying
+
+The output of the `pwd` and `ls` command is:
+/1/home/chowdhaj/HOMEWORK/hw0/bottom
+&
+example.txt
+
+(9) Copying 2
+
+The output of the `ls` command is:
+example.txt
+
+(10) A Useful Command Line Tip
+
+After pressing TAB on the command `ls m`, the
+shell completes the name and types out 'middle'
+for me. The end result is:
+[chowdhaj@phys-ugrad hw0]$ ls middle/
+
+(11) Moving
+
+After moving the 'middle' directory into 'top',
+the commands `ls` and `pwd` output the following:
+middle/
+&
+/1/home/chowdhaj/HOMEWORK/hw0/top
+
+After changing into the 'bottom' directory, the
+commands `ls` and `pwd` output the following:
+example.txt
+&
+/1/home/chowdhaj/HOMEWORK/hw0/top/bottom
+
+(12) Removing
+
+After deleting 'example.txt' with the `rm`
+command, the command `ls` outputs:
+bottom/  HW0.txt  top/
+
+After deleting the 'bottom' directory and
+all of its contents, the command `ls` outputs:
+middle/
+
+(13) A Few Command Line Tips For Navigating
+
+The output of `ls` and `pwd` from the 'side'
+directory is:
+sideexample.txt
+&
+/1/home/chowdhaj/HOMEWORK/hw0/top/side
+
+(14) Editing Files
+
+After saving the text file with gedit, the
+`ls` command outputs:
+example.txt  testexample.txt
+
+(15) Inspecting Text Files From The Command Line
+
+The command `more` outputs:
+[chowdhaj@phys-ugrad bottom]$ more testexample.txt 
+write a nice message
+
+(16) Renaming Files
+
+The command `more` on the empty text file
+'example.txt' outputs nothing. This is because
+the text file is empty.
+
+The command `ls` outputs the following:
+emptyexample.txt  testexample.txt
+
+(17) Inspecting Text Files From The Command Line
+
+The `ls -l` command on the 'bottom' directory
+outputs the following:
+total 4
+-rw-rw-r-- 1 chowdhaj chowdhaj  0 Sep 28 18:04 emptyexample.txt
+-rw-rw-r-- 1 chowdhaj chowdhaj 21 Sep 28 18:07 testexample.txt
+
+The difference between both text files are: size, name, and time created.
+The size is different because one is empty the other is not.
+The names are different because two files cannot have the same name.
+The time created is different because both were created asynchronously.
+
+(18) The Great Tree Of Linux
+
+      hw0
+       |
+       |---HW0.txt
+       |
+       |
+       |
+       +---top/
+       |    |
+       |    + middle/
+       |    |    |
+       |    |    |
+       |    |    +---bottom/
+       |    |    |      |
+       |    |    |      +---emptyexample.txt
+       |    |    |      |
+       |    |    |      +---testexample.txt
+       |    |    |
+       |    |    |
+       |    |    |---example.txt
+       |    |    
+       |    |    
+       |    + side/
+       |    |   |
+       |    |   +---sideexample.txt
+       ----------

@@ -1,0 +1,43 @@
+Physics 2G03 - Project Lecture 02
+
+- Your project should ultimately be unique and different from someone else's project
+    - The best way to do this is to propose a more complex extension or case
+        - i.e. Introduce a third or fourth variable into a predator/prey model
+
+- The project should not be a numerical experiment
+    - Plotting a fixed answer is not a model
+
+- Exploring thouands of probabilities is often called the Monte Carlo approach
+    - i.e. Calculating many different trajectories and finding the interesting ones
+
+- Classes Of Problems
+    - Solving system of ODEs
+    - Monte Carlo
+    - Optimization
+    - AI, Neural Nets
+    - Solving PDEs
+    - Particles
+
+- Steps
+    - In the beginning, just get a working program
+        - It doesn't matter how simple it is
+    - Test the model and show it works
+        - Compare produced results with known answers
+    - Describe a science goal
+        - What were you trying to do?
+            - Answering this question will help you get a good grade
+    - Write Up
+        - A full report containing all information outlined in the documents
+            - Show plots and things you tried
+
+- A basic version of the program will result in a reasonable grade
+- An outstanding version of the program will be an amazing grade
+
+- Use Runge-Kutta instead of Euler and Predictor Corrector
+- Leapfrog method is good for dynamical methods
+    - Used in games to calculate projectile motion and other movements
+        - Called Verlet in game engines
+
+- Avoid using SI units
+    - Use values close to one, especially for testing
+    

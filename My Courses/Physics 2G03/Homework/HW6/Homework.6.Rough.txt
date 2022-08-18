@@ -1,0 +1,34 @@
+Physics 2G03 - Homework 6
+
+1.1 
+
+    Please see the source file: ploty.cpp
+
+1.2
+
+    Please see the source file: ploty.cpp
+
+1.3 
+    
+    As the value of 'n' gets larger, I expect the value of the RMS_ERROR to get smaller. This is because increasing the value of 'n' makes the distance between the 'x' values smaller. Decreasing this distance makes approximating the function more accurate because the slope from xn to xn+1 is more accurate. 
+
+    Furthermore, when increasing the value of 'n', the graph created by PGPLOT becomes more accurate and less jaggedy. 
+
+    The results of my program does support the statement above. 
+
+1.4 
+
+    Please see the source file: ploty.cpp
+
+1.5 
+
+    Please see the source file: ploty.cpp
+
+1.6 
+
+    As the value of 'n' gets larger, I expect the RMS_ERROR to get smaller and the approximate to become more accurate. This is because, as 'n' gets larger, the size of the rectangles (or triangles) get more accurate and cover the correct area under its respective constraints. 
+
+    Yes, the results of my program matches the above statement.
+
+
+

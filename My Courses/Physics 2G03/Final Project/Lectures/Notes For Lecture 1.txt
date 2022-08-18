@@ -1,0 +1,102 @@
+Physics 2G03 - Project Lecture 01
+
+- Process
+    1. Choose a research area of interest to you
+        - Related to your courses, program, something on the web/news, etc.
+            - But, it must be a system that can be modeled computationally
+    2. Identify a system or object in that area that is modeled computationally
+    3. Find out how people model that system or object in practice
+    4. Try to find a simplified model for that system or object
+    5. Propose some numerical experiments to try with your model
+
+- Requirements
+    1. Must be a mathematical model, not a vague idea
+        - The system must change over time
+        - System can be modeled using ordinary differential equations
+    2. Must be able to do numerical experiments with the model
+        - The outcome needs to be characterized
+    3. Must be able to identify features or behaviours of the model that are correct or incorrect
+        - This is to assess whether the model is doing a good or a bad job
+        - A system that does not have well known outcomes is a bad model
+
+- Good Models
+    - A good simple model is one that requires a small set of differential equations or a similar mathematical system that involves updates
+        - For example:
+            - Objects moving under gravity, such as planets or spaceships
+            - Molecules moving in a box, or billard balls moving on a pool table
+            - Populations of animals; predator vs prey
+            - Populations affected by disease
+            - Internal structure of a star or a planet
+            - Simple neural networks, such as a Hopfield Network
+        - Bad examples:
+            - A set of equations that give you a fixed answer
+            - Linear algebra, such as inverting a matrix
+            - Cryptography
+            - Calculating geometry, such as optics
+    - The model needs to contain:
+        - Mathematical expressions where a physical meaning can be attributed to the variables
+            - i.e. Population, orbit position, etc.
+        - Physically meaningful parameters you can play with and change
+            - Food availability, diffusion rate, etc.
+        - Some sort of process required to get solutions from initial values
+            - Stepping forward in time or from case to case
+    - Ordinary differential equations are ideal for this
+
+- Mathematical Model
+    - The model must be a mathematical description of a system
+    - Cannot be vague, must be specific
+        - i.e. "I want to model the economy" (BAD)
+               "I want to model the price of a stock over time" (GOOD)
+               "I want to model how populations change over time"
+    - A good mathematical model can be graphed
+        - Use ordinary differential equations
+    - In the model, 'x' and 'y' do not have to be coordinate positions; they can be:
+        - Numbers of wolves and rabbits
+        - Positions of planets
+        - Projectiles
+        - Angles of a pendulum
+        - Numbers of infected VS. Not infected
+
+- Overview
+    1. Find a mathematical model
+        - Usually a set of ordinary differential equations (ODEs)
+    2. Write a program that runs the model
+    3. Test that your program is a correct implementation of the model
+        - Verifies that the code is error/bug free
+    4. Test the model with different cases
+    5. Critique the model and discuss its usefulness
+
+- Validation VS. Verification
+    - Verification is checking code to make sure it does what you want it to do
+        - Ensures that the code is error/bug free
+        - Ensures that the ODEs were implemented correctly
+        - Verification can be done by:
+            - Comparing answers to known models
+            - Different methods/input give the same answer
+    - Validation checks the equations to make sure they are realistic
+        - i.e. Does the population increase in the model when a real population would increase
+            - i.e. Does the population of rabbits increase when the population of wolves decreases
+        - i.e. Does it follow the laws of physics
+            - i.e. Is energy conserved?
+
+- Neural Network Example
+    - Hopfield Network with Hebbian learning
+        - Give it a training set and show that it becomes better at identifying things in a set
+        - A well trained set can be used on objects not in the training set
+    - Parameters: Dataset, Number of neurons
+    - Tests:
+        - Verification:
+            - Is it stable on the training data?
+        - Validation:
+            - Is it able to guess correctly from incomplete data?
+
+- Exploration
+    - In the final write-up, you need to try several different cases
+        - Discuss how your model is able to do better or worse with different cases
+        - Early cases should be very simple and match expectations
+            - Latter cases should be more complicated 
+    - Add extra parameters or equations
+        - i.e. Additional planets, predators, factors, etc. 
+    - Does the model stay valid with additional parameters?
+        - Explore interesting parameters and cases
+        
