@@ -1,0 +1,133 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\fmodern\fcharset0 Courier;\f2\fnil\fcharset0 AppleSymbols;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue233;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl560\sa321\qj\partightenfactor0
+
+\f0\b\fs48 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Getting Started with the CalcCheck Language\
+\pard\pardeftab720\sl280\sa240\qj\partightenfactor0
+
+\b0\fs24 \cf2 This page tries to help you getting started with writing formal proofs in the CalcCheck langauge. For help with the CalcCheckWeb web-app interface, see\'a0{\field{\*\fldinst{HYPERLINK "http://calccheck.mcmaster.ca/CalcCheckDoc/GettingStartedWithCalcCheckWeb.html"}}{\fldrslt \cf3 \ul \ulc3 \strokec3 Getting Started with CalcCheckWeb}}.\
+\pard\pardeftab720\sl280\sa240\qj\partightenfactor0
+
+\b \cf2 Example
+\b0 \'a0(if this does not display correctly, choose Unicode (UTF-8) character encoding in your browser):\
+\pard\pardeftab720\sl280\sa120\qj\partightenfactor0
+\cf2 \
+\pard\pardeftab720\sl280\qj\partightenfactor0
+
+\f1 \cf2 Theorem (15.17) \'93Self-inverse of unary minus\'94: - (- a) = a\
+Proof:\
+    - (- a)\
+  =
+\f2 \uc0\u10216 
+\f1  \'93Identity of +\'94 
+\f2 \uc0\u10217 
+\f1 \
+    0 + - (- a)\
+  =
+\f2 \uc0\u10216 
+\f1  \'93Unary minus\'94 
+\f2 \uc0\u10217 
+\f1 \
+    a + (- a) + - (- a)\
+  =
+\f2 \uc0\u10216 
+\f1  \'93Unary minus\'94 
+\f2 \uc0\u10217 
+\f1 \
+    a + 0\
+  =
+\f2 \uc0\u10216 
+\f1  \'93Identity of +\'94 
+\f2 \uc0\u10217 
+\f1 \
+    a\
+\pard\pardeftab720\sl280\sa120\qj\partightenfactor0
+
+\f0 \cf2 \
+\pard\pardeftab720\sl280\sa240\qj\partightenfactor0
+\cf2 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl280\sa80\qj\partightenfactor0
+\ls1\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The keywords\'a0
+\f1 Thoerem
+\f0 \'a0and\'a0
+\f1 Proof
+\f0 \'a0are not indented at all.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Everything that is part of the theorem needs to be either after the keyword\'a0
+\f1 Theorem
+\f0 , or indented by\'a0
+\b at least two spaces
+\b0 \'a0on the following lines.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Proofs by calculation start on the line after the \'93
+\f1 Proof:
+\f0 \'94, and every part of the calculation needs to be indented by at least two spaces.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 An equational calculation consists of a sequence of expressions, each on a line (or several lines) of it own, and these expressions are separated by\'a0
+\i hint lines
+\i0 \
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	5.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 A hint line contains an equality symbol (later also other symbols) immediately followed by a\'a0
+\i hint
+\i0 \'a0enclosed in angle brackets\'a0
+\f2 \uc0\u10216 
+\f0 \'a0and\'a0
+\f2 \uc0\u10217 
+\f0 .The\'a0
+\i hint
+\i0 \'a0inside should is surrounded by spaces: There needs to be\'a0
+\b at least one space
+\b0 \'a0after the opening hint bracket, and\'a0
+\b at least one space
+\b0 \'a0before the closing hint bracket.\uc0\u8232 \
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	6.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The expressions in a calculation need to be indented at least two spaces more than the equality symbols of the hint lines.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	7.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The recommended style for the current calculations is to indent the hint lines by two spaces, and indent the expression lines by four spaces.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	8.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Simple\'a0
+\i hints
+\i0 \'a0consist of theorem names or theorem numbers, separated by commas or by \'93
+\f1 and
+\f0 \'94.\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl280\sa80\qj\partightenfactor0
+\ls1\ilvl0
+\i \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	9.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Theorem numbers
+\i0 \'a0following the style of LADM are delimited by parentheses and consist of numbers, dots, and occasional letters. Examples:\'a0
+\f1 (15.17)
+\f0 ,\'a0
+\f1 (15.25a)
+\f0 . The enclosure always consists of round parentheses, and there are never any space characters inside.\
+\ls1\ilvl0
+\i \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	10.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Theorem names
+\i0 \'a0are delimited by opening and closing double quote characters\'a0
+\f1 \'93
+\f0 \'a0and\'a0
+\f1 \'94
+\f0 .\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl280\sa80\qj\partightenfactor0
+\ls1\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	11.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 For information about how to input all these special characters in CalcCheckWeb, see\'a0{\field{\*\fldinst{HYPERLINK "http://calccheck.mcmaster.ca/CalcCheckDoc/GettingStartedWithCalcCheckWeb.html"}}{\fldrslt \cf3 \ul \ulc3 \strokec3 Getting Started with CalcCheckWeb}}.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	12.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Multi-letter variable names are supported in a rather liberal way. Therefore,\'a0
+\b spaces around operators are necessary almost everywhere
+\b0 .\
+\pard\pardeftab720\sl280\sa240\qj\partightenfactor0
+\cf2 \
+\pard\pardeftab720\sl280\sa120\qj\partightenfactor0
+\cf2 \
+\pard\pardeftab720\sl280\qj\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "mailto:kahl@cas.mcmaster.ca"}}{\fldrslt 
+\i \cf3 \ul \ulc3 \strokec3 Wolfram Kahl}}
+\i \
+}
