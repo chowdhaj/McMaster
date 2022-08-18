@@ -1,0 +1,49 @@
+3SH3.Questions.txt
+
+Question: What is a microkernel?
+Answer: A microkernel aims to move as much code from kernel space into
+user space. The goal is to have the minimum amount of code running in
+kernel space. An advantage of this is increased security, because less
+code is running in kernel space. A disadvantage is the performance
+overhead of communication between user and kernel space.
+
+Question: What is the difference between Linux and Unix?
+Answer: Both are a family of operating systems. Unix was developed at
+Bell Labs by Ken Thompson, Dennis Ritchie, and others. Linux was
+was developed later by Linus Torvalds. Unix is (mostly) closed source.
+On the other hand, Linux is open source. Linux is based off of Unix;
+it is a Unix-like operating system - almost a clone.
+
+Question: Is VMM an operating system?
+Answer: 
+
+Question: What is the difference between the shell and the kernel?
+Answer: 
+
+Question: Does a VMM interact directly with the hardware level or does
+it go through the host kernel.
+Answer: 
+
+Question: Do you know why windows has bios settings that prevents
+virtualization?
+Answer: 
+
+Question: Are system calls made to kernel modules?
+Answer: It depends, but yes system calls can be made to kernel
+modules. For example, in linux, the modules handle file management;
+which require system calls.
+
+Question: Does "OS services" refer to kernel modules or is that
+something different?
+Answer: It refers to services provided by the kernel, the modules you
+have loaded in your system, and services through system programs. The
+OS provides services to the user and programs, with the help of the
+kernel, system program, and loaded modules.
+
+Question: Is it possible to rewrite the system call implementation?
+Perhaps with kernel mode permissions
+Answer: 
+
+Question: What's the difference between a block and a table?
+Answer: A block is contiguous memory allocation, like an array. A
+table contains more information organized in rows and columns.

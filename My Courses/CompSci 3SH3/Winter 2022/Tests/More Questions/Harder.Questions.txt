@@ -1,0 +1,9 @@
+1. The PS3 has a 6 cell architecture. Explain implications of this for designing, development, and performance.
+
+2. Chmod question. why is chmod 777 bad?
+
+3. How to solve starvation in SJF without pre-emption.
+
+4. Scheduling question with pidle
+
+More Questions Coming Soon...

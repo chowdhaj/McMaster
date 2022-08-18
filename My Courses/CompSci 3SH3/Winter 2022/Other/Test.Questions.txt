@@ -1,0 +1,19 @@
+test.txt
+
+- The original PS3 had a six-cell architecture. Explain why this was
+  difficult to develop on?
+
+- Draw a process tree diagram for the corresponding code:
+  int main(void) {
+    fork();
+    fork();
+    // printf("Hello\n");
+    fork();
+  }
+  How many processes are created in total? How many times is "hello"
+  printed?
+
+- Explain one issue with using uncoordinated thread wake for the
+  dining philosopher problem.
+
+- Summarize the advantages and disadvantages of microkernels
