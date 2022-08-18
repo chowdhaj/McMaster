@@ -31,6 +31,6 @@ The following list contains quick links to all the CompSci courses in this repos
 ## License
 Anyone and everyone is/are allowed to use these documents as they see fit.
 
-*"Education is the most powerful weapon which you can use to change the world."*
+*"Education is the most powerful weapon which [WE] can use to change the world."*
 
 Enjoy!
