@@ -1,0 +1,153 @@
+
+<!-- saved from url=(0066)http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab.cgi?lab -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style> a:hover { background-color: yellow; } </style>
+<title>CS 2XA3 (2018/19, Term I) Major Lab 4</title>
+</head>
+
+<body>
+
+<h1><img src="./Major Lab 4_files/logo.jpg" width="786" height="92" alt="logo.jpg (32213 bytes)"></h1>
+
+<h1><font color="#999999">A:</font> CS 2XA3 (2018/19, Term I) Major Lab 4 -- lab section L02</h1>
+
+<table border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/labs.cgi?lab" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" name="exec" value="Back To Lab Menu">&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/login/back.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" name="back" value="Back To Main Menu">&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td height="26"><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/presubmit.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><input type="hidden" name="header" value="proj,4,L02"><p><br>
+      <input type="submit" name="exec" value="Submissions">&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/login/logout.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" value="Log Out"></p>
+    </form>
+    </td>
+  </tr>
+</tbody></table>
+
+<p><big>sample solutions: <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj4/A/proj4_1.asm" download=""><font face="Courier New, Courier, monospace">proj4_1.asm</font></a> and 
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj4/A/proj4_2.asm" download=""><font face="Courier New, Courier, monospace">proj4_2.asm</font></a> and
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj4/A/bonus.txt" download=""><font face="Courier New, Courier, monospace">bonus.txt</font></a></big></p>
+
+<br><table border="0" width="962">
+<tbody><tr><td width="1031"><big><font color="#FF0000"></font></big></td></tr>
+<tr><td><p><big><font color="#0000FF"><em><strong>If you are in the correct lab room and during the
+SCHEDULED time slot for your lab section for Major Lab 4 and working on one of the lab's workstations, go into Marks+Comments to see if your attendance was registered. If you signed on the course website too early (the most common problem), your attendance would not be recorded; in such case, please log out and sign on again. If your attendance is still not recorded, please,  ask your TA to record your attendance and email Prof. Franek right away. If you are not using one of the lab's workstations, please, have the TA record your attendance.</strong></em></font></big></p></td></tr>
+<tr><td><big><font color="#808080"><em><strong>The Major Labs are open book labs, you can bring and use any notes etc.
+You can access any website, Google, Wikipedia etc. The only thing that is not
+allowed  is cooperation with other people, inside or outside the lab. You must
+submit your own work. The TA can only help with administrative and technical aspects and not with the solutions of the problems of the Major Lab.</strong></em></font></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr>
+  <td><big>In this lab, there are two tasks and two deliverables: NASM programs  <font color="#0000FF" face="Courier New, Courier, monospace">proj4_1.asm</font> and <font color="#0000FF" face="Courier New, Courier, monospace">proj4_2.asm</font>&nbsp;, and a text file <font color="#0000FF" face="Courier New, Courier, monospace">bonus.txt</font> for the bonus if you decide to do the bonus question -- note that the bonus is not mandatory and the bonus mark of 3% will be applied to the overall grade. Each file can be 
+submitted either via the course website, or using <font color="#0000FF" face="Courier New, Courier, monospace">2xa3submit</font>. For 
+<font color="#0000FF" face="Courier New, Courier, monospace">2xa3submit</font> submission please use 
+<font color="#0000FF" face="Courier New, Courier, monospace">2xa3submit&nbsp;AAA&nbsp;proj4&nbsp;BBB</font> where 
+<font color="#0000FF" face="Courier New, Courier, monospace">AAA</font> is your student number and 
+<font color="#0000FF" face="Courier New, Courier, monospace">BBB</font> the name of the file you want to submit. You can submit 
+every file as many times as you wish, the latest submission will be used for marking. The submission is opened from 8:30-11:20 or 14:30-17:20 depending on the lab section; 
+after the closing time no submission is possible.  
+<font color="#FF0000">If submission is not possible for whatever reason (typically right after the submission closes), email the file or files as an attachment immediately (needed 
+for the time verification) to Prof. Franek (franek@mcmaster.ca) with an explanation of the problem; you must use your official McMaster email account for that. Include the course 
+code, your lab section, full name, and your student number. Note that if there is no problem with submission (typically the student using a wrong name for the file), you might be assessed 
+a penalty for email submission, depending on the reason you used email.</font></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><strong><font color="#FF6600">Task 1. NASM program named <font face="Courier New, Courier, monospace">proj4_1.asm</font> (Do proj4_1.asm before proj4_2.asm)</font></strong></big></td></tr>
+<tr>
+  <td><big>The name of  your file must be <font color="#0000FF" face="Courier New, Courier, monospace">proj4_1.asm</font> and below is a description of what it should do when executed.</big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr>
+  <td><big>Before you start working on the program <font color="#0000FF" face="Courier New, Courier, monospace">proj4_1.asm</font>:</big></td></tr>
+<tr><td><ul>
+
+<li><big>Decide what will be your working directory.</big></li>
+
+<li><big>Download a text file <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj4/A/asm_io.asm" download="">asm_io.asm</a> and save it on your workstation, then transfer it to <em><strong>moore</strong></em> to your working directory and 
+convert it to a unix text file (using <font color="#0000FF" face="Courier New, Courier, monospace">dos2unix</font>).</big></li>
+
+<li><big>Download a text file <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj4/A/asm_io.inc" download="">asm_io.inc</a> and save it on your workstation, then transfer it to <em><strong>moore</strong></em> to your working directory and 
+convert it to a unix text file. </big></li>
+
+<li><big>Download a text file <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj4/A/cdecl.h" download="">cdecl.h</a> and save it on your workstation, then transfer it to <em><strong>moore</strong></em> to your working directory and
+convert it to a unix text file.</big></li>
+
+<li><big>Download a C++ program <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj4/A/driver.c" download="">driver.c</a> and save it on your workstation, then transfer it to <em><strong>moore</strong></em> to your working directory
+and convert it to a unix text file. </big></li>
+
+<li><big>Download a bash script <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj4/A/makefile" download="">makefile</a> and save it on your workstation, then transfer it to <em><strong>moore</strong></em> to your working directory
+and convert it to a unix text file.</big></li></ul></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr>
+  <td><big>What should <font color="#0000FF" face="Courier New, Courier, monospace">proj4_1.asm </font>do:</big></td></tr>
+<tr><td><ol>
+  <li><big>In the program in the <font color="#0000FF" face="Courier New, Courier, monospace">.data</font> section define a byte array named </big><big><font color="#0000FF" face="Courier New, Courier, monospace">string</font> and initialize it with <font color="#0000FF" face="Courier New, Courier, monospace">hello&nbsp;world&nbsp;hello</font> and terminate it with 0.</big></li>
+  <li><big>The program traverses  <font color="#0000FF" face="Courier New, Courier, monospace">string</font> counting the number of characters in the string and also counting the number of blanks (spaces).</big></li>
+  <li><big>When the count of characters reaches 20 and the string had not been entirely traversed, an error message is displayed, and the program terminates.</big></li>
+  <li><big>If the traversal was successfully completed, the string is displayed</big>.</li>
+  <li><big>Then a message about the length of the string is displayed followed by display of the string's length.</big></li>
+  <li><big>Then the message about the number of blanks is displayed followed by display of the number of blanks.</big></li>
+  <li><big>The program terminates.</big></li>
+</ol></td></tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr><td><big>A sample run</big></td></tr>
+  <tr><td><big><font color="#996600"><pre>hello world hello
+the length of the string is 17
+the number of blanks is 2</pre></font></big></td></tr>
+<tr>
+  <td><big>A sample run if the value of <font color="#0000FF" face="Courier New, Courier, monospace">string</font> in the code is changed to 
+<font color="#0000FF" face="Courier New, Courier, monospace">hellohellohellohello&nbsp;worldworldworldworldworld</font> and the whole program is re-compiled.</big></td></tr>
+<tr><td><big><font color="#996600"><pre>too many characters</pre></font></big></td></tr>
+<tr><td><big><em>Hint: to display a string use</em> <font color="#0000FF" face="Courier New, Courier, monospace">print_string</font> <em>and to display a number use</em>
+<font color="#0000FF" face="Courier New, Courier, monospace">print_int</font></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><strong><font color="#FF6600">Task 2. NASM program named <font face="Courier New, Courier, monospace">proj4_2.asm</font></font></strong></big></td></tr>
+<tr><td><big>The name of your program must be <font color="#0000FF" face="Courier New, Courier, monospace">proj4_2.asm</font> and below is a description of what it should do when used.</big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big>What should <font color="#0000FF" face="Courier New, Courier, monospace">proj4_2.asm</font>&nbsp;do:</big></td></tr>
+<tr><td><ol>
+<li><big>It is a modification of <font color="#0000FF" face="Courier New, Courier, monospace">proj4_1.asm</font>, see above.</big></li>
+<li><big>After <font color="#0000FF" face="Courier New, Courier, monospace">string</font> is displayed, and its length, and the number of blanks as in  <font color="#0000FF" face="Courier New, Courier, monospace">proj4_1.asm</font>, the string is displayed in reverse.</big></li></ol></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><em>Hint: If</em> <font color="#0000FF" face="Courier New, Courier, monospace">M</font> <em>is the length of the string, the address of the last character in the string is</em>
+<font color="#0000FF" face="Courier New, Courier, monospace">string+M</font>&nbsp;. <em>Then loop from the last character to the beginning of the string and display each character encountered by</em> <font color="#0000FF" face="Courier New, Courier, monospace">print_char</font>&nbsp;.</big></td></tr>
+<tr><td><big>A sample run</big></td></tr>
+<tr><td><big><font color="#996600"><pre>hello world hello
+the length of the string is 17
+the number of blanks is 2
+string in reverse: olleh dlrow olleh</pre></font></big></td></tr>
+<tr>
+  <td><big>A sample run when the value of string is changed to <font color="#0000FF" face="Courier New, Courier, monospace">A B C D</font> and the whole program is recompiled.</big></td></tr>
+<tr><td><big><font color="#996600"><pre>A B C D
+the length of the string is 7
+the number of blanks is 3
+string in reverse: D C B A</pre></font></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><strong><font color="#FF6600">Bonus task.</font></strong></big></td></tr>
+<tr><td><big>Download a text file <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj4/A/bonus.asm" download="">bonus.asm</a> and save it on your workstation, then transfer it to <em><strong>moore</strong></em> to your working directory and convert it to a unix text file. Compile the program by <font color="#0000FF" face="Courier New, Courier, monospace">make bonus</font>&nbsp;. It is a product of SWINDLE LOTO Ltd. company and it is totally stacked in favour of the company to always win. You play it by running the program <font color="#0000FF" face="Courier New, Courier, monospace">bonus</font>
+with a single command line argument. If no command line argument is given, or more than 1, the program displays <font color="#0000FF" face="Courier New, Courier, monospace">wrong&nbsp;number&nbsp;of&nbsp;command&nbsp;line&nbsp;arguments</font> and the game must be repeated. Supposedly, if you guess the "right" combination of characters in the string that is the first command line argument, you win otherwise you loose. But the company put in a fraudulent code. No matter what you enter, it just checks the length of the string. If the string is up to 5 characters long, you loose, so the code makes sure that it processes at most 5 characters of the argument; it terminates the processing of the string when it reaches the count of 5. As a joke, it checks then the length of the processed string, and if the length is 58 you win, otherwise you loose. Note that the length can never reach 58 as after 5, the processing of the string is terminated. You can try it yourself.</big>
+<br><big>Execute the program, for instance <font color="#0000FF" face="Courier New, Courier, monospace">bonus 12345</font></big><p></p></td></tr>
+<tr><td><big>The output is <font color="#996600" face="Courier New, Courier, monospace">sorry, you do not win</font></big></td></tr>
+<tr><td><big>Try a longer string <font color="#0000FF" face="Courier New, Courier, monospace">bonus 123456</font></big><p></p></td></tr>
+<tr><td><big>The output is <font color="#996600" face="Courier New, Courier, monospace">sorry, you do not win</font></big></td></tr>
+<tr><td><big>Try a much longer string <font color="#0000FF" face="Courier New, Courier, monospace">bonus 12345678901234567890</font></big><p></p></td></tr>
+<tr><td><big>The output is <font color="#996600" face="Courier New, Courier, monospace">sorry, you do not win</font></big></td></tr>
+<tr><td><big>However, a clever hacker came up with a winning combination: <font color="#0000FF" face="Courier New, Courier, monospace">bonus 123459</font> make the
+program output <font color="#0000FF" face="Courier New, Courier, monospace">Oooooh&nbsp;yes,&nbsp;you&nbsp;are&nbsp;the&nbsp;winner</font>, so the joke is on the company.</big></td></tr>
+<tr><td><big>How come? Describe why the program gives a win with this particular combination despite the fact that all it does is checking the length of
+the string, and describe how to fix it in a text file 
+<font color="#0000FF" face="Courier New, Courier, monospace">bonus.txt</font> that you submit in the usual way.</big></td></tr>
+</tbody></table>
+
+
+</body></html>

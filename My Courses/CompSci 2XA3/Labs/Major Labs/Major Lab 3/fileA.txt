@@ -1,0 +1,9 @@
+#include <stdio.h>
+
+#ifdef _X3
+  void yous1();
+  void yous2();
+  void yous3();
+  void yous4();
+#endif
+

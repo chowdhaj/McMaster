@@ -1,0 +1,19 @@
+report: p1.asc p2.asc p3.asc p4.asc p5.asc
+	mv p1.asc report
+	cat p2.asc >> report
+	cat p3.asc >> report
+	cat p4.asc >> report
+	cat p5.asc >> report
+	rm p2.asc p3.asc p4.asc p5.asc format
+p1.asc: format PI1/text.asc
+	format PI1/text.asc > p1.asc
+p2.asc: format PI2/text.asc
+	format PI2/text.asc > p2.asc
+p3.asc: format PI3/text.asc
+	format PI3/text.asc > p3.asc
+p4.asc: format PI4/text.asc
+	format PI4/text.asc > p4.asc
+p5.asc: format PI5/text.asc
+	format PI5/text.asc > p5.asc
+format: format.cpp
+	g++ -o format format.cpp

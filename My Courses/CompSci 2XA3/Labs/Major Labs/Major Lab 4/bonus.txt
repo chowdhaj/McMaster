@@ -1,0 +1,40 @@
+Consider the .bsb section 
+  bytes resb 5
+  N resd 1
+
+  This is a picture of the memory:
+
+  [ ][ ][ ][ ][ ][ | | | ]
+  <---bytes ----><-- N -->
+
+The "variable" N controls the number of bytes coppied 
+to the array 'bytes' and it goes from 0 to 5, so allowing 
+to copy 6 bytes, not 5 as claimed.
+The sixth byte will be actually coppied to the
+leftmost byte of N thus changing the contents
+of N, i.e. changing the value of N.
+If 12345678901234567890 is entered, the leftmost
+byte of N is overriden in such a way that the value
+of N gives 58.
+
+How to fix it: two ways, either (a) or (b)
+
+(a) fix the loop to loop only 5 times and not 6 time by changing
+        cmp dword [N],5      ; we can accommodate at most 5 integers in bytes
+        jbe L1
+to
+        cmp dword [N],5      ; we can accommodate at most 5 integers in bytes
+        jb L1
+
+(b) change the storage for 'bytes' so the copying does not override
+    the leftmost byte of N, from
+
+section .bss
+bytes resb 5
+N resd 1
+
+    to 
+
+section .bss
+bytes resb 6
+N resd 1

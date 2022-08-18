@@ -1,0 +1,38 @@
+all: file1 file2 file3 file4
+
+file1: yous.cpp script1
+	script1
+file2: yous.cpp script2
+	script2
+file3: yous.cpp yous1.o yous2.o yous3.o yous4.o
+	g++ -o file3 yous.cpp yous1.o yous2.o yous3.o yous4.o -D_X3
+file4: yous.cpp script3
+	script3
+yous1.o: yous1.cpp
+	g++ -c yous1.cpp
+yous2.o: yous2.cpp
+	g++ -c yous2.cpp
+yous3.o: yous3.cpp
+	g++ -c yous3.cpp
+yous4.o: yous4.cpp
+	g++ -c yous4.cpp
+script2: script1
+	tr "1" "2" < script1 > script2
+	chmod u+x script2
+script3: script1
+	tr "1" "4" < script1 > script3
+	chmod u+x script3
+yous.cpp: fileA fileB fileC
+	cp fileA yous.cpp
+	cat fileB >> yous.cpp
+	cat fileC >> yous.cpp
+yous2.cpp: yous1.cpp
+	tr "1" "2" < yous1.cpp > yous2.cpp
+yous3.cpp: yous1.cpp
+	tr "1" "3" < yous1.cpp > yous3.cpp
+yous4.cpp: yous1.cpp
+	tr "1" "4" < yous1.cpp > temp
+	sed 's/FUNCTIONAL/NOT FUNCTIONAL/' temp > yous4.cpp
+	rm temp
+clean:
+	rm file1 file2 file3 file4 script2 script3 *.o yous.cpp yous2.cpp yous3.cpp yous4.cpp

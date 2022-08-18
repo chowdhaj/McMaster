@@ -1,0 +1,80 @@
+#!/bin/bash
+# version C
+
+# check command line arguments
+
+if [ $# -lt 1 -o $# -gt 3 ]
+then
+  echo "wrong number of command line arguments"
+  echo "Usage: `basename $0` -Z"
+  echo "    or"
+  echo "Usage: `basename $0` <file1> -Z"
+  echo "    or"
+  echo "       `basename $0` <file1> <file2> -Z"
+  exit
+fi
+
+if [ $# -eq 1 ]
+then
+  if [ "$1" == "-Z" ]
+  then
+    echo "OK"
+  else
+    echo "incorrect argument"
+    echo "Usage: `basename $0` -Z"
+    echo "    or"
+    echo "Usage: `basename $0` <file1> -Z"
+    echo "    or"
+    echo "       `basename $0` <file1> <file2> -Z"
+  fi
+  exit
+fi
+if [ $# -eq 2 ]
+then
+  if [ "$2" == "-Z" ]
+  then
+    echo "OK, created file $1"
+    echo "Line 1,$1" > "$1"
+    for i in {2..13}
+    do
+     echo "Line $i,$1" >> "$1"
+    done
+    cat "$1"
+  else
+    echo "incorrect argument"
+    echo "Usage: `basename $0` -Z"
+    echo "    or"
+    echo "Usage: `basename $0` <file1> -Z"
+    echo "    or"
+    echo "       `basename $0` <file1> <file2> -Z"
+  fi
+  exit
+fi
+
+if [ $# -eq 3 ]
+then
+  if [ "$3" == "-Z" ]
+  then
+    echo "OK, created file $1 and file $2"
+    echo "Line 1,$1" > "$1"
+    for i in {2..13}
+    do
+     echo "Line $i,$1" >> "$1"
+    done
+    cat "$1"
+    echo "$2, Line 1" > "$2"
+    for i in {2..7}
+    do
+     echo "$2, Line $i" >> "$2"
+    done
+    cat "$2"
+  else
+    echo "incorrect argument"
+    echo "Usage: `basename $0` -Z"
+    echo "    or"
+    echo "Usage: `basename $0` <file1> -Z"
+    echo "    or"
+    echo "       `basename $0` <file1> <file2> -Z"
+  fi
+  exit
+fi

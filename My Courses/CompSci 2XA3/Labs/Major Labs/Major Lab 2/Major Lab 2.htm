@@ -1,0 +1,475 @@
+
+<!-- saved from url=(0066)http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab.cgi?lab -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style> a:hover { background-color: yellow; } </style>
+<title>CS 2XA3 (2018/19, Term I) Major Lab 2</title>
+</head>
+
+<body>
+
+<h1><img src="./Major Lab 2_files/logo.jpg" width="786" height="92" alt="logo.jpg (32213 bytes)"></h1>
+
+<h1><font color="#999999">C:</font> CS 2XA3 (2018/19, Term I) Major Lab 2 -- lab section L02</h1>
+
+<table border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/labs.cgi?lab" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" name="exec" value="Back To Lab Menu">&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/login/back.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" name="back" value="Back To Main Menu">&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td height="26"><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/presubmit.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><input type="hidden" name="header" value="proj,2,L02"><p><br>
+      <input type="submit" name="exec" value="Submissions">&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/login/logout.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" value="Log Out"></p>
+    </form>
+    </td>
+  </tr>
+</tbody></table>
+
+<p><big>sample solutions: <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj2/C/script1" download=""><font face="Courier New, Courier, monospace">script1</font></a> and <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj2/C/script2" download=""><font face="Courier New, Courier, monospace">script2</font></a></big></p>
+
+
+<table border="0" width="962">
+ <tbody><tr>
+    <td width="1031"><big><font color="#FF0000"></font></big></td>
+  </tr>
+<tr><td><p><big><font color="#0000FF"><em><strong>If you are in the correct lab room and during the
+SCHEDULED time slot for your lab section for Major Lab 2 and working on one of the lab's workstations, go into Marks+Comments to see if your attendance was registered. If you signed on the course website too early (the most common problem), your attendance would not be recorded; in such case, please log out and sign on again. If your attendance is still not recorded, please,  ask your TA to record your attendance and email Prof. Franek right away. If you are not using one of the lab's workstations, please, have the TA record your attendance.</strong></em></font></big></p></td></tr>
+<tr>
+  <td><big><font color="#808080"><em><strong>The Major Labs are open book labs, you can bring and use any notes etc.
+You can access any website, Google, Wikipedia etc. The only thing that is not
+allowed  is cooperation with other people, inside or outside the lab. You must
+submit your own work. The TA can only help with administrative and technical aspects and not with the solutions of the problems of the Major Lab.</strong></em></font></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr>
+  <td><big>In this lab, there are two tasks and two deliverables: text files <font color="#0000FF" face="Courier New, Courier, monospace">script1</font> and <font color="#0000FF" face="Courier New, Courier, monospace">script2</font>. Each can be 
+submitted either via the course website, or using <font color="#0000FF" face="Courier New, Courier, monospace">2xa3submit</font>. For 
+<font color="#0000FF" face="Courier New, Courier, monospace">2xa3submit</font> submission please use 
+<font color="#0000FF" face="Courier New, Courier, monospace">2xa3submit AAA proj2 BBB</font> where 
+<font color="#0000FF" face="Courier New, Courier, monospace">AAA</font> is your student number and 
+<font color="#0000FF" face="Courier New, Courier, monospace">BBB</font> the name of the file you want to submit. You can submit 
+every file as many times as you wish, the latest submission will be used for marking. The submission is opened from 8:30-11:20 or 14:30-17:20 depending on the lab section; 
+after the closing time no submission is be possible.  
+<font color="#FF0000">If submission is not possible for whatever reason (typically right after the submission closes), email the file or files as an attachment immediately (needed 
+for the time verification) to Prof. Franek (franek@mcmaster.ca) with an explanation of the problem; you must use your official McMaster email account for that. Include the course 
+code, your lab section, full name, and your student number. Note that if there is no problem with submission (typically the student using a wrong name for the file), you might be assessed 
+a penalty for email submission, depending on the reason you used email.</font></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><strong><font color="#FF9900">Task 1. bash script named <font face="Courier New, Courier, monospace">script1</font></font></strong></big></td></tr>
+<tr>
+  <td><big>The name of  your bash script must be <font color="#0000FF" face="Courier New, Courier, monospace">script1</font> and below is a description of what it should do when executed. <em>Note that the name of the script, the names of the files and directories, and the messages must be used exactly as described here, including the lower and upper cases.</em></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><ol>
+<li><big> <font color="#0000FF" face="Courier New, Courier, monospace">script1</font> creates in the current directory a subdirectory  <font color="#0000FF" face="Courier New, Courier, monospace">DIR_A</font> 
+and then displays  <font color="#0000FF" face="Courier New, Courier, monospace">directory&nbsp;DIR_A&nbsp;created</font></big></li>
+
+<li><big>Then in the directory  <font color="#0000FF" face="Courier New, Courier, monospace">DIR_A</font> creates a subdirectory
+<font color="#0000FF" face="Courier New, Courier, monospace">dir_B</font> and then displays  <font color="#0000FF" face="Courier New, Courier, monospace">dir_B&nbsp;subdirectory&nbsp;created</font></big></li>
+
+<li><big>In <font color="#0000FF" face="Courier New, Courier, monospace">dir_B</font> it creates 12 ASCII text files named 
+<font color="#0000FF" face="Courier New, Courier, monospace">fileB_1</font>, ..., 
+<font color="#0000FF" face="Courier New, Courier, monospace">fileB_12</font>&nbsp;. The content of 
+<font color="#0000FF" face="Courier New, Courier, monospace">fileB_1</font> consists of three lines: the first saying 
+<font color="#0000FF" face="Courier New, Courier, monospace">Line&nbsp;1&nbsp;of&nbsp;fileB_1</font> and the second saying 
+  <font color="#0000FF" face="Courier New, Courier, monospace">Line&nbsp;2&nbsp;of&nbsp;fileB_1</font>&nbsp;and the third saying 
+  <font color="#0000FF" face="Courier New, Courier, monospace">Next&nbsp;file&nbsp;is&nbsp;fileB_2&nbsp;</font>. The content of 
+  <font color="#0000FF" face="Courier New, Courier, monospace">fileB_2</font> consists of three lines 
+  <font color="#0000FF" face="Courier New, Courier, monospace">Line&nbsp;1&nbsp;of&nbsp;fileB_2</font> and 
+  <font color="#0000FF" face="Courier New, Courier, monospace">Line&nbsp;2&nbsp;of&nbsp;fileB_2</font> and 
+  <font color="#0000FF" face="Courier New, Courier, monospace">Next&nbsp;file&nbsp;is&nbsp;fileB_3</font> etc. Note that the last file 
+  <font color="#0000FF" face="Courier New, Courier, monospace">fileB_12</font> contains three lines, the first saying 
+  <font color="#0000FF" face="Courier New, Courier, monospace">Line&nbsp;1&nbsp;of&nbsp;fileB_12</font> and the second saying 
+  <font color="#0000FF" face="Courier New, Courier, monospace">Line&nbsp;2&nbsp;of&nbsp;fileB_12</font>&nbsp;and the third saying 
+  <font color="#0000FF" face="Courier New, Courier, monospace">Next&nbsp;file&nbsp;none</font> (<em>the first 11 files ought to be created in a single loop</em>)</big></li>
+
+<li><big>Then the script displays <font color="#0000FF" face="Courier New, Courier, monospace">DIR_A:&nbsp;regular&nbsp;files</font> and then displays just the names of 
+  all regular files in <font color="#0000FF" face="Courier New, Courier, monospace">DIR_A</font>  (<em>note that non-regular files are not to be displayed, and since the</em> <font color="#0000FF" face="Courier New, Courier, monospace">ls</font> <em>command displays all entities in the directory, you cannot use</em> <font color="#0000FF" face="Courier New, Courier, monospace">ls</font> <em>for this purpose</em>).</big></li>
+ 
+<li><big>Then the script displays <font color="#0000FF" face="Courier New, Courier, monospace">dir_B:&nbsp;regular&nbsp;files</font> and then displays just the names of 
+  all regular files in <font color="#0000FF" face="Courier New, Courier, monospace">dir_B</font>&nbsp;.</big></li>
+
+<li><big>Then the script displays <font color="#0000FF" face="Courier New, Courier, monospace">Contents&nbsp;of&nbsp;regular&nbsp;files&nbsp;in&nbsp;dir_B</font> and then it displays contents of all regular files in <font color="#0000FF" face="Courier New, Courier, monospace">dir_B</font> separated by a line consisting of pluses (character <font color="#0000FF" face="Courier New, Courier, monospace">+</font> ).</big></li>
+
+<li><big>Then it moves all files among <font color="#0000FF" face="Courier New, Courier, monospace">fileB_1</font>, ..., <font color="#0000FF" face="Courier New, Courier, monospace">fileB_12</font> containing a character <font color="#0000FF" face="Courier New, Courier, monospace">6</font> or a character <font color="#0000FF" face="Courier New, Courier, monospace">7</font> from <font color="#0000FF" face="Courier New, Courier, monospace">dir_B</font> to<font color="#0000FF" face="Courier New, Courier, monospace"> DIR_A</font>&nbsp;.</big></li>
+
+<li><big>Then the script displays <font color="#0000FF" face="Courier New, Courier, monospace">DIR_A:&nbsp;regular&nbsp;files</font> and then displays just the names of all regular files in <font color="#0000FF" face="Courier New, Courier, monospace">DIR_A</font></big>&nbsp;.</li>
+
+<li><big>Then the script displays <font color="#0000FF" face="Courier New, Courier, monospace">dir_B:&nbsp;regular&nbsp;files</font> and then displays just the names of all regular files in <font color="#0000FF" face="Courier New, Courier, monospace">dir_B</font>&nbsp;.</big></li>
+
+<li><big>Then it creates a single file in <font color="#0000FF" face="Courier New, Courier, monospace">dir_B</font> named <font color="#0000FF" face="Courier New, Courier, monospace">ALLFILE</font> that contains all the lines from all the regular files in <font color="#0000FF" face="Courier New, Courier, monospace">dir_B</font></big>&nbsp;.</li>
+
+<li><big>Then it removes all other regular files from <font color="#0000FF" face="Courier New, Courier, monospace">dir_B</font> except <font color="#0000FF" face="Courier New, Courier, monospace">ALLFILE</font>&nbsp;.</big></li>
+
+<li><big>Then the script displays <font color="#0000FF" face="Courier New, Courier, monospace">dir_B:&nbsp;regular&nbsp;files</font> and then displays just the 
+names of all regular files in <font color="#0000FF" face="Courier New, Courier, monospace">dir_B</font>&nbsp;.</big></li>
+
+<li><big>Then the script displays <font color="#0000FF" face="Courier New, Courier, monospace">ALLFILE:</font> and then displays the contents of <font color="#0000FF" face="Courier New, Courier, monospace">ALLFILE</font></big>&nbsp;.</li>
+
+<li><big>Then it removes the directory <font color="#0000FF" face="Courier New, Courier, monospace">DIR_A</font> with everything still in it.</big></li>
+<li><big>Now the current directory should contain exactly the same files and subdirectories as just before this script was executed.</big></li>
+</ol>
+    
+</td></tr><tr><td><big><em>What commands and concepts you might need</em>: <font face="Courier New, Courier, monospace">cd  mkdir  echo ls grep mv cat</font> and <strong><em>for loop</em></strong>. <em>Note, that after the script has been executed, the current directory is in the same state as it was when the script started its execution. Note that the message must be used exactly as in the above description, including the lower and upper cases.</em></big></td></tr>
+<tr><td><big><em>A few useful hints:</em></big><ol>
+
+<li><big><em>Current directory is referred to as</em> <font face="Courier New, Courier, monospace" color="#0000FF"><strong>.</strong></font> <em>, the
+parent directory as</em> <font face="Courier New, Courier, monospace" color="#0000FF"><strong>..</strong></font><br>
+<em>For instance, </em><font face="Courier New, Courier, monospace" color="#0000FF">ls <strong>.</strong></font>
+<em>will show all files/subdirectories in the current directory, while</em> <font face="Courier New, Courier, monospace" color="#0000FF">ls <strong>..</strong></font> <em>will
+show all files/subdirectories in the parent directory</em></big></li>
+        
+<li><big><em>The number of command line arguments is stored in</em> 
+<font face="Courier New, Courier, monospace" color="#0000FF">$#</font> <em>variable.</em></big></li>
+
+<li><big><em>Since</em> <font face="Courier New, Courier, monospace" color="#0000FF">$0</font> <em>is a pathname, we can extract the name of the file using</em> <font face="Courier New, Courier, monospace">basename</font>, <em>e.g.</em> <font face="Courier New, Courier, monospace" color="#0000FF">basename $0</font></big></li>
+
+<li><big><em>a range from 1 to 15 can be expressed as</em> <font face="Courier New, Courier, monospace" color="#0000FF">{1..15}</font>, <em>for instance</em><br>
+<font face="Courier New, Courier, monospace" color="#0000FF">for i in {1..15}</font></big></li>
+
+<li><big><em>to concatenate a string with a number</em> (<font face="Courier New, Courier, monospace" color="#0000FF">x</font> <em>contains a string,</em> <font face="Courier New, Courier, monospace" color="#0000FF">i</font> <em>contains a number</em>)<em>, use</em> <font face="Courier New, Courier, monospace" color="#0000FF">$x$i</font></big></li>
+
+<li><big><em>to increment a variable</em> <font face="Courier New, Courier, monospace" color="#0000FF">i</font> <em>containing a number, use</em> <font face="Courier New, Courier, monospace" color="#0000FF">i = $(($i+1))</font></big></li>
+
+<li><big><em>to test if a name stored in a variable</em> <font face="Courier New, Courier, monospace" color="#0000FF">file</font> <em>is a name of a regular
+file, use</em> <font face="Courier New, Courier, monospace" color="#0000FF">[ -f $file ]</font></big></li>
+
+<li><big><em>Another way to deal with regular files is to use</em> <font face="Courier New, Courier, monospace" color="#0000FF">find . -type f</font></big></li>
+
+<li><big><em>to figure out if a file whose name is stored in a variable</em> <font face="Courier New, Courier, monospace" color="#0000FF">file</font> <em>contains a symbol</em> <font color="#0000FF" face="Courier New, Courier, monospace">4</font>,<font color="#0000FF" face="Courier New, Courier, monospace">5</font>, <em>or</em> <font color="#0000FF" face="Courier New, Courier, monospace">8</font>, <em>use </em><br>
+<font face="Courier New, Courier, monospace" color="#0000FF">x = `grep '4\|5\|8' $file`</font>
+<em>and then test whether</em> <font face="Courier New, Courier, monospace" color="#0000FF">x</font>
+<em>is empty</em> (<em>note the single </em><em>quotes inside and the back </em><em>quotes around the whole expression</em>).</big></li>
+
+<li><big><em>In bash you quite often need to check to see if a variable has been set or has
+a value other than an empty string. This can be done using the</em> <font face="Courier New, Courier, monospace" color="#0000FF">-n</font> 
+<em>or</em> <font face="Courier New, Courier, monospace" color="#0000FF">-z</font><em> string comparison operators</em>.<br>
+<em>The</em> <font face="Courier New, Courier, monospace" color="#0000FF">-n</font> <em>operator checks whether the string is not null. Effectively, this will return true for every case except where the string contains no characters. ie</em>:
+<font color="#0000FF"></font><font color="#0000FF"><pre>if [ -n "$VAR" ]
+then
+echo "VAR is not empty"
+fi</pre></font>
+<em>Similarly, the</em> <font face="Courier New, Courier, monospace" color="#0000FF">-z</font>
+<em>operator checks whether the string is null. ie</em>:<br>
+<font color="#0000FF"><pre>if [ -z "$VAR" ]
+then
+"VAR is empty"
+fi</pre></font>
+<em>Note the spaces around the square brackets. Bash will complain if the spaces are not
+there.</em></big></li></ol></td></tr>
+
+<tr><td><big>A sample run:</big></td></tr>
+<tr><td><pre><font color="#996600">directory DIR_A created
+dir_B subdirectory created
+DIR_A: regular files
+dir_B: regular files
+fileB_1
+fileB_10
+fileB_11
+fileB_12
+fileB_2
+fileB_3
+fileB_4
+fileB_5
+fileB_6
+fileB_7
+fileB_8
+fileB_9
+Contents of regular files in dir_B
+Line 1 of fileB_1
+Line 2 of fileB_1
+Next file fileB_2
++++++++++++++++++++++++++++++++
+Line 1 of fileB_10
+Line 2 of fileB_10
+Next file fileB_11
++++++++++++++++++++++++++++++++
+Line 1 of fileB_11
+Line 2 of fileB_11
+Next file fileB_12
++++++++++++++++++++++++++++++++
+Line 1 of fileB_12
+Line 2 of fileB_12
+Next file none
++++++++++++++++++++++++++++++++
+Line 1 of fileB_2
+Line 2 of fileB_2
+Next file fileB_3
++++++++++++++++++++++++++++++++
+Line 1 of fileB_3
+Line 2 of fileB_3
+Next file fileB_4
++++++++++++++++++++++++++++++++
+Line 1 of fileB_4
+Line 2 of fileB_4
+Next file fileB_5
++++++++++++++++++++++++++++++++
+Line 1 of fileB_5
+Line 2 of fileB_5
+Next file fileB_6
++++++++++++++++++++++++++++++++
+Line 1 of fileB_6
+Line 2 of fileB_6
+Next file fileB_7
++++++++++++++++++++++++++++++++
+Line 1 of fileB_7
+Line 2 of fileB_7
+Next file fileB_8
++++++++++++++++++++++++++++++++
+Line 1 of fileB_8
+Line 2 of fileB_8
+Next file fileB_9
++++++++++++++++++++++++++++++++
+Line 1 of fileB_9
+Line 2 of fileB_9
+Next file fileB_10
++++++++++++++++++++++++++++++++
+DIR_A: regular files
+fileB_5
+fileB_6
+fileB_7
+dir_B: regular files
+fileB_1
+fileB_10
+fileB_11
+fileB_12
+fileB_2
+fileB_3
+fileB_4
+fileB_8
+fileB_9
+removing fileB_1
+removing fileB_10
+removing fileB_11
+removing fileB_12
+removing fileB_2
+removing fileB_3
+removing fileB_4
+removing fileB_8
+removing fileB_9
+dir_B: regular files
+ALLFILE
+ALLFILE:
+Line 1 of fileB_1
+Line 2 of fileB_1
+Next file fileB_2
+Line 1 of fileB_10
+Line 2 of fileB_10
+Next file fileB_11
+Line 1 of fileB_11
+Line 2 of fileB_11
+Next file fileB_12
+Line 1 of fileB_12
+Line 2 of fileB_12
+Next file none
+Line 1 of fileB_2
+Line 2 of fileB_2
+Next file fileB_3
+Line 1 of fileB_3
+Line 2 of fileB_3
+Next file fileB_4
+Line 1 of fileB_4
+Line 2 of fileB_4
+Next file fileB_5
+Line 1 of fileB_8
+Line 2 of fileB_8
+Next file fileB_9
+Line 1 of fileB_9
+Line 2 of fileB_9
+Next file fileB_10</font></pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><strong><font color="#FF9900">Task 2. bash script named <font face="Courier New, Courier, monospace">script2</font></font></strong></big></td></tr>
+<tr><td><big>The name of  your bash script must be <font color="#800040"><strong>script2</strong></font> and below is a description of what it should do when executed.</big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><ol>
+<li><big>First the script <font color="#800040"><strong>script2</strong></font> checks the command line arguments. It should have 1  or 2 or 3 command line arguments 
+(we are not counting the name of the script, thus <font color="#0000FF" face="Courier New, Courier, monospace">script2 a</font> is considered to have one command line argument).<br>
+If a single command line argument is used, it must be <font color="#0000FF" face="Courier New, Courier, monospace">-Z</font><br>
+If two command line arguments are used, it must be <font color="#0000FF" face="Courier New, Courier, monospace">&lt;file1&gt; -Z</font><br>
+If three command line arguments are used, it must be <font color="#0000FF" face="Courier New, Courier, monospace">&lt;file1&gt;&nbsp;&lt;file2&gt; -Z</font></big></li>
+
+<li><big>If the number of arguments is wrong, the script displays what we call <strong><em>usage</em></strong><br>
+</big>
+<pre><font color="#0000FF" face="Courier New, Courier, monospace">wrong&nbsp;number&nbsp;of&nbsp;command&nbsp;line&nbsp;arguments
+Usage:&nbsp;script2&nbsp;-Z
+&nbsp;&nbsp;&nbsp;&nbsp;or
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;script2&nbsp;&lt;file1&gt; -Z
+&nbsp;&nbsp;&nbsp;&nbsp;or
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;script2&nbsp;&lt;file1&gt;&nbsp;&lt;file2&gt; -Z</font></pre>
+<big>
+and terminates.</big></li>
+
+<li><big>If the number of command line arguments is correct, but the last argment is not <font color="#0000FF" face="Courier New, Courier, monospace">-Z</font>, the script displays an error message, then <em><strong>usage</strong></em> and terminates.</big></li>
+<li><big>If  1 correct command line argument is used, the script displays <font color="#0000FF" face="Courier New, Courier, monospace">OK</font> and then the script terminates.</big></li>
+<li><big>If  2 command line arguments are used, the script displays <font color="#0000FF" face="Courier New, Courier, monospace">OK,&nbsp;created file&nbsp;</font><font color="#CC6600">A</font>&nbsp; and creates in the current directory a file named  <font color="#CC6600">A</font>&nbsp;. The created file contains 13 lines<br>
+<font color="#0000FF" face="Courier New, Courier, monospace">Line 1,</font><font color="#CC6600">A</font><br>
+<font color="#0000FF" face="Courier New, Courier, monospace">Line 2,</font><font color="#CC6600">A</font><br>
+...<br>
+</big><big><font color="#0000FF" face="Courier New, Courier, monospace">Line 13,</font><font color="#CC6600">A</font><br>
+  where <font color="#CC6600">A</font> is the first command line argument (referred to as <font color="#0000FF" face="Courier New, Courier, monospace">&lt;file1&gt;</font> in the description above). The content of the file must be created by a loop&nbsp;&nbsp;</big></li>
+
+<li><big>The created file is displayed and then the script terminates. Note that the created file stays in the directory after the script finishes its execution.</big></li>
+
+<li><big>If  3 command line arguments are used, the script displays <font color="#0000FF" face="Courier New, Courier, monospace">OK,&nbsp;created file&nbsp;</font><font color="#CC6600">A</font><font color="#0000FF" face="Courier New, Courier, monospace">&nbsp;and&nbsp;file&nbsp;</font><font color="#CC6600">B</font> and creates in the current directory a file named  <font color="#CC6600">A</font>&nbsp;,where <font color="#CC6600">A</font> is the first command line argument (referred to as <font color="#0000FF" face="Courier New, Courier, monospace">&lt;file1&gt;</font> in the desciption above) and a file  <font color="#CC6600">B</font>&nbsp;, where  <font color="#CC6600">B</font> is the second command line argument (referred to as <font color="#0000FF" face="Courier New, Courier, monospace">&lt;file2&gt;</font> in the description above).</big></li>
+
+<li><big>The first file congtains the 13 lines as in 5., the second file contains 7 lines<br>
+<font color="#CC6600">B</font><font color="#0000FF" face="Courier New, Courier, monospace">,Line 1</font><br>
+<font color="#CC6600">B</font><font color="#0000FF" face="Courier New, Courier, monospace">,Line 2</font><br>
+...<br>
+<font color="#CC6600">B</font><font color="#0000FF" face="Courier New, Courier, monospace">,Line 7</font></big></li>
+
+<li><big>The created files are displayed and the script terminates. Note that the created files stay in the directory after the script finishes its execution.</big></li>
+</ol></td></tr>
+
+<tr><td><big><em>A few useful hints:</em></big><ul>
+      
+<li><big><em>The number of command line arguments is stored in</em> <font face="Courier New, Courier, monospace" color="#0000FF">$#</font> <em>variable</em>.</big></li>
+
+<li><big><em>Since</em> <font face="Courier New, Courier, monospace" color="#0000FF">$0</font> <em>is a pathname, we can extract the name of the file using</em> <font face="Courier New, Courier, monospace">basename</font>, <em>e.g.</em> <font face="Courier New, Courier, monospace" color="#0000FF">basename $0</font></big></li>
+
+<li><big><em>If you create by mistake a file called</em> <font color="#0000FF" face="Courier New, Courier, monospace">-d</font><em>, you must remove it using command</em> <font color="#0000FF" face="Courier New, Courier, monospace">rm -- -X</font><em>, as</em> <font color="#0000FF" face="Courier New, Courier, monospace">rm -X</font> <em>will not work as</em> <font color="#0000FF" face="Courier New, Courier, monospace">rm</font> <em>will think</em> <font color="#0000FF" face="Courier New, Courier, monospace">-X</font> <em>is a switch</em>.</big></li>
+
+<li><big><em>To terminate execution of a script, you can use the </em> <font color="#0000FF" face="Courier New, Courier, monospace">exit</font><em>command.</em></big></li>
+
+<li><big><em>It may be useful to learn how to do general counting loop in bash -- an
+example:</em><font face="Courier" color="#0000FF"> COUNTER</font><em> will go through values </em>0,
+2, 4, ... <font color="#0000FF" face="Courier New, Courier, monospace">$i</font>
+<pre><font color="#0000FF" face="Courier">for (( COUNTER = 0;COUNTER &lt;= $i;COUNTER += 2 ))
+      do
+         echo $COUNTER
+      done</font></pre>
+<em>For more on the meaning of</em> <font face="Courier" color="#0000FF">((&nbsp;&nbsp;))</font>, <em>i.e. arithmetic integer
+ evaluation, please see bash manual in the help section, <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/help/bash/Arithmetic-Expansion.html#Arithmetic-Expansion">section 3.5.5</a></em></big></li></ul></td></tr>
+ 
+<tr><td><big>Sample runs: executing <font color="#0000FF" face="Courier New, Courier, monospace">script2</font></big></td></tr>
+
+<tr><td><big><pre><font color="#996600">wrong number of command line arguments
+Usage: script2 -Z
+    or
+Usage: script2 &lt;file1&gt; -Z
+    or
+       script2 &lt;file1&gt; &lt;file2&gt; -Z</font></pre></big></td></tr>
+<tr><td><big>Sample runs: executing <font color="#0000FF" face="Courier New, Courier, monospace">script2 hello</font></big></td></tr>
+<tr><td><big><pre><font color="#996600">incorrect argument
+Usage: script2 -Z
+    or
+Usage: script2 &lt;file1&gt; -Z
+    or
+       script2 &lt;file1&gt; &lt;file2&gt; -Z</font></pre></big></td></tr>
+<tr><td><big>Sample runs: executing <font color="#0000FF" face="Courier New, Courier, monospace">script2 -Z</font></big></td></tr>
+<tr><td><big><pre><font color="#996600">OK</font><font color="#996600"></font></pre></big></td></tr>
+<tr><td><big>Sample runs: executing <font color="#0000FF" face="Courier New, Courier, monospace">script2 McMaster\ rules -Z</font></big></td></tr>
+<tr><td><big><pre><font color="#996600">OK, created file McMaster rules
+Line 1,McMaster rules
+Line 2,McMaster rules
+Line 3,McMaster rules
+Line 4,McMaster rules
+Line 5,McMaster rules
+Line 6,McMaster rules
+Line 7,McMaster rules
+Line 8,McMaster rules
+Line 9,McMaster rules
+Line 10,McMaster rules
+Line 11,McMaster rules
+Line 12,McMaster rules
+Line 13,McMaster rules</font></pre>
+and a file named <font color="#0000FF" face="Courier New, Courier, monospace">McMaster rules</font> is in the current directory and
+it contains<pre>Line 1,McMaster rules
+Line 2,McMaster rules
+Line 3,McMaster rules
+Line 4,McMaster rules
+Line 5,McMaster rules
+Line 6,McMaster rules
+Line 7,McMaster rules
+Line 8,McMaster rules
+Line 9,McMaster rules
+Line 10,McMaster rules
+Line 11,McMaster rules
+Line 12,McMaster rules
+Line 13,McMaster rules</pre></big></td></tr>
+<tr>
+  <td><big>Sample runs: executing <font color="#0000FF" face="Courier New, Courier, monospace">script2 McMaster\ rules McMaster\ sucks -Z</font></big></td></tr>
+<tr><td><big><pre><font color="#996600">OK, created file McMaster rules and file McMaster sucks
+Line 1,McMaster rules
+Line 2,McMaster rules
+Line 3,McMaster rules
+Line 4,McMaster rules
+Line 5,McMaster rules
+Line 6,McMaster rules
+Line 7,McMaster rules
+Line 8,McMaster rules
+Line 9,McMaster rules
+Line 10,McMaster rules
+Line 11,McMaster rules
+Line 12,McMaster rules
+Line 13,McMaster rules
+McMaster sucks, Line 1
+McMaster sucks, Line 2
+McMaster sucks, Line 3
+McMaster sucks, Line 4
+McMaster sucks, Line 5
+McMaster sucks, Line 6
+McMaster sucks, Line 7</font></pre>
+and two files named  <font color="#0000FF" face="Courier New, Courier, monospace">McMaster rules</font> and <font color="#0000FF" face="Courier New, Courier, monospace">McMaster sucks</font> are in the current diretory. The first file contains<pre>Line 1,McMaster rules
+Line 2,McMaster rules
+Line 3,McMaster rules
+Line 4,McMaster rules
+Line 5,McMaster rules
+Line 6,McMaster rules
+Line 7,McMaster rules
+Line 8,McMaster rules
+Line 9,McMaster rules
+Line 10,McMaster rules
+Line 11,McMaster rules
+Line 12,McMaster rules
+Line 13,McMaster rules</pre>and the second file contains<pre>McMaster sucks, Line 1
+McMaster sucks, Line 2
+McMaster sucks, Line 3
+McMaster sucks, Line 4
+McMaster sucks, Line 5
+McMaster sucks, Line 6
+McMaster sucks, Line 7</pre></big></td></tr>
+<tr>
+  <td><big>Sample runs: executing <font color="#0000FF" face="Courier New, Courier, monospace">script2 Hello -Z</font></big></td></tr>
+<tr><td><big><pre><font color="#996600">OK, created file Hello
+Line 1,Hello
+Line 2,Hello
+Line 3,Hello
+Line 4,Hello
+Line 5,Hello
+Line 6,Hello
+Line 7,Hello
+Line 8,Hello
+Line 9,Hello
+Line 10,Hello
+Line 11,Hello
+Line 12,Hello
+Line 13,Hello</font></pre>
+and a file named <font color="#0000FF" face="Courier New, Courier, monospace">Hello</font> is in the current directory and it
+contains<pre>Line 1,Hello
+Line 2,Hello
+Line 3,Hello
+Line 4,Hello
+Line 5,Hello
+Line 6,Hello
+Line 7,Hello
+Line 8,Hello
+Line 9,Hello
+Line 10,Hello
+Line 11,Hello
+Line 12,Hello
+Line 13,Hello
+</pre></big></td></tr>
+</tbody></table>
+
+
+</body></html>

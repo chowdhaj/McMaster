@@ -1,0 +1,289 @@
+
+<!-- saved from url=(0066)http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab.cgi?lab -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style> a:hover { background-color: yellow; } </style>
+<title>CS 2XA3 (2018/19, Term I) Major Lab 5</title>
+</head>
+
+<body>
+
+<h1><img src="./Major Lab 5_files/logo.jpg" width="786" height="92" alt="logo.jpg (32213 bytes)"></h1>
+
+<h1><font color="#999999">C:</font> CS 2XA3 (2018/19, Term I) Major Lab 5 -- lab section L02</h1>
+
+<table border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/labs.cgi?lab" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" name="exec" value="Back To Lab Menu">&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/login/back.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" name="back" value="Back To Main Menu">&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td height="26"><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/presubmit.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><input type="hidden" name="header" value="proj,5,L02"><p><br>
+      <input type="submit" name="exec" value="Submissions">&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/login/logout.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" value="Log Out"></p>
+    </form>
+    </td>
+  </tr>
+</tbody></table>
+
+<p><big>sample solutions: <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj5/C/proj5_1.asm"><font face="Courier New, Courier, monospace">proj5_1.asm</font></a>&nbsp;&nbsp;
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj5/C/proj5_2.asm"><font face="Courier New, Courier, monospace">proj5_2.asm</font></a>&nbsp;&nbsp;
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj5/C/bonus.txt"><font face="Courier New, Courier, monospace">bonus.txt</font></a></big></p>
+
+<br><br><br><table border="0" width="962">
+<tbody><tr><td width="1031"><big><font color="#FF0000"></font></big></td></tr>
+<tr><td><p><big><font color="#0000FF"><em><strong>If you are in the correct lab room and during the
+SCHEDULED time slot for your lab section for Major Lab 4 and working on one of the lab's workstations, go into Marks+Comments to see if your attendance was registered. If you signed on the course website too early (the most common problem), your attendance would not be recorded; in such case, please log out and sign on again. If your attendance is still not recorded, please,  ask your TA to record your attendance and email Prof. Franek right away. If you are not using one of the lab's workstations, please, have the TA record your attendance.</strong></em></font></big></p></td></tr>
+<tr><td><big><font color="#808080"><em><strong>The Major Labs are open book labs, you can bring and use any notes etc.
+You can access any website, Google, Wikipedia etc. The only thing that is not
+allowed  is cooperation with other people, inside or outside the lab. You must
+submit your own work. The TA can only help with administrative and technical aspects and not with the solutions of the problems of the Major Lab.</strong></em></font></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr>
+  <td><big>In this lab, there are two tasks and two deliverables: NASM programs  <font color="#0000FF" face="Courier New, Courier, monospace">proj5_1.asm</font> and 
+ <font color="#0000FF" face="Courier New, Courier, monospace">proj5_2.asm</font>&nbsp;, and a text file <font color="#0000FF" face="Courier New, Courier, monospace">bonus.txt</font> for the bonus if you decide to do the bonus question -- note that the bonus is not mandatory and the bonus mark of 3% will be applied to the overall grade. Each file can be 
+submitted either via the course website, or using <font color="#0000FF" face="Courier New, Courier, monospace">2xa3submit</font>. For 
+<font color="#0000FF" face="Courier New, Courier, monospace">2xa3submit</font> submission please use 
+<font color="#0000FF" face="Courier New, Courier, monospace">2xa3submit&nbsp;AAA&nbsp;proj5&nbsp;BBB</font> where 
+<font color="#0000FF" face="Courier New, Courier, monospace">AAA</font> is your student number and 
+<font color="#0000FF" face="Courier New, Courier, monospace">BBB</font> the name of the file you want to submit. You can submit 
+every file as many times as you wish, the latest submission will be used for marking. The submission is opened from 8:30-11:20 or 14:30-17:20 depending on the lab section; 
+after the closing time no submission is possible.  
+<font color="#FF0000">If submission is not possible for whatever reason (typically right after the submission closes), email the file or files as an attachment immediately (needed 
+for the time verification) to Prof. Franek (franek@mcmaster.ca) with an explanation of the problem; you must use your official McMaster email account for that. Include the course 
+code, your lab section, full name, and your student number. Note that if there is no problem with submission (typically the student using a wrong name for the file), you might be assessed 
+a penalty for email submission, depending on the reason you used email.</font></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><strong><font color="#FF6600">Task 1. NASM program named <font face="Courier New, Courier, monospace">proj5_1.asm</font></font></strong></big></td></tr>
+<tr>
+  <td><big><font color="#FF6600">Do this one first, <font face="Courier New, Courier, monospace">proj5_2.asm</font> is an extension of <font face="Courier New, Courier, monospace">proj5_1.asm</font></font></big></td></tr>
+
+<tr><td><big>The name of  your file must be <font color="#0000FF" face="Courier New, Courier, monospace">proj5_1.asm</font> and below is a description of what it should do when executed.</big></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+<tr><td><big>Before you start working on the program <font color="#0000FF" face="Courier New, Courier, monospace">proj5_1.asm</font>:</big></td></tr>
+<tr><td><ul>
+
+<li><big>Decide what will be your working directory.</big></li>
+
+<li><big>Download a text file <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj5/C/asm_io.asm" download="">asm_io.asm</a> and save it on your workstation, then transfer it to <em><strong>moore</strong></em> to your working directory and 
+convert it to a unix text file (using <font color="#0000FF" face="Courier New, Courier, monospace">dos2unix</font>).</big></li>
+
+<li><big>Download a text file <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj5/C/asm_io.inc" download="">asm_io.inc</a> and save it on your workstation, then transfer it to <em><strong>moore</strong></em> to your working directory and 
+convert it to a unix text file. </big></li>
+
+<li><big>Download a text file <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj5/C/cdecl.h" download="">cdecl.h</a> and save it on your workstation, then transfer it to <em><strong>moore</strong></em> to your working directory and
+convert it to a unix text file.</big></li>
+
+<li><big>Download a C++ program <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj5/C/driver.c" download="">driver.c</a> and save it on your workstation, then transfer it to <em><strong>moore</strong></em> to your working directory
+and convert it to a unix text file. </big></li>
+
+<li><big>Download a bash script <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj5/C/makefile" download="">makefile</a> and save it on your workstation, then transfer it to <em><strong>moore</strong></em> to your working directory
+and convert it to a unix text file.</big></li></ul></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr>
+  <td><big>What should <font color="#0000FF" face="Courier New, Courier, monospace">proj5_1.asm </font>do:</big></td></tr>
+<tr><td><ol>
+
+<li><big>The program checks the number of command line arguments. It should have exactly 1 (</big><big><font color="#0000FF" face="Courier New, Courier, monospace">argc</font> should be 2). If not, an error message is displayed and the program terminates.</big></li>
+
+<li><big>The program checks the length of the 1st command line argument (i.e. the length of the string <font color="#0000FF" face="Courier New, Courier, monospace">argv[1]</font>). If it is not exactly 2, an error message is displayed and the program terminates.</big></li>
+
+<li><big>Then the first character of <font color="#0000FF" face="Courier New, Courier, monospace">argv[1]</font> is checked. If it is not a lower case letter (i.e. 
+<font color="#0000FF" face="Courier New, Courier, monospace">'a'</font> .. <font color="#0000FF" face="Courier New, Courier, monospace">'z'</font>), an error message is displayed and the program terminates. We shall refer to this letter as <font color="#0000FF">letter</font>.</big></li>
+
+<li><big>Then the second character of <font color="#0000FF" face="Courier New, Courier, monospace">argv[1]</font> is checked. If it is not a digit, an error message is displayed and the program terminates.</big></li>
+
+<li><big>Then the digit is turned to a number and the number is checked if it is bigger than 1 and odd. If not, an error message is displayed and the program terminates (hence the only admissible digits are 3, 5, 7, and 9). We shall refer to this number as <font color="#0000FF">size</font>.</big></li>
+
+
+<li><big>The program displays a massage of displaying a shape of the given <font color="#0000FF">size</font> and made of the given <font color="#0000FF">letter</font> and terminates.</big></li>
+</ol></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><em>Hints:</em></big></td></tr>
+<tr><td><ol>
+<li><big><em>To check that</em> <font color="#0000FF" face="Courier New, Courier, monospace">argv[1]</font> <em>is of length exactly two, just check that the first character 
+of</em> <font color="#0000FF" face="Courier New, Courier, monospace">argv[1]</font> <em>is not a</em> <font color="#0000FF" face="Courier New, Courier, monospace">NULL</font> 
+<em>character and the second character of</em> <font color="#0000FF" face="Courier New, Courier, monospace">argv[1]</font> <em>is not a</em> 
+<font color="#0000FF" face="Courier New, Courier, monospace">NULL</font> <em>character and the third character of</em> 
+<font color="#0000FF" face="Courier New, Courier, monospace">argv[1]</font> <em>is a</em> <font color="#0000FF" face="Courier New, Courier, monospace">NULL</font> 
+<em>character.</em></big></li>
+
+<li><big><em>To check if a byte is a lower case letter, use two separate <font color="#0000FF" face="Courier New, Courier, monospace">cmp</font> statements to see if it is below</em> 
+<font color="#0000FF" face="Courier New, Courier, monospace">'a'</font> <em>or above</em> <font color="#0000FF" face="Courier New, Courier, monospace">'z'</font>&nbsp;<em>. If it is 
+not, then it is a lower case letter.</em></big>
+
+</li><li><big><em>To check if a byte is a digit, use two separate <font color="#0000FF" face="Courier New, Courier, monospace">cmp</font> statements to see if it is below</em> 
+<font color="#0000FF" face="Courier New, Courier, monospace">'0'</font> <em>or above</em> <font color="#0000FF" face="Courier New, Courier, monospace">'9'</font>&nbsp;<em>. If it is 
+not, then it is a digit.</em></big>
+
+</li><li><big><em>To turn a digit into a number, load it to a register and subtract</em> <font color="#0000FF" face="Courier New, Courier, monospace">dword '0'</font><em>.</em></big></li>
+  
+<li><big><em>To determine if a number is even or odd requires division by 2 and checking if the remainder is 0 (then it is even) or 1 (then it is odd), see</em> 
+<font color="#0000FF" face="Courier New, Courier, monospace">div</font> <em>instruction for bytes. The other option is to check whether the number equals 3 or 5 or 7 or 9 by four separate</em>  <font color="#0000FF" face="Courier New, Courier, monospace">cmp</font> <em>statements.</em></big></li></ol></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr>
+  <td><big>A sample run <font color="#996600" face="Courier New, Courier, monospace">proj5_1 a3</font> will output 
+<font color="#996600" face="Courier New, Courier, monospace">Displaying shape of size 3 made of letters a</font></big></td></tr>
+<tr>
+  <td><big>A sample run <font color="#996600" face="Courier New, Courier, monospace">proj5_1 u5</font> will output
+<font color="#996600" face="Courier New, Courier, monospace">Displaying shape of size 5 made of letters u</font></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><strong><font color="#FF6600">Task 2. NASM program named <font face="Courier New, Courier, monospace">proj5_2.asm</font></font></strong></big></td></tr>
+<tr><td><big><font color="#FF6600"><font face="Courier New, Courier, monospace">proj5_2.asm</font> is an extension of <font face="Courier New, Courier, monospace">proj5_1.asm</font></font></big></td></tr>
+<tr><td><big>The name of  your file must be <font color="#0000FF" face="Courier New, Courier, monospace">proj5_2.asm</font> and below is a description of what it should do when executed.</big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><ol>
+<li><big>Copy <font color="#0000FF" face="Courier New, Courier, monospace">proj5_1.asm</font> to <font color="#0000FF" face="Courier New, Courier, monospace">proj5_2.asm</font>
+ (make sure not to destroy <font color="#0000FF" face="Courier New, Courier, monospace">proj5_1.asm</font>).</big></li>
+
+<li><big>The program <font color="#0000FF" face="Courier New, Courier, monospace">proj5_2.asm</font> instead of displaying the final message (<font color="#996600" face="Courier New, Courier, monospace">Displaying shape of size ... </font>)
+calls a subprogram <font color="#0000FF" face="Courier New, Courier, monospace">display_shape</font> -- <em>the name of the subroutine is mandatory</em>.</big></li>
+<li><big>The subroutine <font color="#0000FF" face="Courier New, Courier, monospace">display_shape</font>  expects two parameters on the stack, the 
+<font color="#0000FF">size</font> which is the size of the shape to be displayed and <font color="#0000FF">letter</font> which is the letter the shape should be made of.</big></li>
+
+<li><big>The shapes displayed by <font color="#0000FF" face="Courier New, Courier, monospace">display_shape</font> depend on 
+<font color="#0000FF">size</font> and <font color="#0000FF">letter</font> passed to it, examples are shown below:</big><br>
+<table>
+<tbody><tr><td width="200" align="center">for <font color="#0000FF">size</font> = 3</td>
+<td width="200" align="center">for <font color="#0000FF">size</font> = 5</td>
+<td width="200" align="center">for <font color="#0000FF">size</font> = 7</td>
+<td width="200" align="center">for <font color="#0000FF">size</font> = 9</td></tr>
+
+<tr><td width="200" align="center">and <font color="#0000FF">letter</font> = <font face="Courier New, Courier, monospace">a</font></td>
+<td width="200" align="center">and <font color="#0000FF">letter</font> = <font face="Courier New, Courier, monospace">o</font></td>
+<td width="200" align="center">and <font color="#0000FF">letter</font> = <font face="Courier New, Courier, monospace">x</font></td>
+<td width="200" align="center">and <font color="#0000FF">letter</font> = <font face="Courier New, Courier, monospace">w</font></td></tr>
+
+<tr>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace">a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace">o&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace">x&nbsp;&nbsp;&nbsp;</font></td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace">w&nbsp;&nbsp;</font></td></tr>
+
+<tr>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace">a a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace">o o&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace"> x x&nbsp;&nbsp;&nbsp;</font></td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace"> w w&nbsp;&nbsp;</font></td></tr>
+
+<tr><td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace">a a a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace"> o o o&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace"> x x x&nbsp;&nbsp;&nbsp;</font></td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace"> w w w&nbsp;&nbsp;</font></td></tr>
+
+<tr>
+<td width="200" align="right">&nbsp;</td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace">o o o o&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace"> x x x x&nbsp;&nbsp;&nbsp;</font></td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace"> w w w w&nbsp;&nbsp;</font></td></tr>
+
+<tr>
+<td width="200" align="right">&nbsp;</td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace">o o o o o&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace">x x x x x&nbsp;&nbsp;&nbsp;</font></td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace"> w w w w w&nbsp;&nbsp;</font></td></tr>
+
+<tr>
+<td width="200" align="right">&nbsp;</td>
+<td width="200" align="right">&nbsp;</td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace"> x x x x x x&nbsp;&nbsp;&nbsp;</font></td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace">w w w w w w&nbsp;&nbsp;</font></td></tr>
+<tr><td width="200" align="right">&nbsp;</td>
+<td width="200" align="right">&nbsp;</td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace">x x x x x x x&nbsp;&nbsp;&nbsp;</font></td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace">w w w w w w w&nbsp;&nbsp;</font></td></tr>
+<tr><td width="200" align="right">&nbsp;</td>
+<td width="200" align="right">&nbsp;</td>
+<td width="200" align="right">&nbsp;</td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace">w w w w w w w w&nbsp;&nbsp;</font></td></tr>
+<tr><td width="200" align="right">&nbsp;</td>
+<td width="200" align="right">&nbsp;</td>
+<td width="200" align="right">&nbsp;</td>
+<td width="200" align="right"><font color="#996600" face="Courier New, Courier, monospace">w w w w w w w w w&nbsp;&nbsp;</font></td></tr></tbody></table></li>
+
+<li><big>The subprogram <font color="#0000FF" face="Courier New, Courier, monospace">display_shape</font> displays the shape by calling a subprogram 
+<font color="#0000FF" face="Courier New, Courier, monospace">display_line</font>&nbsp;(<em>again, the name is mandatory</em>) for each line of the shape (i.e. <font color="#0000FF" face="Courier New, Courier, monospace">display_line</font> is called either 3 times, or 5 times, or 7 times, or 9 times).</big></li>
+   
+<li><big>The subprogram <font color="#0000FF" face="Courier New, Courier, monospace">display_line</font> expects three parameters on the stack, first is the number of spaces it
+should print, the second is the number of letters it should print, and the third is the letter it should use. <em>Note the space between two consecutive 
+letters!</em></big></li></ol></td></tr>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr>
+  <td><big><em>Hint: </em><em>Subroutine </em>
+<font color="#0000FF" face="Courier New, Courier, monospace">display_shape</font> <em>performs a loop of length</em> 
+<font color="#0000FF" face="Courier New, Courier, monospace">size</font>&nbsp;<em>; at the beginning of the loop the number of spaces equals </em>
+<font color="#0000FF" face="Courier New, Courier, monospace">2*</font><font color="#0000FF">size</font><font color="#0000FF" face="Courier New, Courier, monospace">-2</font> <em>and the number of letters equals</em> 
+<font color="#0000FF" face="Courier New, Courier, monospace">1</font>&nbsp;<em>. In each pass through the loop </em><em>the number of spaces is decreased by</em> 
+<font color="#0000FF" face="Courier New, Courier, monospace">2</font> <em>and the number of letters is increased by</em> <font color="#0000FF" face="Courier New, Courier, monospace">1</font>&nbsp;<em>. In each pass through the loop </em> <font color="#0000FF" face="Courier New, Courier, monospace">display_line</font> <em>is called with three parameters: number of spaces, number of letters, and</em> <font color="#0000FF">letter</font>&nbsp;.</big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><strong><font color="#FF6600">Bonus task.</font></strong></big></td></tr>
+<tr>
+  <td><big>Download a text file <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj5/C/bonus.asm" download="">bonus.asm</a> and save it on your workstation, then transfer it to <em><strong>moore</strong></em> to your working directory and convert it to a unix text file. Compile the program by <font color="#0000FF" face="Courier New, Courier, monospace">make bonus</font>&nbsp;. This is a gambling software made by SWINDLERS Corp. Ltd. You bid in 4 rounds between 1 to 9 dollars. You are encouraged to bid as high as possible as the higher the cumulative bid, the higher your chances of winning, at least so says the company. The company raises your bid eightfold each time. Of course, the software is fraudulent and as a joke (how much they laughed when programming it) it only checks the cumulative value of the four bids and you only win if it is zero. But since the bids cannot be zero, the cumulative bid is always bigger than zero, so you always loose, ha ha ha. However, a smart hacker found out that bidding 8, 8, 8 , and 8 give
+s her a win and so the joke is on the company.</big></td></tr>
+<tr><td><big>Try it:</big></td></tr>
+<tr><td><big><font color="#996600" face="Courier New, Courier, monospace"><pre>Bid a non-zero number less than 10 4
+We raised your bid eightfold to 32
+The total value of the bids is 32
+
+Bid a non-zero number less than 10 7
+We raised your bid eightfold to 56
+The total value of the bids is 88
+
+Bid a non-zero number less than 10 2
+We raised your bid eightfold to 16
+The total value of the bids is 104
+
+Bid a non-zero number less than 10 9
+We raised your bid eightfold to 72
+Ha ha ha ha, you lost</pre></font></big></td></tr>
+<tr><td><big>Another try:</big></td></tr>
+<tr><td><big><font color="#996600" face="Courier New, Courier, monospace"><pre>Bid a non-zero number less than 10 9
+We raised your bid eightfold to 72
+The total value of the bids is 72
+
+Bid a non-zero number less than 10 9
+We raised your bid eightfold to 72
+The total value of the bids is 144
+
+Bid a non-zero number less than 10 9
+We raised your bid eightfold to 72
+The total value of the bids is 216
+
+Bid a non-zero number less than 10 9
+We raised your bid eightfold to 72
+Ha ha ha ha, you lost</pre></font></big></td></tr>
+<tr><td><big>A winning run:</big></td></tr>
+<tr><td><big><font color="#996600" face="Courier New, Courier, monospace"><pre>Bid a non-zero number less than 10 8
+We raised your bid eightfold to 64
+The total value of the bids is 64
+
+Bid a non-zero number less than 10 8
+We raised your bid eightfold to 64
+The total value of the bids is 128
+
+Bid a non-zero number less than 10 8
+We raised your bid eightfold to 64
+The total value of the bids is 192
+
+Bid a non-zero number less than 10 8
+We raised your bid eightfold to 64
+Unbelievable, you win</pre></font></big></td></tr>
+<tr>
+  <td><big>Describe why the program gives you a win when all it does to determine win/loss is checking the cumulative sum of the four bids and it is definitely bigger than zero, and describe how to fix it in a text file 
+<font color="#0000FF" face="Courier New, Courier, monospace">bonus.txt</font> that you submit in the usual way.</big></td></tr></tbody></table>
+
+
+</body></html>

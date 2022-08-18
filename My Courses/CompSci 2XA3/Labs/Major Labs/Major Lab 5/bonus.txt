@@ -1,0 +1,5 @@
+The bids are stored in a byte at [N]. As the bidding goes through,
+even though each bid fits in a byte, when the value of the last
+bid is added to the byte at [N], it overflows. When the value is
+exactly 256, it overflows and leaves all bits in byte at [N] zeros.
+To fix it, increase the size of N to a word, or better yet, a dword.

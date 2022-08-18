@@ -1,0 +1,237 @@
+
+<!-- saved from url=(0066)http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/lab.cgi?lab -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style> a:hover { background-color: yellow; } </style>
+<title>CS 2XA3 (2018/19, Term I) Major Lab 3</title>
+</head>
+
+<body>
+
+<h1><img src="./Major Lab 3_files/logo.jpg" width="786" height="92" alt="logo.jpg (32213 bytes)"></h1>
+
+<h1><font color="#999999">A:</font> CS 2XA3 (2018/19, Term I) Major Lab 3 -- lab section L02</h1>
+
+<table border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/labs.cgi?lab" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" name="exec" value="Back To Lab Menu">&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/login/back.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" name="back" value="Back To Main Menu">&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td height="26"><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/presubmit.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><input type="hidden" name="header" value="proj,3,L02"><p><br>
+      <input type="submit" name="exec" value="Submissions">&nbsp;&nbsp;&nbsp;</p>
+    </form>
+    </td>
+    <td><form action="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/login/logout.cgi" method="post">
+      <input type="hidden" name="snow" value="4400363121"><p><br>
+      <input type="submit" value="Log Out"></p>
+    </form>
+    </td>
+  </tr>
+</tbody></table>
+
+<p><big>sample solutions: <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj3/A/makefile1" download=""><font face="Courier New, Courier, monospace">makefile1</font></a> and 
+<a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj3/A/makefile2" download=""><font face="Courier New, Courier, monospace">makefile2</font></a></big></p>
+
+<table border="0" width="962">
+<tbody><tr><td width="1031"><big><font color="#FF0000"></font></big></td></tr>
+<tr><td><p><big><font color="#0000FF"><em><strong>If you are in the correct lab room and during the
+SCHEDULED time slot for your lab section for Major Lab 3 and working on one of the lab's workstations, go into Marks+Comments to see if your attendance was registered. If you signed on the course website too early (the most common problem), your attendance would not be recorded; in such case, please log out and sign on again. If your attendance is still not recorded, please,  ask your TA to record your attendance and email Prof. Franek right away. If you are not using one of the lab's workstations, please, have the TA record your attendance.</strong></em></font></big></p></td></tr>
+<tr><td><big><font color="#808080"><em><strong>The Major Labs are open book labs, you can bring and use any notes etc.
+You can access any website, Google, Wikipedia etc. The only thing that is not
+allowed  is cooperation with other people, inside or outside the lab. You must
+submit your own work. The TA can only help with administrative and technical aspects and not with the solutions of the problems of the Major Lab.</strong></em></font></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big>In this lab, there are two tasks and two deliverables: text files <font color="#0000FF" face="Courier New, Courier, monospace">makefile1</font> and <font color="#0000FF" face="Courier New, Courier, monospace">makefile2</font>. Each can be 
+submitted either via the course website, or using <font color="#0000FF" face="Courier New, Courier, monospace">2xa3submit</font>. For 
+<font color="#0000FF" face="Courier New, Courier, monospace">2xa3submit</font> submission please use 
+<font color="#0000FF" face="Courier New, Courier, monospace">2xa3submit AAA proj3 BBB</font> where 
+<font color="#0000FF" face="Courier New, Courier, monospace">AAA</font> is your student number and 
+<font color="#0000FF" face="Courier New, Courier, monospace">BBB</font> the name of the file you want to submit. You can submit 
+every file as many times as you wish, the latest submission will be used for marking. The submission is opened from 8:30-11:20 or 14:30-17:20 depending on the lab section; 
+after the closing time no submission is be possible.  
+<font color="#FF0000">If submission is not possible for whatever reason (typically right after the submission closes), email the file or files as an attachment immediately (needed 
+for the time verification) to Prof. Franek (franek@mcmaster.ca) with an explanation of the problem; you must use your official McMaster email account for that. Include the course 
+code, your lab section, full name, and your student number. Note that if there is no problem with submission (typically the student using a wrong name for the file), you might be assessed 
+a penalty for email submission, depending on the reason you used email.</font></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><strong><font color="#FF9900">Task 1. make file named <font face="Courier New, Courier, monospace">makefile1</font></font></strong></big></td></tr>
+<tr>
+  <td><big>The name of  your file must be <font color="#0000FF" face="Courier New, Courier, monospace">makefile1</font> and below is a description of what it should do when executed. <em>Note that the names of the make files, the scripts, and of the files and directories, and the messages must be used exactly as described here, including the lower and upper cases.</em></big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr>
+  <td><big>Before you start working on the make file <font color="#0000FF" face="Courier New, Courier, monospace">makefile1</font>:</big></td></tr>
+<tr><td><ul>
+
+<li><big>Decide what will be your working directory.</big></li>
+
+<li><big>Download a text file <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj3/A/fileA" download="">fileA</a> and save it on your workstation, then transfer it to <em><strong>moore</strong></em> to your working directory and 
+convert it to a unix text file (using <font color="#0000FF" face="Courier New, Courier, monospace">dos2unix</font>). This file is necessary for the make file to work.</big></li>
+
+<li><big>Download a text file <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj3/A/fileB" download="">fileB</a> and save it on your workstation, then transfer it to <em><strong>moore</strong></em> to your working directory and 
+convert it to a unix text file. This file is necessary for the make file to work.</big></li>
+
+<li><big>Download a text file <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj3/A/fileC" download="">fileC</a> and save it on your workstation, then transfer it to <em><strong>moore</strong></em> to your working directory and
+convert it to a unix text file. This file is necessary for the make file to work.</big></li>
+
+<li><big>Download a C++ program <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj3/A/yous1.cpp" download="">yous1.cpp</a> and save it on your workstation, then transfer it to <em><strong>moore</strong></em> to your working directory
+and convert it to a unix text file. This program is necessary for the make file to work.</big></li>
+
+<li><big>Download a bash script <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj3/A/script1" download="">script1</a> and save it on your workstation, then transfer it to <em><strong>moore</strong></em> to your working directory
+and convert it to a unix text file. Then make it executable (using <font color="#0000FF" face="Courier New, Courier, monospace">chmod</font>). This script is necessary for the make file to work.</big></li></ul></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big>What should <font color="#0000FF" face="Courier New, Courier, monospace">makefile1</font>&nbsp;do:</big></td></tr>
+<tr><td><ol>
+  <li><big>The make file is to be located in the working directory.</big></li>
+  <li><big>It creates a bash script named <font color="#0000FF" face="Courier New, Courier, monospace">script2</font> from 
+    <font color="#0000FF" face="Courier New, Courier, monospace">script1</font> by replacing every occurrence of a character 
+    <font color="#0000FF" face="Courier New, Courier, monospace">1</font> in the file 
+    <font color="#0000FF" face="Courier New, Courier, monospace">script1</font> by a character 
+    <font color="#0000FF" face="Courier New, Courier, monospace">2</font>&nbsp;, and makes <font color="#0000FF" face="Courier New, Courier, monospace">script2</font> 
+    executable using <font color="#0000FF" face="Courier New, Courier, monospace">chmod</font> command.</big></li>
+  <li><big>It creates a bash script named <font color="#0000FF" face="Courier New, Courier, monospace">script3</font> from 
+  <font color="#0000FF" face="Courier New, Courier, monospace">script1</font> by replacing every occurrence of a character 
+  <font color="#0000FF" face="Courier New, Courier, monospace">1</font> in the file <font color="#0000FF" face="Courier New, Courier, monospace">script1</font>
+  by a character <font color="#0000FF" face="Courier New, Courier, monospace">4</font>&nbsp;, and makes 
+  <font color="#0000FF" face="Courier New, Courier, monospace">script3</font> executable. (<em><font color="#FF0000">Note that it replaces</font></em> 
+  <font face="Courier New, Courier, monospace" color="#FF0000">1</font> <em><font color="#FF0000">by</font></em> 
+  <font face="Courier New, Courier, monospace" color="#FF0000">4</font> <em><font color="#FF0000">and not by</font></em> 
+  <font face="Courier New, Courier, monospace" color="#FF0000">3</font>&nbsp;<font color="#FF0000">!</font>)</big></li>
+  <li><big>It creates a C++ program (file) named <font color="#0000FF" face="Courier New, Courier, monospace">yous.cpp</font> by concatenation of the contents
+  of the three files <font color="#0000FF" face="Courier New, Courier, monospace">fileA</font>, 
+  <font color="#0000FF" face="Courier New, Courier, monospace">fileB</font>, and <font color="#0000FF" face="Courier New, Courier, monospace">fileC</font> 
+  (in that order).</big></li>
+  <li><big>It creates a C++ program (file) named <font color="#0000FF" face="Courier New, Courier, monospace">yous2.cpp</font> from 
+  <font color="#0000FF" face="Courier New, Courier, monospace">yous1.cpp</font> by substituting every occurrence of a character 
+  <font color="#0000FF" face="Courier New, Courier, monospace">1</font> in <font color="#0000FF" face="Courier New, Courier, monospace">yous1.cpp</font>  by a character <font color="#0000FF" face="Courier New, Courier, monospace">2</font>&nbsp;.</big></li>
+  <li><big>It creates a C++ program (file) named <font color="#0000FF" face="Courier New, Courier, monospace">yous3.cpp</font> from 
+  <font color="#0000FF" face="Courier New, Courier, monospace">yous1.cpp</font> by substituting every occurrence of a character 
+  <font color="#0000FF" face="Courier New, Courier, monospace">1</font> in <font color="#0000FF" face="Courier New, Courier, monospace">yous1.cpp</font> 
+  by a character <font color="#0000FF" face="Courier New, Courier, monospace">3</font>&nbsp;.</big></li>
+  <li><big>It creates a C++ program (file) named <font color="#0000FF" face="Courier New, Courier, monospace">yous4.cpp</font> from 
+  <font color="#0000FF" face="Courier New, Courier, monospace">yous1.cpp</font> by first substituting every occurrence of a character 
+  <font color="#0000FF" face="Courier New, Courier, monospace">1</font> in <font color="#0000FF" face="Courier New, Courier, monospace">yous1.cpp</font> 
+  by a character <font color="#0000FF" face="Courier New, Courier, monospace">4</font> producing a temporary file. Then each occurrence of a word  
+  <font color="#0000FF" face="Courier New, Courier, monospace">FUNCTIONAL</font> in the temporary file is replaced by a phrase  
+  <font color="#0000FF" face="Courier New, Courier, monospace">NOT FUNCTIONAL</font> producing 
+  <font color="#0000FF" face="Courier New, Courier, monospace">yous4.cpp</font>&nbsp;.</big></li>
+  <li><big>It creates object files <font color="#0000FF" face="Courier New, Courier, monospace">yous1.o</font>, <font color="#0000FF" face="Courier New, Courier, monospace">yous2.o</font>, <font color="#0000FF" face="Courier New, Courier, monospace">yous3.o</font>,
+  and <font color="#0000FF" face="Courier New, Courier, monospace">yous4.o</font> by compilation using the
+  <font color="#0000FF" face="Courier New, Courier, monospace">g++&nbsp;-c</font>&nbsp;, <em>for instance</em> <font color="#0000FF" face="Courier New, Courier, monospace">g++&nbsp;-c&nbsp;yous1.cpp</font> <em>to create</em> <font color="#0000FF" face="Courier New, Courier, monospace">yous1.o</font>&nbsp;.</big></li>
+  <li><big>It creates an executable file <font color="#0000FF" face="Courier New, Courier, monospace">file1</font> from 
+  <font color="#0000FF" face="Courier New, Courier, monospace">yous.cpp</font> by executing the script 
+  <font color="#0000FF" face="Courier New, Courier, monospace">script1</font>&nbsp;.</big></li>
+  <li><big>If creates an executable file <font color="#0000FF" face="Courier New, Courier, monospace">file2</font> from 
+  <font color="#0000FF" face="Courier New, Courier, monospace">yous.cpp</font> by executing the script 
+  <font color="#0000FF" face="Courier New, Courier, monospace">script2</font>&nbsp;.</big></li>
+  <li><big>It creates an executable file <font color="#0000FF" face="Courier New, Courier, monospace">file3</font> by compilation of 
+  <font color="#0000FF" face="Courier New, Courier, monospace">yous.cpp</font> and linking of 
+  <font color="#0000FF" face="Courier New, Courier, monospace">yous1.o</font>, 
+  <font color="#0000FF" face="Courier New, Courier, monospace">yous2.o</font>, 
+  <font color="#0000FF" face="Courier New, Courier, monospace">yous3.o</font>, and 
+  <font color="#0000FF" face="Courier New, Courier, monospace">yous4.o</font> together by the 
+  <font color="#0000FF" face="Courier New, Courier, monospace">g++</font> compiler with 
+  <font color="#0000FF" face="Courier New, Courier, monospace">-D_X3</font> flag, i.e. <font color="#0000FF" face="Courier New, Courier, monospace">g++&nbsp;-o&nbsp;file3&nbsp;yous.cpp&nbsp;-D_X3&nbsp;yous1.o&nbsp;yous2.o&nbsp;yous3.o&nbsp;yous4.o</font>&nbsp;.</big></li>
+  <li><big>It creates an executable <font color="#0000FF" face="Courier New, Courier, monospace">file4</font> from 
+    <font color="#0000FF" face="Courier New, Courier, monospace">yous.cpp</font> by executing the script 
+    <font color="#0000FF" face="Courier New, Courier, monospace">script3</font>&nbsp;.</big></li>
+  <li><big>When typing <font color="#0000FF" face="Courier New, Courier, monospace">make&nbsp;-f&nbsp;makefile1&nbsp;all</font>&nbsp;, the executables 
+  <font color="#0000FF" face="Courier New, Courier, monospace">file1</font>, 
+  <font color="#0000FF" face="Courier New, Courier, monospace">file2</font>, <font color="#0000FF" face="Courier New, Courier, monospace">file3</font>, 
+  and <font color="#0000FF" face="Courier New, Courier, monospace">file4</font> must be created.</big></li>
+  <li><big>When you execute <font color="#0000FF" face="Courier New, Courier, monospace">file1</font>, you should see a message 
+  <font color="#0000FF" face="Courier New, Courier, monospace">my&nbsp;breakfast&nbsp;was&nbsp;great</font></big></li>
+  <li><big>When you execute <font color="#0000FF" face="Courier New, Courier, monospace">file2</font>, you should see a message 
+  <font color="#0000FF" face="Courier New, Courier, monospace">my&nbsp;breakfast&nbsp;was&nbsp;lousy</font></big></li>
+  <li><big>When you execute <font color="#0000FF" face="Courier New, Courier, monospace">file3</font>, you should see four messages<br>
+  <font color="#0000FF" face="Courier New, Courier, monospace">system X1 is FUNCTIONAL</font><br>
+  <font color="#0000FF" face="Courier New, Courier, monospace">system X2 is FUNCTIONAL</font><br>
+  <font color="#0000FF" face="Courier New, Courier, monospace">system X3 is FUNCTIONAL</font><br>
+  <font color="#0000FF" face="Courier New, Courier, monospace">system X4 is NOT FUNCTIONAL</font></big></li>
+  <li><big>When you execute <font color="#0000FF" face="Courier New, Courier, monospace">file4</font>, you should see a message
+  <font color="#0000FF" face="Courier New, Courier, monospace">X not specified</font></big></li>
+ <li><big>When typing <font color="#0000FF" face="Courier New, Courier, monospace">make&nbsp;-f&nbsp;makefile1&nbsp;clean</font>&nbsp;, all created files in the working directory must be removed and the 
+  directory must only contain <font color="#0000FF" face="Courier New, Courier, monospace">file1</font>, 
+  <font color="#0000FF" face="Courier New, Courier, monospace">file2</font>, 
+  <font color="#0000FF" face="Courier New, Courier, monospace">file3</font>, 
+  <font color="#0000FF" face="Courier New, Courier, monospace">yous1.cpp</font> and <font color="#0000FF" face="Courier New, Courier, monospace">script1</font> 
+  as at the beginning (<em><font color="#FF0000">Do not remove</font></em> <font color="#FF0000" face="Courier New, Courier, monospace">makefile1</font>
+  <font color="#FF0000"><em>nor</em></font> <font color="#FF0000" face="Courier New, Courier, monospace">makefile2</font>&nbsp;<font color="#FF0000">!</font>)</big></li></ol></td></tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr><td><big><em>A few useful hints:</em></big></td></tr>
+  <tr><td><ul>
+  <li><big><em>If you do not have the current directory in the path, you have to refer to the files in your directory in the make file with the prefix</em> <font color="#0000FF" face="Courier New, Courier, monospace"><strong>./</strong></font><em>&nbsp;, for instance</em> <font color="#0000FF" face="Courier New, Courier, monospace">cat&nbsp;./xxx</font><em> instead of</em> <font color="#0000FF" face="Courier New, Courier, monospace">cat&nbsp;xxx</font>&nbsp;. <em>To quickly add the current directory to the path, execute the commands</em> <font color="#0000FF" face="Courier New, Courier, monospace">echo&nbsp;"PATH=$PATH:."&nbsp;&gt;&gt;&nbsp;~/.bashrc</font> <em>and then</em> 
+  <font color="#0000FF" face="Courier New, Courier, monospace">source&nbsp;~/.bashrc</font></big></li>
+  
+  <li><big><em>A single letter can be "translated" by</em>  <font color="#0000FF" face="Courier New, Courier, monospace">tr</font> 
+    <em>command: for instance</em> 
+    <font color="#0000FF" face="Courier New, Courier, monospace">tr&nbsp;"1"&nbsp;"2"&nbsp;&lt;&nbsp;fin&nbsp;&gt;&nbsp;fout</font> <em>will read the input file named</em> 
+    <font color="#0000FF" face="Courier New, Courier, monospace">fin</font> <em>and output it to a file named</em>
+    <font color="#0000FF" face="Courier New, Courier, monospace">fout</font> <em>and during this process it will translate each character</em> 
+    <font color="#0000FF" face="Courier New, Courier, monospace">1</font> <em>to</em> 
+    <font color="#0000FF" face="Courier New, Courier, monospace">2</font>&nbsp;.<em> The file</em> 
+    <font color="#0000FF" face="Courier New, Courier, monospace">fin</font> <em>will remain unchanged, the changes will be in the file</em> 
+    <font color="#0000FF" face="Courier New, Courier, monospace">fout</font>&nbsp;.</big></li>
+    
+  <li><big><em>A substring (of any length, including a substring of length 1, i.e. single letter) can be "translated" to any other string by</em> 
+  <font color="#0000FF" face="Courier New, Courier, monospace">sed</font> <em>command, for instance</em> 
+  <font color="#0000FF" face="Courier New, Courier, monospace">sed&nbsp;'s/HELLO/HELLO BYE/'&nbsp;fin&nbsp;&gt;&nbsp;fout</font> <em>will read the input file</em> 
+  <font color="#0000FF" face="Courier New, Courier, monospace">fin</font> <em>and write into the output file</em> 
+  <font color="#0000FF" face="Courier New, Courier, monospace">fout</font> <em>while replacing the <font color="#FF0000">first</font> occurrence of</em> 
+  <font color="#0000FF" face="Courier New, Courier, monospace">HELLO</font> <em>in each line with</em> 
+  <font color="#0000FF" face="Courier New, Courier, monospace">HELLO&nbsp;BYE</font>&nbsp;. <em>The file</em> <font color="#0000FF" face="Courier New, Courier, monospace">fin</font> <em>will remain unchanged, the changes will be in the file</em> <font color="#0000FF" face="Courier New, Courier, monospace">fout</font>&nbsp;.</big></li></ul></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big><strong><font color="#FF9900">Task 2. make file named <font face="Courier New, Courier, monospace">makefile2</font></font></strong></big></td></tr>
+<tr>
+  <td><big>The name of your make file must be <font color="#0000FF" face="Courier New, Courier, monospace">makefile2</font> and below is a description of what it should do when used.</big></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><big>Before you start working on <font color="#0000FF" face="Courier New, Courier, monospace">makefile2:</font></big></td></tr>
+<tr><td><ul>
+<li><big>Decide what will be your working directory.</big></li>
+<li><big>In the working directory, create a subdirectory <font color="#0000FF" face="Courier New, Courier, monospace">PI1</font> with a file <font color="#0000FF" face="Courier New, Courier, monospace">text.asc</font> downloaded from <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj3/A/text1.asc" download="text.asc">here</a>, using <font color="#0000FF" face="Courier New, Courier, monospace">dos2unix</font> make sure it is a unix text file. You will need this directory and this file only for testing.</big></li>
+
+<li><big>In the working directory, create a subdirectory <font color="#0000FF" face="Courier New, Courier, monospace">PI2</font> with a file <font color="#0000FF" face="Courier New, Courier, monospace">text.asc</font> downloaded from <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj3/A/text2.asc" download="text.asc">here</a>, make sure it is a unix text file. You will need this directory and this file only for testing.</big></li>
+
+<li><big>In the working directory, create a subdirectory <font color="#0000FF" face="Courier New, Courier, monospace">PI3</font> with a file <font color="#0000FF" face="Courier New, Courier, monospace">text.asc</font> downloaded from <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj3/A/text3.asc" download="text.asc">here</a>, make sure it is a unix text file. You will need this directory and this file only for testing.</big></li>
+
+<li><big>In the working directory, create a subdirectory <font color="#0000FF" face="Courier New, Courier, monospace">PI4</font> with a file <font color="#0000FF" face="Courier New, Courier, monospace">text.asc</font> downloaded from <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj3/A/text4.asc" download="text.asc">here</a>, make sure it is a unix text file. You will need this directory and this file only for testing.</big></li>
+
+<li><big>In the working directory, create a subdirectory <font color="#0000FF" face="Courier New, Courier, monospace">PI5</font> with a file <font color="#0000FF" face="Courier New, Courier, monospace">text.asc</font> downloaded from <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj3/A/text5.asc" download="text.asc">here</a>, make sure it is a unix text file. You will need this directory and this file only for testing.</big></li>
+
+<li><big>Download a C++ program <a href="http://www.cas.mcmaster.ca/~franek/courses/cs2xa3/labs/proj3/A/format.cpp" download="format.cpp">format.cpp</a> and transfer it to moore to the working directory and make sure it is a unix text file. This program is essential for making the make file work.</big></li></ul></td></tr>
+
+  <tr><td><big>What should <font color="#0000FF" face="Courier New, Courier, monospace">makefile2</font>&nbsp;do:</big></td></tr>
+  <tr><td><ol>
+  <li><big>There are private investigators writers, <font color="#0000FF" face="Courier New, Courier, monospace">PI1</font>, ..., 
+  <font color="#0000FF" face="Courier New, Courier, monospace">PI5</font>&nbsp;. Each of them keeps his/her notes in a file <font color="#0000FF" face="Courier New, Courier, monospace">text.asc</font>&nbsp;. 
+  The first PI keeps his/her notes in the directory <font color="#0000FF" face="Courier New, Courier, monospace">PI1</font>, 
+  the second PI keeps his/her in the directory <font color="#0000FF" face="Courier New, Courier, monospace">PI2</font>, ... , the fifth PI keeps his/her notes in the 
+  directory <font color="#FF6600"> ( you guessed it :-) )</font> <font color="#0000FF" face="Courier New, Courier, monospace">IP5</font>&nbsp;.</big></li>
+  <li><big>But their notes are sloppy, so before their notes may be compiled together, their notes must be formatted by a program 
+  <font color="#0000FF" face="Courier New, Courier, monospace">format</font>&nbsp;. The executable <font color="#0000FF" face="Courier New, Courier, monospace">format</font> is obtained from the source file <font color="#0000FF" face="Courier New, Courier, monospace">format.cpp</font> by the standard C++ compilation:
+  <font color="#0000FF" face="Courier New, Courier, monospace">g++&nbsp;-o&nbsp;format&nbsp;format.cpp</font>&nbsp;. The program 
+    <font color="#0000FF" face="Courier New, Courier, monospace">format</font> expects the relative pathname of the file to be formatted 
+    as the first command line argument. For instance, to format the file <font color="#0000FF" face="Courier New, Courier, monospace">text.asc</font> from directory <font color="#0000FF" face="Courier New, Courier, monospace">IP1</font>&nbsp;, you would use 
+    <font color="#0000FF" face="Courier New, Courier, monospace">format IP1/text.asc</font>&nbsp;. The formatted text is displayed on the standard 
+    output, i.e. on the screen.  Note that the input file <font color="#0000FF" face="Courier New, Courier, monospace">text.asc</font> remains as it was, 
+    the formatted file is only displayed!</big></li>  
+  <li><big>The formatted texts are are all concatenated together (in the order 1 to 5) forming a file called 
+    <font color="#0000FF" face="Courier New, Courier, monospace">report</font>&nbsp;.</big></li>
+  <li><big>At the beginning, the working directory only contains <font color="#0000FF" face="Courier New, Courier, monospace">IP1/text.asc</font>, 
+  <font color="#0000FF" face="Courier New, Courier, monospace">IP2/text.asc</font>, ... , <font color="#0000FF" face="Courier New, Courier, monospace">IP5/text.asc</font> and <font color="#0000FF" face="Courier New, Courier, monospace">format.cpp</font> and <font color="#0000FF" face="Courier New, Courier, monospace">makefile2</font>&nbsp;. Prepare the make file <font color="#0000FF" face="Courier New, Courier, monospace">makefile2</font> so that when 
+  <font color="#0000FF" face="Courier New, Courier, monospace">make&nbsp;-f&nbsp;makefile2&nbsp;report</font> is executed, the notes of the 5 PIs are formatted, concatenated together, producing <font color="#0000FF" face="Courier New, Courier, monospace">report</font>&nbsp;. The make file can create 
+  temporary files, but they all must be removed before the make file is done, the same applies to the executable <font color="#0000FF" face="Courier New, Courier, monospace">format</font> -- it may not remain in the directory. So, after running 
+  <font color="#0000FF" face="Courier New, Courier, monospace">make&nbsp;-f&nbsp;makefile2&nbsp;report</font>&nbsp;, only the file 
+  <font color="#0000FF" face="Courier New, Courier, monospace">report</font> is added to the content of the working directory ((<em><font color="#FF0000">Do not remove</font></em> <font color="#FF0000" face="Courier New, Courier, monospace">makefile1</font>
+  <font color="#FF0000"><em>nor</em></font> <font color="#FF0000" face="Courier New, Courier, monospace">makefile2</font>&nbsp;<font color="#FF0000">!</font>). 
+  The text in <font color="#0000FF" face="Courier New, Courier, monospace">report</font> should consists of single sentences separated by a single empty line.</big></li></ol></td></tr>
+</tbody></table>
+
+
+</body></html>

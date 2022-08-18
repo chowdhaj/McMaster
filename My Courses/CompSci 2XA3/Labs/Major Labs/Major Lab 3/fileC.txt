@@ -1,0 +1,10 @@
+#ifdef _X3
+  yous1();
+  yous2();
+  yous3();
+  yous4();
+  return 0;
+#endif
+  printf("X not specified\n");
+  return 0;
+}

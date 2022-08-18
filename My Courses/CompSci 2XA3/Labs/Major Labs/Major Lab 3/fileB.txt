@@ -1,0 +1,9 @@
+int main() {
+#ifdef _X1
+  printf("my breakfast was great\n");
+  return 0;
+#endif
+#ifdef _X2
+  printf("my breakfast was lousy\n");
+  return 0;
+#endif

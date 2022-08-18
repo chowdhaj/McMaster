@@ -1,0 +1,142 @@
+#!/bin/bash
+# version C
+
+# create DIR_A
+mkdir DIR_A
+echo "directory DIR_A created"
+
+# create subdirectory dir_B
+cd DIR_A
+mkdir dir_B
+echo "dir_B subdirectory created"
+
+
+# create the files
+cd dir_B
+a="fileB_"
+for i in {1..11}
+do
+ fname=$a$i
+ echo "Line 1 of fileB_$i" > $fname
+ echo "Line 2 of fileB_$i" >> $fname
+ x=$(($i+1))
+ echo "Next file fileB_$x" >> $fname
+done
+echo "Line 1 of fileB_12" > fileB_12
+echo "Line 2 of fileB_12" >> fileB_12
+echo "Next file none" >> fileB_12
+
+# show regular files of DIR_A
+cd ..
+echo "DIR_A: regular files"
+files=`ls`
+for f in $files
+do
+ if [ -f "$f" ]
+ then
+   echo "$f"
+ fi
+done
+
+# show regular files of dir_B
+cd dir_B
+echo "dir_B: regular files"
+files=`ls`
+for f in $files
+do
+ if [ -f "$f" ]
+ then
+   echo "$f"
+ fi
+done
+
+# show contents of regular files of dir_B
+echo "Contents of regular files in dir_B" 
+files=`ls`
+for f in $files
+do
+ if [ -f "$f" ]
+ then
+   cat "$f"
+   echo "+++++++++++++++++++++++++++++++"
+ fi
+done
+
+# move files
+files=`ls fileB_*`
+for f in $files
+do
+  x=`grep '6\|7' $f`
+  if [ -n "$x" ]
+  then
+    mv $f ..
+  fi
+done
+
+# show regular files of DIR_A
+cd ..
+echo "DIR_A: regular files"
+files=`ls`
+for f in $files
+do
+ if [ -f "$f" ]
+ then
+   echo "$f"
+ fi
+done
+
+# show regular files of dir_B
+echo "dir_B: regular files"
+cd dir_B
+files=`ls`
+for f in $files
+do
+ if [ -f "$f" ]
+ then
+   echo "$f"
+ fi
+done
+
+# create ALLFILE
+files=`ls`
+first=0
+for f in $files
+do
+  if [ first = 0 ]
+  then
+    first=1
+    cat $f > ALLFILE
+  else
+    cat $f >> ALLFILE
+  fi
+done
+
+# remove all except ALLFILE
+files=`ls`
+for f in $files
+do
+  if [ $f != ALLFILE ]
+  then
+    rm $f
+    echo "removing $f"
+  fi
+done
+
+# show dir_B
+echo "dir_B: regular files"
+for f in $files
+do
+ if [ -f "$f" ]
+ then
+   echo "$f"
+ fi
+done
+
+# show ALLFILE
+echo "ALLFILE:"
+cat ALLFILE
+
+# remove DIR_A
+cd ..
+cd ..
+rm -r DIR_A

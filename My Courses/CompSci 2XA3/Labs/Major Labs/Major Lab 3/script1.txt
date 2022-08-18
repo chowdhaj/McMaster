@@ -1,0 +1,2 @@
+#!/bin/bash
+g++ -o file1 yous.cpp -D_X1
