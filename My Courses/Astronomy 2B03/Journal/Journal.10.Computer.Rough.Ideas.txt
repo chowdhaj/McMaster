@@ -1,0 +1,32 @@
+journal.8.big.txt
+
+The Big-Big Simulation
+
+In my previous journals I talked about the Big Bang, the Big Crunch, the Big Bounce, touched upon the Big Freeze, and dabbled in some simulation breaking theories. In this journal, I'm gonna tie up all the concepts together into one big meta-theory, "The Big-Big Simulation". This meta-theory is my way of answering two of the most popular questions in astronomy: "Is there life beyond earth?" and "Is there a multi-verse?". 
+
+Dr. Parker talked about the possibilities of extra-terrestrial life; the conditions required for life to form, and the Drake equation. 
+
+Also, this journal is standalone. Meaning, you don't need to read my prior journals to understand this. This journal starts from the bottom and works its way up.
+
+In many ways, the universe can be seen as one big supercomputer. For example:
+
+- Hard coded limits, like the speed of light. This is found in programming languages, in the form of constant/static variables
+- Euler's number is frequently found in nature (shape of planets) and space (spiral galaxies)
+- Law of Conservation of Mass aligns with the finiteness of computer memory and power
+- Alot of things are fine tuned: Distance from Earth to Sun is just right for life and liquid water
+
+Let's assume the antecdent, and say that we are being simulated. So, if the universe is an ultra powerful supercomputer, then we must be living in a simulation. We are being simulated by an intelligent species trying to study something like its origins or trying to engineer a super species to tackle a problem. Maybe we're just some science project... Furthermore, our perception of reality is based on their perception of reality or a subset of it. By restricting our reality and natural laws, they are trying to study or create something. Regardless, since we are a computer program, there must a beginning, an end, a re-run, and our reality should have plenty of computer-like properties. 
+
+The beginning of the program is the Big Bang. 
+The end can be the Big Crunch or Big Freeze
+The Big Bounce is the re-running of the program
+	- Program quits when:
+		- Timer is up [Crunch/Freeze]
+		- All life is gone
+		- Sun destroys us
+
+- Only one universe at a time and only one intelligent life species at a time on each computer. 
+- There is a multi-verse, just not how we perceive it to be. Each universe lives until all life is dead or time is up
+
+http://www.bbc.com/earth/story/20160901-we-might-live-in-a-computer-program-but-it-may-not-matter
+https://futurism.com/sorry-elon-physicists-say-we-definitely-arent-living-in-a-computer-simulation
