@@ -1,0 +1,39 @@
+#!/bin/bash
+cd
+homedir=`pwd`
+homedir=${homedir:5}
+chmod u+rwx ../$homedir
+chmod og-rw ../$homedir
+chmod og+x ../$homedir
+# now we have the right permissions
+#####################################################################
+/nfs/u30/franek/public_html/courses/cs2sd3/entities/2sd3fetch $1 $2
+#####################################################################
+
+#--------------------------------------------------------------------#
+# 1. In your home directory on mills, create a special bash script
+#    named 2sd3fetch containing the lines ^above^
+#--------------------------------------------------------------------#
+# 2. Make the script executable by chmod u+x 2sd3fetch
+#--------------------------------------------------------------------#
+# 3. The script 2sd3fetch only works properly if it is located in your
+#    home directory on mills -- the reason is that it has to rely on
+#    properly setting temporary permissions for the directory.
+#--------------------------------------------------------------------#
+# 4. This script will allow you to fetch some required files to your
+#    home directory, do no modify the fetched files !
+#--------------------------------------------------------------------#
+# 5. For instance, if your student number is 000123456 and you want to
+#    fetch file1 file, you would type 2sd3fetch 123456 file1
+#--------------------------------------------------------------------#
+# 6. It will ask you to enter your password and you will use your
+#    password for the course web site. If the password is correct, it
+#    will copy to your home directory on mills a file named file1
+#--------------------------------------------------------------------#
+# 7. To recall what information is needed (the synopsis of 2sd3fetch)
+#    just type "./2sd3fetch", without the quotes
+#--------------------------------------------------------------------#
+# 8. You will get an error message and the synopsis:
+#    incorrect number of arguments (1)
+#    usage -- 2sd3fetch <student_number> <filename>
+#--------------------------------------------------------------------#

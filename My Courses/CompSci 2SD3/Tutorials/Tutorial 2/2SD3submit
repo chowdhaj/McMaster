@@ -1,0 +1,47 @@
+#!/bin/bash
+cd
+homedir=`pwd`
+homedir=${homedir:5}
+chmod u+rwx ../$homedir
+chmod og-rw ../$homedir
+chmod og+x ../$homedir
+# now we have the right permissions
+#####################################################################
+/nfs/u30/franek/public_html/courses/cs2sd3/entities/2sd3submit $1 $2 $3
+#####################################################################
+
+#--------------------------------------------------------------------#
+# 1. In your home directory on mills, create a Bash script 2sd3submit
+#    that contains the lines above.
+#--------------------------------------------------------------------#
+# 2. Make the script 2sd3submit executable by executing command
+#    `chmod u+x 2sd3submit`, without the quotes
+#--------------------------------------------------------------------#
+# 3. The script 2sd3submit only works properly if it is located in
+#    your home directory on mills and the file to be submitted is
+#    there as well -- the reason is that it has to rely on properly
+#    setting temporary permissions for the directory.
+#--------------------------------------------------------------------#
+# 4. The script allows for a simpler and faster way to submit your
+#    work directly from mills account. First try to type 2sd3submit to
+#    execute it. You should see the message: 
+#       usage -- 2sd3submit <student no> <subdes> <file>
+#    where <subdes> is the submisison designation, such as assgn1
+#      assgn2 assgn3 assgn4
+#    where <file> is the name of the file to be submitted
+#    This is the synopsis of the command 2sd3submit. Note that to
+#    execute it properly, you need to provide 3 pieces of
+#    information. The first is your student number (leading zeros can
+#    be omitted), the second is the designation of the assignment, and
+#    the third is the name of the file to be submitted. For instance,
+#    if your student number is 000123456 and you want to submit a file
+#    assgn1.c for assignmen 1, you would type:
+#       2sd3submit 123456 assgn1 assgn1.c
+#    If you want to submit assgn2.c for assignemnt 2, you would use:
+#       2sd3submit 123456 assgn2 assgn2.c
+#    Note that all the words on the command line must be separated by
+#    at least one space.
+#--------------------------------------------------------------------#
+# 5. The script 2sd3submit will ask for your password; you have to use
+#    the password you are using for the course web site.
+#--------------------------------------------------------------------#

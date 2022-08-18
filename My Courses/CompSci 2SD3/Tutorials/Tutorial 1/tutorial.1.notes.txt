@@ -1,0 +1,64 @@
+tutorial.1.notes.txt
+
+- Lecture Questions
+    - Bring to tutorial. Hard to answer in lecture with food in my
+      hand and no way for me to show code
+- Mills
+    - Connecting to mills
+        - MACID@mills.mcmaster.ca
+            - "yes" for RSA
+        - Windows (into the trash it goes):
+            - Putty
+            - MobaXTerm
+        - Use Mills b/c software and GO
+- Course Website
+- Basic unix commands
+    - cd
+    - ls
+    - cp
+    - mv
+    - mkdir
+    - touch
+    - man
+        - Man pages are best
+    - locate
+    - grep
+    - find
+    - head
+    - tail
+- Piping commands
+    - ls | grep XXX
+- SCP
+    - Copying files TO Mills
+    - Copying files From Mills
+- Shortcut in bashrc file
+    - Don't forget to `source`
+- Text editors
+    - nano
+    - vim
+    - emacs
+    - GUI tutorial coming later
+- Creating `C` code
+    - Use `nano` to write it
+    - Compile code via `gcc`
+    - Executing your program
+- `fork()` and how it works
+    - man pages
+        - `fork()` is a system call
+
+
+Anything related to the assignment 1 – in particular command line
+arguments, how to implement the queues,  and handling of the signals
+(you can get sample solution using 2sd3getsol)
+
+Handling of the signals will be the main topic for the tutorial the
+week after.
+
+When login on as “student” use your TA number in lieu of the student
+number. The same goes for all the scripts we will be using:
+2sd3getsol, 2sd3getsubmit (for TA’s) and 2sd3submit, 2sd3fetch (for
+students+TAs). You have special privileges, so you can view the
+assignments before the students can, you can view the sample solution
+(student will be able only after one week after the submission
+deadline), you can submit at any time (for practice purposes) using
+web or 2sd3submit script.
