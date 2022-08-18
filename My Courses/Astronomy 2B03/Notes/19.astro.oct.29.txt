@@ -1,0 +1,60 @@
+astro.oct.29.txt
+
+The Transit method is monitors stars and looks for a dip in brightness to detect a planet overlapping a star 
+
+The Transit method tells us the period and the relative size of the planet
+
+The Doppler method looks for the red/blue shift of a star
+
+The Doppler method tells us the mass and the period
+
+Density of a planet tells us it is like Earth and made of terrestrial rocks, or is a gas giant like Jupiter 
+
+The atmosphere is what caused life to be able to form on earth
+
+Atmosphere of planets can be studied using the Transit method. If the light goes through the atmosphere, information can be extracted from the data
+
+Direct Imaging is good for planets that are far away from the star
+
+Infrared is the easiest band for Direct Imaging
+
+Habitable zone is the best place around a star to look for planets containing signs of life. It is merely a guess
+
+Most of the exoplanets found in habitable zones are between the size of Earth and Neptune
+
+Transit method can estimate the size of a planet
+
+Mass of a planet is obtained using the height of the velocity shift in the Doppler method
+
+Both Transit and Doppler method are needed for Density
+
+NOTE: The Kepler Method is another way of saying Transit Method
+
+Orbital period can be obtained from Transit and Doppler method
+
+Criticism of the habitable zone: 
+Life elsewhere can be different than life on earth
+Other circumstances attribute to a planet's habitability
+Planet migration: A planet could have been habitable in the past, but then due to migration is not anymore
+
+Methods for finding exoplanets: Transit method, Doppler method, and Direct Imaging
+
+Liquid water is necessary for all life on earth
+
+Earth is just the right distance from the sun; not to hot, and not to cold
+
+The habitable zone shifts as a star evolves with time and gets more luminous and hotter
+
+Extremophiles can exist in super high temperatures, supercool temperatures, super acidic solutions, and in super dry places
+
+It took Earth about 4 billion years for a diverse array of multicelled living things to develop
+
+High mass stars have a big habitable zone but die quickly
+
+Low mass stars live long but have a small habitable zone
+
+Atmosphere is critical for sustaining life because it regulates the temperature
+
+To much atmosphere is like venus and becomes super hot
+
+To little atmosphere is like mars and has huge flucuations in temperatures throughout the day 

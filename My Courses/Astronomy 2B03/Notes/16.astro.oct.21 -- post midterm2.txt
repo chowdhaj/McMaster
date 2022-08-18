@@ -1,0 +1,99 @@
+astro.oct.21.txt
+
+LIGO and Virgo detect gravitational waves from black holes and neutron stars which confirms Einstein's theory of General relativity
+
+Each element has a specific number and that tells us the number of protons it has
+
+10 most abundant elements in humans: Oxygen, Carbon, Hydrogen, Nitrogen, Calcium, Phosphorous, Potassium, Sulfur, Chlorine, Magnesium
+
+3 Minutes after the big bang, all the hydrogen in the universe was created
+
+The big bang created hydrogen, helium, and some parts of lithium
+
+Stars create the rest of the elements
+
+Stars are created in stellar nurseries [i.e. Pillars of Creation at the Eagle Nebula]
+
+Hydrogen is the main material of the stars
+
+All stars are created from one specific cloud that have exactly the same composition for the same material
+
+Clouds of gas can create stars of different masses
+
+The initial mass of a star determines its life
+
+The sun is a low mass star
+
+Betelgeuse is a high mass star
+
+The sun is 150 million kilometers away from us
+
+It takes light 8.5 minutes to reach earth from the sun
+
+Nuclear fusion powers all the stars in the universe
+
+The strong nuclear force keeps the atoms in the nuclei, together
+
+Stars convert hydrogen into helium using nuclear fusion
+
+Helium is the second most abundant element in the universe
+
+4 hydrogens make 1 helium
+
+The temperature inside the sun for nuclear fusion is 10 million degrees
+
+The surface of the sun is 6000 degrees
+
+Iron is the most stable atom, it is the highest binding energy
+
+Iron cannot be split or squeezed together to create energy
+
+Iron cannot be used as a fuel for stars
+
+Energy source of a sun is called a hydrogen fusion pp-chain [pp = proton-proton]
+
+The sun burns 4.3 million tons of hydrogen into helium every second
+
+The sun creates 3.8x10^26 Joules of energy every second
+
+Right now, the sun is 75% hydrogen and 25% helium
+
+Once a star uses up its fuel, the core will be entirely helium
+
+Once its entirely helium, the core will gradually shrink under gravity and grow hotter
+
+At 100 million degrees, the star's core has enough force to create carbon and oxygen
+
+Nuclear fusion counteracts the force of gravity and keeps the star in equilibrium; so it doesn't collapse
+
+Gravity and pressure increase as you approach the center of the star
+
+Lifetime of a star is proportional to (Mass / Luminosity)
+
+A stars mass is related to the amount of fuel available
+
+A stars luminosity is related to the rate at which fuel is used up
+
+Big stars are burning their fuel much faster than smaller stars
+
+Low mass stars live much longer than high mass stars
+
+The sun is 4.5 billion years old
+
+The universe is 13.8 billion years old
+
+The sun will last another 5.5 billion years old
+
+The sun as a red giant will have a diameter of 2 AU
+
+After the sun becomes a red giant, it will lose its mass and become a planetary Nebula
+
+After planetary Nebula it will become a white dwarf
+
+A white dwarf is around 100,000 K
+
+A white dwarf will eventually turn into a black dwarf
+
+Most of the stars in the universe (97%) will end up as white dwarfs
+
+A white dwarf can steal material, mostly hydrogen, from a neighbouring star, become large, and then explode. This creates new elements

@@ -1,0 +1,27 @@
+astro.sept.24.txt
+
+Gravity is equal to 9.81 km/s^2
+
+Gravity slightly deviates on earth depending on where you are and how high above sea level
+
+The speed of light is the same for all observers
+
+Light can behave like a wave and a particle
+
+In 1905 Einstein published his special relativity paper
+
+The speed of light is 300,000,000 m/s and is always the same for all observers
+
+The speed of everything is relative, except for the speed of light
+
+Nothing with mass can move at the speed of light
+
+Nothing can move faster than the speed of light
+
+Anything with mass always moves at speeds less than c
+
+From different reference frames, there can never be agreements on the simultaneity of events
+
+Time dilation: The same event does not take the same amount of time for every different observer
+
+In time dilation, both observers think each other's clocks are running slow

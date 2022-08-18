@@ -1,0 +1,43 @@
+astro.oct.3.txt
+
+Light can come in little chunks, like particles, and they're called photons
+
+Shining light on metal frees up a bunch of electrons, proving that light has momentum
+
+The amount of energy that a packet of light has is related to the frequency of the light
+
+The higher the frequency, the higher the energy
+
+If a star is moving away, its frequency of light is smaller
+
+Particles can behave like waves
+
+Quantum tunneling is when a particle doesn't have enough energy to climb a hill, but still appears on the other side
+
+Quantum tunneling happens on the scale of nanometers
+
+Because of quantum tunneling, an electron can be inside the nuclei of an atom
+
+Without quantum tunneling there would be no nuclear fusion in the sun
+
+Quantum tunneling is used in the sun, electronics, and microscopes
+
+The double slit experiment proves that particles can behave like a wave
+
+A particles wave like property depends on how big it is
+
+A heavier a particle gets, the wave like behaviour gets minimized and harder to measure
+
+To measure the position of something, you bounce something off it. But when you bounce light off of particles, their position changes
+
+Heisenburg's uncertainty principle states that you cannot measure position and momentum at the same time
+
+The uncertainty principle only allows you to measure one. If you know one, you don't know the other
+
+A particle does not have both position and momentum since any measurement of one disturbs the other
+
+The uncertainty principle only works on very small scales
+
+Quantum particles can behave like particles or waves
+
+Quantum physics is inherently probabilistic

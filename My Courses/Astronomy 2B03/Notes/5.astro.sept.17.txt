@@ -1,0 +1,27 @@
+astro.sept.17.txt
+
+Hubble's Law describes the relationship between how fast a galaxy is moving and its distance from us
+
+The speed of a galaxy is measured using the Doppler shift
+
+The distance of a galaxy from us is measured using the Standard Candle method
+
+All the galaxies, except for Andromeda, are moving away from us
+
+Galaxies that are orbiting each other do not move away from each other 
+
+The age of the universe is 13.8 billion years
+
+There are two ways to collect data: Imaging and Spectroscopy
+
+Earth's atmosphere blocks out light from the Electromagnetic spectrum
+
+Radio and visible light are the easiest to do from Earth
+
+The lowest energy light is Radio light
+
+The longer the wave length, the lower the energy
+
+Light can travel through a vacuum
+
+Sound needs a medium to travel

@@ -1,0 +1,53 @@
+astro.oct.1.txt
+
+In a spacetime diagram, everything below the origin and within the light cone can influence us
+
+In a spacetime diagram, everything above the origin and within the light cone is something you can influence 
+
+If we wait long enough, we will see an event not within our light cones
+
+Speed = Frequency X Wavelength
+
+Frequency is how many times does it repeat every second
+
+Wavelength is the horizontal distance between the top of the wave
+
+Bigger wavelength results in smaller frequency
+
+Higher frequency results in smaller wavelength
+
+All light in the EMS behaves the same
+
+Energy is directly related to frequency
+
+EMS from high energy to low energy: Gamma > X > UV > visible > infrared > radio
+
+Since the speed of light is constant, frequency and wavelength can change based on motion of the source/observer
+
+A black body is something that its color is determined by its color and nothing else
+
+Stars are like black bodies
+
+Light comes in little packets called Quanta
+
+Light waves carry energy only in packets
+
+High frequency waves can only carry away energy in huge packets
+
+Temperature is average energy that packets carry
+
+Higher temperature means higher average energy
+
+Momentum = Mass X Speed
+
+Light behaves as a wave and as a particle
+
+The energy of a photon depends on its frequency
+
+Energy = Planck's Constant X Frequency
+
+Frequency and energy move in the same direction
+
+A red shift means that the frequency is going down and so is energy
+
+Red shifted stars are emitting light that is losing energy

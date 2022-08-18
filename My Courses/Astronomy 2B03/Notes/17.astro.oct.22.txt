@@ -1,0 +1,63 @@
+astro.oct.22.txt
+
+Low mass stars like the sun end their lives as a red giant, planetary nebula, and white dwarf
+
+High mass stars are around 8x heavier than the sun
+
+High mass stars only live for millions of years as compared to low mass stars which live for billions of years
+
+For stars more massive than 1.5 solar masses, the Carbon-Nitrogen-Oxygen [CNO] Cycle burns hydrogen more efficiently than the proton-proton [pp] chain
+
+The CNO cycle has the same net effect as the pp-chain; both convert 4 protons to 1 helium
+
+The CNO cycle: Carbon-12 --> Nitrogen-13 --> Carbon-13 --> Nitrogen-14 --> Oxygen-15 --> Nitrogen 15 --> Helium
+
+Centre of high mass stars has hydrogen burning via CNO, followed by helium burning
+Once the helium is exhausted, the core collapses, and starts burning carbon to neon and magnesium
+This process is repeated three more times for neon, oxygen, and silicon, until iron is reached
+
+In a high mass star, the star is burning (from outer to inner structure):
+	H  --> He
+	He --> C, O
+	C  --> Ne, Mg
+	Ne --> O, Mg
+	O  --> Si, S
+	Si --> Fe, Ni
+
+Iron cannot be used as a fuel or source of energy
+
+Supernovas occur when the iron core collapses on itself and reaches speeds of 70,000 km/s
+The collapsing core bounces back outwards (Strong nuclear force becomes repulsive)
+The star explodes in a supernova
+
+Supernova explosions can outshine an entire galaxy
+
+The blast of supernova may compress nearby clouds of gas and trigger the formation of new stars
+
+If the mass of the collapsing supernova is less than 3 solar masses, neutrons are squeezed tightly together in the core
+
+The core of neutron stars is made of neutrons
+
+Neutron stars do not burn material
+
+Neutron stars are in a state of cooling down, they start off at 600,000 K
+
+Neutron stars are the most dense objects in the universe
+
+Neutron stars were first discovered by Joceyln Bell
+
+When two neutron stars merge, they can create elements heavier than iron, gold, silver, etc.
+
+Creation of low mass stars:
+Stellar cloud with protostars --> Small star --> Red giant --> Planetary Nebula --> White dwarf
+
+Creation of high mass stars:
+Stellar cloud with protostars --> Large star --> Red Supergiant --> Supernova
+--> Neutron star IFF core is less than 3 solar masses
+--> Black hole IFF core is greater than 3 solar masses
+
+Black holes are objects whose gravity is so intense that light cannot escape
+
+Schwarzschild radius: The larger the mass of the object, the larger the critical radius
+
+Event Horizon: The surface of a black hole

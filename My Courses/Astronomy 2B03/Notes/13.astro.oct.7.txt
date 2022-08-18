@@ -1,0 +1,31 @@
+astro.oct.7.txt
+
+Hesienberg uncertainty principle says you cannot know both location or the position and speed or momentum of something at the same time
+
+Uncertainty principle only works on very small scales like electrons
+
+Tiny fluctuations in mass can lead to big changes in energy
+
+Above a certain particle size, the De Broglie waves are so insignificant
+
+Anti-matter is real but does not last very long because it reacts with matter and turns into energy
+
+Energy can be turned into a particle and an anti-particle for a short period of time
+
+There is more matter than anti-matter
+
+Empty space is not empty because of the uncertainty principle
+
+Quantum in everyday life: Lasers, transistors, accuracy of clocks, and cryptography
+
+Quantum mechanics says that before you do the experiment, both answers are true. Doing the experiment is what collapses all possibilities down to one that you measure
+
+Niehls Bohr proposed that electrons had specific orbits and each orbit had specific energies
+
+Only a photon with exactly the right energy/frequency can cause an electron to jump levels
+
+Light has both wave and particle properties
+
+Light has no mass but has energy and momentum
+
+Principle of equivlence: No experiment performed in one place can distinguish a gravitational field from an accelerated reference frame

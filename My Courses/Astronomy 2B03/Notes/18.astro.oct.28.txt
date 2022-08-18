@@ -1,0 +1,38 @@
+astro.oct.28.txt
+
+Exoplanets are planets that are outside the solar system
+
+Small exoplanets are defined identical to small planets in the solar system
+
+The difference between stars and planets is nuclear fusion in the core
+
+Substellar objects that are not big enough to be stars but do have fusion are called Brown Dwarfs
+
+Extra-solar planets need to be in orbit around a star and cannot have a nuclear burning core like stars
+
+The Transit method is used to detect exoplanets 
+
+The transit method is similar to an eclipse, where you wait for the planet to cover the sun and then you measure the brightness to see a dip
+
+The Doppler method or velocity method was first used to detect exoplanets
+
+The Doppler method uses the spectrum of stars to measure its speed or motion towards or away from us. This will change cyclically as its planet orbits around it. Sometimes the light is blue shifted, and sometimes it is red shifted
+
+With the Doppler method:
+A bigger orbit implies a slower cycle
+A massive planet creates a larger change in velocity
+Combine these two to get mass and orbit size of planet
+
+Transit method does not give any information about mass, only size in relation to star
+
+It's harder to detect small earth like planets due to their small effect on the star
+
+The vast majority of planets are found either with the Transit method or Doppler method
+ 
+Planets with low mass with big orbits are not detectable
+
+Kepler data gives us the period and size of the planet
+
+Looking for planets around low mass stars is easier
+
+Direct imaging uses clever light blocking techniques and telecopes to image exoplanets that would not normally be possible

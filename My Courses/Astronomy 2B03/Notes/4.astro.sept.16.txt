@@ -1,0 +1,43 @@
+astro.sept.16.txt
+
+After Milky Way merges with Andromeda, it will turn into a yellow elliptical galaxy
+
+When Milky Way collides with Andromeda, the solar system will end up in the center
+
+1 light year is 9.46x10^12
+
+The merger of two galaxies uses up all the gas, thus no new stars are formed
+
+Galaxies are getting farther apart from each other as time goes on
+
+The universe is expanding
+
+The parallax effect does not work beyond the Milky way
+
+The Standard Candle method measures the brightness of galaxies over time and computes its distance based on how the brightness changes
+
+The standard candle method relies on the explosion of supernovas
+
+Variable stars are used to measure distance to nearby galaxies
+
+The Doppler effect is used to determine if a galaxy is moving away or toward you
+
+The Doppler effect relies on measuring spectrum lines to see if the lines are shifted to the left or right
+
+A shift to the left is red shifted
+
+A shift to the right is blue shifted
+
+Objects coming toward you are blue shifted
+
+Objects moving away from you are red shifted
+
+The vast majority of gas in space is hydrogen and helium
+
+Hubble's Law describes the relation between the motion of a galaxy and its distance from us
+
+Speed is proportional to distance: V = Hd
+
+H is Hubble's constant
+
+The further a galaxy is, the faster it is moving away

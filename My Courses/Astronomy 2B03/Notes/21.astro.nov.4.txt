@@ -1,0 +1,40 @@
+astro.nov.4.txt
+
+Europa is the most promising place to search for life in our Solar System
+
+Currently, we have found more than 4000 extrasolar planets
+
+Bio-signatures are looking for chemical signatures in the atmosphere of a planet we think are associated with life
+
+Detecting planets that are small and faint compared to big bright stars requires very good instruments and very long exposures
+
+James Webb Telescope plans to launch in 2021
+
+James Webb Telescope will be used to measure spectra for extra solar planets and search for 'biosignatures'
+
+SETI searches for repeating radio signals that have to come from life and technology, not nature
+
+Nature does not make lasers, intelligent life does; this is a sign of life
+
+Frank Drake is the founder of the SETI institute and created the Drake equation
+
+In the Drake equation:
+
+	- N is the number of civilizations in our galaxy with which communication might be possible
+	- R_* is the average rate of star formation in our galaxy
+	- f_p is the fraction of those stars that have planets
+	- n_e is the average number of planets that can potentially support life per star that has planets
+	- f_l is the fraction of n_e that actually goes on to develop life at some point
+	- f_i is the fraction of f_l that actually goes on to develop intelligent life
+	- f_c is the fraction of civilizations that develop a technology that releases detectable signs of their existence into space
+	- L is the length of time such civilizations release detectable signals into space
+
+The revised Drake equation was proposed by Sara Seager; it focuses on simple life
+
+Stars that are not stable and change in pressure and temperature are not good targets for signs of life
+
+The Arecibo message was sent in 1974
+
+The Arecibo message was designed by Frank Drake and Carl Sagan
+
+Only civilizations within 100 light years of Earth can detect our presence

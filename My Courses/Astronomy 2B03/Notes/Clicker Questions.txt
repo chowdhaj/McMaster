@@ -1,0 +1,349 @@
+Clicker Questions.txt
+
+1. Why does the moon have more craters on its surface than the Earth?
+
+A) Stronger gravity on the moon than earth
+B) No geologic activity or weather on the moon
+C) The moon is much older than earth
+D) Easier to make craters on smaller objects
+E) The moon captured objects before they could hit the earth
+
+Ans: B
+
+2. The distance between the Sun and the nearest star is smaller than the distance between the Milky way and our nearest neighbour, Andromeda, by a factor of approximately
+
+A) Hundred
+B) Thousand
+C) Million
+D) Billion
+
+Ans: C
+
+3. Constellations in astronomy are:
+
+A) Groupings of physically associated stars
+B) Swarms of planets or asteroids
+C) The most accurate way to preduct the future
+D) Arbitrary but useful subdivisions of the sky
+
+Ans: D
+
+4. An observer far outside our galaxy would best describe our galaxy and the Sun's position in it as a:
+
+A) Disk of stars centered on our solar system
+B) Disk of stars with a bulge containing our solar system
+C) Disk of stars with our solar system far from the center
+D) Sphere of stars centered on our solar system
+E) Sphere of stars with our solar system near the edge
+
+Ans: C
+
+5. When we observe stars near the center of the Milky Way galaxy, we detect light that was emitted from those stars about
+
+A) 200 million years ago
+B) 25,000 years ago
+C) 8 years ago
+D) 8 minutes ago
+e) 250,000 years ago
+
+Ans: B
+
+6. The look-back time to an object is the number of years between when the object emitted the light we see and the present. What piece of information does not affect the look-back time for a distant object?
+
+A) Distance
+B) Speed of light
+C) Color of light being observed
+
+Ans: C
+
+7. We see galaxies moving away from us in all directions. Are we at the center of the universe?
+
+A) Yes, that's the only way most of  everything else can move away from you
+B) No, we are not at the center of the universe, but the universe does have a center somewhere
+C) No, no matter where you are located at, you would see most other galaxies moving away from you. It's a trick question; the universe as no center
+
+Ans: C
+
+8. If you were going to design a pair of glasses for seeing animals at night, you would want them to convert
+
+A) Infrared photons to X-Ray photons
+B) X-Ray photons to Optical photons
+C) Infrared photons to Optical photons
+D) UV photons to optical photons
+E) Optical photons to infrared photons
+
+Ans: C
+
+9. If the moon was closer to the earth the force between them would
+
+A. Get smaller
+B. Disappear
+C. Stay the same
+D. Get bigger
+
+Ans: D
+
+10. Where would 1kg be the heaviest [weigh the most]?
+
+A) On the moon
+B) On the earth
+C) In between the moon and the earth
+D) All the same
+
+Ans: B
+
+11. If two rocket ships are moving away from each other at 0.9c, what is their relative speed?
+
+A) c
+B) 1.8c
+C) 0
+D) < c
+
+Ans: D
+
+12. Assume you launch two spaceships going in opposite directions. Eventually, both spaceships have a velocity of 0.75c. From earth, this is fine because neither speeds exceeds c, but if you take the point of view of one of the spaceships, what would the velocity of the other ship be?
+
+A) 1.5c
+B) c
+C) < c
+D) > c
+
+Ans: C
+
+13. Which spacetime diagram (worldline) best describes an object at rest?
+
+A) A 45 degree line starting at the origin
+B) A vertical line starting at the origin and moving up
+C) A horizontal line starting at the origin and moving toward the right side
+
+Ans: B
+
+14. Which worldline is impossible
+
+A) A 45 degree line starting at the origin
+B) A vertical line starting at the origin and moving up
+C) A horizontal line starting at the origin and moving toward the right side
+
+Ans: C
+
+15. Which is the correct sequence of electromagnetic radiation in order of increasing frequency?
+
+A) Visible light, UV radiation, X rays, gamma rays
+B) Radio waves, microwaves, gamma rays, UV radiation
+C) Gamma rays, radio waves, X rays, infrared rays
+D) Visible light, microwave, radio waves, infrared rays
+
+Ans: A
+
+16. Light emitted by a blackbody depends on:
+
+A) The material out of which an object is made
+B) The texture of an object's surface
+C) The temperature of an object
+D) All of the above
+
+Ans: C
+
+17. The concepts of a "particle" and a "wave":
+
+A) Are clear and completely distinct from one another in both classical and modern physics
+B) Can both be applied to electromagnetic radiation
+C) Only apply things larger than 500nm
+D) All of the above are true
+
+Ans: B
+
+18. An important implication of the uncertainty principle discovered by Heisenberg is
+
+A) Very small particles moving at slow speeds contain vast quantities of energy, the basis of the atomic bomb
+B) Above a certain particle size the De Broglie waves are so insignificant that they drop to zero
+C) We can never predict the future with absolute certainty because it is impossible to know the present with clarity
+
+Ans: C
+
+19. If a laser beam were shone horizontally across a room
+
+A) The light would be deflected upwards slightly
+B) The presence of the gravitational field slightly speeds the light
+C) Light travels a perfectly straight path
+D) The path of the light is curved downward very slightly
+E) None of the above
+
+Ans: D
+
+20. LIGO & Virgo detect _____ waves from black holes & neutron stars, which confirms Einstein’s theory of ______ relativity
+
+A) Light, General
+B) Gravitational, General 
+C) Tsunami, Special
+D) Electron, Quantum
+
+Ans: B
+
+21. During fusion, what holds two protons together?
+
+A) Quantum tunnelling
+B) Nuclear fusion
+C) Nuclear fission
+D) Strong Nuclear Force
+
+Ans: D
+
+22. In which order will a single star of one solar mass progress through the various stages of stellar evolution?
+
+A) Planetary nebula, White dwarf, Main-sequence star, Red giant, White dwarf
+B) Proto-star, Main-sequence star, Red giant star, Planetary nebula, White dwarf
+C) Proto-star, Red giant, Supernova, Black hole
+D) Proto-star, Red giant, Supernova, Planetary nebula
+
+Ans: B
+
+23. The chemical composition of the sun 3 billion years ago was different from what it is now in that it had:
+
+A) More hydrogen atoms
+B) More helium atoms
+C) More nitrogen atoms
+D) More molecular hydrogen
+
+Ans: A
+
+24. Ignore the rotation of the Earth. Which clock ticks more slowly?
+
+A) The one on the top of a mountain
+B) The one at the bottom of that same mountain
+C) They tick at the same rate
+D) Cannot be determined from the information given
+
+Ans: B
+
+25. About how many extrasolar planets have been detected to date:
+
+A) 1 - 100
+B) 101 - 1000
+C) 1001 - 2000
+D) 2001 - 5000
+E) >5000
+
+Ans: D
+
+26. Which of the following extrasolar planets would be the most difficult to detect using the Doppler Shift method?
+
+A) A low mass planet far from its parent star
+B) A massive planet close to its parent star
+C) A low mass planet close to its parent star
+D) A massive planet far from its parent star
+
+Ans: A
+
+27. A planet is detected via the Doppler technique. The repeating pattern of the stellar motion tells us:
+
+A) The planet's size
+B) The planet's mass
+C) The planet's density
+D) The orbital period of the planet
+E) The orbital eccentricity of the planet
+
+Ans: D
+
+28. If a meteor impact killed the dinosaurs, it was most likely due to the resulting:
+
+A) Massive earthquakes
+B) Shower of small, high speed fragments
+C) Change in the Earth's orbit, changing the Sun's intensity
+D) Dust block sunlight, killing plants
+E) Heat from the impact burning everything on the planet
+
+Ans: D
+
+29. Where in the Solar System do you think is the most promising place to search for life?
+
+A) Mars
+B) Europa
+C) Enceladus
+D) Titan
+
+Ans: B
+
+30. In 1974, a radio message was sent out from the Arecibo observatory in Puerto Rico. How far has it gotten, approximately?
+
+A) Just beyond our solar system
+B) Not even to the nearest stars
+C) Just a very small fraction of the distance across the Milky Way
+D) Almost to the center of the Milky Way
+E) Beyond the Milky Way, to the Andromeda galaxy
+
+Ans: C
+
+31. What is the 'N' in the original Drake equation? i.e. What are you trying to find by going through this calculation?
+
+A) The number of planets with liquid water
+B) The number of intelligent and communicative civilizations in the Galaxy
+C) The number of planets with organic molecules in the Galaxy
+D) The number of life-sustaining planets in the Galaxy
+E) The number of intelligent civilizations in the Galaxy
+
+Ans: B
+
+32. Which of the following objects is the largest (biggest radius)?
+
+A) 1.1 solar mass normal (hydrogen burning) star
+B) 1.3 solar mass white dwarf
+C) 2.5 solar mass neutron star
+D) 8 solar mass blackhole
+
+Ans: A
+
+33. Why is the Cosmic Background Radiation so cool now?
+
+A) The expansion of the universe has cooled with the radiation and stretched its wavelength
+B) It has been cooled through interactions with the interstellar medium
+C) Dense clouds of dust have blocked most of it
+D) Dark matter has compressed its wavelengths and cooled it
+E) None of the above
+
+Ans: A
+
+34. The Cosmic Background Radiation [CBR] consists of photons that were released from their constant interactions with matter at the same time as another important event. Which one of the following events coincided with the formation of the CBR?
+
+A) The era of inflation
+B) The end of the era of matter-antimatter annihiliation
+C) The end of the era of nucleosynthesis
+D) The time during which most of the ionized matter in the Universe became neutral
+E) The era of galaxy and star formation
+
+Ans: D
+
+35. The cosmic background radiation provides strong evidence that
+
+A) Star formation has been taking place for billions of years
+B) The universe evolved from a hot, dense state
+C) Colliding galaxies release enormous amounts of radiation
+D) At 3 degrees Kelvin, the early universe was extremely cool with atoms formed
+
+Ans: B
+
+36. The cosmic background radiation is visible in every direction because:
+
+A) We are at the center of the universe
+B) We are looking back to when the universe was young in every direction
+C) We are looking back to when the universe was cool
+D) It is not visible in every direction, we only see it when we look towards the Big Bang
+
+Ans: B
+
+37. How does the idea of inflation solve the "flatness problem"?
+
+A) Local density bubbles would have "popped" or decreased in size during inflation, making their curvatures less noticeable
+B) Inflation heated the universe and thus smoothed out any local variations in curvature
+C) Rapid galaxy formation during inflation would have smoothed out local variations in density of material, and therefore in its curvature
+D) Inflation would have expanded the size of the observable universe so much that local curvature would be unnoticeable
+
+Ans: D
+
+38. Why do we believe that 90 percent of the mass of the Milky Way is in the form of dark matter?
+
+A) The orbital speeds of stars far from the galactic center are suprisingly high, suggesting that these stars are feeling gravitational effects from unseen matter in the halo
+B) Although dark matter emits no visible light, it can be seen with radio wavelengths, and such observations confirm that halo is full of this material
+C) Our view of distant galaxies is sometimes obscured by dark blotches in the sky, and we believe these blotches are dark matter located in the halo
+
+Ans: A
