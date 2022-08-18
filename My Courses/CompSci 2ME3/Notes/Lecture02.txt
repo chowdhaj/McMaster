@@ -1,0 +1,33 @@
+Lecture02.txt
+
+January 8th, 2020
+
+- Software design is always changing and improving
+
+- Natural language specification is vague and misses details
+
+- "git diff" shows changes between commits
+
+- "git clone" is used to download repo files
+
+- All cases for assignments should be tested on Mills
+
+- Use "ssh -Y" or "ssh -X" to view PDFs on Mills
+
+- Do Learning Logs weekly
+
+- Turn off auto-quote on Avenue for discussions
+
+- Read "Faking It" by Parnas and Clements
+
+- SWE vs. CS is a continuous spectrum
+
+- Parnas is an important person in the field of SWE
+
+- Parnas is an Emeritus McMaster professor 
+
+- Know requirements for PEO
+
+- Always design software for change
+
+- Software can and will fail
