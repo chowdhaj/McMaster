@@ -1,0 +1,134 @@
+Section.2.txt
+
+Section 2: Are carbs good for you?
+
+In the first module for this course, you learned about the complexities of the field of nutrition, from the factors that govern our food choices, to interpreting information on a nutrition facts table (NFT) and planning a healthy diet. Perhaps one of the leading nutrients contributing to the overall confusion about nutrition is... carbohydrates. This controversial macronutrient has received a lot of attention since Dr. Robert C. Atkins published his book, Diet Revolution: The High Calorie Way to Stay Thin Forever, in 1972. There are now hundreds of books, such as Wheat Belly, diet variations, such as The Zone and South Beach Diet, magazine articles, blogs, and social media profiles devoted to advocating for low carbohydrate (carb) lifestyle. Not to mention the shift in the culinary world toward offering more low carbohydrate options, such as zucchini noodles (Figure 2) and cauliflower rice!
+
+It's not surprising then that in a survey of Americans, 87% of respondents had heard of a low carb diet, 17% had tried a low carb diet in the past year and of these people, more than 50% believed that following a low carb diet was a healthy way to lose weight (Finney Rutten, Lazarus Yaroch, Colon-Ramos, & Atienza, 2008). Scientists are curious about the effect of low carb diets, too, as hundreds of scientific papers have been published on the topic. Before we dive into learning more about low carb diets, let's explore the fundamentals of this macronutrient.
+
+2.1 What are carbohydrates?
+
+When you see the word carbohydrates, what comes to mind? You probably think about freshly baked bread or your favourite pasta dish. Or, you may think about some of the foods that have contributed to the bad reputation of carbohydrates, such as cookies and sugary drinks. But, did you know that carbohydrates are found in many other types of foods and beverages, such as milk, fruits, vegetables, and legumes? Hexose monosaccharides are the building blocks of more complex types of carbohydrates (Figure 3).
+
+Although the monosaccharides look fairly similar (Figure 4), the atoms are arranged differently, which gives rise to different properties. For example, despite the similar appearance and composition (6 carbons, 12 hydrogens and 6 oxygen atoms), fructose absorption and metabolism are different from glucose, and fructose is much sweeter than glucose (Bray, 2008; Havel, 2005). 
+
+There are also pentose monosaccharideswhich have 5 carbons and are needed to make ribonucleic acid (RNA) and deoxyribonucleic acid (DNA) molecules. Ribose, which is a part of the B vitamin, riboflavin (vitamin B2), is also needed to make adenosine triphosphate (ATP). For this reason, many researchers in the exercise sciences are interested in studying the effect of ribose supplementation on exercise performance.  Although most studies report that ribose supplementation increases ATP synthesis,  supplementation doesn't seem to improve exercise performance as hypothesized (Hellsten, Skadhauge & Bangsbo, 2004). But, there may be hope for ribose supplementation to help others. For example, in one study of congestive heart failure patients, ribose supplementation improved heart and physical function by way of increasing APT and preserving cellular function (Omran, Illien, MacCarter, St. Cyr, & Luderitz, 2003).
+
+You may have also heard of the terms simple and complex carbohydrates. Simple carbohydrates are monosaccharides, disaccharides and sugar alcohols (polyols like sorbitol, xylitol and maltitoyl) (Lamothe et al., 2017). Sugar alcohols have fewer calories than glucose and are often used as 'sugar-replacers' for glucose and sucrose in products (Livesey, 2003). For example, the 'sugar-free' version of Oreo cookies contains the sugar alcohol, maltitol, which does decrease the number of calories per serving, but does not make the product calorie free! Complex carbohydrates are oligosaccharides (made up of 3-9 monosaccharides) and polysaccharides, such as starch and non-starch polysaccharides.
+
+The carbohydrates that we most often consume in our diets are glucose, fructose, lactose, sucrose, maltose, starch and fibre. But, with the public interest in cutting calories and carbohydrates, scientists developed a monosaccharide that, like sugar alcohols, has fewer calories than glucose and is 90% sweeter than sucrose (Guerrero-Wyss, Aguero & Davila, 2018). This carbohydrate, called tagatose, is a Food and Drug Administration (FDA) approved sweetener and is used in beverages, yogurt and diabetic candies (Guerrero-Wyss, Aguero & Davila, 2018). Not only is this a lower calorie (1.5-2.4kcal/gram) carbohydrate compared to glucose (4kcal/gram) (Lamothe et al., 2017), but it also may interfere with glucose absorption and thus lead to lower blood glucose levels after consuming foods with tagatose (Guerrero-Wyss, Aguero & Davila, 2018). 
+
+Monosaccharide (also known as a simple carbohydrate)
+Examples: Glucose, Fructose, Galactose, Tagatose
+- All monosaccharides have 6 carbons, 12 hydrogens and 6 oxygen atoms in different arrangements
+- Monosaccharides are the most simple type of carbohydrate.
+- Glucose and fructose, 2 of the sweetest monosaccharides, participate in cell metabolism.  
+- Fructose is found naturally in fruits and vegetables
+- Fructose is added to candy, baked goods and sugar-sweetened beverages in the form of high fructose corn syrup (HFCS), which is 42-55% fructose (Hanover & White, 1993).
+- Galactose is converted to glucose by the liver.
+- Tagatose is an isomer of fructose, and is 90% sweeter than sucrose.
+
+Disaccharide (also known as a simple carbohydrate) 
+Examples: Maltose (glucose + glucose)
+          Sucrose (fructose + glucose)
+          Lactose (glucose + galactose)
+- 2 monosaccharides combined together through condensation
+- Hydrolysis reaction occurs during digestion to break apart disaccharides for absorption
+- Maltose is produced when starch breaks down. It is also found in barley.
+- Table sugar is sucrose that has been refined and granulated from sugarcane.  It also the carbohydrate that makes fruits, vegetables and grains sweet.
+- Lactose is the carbohydrate in milk. 
+
+Polysaccharide (also known as a complex carbohydrate) 
+Examples: Glycogen
+          Starch 
+          Fibre (also known as a non-starch polysaccharide)
+-  A polysaccharide is a molecule made up of many (>10) monosaccharides linked together. 
+- Glycogen is known as the storage form of glucose. It is made of many glucose molecules, and is found in the liver and muscle.
+- Starch like amylose is found in plants, such as rice, wheat, rye, barley, legumes, potatoes and yams and is made of many glucose molecules   
+- Cellulose is an example of dietary fibre, which is the structural component of plant cell walls
+- Cellulose is also made of many glucose molecules, but unlike starch, the glucose chains can't be broken by enzymes
+- Fibre-containing foods are fruits, vegetables, whole grains and legumes
+
+2.2 How are carbohydrates digested?
+
+Granola bars are probably one of the most popular snacks. They are portable, affordable, convenient, and usually rich in many different types of carbohydrates, such as starch in oats, and fructose and sucrose (sugar) as sweeteners. 
+
+To better understand the processes of digestion and absorption of  carbohydrates, let's look at what happens when a granola bar is consumed and travels through the gastrointestinal (GI) tract. 
+
+Step 1: Mechanical and chemical digestion begin in the mouth. The teeth and the tounge break apart the granola bar, while the salivary glands secrete saliva. The saliva contains an enzyme called amylase, which breaks apart amylose starch molecules in the oats. 
+
+Step 2:  The food bolus arrives in the stomach where hydrochloric acid (HCl) inactivates amylase. There are no enzymes in HCl that break down carbohydrates. The cellulose fibre in the oats is not digested in the stomach, but will delay gastric emptying, which contributes to the feeling of satiety. 
+
+Step 3:  The small intestine is where the majority of carbohydrate digestion takes place. The small intestine is made up of 3 sections: duodenum, jejunum and ileum (Betts et al., 2017).  This digestive organ is 10-20 feet long, is 1 inch in diameter and has a surface area of 200m2 ! This large surface area is attributed to circular folds, villi and microvilli in the small intestine (Figure 9). The villi are within the circular folds, and are made of absorptive epithelial cells. You will also notice that the villi have an artery, vein and lymphatic capillary, known as a lacteal. These structures are essential for the absorption of our macronutrients: carbohydrate, protein and fat. The microvilli are smaller than the villi and are extensions of the plasma membrane of the absorptive epithelial cells. There are approximately 200 million microvilli per mm2 of small intestine! Collectively, the microvilli make up the brush border (Betts et al., 2017). 
+
+In terms of chemical digestion in the small intestine, there are 2 main players: amylase and brush border enzymes. Pancreatic amylase is secreted into the small intestine from the pancreas and works to continue breaking down starch molecules into smaller polysaccharide molecules and maltose (glucose + glucose). Brush border enzymes are on the surface of the microvilli. These enzymes break down the disaccharides maltose, sucrose and lactose, as shown in Figure 10.
+
+You may have heard of the brush border enzyme, lactase, given the public and scientific interest in lactose intolerance. Lactose intolerance is a condition where individuals can't digest the monosaccharide lactose due to hypolactasia (Vesa, Marteau, & Korpela, 2000). Lactose is the principle carbohydrate in milk and  is found in the highest quantity in human milk (70g/L) and cow's milk (47-50g/L), and in the lowest quantity in goat's milk (42-48g/L) (Silanikove, Leitner, & Merin, 2015). Approximately 16% of Canadians self-report that they have lactose intolerance (Barr, 2013), which is associated with uncomfortable gastrointestinal symptoms, such as diarrhea, abdominal bloating and pain, flatulence and nausea, after consuming lactose-containing foods (Vesa, Marteau, & Korpela, 2000). Lactose intolerance can be either primary or secondary lactose intolerance. Primary causes are changes in expression of the LCT gene, leading to a reduction in lactase after the age of 2-3 years (primary lactase deficiency), when milk is the primary source of nutrition. Another more rare form of primary lactose intolerance is congenital lactase deficiency, where a newborn does not produce lactase at birth (Vesa, Marteau, & Korpela, 2000). Lactose intolerance can also be caused by secondary factors, like damage intestine, such as untreated Celiac disease or intestinal inflammation (Vesa, Marteau, & Korpela, 2000). Usually, when these conditions are treated, the issue of lactose intolerance is resolved. 
+
+Can you consume milk without having any symptoms of lactose intolerance?  Why can some people consume milk without a problem, and others can't? The answer likely lies in genetics. People who can consume large amounts of milk without complication are known to be lactase persistent. Studies in twins have shown that there are 3 genotypes associated with lactose tolerance (Table 2) (Swallow, 2003).
+
+Genotype                  | Description
+--------------------------|--------------
+Homozygous persistent     | These people can consume milk and do not experience symptoms
+                          | of lactose intolerance. 
+--------------------------|--------------
+Heterozygous              | These people may produce less lactase, but there is still enough
+                          | enzyme produced to break down lactose. But, if there is intestinal
+                          | injury, lactose intolerance may develop.
+Homozygous non-persistent | These people produce the least amount of lactase and are more
+                          | likely to have lactose intolerance. They may be able to tolerate
+                          | modest amounts of milk (such as the amount added to coffee or tea).
+
+There is significant variation in lactase persistance around the world. It is most common in Northwestern Europe, with the highest frequency in Sweeden and Denmark, and is lowest among individuals of African, Caribbean, Mexican and Asian descent (Swallow, 2003).  
+
+Given the discomfort that people with lactose intolerance may experience after consuming milk or dairy products, it's not surprising that total daily milk, cheese and yogurt consumption is lower in people with self-reported lactose intolerance compared to those without lactose intolerance (Barr, 2013). The restriction of these foods and beverages may have an effect on the health of other tissues in the body, such as bone health, as people with self-reported lactose intolerance also consume less dietary calcium and vitamin D (Barr, 2013). 
+
+Thankfully, there have been advances in food manufacturing and nutritional sciences that have provided more dietary options for people with lactose intolerance. For example, although the findings are inconsistent, some studies have shown that gastrointestinal symptoms are reduced when people with lactose intolerance consume full-fat milk compared to fat-free milk, which may be due to a delay in gastric emptying  (Vesa, Marteau, & Korpela, 2000). Another option that many people with lactose intolerance turn to is lactose-free milk (Figure 11). There are also opposing findings on the impact of lactose-free milk on symptoms, with most studies showing no impact of lactose-free milk compared to regular milk in people with lactose intolerance (Vesa, Marteau, & Korpela, 2000). Similarly, supplementing with a lactase enzyme may be effective in some, but not all, people with lactose intolerance (Ibba, Gilli, Boi & Usai, 2014). The inconsistent impact of dietary modifications and supplements on symptoms of lactose intolerance shows how challenging it is to study this condition, and also shows how even in people with the same genotype, there is variation in response to an intervention. 
+
+2.3 How are carbohydrates absorbed?
+
+Once the brush border enzymes break down the disaccharides, monosaccharides are absorbed in the upper sections of the small intestine. Fructose crosses the cells of the small intestine (epithelial cells) by faciltated diffusion, whereas glucose and galactose are transported across the cells to circulation by active transport.  The liver is the first organ that is exposed to these monosaccharides and is responsible for converting  galactose and fructose to glucose or other carbon-containing molecules (Zimmerman & Snow, 2012). Glucose will either be converted to glycogen in the liver or muscle, or will remain in circulation. Key hormones, called insulin, glucagon and epinepherine, and energy demands in the body help to regulate the fate of glucose. All cells in the human body use glucose in glycolysis, which is a Greek word that can be broken down to mean sweet (glukus) and rupture (lusis) (Alberts et al., 2002). While scientists are still learning about how cells can use other nutrients to produce ATP (for example, the brain can use ketone bodies to produce ATP), this implies that glucose is an essential nutrient that we derive from carbohydrates in our diets. 
+
+2.4 Dietary requirements of carbohydrates
+
+With all of the popularity around low carb diets, we should ask the question, why do we need carbs in our diet, and how much do we need? In this module, we have seen that there are different types of carbohydrates, which makes answering these 2 questions more complicated. Perhaps one of the reasons why people get so confused about carbohydrates is becasue there are different recommendations for total carbohydrate intake (monosaccharides + disaccharides + polysaccharides), free sugar intake (monosaccharides or disaccharides that have been added to foods and beverages or sugars that are naturally present in honey, syrups and fruit juices), fibre intake (non-starch polysaccharide) and grain product intake! 
+
+First, let's address the question of why do we need carbs in our diet? We now know that complex carbohydrates (polysaccharides) are broken down into monosaccharides, glucose, galactose and fructose, and galactose and fructose are also converted to glucose. Gluose can then be used in glycolysis to provide energy for our cells, which is one obvious reason to consume carbohydrate-containing foods and beverages. Given that most people consume carbohydrates in foods and beverages, let's explore some of the other health benefits of consuming carbohydrate-containing foods. Grains, such as oats, barley and rice and wheat, have many nutrients. 
+
+As you see in Figure 14, a whole grain is made up of bran, endosperm and germ, and each component has unique nutrients. When grains are refined (as in the case of white flour), the bran and germ are removed, leaving only the endosperm (Rebello, Greenway, Finley, 2014). This means that a refined grain product is not delivering fibre, B vitamins, minerals, antioxidants or vitamin E to the consumer. Research suggests that people who consume more whole grain products each day have lower body mass index (BMI), waist circumference, body weight, cholesterol and blood glucose levels compared to people who consume less whole grain products (Newby et al., 2007). It is this kind of research that reminds us that cutting all carbohydrates from our diets may lead to health issues in the future, and that carbohydrate-containing foods, like whole grains, have nutrients that support health. So, what are the recommendations?
+
+There are a couple different carbohydrate recommendations out there. The first recommendation is the recommended dietary allowance (RDA) for carbohydrates, which is 130 grams of carbohydrate per day for people 1 year of age and older (Otten, Hellwig & Meyers, 2006). This recommendation is based on the minimum amount of carbohydrate that is used by the brain, and is the amount of carbohydrates needed to prevent ketosis . Let's put this recommendation into perspective...
+
+Figure 15 shows some carbohydrate-containing foods. If someone were to eat these foods in a day, they would be consuming 147 grams of carbohyrate, and thus just exceeding the RDA for carbohydrates. But, the reality is that we tend to consume more carbohydrates than the RDA of 130 grams, and consuming more carbohydrates is associated with better health. 
+
+This brings us to the second recommendation. According to the Acceptable Marconutrient Distribution Ranges (AMDR), children and adults should aim to consume 45-65% of total calories consumed from carbohydrates (Otten, Hellwig & Meyers, 2006). Many research studies were used to set this AMDR, and this level of carbohydrate intake has been associated with a reduction in the risk of chronic disease such as coronary heart disease, cancer, obesity and diabetes (Otten, Hellwig & Meyers, 2006).  Let's put this AMDR in perspective...
+
+AMDR for carbohydrates | What does this mean for someone   | How many grams of 
+                       | who consumes 2500 kcal (calories) | carbohydrates are we 
+                       | each day?                         | talking about?
+-----------------------|-----------------------------------|----------------------
+45-65% of total        | 2500 x 0.45 = 1125 kcal/day       | 2500 x 0.65 = 1625 
+calories               | from carbohydrates                | kcal/day from carbohydrates
+                       |                                   |
+                       | 1125 kcal / 4 kcal/g = 281        | 1625 kcal / 4kcal/g = 406 
+                       | grams of carbohydrates            | grams of carbohydrates
+-----------------------|-----------------------------------|----------------------
+
+As you can see in the Table, the recommendation for carbohydrate intake according to the AMDR is much higher than the RDA for carbohydrates. This is because carbohydrate-containing foods, such as whole grains, have many other nutrients that may help to decrease the risk of chronic diseases. But, consuming too many carbohydrate-containing foods and beverages, or the wrong type of carbohydrate-containing foods (for example, refined carbohydrates versus whole grains) or foods and beverages with hidden added sugars could lead to some serious health problems. Watch the CBC video clip, below, to learn more about hidden sugars in our foods and the connection between sugar intake and disease. 
+
+Questions:
+
+1. Which of the following is a type of monosaccharide?
+ANS: Galactose
+
+2. Which of the following types of carbohydrates is considered to be a complex carbohydrate?
+ANS: Amylose
+
+3. Which of these molecules is the primary storage form of carbohydrates in the body?
+ANS: Glycogen
+
+4. Which of these parts of the digestive system is the primary absorption site for carbohydrates?
+ANS: Small Intestine
+
+5. What is the AMDR for carbohydrates?
+ANS: 45-65% of kcal intake

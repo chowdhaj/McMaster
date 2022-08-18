@@ -1,0 +1,157 @@
+Section.1.txt
+
+Section 1: What is a healthy diet?
+
+By the end of this module, you should be able to:
+
+Describe factors that contribute to making dietary choices.
+Differentiate between the types of macronutrients and micronutrients.
+Explain the relevance of the Dietary Reference Intakes  for planning a healthy diet.
+Identify features of a food label to help plan a healthy diet
+
+The world of nutrition is a confusing one, thanks to the abundance of messages about diets, supplements and food trends that we are bombarded with each day. Nutrition information is all around us, from celebrities endorsing fad diets on social media, to chefs promoting brands and making claims in commercials, to Instagram Influencers claiming that they have found the miracle food or supplement for beauty or longevity. It's not surprising then that almost 80% of consumers are confused about what they are supposed to eat and avoid (International Food Information Council Foundation, 2017). The science of why foods and beverages are good or bad for us is also complicated, which may be why only 45% of people can identify what  it is in a food or beverage that might yield health benefits (International Food Information Council Foundation, 2017). Making things more complicated is that 1 in 4 people turn to family and friends for nutrition-related advice, meaning that the information that is passed along may not be the most trustworthy or accurate (International Food Information Council Foundation, 2017). Not only is the nutrition information swirling around us complicated, but sometimes the science is even conflicting! Consider the coffee controversy as an example.  Some good quality studies have shown that 4 cups of coffee per day may increase risk of hip fracture, while other studies have shown 3-4 cups of coffee per day may improve health.
+
+Real World Application
+
+Click on these 2 links to read more about the contrasting messages about coffee.
+
+https://www.healio.com/endocrinology/cardiometabolic-disorders/news/in-the-journals/%7B1d8742fc-a1f6-4525-80b0-2f1c224e31f4%7D/coffee-drinking-linked-to-hip-fracture-risk-in-postmenopausal-chinese-women
+
+​​http://www.bbc.com/news/health-42081278
+
+How can this be? It comes down to many factors, including the strength and weaknesses of the study design and how the results actually relate to YOU! We will continue unpacking how to understand the science in articles published in the field of nutrition throughout this course, but we will start by thinking about the million dollar question... What is a healthy diet?
+
+1.1 Why do we eat what we eat? 
+
+​Did you know that undergraduate students make over 200 decisions about what to eat or drink each day (Wansink & Sobal, 2007)? If you think about it, that's a lot of opportunities to make good and bad choices. Obviously, our knowledge of nutrition influences what we choose to put in our bodies, but many other factors play a role. Overconsumption and underconsumption of food can lead to health issues down the road as there may be nutrient excess or deficiencies. Let's take a minute to look at some factors that influence our food choices.
+
+Food Environment factors relate to how foods and beverages are presented or perceived. For example, people may consume less food if the food is presented on a smaller, or fancy plate. Or, people may be more likely to drink a smoothie if it is served in a bowl (think smoothie bowl craze!).
+
+In addition, the salience of food refers to a person's perceptions about a food item. For instance, when people are asked to list fruits and vegetables, almost 50% of people give the answer, "apple", as one of the fruits or vegetables that they list (Brown-Kramer, Kiviniemi, & Winesman, 2009). This means that if a person made a goal of eating more fruits and vegetables, there is a good chance that they would buy more apples at the grocery store. 
+
+The Eating Environment refers to other external factors that influence food choices. For example, when children eat at home with their family, they are more likely to consume more fruits and vegetables, less sweets and fewer soft drinks, compared to eating at school with peers (Suggs, Della Bella, Rangelov, & Marques-Vidal, 2018). Eating while distracted is another example of how the eating environment can impact our food choices. Research shows that young women who eat a meal while watching TV are more likely to snack later in the day (Higgs & Woodward, 2009). On the same note, people who practice mindfulness-based interventions while eating (being non-judgemental yet attentive to experiences, emotions and thoughts while eating) are more likely to experience improvements in binge eating (consuming a lot of food in one session) frequency, which may help to prevent excess weight gain (O'Reilly, Cook,  Spruijt-Metz, & Black, 2014). 
+
+Two other factors that influence consumption of foods and beverages are consumption norms and consumption monitoring. Consumption norm refers to what a person perceives as a normal or typical serving, which could be influenced by package size, plate size or the presence of others. For example, most energy drinks are sold in large cans (500mL), which may make someone think that 500mL is the normal amount that should be consumed. Likewise, if someone is eating lunch with a friend and the friend consumes a meal and dessert, that may influence the person to also consume their meal and dessert. Consumption monitoring refers to how consumption of food is affected when someone pays more attention to how much they are consuming. There are satiety (feeling of fullness) cues that may trigger someone to stop eating when they feel sufficiently 'full', but also seeing that a plate is empty can be a cue to stop eating (Wansink & Sobal, 2007).
+
+While this is not an exhaustive list of the factors that influence food consumption, it is important to think some of the factors influence consumption because food and beverages contain nutrients and other ingredients (for example, antioxidants, preservatives, artificial sweeteners) that can affect overall health, in good and bad ways. The word nutrient is derived from a latin term meaning nourish. Nutrients are needed to nourish the body so that it can function optimally. Nutrients can be roughly classified as macronutrients (carbohydrate, protein, fat) and micronutrients (vitamins and minerals). There are 6 classes of nutrients, which are shown in the table, below.
+
+Name of the nutrient | Example function
+---------------------|-----------------
+Carbohydrate.        | Substrate for ATP production, source of fibre
+---------------------|-----------------
+Protein              | Intermembrane transporter
+---------------------|-----------------
+Fat                  |Substrate for ATP production, component of cell membranes
+---------------------|-----------------
+Water                | Temperature regulation, transportation of other nutrients
+---------------------|-----------------
+Vitamins             | Co-factors for enzymatic reactions in the body
+---------------------|-----------------
+Minerals             | Maintain cell function and volume
+---------------------|-----------------
+
+1.2 What is a healthy diet? 
+
+With so many different food and nutrition trends out there, it is hard to know what to eat and when to eat to to give us long healthy lives. One way to learn about healthy diets is to look to those who have lived long lives. Centenarians are people who have made it to and surpassed the age of 100 years. 
+
+Click on the link to learn more about the diets of Centenarians living in Blue Zones around the world.
+
+https://www.npr.org/sections/thesalt/2015/04/11/398325030/eating-to-break-100-longevity-diet-tips-from-the-blue-zones
+
+There is science to back up some of this anecdotal evidence that Dan Buettner, a National Geographic author, discusses in his book, The Blue Zones Solution. Many of the foods eaten by Centenarians in the Blue Zones are part of the Mediterranean diet. This is perhaps the most well-studied dietary pattern in the scientific literature. The figure, below, shows some of the foods that are included the Mediterranean diet. Other foods that are recommended in this diet are non-refined cereal products (for example, whole grain pasta, brown rice), dairy products, fish, poultry, olives, nuts, pulses (for example, lentils), potatoes and eggs. It is recommended that red meat is consumed on a monthly, not weekly, basis (Panagiotakos, Pitsavos & Stefanadis, 2006). 
+
+Large population-based studies in humans have shown that people who follow the Mediterranean diet have a 25% lower risk of death from any cause (Trichopoulou, Costacou, Bamia & Trichopoulos, 2003). Which part of the Mediterranean diet is most important? Well, it is likely that the foods in the Mediterranean diet work synergistically (together) to lead to health benefits, but it looks like consuming fruit, nuts and monounsaturated fats (found in olive oil and avocados) are particularly important and may have independent health benefits (Trichopoulou, Costacou, Bamia & Trichopoulos, 2003). 
+
+​1.3 Introduction to the Dietary Reference Intakes (DRIs)
+
+We will continue to learn about the health benefits of different foods in the Mediterranean diet throughout the course, but let's get back to fundamentals. In a healthy diet, how much of each macronutrient should be consumed? In other words, how much energy should come from carbohydrates, fat and protein? To answer this question, we can turn to the Dietary Reference Intake (DRI) values published in a series from reports between 1997 and 2010. These DRI reports were a collaborative effort by the Food and Nutrition Board of the National Academies’ Institute of Medicine, and the American and Canadian governments. In the DRI reports, there are various reference intake category values for macronutrients, micronutrients and water. These are shown in the table, below (adapted from Otten, Pitzi Hellwig & Meyers, 2006).
+
+Reference category       | Abbreviation | Description 
+-------------------------|--------------|--------------
+Acceptable Macronutrient | AMDR         | Breakdown of energy that should come from fat, Distribution Range                    |              | carbohydrate and protein
+-------------------------|--------------|--------------
+Estimated Average        | EAR          | Recommended nutrient intake that would meet requirements
+Requirement              |              | for health for 50% of a healthy population
+-------------------------|--------------|--------------
+Recommended Dietary      | RDA          | Recommended nutrient intake that would meet requirements
+Allowance                |              | for health for 97-98% of a healthy population
+-------------------------|--------------|--------------
+Adequate Intake          | AI           | Recommended nutrient intake based on observed or
+                         |              | experimentally determined estimations for healthy people.
+                         |              | Use when the RDA is not available.
+-------------------------|--------------|--------------
+Tolerable Upper Intake   | UL           | Highest daily nutrient intake level that is likely to pose
+Level                    |              | no risk to health to almost all healthy people in a
+                         |              | population
+-------------------------|--------------|--------------
+
+All macronutrients, micronutrients and water have a set of recommendations that healthy people can follow to optimize health. But, the type of reference category for each may vary, depending on the type of nutrient. For example, there are AMDRs for the macronutrients (hence the name AMDR) but not the micronutrients , and some (carbohydrate and protein) also have an RDA.  When we discuss each macronutrient in detail in this course, we will compare and contrast the DRI values provided to help make sense of the different recommendations. 
+
+For micronutrients, such as vitamin D, you will see 3 types of DRI values, as shown in the table below (Adapted from Government of Canada, 2012). 
+
+Age                 | RDA or AI*                | UL
+                    | (International units, IU) |
+--------------------|---------------------------|-----------------
+Infants 0-6 months  | 400 IU*                   | 1000 IU
+of age.             |                           |
+--------------------|---------------------------|-----------------
+Children and adults | 600 IU                    | 4000 IU
+(9-70 years of age) |                           |
+--------------------|---------------------------|-----------------
+
+For children and adults, the recommendation is that people should aim to get 600IU each day, but not exceed 4000IU. The RDA is an estimate of the average daily intake that would meet the nutrient needs of most (97-98%) of the population. If someone usually achieves this intake, they have a low probability (2-3%) of being deficient in the nutrient. The RDA is developed from the EAR, which is an intake level where the risk of nutrient inadequacy is 50% in a healthy population. The RDA is mathematically derived from the EAR using the calculation RDA =  EAR + 2 standard deviations (SD), as shown in the figure, below. While you should never have to calculate the RDA from the EAR, it is important to recognize the relationship between these 2 values and understand that if there is no EAR for a nutrient, there will be no RDA. The relationship between EAR, RDA and UL are shown in the figure, below. As you can see, if someone consumes the EAR for a nutrient, their risk of insufficiency is 50%, as the EAR is the nutrient intake level that should satisfy nutrient requirements for 50% of the population. If someone consumes the RDA for a nutrient, their risk of insufficiency is 2-3% (or 2.5%), as the RDA is the nutrient intake level that should satisfy nutrient requirements for 97-98% of the population. If someone consumes above UL for a nutrient, their risk of insufficiency is very low, but the risk of negative health effects increases as there is a risk associated with consuming too much of a nutrient. 
+
+If we return to the example of vitamin D recommendations, you will see that for infants, the recommendation of 400IU is an AI, not an RDA. For some nutrients, there may not be enough scientific evidence available to establish an EAR and thus an RDA, and therefore an AI would be provided for the nutrient. The AI is the amount of a nutrient that may be needed to yield adequate nutritional status, for example, supporting normal growth. The UL is the highest intake level that is likely to pose no risk to a healthy person. People should not aim to meet the UL, but instead view it as the highest intake level that could be tolerated before causing negative health effects. As you can see in the figure, above, intake levels above the UL are associated with an increased risk of adverse effects, or negative health effects.
+
+1.4 What's with the macro buzz?
+
+There has been a lot of attention given to shifting macronutrient consumption for weight loss. You may have heard of the weight loss program, If it fits your macros (https://www.iifym.com). This program claims to help with weight loss by redistributing which foods calories are coming from on a calorie-restricted diet. Well, you don't need to sign up for the program to determine where your calories should be coming from, as the AMDRs help with that. The AMDRs represent a range of macronutrient intakes that are associated with a reduced risk of developing chronic diseases (for example, coronary heart disease and obesity) in the future, yet provides adequate intake of essential nutrients. The risk of nutrient insufficiency and disease increases if a person macronutrient composition of their diet falls outside the AMDRs. The table, below, shows the AMDRs for carbohydrates, fat and protein for adults (≥19 years of age) (Otten, Pitzi Hellwig & Meyers, 2006).
+
+Macronutrient | AMDR (% of kcal per day) | Amount of energy in 1 gram
+--------------|--------------------------|----------------------------
+Carbohydrates | 45-65%                   | 4 kcal
+Fat           | 20-35%                   | 9 kcal
+Protein       | 10-35%                   | 4 kcal
+
+Let's work through an example to determine the optimal macronutrient breakdown for an undergraduate student, Sara, who should be consuming 2500kcal per day.
+
+Carbohydrates | 45-65% | 2500 x 0.45 = 1126 kcal | 2500 x 0.65 = 1625 kcal
+--------------|--------|-------------------------|-------------------------
+Fat           | 20-35% | 2500 x 0.20 = 500 kcal  | 2500 x 0.35 = 875 kcal
+--------------|--------|-------------------------|-------------------------
+Protein       | 10-35% | 2500 x 0.10 = 250kcal   | 2500 x 0.35 = 875 kcal 
+
+If we take this a step further, we can determine the number of grams (g) of each macronutrient by using the conversion of kcal to grams.
+
+Carbohydrate | 1126 kcal / 4 = 281 g | 1625 kcal / 4 = 406 g
+-------------|-----------------------|-----------------------
+Fat          | 500 kcal / 9 = 56 g   | 875 kcal / 9 = 97 g
+-------------|-----------------------|-----------------------
+Protein      | 250 kcal / 4 = 62 g   | 875 kcal / 4 = 219 g
+
+To summarize, in order to prevent chronic disease and nutrient insufficiency, Sara should be eating 281-406 g of carbohydrates, 56-97 g of fat and 62-219 g of protein each day. As you can see, there is quite a bit of variation in the ranges provided, and for some health outcomes, like weight loss for example, it may be optimal to modify the amount of each macronutrient, within the ranges provided, to achieve goals. In addition, there are disease-specific guidelines that exist that provide additional guidance on macronutrient distribution. For example, some research suggests that carbohydrate intake between 4-45% of total energy consumed can result in improvements in blood glucose (sugar) control and triglyceride levels in people with type 2 diabetes (Canadian Diabetes Association Clinical Practice Guidelines Expert Committee, 2013). 
+
+1.5 How to read a nutrition facts table (NFT)
+
+How do you decide what products to buy at the grocery store? Are driven by what you are craving? Or, does the price of the product motivate you? Or, maybe you are you select products based on the information that you see on the food package. Approximately 58% of consumers use nutrition information on food and beverage packages to decide what to eat (International Food Information Council Foundation, 2017). In Canada, there are regulations around what information must appear on nutrition facts tables (also known as a food label) on most packaged foods (raw packaged meat, coffee and spices are the exception). But, the problem is, only 1 in 2 people seem to actually understand the information in the nutrition facts table (Vanderlee, Goodman, Sae Yang, Hammond, 2012). 
+
+The NFT provides information about serving size, calories (also known as kilocalories, or kcal),  % daily value (DV) and the absolute amount of 13 nutrients, including total fat, saturated fat, trans fat, cholesterol, sodium, carbohydrate, fibre, sugar, protein, vitamin A, vitamin C, calcium and iron (Government of Canada, 2018). It is optional to list other nutrients. If you look at the food label for yogurt, below, you will see that there are 14 nutrients listed, as the manufacturer decided to include vitamin D. 
+
+Consumers can use the %DV information to quickly determine if a serving of a food provides a little or a lot of a nutrient. The rule of thumb is that if %DV is 5% or less, it provides a little of a nutrient. If %DV is 15% or more, it provides a lot of a nutrient. Manufacturers are required to list %DV for fat, saturated and trans fat, sodium, carbohydrate, fibre, vitamin A, vitamin C, calcium and iron. Manufacturers have the option of listing %DV for cholesterol. It is important to know that the %DV are based on standard recommendations of nutrients, and may not provide the most accurate recommendations for people with certain diseases. But, the %DV is helpful for people wanting to make a quick product comparison at the grocery store, or determine if a product is a good choice. For example, the NFT for a cereal product, below, may be a healthy option for someone who was interested in increasing fibre intake and reducing sodium intake, as a serving of the cereal has 20%DV for fibre and 0%DV for sodium. To use NFTs on products to help you make healthier choices at the grocery store, Health Canada recommends following the steps outlined in the figure, below.
+
+Let's try to apply some of the principles of interpreting NFTs by looking at a product comparison example, shown below. As you can see, there are 2 NFTs for 2 different yogurt products. Which product would you choose if you wanted to get the most protein for a 3/4 cup (175g) serving? 
+
+As you can see, once you do the math to make the serving sizes comparable, a 3/4 cup (175g) serving of yogurt A provides 17g of protein, and a 3/4 cup (175g) serving of yogurt B provides 7g of protein. So, buy yogurt A!
+
+Now, even though the Government of Canada has provided regulation around what information appears on NFTs for food products, there is still a lot of confusion about the healthiness of products, based on the NFT and other information on the food package. Watch the video clip, below, to learn more!
+
+Questions:
+
+1. Kerry consumes 2500 kcal per day. Which of the following fat intakes, in grams, would fit within his AMDR?
+ANS: 90g
+
+2. What DRI value best matches up with the following description: the risk of nutrient insufficiency is 2-3% if a person consumes this amount of a nutrient.
+ANS: RDA
+
+3. Which macronutrient yields the most energy (kcal) per gram?
+ANS: Fat

@@ -1,0 +1,110 @@
+Section.7.txt
+
+Section 7: Superfood or super fad?
+
+The term superfood is all around us. It's on book covers, on food packaging, in social media feeds, it's all over blogs and it's even on skincare and cosmetic packaging! The claims around superfoods are just as extensive, from claiming to be nourishing, detoxifying and boosting your system to extending lifespan. 
+
+A search using the term superfood on Google yields over 46 million results! Based on how much information about superfoods there is out there, and the abundance of superfood-products hitting the marketplace everyday, it's no wonder that people are interested in learning more about superfoods, and are willing to spend money on these superfoods to reap the possible health benefits. For example, the sale of a seaweed snack, which has been hailed as a superfood, has increased from $250 million USD to $500 million USD in 2014 in the U.S.A alone (Food in Canada, 2016). But, are the claims backed by science? Is it worth the money? And, what is a superfood anyway?
+
+7.1 What is a superfood?
+Superfoods are showing up in our grocery stores, specialty food stores, supplement stores and even... beside hospital beds. In one medical centre where patients are treated for burns, physicians noticed that pomegranates and other citrus fruits were becoming more common on bedside tables in the hospital (Sharma & Neeraj, 2018). 
+
+In the survey of 50 patients, 45 patients and families were spending money on buying pomegranates, which are an expensive commodity in India, the study site. Physicians were surprised by this, as burn patients should be focusing on consuming a high calorie diet, rich in carbohydrates, fats and protein to promote tissue repair (Sharma & Neeraj, 2018). When patients were asked why they were consuming pomegranates, their responses ranged from:
+
+- Pomegranates played a role in "building blood" (Sharma & Neeraj, 2018, p1). This does have some truth to it, as pomegranates do contain 0.3 mg iron/100g, but other more rich plant-sources of iron are sundried tomatoes, apricots and raisins (Sharma & Neeraj, 2018).
+- Pomegranate "improves healing" (Sharma & Neeraj, 2018, p1).
+- Pomegranates are expensive, so they must be healthy (Sharma & Neeraj, 2018).
+- Pomegranate "combats weakness instantly and is an extremely rich source of calories" (Sharma & Neeraj, 2018, p1). 
+
+There is a little bit of truth to the patients' perspectives, but most of what they believe is not true or backed by science. This is a good demonstration of how marketing, food pricing, education, and sociocultural beliefs can influence our nutrition practices, for better or worse. Some of the confusion around the science of superfoods stems from the fact that there is no clear definition of superfood that has been agreed upon by scientists, physicians, dietitians and government organizations. It is likely that the closest definition of superfood that has been accepted by scientists, dietitians and government is that of functional foods. But, even with functional foods, there are a few different definitions out there, as shown in the table below.
+
+|-----------------------|----------------------------------------------|
+| Agriculture and Agri- | "Foods enhanced with bioactive ingredients   |
+| Food Canada           | and which have demonstrated health benefits, |
+| (2017, para. 2)       | such as probiotic yogurt, or breads and      |
+|                       | pasta with added pea fibre."                 |
+|-----------------------|----------------------------------------------|
+| Dietitians of Canada  | "Functional foods offer unique health        |
+| (2018, para. 1)       | benefits that go beyond simply meeting basic |
+|                       | nutrient needs. They may help reduce the     |
+|                       | risk of developing chronic disease.          |
+|                       | Functional foods contain what nutrition      |
+|                       | researchers call bioactive compounds, or     |
+|                       | naturally occurring chemicals. It is these   |
+|                       | bioactive compounds that offer the health    |
+|                       | and wellness benefits that have been linked  |
+|                       | to functional foods."                        |
+|-----------------------|----------------------------------------------|
+| Academy of Nutrition  | "Functional foods are whole foods along with |
+| and Dietetics (2013)  | fortified, enriched or enhanced foods that   |
+|                       | have a potentially beneficial effect on      |
+|                       | health when consumed as part of a varied     |
+|                       | diet on a regular basis at effective levels  |
+|                       | based on significant standards of evidence"  | 
+|-----------------------|----------------------------------------------|
+| International Food    | Foods and food components that may provide   |
+| Information Council   | benefits beyond basic nutrition.  Functional |
+| (2014, para. 5)       | foods include a wide variety of foods and    |
+|                       | food components believed to improve overall  |
+|                       | health and well-being, reduce the risk of    |
+|                       | specific diseases, or minimize the effects   |
+|                       | of other health concerns.                    | 
+|-----------------------|----------------------------------------------|
+
+As you can see from the different definitions, the common links between these definitions is that:
+
+- The consumption of functional foods is linked to a reduction in the risk for disease
+
+- There are bioactive compounds in functional foods that may benefit health
+
+I think that if we were to ask Canadians what superfoods are, elements of these descriptions may be included in their definitions. But, let's remember that a clear definition of superfood has yet to be established, which contributes to the growing confusion and curiosity around superfoods in Canada. 
+
+7.2 Superfoods in Canada
+The regulation of food claims in Canada is complicated as there are many different rules for different types of products and claims. While the Food and Drug Administration (FDA) is the primary organization controlling the safety and nutritional quality of food sold in Canada, Agriculture and Agri-food Canada aim to help product developers bring new and interesting foods to market while giving consumers the information that they need on food packaging (Agriculture and Agri-food Canada, 2015). A core principal of the FDA is to ensure that, "No person shall label, package, treat, process, sell or advertise any food in a manner that is false, misleading or deceptive or is likely to create an erroneous impression regarding its character, value, quantity, composition, merit or safety" (Agriculture and Agri-food Canada, 2015, para 5.). However, the challenge is that, as of now, the term superfood is not regulated. To learn more about the complicated landscape of superfood marketing in Canada, watch the video clip, starting at the 9:00 minute mark. You will recognize the start of this video clip from the Hydration module. 
+
+7.3 Can we use superfoods to prevent and manage disease?
+While no clear standard for labeling a food as a superfood has been established, you may have heard of the following foods being referred to as superfoods: chia seeds, walnuts, and cruciferous vegetables. When thinking about if a food might be a superfood, we should consider the following questions:
+
+Is there good quality scientific evidence demonstrating that there are bioactive ingredients in the food?
+
+- Is there good quality scientific evidence demonstrating a link between consuming the food and specific health outcomes that are relevant to the consumer?
+
+- Let's explore these questions for the 3 (super?) foods, below.
+
+7.3.1 Chia seed
+The chia seed, also known as Salvia hispanica, is a small seed that has origins in South America, where it is used for medicinal purposes (Ali et al., 2012). The seed contains 15-25% protein, 30-33% fat (4.4g omega-3 fatty acid [linolenic acid]/25g serving), 26-41% carbohydrates and 18-30% fibre (9.4g fibre/25g serving) (Ali et al., 2012; Nieman et al., 2009). Some of these molecules may be responsible for the health benefits that have been reported after consuming chia. For example, the omega-3 fatty acid, linolenic acid, may exert cardio-protective effects and have anti-inflammatory effects (Ali et al., 2012). Flavonols such as quercetin, kaempferol and caffeic acid are antioxidants that will help to reduce the impact of reactive oxygen species (ROS) in the body (Ali et al., 2012). Remember that ROS contribute to the development of many chronic diseases. Given the nutrient composition of chia, it often added to breads and cereals, and has even been added to frankfurters (sausages or hot dogs) to increase the 'healthiness' factor of an otherwise not-so-healthy food (Pintado, Herrero, Jimenez-Colmenero & Ruiz-Capillas, 2016)!
+
+How does chia seed stand up in a scientific clinical trial? In 2009, researchers thought that maybe chia seed would help promote weight loss, given it's higher fibre and omega-3 fatty acid content, so they tested the effect of adding 50g of chia seed to the diets of 39 overweight or obese men and women for 12 weeks (Nieman et al., 2009). In this randomized controlled trial, the researchers found that the chia did not help with weight loss or changing disease risk factors, such as inflammatory markers, HDL cholesterol or LDL cholesterol (Nieman et al., 2009). However, the researchers did find it challenging to come up with a reasonable placebo supplement, and also mentioned that adherence to the supplement was an issue. So, it seems that chia is not a superfood when we are talking about weight loss in overweight or obese adults, but maybe another well-designed study that is able to overcome some of the mentioned challenges will find another answer? 
+
+In 2017, researchers took another crack at trying to determine if there are health benefits of adding chia to the diets of patients with type 2 diabetes (Vuksan et al., 2017). This study was twice as long as the previously mentioned weight loss study, lasting 6 months, and participants were randomized to receive 30g/1000kcal per day or an oat-bran based control. After 6 months, body weight and waist circumference significantly decreased in the chia group. In addition, the inflammatory marker, C-reactive protein (CRP) significantly dropped in the chia group. All in all, this study showed some impressive results regarding weight loss in patients with type 2 diabetes, which the authors attribute to the fibre content in the seed and it's satiating effect.
+
+7.3.2 Walnuts
+Walnuts have been around for a long time. There is evidence that people consumed walnuts over 7000 years ago (Hayes, Angove, Tucci & Dennis, 2015)! Walnuts are unique because compared to other nuts, walnuts contain the highest levels of antioxidants such as tocopherol, phenolic acids, flavonoids and tannins (Hayes, Angove, Tucci & Dennis, 2015). Walnuts also contain healthy monounsaturated fatty acids (MUFA) and polyunsaturated fatty acids (PUFA) and specifically have the highest levels of oleic acid (MUFA) and linolenic acid (omega-3 PUFA) compared to other tree nuts (Hayes, Angove, Tucci & Dennis, 2015). Given the nutritious composition of walnuts (and the striking similarity in appearance between a walnut and the brain), researchers put walnuts to the test to see if walnuts could have an impact on cognition in young college students (Pribis et al., 2011). While the researchers did not report an impact of daily supplementation of 60 g (1/2 cup) of walnuts for 8 weeks on memory or mood, there was a positive effect on inferential reasoning, which might play a role in critical thinking (Pribis et al., 2011).  In another impressive clinical trial over 6 years, older adults were randomized to consume either a low fat diet, Mediterranean diet plus olive oil or Mediterranean diet plus nuts (15g walnuts and 15g almonds each day) (Sanchez-Villegas et al., 2011).  The researchers found that after 3 years of monitoring the participants, the risk of low brain-derived neurotrophic factor (BDNF) was 78% lower in the group consuming the nuts (Sanchez-Villegas et al., 2011). BDNF is important for neuron survival and new neuron connections to be made in the brain. What is it in the walnuts or almonds that lead to this finding? The researchers believe that the antioxidants in the nuts helped to reduce ROS, which typically reduces BDNF in the brain. Also, the higher omega-3 fatty acids may contribute to increasing BDNF. So, when we are talking about brain health, it looks like walnuts may be a superfood!
+
+7.3.3 Cruciferous vegetables
+Cruciferous vegetables are those that are often also part of the Brassicaceae family of flowering plants, which contains 3700 different species (Encyclopedia Brittanica, 2015). This family includes vegetables like bok choy, broccoli, brussels sprouts, cauliflower, collard greens, kale and cabbage (Encyclopedia Brittanica, 2015). Kale is one of the most popular types of cruciferous vegetables, and is a well-known ingredient in salads, omelettes, smoothies and juices. Kale is so popular that it even has it's very own day, called National Kale Day (Oct 3, 2018). 
+
+Kale contains many important nutrients, including folate, riboflavin, vitamin K and calcium (Samec, Urlic, Salopek-Sondi, 2018). Kale has more vitamin C than other cruciferous vegetables, such as collard greens, broccoli, cauliflower, cabbage and brussels sprouts (Samec, Urlic, Salopek-Sondi, 2018). In addition to these nutrients, laboratory testing has also shown that kale contains carotenoids such as lutein, beta-carotene and lycopene and flavonoids such as quercetin and kaempferol (Samec, Urlic, Salopek-Sondi, 2018). Kale plants normally take 2-3 months to grow, and the maturation process increases the amount of carotenoids in the kale (Walsh, Bartlett & Eperjesi, 2015). The carotenoids in kale actually degrade when exposed to high temperatures and sunlight, so researchers suggest farming kale in the winter in open fields and cultivating kale in greenhouses in covered areas during the summer to optimize carotenoid content (Walsh, Bartlett & Eperjesi, 2015). It has also been determined that when people consume kale, some of these bioactive ingredients appear in the blood. In one study of 7 adults who consumed a single 3 cup serving of kale labeled with an isotope for tracking, concentrations of lutein, beta-carotene and retinol (active form of vitamin A) appeared in the blood (Novotny, Kurilich, Britz, & Clevidence, 2005). Now that we know that the bioactive nutrients make it into the blood, is there an impact on health?
+
+The number of studies looking only at kale consumption is limited, but there are many studies that explore the impact of consuming other cruciferous vegetables. For example, in one study involving young adult smokers who consumed broccoli for 10 days, there was a significant reduction in markers of systemic inflammation, which is a common problem for smokers. Specifically, the inflammatory molecule, CRP decreased after consuming broccoli for 10 days, which may have been due to the anti-inflammatory bioactive molecules in broccoli and other cruciferous vegetables (Riso et al., 2014). In another study involving healthy, young adults, participants consumed a diet supplemented with a mix of cruciferous vegetables (broccoli, cauliflower, cabbage, and radish sprouts) for 14 days (Navarro et al., 2014). The researchers determined that the participants reaped the benefits of a 19% reduction in a potent, harmful inflammatory marker called interleukin-6 (IL-6) (Navarro et al., 2014). What caused the reduction? Well, the researchers hypothesized that may have been the phytochemicals, carotenoids, but may also have been the dietary fibre which can be fermented by gut bacteria and decrease another inflammatory marker that controls IL-6, called NF-kB (Navarro et al., 2014). 
+
+Questions:
+
+Q: Which of the following is true about superfoods in Canada?
+A: There is no regulation of the term or use of superfood
+
+Q: From the video, which of the following was mentioned as an underappreciated superfood?
+A: Potatoes
+
+Q: In clinical trials, taking chia seed always results in weight loss among study participants.
+A: false
+
+Q: Chia seed is known for being a very good source of which type of fatty acid?
+A: Linolenic acid
+
+Q: The term flavonoid refers to:
+A: Antioxidant
+
+Q: Which statement about the science behind kale is true?
+A: Of all cruciferous vegetables, kale contains the most vitamin C
+   The more mature the kale is, the higher the carotenoid content

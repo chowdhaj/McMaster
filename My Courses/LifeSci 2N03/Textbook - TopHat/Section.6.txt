@@ -1,0 +1,99 @@
+Section.6.txt
+
+Section 6: The antioxidant nutrients
+
+The word antioxidant has become a buzzword and is all around us! From antioxidant face creams and serums that promise to bring the look of youth within weeks, to antioxidant vitamin e-cigarettes , to antioxidant clothing, and antioxidant intravenous (IV) infusions, it seems like any product can be transformed into a youth-preserving, antioxidant miracle product. But, often, along with the big claims to be anti-aging and health promoting comes big price tags. 
+
+In fact, the antioxidant industry is projected to be worth a staggering $3.11 billion USD by the year 2020 (Transparency Market Research, 2015)! In Canada, 8 out of 10  Canadians consume natural health products or supplements, and 33% of these people specifically take an antioxidant supplement (Agriculture and Agri-Food Canada, 2016). This should make you think... is it worth it?
+
+6.1 What are antioxidants?
+
+Antioxidants are small molecules or larger proteins that are naturally occurring in foods and beverages, and can be extracted from natural sources and added to supplements and other products, as described above (National Centre for Complementary and Integrative Health, 2013). As their name implies, antioxidants help to prevent or delay oxidative damage to biological molecules in the body, like DNA, carbohydrates, proteins and lipids (Diplock et al., 1998; Bast & Haenen, 2013). Oxidative damage to these important biological molecules has been linked to various diseases, such as cardiovascular disease, Alzheimer's Disease, cataracts, macular degeneration, rheumatoid arthritis, neurodegenerative diseases and some cancers (Wiseman & Halliwell, 1996; Diplock et al., 1998). What is the source of oxidative damage? Well, we can blame a group of molecules called reactive oxygen species (ROS), which are molecules that are radicals (molecules that have an unpaired electron) or molecules that are reactive non-radical compounds that have the ability to damage biological molecules (Diplock et al., 1998). 
+
+Figure 3. The mneumonic, LEO GER, is used to help us remember that in redox reactions, a molecule that donates an electron to another molecule is said to be oxidized (3).
+
+You probably have heard the term oxidize or oxidation before when discussing oxidation-reduction reactions (redox reactions) in other courses. Remember that mneumonic, LEO the lion says GER? Well it helps us remember that the loss of electrons is oxidation and the gaining of electrons is reduction. 
+
+A ROS like superoxide anion (Figure 4) is created when a molecule of oxygen is reduced, that is, it gains an electron (Robak & Gryglewski, 1988). The source of the electron could be from an enzymatic reaction (for example, xanthine oxidase or NADPH oxidase reaction) or from leakage of the electron transport chain during cellular respiration (Diplock et al., 1998). Other sources of ROS include radiation, cigarette smoke and air pollution, and white blood cells (immune cells) also produce ROS when trying to protect the body from illness as a killing mechanism (Diplock et al., 1998). 
+
+Let's get back to antioxidants. Thankfully, these molecules do 3 things to prevent lasting damage to our important biological molecules (Niki, 2014):
+
+1. Antioxidants help to remove ROS before they can damage biological molecules 
+2. Antioxidants help to prevent the production of ROS
+3. Antioxidants help to repair damage done to biological molecules by ROS
+
+The most well-known attribute of antioxidants is their remove ROS, by becoming oxidized themselves and taking up electrons that would otherwise damage biological molecules (Bast & Haenen, 2013). Thus, most people call antioxidants free radical scavengers (Robak & Gryglewski, 1988). Some antioxidants are made in the body (for example, enzymes like superoxide dismutase) and others are acquired through the diet (Halliwell, 1996). The table below summarizes the most prominent dietary antioxidants (Diplock et al., 1998).
+
+Type of antioxidant   | Role as an antioxidant | 3 foods that contain |
+                      |                        | antioxidant          |
+----------------------|------------------------|----------------------|
+Ascorbate (vitamin C) | It is oxidized when it | Oranges              |
+                      | interacts with ROS     | Red pepper           |
+                      |                        | Kiwi                 |
+----------------------|------------------------|----------------------|
+Alpha-tocopherol      | Inhibits lipid         | Vegetable oils (soy  |
+(vitamin E)           | oxidation and is       |   and safflower)     |
+                      | oxidized when it       | Nuts                 |
+                      | interacts with ROS     | Leafy green          |
+                      |                        |   vegetables         |
+----------------------|------------------------|----------------------|
+Carotenoid (precursor | It is oxidixed when it | Carrots              |
+to vitamin A)         | interact with ROS and  | Tomatoes             |
+                      | also has the ability   | Yam                  |
+                      | to chemically remove   |                      |
+                      | ROS                    |                      |
+----------------------|------------------------|----------------------|
+Flavonoids            | It is oxidized when it | Dark chocolate       |
+                      | interacts with ROS     | Tea and coffee       |
+                      |                        | Berries              |
+----------------------|------------------------|----------------------|
+
+6.2 Antioxidants and health
+Given their role in scavenging free radicals or minimizing the damage of ROS, antioxidants can play an important role in preventing the development of some diseases. But there has been some controversy around over-doing it with antioxidant supplements, which will be discussed later. For now, let's explore the evidence related to antioxidant intake and different health outcomes. 
+
+6.2.1 Cardiovascular health
+The major mechanism connecting antioxidants to cardiovascular health is lipid peroxidation. Lipid peroxidation is important to cardiovascular health because it is a step in the development of atherosclerosis (Halliwell, 1996) (Figure 5). 
+
+Figure 5. Atherosclerosis is a precursor to cardiovascular-related diseases and events, such as heart attack and stroke (4).
+
+Specifically, it is believed that the oxidative modification of LDL cholesterol molecules results in the formation of atherosclerotic lesions in the blood vessel, which increases the risk of high blood pressure, heart attack or stroke (Esterbauer, Wag & Puhl, 1993). The antioxidant, alpha-tocopherol, is particularly relevant to LDL oxidation because about 30% of plasma alpha-tocopherol is found in the LDL particle (Esterbauer, Puhl, Dieber-Rotheneder, Waeg & Rabl, 1991). This alpha-tocopherol seems to make the LDL particle more resistant to oxidation, as one in vitro study showed that as alpha-tocopherol treatment increased in concentration, LDL oxidation resistance also increased (Esterbauer, Puhl, Dieber-Rotheneder, Waeg & Rabl, 1991). How does this translate to us humans? Well, another study showed that when people were given different doses of alpha-tocopherol for 21 days, there was an increase in resistance to LDL oxidation (118-175% increase), depending on the dose, and when supplement consumption stopped, LDL oxidation resistance returned to normal baseline levels (Esterbauer, Puhl, Dieber-Rotheneder, Waeg & Rabl, 1991).
+
+Figure 6. The consumption of nuts, which are high in vitamin E, has been associated with better cardiovascular health (5).
+
+If we want to get our nutrition from food and not supplements, do we see similar results in studies using foods high in alpha-tocopherol? One in vitro study showed that the oxidation of LDL particles was reduced by up to 80% when the particles were exposed to different amounts of walnut preparation (Anderson et al., 2001). While the alpha-tocopherol in the walnuts likely played a role, the researchers also acknowledged the contribution of other antioxidant compounds in walnuts, such as ellagic and gallic acids, and catechins (Anderson et al., 2001). In another study that took place at the University of Toronto, men and women with hyperlipidemia were recruited to participate in a three month long study involving almond supplementation (Jenkins et al., 2008). The 27 participants consumed 37g and 73g (approximately 3/4 cup) of raw almonds/day in different phases and blood was taken throughout the study to look at oxidative damage. The researchers found that after the full dose, blood measures of oxidative damage decreased over the course of the study (Jenkins et al., 2008). Was this due solely to the alpha-tocopherol? Almonds are also high in other antioxidants, like catechin, quercetin, anthocyanins and phenolic acids, all of which may have also contributed to the effects of reducing LDL oxidation. This is another good reason to get our nutrients from food versus supplements, as nuts are a whole food that not only pack antioxidants, but also healthy polyunsaturated fats and protein.
+
+But, what we should really want to know is does nut consumption reduce the risk of cardiovascular events, like heart attack or stroke? Well, unfortunately, a long-term study is needed to answer this question and as of now, we don't have the answer. But, there is some evidence to suggest that consuming 1.5 ounces (approximately 1/5 cup) of almonds/day for 6 weeks improves the cardiovascular disease risk in people with high LDL cholesterol (Berryman, West, Fleming, Bordi & Kris-Etherton, 2015). We will have to stay tuned for those longer-term trials to get more answers about nut consumption and cardiovascular event risk.
+
+6.2.2 Cancer
+While there is no one single cause of cancer that has been agreed upon by scientists, ROS have been recognized as a key contributor to cancer development (Wiseman & Halliwell, 1996). One possible pathway is that ROS play a role in cancer development by causing mutations on a gene that is important in regulating tumor growth, called the tumor suppressor gene p53 (Halliwell, 1996).  Specifically, ROS can cause structural changes in DNA, impact intracellular signalling, prevent cell to cell communication, change cell growth patterns and control of cell death, damage proteins that normally help to repair DNA mutations and deactivate antioxidant enzymes that help with ROS scavenging (Diplock et al., 1998; Halliwell, 1996).
+
+Can antioxidants help? As shown in the table above, fruits and vegetables are major sources of antioxidants. In one big review of 206 human studies and 22 animal studies, researchers found that there was a consistent protective effect of fruit and vegetable consumption for cancers of the stomach, esophagus, lung, oral cavity, pharynx, endometrium, pancreas and colon (Steinmetz & Potter, 1996). They reported that the greatest connection was seen for raw vegetable consumption, followed by allium vegetables (for example, onions, garlic and red pepper), carrots, green vegetables, cruciferous vegetables (for example, cabbage, broccoli and brussel sprouts) and tomatoes (Steinmetz & Potter, 1996). Two antioxidants in particular have received more attention in cancer research. It seems that in addition to exerting antioxidant effects, carotenoids may play a role as antioxidants and in modifying intracellular signalling and tumor growth (Diplock et al., 1998). Ascorbate has been shown to inhibit the formation of carcinogenic molecules and decrease DNA damage in gastric cancer patients (Wiseman & Halliwell, 1996). The protective effect of a carotenoid and ascorbate rich diet on lung cancer risk was recently established (Shareck, Rousseau, Koushik, Siemiatycki & Parent, 2017). This population-based Canadian study showed that in over 2500 people, a high dietary intake of carotenoids and vitamin C decreased the risk of lung cancer by about 30%. 
+
+Figure 7. Vegetable consumption is protective against many cancers (6).
+
+Carotenoids, such as beta-carotene, alpha-carotene and beta-cryptoxanthin, were all highlighted as important carotenoids (Shareck, Rousseau, Koushik, Siemiatycki & Parent, 2017). These molecules are converted to the active form of vitamin A, called retinol, which exerts antioxidant effects in the body. The carotenoid beta-carotene is an abundant plant-based carotenoid, and because it is an orange coloured molecule, it is found in orange and yellow brightly coloured vegetables, such as carrots, papaya and canteloupe. Perhaps to your surprise, leafy green vegetables also contain beta-carotene, however the colour is masked by the green chlorophyll in the vegetables. Consumption of foods that contain another carotenoid, lycopene, was also associated with a 25% risk reduction for lung cancer (Shareck, Rousseau, Koushik, Siemiatycki & Parent, 2017). Unlike the other carotenoids, lycopene does not turn into retinol, however, may play a role in prevent cancer cell multiplication (Shareck, Rousseau, Koushik, Siemiatycki & Parent, 2017). Vitamin C was also highlighted as a key nutrient in reducing the risk of lung cancer by 26%, perhaps because it has been shown to increase the death of cancer cells and act as an antioxidant (Shareck, Rousseau, Koushik, Siemiatycki & Parent, 2017). 
+
+Figure 8. Carrots are an excellent source of cancer-preventing beta-carotene (7).
+
+6.2.3 Nervous system
+Like cancer, there are various factors that contribute to the development of nervous systems diseases, such as Alzheimer's disease. But, ROS seem to have a role to play. Specifically, oxidation of proteins by ROS leads to an increase in a protein called amyloid beta. This protein accumulates in the brain of patients with Alzheimer's disease, and is believed to contribute to the onset of some of the symptoms of Alzheimer's disease, such as memory loss and cognitive impairment (Spiteller, 2006). In addition, the oxidation of lipid molecules may also play a role in the pathogenesis, and ROS may even cause neuron cell death (Diplock et al., 1998). Lipophilic antioxidants such as carotenoids and alpha-tocopherol may play a role in decreasing the risk of neurodegenerative diseases by preventing neuron cell membranes from ROS damage. Indeed, higher plasma levels of beta-carotene and alpha-tocopherol have been linked to better memory in older adults (Perrig, Perrig & Stähelin, 1997; Polidori & Mecocci, 2002). A larger study that combined the results from multiple studies showed that dietary intake of vitamin E, C and A decreased the risk of Alzheimer's disease by 24%, 17% and 12%, respectively (Li, Shen & Ji, 2012).
+
+6.3 Should I take an antioxidant supplement?
+Now that you have learned about the beneficial impact of dietary antioxidants on health, you may be wondering if you are getting enough antioxidants through your diet, or should you be taking an antioxidant? This is a common question that many people have, and the evidence is pretty conflicting... making the answer more complicated. One study in 2013 is noteworthy because it showed that after examining the results from 78 randomized clinical trials, there was no protective effect against death of taking antioxidant supplements (Bjelakovic, Nikolova & Gluud, 2013). There was actually a higher risk of death in those people who consumed the antioxidant supplements, particularly beta-carotene and vitamin E. Confused?! This story requires more in-class discussion, but watch the following video clip for additional considerations regarding supplementation. 
+
+Questions:
+
+Q: When a donor molecule or ion loses an electron, we say that the product is:
+A: Oxidixed
+
+Q: Which of the following are/is (a) source of ROS?
+A: Environmental pollution
+
+Q: Which of the following foods is a good source of beta-carotene?
+A: Kale & Carrots
+
+Q: One way that antioxidants improve heart and vascular health is by reducing the oxidation of:
+A: LDL cholesterol
+
+Q: Which of the following is the active form of vitamin A?
+A: Retinol

@@ -1,0 +1,109 @@
+Section.5.txt
+
+Section 5: Hydration for health
+
+Let's face it... the world of hydration is just as complicated as the world of food nutrition! It seems that everyday, there is a new drink on the market with lofty claims to revitalize, refresh, hydrate, cleanse, or detox. The beverages shown in Figure 2 are examples of how cleaver marketing and product development aim to persuade consumers and influence hydration purchasing desisions. But, are these products worth the hype... and the money? Should we rely on these kinds of products instead of the water that flows from our taps? These complicated questions require us to get back to the basics about water and hydration!
+
+5.1 Why do we need water?
+Did you know that we can only survive a few days without water, compared to weeks or months without the other macronutrients? This means that of all the nutrients, water is by far the most important nutrient, and makes up about 60% of body weight (Otten, Pitzi Hellwig, & Meyers, 2006)! Our brain and kidneys are mostly water, and water is even an important constituent of teeth (Figure 3). The water that we consume and water that is made in the body (for example, by condensation reactions) is compartmentalized in the body, and is either found in intracellular fluid, interstitial fluid or plasma (Figure 4). Most of the body water is found within our cells, and did you know that in an average sized adult male, there is about 25 litres (L) of intracellular fluid (Betts et al., 2017)! Fluid movement between the compartments is regulated by hydrostatic pressure and osmosis. Hydrostatic pressure is what allows fluid (and the nutrients that it is carrying with it) to leave a capillary network and enter tissues. This is how water and nutrients are delivered to your skeletal muscles when exercising, for example. Osmosis will help to balance the concentration of a solute inside or outside a cell (Betts et al., 2017). Through both of these processes, water is able to move between the intracellular and extracellular (plasma or interstital fluid) compartments of the body. 
+
+Figure 3. Our body is made up of 60% water, with organs and tissues being made up of 8-85% water (Betts et al., 2017) (5).
+
+Figure 4. Body water is seperated into compartments, with most water residing in the intracellular compartment (Betts et al., 2017) (6).
+
+Aside from the fact that water is a key component of our physical composition, water serves many other purposes in the body. Now that we know that most of the body water is found within cells, what purpose does intracellular water serve? Well, before water can serve a function in the cells, it has to enter the cells through the highly water permeable cell membrane. Osmosis plays an important role in getting water into the cell, that is, when cells are exposed to a hypoosmotic environment, they swell as they take on water to create an osmotic equilibrium (Haussinger, 1996). Likewise, when cells are exposed to a hyperosmotic environment, water will move from the cells causing them to shrink (Figure 5). Even small fluctuations in cell hydration and volume can act as potent signals for cell metabolism and gene expression (Haussinger, 1996). It is also common for cell swelling and shrinkage to cause opposite responses in a cell.
+
+For example, when liver cells (hepatocytes) are exposed to the hormone insulin, ion pumps on the cell membrane are activated, leading to accumulation of ions like sodium, potassium and chloride (Haussinger, 1996). This causes water to enter the cell and thus the cell swells. The response is an anabolic signal in the cell, for example, an increase in glycogen synthesis. The opposite is true for what happens when the hormone glucagon binds to the liver cell, as cells shrink and a catabolic signal in the cell is activated (Haussinger, 1996). For example, glycogenolysis occurs, which is the breakdown of glycogen molecules to liberate glucose sub-units. Another interesting example of how cell hydration and thus volume influences cell function is at the level of the skeletal muscle fibre, or muscle cell (Figure 6). 
+
+Did you know that an increase in increase in cellular hydration in skeletal muscle fibres acts as an anabolic, proliferative signal that can lead to muscle protein synthesis (Haussinger, Roth, Lang, & Gerok, 1993)? Not only does this mean that it is important to stay hydrated when you are wanting to gain muscle, but resistance training itself also increases intracellular hydration, thus leading to more muscle protein synthesis (Ribeiro et al, 2014).
+
+The extracellular compartments (insterstitial fluid and plasma) house approximately 35% of body water content, and about 20% of this fluid is found in the plasma of the blood (Betts et al., 2017). 
+
+Plasma is an important component of blood (Figure 7). It is mostly water (92% water), and is responsible for suspending white blood cells, red blood cells and platelets, allowing them to travel throughout the body. Hundreds of other molecules are also found in the plasma, including proteins (for example, the transport protein albumin), electrolytes (for example, sodium, potassium and calcium), dissolved gases (for example, oxygen and carbon dioxide), nutrients (for example, vitamins, lipids, glucose, amino acids) and waste products.
+
+Similar to blood plasma, the interstitial fluid contains electrolytes like sodium, chloride and bicarbonate, and nutrients like glucose, which is relevant to an advancement in diabetes care called continuous glucose monitoring (Betts et al., 2017). The monitor's sensor is inserted under the skin and sits in the interstitial fluid, where it measures interstitial glucose levels (Mauras, Fox, Englert & Beck, 2013). Although there is a physiological lag time of glucose transport from the plasma to interstitial fluid of about 7 minutes, this advancement brings the world of diabetes care closer to a working artificial pancreas system, where continuous glucose monitoring drives the automatic release of insulin delivery by a device (Basu et al. 2015)! 
+
+Here is a summary of some of the functions of water in the body (Otten, Pitzi Hellwig, & Meyers, 2006):
+
+- Maintains blood volume
+- Medium for transporting nutrients, blood cells and waste throughout the body
+- Solvent for biochemical reactions
+- Maintains cell homeostasis
+- Maintains body temperature
+
+5.2 Recommendations for water intake
+Everyday, we lose body water through obvious ways, such as through respiration, sweat and urination, which is why it is important to be mindful of rehydration. We lose most water through urination, but we also lose about 100-200mL/day through fecal losses (Otten, Pitzi Hellwig, & Meyers, 2006). Urine output varies with hydration status, with people who consume more water throughout the day producing more urine. Exercise and exposure to the heat both increase urine output, and cold temperatures decrease urine output (Otten, Pitzi Hellwig, & Meyers, 2006). Losses through respiration can vary depending on whether a person is sedentary or active, with active people losing 500-600mL/day (Otten, Pitzi Hellwig, & Meyers, 2006). The table below summarizes the major mechanisms of body water loss (Otten, Pitzi Hellwig, & Meyers, 2006).
+
+Mechanism    | Organ involved  | Amount of water lost/day |
+-------------|-----------------|--------------------------|
+Urinary and  | Kidney          | 1000-2000 mL/day         |
+fecal losses |                 |                          |
+             | Large intestine | (1-2 L/day)              |
+-------------|-----------------|--------------------------|
+Respiration  | Lungs           | 200-600 mL/day           |
+-------------|-----------------|--------------------------|
+Sweat        | Skin            | 450 mL/day               |
+-------------|-----------------|--------------------------|
+
+In terms of requirements, there was insufficient good scientific evidence to determine an recommended dietary allowance (RDA) for water intake, and as a result, adequate intake (AI) levels were established for different life stages. The table below summarizes some of the key recommendations (Otten, Pitzi Hellwig, & Meyers, 2006). 
+
+|---------------|---------------|--------------------------------------|
+|               | Ages          | AI (Litres [L]/day)                  |
+|---------------|---------------|--------------------------------------|
+| Adult males   | 19 years of   | 3.7 L of total water each day,       |
+|               | age and older | including 3.0 L (12 cups) from       |
+|               |               | beverages (including drinking water) |
+|---------------|---------------|--------------------------------------|
+| Adult females | 19 years of   | 2.7 L of total water each day,       |
+|               | age and older | including 2.2 L (9 cups) from        |
+|               |               | beverages (including drinking water) |
+|---------------|---------------|--------------------------------------|
+
+As you can see from the recommendations, we don't obtain all water from beverages. Remember the fact that humans are about 60% water? Well then it's not too surprising that meat, poultry and fish are also mostly water, and some vegetables and fruits are 90-99% water! Of course, these recommendations vary depending on individual factors, and it is best to use these numbers as a guide but to also listen to your body. For example, some tell-tale signs of dehydration include (Dietitians of Canada, 2018): 
+
+- Thirst
+- Dry mouth
+- Concentrated urine (dark in colour with a strong odour)
+- Amount of urine (less urine production may mean you need more fluids)
+headaches
+
+Although 77-84% of adults between the ages of 19 and 30 years consume water throughout the day, the average daily consumption of water is 1360mL/day for men and 1194mL/day for women meaning that most Canadians adults age 19-30 years are not meeting the recommendations (Statistics Canada, 2015).
+
+More staggering results have been reported for children, where an American study found that more than half of children were underhydrated in a large population-based study (Kenney, Long, Cradock & Gortmaker, 2015). The odds of inadequate hydration were 1.7 times higher in boys (Kenney, Long, Cradock & Gortmaker, 2015). For children, hydration is important becasue research suggests that there are effects of dehydration on cognitive performance. And, the effects can be pretty immediate. For example, Benton & Burgess (2009) showed that in a group of 40 children (age 8 years) who performed cognitive tests after receiving or not receiving a drink of water (300mL of tap water), memory was significantly better when water had been consumed. Although it is difficult to prove, it has been hypothesized that dehydration affects the central nervous system and brain function through cell metabolism and functional changes of serotonergic and dopaminergic neurons, mediated by changes in cell volume (Maughan, Shirreffs & Watson, 2007). 
+
+In adults, the consequences of dehydration are also severe, as dehydration has been linked to an increased risk of kidney stones, coronary heart disease and low blood pressure (hypotension) (El-Sharkawy, Sahota, & Lobo, 2015). Other studies also suggests a link between long-lasting dehydration and bladder, colorectal and breast cancers (Bar David, Gesundheit, Urkin & Kapelushnik, 2004). 
+
+In the short-term, dehydration has even been shown to have a negative impact on mood in adults (Masento, Golightly, Field & Butler, 2014). In older adults, dehydration can be very severe, with a 17% increased risk of death over a 30-day period and a 50% increased risk of death over a year (Warren et al., 1994). Hospitalizations due to dehydration as the primary diagnosis cost the U.S. healthcare system $446 million per year (Warren et al., 1994)!
+
+5.3 The role of electrolytes 
+Electrolytes are minerals that carry a charge. For example, sodium chloride (NaCl) dissolves in water and separates into sodium (Na+) and chloride (Cl-), which are 2 important electrolytes in the body. The concentration of electrolytes may vary depending on the fluid compartment (Figure 10). As you can see, the intracellular concentrations of the electrolytes potassium (K+), phosphate ((HP04)2-) and magnesium (Mg(2+)) are higher than that of the extracellular compartments (interstitial fluid and plasma). Likewise, the concentrations of sodium (Na+), chloride (Cl-) and bicarbonate ((HC0)3-) are higher in the extracellular fluid compared to the intracellular fluid. When at equilibrium, there is actually a balance between positive and negative charges inside and outside cells. 
+
+Electrolytes are relevant to the discussion about water and hydration because when electrolytes move between intracellular and extracellular compartments, water follows. Thus, changes in electrolyte levels can affect cell shrinkage and swelling, which as we know, impacts overall cell function. Thankfully, electrolyte concentrations inside and outside cells are controlled by intermembrane transport proteins, and whole body levels of electrolytes are regulated mainly by the kidneys. For example, if sodium levels are low, the body secretes aldosterone from the adrenal gland, which stimulates the reabsorption of sodium in the kidneys, meaning that less sodium is lost to the urine. Three of the most well known electrolytes in the body will be discussed here. 
+
+5.3.1 Why do we need sodium and chloride?
+Sodium and chloride are typically found in foods together as sodium chloride, or salt. These ions are essential for maintaining extracellular fluid volume and plasma osmolality , and help with nerve impulse transmission and muscle contractions (Otten, Pitzi Hellwig, & Meyers, 2006). Chloride in the form of hydrochloric acid (HCl) is used to help digest foods in the stomach. Given that salt is used so often in food preparation to add flavour and as a preservative for prepared foods, deficiencies in sodium and chloride are rare (Otten, Pitzi Hellwig, & Meyers, 2006). A greater concern than deficiency is excess intake, too much sodium chloride can lead to elevated blood pressure, cardiovascular disease and kidney disease.
+
+5.3.2 Why do we need potassium?
+Potassium is the main positively charged ion in the body (also known as a cation) and is also needed for normal cellular function. There is a high concentration of potassium in the cell, which is maintained by the sodium-potassium pump. Potassium is needed for nerve transmission, muscle contraction and maintaining blood vessel tone. 
+
+Potassium has an opposite affect on blood pressure, as it helps to lower blood pressure (Otten, Pitzi Hellwig, & Meyers, 2006). Fruits and vegetables, especially leafy green vegetables are excellent sources of potassium. While it is more uncommon, potassium deficiency, or hypokalemia, is linked to cardiac arrhythmias (for example, atrial fibrillation) and muscle weakness (Otten, Pitzi Hellwig, & Meyers, 2006).
+
+5.4 Drinks with electrolytes- worth the hype?
+So, now that we know some basics about water, hydration and electrolytes, is it worth it to consume more elecrolytes through sports drinks or coconut water? To start exploring this question, watch the following video clip from the start to the 9:00 minute mark.
+
+Questions:
+
+Q: Where does most of our body water reside?
+A: Intracellular compartment
+
+Q: The movement of water between intracellular and extracellular compartments occurs due to:
+A: Osmosis
+
+Q: Which organ has the highest water content?
+A: Brain
+
+Q: The majority of body water is lost each day to:
+A: Urine output
+
+Q: According to the recommendations, would an adult woman meet the recommended water intake levels if she consumes 8 glasses (250 mL) of water each day?
+A: No

@@ -1,0 +1,173 @@
+Section.3.txt
+
+Section 3: High fat, low fat, no fat... what's the deal?
+
+Ketogenic diet, Atkins diet, bulletproof coffee, coconut oil... these are all terms that have become mainsteam thanks to the recent popularity of high fat diets in celebrity culture. Gwyneth Paltrow, LeBron James and the Kardashians are all fans of the high fat, low carb diet. Whether the motivation for going on a high fat diet is to test mental strength (as in LeBron James) or to lose weight, celebrities claim that this diet is the key to looking and feeling great.
+
+But, before we all jump in the bandwagon, we should stop and think. Is this diet best for everyone? How many claims about this diet are actually supported by good science? Could this diet be harmful? 
+
+In order to understand these complex questions, we must first understand some fundamentals about dietary fat.
+
+3.1 What is dietary fat?
+
+When we talk about fat in our diets, we are generally referring to the oils we use for baking and frying, for making salad dressings and for spreading on bread. But, in fact, these types of dietary fat are just some of the lipids that we consume in our diets. Lipids is the scientific term for a class of nutrients that includes phospholipids, sterols and the more well-known type, triglycerides. Those oils and butter previously referred to are made up of triglycerides with different types of fatty acids (saturated or unsaturated). We will come back to the triglycerides and fatty acids, shortly!
+
+Eggs are a source of many nutrients, such as saturated and unsaturated fats, protein, vitamins A, D, E, B2, B9 (folate) and B12, and selenium, an antioxidant (Dietitians of Canada, 2018). But, eggs are also a source of lecithin (also known as phosphatidylcholine), which is a phospholipid (Figure 4) containing two fatty acids, a phosphate group and molecule of choline, shown in Figure 5. Although phospholipid intake only accounts for up to 10% of total dietary lipid intake, it is an important type of lipid in our body and in the kitchen (Sahebkar, 2013). 
+
+3.1.1 Phospholipids
+
+You may remember the term phospholipid from a biology course, and yes, this is the same molecule that makes up our cell membranes. It is made up of a hydrophobic tail and hydrophilic head, which are soluble in fat and water, respectively. Lecithin is an interesting molecule becasue not only does it deliver nutrients to the body, such as choline, glycerol and fatty acids, but it plays an important role in the kitchen as an emulsifier. 
+
+The lecithin in eggs acts as an emulsifier in foods that you might consume everyday, such as mayonnaise and baked goods. For vegans or other people who avoid eggs, such as those with allergies to eggs, substitute emulsifiers can be used. Given that soy beans also contain lecithin, soy lecithin is often used to replace eggs as an emulsifier in different products, as shown on the food label in Figure 6. Other substitute emulsifying agents include peanuts and wheat germ, as these foods also contain lecithin. 
+
+In addition to baking, soy lecithin has gained the attention of researchers interested in studying cardiovascular disease. Researchers believe that the lecithin in soybeans may help to decrease cardiovascular disease risk by inhbiting cholesterol absorption and promoting cholesterol excretion from the body (Sahebkar, 2013). One early study showed that adults at risk of cardiovascular disease (those with high cholesterol or high triglycerides) who consumed 18 grams per day of soy lecithin for 6 weeks experienced a reduction in total cholesterol, possibly due to an increase in cholesterol excretion in the bile (more to come on this later!) (Ovensen, Ebbesen & Olesen, 1985). This may be another reason to try to eat more soybeans in moderation in our diets!
+
+3.1.2 Sterols 
+
+Sterols are another type of dietary lipid that we get from our foods. Cholesterol (Figure 7) is the type of sterol found in animal products. One egg yolk contains approximately 200mg of cholesterol (Dietitians of Canada, 2018), and some other food sources include liver, shrimp, lobster, salmon, sardines and full-fat dairy products (Otten, Pitzi Hellwig, & Meyers, 2006). Approximately 40-60% of cholesterol found in foods is absorbed, and contrary to what most people believe, most of the cholesterol that we have in our bodies is synthesized endogenously, that is, our body makes it (Otten, Pitzi Hellwig, & Meyers, 2006). While having too much cholesterol, particularly LDL cholesterol, in the body is a bad thing, our bodies need cholesterol to make sex hormones (for example, estrogen and testosterone), adrenal hormones (for example, cortisol) and bile acids (Otten, Pitzi Hellwig, & Meyers, 2006). But, since our body is capable of making cholesterol, there are no dietary recommendations to meet biological needs. Many studies however have shown that an increase of 100 mg/day of dietary cholesterol can result in a 0.05–0.1 mmol/L increase in total serum cholesterol (80% of which is LDL cholesterol) (Otten, Pitzi Hellwig, & Meyers, 2006). The discussion about cholesterol will continue later on!
+
+Plant products contain plant sterols, also known as phytosterols, which are similar in structure to cholesterol, but have different side chains. More than 40 plant sterols have been identified, but the most abundant are beta-sitosterol, campesterol and stigmasterol (Law, 2000). Plants also contain stanols, which are similar to sterols, but have no double bonds in the hydrocarbon rings. In the 1950s, researchers learned that plant sterols and stanols can lower cholesterol levels by competing with dietary cholesterol absorption, and thus these compounds have been added to food products such as margarine (Best, Duncan, Van Loon & Wathen, 1954). 
+
+Fortified margarines, such as Benecol, contain about 2 grams of plant sterols or stanols in a 25 gram portion, and it has been shown that the fortification of margarine with these compounds reduces the absorption of cholesterol by about 50% (Law, 2000). At doses above 2 grams of plant sterols or stanols per day, there is no further reduction in cholesterol levels, suggesting a plateua effect (Law, 2000). How long do you have to consume these fortified margarines to experience a cholesterol-lowering effect? Trials ranged from 1.4-52 weeks, and the average reduction in LDL cholesterolwas 0.33mmol/L for people age 30-39 years,  0.43 mmol/L for people age 40-49 years and 0.54 mmol/L for people age 50-59 years (Law, 2000). This isn't bad considering that studies show that for each 1mmol/L reduction in LDL cholesterol, the risk of a cardiovascular disease-related event (for example, heart attack), decreases by about 20% (Anderson, T.J. et al, 2016)!
+
+Another type of sterol is vitamin D. The sterols, ergosterol and 7-dehydrocholesterol, are needed to synthesize vitamin D2 and D3, respectively (Figure 9). We get vitamin D2 from some plant sources (for example, mushrooms) and vitamin D3 mostly comes from synthesis in the skin after exposure to ultraviolet B rays in sunlight. We get vitamin D3 naturally from only a few foods, including the skin of fatty fish, some liver oils, and eggs from hens supplemented with vitamin D. Given the list of food sources is so short, the Government of Canada requires the fortification of milk and margarine products (Otten, Pitzi Hellwig, & Meyers, 2006). 
+
+3.1.3 Triglycerides
+
+Triglycerides, or triacylglycerol (TAG)  molecules as they are sometimes also called, are the most abundant type of lipid in our diet. Triglycerides are made up of a glycerol molecule and 3 fatty acid molecules (Figure 10). 
+
+Fatty acids are chains of 4-24 carbons, and the bonds between the carbons can either be sinlge bonds or double bonds (Figure 11). Fatty acids with one or more double bond are called unsaturated and fatty acids with no double bonds are called saturated, meaning that these fatty acids are saturated with hydrogen atoms. You can see in Figure 11 that the removal of 1 single bond and replacement with a double bond reduces the number of hydrogen atoms in the molecule, and thus reduces the degree of saturation. Typically, saturated fats are more solid at room temperature, and unsaturated fats are liquid at room temperature. Have you ever noticed though that coconut oil, which is made of mostly saturated fatty acids, can be softer or even liquid, depending on the temperature? This is becasue the carbon chains in the triglyceride molecule are shorter (12 carbons) compared to the carbon chains in the triglyceride molecules in butter (18 carbons). So, it seems that the degree of unsaturation and the length of the carbon chains contributes to the physical state of the fat or oil. 
+
+The types of fatty acids in the triglyceride molecule are responsible for the naming of different types of fat, such as saturated fat, monounsaturated fat or polyunsaturated fat. For example, monounsaturated fats are made of triglycerides that are composed of fatty acids with 1 double bond, poly unsaturated fats are made of triglycerides that are composed of fatty acids with more than 1 double bond, and saturated fats are made of triglycerides with no double bonds. Contrary to what most people think, the fats and oils that we consume in our diet are not exclusively made up of one type of triglyceride. The table below shows different types of fats and oils, and their triglyceride composition.
+
+            | It is mostly made up of... |   But also some some...  |
+------------|----------------------------|--------------------------|
+Coconut Oil | Saturated fats             | Monounsaturated fats,    |
+            |                            | Polyunsaturated fats     |
+------------|----------------------------|--------------------------|
+Butter      | Saturated fats             | Monounsaturated fats,    |
+            |                            | Polyunsaturated fats     |
+------------|----------------------------|--------------------------|
+Palm Oil    | Saturated fats             | Monounsaturated fats,    |
+            |                            | Polyunsaturated fats     |
+------------|----------------------------|--------------------------|
+Olive Oil   | Monounsaturated fats       | Saturated fats,          |
+            |                            | Polyunsaturated fats     |
+------------|----------------------------|--------------------------|
+Canola Oil  | Monounsaturated fats       | Saturated fats,          |
+            |                            | Polyunsaturated fats     |
+------------|----------------------------|--------------------------|
+
+Remember that triglycerides are made of a glycerol molecule and fatty acids. As shown in the table above, we consume saturated and unsaturated fats (monounsaturated or polyunsaturated), that are made up of different types of fatty acids. Examples of specific types of fatty acids are shown in the table, below. Fatty acids are sometimes refered to using a nomenclature, where the first number represents the number of carbons in the fatty acid and the second number represents the number of double bonds in the fatty acid (Otten, Pitzi Hellwig, & Meyers, 2006).
+
+
+Category of Fatty Acid | Specific Type of Fatty Acid
+-----------------------|----------------------------
+Saturated fatty acid   | Lauric acid (12:0)
+(SFA)                  | 
+                       | Palmitic acid (16:0)
+                       | 
+                       | Stearic acid (18:0)
+-----------------------|----------------------------
+Monounsaturated fatty  | Oleic acid (18:1)
+acid (MUFA)            | 
+-----------------------|----------------------------
+Polyunsaturated fatty  | Linoleic acid (18:2)
+acid (PUFA)            |
+                       | Arachidonic acid (20:4)
+                       |
+                       | Alpha-linolenic acid (18:3)
+                       |
+                       | Eicosapentaenoic acid (20:5)
+                       | (EPA)
+                       |
+                       | Docosahexaenoic acid (22:6)
+                       | (DHA)
+-----------------------|----------------------------
+
+Another type of fatty acid that we need to be aware of is trans fatty acid. These fatty acids have no known health benefit, and the intake of trans fats is associated with an increase in LDL cholesterol levels and chronic diseases, such as cardiovascular disease. Trans fats are found naturally at low levels in milk, butter and meat, and at higher levels in foods containing hydrogenated oils, such as vegetable shortening, traditional margarine and fried foods.
+
+The major polyunsaturated fats are further differentiated as omega-3 and omega-6 polyunsaturated fatty acids. Some of these fatty acids (linoleic acid and alpha-linolenic acid) are considered to be essential fatty acids, as our body cannot produce them and thus we must get them from our diet. 
+
+Omega-6 polyunsaturated fatty acids (linoleic acid, arachidonic acid) are needed for cell signalling, epithelial cell function,  cell membranes and eicosanoid (for example, prostaglandins, thromboxanes, and leukotrienes) production. Eicosanoids are involved in platelet aggregation, inflammation and vascular health. We get omege-6 fatty acids from foods like nuts, seeds, vegetable oils (for example, corn oil and safflower oil). Arachidonic acid is the omega-6 fatty acid found in meat, poultry and eggs (Otten, Pitzi Hellwig, & Meyers, 2006).
+
+The omega-3 fatty acid, alpha-linolenic acid, is needed to synthesize EPA and DHA. These fatty acids are needed for optimal cardiovascular system function, platelet function, endothelial cell function and nervous system development and health. Major sources of alpha-linolenic omega-3 fatty acids include walnuts, flaxseed, canola oil and soybean oil, and fish is a major source of EPA and DHA. 
+
+3.2 Digestion and absorption of dietary fat
+
+Given that most of the lipid in our diet is in the form of triglycerides, our bodies are faced with the challenge of breaking down these molecules into smaller units that the body can absorb. This process of fat digestion, transport and absorption is complex, as there are many players involved, from enzymes to bile to transport vessels. Watch the 2 videos on the digestion and absorption of dietary fat and answer the following questions to test your understanding. Watch the entire first video, and watch the second video up to the 9:40min mark.
+
+Here are a couple additional things to add about fat digestion and absorption: 
+
+    - Chylomicrons are lipoproteins (lipid + protein molecule) that carries all diet-derived lipids, including triglycerides, sterols (for example, cholesterol) and phospholipids.
+    - While most fat digestion takes place in the small intestine, some digestion occurs in the mouth (by lingual lipase) and stomach (by gastric lipase).
+    - The liver makes biles from cholesterol, and bile is stored and released by the gallbladder. How does the gallbladder know when to release bile? A hormone called cholecystokinin (CCK) is released when fat enters the small intestine, and it is CCK release that signals the gallbladder to release bile. 
+    - Glycerol and short (4-6 carbons) and medium (8-12 carbons) chain fatty acids are not incorporated into chylomicrons, like long (more than 14 carbons) chain fatty acids are, and therefore they enter the blood stream faster (Papamandjaris, MacDougall & Jones, 1998).
+
+Here are a couple additional things to add about transportation and use of fat:
+
+    - Chylomicrons become chylomicron remnants when triglycerides are removed from the molecule.  
+    - Very low density lipoproteins (VLDL) contain triglycerides from the chylomicron remnants, fatty acids synthesized in the liver, cholesterol and phospholipids. As VLDL molecules move from the liver and through the blood vessels, other tissues in the body (for example, skeletal muscle) will use the triglycerides and fatty acids. 
+    - Smaller low density lipoprotein (LDL) molecules are formed from VLDL molecules that have lost triglycerides to tissues. Of all lipoprotein molecules, these LDL molecules contain the most cholesterol, and some triglyceride and phospholipid. As LDL molecules move through circulation, cells will use the cholesterol, triglycerides and phospholipids for making cell membranes, hormones and bile salts. If there is an excess of LDL  molecules in circulation, these molecules can be oxidized, which contributes to atherosclerosis.
+    - The liver and small intestine synthesize high density lipoprotein (HDL) molecules, which help to remove 
+
+3.2.1 What about short and medium chain fatty acids?
+
+Recall that triglycerides are made of fatty acids and glycerol. The length of the fatty acids contributes to the naming of the triglyceride. 
+
+                         | Number of | Examples of fats or oils     |
+                         | carbons   | containing these fatty acids |
+-------------------------|-----------|------------------------------|
+Short chain fatty acids  | 4 - 6     | Butter (contains butyric     |
+                         |           | acid; 4 carbons)             |
+-------------------------|-----------|------------------------------|
+Medium chain fatty acids | 8 - 12    | Coconut oil (contains lauric |
+                         |           | acid; 12 carbons)            |
+-------------------------|-----------|------------------------------|
+Long chain fatty acids   | 14 or     | Olive oil (contains mostly   |
+                         | more      | oleic acid; 18 carbons)      |
+                         |           |                              |
+                         |           | Fish oil (contains mostly    |
+                         |           | omega-3 fatty acids, 20 or   |
+                         |           | 22 carbons)                  |
+-------------------------|-----------|------------------------------|
+
+Short (4-6 carbons) and medium (8-12 carbons) chain fatty acids travel directly to the liver via the portal vein and then circulate to other tissues (for example, the skeletal muscle) to be used in beta-oxidation to produce ATP (Papamandjaris, MacDougall & Jones, 1998). There is a negative relationship between fatty acid chain length and quantity of fat oxidized (burned). That is, when triglycerides are made of fatty acids with longer chains (more than 14 carbons), there is less oxidation (burning) of fat compared to short and medium chain fatty acids (Papamandjaris, MacDougall & Jones, 1998). This means that longer chain triglycerides may be more likely to be put into storage in adipose tissue. 
+
+One study showed that when comparing the effect of adding 15-30g of a fat containing medium chain triglycerides (for example, coconut oil), to a fat containing longer chain triglycerides (for example, butter), there was more energy expenditure (113 kcal per day) as a result of consuming the medium chain triglycerides. This could translate to a difference of 1 pound of fat over 36 days! (Dulloo, Fathi, Mensi & Girardier, 1996). 
+
+3.3 Dietary recommendations 
+
+As with dietary recommendations for carbohydrates and sugar, there are a few different recommendations for fat out there. You may recall from the first module that according to the Acceptable Macronutrient Distribution Range (AMDR), people age 4 years and older should aim to consume 20-35% of total kcal from fat, as this amount is associated with the lowest risk of chronic diseases, such as cardiovascular disease, cancer and obesity (Otten, Pitzi Hellwig, & Meyers, 2006). The lower limit of the AMDR was based on the observed increase in plasma triglycerides and decrease in HDL cholesterol with higher carbohydrate. The upper limit of the AMDR was based on the observation that when fat intake exceeds 35% if total kcal, there is a greater intake of saturated fat (Kris-Etherton, Innis, American Dietetic Association & Dietitians of Canada, 2007)
+
+There is no RDA for total fat, saturated fat or any unsaturated fat. This is because when the DRIs were written, there was not enough good data suggesting an intake level of fat that corresponds to a risk of inadequacy. But, we all know that we need fat in our diet for healthy cell membranes, hormone production, absorption of fat-soluble vitamins, and of course for storage in adipose tissue for insulation. We also know that too much of certain types of dietary fat can be detrimental to health. One of the first researchers to establish a link between dietary fat, cholesterol and health was Dr. Ancel Keys (Figure 13), who conceived the Seven Countries Study back in the 1950s and 60s. This study was important for nutritional sciences because not only did it show a link between diet, cholesterol and heart health, which some people call the diet-heart hypothesis, but it inspired researchers to look more closely at the impact of the type of dietary fat and health. 
+
+In one of the early publications from the Seven Countries Study, Dr. Keys and colleagues showed that people who consumed more calories from saturated fat had a greater risk of coronary death (Keys A, 1980). But, other factors, such as industrialization, obesity, smoking and physical activity may have also played a role in the relationship. While the work of Dr. Keys and colleagues on the Seven Countries Study has been criticized by many researchers, his work and that of others still inspired the dietary recommendations to reduce saturated fat intake. The Seven Countries Study was not the only study to show a connection between saturated fat intake and heart disease. A more recent study that combined the results from 2 big population-based studies (Nurses' Health Study and Health Professionals' Follow-up Study) showed that in over 125,000 people, replacing energy (kcal) from carbohydrate with energy from saturated fatty acids increased the risk of death by around 10%, and replacing carbohydrates with energy from trans fatty acids increased the risk of death by around 20% (Wang et al., 2016) (Figure 14). Another study that combined the results from 15 randomized controlled trials in approximately 59,000 participants showed that reducing saturated fat in the diet reduced the risk of cardiovascular events by 17% (Hooper, Martin, Abdelhamid & Davey Smith, 2015). While it's difficult to prove, most people believe that the mechanism connecting saturated fat to heart health is LDL cholesterol, as an increase in intake of saturated fatty acids leads to an increase in LDL cholesterol (Kris-Etherton & Yu, 1997), and an increase in LDL cholesterol leads to an increase risk of cardiovascular disease.
+
+Let's get back to dietary recommendations. In addition to the AMDR for total dietary fat, studies by Dr. Keys and other researchers have inspired Dietitians of Canada and the World Health Organization to recommend that no more than 10% of daily kcal intake come from saturated fats (Dietitians of Canada, 2018; World Health Organization, 2018), and no more than 1% of daily kcal intake come from trans fatty acids (World Health Organization, 2018). Given the health benefits associated with polyunsaturated fat intake (Figure 15), it is recommended that 5-10% of daily kcal come from omega-6 polyunsaturated fatty acids and 0.6-1.2% of daily kcal come from omega-3 polyunsaturated fatty acids. Health Canada has tried to make this recommendation more practical by suggesting that we eat at least 2 servings (2.5 ounces each) of fish per week and 2-3 tablespoons of unsaturated fat per day.  
+
+Questions
+
+Q: Which type of lipid do we typically consume the most of in our diet?
+A: Triglyceride
+
+Q: Soy lecithin is a substitute for eggs in baking because it:
+A: Helps to allow fat and water to mix
+
+Q: Which of the following helps with breaking down larger triglyceride (TAG) molecules to allow enzymes to access the triglyceride for digestion? 
+A: Bile
+
+Q: After fatty acids and glycerol molecules have been absorbed in the small intestine, they are carried by XXXXXXXXX through the XXXXXXXXX.
+A: chylomicrons, lymphatic vessels
+
+Q: Which enzyme is present in the capillary and is responsible for the breakdown of chylomicrons?
+A: lipoprotein lipase
+
+Q: Chylomicron remnants are taken up by which organ?
+A: liver
+
+Q: Kerry consumes 2500 kcal per day. Which of the following fat intakes, in grams, would fit within his AMDR?
+A: 90g
+
+Q: According to Eating Well with Canada’s Food Guide, what is the recommendation for daily consumption of unsaturated fat in a healthy diet?
+A: 2-3 tablespoons

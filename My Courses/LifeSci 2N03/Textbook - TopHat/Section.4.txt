@@ -1,0 +1,120 @@
+Section.4.txt
+
+Section 4: The protein debate
+
+4.1 Protein basics
+
+The 'protein world' is as confusing as that of carbohydrates and fat, so brace yourself! There are so many misconceptions about protein. Whether it's that protein is only an important nutrient to be mindful of for body builders, or that eating foods that contain protein will make you bulk up, or that eating protein will cause kidney damage or osteoporosis. With more people becomming interested in reducing meat intake and adopting vegetarian and vegan lifestyles, another popular question related to protein is, can someone who is a vegetarian gain as much muscle as a meat eater? 
+
+There is the anecdotal evidence, like that of vegetarian body builder, Bill Pearl (Figure 2). While this is a challenging question to answer using a scientific study to answer (challenging because of inter-individual differences and other factors that confuse the picture), one study showed that the protein source did not impact gains in muscle in men. Specifically, the study showed that when older men consumed equal amounts of soy or beef protein each day, and underwent 12 weeks of resistance training, there was no difference in the amount of strength or cross-sectional muscle area between groups. That is, regardless of whether the men consumed protein from beef or vegetarian sources, both groups experienced similar gains (Haub, Wells, Tarnopolsky & Campbell, 2002).  
+
+To help us unpack some of these questions swirling around protein, let's first get to the basics. Dietary protein is so important for human health because the protein that we consume is broken down into amino acids during digestion, and these amino acids are used to build other proteins in the body. One of the most obvious uses of amino acids is for the synthesis of skeletal muscle protein (Figure 3), but we also need amino acids to make enzymes, blood transport molecules (for example, albumin), hormones, and intracellular and intramembrane molecules (for example, sodium potassium pump [Figure 2]). Even hair, bone, and nails are made out of protein (Otten, Pitzi Hellwig, & Meyers, 2006)!
+
+Protein is similar to the other macronutrients, carbohydrate and fat, in that protein is made up of carbon, hydrogen and oxygen atoms, but protein differs from these other macronutrients because it contains nitrogen. Amino acids get their name from the amino group in their structure, and this amino group contains nitrogen. The nitrogen in amino acids accounts for 16% of protein weight (Otten, Pitzi Hellwig, & Meyers, 2006). We will return to the discussion of the significance of nitrogen later, but you can see the nitrogen in the amino acid structure, shown in Figure 4.
+
+Protein is found in found in animal sources such as meat, poultry, fish, eggs, dairy (for example, milk, cheese, and yogurt) and plant sources, such as nuts, seeds (Figure 5), grains and legumes (for example, beans and lentils). 
+
+However, one thing that makes plant and animal sources of protein different is the type and amount of amino acids in the foods. There are 20 different amino acids, which combine together to form dipeptides, tripeptides and polypeptides. These amino acids are differentiated by their side chain (labelled R in Figure 4), and also by whether the amino acids are indispensable (essential) or dispensable (non-essential). The definition of indispensable amino acids dates back to 1946, when Dr. Borman stated that indispensable amino acids were those that "... cannot be synthesized by the animal organism out of materials ordinarily available to the cells at a speed commensurate with the demands for normal growth" (Borman et al., 1946, p. 593). What this means is that there are some amino acids that must come from dietary sources, because de novo synthesis from non-amino acid sources of nitrogen and carbon is not possible (Reeds, 2000). The dispensable amino acids on the other hand can be made in the body via de novo synthesis, and thus are sometimes called non-essential amino acids. There is another class of amino acids that has emerged since Dr. Borman coined the terms, indispensable and dispensable amino acids. These amino acids are called conditionally indispensable, or conditionally essential amino acids, which means that there are some circumstances where humans cannot synthesize these amino acids to meet the demands of normal growth, and thus these amino acids must be obtained from the diet (Reeds, 2000). For example, glutamine is one of a few conditionally indispensable amino acids in premature infants due to the lack of ability to synthesize the amino acid and meet physiologic demands (Poindexter et al., 2003). In these situations, supplementation may be needed to increase body levels of the amino acids to support healthy growth (Poindexter et al., 2003).
+
+The table below differentiates the amino acids based on being dispensable, indispensable or conditionally indispensable (Otten, Pitzi Hellwig, & Meyers, 2006).
+
+Indispensable | Dispensable   | Conditionally indispensable |
+--------------|---------------|-----------------------------|
+Histidine     | Alanine       | Arginine                    |
+Isoleucine    | Aspartic Acid | Cysteine                    |
+Leucine       | Asparagine    | Glutamine                   |
+Lysine        | Glutamic Acid | Glycine                     |
+Methionine    | Serine        | Proline                     |
+Phenylalanine |               | Tyrosine                    |
+Threonine     |               |                             |
+Tryptophan    |               |                             |
+Valine        |               |                             |
+
+4.1.1 Protein quality
+
+As you know, protein can be obtained from animal and plant sources, but are all foods with protein considered equal or are some better than others? Protein quality is important to consider when trying to optimize growth, maintenance, repair and overall health. Two major factors influence protein quality: 1) digestibility, 2) amino acid composition. Protein digestion starts in the stomach, with hydrochloric acid (HCl) and pepsin breaking down proteins into smaller polypeptides. In the small intestine, other proteases and peptidases break peptide bonds of proteins and peptides to liberate single amino acids (Betts et al., 2017) (Figure 6). Once the amino acids are digested by enzymes, they are transported by active transport (usually with sodium) in the duodenum and jejunum of the small intestine (Betts et al., 2017).  
+
+Figure 6. The digestion of protein takes place in the stomach and small intestine (6).
+
+    - The liver regulates distribution of amino acids to the rest of the body
+    - Absorbed amino acids enter the blood and travel to the liver
+    - Protein digestion begins in the stomach by hydrochloric acid and the enzyme pepsin
+    - Protein digesting enzymes are secreted from the pancreas into the small intestine
+    - Protein digesting enzymes are also secreted from the brush border
+    - The small intestine is the major site of protein digestion; final digestion occurs here
+    - A small amount of dietary protein is lost in the feces
+
+The digestibility of amino acids refers to the proportion of consumed amino acids that is absorbed and has disappeared from the gastrointestinal tract (Food and Agriculture Organization of the United Nations, 2013). Individual variation influences the degree of digestibility, as do other compounds in foods that interfere with digestion. 
+
+For example, foods that contain tannins, such as legumes, or phytates, such as grains, have lower protein digestibility compared to animal products, such as meat, poultry and fish (Gilani, Cockell & Sepehr, 2005). This is why protein digestibility is higher (94% protein digestibility) in North American countries where a mixed diet is consumed, compared to other countries like Guatemala (77% protein digestibility), where there is a greater emphasis on plant-based foods like beans, rice and tortilla (Gilani, Cockell & Sepehr, 2005). The foods with the highest digestibility (94-99%) are animal protein sources, low fibre wheat flour and bread, peanuts and soy protein isolate (Gilani, Cockell & Sepehr, 2005). 
+
+Foods with lower protein digestibility (70-77%) include beans (pinto and kidney beans), lentils and processed, ready-to-eat cereal with wheat, rice and oats. So, even though companies are becomming smart with marketing higher protein cereal products, remember that not all protein in the product will be digested, and it is likely that the more processed the food (such as the granola bar shown in Figure 8), the lower the digestibility of the protein (Gilani, Cockell & Sepehr, 2005). Soybean protein digestibility is another interesting example of how processing influences digestibility. However, rather than reducing digestibility, when a soy protein isolate is manufactured from soybean, digestibility increases. This is because soybeans contain trypsin inhibitors, and trypsin is active in the small intestine where it cleaves peptide bonds of peptides to liberate single amino acids. Therefore, as the soybean is processed, the amount of trypsin inhibitor decreases, which increases protein digestibility. The table below shows the difference in the amount of trypsin inhibitor in different soybean preparations and respective protein digestibility (Gilani, Cockell & Sepehr, 2005). 
+
+Product       | Trypsin Inhibitor | Protein digestibility |
+              | mg/g protein      |                       |
+--------------|-------------------|-----------------------|
+Whole soybean | 34.7-122.6        | 78%                   |
+--------------|-------------------|-----------------------|
+Raw soy flour | 57.8              | 86%                   |
+--------------|-------------------|-----------------------|
+Soy protein   | 1.4-29.4          | 95%                   |
+isolate       |                   |                       |
+--------------|-------------------|-----------------------|
+
+4.1.2 Protein Digestibility Corrected Amino Acid Score 
+
+In 1991, the joint FAO/World Health Organization Expert Panel on Protein Quality Evaluation adopted the use of the Protein Digestibility Corrected Amino Acid Score (PDCAAS) method for evaluating protein quality. As mentioned before, the 2 factors that affect protein quality, digestibility and indispensible amino acid content, are contributing factors to the PDCAAS. Once calculated, the PDCAAS can range between 0-100% (or 0-1.0) and the higher the PDCAAS value for a food, the better quality protein the food source is. If a food has a PDCAAS value of 100%, it means that the source provides adequate amounts of all indispensible, essential amino acids when the source is consumed in nutritionally appropriate amounts to people age 2 years and older (Hughes, Ryan, Mukherjea & Schasteen, 2011). The table below shows some examples of protein-containing foods and the corresponding PDCAAS value (Schaafsma, 2005; Boye, Wijesinha-Bettoni & Burlingame, 2012). Processing and heating of foods can alter the PDCAAS, as seen with skim milk for example, where the PDCAAS value is 31% for heated skim milk (Schaafsma, 2005). 
+
+Food         | PDCAAS (%)
+-------------|------------
+Whey protein | 100
+-------------|------------
+Egg whites   | 100
+-------------|------------
+Skim milk    | 100
+-------------|------------
+Isolated soy | 100
+protein      |
+-------------|------------
+Beef         | 92 
+-------------|------------
+Soybean meal | 80
+-------------|------------
+Quinoa       | 79
+-------------|------------
+Raw black    | 72
+beans        |
+-------------|------------
+
+Plant proteins, such as grains, pulses, nuts and seeds, provide 65% of the world supply of food protein (Young & Pellet, 1994). This varies from country to country, as people living in countries like Egypt, Nepal and Bangladesh consume 68-78% protein from plant sources, and people living in the UK and North American countries consume 21-25% protein from plant sources (Millward, 1999). As shown in the table, plant-sources of protein have lower PDCAAS values compared to animal-sources. This is due to missing indispensible amino acids in the foods (for example, less lysine in plant proteins), or reduced digestibility of amino acids, as discussed previously. 
+
+Obtaining adequate indispensible amino acids can be a challenge for vegetarians and vegans who don't consume meat or animal products. But, plant protein can meet nutritional requirements when a variety of plant foods are consumed and daily energy needs are met (American Dietetic Association & Dietitians of Canada, 2003). In addition, isolated soy protein can meet nutritional needs as effectively as animal protein, as isolated soy protein has a PDCAAS value of 100% (Hughes, Ryan, Mukherjea & Schasteen, 2011). The bottom line is that a well-planned vegetarian diet, consisting of a variety of fruits, vegetables, whole grains, legumes, nuts, seeds and soy can provide adequate nutrition (Melina, Craig & Levin, 2016). 
+
+4.2 Addicted to protein?
+
+Many people associate protein and protein supplementation with body builders,  but the reality is that when you look around any fitness facility, many people of all different ages, shapes, sizes and health goals consume protein supplements in their shaker cups. While we know protein is essential nutrient for health, is there a need to supplement, or is our society just addicted to protein? Watch the video clip to explore the 2 sides: protein through supplementation or protein through the food first approach?
+
+4.3 Dietary protein recommendations
+
+There are a couple dietary protein recommendations for optimal health. One is the AMDR for protein, which states that adults should aim to consume 10-35% of daily kcal from protein. This flexibility in energy intake from protein is seen as a good thing by Registered Dietitians, as it allows latitude for meal planning to help clients and patients accomplish individual health goals (Rodriguez & Miller, 2015). Canadians tend to consume adequate protein, according to the AMDR, with about 16% of daily kcal coming from protein for adults (Garriguet, 2007). The RDA for protein is 0.8 grams of protein per kg of body mass per day (0.8 g/kg/day), which is derived from the EAR for protein of 0.66g/kg/day (Otten, Pitzi Hellwig, & Meyers, 2006). At this intake level, the health needs of 97-98% of a population would be satisfied. However, there are some holes that we can punch in this recommendation. One is related to how the RDA was established, and the other is related to who the recommendation is suitable for. 
+
+The RDA was established based on nitrogen balance studies, which have some methodological flaws. Given that nitrogen is a unique atom in protein, and makes protein different from fat and carbohydrate, it was used in determinining the EAR and thus the RDA. At a level of 0.8g/kg/day, a healthy, adult human body is presumed to be in nitrogen balance. This means that the dietary protein consumed is sufficient to yield amino acids (and thus nitrogen) to meet needs of protein synthesis to support growth, repair, cellular maintenance, and overall health. In other words, at this intake level, no excess nitrogen from amino acids is oxidized or excreted. In order for people to have the capacity for added protein synthesis (say, after resistance training at the gym), they must be in positive nitrogen balance. That is, more nitrogen is consumed through protein sources than is excreted. If someone were in negative nitrogen balance, they would have a lower capacity for protein synthesis and thus may suffer health consequences, such as protein energy malnutrition, which is seen in extreme cases of low protein intake. 
+
+Another criticism of the RDA is that it doesn't consider needs of older adults, athletes or vegetarians, who may have greater needs. For vegetarians, requirements may be higher as dietary plant protein sources, such as cereals and legumes, are less well digested (American Dietetic Association & Dietitians of Canada, 2003). Therefore, when considering protein recommendations, recognize that there may be other factors to consider when planning meals with this important macronutrient. 
+
+Questions
+
+Q: Which atom makes protein distinctly different from fat and carbohydrate?
+A: Nitrogen
+
+Q: In the study of protein nutrition, which of the following terms describes the amount of amino acids absorbed from a given amount of protein consumed?
+A: Digestibility
+
+Q: Which of the following factors governs the quality of a food protein?
+A: Indispensable amino acid content
+
+Q: Which of the following is true regarding PDCAAS?
+A: This score is influenced by amino acid content and digestibility of the protein in the food
+
+Q: Which of the following terms describes the state of nitrogen balance of a person who ingested 16 g of food nitrogen and lost 19 g of nitrogen?
+A: Negative balance
