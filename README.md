@@ -8,7 +8,7 @@ The following list contains quick links to all the CompSci courses in this repos
 * [CompSci 1XA3 - CS Practice & Experience: Basic Concepts](https://github.com/chowdhaj/McMaster/tree/main/My%20Courses/CompSci%201XA3)
 * [CompSci 2C03 - Data Structures & Algorithms](https://github.com/chowdhaj/McMaster/tree/main/My%20Courses/CompSci%202C03)
 * [CompSci 2DM3 - Discrete Math With Applications I](https://github.com/chowdhaj/McMaster/tree/main/My%20Courses/CompSci%202DM3)
-* [CompSci 2FA3 - Discrete Math With Applications I](https://github.com/chowdhaj/McMaster/tree/main/My%20Courses/CompSci%202FA3)
+* [CompSci 2FA3 - Discrete Math With Applications II](https://github.com/chowdhaj/McMaster/tree/main/My%20Courses/CompSci%202FA3)
 * [CompSci 2GA3 - Computer Architecture](https://github.com/chowdhaj/McMaster/tree/main/My%20Courses/CompSci%202GA3)
 * [CompSci 2ME3 - Introduction To Software Development](https://github.com/chowdhaj/McMaster/tree/main/My%20Courses/CompSci%202ME3)
 * [CompSci 2S03 - Principles Of Programming](https://github.com/chowdhaj/McMaster/tree/main/My%20Courses/CompSci%202S03)
