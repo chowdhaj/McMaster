@@ -28,7 +28,7 @@ The following list contains quick links to all the CompSci courses in this repos
 ## Disclaimer
 "None of the authors, contributors, administrators, vandals, or anyone else connected with this repository, in any way whatsoever, can be responsible for your use of the information contained in or linked from these web pages. Use at your own discretion."
 
-Furthermore, due to size and performance constraints, GitHub limits how many files, and the size of files. If you encounter an incomplete folder with missing content, and you require its documents, please do not hesitate to reach out. If GitHub did not place severe limitations on size, I would have uploaded everything; no holds barred. The entire repository on my HDD is ~49GB; some slide decks totalled over 1GB. I had to remove 90% of the material so GitHub would accept it.
+Furthermore, due to size and performance constraints, GitHub limits how many files, and the size of files. If you encounter an incomplete folder with missing content, and you require its documents, please do not hesitate to reach out. If GitHub did not place severe limitations on size, I would have uploaded everything; no holds barred. The entire repository on my HDD is ~49GB; some slide decks totaled over 1GB. I had to remove 90% of the material so GitHub would accept it.
 
 Finally, some content has been removed to preserve academic integrity. If you are a prospective employer and you wish to view these files, please do not hesitate to reach out. Thank you!
 
