@@ -7,6 +7,13 @@ The following list contains quick links to all the Life Science courses in this 
 ## Disclaimer
 "None of the authors, contributors, administrators, vandals, or anyone else connected with this repository, in any way whatsoever, can be responsible for your use of the information contained in or linked from these web pages. Use at your own discretion."
 
+This material does not belong to me. Cheers to the original creators.
+
+Huge thank you to everyone that put this together. 
+
+I am merely hosting it.
+
+
 
 ## License
 Please respect the original author's wishes. Thank you.
