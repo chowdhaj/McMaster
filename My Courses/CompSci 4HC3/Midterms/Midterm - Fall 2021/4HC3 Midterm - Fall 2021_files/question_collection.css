@@ -1,0 +1,66 @@
+.d2l-qc-controls-container {
+	display: flex;
+	justify-content: flex-end;
+	line-height: normal;
+	margin-top: calc(0.5em - ((1.1rem - 0.95rem) / 2)); /* (paragraph margin-top - ((~input control height - font size) / 2)) */
+}
+
+.d2l-qc-stats-container {
+	margin-top: 0.3em;
+}
+
+.d2l-quickedit-points-cell .d2l-edit {
+	min-width: 4rem;
+}
+
+.daylight .d2l-quiz-dropdown-container select {
+	max-width: calc(100vw - 80px);
+}
+
+.d2l-page-header {
+	margin: 0 !important;
+	padding: 10px 0 0 10px !important;
+}
+
+.d2l-checkbox-not-allowed:hover {
+	cursor:not-allowed;
+}
+
+.d2l-checkbox-not-allowed:focus {
+	outline:none;
+}
+
+.d2l-rowshadeonhover-selected-static {
+	background: #E8F2FC; /* not daylight color */
+}
+
+@media(max-width: 993px) {
+	.daylight .d2l-quiz-text-blank-container, .daylight .d2l-quiz-answer-container p, .daylight .d2l-quiz-textbox-container textarea, .daylight .d2l-quiz-image-container img {
+		max-width: calc(100vw - 80px);
+	}
+
+	.daylight .d2l-quiz-textbox-html-container {
+		max-width: calc(100vw - 40px);
+		overflow: hidden;
+	}
+
+	.daylight .d2l-quiz-textbox-html-container .d2l-htmleditor,
+	.daylight .d2l-quiz-textbox-html-container .d2l-htmleditor-iframecontainer,
+	.daylight .d2l-quiz-textbox-html-container .d2l-htmleditor-header {
+		max-width: calc(100vw - 50px);
+	}
+}
+
+.quiz-activity-points-input-div {
+	margin-top: 6px;
+	margin-bottom: 18px;
+}
+
+.quiz-activity-points-label-div, .quiz-activity-component-div {
+	margin-top: 42px;
+}
+
+
+.quiz-activity-points-label-div {
+	font-weight: bold;
+}

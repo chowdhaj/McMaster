@@ -1,0 +1,69 @@
+.d2l-quiz-submission-exit-preview-button {
+	float: right;
+}
+
+[dir="rtl"] .d2l-quiz-submission-exit-preview-button {
+	float: left;
+}
+
+.d2l-quiz-submission-top-close-button {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+}
+
+[dir='rtl'] .d2l-quiz-submission-top-close-button {
+    position: absolute;
+    top: 0.75rem;
+    right: unset;
+    left: 1rem;
+}
+
+div.d2l-align-outcomes-indicator-container {
+    position: relative;
+    text-align: right;
+    padding: 0 0.5rem;
+    display: inline-block;
+}
+
+[dir="rtl"] div.d2l-align-outcomes-indicator-container {
+    text-align: left;
+}
+
+div.d2l-quiz-submission-question-header-container-retake-incorrect {
+    padding: 3px;
+    text-align: center;
+}
+
+div.d2l-quiz-submission-question-header-container-retake-incorrect.highlighted {
+    background: #f9fbff;
+    border-top: 1px solid #cdd5dc;
+    border-bottom: 1px solid #cdd5dc;
+}
+
+div.d2l-quiz-submission-question-header-container-retake-incorrect.unhighlighted {
+    background: none;
+    border-top: 1px solid #cdd5dc;
+}
+
+div.d2l-quiz-submission-question-header-container-retake-incorrect td:first-child {
+    display: flex;
+    align-items: center;
+}
+
+div.d2l-quiz-submission-question-header-container-retake-incorrect span.d2l-body-small {
+    margin: 0 10px;
+}
+
+div.d2l-quiz-submission-question-header-container-retake-incorrect d2l-icon {
+    margin-right: 10px
+}
+
+[dir="rtl"] div.d2l-quiz-submission-question-header-container-retake-incorrect d2l-icon {
+    margin-right: 0px;
+    margin-left: 10px;
+
+    -webkit-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+    transform-origin: center;
+}
