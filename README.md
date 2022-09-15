@@ -24,6 +24,8 @@ The following list contains quick links to all the CompSci courses in this repos
 * [CompSci 3SH3 - Operating Systems](https://github.com/chowdhaj/McMaster/tree/main/My%20Courses/CompSci%203SH3)
 * [CompSci 4C03 - Computer Networks & Security](https://github.com/chowdhaj/McMaster/tree/main/My%20Courses/CompSci%204C03)
 * [CompSci 4HC3 - Human Computer Interfaces](https://github.com/chowdhaj/McMaster/tree/main/My%20Courses/CompSci%204HC3)
+* CompSci 4TB3 - *Coming Soon*
+* CompSci 4WW3 - *Coming Soon*
 
 ## Disclaimer
 "None of the authors, contributors, administrators, vandals, or anyone else connected with this repository, in any way whatsoever, can be responsible for your use of the information contained in or linked from these web pages. Use at your own discretion."
