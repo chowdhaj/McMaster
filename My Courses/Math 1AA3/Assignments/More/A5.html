@@ -1,0 +1,432 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0073)https://www.childsmath.ca/childsa/forms/1zStuff/onlineform_2.php?assign=5 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Math 1AA3/1ZB3 Assignment #5 Answer Sheet for User: chowdhaj</title>
+
+
+<script type="text/javascript" src="./A5_files/FORMfields.js"></script>
+
+<link rel="stylesheet" type="text/css" href="./A5_files/default_combined.css">
+
+
+<style type="text/css">
+
+pre.R {
+	color:red;
+	font-size:14px;
+	background-color:#f2f2f2;
+	padding:10px;
+	font-family:courier;
+}
+
+span.rhelp {
+
+	font-family:verdana;
+	color:green;
+	font-size:12px;
+
+}
+
+
+td.ffTableSetFORMfieldsLabel1, td.ffTableSetFORMfieldsLabel2 {
+	max-width: 115px;
+}
+
+table.ffTableSetFORMfields{width:100%;}
+
+
+input.mobile {
+	visibility:hidden;
+	disabled:disabled;
+}
+
+
+div.ffForm {
+	width:900px;
+	text-align:left;
+	margin:auto;
+}
+
+
+td.mobile1 {
+	text-align:justify;
+}
+
+td.mobile2 {
+	vertical-align:top
+}
+
+span.mobile1 {
+	white-space:nowrap; 
+	display:inline-block; 
+	margin-top:10px;
+}
+
+
+
+@media only screen and (max-width: 930px) {
+
+	div.ffForm {
+		width:auto;
+	}
+
+}
+
+
+@media only screen and (max-width: 670px) {
+
+    td.mobile {
+        display:none;
+    }
+
+}
+
+
+@media only screen and (max-width: 570px) {
+
+	table.try1 {
+	margin-left:0px;
+	}
+
+	input.mobile {
+	display:none;
+	}
+
+
+	td.mobile1,td.mobile2 {
+	display:block;	
+	}
+
+	span.mobile1 {
+	display:block;
+	white-space:normal;
+	margin-left:-65px;
+	}
+
+
+	span.mobile {
+	display:none;
+	}
+
+
+}
+
+
+@media only screen and (max-width: 500px) {
+
+
+	td.mobile1 {
+	font-size:26px !important;
+	}
+
+
+	span.logo1 {
+	white-space:normal;
+	}
+
+}
+
+@media only screen and (max-width: 374px) {
+
+	td.logo3 {
+	display:none;
+	}
+
+}
+
+</style>
+
+
+
+<script type="text/javascript">
+
+	
+function show_unform(qnum,attnum) {
+
+	if (document.getElementById(qnum + "_fans_" + attnum).getAttribute('data-show') == 1) {
+	document.getElementById(qnum + "_unform_" + attnum).style.display='inline';
+	document.getElementById(qnum + "_fans_" + attnum).setAttribute('data-show','0');
+	} else {
+	document.getElementById(qnum + "_unform_" + attnum).style.display='none';
+	document.getElementById(qnum + "_fans_" + attnum).setAttribute('data-show','1');
+	}
+
+}
+
+function get_disabled(idtag) {
+
+	if (parent.document.getElementById(idtag)) {
+	parent.document.getElementById(idtag).style.display='none';
+	}
+}
+
+function get_enabled(idtag) {
+
+	if (parent.document.getElementById(idtag)) {
+	parent.document.getElementById(idtag).style.display='inline';
+	}
+
+}
+
+	
+function goto(url) {
+    document.location = url;
+}
+
+
+function get(name){
+   if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+      return decodeURIComponent(name[1]);
+}
+
+
+function dis(idtag) { 
+
+	if (get('silent_save') != 'true') {
+	
+		if (parent.document.getElementById(idtag)) {
+		parent.document.getElementById(idtag).style.display='none';
+		}
+	}
+}
+
+
+
+function opp_dis(idtag,html) { 
+
+	if (get('silent_save') != 'true') {
+
+		if (parent.document.getElementById(idtag)) {
+		parent.document.getElementById(idtag).style.display='inline';
+
+			if (html) {
+			parent.document.getElementById(idtag).innerHTML=html;
+			}
+
+		}
+	}
+}
+
+
+function alldis(idtag) {
+	var k = 100;
+	var j=0;
+	for (j=0;j<=k;j++) {
+	dis(idtag + j);
+	}
+}
+
+
+function opp_alldis(idtag,html) {
+	var k = 100;
+	var j=0;
+	for (j=0;j<=k;j++) {
+	opp_dis(idtag + j,html);
+	}
+}
+
+
+function checkStatus() {
+
+var cli;
+
+	if (window.XMLHttpRequest) {
+	cli = new XMLHttpRequest();
+	} else {
+	cli = xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	cli.onreadystatechange = function() {
+		if (cli.readyState === 4) {
+			if (cli.status !== 200) {
+			alert('Warning! Your work was NOT saved.  The reason is that your connection to the server has been lost.  The most likely cause for this is that your internet connection is down.  So please check your internet connection and then try saving your work again.');
+			} 
+		}
+	};
+
+
+cli.open('GET', '../check.txt?_time=' + (new Date()).getTime());
+cli.send();
+
+
+}
+
+
+
+function setFocus() {
+
+
+}
+
+</script>
+
+</head>
+
+<body style="background-color:white;" onload="setFocus()" class="FORMfields">
+
+
+
+<div class="ffForm">
+
+	<table style="background:#f1f1f1;width:100%;text-align:left"><tbody><tr><td style="font-size:30px;font-family:helvetica;font-weight:bold;color:#990033;padding-right:20px;vertical-align:top;width:23%">childsmath<br><span style="font-size:16px;white-space:nowrap"><span class="logo1">Math 1AA3/1ZB3<br><div style="padding-top:10px">Assignment #5<span class="mobile"> for user: chowdhaj</span></div></span></span></td><td class="mobile" style="width:23%"><img style="width:190px;height:104px;padding-right:20px" src="./A5_files/maclogopms.gif"></td><td class="logo3" style="width:170px"><table><tbody><tr><td style="color:#990033;font-weight:bold;font-family:helvetica;font-size:16px">&nbsp;&nbsp;Mathematics<br>&nbsp;and Statistics</td></tr><tr><td><img width="145" height="56" src="./A5_files/ms_formula.png"></td></tr></tbody></table></td></tr></tbody></table><hr>
+	<a name="ffStart"></a>
+
+			
+<div style="margin:0px 0px 10px 5px;" class="ffField">
+<a href="https://www.childsmath.ca/childsa/forms/1zStuff/student_admin.php">« Back to Admin Page</a> <span id="warn" style="display:none;color:red;font-weight:bold"> (You should save you work before pressing this link.)</span>
+</div>
+
+	<table border="1" style="border-collapse:collapse; border-color:#D8D8D8; text-align:left; width:100%; margin-bottom:3px; margin-top:2px"><tbody><tr><td style="color:white; font: normal normal bold 12px verdana,sans-serif;  background-color:#687CCA;padding-top:12px;padding-bottom:8px;padding-left:12px;padding-right:12px"><span class="ml">Assignment #5 for: JATIN CHOWDHARY (400033011)</span></td></tr><tr><td class="ffSectionTitleBottomMiddle" style="padding:6px">
+ 
+
+
+	<form id="my_form" name="form1" action="https://www.childsmath.ca/childsa/forms/1zStuff/onlineform_2.php?assign=5#ffStart" method="post" enctype="multipart/form-data">
+
+
+						
+						<div style="padding-left:15px;margin-bottom:10px;">
+							<span class="help" style="padding-left:0px;font-size:13px;"><b>The due date for this assignment has now passed.</b><ul><li> <a style="color:green">Answers</a> for each question, and your <a style="color:red">mark</a> for each question,  appear beside the question.</li></ul></span>
+						</div>
+
+
+<div style="text-align:center; color:red; font-size:18px">
+<b>Total:</b> 0/18<div style="font-size:16px"><b>TA:</b> Evan Mitchell (<a style="color:red; font-weight:bold;" href="mailto:mitcheej@mcmaster.ca">mitcheej@mcmaster.ca</a>)</div><br></div>
+
+
+							
+
+									<table class="ffTableSetFORMfields">
+					<tbody><tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><br><br><div style="width:100%;margin-left:3px;"><b class="spiffy"><b class="spiffy1"><b></b></b><b class="spiffy2"><b></b></b><b class="spiffy3"></b><b class="spiffy4"></b><b class="spiffy5"></b></b><div class="spiffyfg" style="color:white; font: normal normal bold 14px verdana,sans-serif; text-align:justify"><table style="margin-left:25px; margin-right:25px"><tbody><tr><td><span style="font-size:16px"><u>Answer Format</u></span><br><br><div style="margin-left:25px;font-size:15px">
+Unless otherwise noted, enter answers as:<br><br><div style="margin-left:45px">- Whole Numbers<br>- Exact Fractions (e.g., 2/3 or -5/4)</div><br><div style="margin-left:30px">or (only when necessary):</div><br><div style="margin-left:45px">- Decimals correct to <u><i>six</i></u> decimal places</div><br>The use of decimal numbers is discouraged because decimal numbers are subject to rounding errors, which could cost you marks!</div>
+<br><span style="font-size:16px"><table style="margin-top:10px;border-collapse:collapse"><tbody><tr><td style="vertical-align:top;padding-right:15px"><u>Topics:</u></td><td>Sections 11.9-11.11, and 8.2 in the textbook.</td></tr></tbody></table></span></td></tr></tbody></table></div><b class="spiffy"><b class="spiffy5"></b><b class="spiffy4"></b><b class="spiffy3"></b><b class="spiffy2"><b></b></b><b class="spiffy1"><b></b></b></b></div></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_1"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #1: </a><br></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span>Find a power series representation of the following function and determine the radius of convergence.<br><br><span class="dm">
+<i>f</i> (<i>x</i>)  =  <table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">2</sup></td></tr><tr style="line-height:1.5em"><td class="fr">5 + <i>x</i><sup class="ss">3</sup></td></tr></tbody></table>
+</span></span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1"><div class="cell"><label class="display"><span style="visibility:hidden">Problem #1:</span></label></div></td>
+						<td class="ffTableSetFORMfieldsField1"><div class="cell"><span style="color:black; font-family:times; font-size:16px"><span class="mobile1"><span style="font-weight:bold">(A)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table>(−1)<sup class="ss"><i>n</i></sup> <table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">3<i>n</i> +1</sup></td></tr><tr style="line-height:1.5em"><td class="fr">5<sup class="ss"><i>n</i></sup></td></tr></tbody></table>,&nbsp;&nbsp;&nbsp;&nbsp;<i>R</i> = 5<sup class="ss">1<b>/</b>3</sup> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(B)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table>(−1)<sup class="ss"><i>n</i></sup> <table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">3<i>n</i> +1</sup></td></tr><tr style="line-height:1.5em"><td class="fr">5<sup class="ss"><i>n</i></sup></td></tr></tbody></table>,&nbsp;&nbsp;&nbsp;&nbsp;<i>R</i> = <table class="sq" cellpadding="0" cellspacing="0"><tbody><tr><td style="font-size:1.27em">√</td><td class="sq"><span style="padding:0.1em">3</span></td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(C)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table>(−1)<sup class="ss"><i>n</i> +1</sup> <table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">3<i>n</i> +1</sup></td></tr><tr style="line-height:1.5em"><td class="fr">5<sup class="ss"><i>n</i> + 1</sup></td></tr></tbody></table>,&nbsp;&nbsp;&nbsp;&nbsp;<i>R</i> = 5<sup class="ss">1<b>/</b>3</sup> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(D)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table>(−1)<sup class="ss"><i>n</i> +1</sup> <table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">3<i>n</i> + 2</sup></td></tr><tr style="line-height:1.5em"><td class="fr">5<sup class="ss"><i>n</i></sup></td></tr></tbody></table>,&nbsp;&nbsp;&nbsp;&nbsp;<i>R</i> = <table class="sq" cellpadding="0" cellspacing="0"><tbody><tr><td style="font-size:1.27em">√</td><td class="sq"><span style="padding:0.1em">3</span></td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(E)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table>(−1)<sup class="ss"><i>n</i> +1</sup> <table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">3<i>n</i> +1</sup></td></tr><tr style="line-height:1.5em"><td class="fr">5<sup class="ss"><i>n</i> + 1</sup></td></tr></tbody></table>,&nbsp;&nbsp;&nbsp;&nbsp;<i>R</i> = <table class="sq" cellpadding="0" cellspacing="0"><tbody><tr><td style="font-size:1.27em">√</td><td class="sq"><span style="padding:0.1em">3</span></td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(F)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table>(−1)<sup class="ss"><i>n</i></sup> <table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">3<i>n</i> + 2</sup></td></tr><tr style="line-height:1.5em"><td class="fr">5<sup class="ss"><i>n</i> + 1</sup></td></tr></tbody></table>,&nbsp;&nbsp;&nbsp;&nbsp;<i>R</i> = 5<sup class="ss">1<b>/</b>3</sup> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(G)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table>(−1)<sup class="ss"><i>n</i></sup> <table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">3<i>n</i> + 2</sup></td></tr><tr style="line-height:1.5em"><td class="fr">5<sup class="ss"><i>n</i> + 1</sup></td></tr></tbody></table>,&nbsp;&nbsp;&nbsp;&nbsp;<i>R</i> = <table class="sq" cellpadding="0" cellspacing="0"><tbody><tr><td style="font-size:1.27em">√</td><td class="sq"><span style="padding:0.1em">3</span></td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(H)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table>(−1)<sup class="ss"><i>n</i> +1</sup> <table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">3<i>n</i> + 2</sup></td></tr><tr style="line-height:1.5em"><td class="fr">5<sup class="ss"><i>n</i></sup></td></tr></tbody></table>,&nbsp;&nbsp;&nbsp;&nbsp;<i>R</i> = 5<sup class="ss">1<b>/</b>3</sup> </span><span class="mobile">&nbsp; &nbsp;</span></span><br><br><table class="FORMfields" style="margin-left:-75px"><tbody><tr class="FORMfields"><td style="color:#355597;font-size:10px">Problem #1: </td><td class="FORMfields"><div class="display"></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> F</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><div style="overflow-x:auto;"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #1</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try4"><span id="q1_part_b_answer_1"></span></td><td class="try4"><span id="q1_part_b_answer_2"></span></td><td class="try4"><span id="q1_part_b_answer_3"></span></td></tr><tr><td class="try2">Your Mark:</td><td class="try4"><span id="q1_part_b_mark_1"></span></td><td class="try4"><span id="q1_part_b_mark_2"></span></td><td class="try4"><span id="q1_part_b_mark_3"></span></td></tr></tbody></table></div><div id="partial_1" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_2"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #2: </a><br></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span>Evaluate the following integral as a power series.
+<br><br><span class="dm">
+<table class="int"><tbody><tr><td class="intu"></td></tr><tr><td class="int">∫</td></tr><tr><td class="intl"></td></tr></tbody></table>ln(1 + <i>x</i><sup class="ss">8</sup>) <i>dx</i>
+</span></span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2"><div class="cell"><label class="display"><span style="visibility:hidden">Problem #2:</span></label></div></td>
+						<td class="ffTableSetFORMfieldsField2"><div class="cell"><span style="color:black; font-family:times; font-size:16px"><span class="mobile1"><span style="font-weight:bold">(A)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table><table class="fr" style="font-size:0.9em"><tbody><tr><td>(−1)<sup class="ss"><i>n</i></sup> <i>x</i><sup class="ss">8<i>n</i> +8</sup></td></tr><tr><td class="fr">(<i>n</i> +1)(8<i>n</i> +8)</td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(B)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table><table class="fr" style="font-size:0.9em"><tbody><tr><td>(−1)<sup class="ss"><i>n</i></sup> <i>x</i><sup class="ss">9<i>n</i> + 7</sup></td></tr><tr><td class="fr">(<i>n</i> + 1)(9<i>n</i> + 7)</td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(C)</span>  −<table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table><table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">8<i>n</i> + 9</sup></td></tr><tr><td class="fr">(8<i>n</i> + 7)(8<i>n</i>)</td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(D)</span>  −<table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table><table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">8<i>n</i> +8</sup></td></tr><tr><td class="fr">(<i>n</i> +1)(8<i>n</i> +8)</td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(E)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table><table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">9<i>n</i> + 1</sup></td></tr><tr><td class="fr">(9<i>n</i> + 1)(9<i>n</i>)</td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(F)</span>  −<table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table><table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">8<i>n</i> +9</sup></td></tr><tr><td class="fr">(<i>n</i> +1)(8<i>n</i> +9)</td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(G)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table><table class="fr" style="font-size:0.9em"><tbody><tr><td>(−1)<sup class="ss"><i>n</i> </sup><i>x</i><sup class="ss">8<i>n</i> +9</sup></td></tr><tr><td class="fr">(<i>n</i> +1)(8<i>n</i> +9)</td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(H)</span>  −<table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table><table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">9<i>n</i> + 7</sup></td></tr><tr><td class="fr">(<i>n</i> + 1)(9<i>n</i> + 7)</td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span></span><br><br><table class="FORMfields" style="margin-left:-75px"><tbody><tr class="FORMfields"><td style="color:#355597;font-size:10px">Problem #2: </td><td class="FORMfields"><div class="display"></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> G</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><div style="overflow-x:auto;"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #2</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try4"><span id="q1_part_c_answer_1"></span></td><td class="try4"><span id="q1_part_c_answer_2"></span></td><td class="try4"><span id="q1_part_c_answer_3"></span></td></tr><tr><td class="try2">Your Mark:</td><td class="try4"><span id="q1_part_c_mark_1"></span></td><td class="try4"><span id="q1_part_c_mark_2"></span></td><td class="try4"><span id="q1_part_c_mark_3"></span></td></tr></tbody></table></div><div id="partial_2" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_3"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #3: </a><br></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span>Find the sum of the following series.<br><br><span class="dm">
+<table class="sum"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table><table class="fr" style="font-size:0.9em"><tbody><tr style="line-height:1.1em"><td>(−1)<sup class="ss"><i>n</i></sup> <i>π</i><sup class="ss">2<i>n</i> +1</sup></td></tr><tr style="line-height:1.5em"><td class="fr">6<sup class="ss">2<i>n</i> +1</sup> (2<i>n</i> + 1)!</td></tr></tbody></table>
+</span></span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1"><div class="cell"><label class="display">Problem #3:</label></div></td>
+						<td class="ffTableSetFORMfieldsField1"><div class="cell"><table class="FORMfields"><tbody><tr class="FORMfields"><td class="FORMfields"><div class="display"><span style="font-family:times;font-size:14px;white-space:nowrap"></span></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> <span style="font-family:times;font-size:14px;white-space:nowrap"> <table class="fr" style="font-size:0.9em"><tbody><tr><td>1</td></tr><tr><td class="fr">2</td></tr></tbody></table> </span></div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><div style="overflow-x:auto;"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #3</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try4"><span id="q1_part_d_answer_1" onclick="show_unform(&#39;q1_part_d&#39;,&#39;1&#39;)"></span></td><td class="try4"><span id="q1_part_d_answer_2" onclick="show_unform(&#39;q1_part_d&#39;,&#39;2&#39;)"></span></td><td class="try4"><span id="q1_part_d_answer_3" onclick="show_unform(&#39;q1_part_d&#39;,&#39;3&#39;)"></span></td></tr><tr><td class="try2">Your Mark:</td><td class="try4"><span id="q1_part_d_mark_1"></span></td><td class="try4"><span id="q1_part_d_mark_2"></span></td><td class="try4"><span id="q1_part_d_mark_3"></span></td></tr></tbody></table></div><div id="partial_3" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_4"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #4: </a><br></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span><span>Find the Taylor series for  <i>f</i> (<i>x</i>) = <table class="fr"><tbody><tr><td>1</td></tr><tr style="line-height:1.4em"><td class="fr"><i>x</i><sup class="ss">2</sup></td></tr></tbody></table>  centered at <i>a</i> = 2.</span></span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2"><div class="cell"><label class="display"><span style="visibility:hidden">Problem #4:</span></label></div></td>
+						<td class="ffTableSetFORMfieldsField2"><div class="cell"><span style="color:black; font-family:times; font-size:16px"><span class="mobile1"><span style="font-weight:bold">(A)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table><table class="fr" style="font-size:0.9em"><tbody><tr><td>(−1)<sup class="ss"><i>n</i> +1</sup> (<i>n</i> + 1)</td></tr><tr style="line-height:1.4em"><td class="fr">2<sup class="ss"><i>n</i> +1</sup></td></tr></tbody></table> (<i>x</i> − 2)<sup class="ss"><i>n</i></sup> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(B)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table><table class="fr" style="font-size:0.9em"><tbody><tr><td>(−1)<sup class="ss"><i>n</i> +1</sup> (<i>n</i> + 1)</td></tr><tr style="line-height:1.4em"><td class="fr">2<sup class="ss"><i>n</i> +2</sup></td></tr></tbody></table> (<i>x</i> − 2)<sup class="ss"><i>n</i></sup> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(C)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table><table class="fr" style="font-size:0.9em"><tbody><tr><td>(−1)<sup class="ss"><i>n</i></sup> (<i>n</i> + 1)</td></tr><tr style="line-height:1.4em"><td class="fr">2<sup class="ss"><i>n</i> +2</sup></td></tr></tbody></table> (<i>x</i> − 2)<sup class="ss"><i>n</i></sup> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(D)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table><table class="fr" style="font-size:0.9em"><tbody><tr><td>(−1)<sup class="ss"><i>n</i></sup> (<i>n</i> + 1)</td></tr><tr style="line-height:1.4em"><td class="fr">2<sup class="ss"><i>n</i> +1</sup></td></tr></tbody></table> (<i>x</i> − 2)<sup class="ss"><i>n</i></sup> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(E)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table><table class="fr" style="font-size:0.9em"><tbody><tr><td>(−1)<sup class="ss"><i>n</i></sup></td></tr><tr style="line-height:1.4em"><td class="fr">2<sup class="ss"><i>n</i> +1</sup></td></tr></tbody></table> (<i>x</i> − 2)<sup class="ss"><i>n</i></sup> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(F)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table><table class="fr" style="font-size:0.9em"><tbody><tr><td>(−1)<sup class="ss"><i>n</i> +1</sup></td></tr><tr style="line-height:1.4em"><td class="fr">2<sup class="ss"><i>n</i></sup></td></tr></tbody></table> (<i>x</i> − 2)<sup class="ss"><i>n</i></sup> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(G)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table><table class="fr" style="font-size:0.9em"><tbody><tr><td>(−1)<sup class="ss"><i>n</i> +1</sup></td></tr><tr style="line-height:1.4em"><td class="fr">2<sup class="ss"><i>n</i> +1</sup></td></tr></tbody></table> (<i>x</i> − 2)<sup class="ss"><i>n</i></sup> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(H)</span> <table class="sum" style="font-size:em"><tbody><tr><td style="font-size:0.9em">∞</td></tr><tr style="line-height:1.3em"><td><span style="font-size:1.85em">Σ</span></td></tr><tr><td style="font-size:0.85em"><i>n</i>=0</td></tr></tbody></table><table class="fr" style="font-size:0.9em"><tbody><tr><td>(−1)<sup class="ss"><i>n</i></sup></td></tr><tr style="line-height:1.4em"><td class="fr">2<sup class="ss"><i>n</i></sup></td></tr></tbody></table> (<i>x</i> − 2)<sup class="ss"><i>n</i></sup> </span><span class="mobile">&nbsp; &nbsp;</span></span><br><br><table class="FORMfields" style="margin-left:-75px"><tbody><tr class="FORMfields"><td style="color:#355597;font-size:10px">Problem #4: </td><td class="FORMfields"><div class="display"></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> C</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><div style="overflow-x:auto;"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #4</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try4"><span id="q1_part_e_answer_1"></span></td><td class="try4"><span id="q1_part_e_answer_2"></span></td><td class="try4"><span id="q1_part_e_answer_3"></span></td></tr><tr><td class="try2">Your Mark:</td><td class="try4"><span id="q1_part_e_mark_1"></span></td><td class="try4"><span id="q1_part_e_mark_2"></span></td><td class="try4"><span id="q1_part_e_mark_3"></span></td></tr></tbody></table></div><div id="partial_4" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_5"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #5: </a><br></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span>Find a simplified expression for  <span style="font-size:24px">(</span> 
+<table style="display:inline-table;border-collapse:collapse;font-size:13px;vertical-align:middle"><tbody><tr><td style="padding:0px">−1<b>/</b>4</td></tr><tr><td style="text-align:center;padding:0px;padding-bottom:2px"><i>n</i></td></tr></tbody></table> 
+
+<span style="font-size:24px">)</span> .</span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1"><div class="cell"><label class="display"><span style="visibility:hidden">Problem #5:</span></label></div></td>
+						<td class="ffTableSetFORMfieldsField1"><div class="cell"><span style="color:black; font-family:times; font-size:16px"><span class="mobile1"><span style="font-weight:bold">(A)</span> <table class="fr" style="font-size:0.9em"><tbody><tr style="line-height:1.1em"><td>(−1)<sup class="ss"><i>n</i> −1</sup> 5 <b>·</b> 9 <b>·</b> 13 <b>·</b> ⋯ <b>·</b> (4<i>n</i> − 3)</td></tr><tr style="line-height:1.5em"><td class="fr">4<sup class="ss"><i>n</i> −1</sup> <i>n</i>!</td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(B)</span> <table class="fr" style="font-size:0.9em"><tbody><tr style="line-height:1.1em"><td>(−1)<sup class="ss"><i>n</i> −1</sup> 3 <b>·</b> 7 <b>·</b> 11 <b>·</b> ⋯ <b>·</b> (4<i>n</i> − 5)</td></tr><tr style="line-height:1.5em"><td class="fr">4<sup class="ss"><i>n</i></sup> <i>n</i>!</td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(C)</span> <table class="fr" style="font-size:0.9em"><tbody><tr style="line-height:1.1em"><td>(−1)<sup class="ss"><i>n</i> −1</sup> 3 <b>·</b> 7 <b>·</b> 11 <b>·</b> ⋯ <b>·</b> (4<i>n</i> − 3)</td></tr><tr style="line-height:1.5em"><td class="fr">4<sup class="ss"><i>n</i></sup> <i>n</i>!</td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(D)</span> <table class="fr" style="font-size:0.9em"><tbody><tr style="line-height:1.1em"><td>(−1)<sup class="ss"><i>n</i></sup> 3 <b>·</b> 7 <b>·</b> 11 <b>·</b> ⋯ <b>·</b> (4<i>n</i> − 5)</td></tr><tr style="line-height:1.5em"><td class="fr">4<sup class="ss"><i>n</i> −1</sup> <i>n</i>!</td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(E)</span> <table class="fr" style="font-size:0.9em"><tbody><tr style="line-height:1.1em"><td>(−1)<sup class="ss"><i>n</i> −1</sup> 4 <b>·</b> 8 <b>·</b> 12 <b>·</b> ⋯ <b>·</b> (4<i>n</i> − 4)</td></tr><tr style="line-height:1.5em"><td class="fr">4<sup class="ss"><i>n</i> −1</sup> <i>n</i>!</td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(F)</span> <table class="fr" style="font-size:0.9em"><tbody><tr style="line-height:1.1em"><td>(−1)<sup class="ss"><i>n</i></sup> 5 <b>·</b> 9 <b>·</b> 13 <b>·</b> ⋯ <b>·</b> (4<i>n</i> − 5)</td></tr><tr style="line-height:1.5em"><td class="fr">4<sup class="ss"><i>n</i></sup> <i>n</i>!</td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(G)</span> <table class="fr" style="font-size:0.9em"><tbody><tr style="line-height:1.1em"><td>(−1)<sup class="ss"><i>n</i></sup> 5 <b>·</b> 9 <b>·</b> 13 <b>·</b> ⋯ <b>·</b> (4<i>n</i> − 3)</td></tr><tr style="line-height:1.5em"><td class="fr">4<sup class="ss"><i>n</i></sup> <i>n</i>!</td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(H)</span> <table class="fr" style="font-size:0.9em"><tbody><tr style="line-height:1.1em"><td>(−1)<sup class="ss"><i>n</i></sup> 4 <b>·</b> 8 <b>·</b> 12 <b>·</b> ⋯ <b>·</b> (4<i>n</i> − 4)</td></tr><tr style="line-height:1.5em"><td class="fr">4<sup class="ss"><i>n</i></sup> <i>n</i>!</td></tr></tbody></table> </span><span class="mobile">&nbsp; &nbsp;</span></span><br><br><table class="FORMfields" style="margin-left:-75px"><tbody><tr class="FORMfields"><td style="color:#355597;font-size:10px">Problem #5: </td><td class="FORMfields"><div class="display"></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> G</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><div style="overflow-x:auto;"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #5</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try4"><span id="q1_part_f_answer_1"></span></td><td class="try4"><span id="q1_part_f_answer_2"></span></td><td class="try4"><span id="q1_part_f_answer_3"></span></td></tr><tr><td class="try2">Your Mark:</td><td class="try4"><span id="q1_part_f_mark_1"></span></td><td class="try4"><span id="q1_part_f_mark_2"></span></td><td class="try4"><span id="q1_part_f_mark_3"></span></td></tr></tbody></table></div><div id="partial_5" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_6"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #6: </a><br></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span>Let <i>T</i><sub>2</sub>(<i>x</i>) be the 2nd degree Taylor polynomial for the function  <i>f</i> (<i>x</i>) = 8 + <i>xe</i><sup class="ss">7<i>x</i></sup>  centered at <i>a</i> = 0.  Find <span style="white-space:nowrap"><i>T</i><sub>2</sub>(1)</span>.</span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2"><div class="cell"><label class="display">Problem #6:</label></div></td>
+						<td class="ffTableSetFORMfieldsField2"><div class="cell"><table class="FORMfields"><tbody><tr class="FORMfields"><td class="FORMfields"><div class="display"></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> 16</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><div style="overflow-x:auto;"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #6</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try4"><span id="q2_part_a_answer_1" onclick="show_unform(&#39;q2_part_a&#39;,&#39;1&#39;)"></span></td><td class="try4"><span id="q2_part_a_answer_2" onclick="show_unform(&#39;q2_part_a&#39;,&#39;2&#39;)"></span></td><td class="try4"><span id="q2_part_a_answer_3" onclick="show_unform(&#39;q2_part_a&#39;,&#39;3&#39;)"></span></td></tr><tr><td class="try2">Your Mark:</td><td class="try4"><span id="q2_part_a_mark_1"></span></td><td class="try4"><span id="q2_part_a_mark_2"></span></td><td class="try4"><span id="q2_part_a_mark_3"></span></td></tr></tbody></table></div><div id="partial_6" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_7"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #7: </a><br></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span><span>Let  <i>f</i> (<i>x</i>) = <table class="fr"><tbody><tr><td>1</td></tr><tr style="line-height:1.4em"><td class="fr"><i>x</i><sup class="ss">2</sup></td></tr></tbody></table> ,  0.3 ≤ <i>x</i> ≤ 1.7.   Suppose that we approximate <i>f</i> (<i>x</i>) by the 4th degree Taylor polynomial <i>T</i><sub>4</sub>(<i>x</i>) centered at <i>a</i> = 1.  Taylor's inequaltiy gives an estimate for the error involved in this approximation.<br><br>Find the smallest possible value of <u>the constant <i>M</i></u>  referred to in Taylor's Inequality.</span></span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1"><div class="cell"><label class="display">Problem #7:</label></div></td>
+						<td class="ffTableSetFORMfieldsField1"><div class="cell"><table class="FORMfields"><tbody><tr class="FORMfields"><td class="FORMfields"><div class="display"><span style="font-family:times;font-size:14px;white-space:nowrap"></span></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> <span style="font-family:times;font-size:14px;white-space:nowrap"> <table class="fr" style="font-size:0.9em"><tbody><tr><td>6!</td></tr><tr style="line-height:1.7em"><td class="fr">( <table class="fr" style="font-size:0.9em"><tbody><tr><td>3</td></tr><tr><td class="fr">10</td></tr></tbody></table> )<sup class="ss" style="font-size:0.9em">7</sup></td></tr></tbody></table> </span></div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><div style="overflow-x:auto;"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #7</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try4"><span id="q2_part_b_answer_1" onclick="show_unform(&#39;q2_part_b&#39;,&#39;1&#39;)"></span></td><td class="try4"><span id="q2_part_b_answer_2" onclick="show_unform(&#39;q2_part_b&#39;,&#39;2&#39;)"></span></td><td class="try4"><span id="q2_part_b_answer_3" onclick="show_unform(&#39;q2_part_b&#39;,&#39;3&#39;)"></span></td></tr><tr><td class="try2">Your Mark:</td><td class="try4"><span id="q2_part_b_mark_1"></span></td><td class="try4"><span id="q2_part_b_mark_2"></span></td><td class="try4"><span id="q2_part_b_mark_3"></span></td></tr></tbody></table></div><div id="partial_7" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_8"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #8: </a><br></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span><span>The curve  <i>y</i> = <table class="sq" cellpadding="0" cellspacing="0"><tbody><tr><td style="font-size:1.27em">√</td><td class="sq"><span style="padding:0.1em">9 − <i>x</i><sup class="ss">2</sup></span></td></tr></tbody></table>,  −2 ≤ <i>x</i> ≤ 2,  is rotated about the <i>x</i>-axis.  Find the area of the resulting surface.</span></span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2"><div class="cell"><label class="display">Problem #8:</label></div></td>
+						<td class="ffTableSetFORMfieldsField2"><div class="cell"><table class="FORMfields"><tbody><tr class="FORMfields"><td class="FORMfields"><div class="display"><span style="font-family:times;font-size:14px;white-space:nowrap"></span></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> <span style="font-family:times;font-size:14px;white-space:nowrap">24<span style="font-size:1.2em"><i>π</i></span></span></div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><div style="overflow-x:auto;"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #8</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try4"><span id="q2_part_c_answer_1" onclick="show_unform(&#39;q2_part_c&#39;,&#39;1&#39;)"></span></td><td class="try4"><span id="q2_part_c_answer_2" onclick="show_unform(&#39;q2_part_c&#39;,&#39;2&#39;)"></span></td><td class="try4"><span id="q2_part_c_answer_3" onclick="show_unform(&#39;q2_part_c&#39;,&#39;3&#39;)"></span></td></tr><tr><td class="try2">Your Mark:</td><td class="try4"><span id="q2_part_c_mark_1"></span></td><td class="try4"><span id="q2_part_c_mark_2"></span></td><td class="try4"><span id="q2_part_c_mark_3"></span></td></tr></tbody></table></div><div id="partial_8" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_9"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #9: </a><br></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span>The below curve is rotated about the <i>y</i>-axis.  Find the area of the resulting surface.<br><br><span class="dm">
+<i>y</i>  =  <table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">5</sup></td></tr><tr><td class="fr">10</td></tr></tbody></table> + <table class="fr" style="font-size:0.9em"><tbody><tr><td>1</td></tr><tr style="line-height:1.5em"><td class="fr">6<i>x</i><sup class="ss">3</sup></td></tr></tbody></table> , &nbsp;&nbsp;1 ≤ <i>x</i> ≤ 2
+</span></span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1"><div class="cell"><label class="display"><span style="visibility:hidden">Problem #9:</span></label></div></td>
+						<td class="ffTableSetFORMfieldsField1"><div class="cell"><span style="color:black; font-family:times; font-size:16px"><span class="mobile1"><span style="font-weight:bold">(A)</span> <table class="int"><tbody><tr><td class="intu">2</td></tr><tr><td class="int">∫</td></tr><tr><td class="intl">1</td></tr></tbody></table>2<i>π</i> <span style="font-size:24px">(</span> <table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">4</sup></td></tr><tr><td class="fr">4</td></tr></tbody></table> + <table class="fr" style="font-size:0.9em"><tbody><tr><td>1</td></tr><tr style="line-height:1.4em"><td class="fr"><i>x</i><sup class="ss">4</sup></td></tr></tbody></table> <span style="font-size:24px">)</span> <i>dx</i> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(B)</span> <table class="int"><tbody><tr><td class="intu">2</td></tr><tr><td class="int">∫</td></tr><tr><td class="intl">1</td></tr></tbody></table>2<i>π</i> <span style="font-size:24px">(</span> <table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">5</sup></td></tr><tr><td class="fr">4</td></tr></tbody></table> + <table class="fr" style="font-size:0.9em"><tbody><tr><td>1</td></tr><tr style="line-height:1.4em"><td class="fr"><i>x</i><sup class="ss">3</sup></td></tr></tbody></table> <span style="font-size:24px">)</span> <i>dx</i> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(C)</span> <table class="int"><tbody><tr><td class="intu">2</td></tr><tr><td class="int">∫</td></tr><tr><td class="intl">1</td></tr></tbody></table>2<i>π</i> <span style="font-size:24px">(</span> <table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">5</sup></td></tr><tr><td class="fr">2</td></tr></tbody></table> + <table class="fr" style="font-size:0.9em"><tbody><tr><td>1</td></tr><tr style="line-height:1.4em"><td class="fr">2<i>x</i><sup class="ss">3</sup></td></tr></tbody></table> <span style="font-size:24px">)</span> <i>dx</i> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(D)</span> <table class="int"><tbody><tr><td class="intu">2</td></tr><tr><td class="int">∫</td></tr><tr><td class="intl">1</td></tr></tbody></table>2<i>π</i> <span style="font-size:24px">(</span><i>x</i><sup class="ss">5</sup> + <table class="fr" style="font-size:0.9em"><tbody><tr><td>1</td></tr><tr style="line-height:1.4em"><td class="fr">4<i>x</i><sup class="ss">3</sup></td></tr></tbody></table> <span style="font-size:24px">)</span> <i>dx</i> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(E)</span> <table class="int"><tbody><tr><td class="intu">2</td></tr><tr><td class="int">∫</td></tr><tr><td class="intl">1</td></tr></tbody></table>2<i>π</i> <span style="font-size:24px">(</span> <table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">4</sup></td></tr><tr><td class="fr">2</td></tr></tbody></table> + <table class="fr" style="font-size:0.9em"><tbody><tr><td>1</td></tr><tr style="line-height:1.4em"><td class="fr">2<i>x</i><sup class="ss">4</sup></td></tr></tbody></table> <span style="font-size:24px">)</span> <i>dx</i> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(F)</span> <table class="int"><tbody><tr><td class="intu">2</td></tr><tr><td class="int">∫</td></tr><tr><td class="intl">1</td></tr></tbody></table>2<i>π</i> <span style="font-size:24px">(</span><i>x</i><sup class="ss">4</sup> + <table class="fr" style="font-size:0.9em"><tbody><tr><td>1</td></tr><tr style="line-height:1.4em"><td class="fr">4<i>x</i><sup class="ss">4</sup></td></tr></tbody></table> <span style="font-size:24px">)</span> <i>dx</i> </span><span class="mobile">&nbsp; &nbsp;</span></span><br><br><table class="FORMfields" style="margin-left:-75px"><tbody><tr class="FORMfields"><td style="color:#355597;font-size:10px">Problem #9: </td><td class="FORMfields"><div class="display"></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> C</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><div style="overflow-x:auto;"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #9</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try4"><span id="q2_part_d_answer_1"></span></td><td class="try4"><span id="q2_part_d_answer_2"></span></td><td class="try4"><span id="q2_part_d_answer_3"></span></td></tr><tr><td class="try2">Your Mark:</td><td class="try4"><span id="q2_part_d_mark_1"></span></td><td class="try4"><span id="q2_part_d_mark_2"></span></td><td class="try4"><span id="q2_part_d_mark_3"></span></td></tr></tbody></table></div><div id="partial_9" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><input style="display:none" class="FORMfieldsSubmit" type="submit" id="silent_save" name="just_save" value="Save" onclick="this.form.action=&#39;https://www.childsmath.ca/childsa/forms/1zStuff/onlineform_2.php?iframe=true&amp;silent_save=true&amp;assign=5&#39;; this.form.target=&#39;save_iframe&#39;"></div></div></td>
+					</tr>
+				</tbody></table>			
+
+	</form>
+
+
+
+	</td></tr></tbody></table></div>
+
+<iframe name="save_iframe" width="0" height="0" frameborder="0" src="./A5_files/saved_resource.html">
+Alternate text if the iframe cannot be rendered
+</iframe> 
+
+
+
+
+
+
+
+
+</body></html>

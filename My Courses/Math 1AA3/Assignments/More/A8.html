@@ -1,0 +1,443 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0073)https://www.childsmath.ca/childsa/forms/1zStuff/onlineform_2.php?assign=8 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Math 1AA3/1ZB3 Assignment #8 Answer Sheet for User: chowdhaj</title>
+
+
+<script type="text/javascript" src="./A8_files/FORMfields.js"></script>
+
+<link rel="stylesheet" type="text/css" href="./A8_files/default_combined.css">
+
+
+<style type="text/css">
+
+pre.R {
+	color:red;
+	font-size:14px;
+	background-color:#f2f2f2;
+	padding:10px;
+	font-family:courier;
+}
+
+span.rhelp {
+
+	font-family:verdana;
+	color:green;
+	font-size:12px;
+
+}
+
+
+td.ffTableSetFORMfieldsLabel1, td.ffTableSetFORMfieldsLabel2 {
+	max-width: 115px;
+}
+
+table.ffTableSetFORMfields{width:100%;}
+
+
+input.mobile {
+	visibility:hidden;
+	disabled:disabled;
+}
+
+
+div.ffForm {
+	width:900px;
+	text-align:left;
+	margin:auto;
+}
+
+
+td.mobile1 {
+	text-align:justify;
+}
+
+td.mobile2 {
+	vertical-align:top
+}
+
+span.mobile1 {
+	white-space:nowrap; 
+	display:inline-block; 
+	margin-top:10px;
+}
+
+
+
+@media only screen and (max-width: 930px) {
+
+	div.ffForm {
+		width:auto;
+	}
+
+}
+
+
+@media only screen and (max-width: 670px) {
+
+    td.mobile {
+        display:none;
+    }
+
+}
+
+
+@media only screen and (max-width: 570px) {
+
+	table.try1 {
+	margin-left:0px;
+	}
+
+	input.mobile {
+	display:none;
+	}
+
+
+	td.mobile1,td.mobile2 {
+	display:block;	
+	}
+
+	span.mobile1 {
+	display:block;
+	white-space:normal;
+	margin-left:-65px;
+	}
+
+
+	span.mobile {
+	display:none;
+	}
+
+
+}
+
+
+@media only screen and (max-width: 500px) {
+
+
+	td.mobile1 {
+	font-size:26px !important;
+	}
+
+
+	span.logo1 {
+	white-space:normal;
+	}
+
+}
+
+@media only screen and (max-width: 374px) {
+
+	td.logo3 {
+	display:none;
+	}
+
+}
+
+</style>
+
+
+
+<script type="text/javascript">
+
+	
+function show_unform(qnum,attnum) {
+
+	if (document.getElementById(qnum + "_fans_" + attnum).getAttribute('data-show') == 1) {
+	document.getElementById(qnum + "_unform_" + attnum).style.display='inline';
+	document.getElementById(qnum + "_fans_" + attnum).setAttribute('data-show','0');
+	} else {
+	document.getElementById(qnum + "_unform_" + attnum).style.display='none';
+	document.getElementById(qnum + "_fans_" + attnum).setAttribute('data-show','1');
+	}
+
+}
+
+function get_disabled(idtag) {
+
+	if (parent.document.getElementById(idtag)) {
+	parent.document.getElementById(idtag).style.display='none';
+	}
+}
+
+function get_enabled(idtag) {
+
+	if (parent.document.getElementById(idtag)) {
+	parent.document.getElementById(idtag).style.display='inline';
+	}
+
+}
+
+	
+function goto(url) {
+    document.location = url;
+}
+
+
+function get(name){
+   if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+      return decodeURIComponent(name[1]);
+}
+
+
+function dis(idtag) { 
+
+	if (get('silent_save') != 'true') {
+	
+		if (parent.document.getElementById(idtag)) {
+		parent.document.getElementById(idtag).style.display='none';
+		}
+	}
+}
+
+
+
+function opp_dis(idtag,html) { 
+
+	if (get('silent_save') != 'true') {
+
+		if (parent.document.getElementById(idtag)) {
+		parent.document.getElementById(idtag).style.display='inline';
+
+			if (html) {
+			parent.document.getElementById(idtag).innerHTML=html;
+			}
+
+		}
+	}
+}
+
+
+function alldis(idtag) {
+	var k = 100;
+	var j=0;
+	for (j=0;j<=k;j++) {
+	dis(idtag + j);
+	}
+}
+
+
+function opp_alldis(idtag,html) {
+	var k = 100;
+	var j=0;
+	for (j=0;j<=k;j++) {
+	opp_dis(idtag + j,html);
+	}
+}
+
+
+function checkStatus() {
+
+var cli;
+
+	if (window.XMLHttpRequest) {
+	cli = new XMLHttpRequest();
+	} else {
+	cli = xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	cli.onreadystatechange = function() {
+		if (cli.readyState === 4) {
+			if (cli.status !== 200) {
+			alert('Warning! Your work was NOT saved.  The reason is that your connection to the server has been lost.  The most likely cause for this is that your internet connection is down.  So please check your internet connection and then try saving your work again.');
+			} 
+		}
+	};
+
+
+cli.open('GET', '../check.txt?_time=' + (new Date()).getTime());
+cli.send();
+
+
+}
+
+
+
+function setFocus() {
+
+
+}
+
+</script>
+
+</head>
+
+<body style="background-color:white;" onload="setFocus()" class="FORMfields">
+
+
+
+<div class="ffForm">
+
+	<table style="background:#f1f1f1;width:100%;text-align:left"><tbody><tr><td style="font-size:30px;font-family:helvetica;font-weight:bold;color:#990033;padding-right:20px;vertical-align:top;width:23%">childsmath<br><span style="font-size:16px;white-space:nowrap"><span class="logo1">Math 1AA3/1ZB3<br><div style="padding-top:10px">Assignment #8<span class="mobile"> for user: chowdhaj</span></div></span></span></td><td class="mobile" style="width:23%"><img style="width:190px;height:104px;padding-right:20px" src="./A8_files/maclogopms.gif"></td><td class="logo3" style="width:170px"><table><tbody><tr><td style="color:#990033;font-weight:bold;font-family:helvetica;font-size:16px">&nbsp;&nbsp;Mathematics<br>&nbsp;and Statistics</td></tr><tr><td><img width="145" height="56" src="./A8_files/ms_formula.png"></td></tr></tbody></table></td></tr></tbody></table><hr>
+	<a name="ffStart"></a>
+
+			
+<div style="margin:0px 0px 10px 5px;" class="ffField">
+<a href="https://www.childsmath.ca/childsa/forms/1zStuff/student_admin.php">« Back to Admin Page</a> <span id="warn" style="display:none;color:red;font-weight:bold"> (You should save you work before pressing this link.)</span>
+</div>
+
+	<table border="1" style="border-collapse:collapse; border-color:#D8D8D8; text-align:left; width:100%; margin-bottom:3px; margin-top:2px"><tbody><tr><td style="color:white; font: normal normal bold 12px verdana,sans-serif;  background-color:#687CCA;padding-top:12px;padding-bottom:8px;padding-left:12px;padding-right:12px"><span class="ml">Assignment #8 for: JATIN CHOWDHARY (400033011)</span></td></tr><tr><td class="ffSectionTitleBottomMiddle" style="padding:6px">
+ 
+
+
+	<form id="my_form" name="form1" action="https://www.childsmath.ca/childsa/forms/1zStuff/onlineform_2.php?assign=8#ffStart" method="post" enctype="multipart/form-data">
+
+
+						
+						<div style="padding-left:15px;margin-bottom:10px;">
+							<span class="help" style="padding-left:0px;font-size:13px;"><b>The due date for this assignment has now passed.</b><ul><li> <a style="color:green">Answers</a> for each question, and your <a style="color:red">mark</a> for each question,  appear beside the question.</li></ul></span>
+						</div>
+
+
+<div style="text-align:center; color:red; font-size:18px">
+<b>Total:</b> note</div>
+
+
+							
+
+									<table class="ffTableSetFORMfields">
+					<tbody><tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><br><br><div style="width:100%;margin-left:3px;"><b class="spiffy"><b class="spiffy1"><b></b></b><b class="spiffy2"><b></b></b><b class="spiffy3"></b><b class="spiffy4"></b><b class="spiffy5"></b></b><div class="spiffyfg" style="color:white; font: normal normal bold 14px verdana,sans-serif; text-align:justify"><table style="margin-left:25px; margin-right:25px"><tbody><tr><td><span style="font-size:16px"><u>Answer Format</u></span><br><br><div style="margin-left:25px;font-size:15px">
+Unless otherwise noted, enter answers as:<br><br><div style="margin-left:45px">- Whole Numbers<br>- Exact Fractions (e.g., 2/3 or -5/4)</div><br><div style="margin-left:30px">or (only when necessary):</div><br><div style="margin-left:45px">- Decimals correct to <u><i>six</i></u> decimal places</div><br>The use of decimal numbers is discouraged because decimal numbers are subject to rounding errors, which could cost you marks!</div>
+<br><span style="font-size:16px"><table style="margin-top:10px;border-collapse:collapse"><tbody><tr><td style="vertical-align:top;padding-right:15px"><u>Topics:</u></td><td>Sections 10.2, 10.3, and 14.1-14.3 in the textbook.</td></tr></tbody></table></span></td></tr></tbody></table></div><b class="spiffy"><b class="spiffy5"></b><b class="spiffy4"></b><b class="spiffy3"></b><b class="spiffy2"><b></b></b><b class="spiffy1"><b></b></b></b></div></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_1"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #1: </a><br></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span>Find the length of the following parametric curve.<br><br><span class="dm">
+<i>x</i>  =  3  +  <table class="fr"><tbody><tr><td>9</td></tr><tr><td class="fr">2</td></tr></tbody></table> <i>t</i><sup class="ss"> 3</sup> ,&nbsp;&nbsp;&nbsp;&nbsp;<i>y</i>  =  4  +  3 <i>t</i><sup class="ss"> 9/2</sup> ,&nbsp;&nbsp;&nbsp;&nbsp;0  ≤  <i>t</i>  ≤  2.
+</span></span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1"><div class="cell"><label class="display">Problem #1:</label></div></td>
+						<td class="ffTableSetFORMfieldsField1"><div class="cell"><table class="FORMfields"><tbody><tr class="FORMfields"><td class="FORMfields"><div class="display"><span style="font-family:times;font-size:14px;white-space:nowrap"></span></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> <span style="font-family:times;font-size:14px;white-space:nowrap">78</span></div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><div style="overflow-x:auto;"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #1</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try4"><span id="q1_part_b_answer_1" onclick="show_unform(&#39;q1_part_b&#39;,&#39;1&#39;)"></span></td><td class="try4"><span id="q1_part_b_answer_2" onclick="show_unform(&#39;q1_part_b&#39;,&#39;2&#39;)"></span></td><td class="try4"><span id="q1_part_b_answer_3" onclick="show_unform(&#39;q1_part_b&#39;,&#39;3&#39;)"></span></td></tr><tr><td class="try2">Your Mark:</td><td class="try4"><span id="q1_part_b_mark_1"></span></td><td class="try4"><span id="q1_part_b_mark_2"></span></td><td class="try4"><span id="q1_part_b_mark_3"></span></td></tr></tbody></table></div><div id="partial_1" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_2"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #2: </a><br></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span><span>The Cartesian coordinates of a point are (−<table class="sq" cellpadding="0" cellspacing="0"><tbody><tr><td style="font-size:1.27em">√</td><td class="sq"><span style="padding:0.1em">3</span></td></tr></tbody></table>, −1).  Find polar coordinates (<i>r</i>, <i>θ</i>) of the point, where</span></span></td></tr></tbody></table><table><tbody><tr style="vertical-align:top"><td style="padding-right:3px"><span style="font-weight:bold; font-size:16px">(a)</span></td> <td style="padding-top:2px; font-size:16px;"><span> <i>r</i> &gt; 0  and  0 ≤ <i>θ</i> &lt; 2<i>π</i>.</span></td></tr></tbody></table><table><tbody><tr style="vertical-align:top"><td style="padding-right:3px"><span style="font-weight:bold; font-size:16px">(b)</span></td> <td style="padding-top:2px; font-size:16px;"><span> <i>r</i> &lt; 0  and  −2<i>π</i> ≤ <i>θ</i> &lt; 0.</span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2"><div class="cell"><label class="display">Problem #2(a):</label></div></td>
+						<td class="ffTableSetFORMfieldsField2"><div class="cell"><table class="FORMfields"><tbody><tr class="FORMfields"><td class="FORMfields"><div class="display"><span style="font-family:times;font-size:14px;white-space:nowrap"></span></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> <span style="font-family:times;font-size:14px;white-space:nowrap">2,  <table class="fr" style="font-size:0.9em"><tbody><tr><td>7<span style="font-size:1.2em"><i>π</i></span></td></tr><tr><td class="fr">6</td></tr></tbody></table> </span></div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1"><div class="cell"><label class="display">Problem #2(b):</label></div></td>
+						<td class="ffTableSetFORMfieldsField1"><div class="cell"><table class="FORMfields"><tbody><tr class="FORMfields"><td class="FORMfields"><div class="display"><span style="font-family:times;font-size:14px;white-space:nowrap"></span></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> <span style="font-family:times;font-size:14px;white-space:nowrap">−2, − <table class="fr" style="font-size:0.9em"><tbody><tr><td>11<span style="font-size:1.2em"><i>π</i></span></td></tr><tr><td class="fr">6</td></tr></tbody></table> </span></div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><div style="overflow-x:auto;"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #2</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try3">2(a) <span id="q1_part_d_answer_1" onclick="show_unform(&#39;q1_part_d&#39;,&#39;1&#39;)"></span><br>2(b) <span id="q1_part_e_answer_1" onclick="show_unform(&#39;q1_part_e&#39;,&#39;1&#39;)"></span><br></td><td class="try3">2(a) <span id="q1_part_d_answer_2" onclick="show_unform(&#39;q1_part_d&#39;,&#39;2&#39;)"></span><br>2(b) <span id="q1_part_e_answer_2" onclick="show_unform(&#39;q1_part_e&#39;,&#39;2&#39;)"></span><br></td><td class="try3">2(a) <span id="q1_part_d_answer_3" onclick="show_unform(&#39;q1_part_d&#39;,&#39;3&#39;)"></span><br>2(b) <span id="q1_part_e_answer_3" onclick="show_unform(&#39;q1_part_e&#39;,&#39;3&#39;)"></span><br></td></tr><tr><td class="try2">Your Mark:</td><td class="try3">2(a) <span id="q1_part_d_mark_1"></span><br>2(b) <span id="q1_part_e_mark_1"></span><br></td><td class="try3">2(a) <span id="q1_part_d_mark_2"></span><br>2(b) <span id="q1_part_e_mark_2"></span><br></td><td class="try3">2(a) <span id="q1_part_d_mark_3"></span><br>2(b) <span id="q1_part_e_mark_3"></span><br></td></tr></tbody></table></div><div id="partial_2" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_3"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #3: </a><br></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span>Sketch the polar curve  <i>r</i> = 1 − 2 cos <i>θ</i>.</span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2"><div class="cell"><label class="display"><span style="visibility:hidden">Problem #3:</span></label></div></td>
+						<td class="ffTableSetFORMfieldsField2"><div class="cell"><span style="color:black; font-family:times; font-size:16px"><span class="mobile1"><span style="font-weight:bold">(A)</span> <img style="vertical-align:text-top" src="./A8_files/a4pol1.jpg" alt="Graph for Problem #9" width="220" height="203"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(B)</span> <img style="vertical-align:text-top" src="./A8_files/a4pol6.jpg" alt="Graph for Problem #9" width="220" height="203"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(C)</span> <img style="vertical-align:text-top" src="./A8_files/a4pol5.jpg" alt="Graph for Problem #9" width="220" height="203"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(D)</span> <img style="vertical-align:text-top" src="./A8_files/a4pol2.jpg" alt="Graph for Problem #9" width="220" height="203"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(E)</span> <img style="vertical-align:text-top" src="./A8_files/a4pol4.jpg" alt="Graph for Problem #9" width="220" height="203"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(F)</span> <img style="vertical-align:text-top" src="./A8_files/a4pol8.jpg" alt="Graph for Problem #9" width="220" height="203"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(G)</span> <img style="vertical-align:text-top" src="./A8_files/a4pol7.jpg" alt="Graph for Problem #9" width="220" height="203"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(H)</span> <img style="vertical-align:text-top" src="./A8_files/a4pol3.jpg" alt="Graph for Problem #9" width="220" height="203"> </span><span class="mobile">&nbsp; &nbsp;</span></span><br><br><table class="FORMfields" style="margin-left:-75px"><tbody><tr class="FORMfields"><td style="color:#355597;font-size:10px">Problem #3: </td><td class="FORMfields"><div class="display"></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> H</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><div style="overflow-x:auto;"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #3</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try4"><span id="q1_part_f_answer_1"></span></td><td class="try4"><span id="q1_part_f_answer_2"></span></td><td class="try4"><span id="q1_part_f_answer_3"></span></td></tr><tr><td class="try2">Your Mark:</td><td class="try4"><span id="q1_part_f_mark_1"></span></td><td class="try4"><span id="q1_part_f_mark_2"></span></td><td class="try4"><span id="q1_part_f_mark_3"></span></td></tr></tbody></table></div><div id="partial_3" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_4"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #4: </a><br></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span>Which of the following are level curves for the function  <i>f</i> (<i>x</i>, <i>y</i>) = <table class="sq" cellpadding="0" cellspacing="0"><tbody><tr><td style="font-size:1.27em">√</td><td class="sq"><span style="padding:0.1em"><i>x</i><sup class="ss">2</sup> − 4<i>y</i><sup class="ss">2</sup></span></td></tr></tbody></table> ?</span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1"><div class="cell"><label class="display"><span style="visibility:hidden">Problem #4:</span></label></div></td>
+						<td class="ffTableSetFORMfieldsField1"><div class="cell"><span style="color:black; font-family:times; font-size:16px"><span class="mobile1"><span style="font-weight:bold">(A)</span> <img style="vertical-align:text-top" src="./A8_files/contour4.jpg" alt="Graph for Problem #12" width="220" height="180"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(B)</span> <img style="vertical-align:text-top" src="./A8_files/contour3.jpg" alt="Graph for Problem #12" width="220" height="180"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(C)</span> <img style="vertical-align:text-top" src="./A8_files/contour2.jpg" alt="Graph for Problem #12" width="220" height="180"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(D)</span> <img style="vertical-align:text-top" src="./A8_files/contour7.jpg" alt="Graph for Problem #12" width="220" height="180"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(E)</span> <img style="vertical-align:text-top" src="./A8_files/contour5.jpg" alt="Graph for Problem #12" width="220" height="180"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(F)</span> <img style="vertical-align:text-top" src="./A8_files/contour6.jpg" alt="Graph for Problem #12" width="220" height="180"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(G)</span> <img style="vertical-align:text-top" src="./A8_files/contour8.jpg" alt="Graph for Problem #12" width="220" height="180"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(H)</span> <img style="vertical-align:text-top" src="./A8_files/contour1.jpg" alt="Graph for Problem #12" width="220" height="180"> </span><span class="mobile">&nbsp; &nbsp;</span></span><br><br><table class="FORMfields" style="margin-left:-75px"><tbody><tr class="FORMfields"><td style="color:#355597;font-size:10px">Problem #4: </td><td class="FORMfields"><div class="display"></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> A</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><div style="overflow-x:auto;"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #4</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try4"><span id="q2_part_a_answer_1"></span></td><td class="try4"><span id="q2_part_a_answer_2"></span></td><td class="try4"><span id="q2_part_a_answer_3"></span></td></tr><tr><td class="try2">Your Mark:</td><td class="try4"><span id="q2_part_a_mark_1"></span></td><td class="try4"><span id="q2_part_a_mark_2"></span></td><td class="try4"><span id="q2_part_a_mark_3"></span></td></tr></tbody></table></div><div id="partial_4" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_5"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #5: </a><br></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span><span>Sketch the graph of the function  <i>f</i> (<i>x</i>, <i>y</i>) = <i>x</i><sup class="ss">2</sup> + <i>y</i><sup class="ss">2</sup> .</span></span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2"><div class="cell"><label class="display"><span style="visibility:hidden">Problem #5:</span></label></div></td>
+						<td class="ffTableSetFORMfieldsField2"><div class="cell"><span style="color:black; font-family:times; font-size:16px"><span class="mobile1"><span style="font-weight:bold">(A)</span> <img style="vertical-align:text-top" src="./A8_files/3dplot4.jpg" alt="Graph for Problem #13" width="220" height="179"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(B)</span> <img style="vertical-align:text-top" src="./A8_files/3dplot8.jpg" alt="Graph for Problem #13" width="220" height="179"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(C)</span> <img style="vertical-align:text-top" src="./A8_files/3dplot7.jpg" alt="Graph for Problem #13" width="220" height="179"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(D)</span> <img style="vertical-align:text-top" src="./A8_files/3dplot1.jpg" alt="Graph for Problem #13" width="220" height="179"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(E)</span> <img style="vertical-align:text-top" src="./A8_files/3dplot2.jpg" alt="Graph for Problem #13" width="220" height="179"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(F)</span> <img style="vertical-align:text-top" src="./A8_files/3dplot6.jpg" alt="Graph for Problem #13" width="220" height="179"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(G)</span> <img style="vertical-align:text-top" src="./A8_files/3dplot3.jpg" alt="Graph for Problem #13" width="220" height="179"> </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(H)</span> <img style="vertical-align:text-top" src="./A8_files/3dplot5.jpg" alt="Graph for Problem #13" width="220" height="179"> </span><span class="mobile">&nbsp; &nbsp;</span></span><br><br><table class="FORMfields" style="margin-left:-75px"><tbody><tr class="FORMfields"><td style="color:#355597;font-size:10px">Problem #5: </td><td class="FORMfields"><div class="display"></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> G</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><div style="overflow-x:auto;"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #5</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try4"><span id="q2_part_b_answer_1"></span></td><td class="try4"><span id="q2_part_b_answer_2"></span></td><td class="try4"><span id="q2_part_b_answer_3"></span></td></tr><tr><td class="try2">Your Mark:</td><td class="try4"><span id="q2_part_b_mark_1"></span></td><td class="try4"><span id="q2_part_b_mark_2"></span></td><td class="try4"><span id="q2_part_b_mark_3"></span></td></tr></tbody></table></div><div id="partial_5" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_6"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #6: </a><br></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span>Which of the following functions is continuous at (0, 0)?<br><br><span class="dm">
+<b>(i)</b>  <i>f</i> (<i>x</i>, <i>y</i>) &nbsp;= <table class="con" style="font-size:1em"><tbody><tr><td rowspan="2" style="font-size:3em;padding-bottom:0.18em">{</td><td><table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i> <i>y</i><sup class="ss"></sup></td></tr><tr style="line-height:1.4em"><td class="fr"><i>x</i><sup class="ss">2</sup> + 3<i>y</i><sup class="ss">2</sup></td></tr></tbody></table></td><td style="padding-left:0.8em"> if &nbsp;(<i>x</i>, <i>y</i>)  ≠  (0, 0)</td></tr><tr><td>0</td><td style="padding-left:0.8em"> if &nbsp;(<i>x</i>, <i>y</i>)  =  (0, 0)</td></tr></tbody></table></span><br><br><span class="dm"><b>(ii)</b>  <i>g</i>(<i>x</i>, <i>y</i>) &nbsp;= <table class="con" style="font-size:1em"><tbody><tr><td rowspan="2" style="font-size:3em;padding-bottom:0.18em">{</td><td><table class="fr" style="font-size:0.9em"><tbody><tr><td><i>x</i><sup class="ss">8</sup> <i>y</i><sup class="ss">3</sup></td></tr><tr style="line-height:1.4em"><td class="fr"><i>x</i><sup class="ss">8</sup> + 3<i>y</i><sup class="ss">4</sup></td></tr></tbody></table></td><td style="padding-left:0.8em"> if &nbsp;(<i>x</i>, <i>y</i>)  ≠  (0, 0)</td></tr><tr><td>0</td><td style="padding-left:0.8em"> if &nbsp;(<i>x</i>, <i>y</i>)  =  (0, 0)</td></tr></tbody></table></span>
+<br><br><span class="dm">
+<b>(iii)</b>
+ <i>h</i>(<i>x</i>, <i>y</i>) &nbsp;= <table class="con" style="font-size:1em"><tbody><tr><td rowspan="2" style="font-size:4em;padding-bottom:0.18em">{</td><td><table class="fr" style="font-size:0.9em"><tbody><tr><td><table class="sq" cellpadding="0" cellspacing="0"><tbody><tr><td style="font-size:1.27em">√</td><td class="sq"><span style="padding:0.1em"><i>x</i><sup class="ss">2</sup> + <i>y</i><sup class="ss">2</sup> + 1</span></td></tr></tbody></table>&nbsp;−&nbsp;1</td></tr><tr style="line-height:1.5em"><td class="fr"><i>x</i><sup class="ss">2</sup> + <i>y</i><sup class="ss">2</sup></td></tr></tbody></table></td><td style="padding-left:0.8em"> if &nbsp;(<i>x</i>, <i>y</i>)  ≠  (0, 0)</td></tr><tr><td><table class="fr"><tbody><tr><td>1</td></tr><tr><td class="fr">2</td></tr></tbody></table></td><td style="padding-left:0.8em"> if &nbsp;(<i>x</i>, <i>y</i>)  =  (0, 0)</td></tr></tbody></table>
+</span></span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1"><div class="cell"><label class="display"><span style="visibility:hidden">Problem #6:</span></label></div></td>
+						<td class="ffTableSetFORMfieldsField1"><div class="cell"><span style="color:black; font-family:times; font-size:16px"><span class="mobile1"><span style="font-weight:bold">(A)</span> (iii) only </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(B)</span> none of them </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(C)</span> (i) and (iii) only </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(D)</span> (ii) only </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(E)</span> all of them </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(F)</span> (i) and (ii) only </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(G)</span> (ii) and (iii) only </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(H)</span> (i) only </span><span class="mobile">&nbsp; &nbsp;</span></span><br><br><table class="FORMfields" style="margin-left:-75px"><tbody><tr class="FORMfields"><td style="color:#355597;font-size:10px">Problem #6: </td><td class="FORMfields"><div class="display"></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> G</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><div style="overflow-x:auto;"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #6</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try4"><span id="q2_part_c_answer_1"></span></td><td class="try4"><span id="q2_part_c_answer_2"></span></td><td class="try4"><span id="q2_part_c_answer_3"></span></td></tr><tr><td class="try2">Your Mark:</td><td class="try4"><span id="q2_part_c_mark_1"></span></td><td class="try4"><span id="q2_part_c_mark_2"></span></td><td class="try4"><span id="q2_part_c_mark_3"></span></td></tr></tbody></table></div><div id="partial_6" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_7"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #7: </a><br></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span>The graph of  <i>z</i> = <i>f</i> (<i>x</i>, <i>y</i>)  is shown below.  In each part, determine whether the given partial derivatives are positive, negative, or zero.  (Note that the function is symmetric about 0 in both the <i>x</i>- and <i>y</i>- directions.)<br><img style="vertical-align:text-top" src="./A8_files/partial.jpg" alt="Graph for Problem #2" width="320" height="237">
+<br><br></span></td></tr></tbody></table><table><tbody><tr style="vertical-align:top"><td style="padding-right:3px"><span style="font-weight:bold; font-size:16px">(a)</span></td> <td style="padding-top:2px; font-size:16px;"><span> <i>f</i><sub><i>x</i></sub>(2, 2)   and &nbsp; <i>f</i><sub><i>xx</i></sub>(2, 2)</span></td></tr></tbody></table><table><tbody><tr style="vertical-align:top"><td style="padding-right:3px"><span style="font-weight:bold; font-size:16px">(b)</span></td> <td style="padding-top:2px; font-size:16px;"><span> <i>f</i><sub><i>y</i></sub>(2, 2)
+&nbsp; and &nbsp; <i>f</i><sub><i>yy</i></sub>(2, 2)</span></td></tr></tbody></table><table><tbody><tr style="vertical-align:top"><td style="padding-right:3px"><span style="font-weight:bold; font-size:16px">(c)</span></td> <td style="padding-top:2px; font-size:16px;"><span> <i>f</i><sub><i>x</i></sub>(−2, 0)&nbsp; and &nbsp; <i>f</i><sub><i>xx</i></sub>(−2, 0)</span></td></tr></tbody></table><table><tbody><tr style="vertical-align:top"><td style="padding-right:3px"><span style="font-weight:bold; font-size:16px">(d)</span></td> <td style="padding-top:2px; font-size:16px;"><span> <i>f</i><sub><i>y</i></sub>(−2, 0)&nbsp; and &nbsp;  <i>f</i><sub><i>yy</i></sub>(−2, 0)</span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2"><div class="cell"><label class="display"><span style="visibility:hidden">Problem #7(a):</span></label></div></td>
+						<td class="ffTableSetFORMfieldsField2"><div class="cell"><span style="color:black; font-family:times; font-size:16px"><span class="mobile1"><span style="font-weight:bold">(A)</span> positive, positive </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(B)</span> zero, positive </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(C)</span> negative, negative </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(D)</span> positive, negative </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(E)</span> zero, negative </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(F)</span> negative, positive </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(G)</span> zero, zero </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(H)</span> negative, zero </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(I)</span> positive, zero </span><span class="mobile">&nbsp; &nbsp;</span></span><br><br><table class="FORMfields" style="margin-left:-75px"><tbody><tr class="FORMfields"><td style="color:#355597;font-size:10px">Problem #7(a): </td><td class="FORMfields"><div class="display"></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> C</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /1</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1"><div class="cell"><label class="display"><span style="visibility:hidden">Problem #7(b):</span></label></div></td>
+						<td class="ffTableSetFORMfieldsField1"><div class="cell"><span style="color:black; font-family:times; font-size:16px"><span class="mobile1"><span style="font-weight:bold">(A)</span> positive, zero </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(B)</span> positive, positive </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(C)</span> zero, negative </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(D)</span> positive, negative </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(E)</span> negative, negative </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(F)</span> zero, zero </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(G)</span> zero, positive </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(H)</span> negative, zero </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(I)</span> negative, positive </span><span class="mobile">&nbsp; &nbsp;</span></span><br><br><table class="FORMfields" style="margin-left:-75px"><tbody><tr class="FORMfields"><td style="color:#355597;font-size:10px">Problem #7(b): </td><td class="FORMfields"><div class="display"></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> B</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /1</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2"><div class="cell"><label class="display"><span style="visibility:hidden">Problem #7(c):</span></label></div></td>
+						<td class="ffTableSetFORMfieldsField2"><div class="cell"><span style="color:black; font-family:times; font-size:16px"><span class="mobile1"><span style="font-weight:bold">(A)</span> zero, negative </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(B)</span> positive, positive </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(C)</span> negative, positive </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(D)</span> zero, positive </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(E)</span> zero, zero </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(F)</span> positive, zero </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(G)</span> negative, negative </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(H)</span> positive, negative </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(I)</span> negative, zero </span><span class="mobile">&nbsp; &nbsp;</span></span><br><br><table class="FORMfields" style="margin-left:-75px"><tbody><tr class="FORMfields"><td style="color:#355597;font-size:10px">Problem #7(c): </td><td class="FORMfields"><div class="display"></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> H</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /1</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1"><div class="cell"><label class="display"><span style="visibility:hidden">Problem #7(d):</span></label></div></td>
+						<td class="ffTableSetFORMfieldsField1"><div class="cell"><span style="color:black; font-family:times; font-size:16px"><span class="mobile1"><span style="font-weight:bold">(A)</span> zero, negative </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(B)</span> zero, positive </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(C)</span> negative, zero </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(D)</span> negative, negative </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(E)</span> positive, zero </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(F)</span> zero, zero </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(G)</span> negative, positive </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(H)</span> positive, negative </span><span class="mobile">&nbsp; &nbsp;</span><span class="mobile1"><span style="font-weight:bold">(I)</span> positive, positive </span><span class="mobile">&nbsp; &nbsp;</span></span><br><br><table class="FORMfields" style="margin-left:-75px"><tbody><tr class="FORMfields"><td style="color:#355597;font-size:10px">Problem #7(d): </td><td class="FORMfields"><div class="display"></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> B</div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /1</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><div style="overflow-x:auto;"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #7</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try3">7(a) <span id="q2_part_e_answer_1"></span><br>7(b) <span id="q2_part_f_answer_1"></span><br>7(c) <span id="q3_part_a_answer_1"></span><br>7(d) <span id="q3_part_b_answer_1"></span><br></td><td class="try3">7(a) <span id="q2_part_e_answer_2"></span><br>7(b) <span id="q2_part_f_answer_2"></span><br>7(c) <span id="q3_part_a_answer_2"></span><br>7(d) <span id="q3_part_b_answer_2"></span><br></td><td class="try3">7(a) <span id="q2_part_e_answer_3"></span><br>7(b) <span id="q2_part_f_answer_3"></span><br>7(c) <span id="q3_part_a_answer_3"></span><br>7(d) <span id="q3_part_b_answer_3"></span><br></td></tr><tr><td class="try2">Your Mark:</td><td class="try3">7(a) <span id="q2_part_e_mark_1"></span><br>7(b) <span id="q2_part_f_mark_1"></span><br>7(c) <span id="q3_part_a_mark_1"></span><br>7(d) <span id="q3_part_b_mark_1"></span><br></td><td class="try3">7(a) <span id="q2_part_e_mark_2"></span><br>7(b) <span id="q2_part_f_mark_2"></span><br>7(c) <span id="q3_part_a_mark_2"></span><br>7(d) <span id="q3_part_b_mark_2"></span><br></td><td class="try3">7(a) <span id="q2_part_e_mark_3"></span><br>7(b) <span id="q2_part_f_mark_3"></span><br>7(c) <span id="q3_part_a_mark_3"></span><br>7(d) <span id="q3_part_b_mark_3"></span><br></td></tr></tbody></table></div><div id="partial_7" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><a name="problem_8"><table><tbody><tr><td class="mobile2"><a style="font-size:18px; font-weight:bold; color:black; white-space:nowrap">Problem #8: </a><br></td><td class="mobile1"><a style="font-size:14px; font-family:times; color:black;"><table><tbody><tr style="vertical-align:top"><td style="padding-top:3px; font-size:16px;"><span>Let  <i>f</i> (<i>x</i>, <i>y</i>, <i>z</i>) = <i>y</i><sup class="ss"> <i>x</i><b>/</b><i>z</i></sup>.   Find the value of the following partial derivatives.<br><br></span></td></tr></tbody></table><table><tbody><tr style="vertical-align:top"><td style="padding-right:3px"><span style="font-weight:bold; font-size:16px">(a)</span></td> <td style="padding-top:2px; font-size:16px;"><span> <i>f</i><sub><i>x</i></sub>(3, 3, 2)</span></td></tr></tbody></table><table><tbody><tr style="vertical-align:top"><td style="padding-right:3px"><span style="font-weight:bold; font-size:16px">(b)</span></td> <td style="padding-top:2px; font-size:16px;"><span> <i>f</i><sub><i>y</i></sub>(3, 4, 2)</span></td></tr></tbody></table><table><tbody><tr style="vertical-align:top"><td style="padding-right:3px"><span style="font-weight:bold; font-size:16px">(c)</span></td> <td style="padding-top:2px; font-size:16px;"><span> <i>f</i><sub><i>z</i></sub>(3, 4, 4)</span></td></tr></tbody></table></a></td></tr></tbody></table></a></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2"><div class="cell"><label class="display">Problem #8(a):</label></div></td>
+						<td class="ffTableSetFORMfieldsField2"><div class="cell"><table class="FORMfields"><tbody><tr class="FORMfields"><td class="FORMfields"><div class="display"><span style="font-family:times;font-size:14px;white-space:nowrap"></span></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> <span style="font-family:times;font-size:14px;white-space:nowrap"> <table class="fr" style="font-size:0.9em"><tbody><tr><td>ln 3</td></tr><tr><td class="fr">2</td></tr></tbody></table> 3<sup class="ss" style="font-size:0.9em">3<span style="padding-left:.1em;padding-right:.1em"><b>/</b></span>2</sup></span></div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1"><div class="cell"><label class="display">Problem #8(b):</label></div></td>
+						<td class="ffTableSetFORMfieldsField1"><div class="cell"><table class="FORMfields"><tbody><tr class="FORMfields"><td class="FORMfields"><div class="display"><span style="font-family:times;font-size:14px;white-space:nowrap"></span></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> <span style="font-family:times;font-size:14px;white-space:nowrap"> <table class="fr" style="font-size:0.9em"><tbody><tr><td>3</td></tr><tr><td class="fr">8</td></tr></tbody></table> 4<sup class="ss" style="font-size:0.9em">3<span style="padding-left:.1em;padding-right:.1em"><b>/</b></span>2</sup></span></div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2"><div class="cell"><label class="display">Problem #8(c):</label></div></td>
+						<td class="ffTableSetFORMfieldsField2"><div class="cell"><table class="FORMfields"><tbody><tr class="FORMfields"><td class="FORMfields"><div class="display"><span style="font-family:times;font-size:14px;white-space:nowrap"></span></div></td><td class="FORMfields"><div class="help"><span style="font-size:12px"><div style="color:green"><b>Correct Answer:</b> <span style="font-family:times;font-size:14px;white-space:nowrap">( <table class="fr" style="font-size:0.9em"><tbody><tr><td>−3</td></tr><tr><td class="fr">16</td></tr></tbody></table>  ln 4)4<sup class="ss" style="font-size:0.9em">3<span style="padding-left:.1em;padding-right:.1em"><b>/</b></span>4</sup></span></div><div style="color:green"></div><div style="color:red"><div style="white-space:nowrap"><b>Your Mark:</b> /2</div></div></span></div></td></tr></tbody></table></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel1" colspan="2"><div class="cell"><div class="ffDescription"><div style="overflow-x:auto;"><table class="try1"><tbody><tr><td style="vertical-align:top"><span class="try1">Problem #8</span></td><td class="try1"><span class="try2">Attempt #1</span></td><td class="try1"><span class="try2">Attempt #2</span></td><td class="try1"><span class="try2">Attempt #3</span></td></tr><tr><td class="try2">Your Answer:</td><td class="try3">8(a) <span id="q3_part_d_answer_1" onclick="show_unform(&#39;q3_part_d&#39;,&#39;1&#39;)"></span><br>8(b) <span id="q3_part_e_answer_1" onclick="show_unform(&#39;q3_part_e&#39;,&#39;1&#39;)"></span><br>8(c) <span id="q3_part_f_answer_1" onclick="show_unform(&#39;q3_part_f&#39;,&#39;1&#39;)"></span><br></td><td class="try3">8(a) <span id="q3_part_d_answer_2" onclick="show_unform(&#39;q3_part_d&#39;,&#39;2&#39;)"></span><br>8(b) <span id="q3_part_e_answer_2" onclick="show_unform(&#39;q3_part_e&#39;,&#39;2&#39;)"></span><br>8(c) <span id="q3_part_f_answer_2" onclick="show_unform(&#39;q3_part_f&#39;,&#39;2&#39;)"></span><br></td><td class="try3">8(a) <span id="q3_part_d_answer_3" onclick="show_unform(&#39;q3_part_d&#39;,&#39;3&#39;)"></span><br>8(b) <span id="q3_part_e_answer_3" onclick="show_unform(&#39;q3_part_e&#39;,&#39;3&#39;)"></span><br>8(c) <span id="q3_part_f_answer_3" onclick="show_unform(&#39;q3_part_f&#39;,&#39;3&#39;)"></span><br></td></tr><tr><td class="try2">Your Mark:</td><td class="try3">8(a) <span id="q3_part_d_mark_1"></span><br>8(b) <span id="q3_part_e_mark_1"></span><br>8(c) <span id="q3_part_f_mark_1"></span><br></td><td class="try3">8(a) <span id="q3_part_d_mark_2"></span><br>8(b) <span id="q3_part_e_mark_2"></span><br>8(c) <span id="q3_part_f_mark_2"></span><br></td><td class="try3">8(a) <span id="q3_part_d_mark_3"></span><br>8(b) <span id="q3_part_e_mark_3"></span><br>8(c) <span id="q3_part_f_mark_3"></span><br></td></tr></tbody></table></div><div id="partial_8" style="margin-left:150px;color:blue;font-size:11px"></div><br><br></div></div></td>
+					</tr>
+					<tr class="ffTableSetFORMfields">
+						<td class="ffTableSetFORMfieldsLabel2" colspan="2"><div class="cell"><div class="ffDescription"><input style="display:none" class="FORMfieldsSubmit" type="submit" id="silent_save" name="just_save" value="Save" onclick="this.form.action=&#39;https://www.childsmath.ca/childsa/forms/1zStuff/onlineform_2.php?iframe=true&amp;silent_save=true&amp;assign=8&#39;; this.form.target=&#39;save_iframe&#39;"></div></div></td>
+					</tr>
+				</tbody></table>			
+
+	</form>
+
+
+
+	</td></tr></tbody></table></div>
+
+<iframe name="save_iframe" width="0" height="0" frameborder="0" src="./A8_files/saved_resource.html">
+Alternate text if the iframe cannot be rendered
+</iframe> 
+
+
+
+
+
+
+
+
+</body></html>
